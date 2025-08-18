@@ -112,7 +112,6 @@
 
     <variable name="PosterImage">
         <value condition="!String.IsEmpty(ListItem.Art(animatedposter)) + Skin.HasSetting(furniture.animatedposters)">$INFO[ListItem.Art(animatedposter)]</value>
-        <value condition="!String.IsEmpty(ListItem.Art(keyart)) + Skin.HasSetting(global.use.keyart)">$INFO[ListItem.Art(keyart)]</value>
         <value condition="!String.IsEmpty(ListItem.Art(season.poster)) + !Window.IsVisible(Home)">$INFO[ListItem.Art(season.poster)]</value>
         <value condition="!String.IsEmpty(ListItem.Art(poster))">$INFO[ListItem.Art(poster)]</value>
         <value condition="!String.IsEmpty(ListItem.Art(tvshow.poster))">$INFO[ListItem.Art(tvshow.poster)]</value>
@@ -122,7 +121,6 @@
     </variable>
 
     <variable name="SeasonImage">
-        <value condition="!String.IsEmpty(ListItem.Art(keyart)) + Skin.HasSetting(global.use.keyart)">$INFO[ListItem.Art(keyart)]</value>
         <value condition="!String.IsEmpty(ListItem.Art(season.poster))">$INFO[ListItem.Art(season.poster)]</value>
         <value condition="!String.IsEmpty(ListItem.Art(poster))">$INFO[ListItem.Art(poster)]</value>
         <value condition="!String.IsEmpty(ListItem.Art(tvshow.poster))">$INFO[ListItem.Art(tvshow.poster)]</value>
@@ -130,15 +128,15 @@
     </variable>
 
     <variable name="PosterImageOnly">
-        <value condition="!String.IsEmpty(ListItem.Art(keyart)) + Skin.HasSetting(global.use.keyart)">$INFO[ListItem.Art(keyart)]</value>
         <value condition="!String.IsEmpty(ListItem.Art(tvshow.poster))">$INFO[ListItem.Art(tvshow.poster)]</value>
         <value condition="!String.IsEmpty(ListItem.Art(poster))">$INFO[ListItem.Art(poster)]</value>
         <value>$INFO[ListItem.Icon]</value>
     </variable>
 
-    <variable name="DialogSelectImageList">
+     <variable name="DialogSelectImageList">
         <value condition="String.IsEqual(ListItem.DBType,tvshow) + !String.IsEmpty(ListItem.Art(tvshow.poster))">$INFO[ListItem.Art(tvshow.poster)]</value>
         <value condition="[String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow)] + !String.IsEmpty(ListItem.Art(poster))">$INFO[ListItem.Art(poster)]</value>
+        <value condition="Window.isVisible(gamesaves) + !String.IsEmpty(ListItem.Art(screenshot))">$INFO[ListItem.Art(screenshot)]</value>
         <value>$INFO[ListItem.Icon]</value>
     </variable>
 
@@ -147,7 +145,7 @@
         <value condition="[String.IsEqual(Container(6).ListItem.DBType,movie) | String.IsEqual(Container(6).ListItem.DBType,tvshow)] + !String.IsEmpty(Container(6).ListItem.Art(poster))">$INFO[Container(6).ListItem.Art(poster)]</value>
         <value>$INFO[Container(6).ListItem.Icon]</value>
     </variable>
-
+ 
     <variable name="CastImage">
         <value condition="!String.IsEmpty(ListItem.Art(thumb))">$INFO[ListItem.Art(thumb)]</value>
     </variable>
@@ -165,7 +163,6 @@
     </variable>
 
     <variable name="WidgetImage">
-        <value condition="!String.IsEmpty(Container(301).ListItem.Art(keyart)) + Skin.HasSetting(global.use.keyart) + !String.IsEqual(Container(300).ListItem.Property(widgetaspect),Square) + !String.IsEqual(Container(300).ListItem.Property(widgetaspect),Thumbnail) + !String.IsEqual(Container(300).ListItem.Property(widgetaspect),Fanart)">$INFO[Container(301).ListItem.Art(keyart)]</value>
         <value condition="!String.IsEmpty(Container(301).ListItem.Art(tvshow.poster))">$INFO[Container(301).ListItem.Art(tvshow.poster)]</value>
         <value condition="!String.IsEmpty(Container(301).ListItem.Art(poster))">$INFO[Container(301).ListItem.Art(poster)]</value>
         <value condition="!String.IsEmpty(Container(301).ListItem.EpgEventIcon) + String.StartsWith(Container(301).ListItem.FolderPath,pvr://timers)">$INFO[Container(301).ListItem.EpgEventIcon]</value>
@@ -176,6 +173,7 @@
         <value condition="!String.IsEmpty(Container(301).ListItem.Art(tvshow.clearlogo))">$INFO[Container(301).ListItem.Art(tvshow.clearlogo)]</value>
         <value condition="!String.IsEmpty(Container(301).ListItem.Art(clearlogo))">$INFO[Container(301).ListItem.Art(clearlogo)]</value>
         <value condition="!String.IsEmpty(Container(301).ListItem.Art(artist.clearlogo))">$INFO[Container(301).ListItem.Art(artist.clearlogo)]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.clearlogo)) + String.StartsWith(Container(301).ListItem.FolderPath,pvr://)">$INFO[Window(Home).Property(TMDbHelper.ListItem.clearlogo)]</value>
         <value condition="String.IsEqual(Container(300).ListItem.Property(background),playlistBackground) + !String.IsEmpty(Container(9988).ListItem.Art(tvshow.clearlogo))">$INFO[Container(9988).ListItem.Art(tvshow.clearlogo)]</value>
         <value condition="String.IsEqual(Container(300).ListItem.Property(background),playlistBackground) + !String.IsEmpty(Container(9988).ListItem.Art(clearlogo))">$INFO[Container(9988).ListItem.Art(clearlogo)]</value>
         <value condition="String.IsEqual(Container(300).ListItem.Property(background),playlistBackground) + !String.IsEmpty(Container(9988).ListItem.Art(artist.clearlogo))">$INFO[Container(9988).ListItem.Art(artist.clearlogo)]</value>
@@ -200,7 +198,7 @@
     </variable>
 
     <variable name="ThumbImageStudiosDialogInfo">
-        <value condition="!String.IsEmpty(Skin.String(studio.logos.path)) + !Window.IsVisible(Custom_MovieSets.xml)">$INFO[Skin.String(studio.logos.path),,/]$INFO[ListItem.Studio,,.png]</value>
+        <value condition="!String.IsEmpty(Skin.String(studio.logos.path))">$INFO[Skin.String(studio.logos.path),,/]$INFO[ListItem.Studio,,.png]</value>
         <value condition="!String.IsEmpty(Skin.String(record.labels.path))">$INFO[Skin.String(record.labels.path),,/]$INFO[ListItem.Studio,,.png]</value>
     </variable>
     
@@ -213,8 +211,6 @@
     </variable>
 
     <variable name="PlayerPoster">
-        <value condition="!String.IsEmpty(Player.Art(keyart)) + Skin.HasSetting(global.use.keyart)">$INFO[Player.Art(keyart)]</value>
-        <value condition="!String.IsEmpty(Player.Art(tvshow.keyart)) + Skin.HasSetting(global.use.keyart)">$INFO[Player.Art(tvshow.keyart)]</value>
         <value condition="!String.IsEmpty(Player.Art(tvshow.poster))">$INFO[Player.Art(tvshow.poster)]</value>
         <value condition="!String.IsEmpty(Player.Art(poster))">$INFO[Player.Art(poster)]</value>
         <value>$INFO[Player.Art(thumb)]</value>
@@ -239,10 +235,10 @@
     <variable name="FanartImage">
         <value condition="!String.IsEmpty(Container(5161).ListItem.Icon) + String.IsEqual(Container(5161).ListItem.DBTYPE,episode) + Control.HasFocus(5161)">$INFO[Container(5161).ListItem.Icon]</value>
         <value condition="!String.IsEmpty(ListItem.Art(animatedfanart)) + !Container.Content(episodes) + Skin.HasSetting(furniture.animatedfanarts)">$INFO[ListItem.Art(animatedfanart)]</value>
-        <value condition="!String.IsEmpty(ListItem.Art(landscape)) + Container.Content(tvshows) + !Skin.HasSetting(dontuselandscapetvshows)">$INFO[ListItem.Art(landscape)]</value>
-        <value condition="!String.IsEmpty(ListItem.Art(landscape)) + Container.Content(seasons) + !Skin.HasSetting(dontuselandscapeseasons)">$INFO[ListItem.Art(landscape)]</value>
-        <value condition="!String.IsEmpty(ListItem.Art(tvshow.landscape)) + Container.Content(seasons) + !Skin.HasSetting(dontuselandscapeseasons)">$INFO[ListItem.Art(tvshow.landscape)]</value>
-        <value condition="!String.IsEmpty(ListItem.Art(landscape)) + Container.Content(movies) + !Skin.HasSetting(dontuselandscapemovies)">$INFO[ListItem.Art(landscape)]</value>
+        <value condition="!String.IsEmpty(ListItem.Art(landscape)) + Container.Content(tvshows)">$INFO[ListItem.Art(landscape)]</value>
+        <value condition="!String.IsEmpty(ListItem.Art(landscape)) + Container.Content(seasons)">$INFO[ListItem.Art(landscape)]</value>
+        <value condition="!String.IsEmpty(ListItem.Art(tvshow.landscape)) + Container.Content(seasons)">$INFO[ListItem.Art(tvshow.landscape)]</value>
+        <value condition="!String.IsEmpty(ListItem.Art(landscape)) + Container.Content(movies)">$INFO[ListItem.Art(landscape)]</value>
         <value condition="!String.IsEmpty(ListItem.Thumb) + String.IsEqual(ListItem.DBType,video)">$INFO[ListItem.Thumb]</value>
         <value condition="!String.IsEmpty(ListItem.Icon) + Container.Content(addons)">$INFO[ListItem.Icon]</value>
         <value condition="!String.IsEmpty(ListItem.Art(title)) + $EXP[InGameMode]">$INFO[ListItem.Art(title)]</value>
@@ -317,15 +313,11 @@
     </variable>
 
     <variable name="MusicPlayerArt">
-        <value condition="!String.IsEmpty(Player.Art(clearlogo)) + Skin.HasSetting(ShowClearLogoMusicOSD)">$INFO[Player.Art(clearlogo)]</value>
-        <value condition="!String.IsEmpty(Player.Art(artist.clearlogo)) + Skin.HasSetting(ShowClearLogoMusicOSD)">$INFO[Player.Art(artist.clearlogo)]</value>
         <value condition="!String.IsEmpty(Player.Art(clearart)) + Skin.HasSetting(ShowClearArtMusicOSD)">$INFO[Player.Art(clearart)]</value>
         <value condition="!String.IsEmpty(Player.Art(artist.clearart)) + Skin.HasSetting(ShowClearArtMusicOSD)">$INFO[Player.Art(artist.clearart)]</value>
     </variable>
     
     <variable name="PlayerArtMusicNowPlaying">
-        <value condition="!String.IsEmpty(Player.Art(clearlogo)) + Skin.HasSetting(ShowClearLogoMusicNowPlaying)">$INFO[Player.Art(clearlogo)]</value>
-        <value condition="!String.IsEmpty(Player.Art(artist.clearlogo)) + Skin.HasSetting(ShowClearLogoMusicNowPlaying)">$INFO[Player.Art(artist.clearlogo)]</value>
         <value condition="!String.IsEmpty(Player.Art(clearart)) + Skin.HasSetting(ShowClearArtMusicNowPlaying)">$INFO[Player.Art(clearart)]</value>
         <value condition="!String.IsEmpty(Player.Art(artist.clearart)) + Skin.HasSetting(ShowClearArtMusicNowPlaying)">$INFO[Player.Art(artist.clearart)]</value>
     </variable>
@@ -337,42 +329,29 @@
     </variable>
 
     <variable name="PVRThumb">
-        <value condition="!String.IsEmpty(Window(Home).Property(PVR.Artwork.fanart)) + Skin.HasSetting(Skin_enablePvrArtwork)">$INFO[Window(Home).Property(PVR.Artwork.fanart)]</value>
-        <value condition="!String.IsEmpty(Window(Home).Property(PVR.Artwork.poster)) + Skin.HasSetting(Skin_enablePvrArtwork)">$INFO[Window(Home).Property(PVR.Artwork.poster)]</value>
-        <value condition="!String.IsEmpty(Window(Home).Property(SkinHelper.ListItem.Art.Fanart))">$INFO[Window(Home).Property(SkinHelper.ListItem.Art.Fanart)]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Fanart))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Fanart)]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Poster))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Poster)]</value>
         <value condition="Window.IsVisible(MyPVRRecordings.xml)">$INFO[ListItem.Icon]</value>
         <value condition="Window.IsVisible(DialogPVRInfo.xml)">$INFO[ListItem.Icon]</value>
     </variable>
 
     <variable name="ChannelListEPGIconVar">
-        <value condition="!String.IsEmpty(Window(Home).Property(PVR.Artwork.fanart)) + Skin.HasSetting(Skin_enablePvrArtwork)">$INFO[Window(Home).Property(PVR.Artwork.fanart)]</value>
-        <value condition="!String.IsEmpty(Window(Home).Property(PVR.Artwork.poster)) + Skin.HasSetting(Skin_enablePvrArtwork)">$INFO[Window(Home).Property(PVR.Artwork.poster)]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Fanart))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Fanart)]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Poster))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Poster)]</value>
         <value condition="!String.IsEmpty(ListItem.EpgEventIcon)">$INFO[ListItem.EpgEventIcon]</value>
         <value>$INFO[ListItem.Icon]</value>
     </variable>
 
-    <variable name="RottenTomatoesColored">
-        <value condition="Integer.IsGreater(Window(Home).Property(TMDbHelper.ListItem.RottenTomatoes_Rating),74) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.RottenTomatoes_Rating))">misc/hot.png</value>
-        <value condition="Integer.IsGreater(Window(Home).Property(TMDbHelper.ListItem.RottenTomatoes_Rating),59) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.RottenTomatoes_Rating))">misc/tomato.png</value>
-        <value condition="Integer.IsGreater(Window(Home).Property(TMDbHelper.ListItem.RottenTomatoes_Rating),0) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.RottenTomatoes_Rating))">misc/rt.png</value>
-        <value></value>
-    </variable>
-
     <variable name="RottenTomatoes">
-        <value condition="Integer.IsGreater(Window(Home).Property(TMDbHelper.ListItem.RottenTomatoes_Rating),74) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.RottenTomatoes_Rating))">misc/hot_white.png</value>
-        <value condition="Integer.IsGreater(Window(Home).Property(TMDbHelper.ListItem.RottenTomatoes_Rating),59) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.RottenTomatoes_Rating))">misc/tomato_white.png</value>
-        <value condition="Integer.IsGreater(Window(Home).Property(TMDbHelper.ListItem.RottenTomatoes_Rating),0) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.RottenTomatoes_Rating))">misc/rt_white.png</value>
+        <value condition="Integer.IsGreater(Window(Home).Property(TMDbHelper.ListItem.RottenTomatoes_Rating),74) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.RottenTomatoes_Rating))">ratings/hot.png</value>
+        <value condition="Integer.IsGreater(Window(Home).Property(TMDbHelper.ListItem.RottenTomatoes_Rating),59) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.RottenTomatoes_Rating))">ratings/tomato.png</value>
+        <value condition="Integer.IsGreater(Window(Home).Property(TMDbHelper.ListItem.RottenTomatoes_Rating),0) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.RottenTomatoes_Rating))">ratings/rt.png</value>
         <value></value>
-    </variable>
-
-    <variable name="RottenTomatoesAudienceColored">
-        <value condition="Integer.IsGreater(Window(Home).Property(TMDbHelper.ListItem.RottenTomatoes_UserMeter),59) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.RottenTomatoes_UserMeter))">misc/good.png</value>
-        <value condition="Integer.IsGreater(Window(Home).Property(TMDbHelper.ListItem.RottenTomatoes_UserMeter),0) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.RottenTomatoes_UserMeter))">misc/notgood.png</value>
     </variable>
 
     <variable name="RottenTomatoesAudience">
-        <value condition="Integer.IsGreater(Window(Home).Property(TMDbHelper.ListItem.RottenTomatoes_UserMeter),59) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.RottenTomatoes_UserMeter))">misc/good_white.png</value>
-        <value condition="Integer.IsGreater(Window(Home).Property(TMDbHelper.ListItem.RottenTomatoes_UserMeter),0) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.RottenTomatoes_UserMeter))">misc/notgood_white.png</value>
+        <value condition="Integer.IsGreater(Window(Home).Property(TMDbHelper.ListItem.RottenTomatoes_UserMeter),59) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.RottenTomatoes_UserMeter))">ratings/good.png</value>
+        <value condition="Integer.IsGreater(Window(Home).Property(TMDbHelper.ListItem.RottenTomatoes_UserMeter),0) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.RottenTomatoes_UserMeter))">ratings/notgood.png</value>
     </variable>
 
     <variable name="MusicDiscart">
@@ -390,66 +369,56 @@
         <value>misc/default_cd.png</value>
     </variable>
 
-    <variable name="ImageBluray">
-        <value condition="String.IsEqual(ListItem.VideoResolution,4K) | Integer.IsEqual(ListItem.VideoResolution,2160)">ultrahd</value>
-        <value>bluray</value>
-    </variable>
-
-    <variable name="ImageBluray9500">
-        <value condition="String.IsEqual(Container(9500).ListItem.VideoResolution,4K) | Integer.IsEqual(Container(9500).ListItem.VideoResolution,2160)">ultrahd</value>
-        <value>bluray</value>
-    </variable>
-
     <variable name="ImageViewSelector">
-        <value condition="ControlGroup(9001).HasFocus(3120)">special://skin/extras/views/$VAR[ColorTheme]513.jpg</value>
-        <value condition="ControlGroup(9001).HasFocus(3102)">special://skin/extras/views/$VAR[ColorTheme]521.jpg</value>
-        <value condition="ControlGroup(9001).HasFocus(3103)">special://skin/extras/views/$VAR[ColorTheme]522.jpg</value>
-        <value condition="ControlGroup(9001).HasFocus(3125)">special://skin/extras/views/$VAR[ColorTheme]512.jpg</value>
-        <value condition="ControlGroup(9001).HasFocus(3126)">special://skin/extras/views/$VAR[ColorTheme]511.jpg</value>
-        <value condition="ControlGroup(9001).HasFocus(3141)">special://skin/extras/views/$VAR[ColorTheme]501.jpg</value>
-        <value condition="ControlGroup(9001).HasFocus(3121)">special://skin/extras/views/$VAR[ColorTheme]507.jpg</value>
-        <value condition="ControlGroup(9001).HasFocus(3139)">special://skin/extras/views/$VAR[ColorTheme]56.jpg</value>
-        <value condition="ControlGroup(9001).HasFocus(3124)">special://skin/extras/views/$VAR[ColorTheme]504.jpg</value>
-        <value condition="ControlGroup(9001).HasFocus(3123)">special://skin/extras/views/$VAR[ColorTheme]509.jpg</value>
-        <value condition="ControlGroup(9001).HasFocus(3127)">special://skin/extras/views/$VAR[ColorTheme]55.jpg</value>
-        <value condition="ControlGroup(9001).HasFocus(3128)">special://skin/extras/views/$VAR[ColorTheme]57.jpg</value>
-        <value condition="ControlGroup(9001).HasFocus(3129)">special://skin/extras/views/$VAR[ColorTheme]555.jpg</value>
-        <value condition="ControlGroup(9001).HasFocus(3130)">special://skin/extras/views/$VAR[ColorTheme]59.jpg</value>
-        <value condition="ControlGroup(9001).HasFocus(3131)">special://skin/extras/views/$VAR[ColorTheme]54.jpg</value>
-        <value condition="ControlGroup(9001).HasFocus(3132)">special://skin/extras/views/$VAR[ColorTheme]51.jpg</value>
-        <value condition="ControlGroup(9001).HasFocus(3133)">special://skin/extras/views/$VAR[ColorTheme]58.jpg</value>
-        <value condition="ControlGroup(9001).HasFocus(3134)">special://skin/extras/views/$VAR[ColorTheme]52.jpg</value>
-        <value condition="ControlGroup(9001).HasFocus(3135)">special://skin/extras/views/$VAR[ColorTheme]500.jpg</value>
-        <value condition="ControlGroup(9001).HasFocus(3136)">special://skin/extras/views/$VAR[ColorTheme]53.jpg</value>
-        <value condition="ControlGroup(9001).HasFocus(3137)">special://skin/extras/views/$VAR[ColorTheme]57.jpg</value>
-        <value condition="ControlGroup(9001).HasFocus(3138)">special://skin/extras/views/$VAR[ColorTheme]50.jpg</value>
-        <value condition="ControlGroup(9001).HasFocus(3101)">special://skin/extras/views/$VAR[ColorTheme]520.jpg</value>
-        <value condition="ControlGroup(9001).HasFocus(3122)">special://skin/extras/views/$VAR[ColorTheme]510.jpg</value>
-        <value condition="ControlGroup(9001).HasFocus(3142)">special://skin/extras/views/$VAR[ColorTheme]514.jpg</value>
-        <value condition="ControlGroup(9001).HasFocus(3140)">special://skin/extras/views/$VAR[ColorTheme]515.jpg</value>
-        <value condition="ControlGroup(9001).HasFocus(3143)">special://skin/extras/views/$VAR[ColorTheme]517.jpg</value>
-        <value condition="ControlGroup(9001).HasFocus(3157)">special://skin/extras/views/$VAR[ColorTheme]516.jpg</value>
-        <value condition="ControlGroup(9001).HasFocus(3119)">special://skin/extras/views/$VAR[ColorTheme]519.jpg</value>
-        <value condition="ControlGroup(9001).HasFocus(3104)">special://skin/extras/views/$VAR[ColorTheme]524.jpg</value>
-        <value condition="ControlGroup(9001).HasFocus(3158)">special://skin/extras/views/$VAR[ColorTheme]526.jpg</value>
-        <value condition="ControlGroup(9001).HasFocus(31381)">special://skin/extras/views/$VAR[ColorTheme]527.jpg</value>
+        <value condition="ControlGroup(9001).HasFocus(3120)">special://skin/extras/views/$VAR[ColorTheme,,/]513.jpg</value>
+        <value condition="ControlGroup(9001).HasFocus(3102)">special://skin/extras/views/$VAR[ColorTheme,,/]521.jpg</value>
+        <value condition="ControlGroup(9001).HasFocus(3103)">special://skin/extras/views/$VAR[ColorTheme,,/]522.jpg</value>
+        <value condition="ControlGroup(9001).HasFocus(3125)">special://skin/extras/views/$VAR[ColorTheme,,/]512.jpg</value>
+        <value condition="ControlGroup(9001).HasFocus(3126)">special://skin/extras/views/$VAR[ColorTheme,,/]511.jpg</value>
+        <value condition="ControlGroup(9001).HasFocus(3141)">special://skin/extras/views/$VAR[ColorTheme,,/]501.jpg</value>
+        <value condition="ControlGroup(9001).HasFocus(3121)">special://skin/extras/views/$VAR[ColorTheme,,/]507.jpg</value>
+        <value condition="ControlGroup(9001).HasFocus(3139)">special://skin/extras/views/$VAR[ColorTheme,,/]56.jpg</value>
+        <value condition="ControlGroup(9001).HasFocus(3124)">special://skin/extras/views/$VAR[ColorTheme,,/]504.jpg</value>
+        <value condition="ControlGroup(9001).HasFocus(3123)">special://skin/extras/views/$VAR[ColorTheme,,/]509.jpg</value>
+        <value condition="ControlGroup(9001).HasFocus(3127)">special://skin/extras/views/$VAR[ColorTheme,,/]55.jpg</value>
+        <value condition="ControlGroup(9001).HasFocus(3128)">special://skin/extras/views/$VAR[ColorTheme,,/]57.jpg</value>
+        <value condition="ControlGroup(9001).HasFocus(3129)">special://skin/extras/views/$VAR[ColorTheme,,/]555.jpg</value>
+        <value condition="ControlGroup(9001).HasFocus(3130)">special://skin/extras/views/$VAR[ColorTheme,,/]59.jpg</value>
+        <value condition="ControlGroup(9001).HasFocus(3131)">special://skin/extras/views/$VAR[ColorTheme,,/]54.jpg</value>
+        <value condition="ControlGroup(9001).HasFocus(3132)">special://skin/extras/views/$VAR[ColorTheme,,/]51.jpg</value>
+        <value condition="ControlGroup(9001).HasFocus(3133)">special://skin/extras/views/$VAR[ColorTheme,,/]58.jpg</value>
+        <value condition="ControlGroup(9001).HasFocus(3134)">special://skin/extras/views/$VAR[ColorTheme,,/]52.jpg</value>
+        <value condition="ControlGroup(9001).HasFocus(3135)">special://skin/extras/views/$VAR[ColorTheme,,/]500.jpg</value>
+        <value condition="ControlGroup(9001).HasFocus(3136)">special://skin/extras/views/$VAR[ColorTheme,,/]53.jpg</value>
+        <value condition="ControlGroup(9001).HasFocus(3137)">special://skin/extras/views/$VAR[ColorTheme,,/]57.jpg</value>
+        <value condition="ControlGroup(9001).HasFocus(3138)">special://skin/extras/views/$VAR[ColorTheme,,/]50.jpg</value>
+        <value condition="ControlGroup(9001).HasFocus(3101)">special://skin/extras/views/$VAR[ColorTheme,,/]520.jpg</value>
+        <value condition="ControlGroup(9001).HasFocus(3122)">special://skin/extras/views/$VAR[ColorTheme,,/]510.jpg</value>
+        <value condition="ControlGroup(9001).HasFocus(3142)">special://skin/extras/views/$VAR[ColorTheme,,/]514.jpg</value>
+        <value condition="ControlGroup(9001).HasFocus(3140)">special://skin/extras/views/$VAR[ColorTheme,,/]515.jpg</value>
+        <value condition="ControlGroup(9001).HasFocus(3143)">special://skin/extras/views/$VAR[ColorTheme,,/]517.jpg</value>
+        <value condition="ControlGroup(9001).HasFocus(3157)">special://skin/extras/views/$VAR[ColorTheme,,/]516.jpg</value>
+        <value condition="ControlGroup(9001).HasFocus(3119)">special://skin/extras/views/$VAR[ColorTheme,,/]519.jpg</value>
+        <value condition="ControlGroup(9001).HasFocus(3104)">special://skin/extras/views/$VAR[ColorTheme,,/]524.jpg</value>
+        <value condition="ControlGroup(9001).HasFocus(3158)">special://skin/extras/views/$VAR[ColorTheme,,/]526.jpg</value>
+        <value condition="ControlGroup(9001).HasFocus(31381)">special://skin/extras/views/$VAR[ColorTheme,,/]527.jpg</value>
     </variable>
 
     <variable name="ImageViewSelectorMusic">
-        <value condition="ControlGroup(9001).HasFocus(3120)">special://skin/extras/views/514Music.jpg</value>
-        <value condition="ControlGroup(9001).HasFocus(3121)">special://skin/extras/views/500Music.jpg</value>
-        <value condition="ControlGroup(9001).HasFocus(3122)">special://skin/extras/views/50Music.jpg</value>
-        <value condition="ControlGroup(9001).HasFocus(3123)">special://skin/extras/views/506Music.jpg</value>
-        <value condition="ControlGroup(9001).HasFocus(3124)">special://skin/extras/views/57Music.jpg</value>
-        <value condition="ControlGroup(9001).HasFocus(3125)">special://skin/extras/views/51Music.jpg</value>
-        <value condition="ControlGroup(9001).HasFocus(3126)">special://skin/extras/views/505Music.jpg</value>
-        <value condition="ControlGroup(9001).HasFocus(3127)">special://skin/extras/views/503Music.jpg</value>
-        <value condition="ControlGroup(9001).HasFocus(3128)">special://skin/extras/views/54Music.jpg</value>
-        <value condition="ControlGroup(9001).HasFocus(3130)">special://skin/extras/views/523Music.jpg</value>
+        <value condition="ControlGroup(9001).HasFocus(3120)">special://skin/extras/views/$VAR[ColorTheme,,/]514Music.jpg</value>
+        <value condition="ControlGroup(9001).HasFocus(3121)">special://skin/extras/views/$VAR[ColorTheme,,/]500Music.jpg</value>
+        <value condition="ControlGroup(9001).HasFocus(3122)">special://skin/extras/views/$VAR[ColorTheme,,/]50Music.jpg</value>
+        <value condition="ControlGroup(9001).HasFocus(3123)">special://skin/extras/views/$VAR[ColorTheme,,/]506Music.jpg</value>
+        <value condition="ControlGroup(9001).HasFocus(3124)">special://skin/extras/views/$VAR[ColorTheme,,/]57Music.jpg</value>
+        <value condition="ControlGroup(9001).HasFocus(3125)">special://skin/extras/views/$VAR[ColorTheme,,/]51Music.jpg</value>
+        <value condition="ControlGroup(9001).HasFocus(3126)">special://skin/extras/views/$VAR[ColorTheme,,/]505Music.jpg</value>
+        <value condition="ControlGroup(9001).HasFocus(3127)">special://skin/extras/views/$VAR[ColorTheme,,/]503Music.jpg</value>
+        <value condition="ControlGroup(9001).HasFocus(3128)">special://skin/extras/views/$VAR[ColorTheme,,/]54Music.jpg</value>
+        <value condition="ControlGroup(9001).HasFocus(3130)">special://skin/extras/views/$VAR[ColorTheme,,/]523Music.jpg</value>
     </variable>
 
     <variable name="UpNextImage">
-        <value condition="!Skin.HasSetting(addon.upnext.use.thumbnail) + !String.IsEmpty(Window.Property(fanart))">$INFO[Window.Property(fanart)]</value>
+        <value condition="!String.IsEmpty(Window.Property(fanart))">$INFO[Window.Property(fanart)]</value>
         <value>$INFO[Window.Property(thumb)]</value>
     </variable>
     
@@ -458,23 +427,48 @@
         <value>$INFO[ListItem.Label]</value>
     </variable>
     
-    <variable name="Image_9505_Thumb_Label">
-        <value condition="!String.IsEmpty(Container(9505).ListItem.Thumb)">$INFO[Container(9505).ListItem.Thumb]</value>
-        <value>$INFO[Container(9505).ListItem.Label]</value>
+    <variable name="Image_55_Thumb_Label">
+        <value condition="!String.IsEmpty(Container(55).ListItem.Thumb)">$INFO[Container(55).ListItem.Thumb]</value>
+        <value>$INFO[Container(55).ListItem.Label]</value>
     </variable>
     
     <variable name="Image_Content_Additional_Fanart">
         <value>plugin://plugin.video.themoviedb.helper/?info=fanart&amp;type=$VAR[Tmdb_Type]&amp;$VAR[Info_Query]&amp;nextpage=false</value>
     </variable>
+
+    <variable name="Image_SimpleBackground">
+        <value condition="!String.IsEmpty(Skin.String(fanart.fallback))">$INFO[Skin.String(fanart.fallback)]</value>
+        <value condition="!String.IsEmpty(Skin.String(Background.Image))">$INFO[Skin.String(Background.Image)]</value>
+        <value>special://skin/extras/backgrounds/blur/classic_blur.jpg</value>
+    </variable>
+
+    <variable name="Image_WeatherCurrent">
+        <value condition="$EXP[HasWeatherFanartSingle] + !String.IsEmpty(Window(Weather).Property(Current.FanartCode))">$VAR[WeatherFanartPath]$INFO[Window(Weather).Property(Current.FanartCode),,.jpg]</value>
+        <value condition="$EXP[HasWeatherFanartSingle] + String.IsEmpty(Window(Weather).Property(Current.FanartCode))">$VAR[WeatherFanartPath,,na.jpg]</value>
+        <value condition="$EXP[HasWeatherFanartMulti] + !String.IsEmpty(Window(Weather).Property(Current.FanartCode))">$VAR[WeatherFanartPath]$INFO[Window(Weather).Property(Current.FanartCode),,/]</value>
+        <value condition="$EXP[HasWeatherFanartMulti] + String.IsEmpty(Window(Weather).Property(Current.FanartCode))">$VAR[WeatherFanartPath,,na/]</value>
+    </variable>
+    
     
     <variable name="Visualisation_Image">
-        <value condition="System.AddonIsEnabled(script.artistslideshow) + !Skin.HasSetting(ArtistSlideShow.Disabled) + !String.IsEmpty(Window(Visualisation).Property(ArtistSlideshow.Image))">$INFO[Window(Visualisation).Property(ArtistSlideshow.Image)]</value>
-        <value condition="Skin.HasSetting(musicvis.fanartfallback) + !String.IsEmpty(Player.Art(fanart)) + [String.IsEmpty(Window(Visualisation).Property(ArtistSlideshow.Image)) | !System.AddonIsEnabled(script.artistslideshow) | Skin.HasSetting(ArtistSlideShow.Disabled)]">$INFO[Player.Art(fanart)]</value>
-        <value condition="!String.IsEmpty(Skin.String(fanart.fallback.music)) + [String.IsEmpty(Player.Art(fanart)) | !Skin.HasSetting(musicvis.fanartfallback)] + [String.IsEmpty(Window(Visualisation).Property(ArtistSlideshow.Image)) | Skin.HasSetting(ArtistSlideShow.Disabled)]">$INFO[Skin.String(fanart.fallback.music)]</value>
+        <value condition="$EXP[Visualisation_ShowSlideshow] + !String.IsEmpty(Window(Visualisation).Property(ArtistSlideshow.Image))">$INFO[Window(Visualisation).Property(ArtistSlideshow.Image)]</value>
+        <value condition="$EXP[Visualisation_ShowFanart]">$INFO[Player.Art(fanart)]</value>
+        <value condition="$EXP[Visualisation_ShowFanart] + !String.IsEmpty(Skin.String(fanart.fallback.music))">$INFO[Skin.String(fanart.fallback.music)]</value>
     </variable>
     
     <variable name="SkinHelperPing">
         <value condition="!String.IsEmpty(Window(home).Property(SkinHelperPING))">dialog/on.png</value>
         <value>dialog/off.png</value>
     </variable>
+    
+    <variable name="VideoListCastFallbackPicture">
+        <value condition="!String.IsEqual(ListItem.DBType,set)">DefaultActor.png</value>
+        <value condition="String.IsEqual(ListItem.DBType,set)">DefaultMovieTitle.png</value>
+    </variable>
+
+    <variable name="VideoListSimilarFallbackPicture">
+        <value condition="String.IsEqual(ListItem.DBType,movie)">DefaultMovieTitle.png</value>
+        <value condition="String.IsEqual(ListItem.DBType,tvshow)">DefaultTVShowTitle.png</value>
+    </variable>
+
 </includes>

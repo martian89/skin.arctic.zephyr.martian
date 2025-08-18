@@ -11,7 +11,7 @@
             <control type="group">
                 <include>Animation.SidePoster</include>
                 <include>View_50_SidePoster_Square</include>
-                <include>Animation.VideoFadeOut</include>
+                <include>Animation.AddonFadeOut</include>
             </control>
 
             <!-- Main -->
@@ -21,14 +21,14 @@
                 <!-- Control Buttons -->
                 <control type="group">
                     <bottom>-80</bottom>
-                    <include>Animation.VideoFadeOut</include>
+                    <include>Animation.AddonFadeOut</include>
                     <include>DialogAddonInfoNavigation</include>
                 </control>
 
                 <!-- Info -->
                 <control type="group">
-                    <include>Animation.VideoFadeOut</include>
-                    <top>90</top>
+                    <include>Animation.AddonFadeOut</include>
+                    <top>86</top>
                     <left>ListSquareX</left>
                     <width>1070</width>
                     <control type="label">
@@ -40,7 +40,7 @@
                     </control>
                     <control type="label">
                         <left>30</left>
-                        <top>60</top>
+                        <top>64</top>
                         <height>36</height>
                         <font>Tiny</font>
                         <textcolor>Dark1</textcolor>
@@ -54,9 +54,10 @@
                     <bottom>224</bottom>
                     <top>DialogInfoTop</top>
                     <control type="grouplist">
-                        <include>Animation.VideoFadeOut</include>
+                        <include>Animation.AddonFadeOut</include>
                         <left>30</left>
                         <itemgap>0</itemgap>
+                        <usecontrolcoords>true</usecontrolcoords>
                         <include content="Def_DialogSquareInfo_Line">
                             <param name="label" value="$LOCALIZE[467]" />
                             <param name="value" value="$INFO[ListItem.AddonType]" />
@@ -81,23 +82,22 @@
                             <param name="label" value="$LOCALIZE[31485]" />
                             <param name="value" value="$INFO[ListItem.AddonOrigin]" />
                         </include>
-                        <control type="group">
-                            <height>35</height>
-                        </control>
                         <control type="textbox">
-                            <height>108</height>
+                        	<top>15</top>
+                            <height>103</height>
                             <font>Tiny</font>
                             <textcolor>Dark2</textcolor>
                             <align>justify</align>
-                            <label>$INFO[ListItem.AddonDescription]$INFO[ListItem.AddonNews,[CR][CR][B]$LOCALIZE[24036][/B][CR]]$INFO[Window(home).Property(ResetScroll)]</label>
+                            <label>$INFO[ListItem.AddonDescription]$INFO[ListItem.AddonNews,[CR][CR][B]$LOCALIZE[24036][/B][CR]]</label>
                             <visible>!String.IsEqual(Container(50).NumItems,0)</visible>
                         </control>
                         <control type="textbox">
+                        	<top>25</top>
                             <height>396</height>
                             <font>Tiny</font>
                             <textcolor>Dark2</textcolor>
                             <align>justify</align>
-                            <label>$INFO[ListItem.AddonDescription]$INFO[ListItem.AddonNews,[CR][CR][B]$LOCALIZE[24036][/B][CR]]$INFO[Window(home).Property(ResetScroll)]</label>
+                            <label>$INFO[ListItem.AddonDescription]$INFO[ListItem.AddonNews,[CR][CR][B]$LOCALIZE[24036][/B][CR]]</label>
                             <visible>String.IsEqual(Container(50).NumItems,0)</visible>
                         </control>
                     </control>

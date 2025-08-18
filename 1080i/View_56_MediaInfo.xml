@@ -10,7 +10,6 @@
             <include>ViewSlideForJumpBar</include>
             <control type="group">
                 <control type="panel" id="56">
-                    <oninfo condition="Container.Content(actors)">RunScript(script.embuary.info,call=person,query='"$INFO[ListItem.Label]"')</oninfo>
                     <visible>$EXP[InGameMode] | Container.Content(musicvideos) | Container.Content(movies) | Container.Content(tvshows) | [Container.Content(episodes) + !String.Contains(Container.FolderPath,plugin://,left)] | Container.Content(actors) | Container.Content(sets) | Container.Content(videos) | Container.Content(seasons)</visible>
                     <top>PosterPad</top>
                     <height>458</height>
@@ -70,7 +69,7 @@
                 <control type="image">
                     <width>PosterW</width>
                     <height>PosterH</height>
-                    <texture border="5" colordiffuse="FF181818">common/box.png</texture>
+                    <texture border="5" colordiffuse="Fallback">common/box.png</texture>
                 </control>
                 <control type="image">
                     <left>-24</left>
@@ -90,7 +89,7 @@
                     <width>PosterW</width>
                     <height>PosterH</height>
                     <texture colordiffuse="Box2" border="4" background="true" infill="false">common/box21.png</texture>
-                    <visible>!Skin.HasSetting(thumbnails.white)</visible>
+                    <visible>!Skin.HasSetting(global.hideborders)</visible>
                 </control>
             </control>
             <control type="group" description="Plot">
@@ -99,14 +98,14 @@
                 <control type="grouplist">
                     <left>30</left>
                     <right>30</right>
-                    <top>690</top>
+                    <top>695</top>
                     <orientation>vertical</orientation>
                     <animation effect="fade" start="0" end="100" delay="450" time="250" reversible="false">Visible</animation>
                     <control type="label">
-                        <font>SmallBold</font>
+                        <font>MediumBold</font>
                         <label>$VAR[LabelDirector]</label>
                         <textcolor>Dark1</textcolor>
-                        <height>35</height>
+                        <height>40</height>
                         <aligny>top</aligny>
                     </control>
                     <control type="label">
@@ -120,7 +119,7 @@
                         <font>Tiny</font>
                         <label>$VAR[LabelPlotBox]</label>
                         <textcolor>Dark2</textcolor>
-                        <height>68</height>
+                        <height>74</height>
                         <align>justify</align>
                     </control>
                 </control>
@@ -136,7 +135,6 @@
             <include>ViewSlideForJumpBar</include>
             <control type="group">
                 <control type="panel" id="56">
-                    <oninfo condition="Container.Content(actors)">RunScript(script.embuary.info,call=person,query='"$INFO[ListItem.Label]"')</oninfo>
                     <visible>$EXP[InGameMode] | Container.Content(musicvideos) | Container.Content(movies) | Container.Content(tvshows) | [Container.Content(episodes) + !String.Contains(Container.FolderPath,plugin://,left)] | Container.Content(actors) | Container.Content(sets) | Container.Content(videos) | Container.Content(seasons)</visible>
                     <top>PosterPad</top>
                     <height>PosterH</height>
@@ -193,7 +191,6 @@
                 </include>
                 <top>320</top>
                 <control type="panel" id="56">
-                    <oninfo condition="Container.Content(actors)">RunScript(script.embuary.info,call=person,query='"$INFO[ListItem.Label]"')</oninfo>
                     <visible>$EXP[InGameMode] | Container.Content(musicvideos) | Container.Content(movies) | Container.Content(tvshows) | [Container.Content(episodes) + !String.Contains(Container.FolderPath,plugin://,left)] | Container.Content(actors) | Container.Content(sets) | Container.Content(seasons)</visible>
                     <top>PosterPad</top>
                     <include content="def_height" condition="Skin.HasSetting(511ListInfo)">
@@ -254,13 +251,7 @@
         <control type="image">
             <width>100%</width>
             <height>100%</height>
-            <texture border="8" colordiffuse="$VAR[ColorSelectBar]">common/box.png</texture>
-            <include>ListViewScrollAnim</include>
-        </control>
-        <control type="image">
-            <width>100%</width>
-            <height>100%</height>
-            <texture border="8" colordiffuse="$VAR[ColorHighlight2]">common/gradient-box-wide.png</texture>
+            <texture border="8" colordiffuse="Dark1">common/box.png</texture>
             <include>ListViewScrollAnim</include>
         </control>
         <control type="label">
@@ -268,7 +259,7 @@
             <width max="560">auto</width>
             <aligny>center</aligny>
             <height>64</height>
-            <font>SmallNavi</font>
+            <font>SmallBold</font>
             <textcolor>Light1</textcolor>
             <selectedcolor>Light1</selectedcolor>
             <label>$INFO[ListItem.Label]</label>
@@ -291,7 +282,7 @@
             <aligny>center</aligny>
             <height>64</height>
             <align>right</align>
-            <font>SmallNavi</font>
+            <font>Small</font>
             <textcolor>Light1</textcolor>
             <selectedcolor>Light1</selectedcolor>
             <label>$VAR[Label2VarInfo]</label>
@@ -306,7 +297,7 @@
             <width max="560">auto</width>
             <aligny>center</aligny>
             <height>64</height>
-            <font>SmallNavi</font>
+            <font>SmallBold</font>
             <label>$INFO[ListItem.Label]</label>
             <textcolor>Dark1</textcolor>
             <selectedcolor>Dark1</selectedcolor>
@@ -329,7 +320,7 @@
             <aligny>center</aligny>
             <height>64</height>
             <align>right</align>
-            <font>SmallNavi</font>
+            <font>Small</font>
             <textcolor>Dark1</textcolor>
             <selectedcolor>Dark1</selectedcolor>
             <label>$VAR[Label2VarInfo]</label>
@@ -345,7 +336,7 @@
             <width max="560">auto</width>
             <aligny>center</aligny>
             <height>64</height>
-            <font>SmallNavi</font>
+            <font>SmallBold</font>
             <label>$INFO[ListItem.Label]</label>
             <textcolor>Dark1</textcolor>
             <selectedcolor>Dark1</selectedcolor>
@@ -357,7 +348,7 @@
             <width max="560">auto</width>
             <aligny>center</aligny>
             <height>64</height>
-            <font>Small24</font>
+            <font>Tiny24</font>
             <label>$VAR[56ListExtended]</label>
             <textcolor>Dark2</textcolor>
             <selectedcolor>Dark1</selectedcolor>
@@ -382,7 +373,7 @@
             <aligny>center</aligny>
             <height>64</height>
             <align>right</align>
-            <font>SmallNavi</font>
+            <font>Small</font>
             <textcolor>Dark1</textcolor>
             <selectedcolor>Dark1</selectedcolor>
             <label>$VAR[56ListExtendedRight]</label>
@@ -397,7 +388,7 @@
             <aligny>center</aligny>
             <height>64</height>
             <align>left</align>
-            <font>Small24</font>
+            <font>Tiny24</font>
             <textcolor>Dark2</textcolor>
             <selectedcolor>Dark2</selectedcolor>
             <label>$VAR[50ListFolderPathFile]</label>
@@ -408,13 +399,7 @@
         <control type="image">
             <width>100%</width>
             <height>100%</height>
-            <texture border="8" colordiffuse="$VAR[ColorSelectBar]">common/box.png</texture>
-            <include>ListViewScrollAnim</include>
-        </control>
-        <control type="image">
-            <width>100%</width>
-            <height>100%</height>
-            <texture border="8" colordiffuse="$VAR[ColorHighlight2]">common/gradient-box-wide.png</texture>
+            <texture border="8" colordiffuse="Dark1">common/box.png</texture>
             <include>ListViewScrollAnim</include>
         </control>
         <control type="label">
@@ -423,7 +408,7 @@
             <width max="560">auto</width>
             <aligny>center</aligny>
             <height>64</height>
-            <font>SmallNavi</font>
+            <font>SmallBold</font>
             <textcolor>Light1</textcolor>
             <selectedcolor>Light1</selectedcolor>
             <label>$INFO[ListItem.Label]</label>
@@ -436,7 +421,7 @@
                 <width max="560">auto</width>
                 <aligny>center</aligny>
                 <height>64</height>
-                <font>Small24</font>
+                <font>Tiny24</font>
                 <textcolor>Light2</textcolor>
                 <selectedcolor>Light2</selectedcolor>
                 <label>$VAR[56ListExtended]</label>
@@ -448,7 +433,7 @@
                 <width max="560">auto</width>
                 <aligny>center</aligny>
                 <height>64</height>
-                <font>Small24</font>
+                <font>Tiny24</font>
                 <textcolor>Light2</textcolor>
                 <selectedcolor>Light2</selectedcolor>
                 <label>$VAR[Label2Var]</label>
@@ -463,7 +448,7 @@
             <aligny>center</aligny>
             <height>64</height>
             <align>left</align>
-            <font>Small24</font>
+            <font>Tiny24</font>
             <textcolor>Light2</textcolor>
             <selectedcolor>Light2</selectedcolor>
             <label>$VAR[50ListFolderPathFile]</label>
@@ -488,7 +473,7 @@
             <aligny>center</aligny>
             <height>64</height>
             <align>right</align>
-            <font>SmallNavi</font>
+            <font>Small</font>
             <textcolor>Light1</textcolor>
             <selectedcolor>Light1</selectedcolor>
             <label>$VAR[56ListExtendedRight]</label>

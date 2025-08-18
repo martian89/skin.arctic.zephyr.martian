@@ -2,22 +2,76 @@
 <!-- Foundation -->
 <window id="120">
     <onunload>ClearProperty(SetUserRating,home)</onunload>
+    <onunload>ClearProperty(osdshowinfo,home)</onunload>
     <include condition="!Player.PauseEnabled">OSDFocusStop</include>
     <include condition="Player.PauseEnabled">OSDFocusPause</include>
     <controls>
+
+        <!-- Normal -->
+		<control type="group">
+        	<visible>!Skin.HasSetting(musicosd.side) + Skin.HasSetting(osd.usetheme)</visible>
+            <height>74</height>
+            <bottom>15</bottom>
+            <animation type="WindowOpen">
+                <effect type="fade" start="0" end="100" time="150" delay="200"/>
+            </animation>
+            <animation type="WindowClose">
+                <effect type="fade" end="0" start="100" time="150"/>
+            </animation>
+            <animation effect="fade" start="100" end="0" time="150" condition="Window.IsVisible(DialogPlayerProcessInfo.xml)">Conditional</animation>
+
+            <control type="grouplist" id="101">
+                <top>13</top>
+                <left>50</left>
+                <right>50</right>
+                <height>48</height>
+                <itemgap>16</itemgap>
+                <orientation>horizontal</orientation>
+                <align>center</align>
+                <include>DefOSDUpDown</include>
+                <include>OSDAudioControlsFlip</include>
+            </control>
+        </control>
+        
+        <!-- New OSD -->
         <control type="group">
+        	<visible>!Skin.HasSetting(musicosd.side) + !Skin.HasSetting(osd.usetheme)</visible>
+            <height>74</height>
+            <left>560</left>
+            <right>SidePadNewOSD</right>
+            <bottom>110</bottom>
+            <animation type="WindowOpen">
+                <effect type="fade" start="0" end="100" time="150" delay="150"/>
+            </animation>
+            <animation type="WindowClose">
+                <effect type="fade" end="0" start="100" time="150"/>
+            </animation>
+            <animation effect="fade" start="100" end="0" time="150" condition="Window.IsVisible(DialogPlayerProcessInfo.xml)">Conditional</animation>
+            <animation effect="slide" start="0,0" end="-215,0" time="150" condition="!Skin.HasSetting(ShowMusicCd)">Conditional</animation>
+
+            <control type="grouplist" id="101">
+                <align>center</align>
+                <top>13</top>
+                <height>48</height>
+                <itemgap>16</itemgap>
+                <orientation>horizontal</orientation>
+                <usecontrolcoords>true</usecontrolcoords>
+                <include>DefOSDUpDown</include>
+                <include>OSDAudioControlsFlip</include>
+            </control>
+        </control>
+
+	    <!-- SIDE OSD -->
+        <control type="group">
+        	<visible>Skin.HasSetting(musicosd.side)</visible>
             <width>699</width>
             <include content="Animation.Slide.Menu"><param name="left" value="-698" /></include>
-            <animation type="Conditional" condition="[Window.IsVisible(script-cu-lrclyrics-main.xml) + Skin.HasSetting(HideMusicOSDOnLyrics)]">
-                <effect type="fade" start="100" end="0" time="150"/>
-                <effect type="slide" end="-698" start="0" time="150"/>
-            </animation>
             <control type="image">
                 <posx>-10</posx>
                 <posy>-10</posy>
                 <width>718</width>
                 <height>1100</height>
-                <colordiffuse>Background</colordiffuse>
+                <colordiffuse>$VAR[OSDPanel]</colordiffuse>
                 <texture border="16">common/rounded-shadow8.png</texture>
                 <animation effect="fade" start="100" end="90" condition="true">Conditional</animation>
             </control>
@@ -33,6 +87,7 @@
                         <param name="info" value="Player.Progress"/>
                         <param name="visible" value="true"/>
                         <param name="animation" value="Animation.RotatePlay"/>
+                        <param name="color" value="$VAR[OSDPanelWhite70]" />
                     </include>
                 </control>
                 <control type="group">
@@ -42,8 +97,8 @@
                         <right>30</right>
                         <posy>10</posy>
                         <align>left</align>
-                        <textcolor>Dark1</textcolor>
-                        <font>TinyBold</font>
+                        <textcolor>$VAR[OSDPanelWhite100]</textcolor>
+                        <font>SmallBold</font>
                         <label>19031</label>
                     </control>
                     <control type="label">
@@ -51,8 +106,8 @@
                         <right>30</right>
                         <posy>50</posy>
                         <align>left</align>
-                        <textcolor>Dark1</textcolor>
-                        <font>TinyBold</font>
+                        <textcolor>$VAR[OSDPanelWhite70]</textcolor>
+                        <font>SmallBold</font>
                         <label>$INFO[Container(9100).NumItems,,  $LOCALIZE[134]]</label>
                     </control>
                 </control>
@@ -73,7 +128,7 @@
                     <width>262</width>
                     <height>262</height>
                     <texture colordiffuse="$VAR[MusicOSDBox]" border="4" infill="false">common/box21.png</texture>
-                    <visible>!Skin.HasSetting(thumbnails.white)</visible>
+                    <visible>!Skin.HasSetting(global.hideborders)</visible>
                 </control>
                 <control type="grouplist">
                     <top>0</top>
@@ -86,78 +141,69 @@
                     <usecontrolcoords>true</usecontrolcoords>
                     <control type="label" description="Artist">
                         <height>48</height>
-                        <font>MediumBold3</font>
+                        <font>MediumBold</font>
                         <align>center</align>
-                        <textcolor>Dark1</textcolor>
+                        <textcolor>$VAR[OSDPanelWhite70]</textcolor>
                         <label>$VAR[PlayerBigTitle]</label>
                         <include condition="Skin.HasSetting(labels.autoscroll)">LabelScroll</include>
                     </control>
                     <control type="label" description="Song">
                         <height>40</height>
-                        <font>MediumBold3</font>
+                        <font>MediumBold</font>
                         <align>center</align>
-                        <textcolor>Dark1</textcolor>
+                        <textcolor>$VAR[OSDPanelWhite70]</textcolor>
                         <label>$VAR[PlayerTitle]</label>
                         <include condition="Skin.HasSetting(labels.autoscroll)">LabelScroll</include>
                     </control>
                     <control type="grouplist">
                         <width>100%</width>
-                        <height>35</height>
+                        <height>37</height>
                         <orientation>horizontal</orientation>
                         <align>center</align>
-                        <top>10</top>
+                        <top>8</top>
                         <itemgap>12</itemgap>
                         <usecontrolcoords>true</usecontrolcoords>
                         <visible>true</visible>
                         <include content="Def_Flag">
                             <param name="Star" value="FlagstarMusic1"/>
-                            <param name="visible" value="!Skin.HasSetting(musicosd.numericrating)"/>
+							<param name="color" value="$VAR[OSDRatingFlagsColor]" />
                         </include>
                         <include content="Def_Flag">
                             <param name="Star" value="FlagstarMusic2"/>
-                            <param name="visible" value="!Skin.HasSetting(musicosd.numericrating)"/>
+							<param name="color" value="$VAR[OSDRatingFlagsColor]" />
                         </include>
                         <include content="Def_Flag">
                             <param name="Star" value="FlagstarMusic3"/>
-                            <param name="visible" value="!Skin.HasSetting(musicosd.numericrating)"/>
+							<param name="color" value="$VAR[OSDRatingFlagsColor]" />
                         </include>
                         <include content="Def_Flag">
                             <param name="Star" value="FlagstarMusic4"/>
-                            <param name="visible" value="!Skin.HasSetting(musicosd.numericrating)"/>
+							<param name="color" value="$VAR[OSDRatingFlagsColor]" />
                         </include>
                         <include content="Def_Flag">
                             <param name="Star" value="FlagstarMusic5"/>
-                            <param name="visible" value="!Skin.HasSetting(musicosd.numericrating)"/>
+							<param name="color" value="$VAR[OSDRatingFlagsColor]" />
                         </include>
                         <include content="Def_Flag">
                             <param name="Star" value="FlagstarMusic1"/>
-                            <param name="visible" value="Skin.HasSetting(musicosd.numericrating)"/>
+							<param name="color" value="$VAR[OSDRatingFlagsColor]" />
                         </include>
-                        <control type="label">
-                            <height>35</height>
-                            <top>0</top>
-                            <label>$VAR[RatingLabelMusicPlayer]</label>
-                            <aligny>center</aligny>
-                            <font>Flag</font>
-                            <textcolor>Dark1</textcolor>
-                            <visible>!String.IsEmpty(MusicPlayer.Rating) | [!String.IsEmpty(MusicPlayer.UserRating) + Skin.HasSetting(userrating.override.rating)]</visible>
-                            <visible>Skin.HasSetting(musicosd.numericrating)</visible>
-                        </control>
                     </control>
                     <control type="label" description="AlbumYear">
                         <align>center</align>
-                        <font>SmallNavi</font>
+                        <font>Small</font>
+                        <top>4</top>
                         <height>40</height>
-                        <textcolor>Dark2</textcolor>
+                        <textcolor>$VAR[OSDPanelWhite30]</textcolor>
                         <label>$VAR[PlayerPlotBox]</label>
                         <visible>!String.IsEmpty(MusicPlayer.Album) | !String.IsEmpty(MusicPlayer.Year)</visible>
                         <include condition="Skin.HasSetting(labels.autoscroll)">LabelScroll</include>
                     </control>
                     <control type="label" description="Duration">
                         <height>40</height>
-                        <font>SmallNavi</font>
+                        <font>Small</font>
                         <align>center</align>
-                        <textcolor>Dark1</textcolor>
+                        <textcolor>$VAR[OSDPanelWhite70]</textcolor>
                         <label>$INFO[Player.Time]$INFO[Player.Duration,  /  ,]</label>
                     </control>
                 </control>
@@ -195,8 +241,8 @@
                             <height>100%</height>
                             <aligny>center</aligny>
                             <align>left</align>
-                            <font>SmallNavi</font>
-                            <textcolor>Dark1</textcolor>
+                            <font>SmallBold</font>
+                            <textcolor>$VAR[OSDPanelWhite70]</textcolor>
                             <label>$INFO[ListItem.Label]</label>
                             <selectedcolor>Dark1</selectedcolor>
                             <visible>String.IsEmpty(ListItem.Property(IsPlaying))</visible>
@@ -207,8 +253,8 @@
                             <height>100%</height>
                             <aligny>center</aligny>
                             <align>left</align>
-                            <font>SmallNavi</font>
-                            <textcolor>Dark1</textcolor>
+                            <font>SmallBold</font>
+                            <textcolor>$VAR[OSDPanelWhite70]</textcolor>
                             <label>$INFO[ListItem.Label]</label>
                             <selectedcolor>Dark1</selectedcolor>
                             <visible>!String.IsEmpty(ListItem.Property(IsPlaying))</visible>
@@ -219,8 +265,8 @@
                             <height>100%</height>
                             <aligny>center</aligny>
                             <align>right</align>
-                            <font>SmallNavi</font>
-                            <textcolor>Dark1</textcolor>
+                            <font>Small</font>
+                            <textcolor>$VAR[OSDPanelWhite70]</textcolor>
                             <label>$INFO[ListItem.Label2]</label>
                             <selectedcolor>Dark1</selectedcolor>
                         </control>
@@ -250,10 +296,10 @@
                                 <height>100%</height>
                                 <aligny>center</aligny>
                                 <align>left</align>
-                                <font>SmallNavi</font>
-                                <textcolor>Dark1</textcolor>
+                                <font>SmallBold</font>
+                                <textcolor>$VAR[OSDPanelWhite70]</textcolor>
                                 <label>$INFO[ListItem.Label]</label>
-                                <selectedcolor>Dark1</selectedcolor>
+                                <selectedcolor>$VAR[OSDPanelWhite70]</selectedcolor>
                                 <visible>String.IsEmpty(ListItem.Property(IsPlaying))</visible>
                             </control>
                             <control type="label">
@@ -262,10 +308,10 @@
                                 <height>100%</height>
                                 <aligny>center</aligny>
                                 <align>left</align>
-                                <font>SmallNavi</font>
-                                <textcolor>Dark1</textcolor>
+                                <font>SmallBold</font>
+                                <textcolor>$VAR[OSDPanelWhite70]</textcolor>
                                 <label>$INFO[ListItem.Label]</label>
-                                <selectedcolor>Dark1</selectedcolor>
+                                <selectedcolor>$VAR[OSDPanelWhite70]</selectedcolor>
                                 <visible>!String.IsEmpty(ListItem.Property(IsPlaying))</visible>
                             </control>
                             <control type="label">
@@ -274,10 +320,10 @@
                                 <height>100%</height>
                                 <aligny>center</aligny>
                                 <align>right</align>
-                                <font>SmallNavi</font>
-                                <textcolor>Dark1</textcolor>
+                                <font>Small</font>
+                                <textcolor>$VAR[OSDPanelWhite70]</textcolor>
                                 <label>$INFO[ListItem.Label2]</label>
-                                <selectedcolor>Dark1</selectedcolor>
+                                <selectedcolor>$VAR[OSDPanelWhite70]</selectedcolor>
                             </control>
                         </control>
                         <control type="group">
@@ -301,7 +347,7 @@
                                 <height>100%</height>
                                 <aligny>center</aligny>
                                 <align>left</align>
-                                <font>SmallNavi</font>
+                                <font>SmallBold</font>
                                 <textcolor>Selected</textcolor>
                                 <label>$INFO[ListItem.Label]</label>
                                 <selectedcolor>Selected</selectedcolor>
@@ -313,7 +359,7 @@
                                 <height>100%</height>
                                 <aligny>center</aligny>
                                 <align>left</align>
-                                <font>SmallNavi</font>
+                                <font>SmallBold</font>
                                 <textcolor>Selected</textcolor>
                                 <label>$INFO[ListItem.Label]</label>
                                 <selectedcolor>Selected</selectedcolor>
@@ -325,7 +371,7 @@
                                 <height>100%</height>
                                 <aligny>center</aligny>
                                 <align>right</align>
-                                <font>SmallNavi</font>
+                                <font>Small</font>
                                 <textcolor>Selected</textcolor>
                                 <label>$INFO[ListItem.Label2]</label>
                                 <selectedcolor>Selected</selectedcolor>
@@ -1061,8 +1107,9 @@
                 <include>Animation.DelayFadeIn</include>
                 <include>Animation.FadeOut</include>
                 <include>arrowdimensions</include>
-                <texture colordiffuse="Dark2">common/arrow-small-right.png</texture>
+                <texture colordiffuse="$VAR[OSDPanelWhite30]">common/arrow-small-right.png</texture>
             </control>
         </control>
     </controls>
+
 </window>

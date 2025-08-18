@@ -1,90 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <window>
 	<defaultcontrol always="true">6</defaultcontrol>
-    <onload>SetFocus(3100)</onload>
+	<onunload>ClearProperty(highlight,home)</onunload>
 	<onunload>ClearProperty(gradient,home)</onunload>
-    <onunload>ClearProperty(colorpickerheader,home)</onunload>
-    <onunload>ClearProperty(colorstring,home)</onunload>
-    <onunload>Skin.Reset(color_prev)</onunload>
-    <onunload condition="!String.IsEqual(Window(home).Property(color_check),1)">Skin.Reset(colorpresent)</onunload>
-    <onunload condition="String.IsEqual(Window(home).Property(color_check),1)">ClearProperty(color_check,home)</onunload>
-    <onload>Skin.Reset(color_prev)</onload>
 	<controls>
-		<control type="group">
-			<control type="image" description="Background">
-                <left>SidePad</left>
-                <top>220</top>
-                <width>1760</width>
-                <height>636</height>
-                <texture border="5" colordiffuse="Panel">common/box.png</texture>
-            </control>
-
-            <!--Header-->
-            <control type="group">
-                <left>SidePad</left>
-                <top>216</top>
-                <control type="image">
-                    <top>10</top>
-                    <left>450</left>
-                    <width>1</width>
-                    <bottom>234</bottom>
-                    <colordiffuse>Black12</colordiffuse>
-                    <texture>common/white.png</texture>
-                </control>
-                <control type="label">
-                    <left>30</left>
-                    <width>390</width>
-                    <posy>18</posy>
-                    <font>MediumBold</font>
-                    <label>31699</label>
-                    <textcolor>PanelWhite100</textcolor>
-                </control>
-                <control type="label">
-                    <left>30</left>
-                    <width>400</width>
-                    <posy>77</posy>
-                    <height>30</height>
-                    <font>Tiny</font>
-                    <textcolor>PanelWhite70</textcolor>
-                    <scroll>false</scroll>
-                    <align>left</align>
-                    <textoffsetx>0</textoffsetx>
-                    <label>$VAR[ColorPickerInfo]</label>
-                </control>
-            </control>
-            
+        <include content="DefDialog">
+	        <param name="header_id" value="1"/>
+	        <param name="header_label" value=""/>
+			<param name="height" value="864" />
+			
 			<!-- Color picker panel -->
 			<control type="panel" id="6">
-                <right>90</right>
-                <top>235</top>
-                <width>1280</width>
-                <height>608</height>
+                <left>40</left>
+                <top>117</top>
+                <width>660</width>
+                <height>660</height>
+                <onback>7</onback>
+                <onleft>7</onleft>
+                <onright>1600</onright>
+				<pagecontrol>1600</pagecontrol>
                 <orientation>vertical</orientation>
-                <onleft>3100</onleft>
-                <onback>3100</onback>
-                <onfocus>Skin.SetProperty(color_prev,1,home)</onfocus>
-                <!--<onfocus condition="!String.IsEmpty(Skin.String(color_prev))">Skin.Reset(color_prev)</onfocus>-->
-                <itemlayout height="38" width="41">
+                <itemlayout height="60" width="60">
                     <control type="image">
-                        <width>92%</width>
-                        <height>92%</height>
-                        <texture border="5">common/white.png</texture>
+                        <width>58</width>
+                        <height>58</height>
+                        <texture>common/white.png</texture>
 						<colordiffuse>$INFO[ListItem.Label2]</colordiffuse>
                     </control>
 				</itemlayout>
-				<focusedlayout height="38" width="41">
+				<focusedlayout height="60" width="60">
                     <control type="group">
-                        <animation effect="zoom" time="200" tween="sine" easing="inout" start="100" end="150" center="18,19">Focus</animation>
+                        <animation effect="zoom" time="150" tween="sine" easing="inout" start="100" end="145" center="30,30">Focus</animation>
                         <control type="image">
-                            <right>2</right>
-                            <bottom>2</bottom>
-                            <width>41</width>
-                            <height>38</height>
-                            <texture border="5" colordiffuse="Panel">common/white.png</texture>
+                            <width>58</width>
+                            <height>58</height>
+                            <texture border="5" colordiffuse="ffffffff">common/box.png</texture>
                         </control>
                         <control type="image">
-                            <width>37</width>
-                            <height>34</height>
+                            <width>58</width>
+                            <height>58</height>
+                            <texture border="5" colordiffuse="White12">common/box.png</texture>
+                        </control>
+                        <control type="image">
+                            <left>6</left>
+                            <top>6</top>
+                            <width>46</width>
+                            <height>46</height>
                             <texture border="0">common/white.png</texture>
                             <colordiffuse>$INFO[ListItem.Label2]</colordiffuse>
                         </control>
@@ -92,124 +53,50 @@
 				</focusedlayout>
 			</control>
 
-            <!-- Lists, Buttons -->
-            <control type="grouplist" id="9000">
-                <description>Control Area</description>
-                <left>SidePad</left>
-                <width>680</width>
-                <top>355</top>
-                <height>596</height>
-                <orientation>vertical</orientation>
-                <pagecontrol>60</pagecontrol>
+            <include content="scrollbar_dialog">
+                <param name="scrollid" value="1600"/>
+                <param name="onleft" value="6"/>
+                <param name="onright" value="101"/>
+                <param name="height" value="660" />
+            </include>
+ 
+            <!-- Buttons -->           
+            <control type="grouplist" id="101">
+                <top>115</top>              
+                <right>42</right>
+                <width>300</width>
+                <onleft>1600</onleft>
+                <onright>6</onright>
                 <usecontrolcoords>true</usecontrolcoords>
-                <ondown>9100</ondown>
-                <onup>9100</onup>
-                <onright>6</onright>
-                <onleft>6</onleft>
-                <onback>3100</onback>
-                <itemgap>0</itemgap>
-                <control type="button" id="3300">
-                    <disabledcolor>PanelWhite100</disabledcolor>
-                    <include>DefDialogButtonsDefault</include>
-                    <label>$LOCALIZE[737]:</label>
-                    <label2>$VAR[Label_ColorPickerColor]</label2>
-                    <onclick condition="!String.IsEmpty(Skin.String(color_prev))">Skin.SetString(color_prev,$INFO[Skin.String(color_prev)])</onclick>
-                    <onclick condition="String.IsEmpty(Skin.String(color_prev))">Skin.SetString(color_prev,$INFO[Window(home).Property(colorstring)])</onclick>
-                    <onclick>Skin.SetString(color_prev)</onclick>
-                </control>
-                <control type="button" id="3400">
-                    <disabledcolor>PanelWhite100</disabledcolor>
-                    <include>DefDialogButtonsDefault</include>
-                    <label>$LOCALIZE[551]:</label>
-                    <label2>$VAR[Label_ColorPickerColor_Desc]</label2>
-                    <enable>false</enable>
-                </control>
-            </control>
-            <control type="group">
-                <width>498</width>
-                <height>66</height>
-                <top>500</top>
-                <visible>String.IsEqual(Window(home).Property(gradient),selectbox) | String.IsEqual(Window(home).Property(gradient),bar) | String.IsEqual(Window(home).Property(gradient),otherbar) | String.IsEqual(Window(home).Property(gradient),logo)</visible>
-                <control type="label">
-                    <left>110</left>
-                    <width>410</width>
-                    <top>15</top>
-                    <height>30</height>
-                    <font>Small</font>
-                    <textcolor>PanelWhite100</textcolor>
-                    <label>$LOCALIZE[31396]:</label>
-                </control>
-                <include content="Def_Gradient">
-                    <param name="visible" value="String.IsEqual(Window(home).Property(gradient),selectbox)"/>
-                    <param name="color" value="$VAR[ColorSquares]"/>
-                </include>
-                <include content="Def_Gradient">
-                    <param name="visible" value="String.IsEqual(Window(home).Property(gradient),bar)"/>
-                    <param name="color" value="$VAR[ColorSelectBar]"/>
-                </include>
-                <include content="Def_Gradient">
-                    <param name="visible" value="String.IsEqual(Window(home).Property(gradient),otherbar)"/>
-                    <param name="color" value="$VAR[ColorSelectOtherBar]"/>
-                </include>
-                <include content="Def_Gradient">
-                    <param name="visible" value="String.IsEqual(Window(home).Property(gradient),logo)"/>
-                    <param name="color" value="$VAR[ColorKodiLogo]"/>
-                </include>
-            </control>
-            <control type="grouplist" id="9100">
-                <left>110</left>
-                <top>760</top>
-                <onright>6</onright>
-                <onleft>6</onleft>
-                <!--<onup>9000</onup>-->
-                <onup>6</onup>
-                <ondown>6</ondown>
-                <orientation>horizontal</orientation>
-                <include>listdimensions</include>
-                <control type="radiobutton" id="3100">
-                    <label/>
-                    <onback>SetProperty(color_check,1,home)</onback>
-                    <onclick>SetProperty(color_check,1,home)</onclick>
-                    <onclick>Close</onclick>
-                    <include>buttondimensionssquareblur</include>
-                    <include content="buttontextures">
-                        <param name="icon" value="buttonsdialogs/enabled.png"/>
-                        <param name="color" value="Black30" />
-                    </include>
-                </control>
-                <control type="radiobutton" id="3200">
-                    <label/>
-                    <onclick>Skin.Reset(colorpresent)</onclick>
-                    <onclick>Skin.SetString($INFO[Window(home).Property(colordesc)],cc0385B5)</onclick>
-                    <onclick>Close</onclick>
-                    <include>buttondimensionssquareblur</include>
-                    <include content="buttontextures">
-                        <param name="icon" value="buttonsdialogs/uninstall.png"/>
-                        <param name="color" value="Black30" />
-                    </include>
-                </control>
-            </control>
-            <control type="grouplist">
-                <orientation>horizontal</orientation>
-                <itemgap>28</itemgap>
-                <left>318</left>
-                <top>760</top>
-                <width>500</width>
-
-                <!-- color preview-->
-                <control type="image">
-                    <width>76</width>
-                    <height>66</height>
-                    <texture border="5">common/box.png</texture>
-                    <colordiffuse>$INFO[Window(home).Property(colorstring)]</colordiffuse>
-                </control>
-                <control type="image">
-                    <width>76</width>
-                    <height>66</height>
-                    <texture border="5">common/box.png</texture>
-                    <colordiffuse>$VAR[Label_ColorPickerColor]</colordiffuse>
-                </control>
-            </control>
-		</control>
+	           	<control type="group">
+	                <visible>!String.IsEmpty(Window(home).Property(highlight)) | !String.IsEmpty(Window(home).Property(gradient))</visible>
+	                <width>100%</width>
+	                <height>264</height>
+	                <include content="Def_Gradient_Preview_Image" condition="!String.IsEmpty(Window(home).Property(highlight))">
+	                    <param name="highlight_color" value="$INFO[Window(home).Property(highlight)]"/>
+	                    <param name="gradient_color" value="$INFO[Container(6).ListItem.Label2]"/>	                    
+	                </include>
+	                <include content="Def_Gradient_Preview_Image" condition="!String.IsEmpty(Window(home).Property(gradient))">
+	                    <param name="highlight_color" value="$INFO[Container(6).ListItem.Label2]"/>
+	                    <param name="gradient_color" value="$INFO[Window(home).Property(gradient)]"/>	                    
+	                </include>
+	            </control>
+		        <control type="button" id="7">
+		            <description>Cancel</description>
+		            <include>DefDialogButtons</include>
+		        </control>		
+			</control>			
+	        <control type="label">
+	            <include>Animation.FadeIn</include>
+	            <include>Animation.FadeOut</include>
+	            <left>40</left>
+	            <font>Tiny</font>
+	            <height>50</height>
+	            <bottom>30</bottom>
+	            <textcolor>Black70</textcolor>
+				<label>[COLOR Black100]$LOCALIZE[737]: [/COLOR]$INFO[Container(6).ListItem.Label,, - ]$INFO[Container(6).ListItem.Label2,#,]</label>
+	        </control>
+            <include>DialogSelectlabelInclude</include>
+		</include>	
 	</controls>
 </window>

@@ -74,7 +74,7 @@
                 <top>14</top>
                 <aligny>center</aligny>
                 <height>64</height>
-                <font>SmallBold</font>
+                <font>MediumBold</font>
                 <textcolor>Dark1</textcolor>
                 <selectedcolor>Dark1</selectedcolor>
                 <label>$INFO[ListItem.Label]</label>
@@ -84,39 +84,28 @@
                 <top>56</top>
                 <height>64</height>
                 <aligny>center</aligny>
-                <font>Small333</font>
+                <font>Tiny</font>
                 <textcolor>Dark1</textcolor>
                 <selectedcolor>Dark1</selectedcolor>
                 <label>$VAR[LabelGenre]</label>
             </control>
             <control type="textbox">
                 <top>136</top>
-                <bottom>17</bottom>
+                <height>364</height>
                 <font>TinyPlot</font>
-                <height>360</height>
                 <textcolor>Dark2</textcolor>
                 <selectedcolor>Dark2</selectedcolor>
                 <label>$INFO[ListItem.Plot]</label>
                 <align>justify</align>
-                <autoscroll>false</autoscroll>
             </control>
             <control type="label">
                 <posy>570</posy>
                 <width>450</width>
-                <font>Small333</font>
+                <font>Tiny</font>
                 <textcolor>Dark2</textcolor>
                 <label>$VAR[RatingAndVotesLabel]</label>
                 <selectedcolor>Dark2</selectedcolor>
-                <visible>!Skin.HasSetting(furniture.numericrating) + !String.IsEqual(ListItem.Label,..) + !Skin.HasSetting(hidevotesfanart)</visible>
-            </control>
-            <control type="label">
-                <posy>570</posy>
-                <width>450</width>
-                <font>Small333</font>
-                <textcolor>Dark2</textcolor>
-                <label>$INFO[ListItem.Votes,, $LOCALIZE[205]]</label>
-                <selectedcolor>Dark2</selectedcolor>
-                <visible>Skin.HasSetting(furniture.numericrating) + !String.IsEqual(ListItem.Label,..) + !Skin.HasSetting(hidevotesfanart)</visible>
+                <visible>!String.IsEqual(ListItem.Label,..)</visible>
             </control>
             <include condition="Skin.HasSetting(furniture.overlayinfobalken)" content="ProgressCircle">
                 <param name="progresstvshowvisible" value="false"/>
@@ -124,12 +113,10 @@
                 <param name="top" value="495"/>
             </include>
             <control type="group">
-                <animation effect="slide" start="0" end="0,40" time="0" condition="Skin.HasSetting(hidevotesfanart)">Conditional</animation>
                 <control type="group">
                     <top>460</top>
                     <width>1050</width>
                     <visible>!String.IsEqual(ListItem.Label,..)</visible>
-                    <visible>!Skin.HasSetting(furniture.numericrating)</visible>
                     <include content="Def_Flag">
                         <param name="Star" value="Flagstar1" />
                     </include>
@@ -149,27 +136,6 @@
                         <param name="Star" value="Flagstar5" />
                         <param name="left" value="200" />
                     </include>
-                </control>
-                <control type="group">
-                    <top>460</top>
-                    <width>1050</width>
-                    <visible>Skin.HasSetting(furniture.numericrating)</visible>
-                    <visible>!String.IsEqual(ListItem.Label,..)</visible>
-                    <include content="Def_Flag">
-                        <param name="Star" value="Flagstar1" />
-                    </include>
-                    <control type="label">
-                        <left>45</left>
-                        <width min="48">auto</width>
-                        <centertop>50%</centertop>
-                        <height>64</height>
-                        <align>left</align>
-                        <aligny>center</aligny>
-                        <label>$VAR[RatingLabel]</label>
-                        <visible>!String.IsEqual(ListItem.Label,..)</visible>
-                        <font>Flag</font>
-                        <textcolor>Dark2</textcolor>
-                    </control>
                 </control>
             </control>
         </control>
@@ -267,7 +233,7 @@
                         <right>SidePad</right>
                         <bottom>216</bottom>
                         <texture colordiffuse="Box2" border="4" background="true" infill="false">common/box21.png</texture>
-                        <visible>!Skin.HasSetting(thumbnails.white)</visible>
+                        <visible>!Skin.HasSetting(global.hideborders)</visible>
                     </control>
                     <control type="scrollbar" id="1600">
                         <include content="scrollbar_vertical">
@@ -292,7 +258,7 @@
                             <top>14</top>
                             <aligny>center</aligny>
                             <height>64</height>
-                            <font>SmallBold</font>
+                            <font>MediumBold</font>
                             <textcolor>Dark1</textcolor>
                             <selectedcolor>Dark1</selectedcolor>
                             <label>$INFO[ListItem.Label]</label>
@@ -302,52 +268,38 @@
                             <top>56</top>
                             <height>64</height>
                             <aligny>center</aligny>
-                            <font>Small333</font>
+                            <font>Tiny</font>
                             <textcolor>Dark1</textcolor>
                             <selectedcolor>Dark1</selectedcolor>
                             <label>$VAR[LabelGenre]</label>
                         </control>
                         <control type="textbox">
                             <top>136</top>
-                            <bottom>17</bottom>
+                            <height>364</height>
                             <font>TinyPlot</font>
-                            <height>360</height>
                             <textcolor>Dark2</textcolor>
                             <selectedcolor>Dark2</selectedcolor>
                             <label>$INFO[ListItem.Plot]</label>
                             <align>justify</align>
-                            <autoscroll>false</autoscroll>
                         </control>
                         <control type="label">
                             <posy>570</posy>
                             <width>450</width>
-                            <font>Small333</font>
+                            <font>Tiny</font>
                             <textcolor>Dark2</textcolor>
                             <label>$VAR[RatingAndVotesLabel]</label>
                             <selectedcolor>Dark2</selectedcolor>
-                            <visible>!Skin.HasSetting(furniture.numericrating) + !String.IsEqual(ListItem.Label,..) + !Skin.HasSetting(hidevotesfanart)</visible>
-                        </control>
-                        <control type="label">
-                            <posy>570</posy>
-                            <width>450</width>
-                            <font>Small333</font>
-                            <textcolor>Dark2</textcolor>
-                            <label>$INFO[ListItem.Votes,, $LOCALIZE[205]]</label>
-                            <selectedcolor>Dark2</selectedcolor>
-                            <visible>Skin.HasSetting(furniture.numericrating) + !String.IsEqual(ListItem.Label,..) + !Skin.HasSetting(hidevotesfanart)</visible>
+                            <visible>!String.IsEqual(ListItem.Label,..)</visible>
                         </control>
                         <include condition="Skin.HasSetting(furniture.overlayinfobalken)" content="ProgressCircle">
                             <param name="left" value="415"/>
                             <param name="top" value="495"/>
                         </include>
                         <control type="group">
-                            <animation effect="slide" start="0" end="0,40" time="250" condition="Skin.HasSetting(hidevotesfanart)">Conditional</animation>
                             <control type="group">
-                                <visible>!Skin.HasSetting(furniture.numericrating)</visible>
                                 <top>460</top>
                                 <width>1050</width>
                                 <visible>!String.IsEqual(ListItem.Label,..)</visible>
-                                <visible>!Skin.HasSetting(furniture.numericrating)</visible>
                                 <include content="Def_Flag">
                                     <param name="Star" value="Flagstar1" />
                                 </include>
@@ -367,27 +319,6 @@
                                     <param name="Star" value="Flagstar5" />
                                     <param name="left" value="200" />
                                 </include>
-                            </control>
-                            <control type="group">
-                                <top>460</top>
-                                <width>1050</width>
-                                <visible>Skin.HasSetting(furniture.numericrating)</visible>
-                                <visible>!String.IsEqual(ListItem.Label,..)</visible>
-                                <include content="Def_Flag">
-                                    <param name="Star" value="Flagstar1" />
-                                </include>
-                                <control type="label">
-                                    <left>45</left>
-                                    <width min="48">auto</width>
-                                    <centertop>50%</centertop>
-                                    <height>64</height>
-                                    <align>left</align>
-                                    <aligny>center</aligny>
-                                    <label>$VAR[RatingLabel]</label>
-                                    <visible>!String.IsEqual(ListItem.Label,..)</visible>
-                                    <font>Flag</font>
-                                    <textcolor>Dark2</textcolor>
-                                </control>
                             </control>
                         </control>
                     </control>

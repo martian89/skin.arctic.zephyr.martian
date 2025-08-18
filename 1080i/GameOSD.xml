@@ -6,19 +6,18 @@
         <control type="group">
             <include>Animation.FadeIn</include>
             <include>Animation.FadeOut</include>
-            <visible>ControlGroup(9000).HasFocus()</visible>
+            <visible>!Window.IsActive(GameVideoFilter) + !Window.IsActive(GameStretchMode) + !Window.IsActive(GameVideoRotation) + !Window.IsActive(InGameSaves) + !Window.IsActive(DialogSlider.xml)</visible>
             <include>GlobalOverlay</include>
         </control>
         <control type="group">
             <centerleft>50%</centerleft>
             <centertop>50%</centertop>
             <width>468</width>
-            <height>755</height>
-            <top>140</top>
+            <height>545</height>
             <visible allowhiddenfocus="true">ControlGroup(9000).HasFocus()</visible>
             <include>Animation.ZoomIn</include>
             <include>Animation.FadeOut</include>
-            <visible>!Window.IsActive(GameVideoFilter) + !Window.IsActive(GameStretchMode) + !Window.IsActive(GameControllers) + !Window.IsActive(GameVideoRotation) + !Window.IsActive(DialogSlider.xml)</visible>
+            <visible>!Window.IsActive(1123) + !Window.IsActive(InGameSaves)</visible>
             <control type="image">
                 <left>-8</left>
                 <top>-20</top>
@@ -36,7 +35,7 @@
                     <width>1000</width>
                     <posy>0</posy>
                     <include>FontTop</include>
-                    <textcolor>Dark2</textcolor>
+                    <textcolor>Black70</textcolor>
                     <label>35221</label>
                 </control>
                 <include>Kodi_Logo</include>
@@ -65,7 +64,7 @@
             </include>
             <control type="grouplist" id="9000">
                 <top>90</top>
-                <height>630</height>
+                <height>420</height>
                 <scrolltime>0</scrolltime>
                 <onleft>Close</onleft>
                 <onright>Close</onright>
@@ -79,54 +78,39 @@
                     <onclick>Play</onclick>
                 </control>
                 <control type="button" id="102">
+                    <description>Save / Load button</description>
+                    <align>left</align>
+                    <label>$LOCALIZE[35249]</label>
+                    <include>DefContextButtonGradient</include>
+                    <onclick>ActivateWindow(InGameSaves)</onclick>
+                </control>
+                <control type="button" id="103">
+                    <description>Players button</description>
+                    <align>left</align>
+                    <label>$LOCALIZE[35172]</label>
+                    <include>DefContextButtonGradient</include>
+                    <onclick>ActivateWindow(GameAgents)</onclick>
+                </control>
+                <control type="button" id="104">
                     <description>Reset button</description>
                     <align>left</align>
                     <label>$LOCALIZE[13007]</label>
                     <include>DefContextButtonGradient</include>
                     <onclick>PlayerControl(Reset)</onclick>
                 </control>
-                <control type="button" id="103">
+                <control type="button" id="105">
                     <description>Stop button</description>
                     <align>left</align>
                     <label>$LOCALIZE[35222]</label>
                     <include>DefContextButtonGradient</include>
                     <onclick>Stop</onclick>
                 </control>
-                <control type="button" id="104">
-                    <include>DefContextButtonGradient</include>
-                    <align>left</align>
-                    <label>$LOCALIZE[35225]</label>
-                    <onclick>ActivateWindow(GameVideoFilter)</onclick>
-                </control>
-                <control type="button" id="105">
-                    <include>DefContextButtonGradient</include>
-                    <align>left</align>
-                    <label>$LOCALIZE[35233]</label>
-                    <onclick>ActivateWindow(GameStretchMode)</onclick>
-                </control>
                 <control type="button" id="106">
-                    <include>DefContextButtonGradient</include>
+                    <description>Settings</description>
                     <align>left</align>
-                    <label>$LOCALIZE[35227]</label>
-                    <onclick>ActivateWindow(GameVideoRotation)</onclick>
-                </control>
-                <control type="button" id="107">
-                    <label>$LOCALIZE[13376]</label>
-                    <align>left</align>
+                    <label>$LOCALIZE[5]</label>
                     <include>DefContextButtonGradient</include>
-                    <onclick>ActivateWindow(GameVolume)</onclick>
-                </control>
-                <control type="button" id="109">
-                    <include>DefContextButtonGradient</include>
-                    <align>left</align>
-                    <label>$LOCALIZE[35234]</label>
-                    <onclick>ActivateWindow(GameControllers)</onclick>
-                </control>
-                <control type="button" id="110">
-                    <include>DefContextButtonGradient</include>
-                    <align>left</align>
-                    <label>$LOCALIZE[10140]</label>
-                    <onclick>ActivateWindow(GameAdvancedSettings)</onclick>
+                    <onclick>ActivateWindow(1123)</onclick>
                 </control>
             </control>
         </control>

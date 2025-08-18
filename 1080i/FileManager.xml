@@ -2,6 +2,8 @@
 <!-- Foundation -->
 <window id="3">
     <defaultcontrol always="true">20</defaultcontrol>
+    <include>Blur_OnLoad_Action</include>
+    <include>Blur_SimpleBackground_Onload_Action</include>
     <controls>
         <include>GlobalBackground</include>
         <include>Furniture_Header</include>
@@ -37,7 +39,7 @@
                     <right>30</right>
                     <height>1</height>
                     <bottom>10</bottom>
-                    <colordiffuse>Black12</colordiffuse>
+                    <colordiffuse>PanelWhite12</colordiffuse>
                     <texture>common/white.png</texture>
                 </control>
                 <include content="scrollbar_filemanager">
@@ -65,48 +67,60 @@
                     <itemlayout height="69" width="865">
                         <control type="label">
                             <posx>30</posx>
-                            <width>715</width>
+                            <width>700</width>
                             <align>left</align>
                             <textcolor>PanelWhite70</textcolor>
+                            <selectedcolor>PanelWhite70</selectedcolor>
                             <info>ListItem.Label</info>
                         </control>
                         <control type="label">
-                            <right>30</right>
-                            <width>150</width>
+                            <right>84</right>
+                            <width>116</width>
                             <align>right</align>
                             <font>Tiny</font>
                             <textcolor>PanelWhite70</textcolor>
+                            <selectedcolor>PanelWhite70</selectedcolor>
                             <info>ListItem.Label2</info>
                         </control>
+		                <include content="Def_IndicatorImage">
+		                    <param name="color" value="PanelWhite70" />
+					        <param name="selected" value="ListItem.IsSelected" />
+		                </include>
                     </itemlayout>
                     <focusedlayout height="69" width="865">
                         <control type="image">
                             <width>100%</width>
                             <height>66</height>
-                            <texture border="5" colordiffuse="$VAR[ColorSelectOtherBar]">common/white.png</texture>
-                            <animation effect="fade" start="100" end="33" condition="!Control.HasFocus(20) + !Control.HasFocus(1824)">Conditional</animation>
+                            <texture border="5" colordiffuse="$VAR[ColorHighlight]">common/white.png</texture>
+                            <animation effect="fade" start="100" end="33" condition="!Control.HasFocus(20)">Conditional</animation>
                         </control>
                         <control type="image">
                             <width>100%</width>
                             <height>66</height>
-                            <texture border="8" colordiffuse="$VAR[ColorHighlightOtherBar]">common/gradient-box-wide-cut.png</texture>
-                            <animation effect="fade" start="100" end="33" condition="!Control.HasFocus(20) + !Control.HasFocus(1824)">Conditional</animation>
+                            <texture border="8" colordiffuse="$VAR[ColorGradient]">common/gradient-box-wide-cut.png</texture>
+                            <animation effect="fade" start="100" end="33" condition="!Control.HasFocus(20)">Conditional</animation>
                         </control>
                         <control type="label">
                             <posx>30</posx>
-                            <width>720</width>
+                            <width>700</width>
                             <align>left</align>
                             <textcolor>Selected</textcolor>
+                            <selectedcolor>Selected</selectedcolor>
                             <info>ListItem.Label</info>
                         </control>
                         <control type="label">
-                            <right>30</right>
-                            <width>720</width>
+                            <right>84</right>
+                            <width>116</width>
                             <align>right</align>
                             <textcolor>Selected</textcolor>
+                            <selectedcolor>Selected</selectedcolor>
                             <font>Tiny</font>
                             <info>ListItem.Label2</info>
                         </control>
+		                <include content="Def_IndicatorImage">
+		                    <param name="color" value="Selected" />
+					        <param name="selected" value="ListItem.IsSelected" />
+		                </include>
                     </focusedlayout>
                 </control>
                 <control type="label" id="12">
@@ -145,7 +159,7 @@
                     <right>30</right>
                     <height>1</height>
                     <bottom>10</bottom>
-                    <colordiffuse>Black12</colordiffuse>
+                    <colordiffuse>PanelWhite12</colordiffuse>
                     <texture>common/white.png</texture>
                 </control>
                 <control type="list" id="21">
@@ -162,48 +176,60 @@
                     <itemlayout height="69" width="870">
                         <control type="label">
                             <posx>30</posx>
-                            <width>720</width>
+                            <width>700</width>
                             <align>left</align>
                             <textcolor>PanelWhite70</textcolor>
+                            <selectedcolor>PanelWhite70</selectedcolor>
                             <info>ListItem.Label</info>
                         </control>
                         <control type="label">
-                            <right>30</right>
-                            <width>150</width>
+                            <right>84</right>
+                            <width>116</width>
                             <align>right</align>
                             <font>Tiny</font>
                             <textcolor>PanelWhite70</textcolor>
+                            <selectedcolor>PanelWhite70</selectedcolor>
                             <info>ListItem.Label2</info>
                         </control>
+		                <include content="Def_IndicatorImage">
+		                    <param name="color" value="PanelWhite70" />
+					        <param name="selected" value="ListItem.IsSelected" />
+		                </include>
                     </itemlayout>
                     <focusedlayout height="69" width="870">
                         <control type="image">
                             <width>100%</width>
                             <height>66</height>
-                            <texture border="5" colordiffuse="$VAR[ColorSelectOtherBar]">common/white.png</texture>
-                            <animation effect="fade" start="100" end="33" condition="!Control.HasFocus(21) + !Control.HasFocus(1825)">Conditional</animation>
+                            <texture border="5" colordiffuse="$VAR[ColorHighlight]">common/white.png</texture>
+                            <animation effect="fade" start="100" end="33" condition="!Control.HasFocus(21)">Conditional</animation>
                         </control>
                         <control type="image">
                             <width>100%</width>
                             <height>66</height>
-                            <texture border="8" colordiffuse="$VAR[ColorHighlightOtherBar]">common/gradient-box-wide-cut.png</texture>
-                            <animation effect="fade" start="100" end="33" condition="!Control.HasFocus(21) + !Control.HasFocus(1825)">Conditional</animation>
+                            <texture border="8" colordiffuse="$VAR[ColorGradient]">common/gradient-box-wide-cut.png</texture>
+                            <animation effect="fade" start="100" end="33" condition="!Control.HasFocus(21)">Conditional</animation>
                         </control>
                         <control type="label">
                             <posx>30</posx>
-                            <width>720</width>
+                            <width>700</width>
                             <align>left</align>
                             <textcolor>Selected</textcolor>
+                            <selectedcolor>Selected</selectedcolor>
                             <info>ListItem.Label</info>
                         </control>
                         <control type="label">
-                            <right>30</right>
-                            <width>720</width>
+                            <right>84</right>
+                            <width>116</width>
                             <align>right</align>
                             <textcolor>Selected</textcolor>
+                            <selectedcolor>Selected</selectedcolor>
                             <font>Tiny</font>
                             <info>ListItem.Label2</info>
                         </control>
+		                <include content="Def_IndicatorImage">
+		                    <param name="color" value="Selected" />
+					        <param name="selected" value="ListItem.IsSelected" />
+		                </include>
                     </focusedlayout>
                 </control>
                 <control type="label" id="22">

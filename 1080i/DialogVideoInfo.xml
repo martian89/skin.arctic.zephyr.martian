@@ -1,25 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Foundation -->
 <window id="2003">
-    <defaultcontrol always="true">8</defaultcontrol>
-    <onload condition="Control.IsVisible(9201)">SetFocus(9201)</onload>
-    <onload condition="Control.IsVisible(9078)">SetFocus(9078)</onload>
+    <defaultcontrol always="true">9000</defaultcontrol>
+    <onload condition="Control.IsVisible(11006)">SetFocus(11006)</onload>
+    <onload condition="Control.IsVisible(11005)">SetFocus(11005)</onload>
+    <onload condition="Control.IsVisible(11004)">SetFocus(11004)</onload>
+    <onload condition="Control.IsVisible(11003)">SetFocus(11003)</onload>
+    <onload condition="Control.IsVisible(11002)">SetFocus(11002)</onload>
+    <onload condition="Control.IsVisible(11001)">SetFocus(11001)</onload>
+    <onload condition="Control.IsVisible(10003)">SetFocus(10003)</onload>
+    <onload condition="Control.IsVisible(10002)">SetFocus(10002)</onload>
+    <onload condition="Control.IsVisible(10001)">SetFocus(10001)</onload>
+    <onload condition="Control.IsVisible(8)">SetFocus(8)</onload>
     <onload>Control.Move(50,$INFO[Container(50).CurrentItem,-])</onload>
     <onload>Control.Move(50,1)</onload>
-    <onload>Control.Move(9502,$INFO[Container(9502).CurrentItem,-])</onload>
-    <onload>Control.Move(9502,1)</onload>
-    <onload>Control.Move(9503,$INFO[Container(9503).CurrentItem,-])</onload>
-    <onload>Control.Move(9503,1)</onload>
-    <onload>Control.Move(9505,$INFO[Container(9505).CurrentItem,-])</onload>
-    <onload>Control.Move(9505,1)</onload>
-    <onload>Control.Move(9506,$INFO[Container(9506).CurrentItem,-])</onload>
-    <onload>Control.Move(9506,1)</onload>
-    <onload>Control.Move(9515,$INFO[Container(9515).CurrentItem,-])</onload>
-    <onload>Control.Move(9515,1)</onload>
+    <onload>Control.Move(52,$INFO[Container(52).CurrentItem,-])</onload>
+    <onload>Control.Move(52,1)</onload>
+    <onload>Control.Move(53,$INFO[Container(53).CurrentItem,-])</onload>
+    <onload>Control.Move(53,1)</onload>
+    <onload>Control.Move(54,$INFO[Container(54).CurrentItem,-])</onload>
+    <onload>Control.Move(54,1)</onload>
+    <onload>Control.Move(55,$INFO[Container(55).CurrentItem,-])</onload>
+    <onload>Control.Move(55,1)</onload>
+    <onload>Control.Move(56,$INFO[Container(56).CurrentItem,-])</onload>
+    <onload>Control.Move(56,1)</onload>
+    <onload>Control.Move(57,$INFO[Container(57).CurrentItem,-])</onload>
+    <onload>Control.Move(57,1)</onload>
+    <onload>Control.Move(60,$INFO[Container(60).CurrentItem,-])</onload>
+    <onload>Control.Move(60,1)</onload>
+    <onload>Control.Move(62,$INFO[Container(62).CurrentItem,-])</onload>
+    <onload>Control.Move(62,1)</onload>
+    <onload>Control.Move(70,$INFO[Container(70).CurrentItem,-])</onload>
+    <onload>Control.Move(70,1)</onload>
+    <onload>Control.Move(71,$INFO[Container(71).CurrentItem,-])</onload>
+    <onload>Control.Move(71,1)</onload>
+    <onload>Control.Move(72,$INFO[Container(72).CurrentItem,-])</onload>
+    <onload>Control.Move(72,1)</onload>
+    <onload>Control.Move(73,$INFO[Container(73).CurrentItem,-])</onload>
+    <onload>Control.Move(73,1)</onload>
     <zorder>0</zorder>
+    <onload>ClearProperty(videodirector)</onload>
+    <onload>ClearProperty(videocrew)</onload>
+    <onload>ClearProperty(videoset)</onload>
     <onload>ClearProperty(videosimilar)</onload>
     <onload>ClearProperty(videostudio)</onload>
     <onload>ClearProperty(videoyoutube)</onload>
+    <onload>ClearProperty(videoseasons)</onload>
+    <onload>ClearProperty(actormovies)</onload>
+    <onload>ClearProperty(actortvshows)</onload>
+    <onload>ClearProperty(moviecontent)</onload>
+    <onload>ClearProperty(actinfo)</onload>
     <onload>ClearProperty(ShowDisc)</onload>
     <onunload>ClearProperty(SetUserRating,home)</onunload>
     <onunload>ClearProperty(dontslide,home)</onunload>
@@ -28,20 +58,14 @@
     <onunload condition="!String.IsEmpty(Window(home).Property(shownowplayinginfo))">ClearProperty(shownowplayinginfo,home)</onunload>
     <onload>ClearProperty(content)</onload>
     <onload>ClearProperty(down)</onload>
-    <onload condition="Skin.HasSetting(showartwork.video.tmdbhelper) + !Skin.HasSetting(hidebutton.video.fanart) + !String.IsEmpty(ListItem.Label)">SetProperty(Item_Title,$INFO[ListItem.Label],home)</onload>
-    <onload condition="Skin.HasSetting(showartwork.video.tmdbhelper) + !Skin.HasSetting(hidebutton.video.fanart) + !String.IsEmpty(ListItem.Year)">SetProperty(Item_Year,$INFO[ListItem.Year],home)</onload>
-    <onload condition="Skin.HasSetting(showartwork.video.tmdbhelper) + !Skin.HasSetting(hidebutton.video.fanart) + !String.IsEmpty(ListItem.DBTYPE)">SetProperty(Item_DBTYPE,$INFO[ListItem.DBTYPE],home)</onload>
     <onload condition="Skin.HasSetting(home.netflix.autoplay.trailer) + Skin.HasSetting(trailer.stop.on.dialogvideoinfo) + $EXP[TrailerIsPlaying] + Player.Playing">Stop</onload>
     <onload condition="Skin.HasSetting(home.netflix.autoplay.trailer) + Skin.HasSetting(trailer.pause.on.dialogvideoinfo) + $EXP[TrailerIsPlaying] + Player.Playing">Pause</onload>
     <onunload condition="Skin.HasSetting(home.netflix.autoplay.trailer) + Skin.HasSetting(trailer.pause.on.dialogvideoinfo) + $EXP[TrailerIsPlaying] + Player.Paused">Pause</onunload>
-    <onunload>ClearProperty(Item_Title,home)</onunload>
-    <onunload>ClearProperty(Item_Year,home)</onunload>
-    <onunload>ClearProperty(Item_DBTYPE,home)</onunload>
+	<onload condition="!$EXP[IsPersonInfo]">SetProperty(infodialog,video,home)</onload>
+	<onload condition="$EXP[IsPersonInfo]">SetProperty(infodialog,person,home)</onload>
+	<onunload>ClearProperty(infodialog,home)</onunload>
     <controls>
-        <include>DialogVideoInfoWIP</include>
-        <include content="DialogInfoOverlay">
-            <param name="headerinfo" value="$INFO[ListItem.Title]" />
-            <param name="plotinfo" value="$INFO[ListItem.Tagline,[B],[/B][CR][CR]]$INFO[ListItem.Plot]" />
-        </include>
+        <include condition="!$EXP[IsPersonInfo]">DialogVideoInfoWIP</include>
+        <include condition="$EXP[IsPersonInfo]">DialogPersonInfo</include>
     </controls>
 </window>

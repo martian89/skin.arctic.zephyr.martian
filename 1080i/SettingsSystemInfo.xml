@@ -31,7 +31,7 @@
                     <left>450</left>
                     <width>1</width>
                     <bottom>10</bottom>
-                    <colordiffuse>Black12</colordiffuse>
+                    <colordiffuse>PanelWhite12</colordiffuse>
                     <texture>common/white.png</texture>
                 </control>
                 <control type="label">
@@ -44,7 +44,7 @@
                 </control>
                 <control type="label">
                     <left>30</left>
-                    <right>30</right>
+                    <width>390</width>
                     <posy>77</posy>
                     <height>30</height>
                     <font>Tiny</font>
@@ -53,7 +53,6 @@
                     <scroll>true</scroll>
                 </control>
                 <control type="label" description="Header">
-                    <visible>!ControlGroup(9101).HasFocus(101)</visible>
                     <left>480</left>
                     <width>900</width>
                     <posy>18</posy>
@@ -62,7 +61,6 @@
                     <textcolor>PanelWhite100</textcolor>
                 </control>
                 <control type="label" id="52" description="XBMC Build Version">
-                    <visible>!ControlGroup(9101).HasFocus(101)</visible>
                     <left>480</left>
                     <right>30</right>
                     <posy>77</posy>
@@ -79,8 +77,8 @@
                     <height>1</height>
                     <colordiffuse>PanelWhite12</colordiffuse>
                     <texture>common/white.png</texture>
-                    <visible>!ControlGroup(9101).HasFocus(101)</visible>
                 </control>
+
                 <include content="Def_Gradient_Settings_Image">
                     <param name="controlid" value="9101"/>
                     <param name="left" value="0"/>
@@ -98,6 +96,8 @@
                     <scrolltime>0</scrolltime>
                     <onup>9101</onup>
                     <ondown>9101</ondown>
+                    <onright condition="!ControlGroup(9101).HasFocus(100)">1500</onright>
+                    <onright condition="ControlGroup(9101).HasFocus(100)">1600</onright>
                     <control type="button" id="95">
                         <description>General</description>
                         <include>DefSettingsButtonGradient</include>
@@ -132,18 +132,15 @@
                         <include>DefSettingsButtonGradient</include>
                         <label>12389</label>
                     </control>
-                    <control type="button" id="101">
-                        <include>DefSettingsButtonGradient</include>
-                        <label>31018</label>
-                    </control>
                 </control>
                 <control type="grouplist">
                     <left>480</left>
                     <top>140</top>
-                    <bottom>0</bottom>
+                    <height>80</height>
                     <right>30</right>
                     <itemgap>0</itemgap>
                     <usecontrolcoords>true</usecontrolcoords>
+                    <visible>!ControlGroup(9101).HasFocus(100)</visible>
                     <control type="label">
                         <description>CPU Text</description>
                         <font>Tiny</font>
@@ -151,7 +148,6 @@
                         <height>60</height>
                         <label>$LOCALIZE[13271]</label>
                         <include>DefSettingsButton</include>
-                        <visible>!ControlGroup(9101).HasFocus(100) + !ControlGroup(9101).HasFocus(101)</visible>
                     </control>
                     <control type="label">
                         <description>CPU Text</description>
@@ -163,7 +159,6 @@
                         <height>60</height>
                         <label>$INFO[System.CPUUsage]</label>
                         <include>DefSettingsButton</include>
-                        <visible>!ControlGroup(9101).HasFocus(100) + !ControlGroup(9101).HasFocus(101)</visible>
                     </control>
                     <control type="progress" id="22">
                         <description>CPU BAR</description>
@@ -171,7 +166,6 @@
                         <width>750</width>
                         <info>System.CPUUsage</info>
                         <include>DefSettingsButton</include>
-                        <visible>!ControlGroup(9101).HasFocus(100) + !ControlGroup(9101).HasFocus(101)</visible>
                     </control>
                     <control type="label">
                         <description>Memory Text</description>
@@ -181,7 +175,6 @@
                         <height>60</height>
                         <label>$LOCALIZE[31104]:</label>
                         <include>DefSettingsButton</include>
-                        <visible>!ControlGroup(9101).HasFocus(100) + !ControlGroup(9101).HasFocus(101)</visible>
                     </control>
                     <control type="label">
                         <description>Memory Text</description>
@@ -192,7 +185,6 @@
                         <height>60</height>
                         <label>$INFO[system.memory(used.percent)]</label>
                         <include>DefSettingsButton</include>
-                        <visible>!ControlGroup(9101).HasFocus(100) + !ControlGroup(9101).HasFocus(101)</visible>
                     </control>
                     <control type="progress" id="24">
                         <description>Memory BAR</description>
@@ -200,150 +192,130 @@
                         <height>10</height>
                         <info>system.memory(used)</info>
                         <include>DefSettingsButton</include>
-                        <visible>!ControlGroup(9101).HasFocus(100) + !ControlGroup(9101).HasFocus(101)</visible>
                     </control>
-                    <control type="label" id="25">
-                        <description>Spacer</description>
-                        <visible>!ControlGroup(9101).HasFocus(100)</visible>
-                        <font />
-                        <font>Tiny</font>
-                        <height>20</height>
-                    </control>
-                    <control type="label">
-                        <animation effect="slide" start="0" end="0,-50" time="0" condition="true">Conditional</animation>
-                        <visible>ControlGroup(9101).HasFocus(101)</visible>
-                        <description>Loading</description>
-                        <width>100%</width>
-                        <height>75</height>
-                        <align>center</align>
-                        <aligny>center</aligny>
-                        <label>Arctic [COLOR=$VAR[ColorHighlight]]Zephyr[/COLOR]</label>
-                        <font>EpisodeNumber</font>
-                        <textcolor>PanelWhite100</textcolor>
-                    </control>
-                    <control type="button" id="9905">
-                        <width>1310</width>
-                        <height>20</height>
-                        <visible>ControlGroup(9101).HasFocus(101)</visible>
-                        <include>DefSettingsButtonLabelInfo</include>
-                        <label></label>
-                        <enable>false</enable>
-                    </control>
-                    <control type="image" id="9902">
-                        <animation effect="slide" start="0" end="0,-50" time="0" condition="true">Conditional</animation>
-                        <visible>ControlGroup(9101).HasFocus(101)</visible>
-                        <aspectratio scalediffuse="false">keep</aspectratio>
-                        <height>47</height>
-                        <left>385</left>
-                        <texture>misc/matrix.png</texture>
-                    </control>
-                    <control type="button" id="9907">
-                        <animation effect="slide" start="0" end="0,-50" time="0" condition="true">Conditional</animation>
-                        <width>1310</width>
-                        <height>279</height>
-                        <visible>ControlGroup(9101).HasFocus(101)</visible>
-                        <include>DefSettingsButtonLabelInfo</include>
-                        <label>31137</label>
-                        <enable>false</enable>
-                    </control>
-                    <control type="label">
-                        <width>300</width>
-                        <height>1</height>
-                        <left>955</left>
-                        <font>Tiny</font>
-                        <textcolor>PanelWhite70</textcolor>
-                        <disabledcolor>PanelWhite70</disabledcolor>
-                        <visible>ControlGroup(9101).HasFocus(101)</visible>
-                        <animation effect="slide" start="0" end="0,-348" time="0" condition="true">Conditional</animation>
-                        <align>left</align>
-                        <label>v$INFO[System.AddonVersion(skin.arctic.zephyr.mod)]</label>
-                    </control>
+				</control>
+				<control type="scrollbar" id="1500">
+			        <width>8</width>
+					<top>2</top>
+					<bottom>-8</bottom>
+					<right>-16</right>
+					<onleft>9101</onleft>
+					<onright>9101</onright>
+			        <texturesliderbackground border="4" colordiffuse="Dark4">scrollbar/scrollv.png</texturesliderbackground>
+			        <texturesliderbar border="4" colordiffuse="Dark3">scrollbar/scrollv.png</texturesliderbar>
+			        <texturesliderbarfocus border="4" colordiffuse="Dark2">scrollbar/scrollv.png</texturesliderbarfocus>
+			        <orientation>vertical</orientation>
+			        <showonepage>false</showonepage>
+			        <animation effect="fade" start="100" end="0" time="400" condition="ControlGroup(9101).HasFocus(100) + !Container.Scrolling">Conditional</animation>
+				</control>
+                <control type="grouplist">
+                    <left>480</left>
+                    <top>230</top>
+                    <height>390</height>
+                    <right>38</right>
+                    <itemgap>0</itemgap>
+                    <usecontrolcoords>true</usecontrolcoords>
+     				<pagecontrol>1500</pagecontrol>
+                    <visible>!ControlGroup(9101).HasFocus(100)</visible>
                     <control type="label" id="2">
                         <description>Label 2</description>
                         <font>Tiny</font>
-                        <height>40</height>
+                        <height>39</height>
                         <include>DefSettingsButton</include>
-                        <visible>!ControlGroup(9101).HasFocus(101)</visible>
                     </control>
                     <control type="label" id="3">
                         <description>Label 3</description>
                         <font>Tiny</font>
-                        <height>40</height>
+                        <height>39</height>
                         <include>DefSettingsButton</include>
-                        <visible>!ControlGroup(9101).HasFocus(101)</visible>
                     </control>
                     <control type="label" id="4">
                         <description>Label 4</description>
                         <font>Tiny</font>
-                        <height>40</height>
+                        <height>39</height>
                         <include>DefSettingsButton</include>
-                        <visible>!ControlGroup(9101).HasFocus(101)</visible>
                     </control>
                     <control type="label" id="5">
                         <description>Label 5</description>
                         <font>Tiny</font>
-                        <height>40</height>
+                        <height>39</height>
                         <include>DefSettingsButton</include>
-                        <visible>!ControlGroup(9101).HasFocus(101)</visible>
                     </control>
                     <control type="label" id="6">
                         <description>Label 6</description>
                         <font>Tiny</font>
-                        <height>40</height>
+                        <height>39</height>
                         <include>DefSettingsButton</include>
-                        <visible>!ControlGroup(9101).HasFocus(101)</visible>
                     </control>
                     <control type="label" id="7">
                         <description>Label 7</description>
                         <font>Tiny</font>
-                        <height>40</height>
+                        <height>39</height>
                         <include>DefSettingsButton</include>
-                        <visible>!ControlGroup(9101).HasFocus(101)</visible>
                     </control>
                     <control type="label" id="8">
                         <description>Label 8</description>
                         <font>Tiny</font>
-                        <height>40</height>
+                        <height>39</height>
                         <include>DefSettingsButton</include>
-                        <visible>!ControlGroup(9101).HasFocus(101)</visible>
                     </control>
                     <control type="label" id="9">
                         <description>Label 9</description>
                         <font>Tiny</font>
-                        <height>40</height>
+                        <height>39</height>
                         <include>DefSettingsButton</include>
-                        <visible>!ControlGroup(9101).HasFocus(101)</visible>
                     </control>
                     <control type="label" id="10">
                         <description>Label 10</description>
                         <font>Tiny</font>
-                        <height>40</height>
+                        <height>39</height>
                         <include>DefSettingsButton</include>
-                        <visible>!ControlGroup(9101).HasFocus(101)</visible>
                     </control>
                     <control type="label" id="11">
                         <description>Label 11</description>
                         <font>Tiny</font>
-                        <height>40</height>
+                        <height>39</height>
                         <include>DefSettingsButton</include>
-                        <visible>!ControlGroup(9101).HasFocus(101)</visible>
                     </control>
                     <control type="label" id="12">
                         <description>Label 12</description>
                         <font>Tiny</font>
-                        <height>40</height>
+                        <height>39</height>
                         <include>DefSettingsButton</include>
-                        <visible>!ControlGroup(9101).HasFocus(101)</visible>
+                        <visible>!String.IsEmpty(Control.GetLabel(12))</visible>
+                    </control>
+                    <control type="label" id="13">
+                        <description>Label 13</description>
+                        <font>Tiny</font>
+                        <height>39</height>
+                        <include>DefSettingsButton</include>
+                        <visible>ControlGroup(9101).HasFocus(99) + !String.IsEmpty(Control.GetLabel(13))</visible>
                     </control>
                 </control>
+				<control type="scrollbar" id="1600">
+			        <width>8</width>
+					<top>2</top>
+					<bottom>-8</bottom>
+					<right>-16</right>
+					<onleft>9101</onleft>
+					<onright>9101</onright>
+			        <texturesliderbackground border="4" colordiffuse="Dark4">scrollbar/scrollv.png</texturesliderbackground>
+			        <texturesliderbar border="4" colordiffuse="Dark3">scrollbar/scrollv.png</texturesliderbar>
+			        <texturesliderbarfocus border="4" colordiffuse="Dark2">scrollbar/scrollv.png</texturesliderbarfocus>
+			        <orientation>vertical</orientation>
+			        <showonepage>false</showonepage>
+			        <animation effect="fade" start="100" end="0" time="400" condition="!ControlGroup(9101).HasFocus(100) + !Container.Scrolling">Conditional</animation>
+				</control>
                 <control type="textbox" id="30">
-                    <visible>!ControlGroup(9101).HasFocus(101)</visible>
                     <left>480</left>
-                    <top>155</top>
-                    <bottom>0</bottom>
-                    <right>30</right>
-                    <font>Tiny</font>
-                </control>
+                    <top>150</top>
+                    <bottom>7</bottom>
+                    <right>38</right>
+                    <font>TinyPlot</font>
+                    <textcolor>PanelWhite100</textcolor>
+                    <pagecontrol>1600</pagecontrol>
+					<autoscroll delay="3000" repeat="7500" time="1500" />
+				</control>
             </control>
         </control>
     </controls>

@@ -26,7 +26,7 @@
                     <right>7</right>
                     <bottom>7</bottom>
                     <texture colordiffuse="BoxNotification" border="4" background="true" infill="false">common/box21.png</texture>
-                    <visible>!Skin.HasSetting(thumbnails.white)</visible>
+                    <visible>!Skin.HasSetting(global.hideborders)</visible>
                 </control>
                 <control type="group">
                     <visible>!player.passthrough</visible>
@@ -104,7 +104,7 @@
         <control type="group">
             <visible>Player.Muted</visible>
             <control type="group">
-                <visible>VideoPlayer.IsFullscreen | Window.IsVisible(visualisation) | [Window.IsVisible(home) + !Skin.HasSetting(home.showheader) + !Skin.HasSetting(home.vertical)] | Skin.HasSetting(furniture.header)</visible>
+                <visible>VideoPlayer.IsFullscreen | Window.IsVisible(visualisation) | [Window.IsVisible(home) + !$EXP[HomeShowHeader] + !Skin.HasSetting(home.vertical)] | Skin.HasSetting(furniture.header)</visible>
                 <left>SidePad</left>
                 <top>SidePad</top>
                 <width>100</width>

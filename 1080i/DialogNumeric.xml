@@ -15,31 +15,29 @@
                 <posy>-270</posy>
                 <width>1920</width>
                 <height>1080</height>
-                <texture>common/white.png</texture>
-                <colordiffuse>Black</colordiffuse>
-                <animation effect="fade" end="75" condition="true">Conditional</animation>
+	            <texture border="2">common/black-back.png</texture>
             </control>
             <control type="image">
                 <posx>-18</posx>
                 <posy>58</posy>
-                <width>456</width>
+                <width>462</width>
                 <height>524</height>
                 <texture border="16" colordiffuse="White100">common/rounded-shadow8.png</texture>
             </control>
             <control type="label" id="1">
                 <description>dialog Heading</description>
                 <posx>15</posx>
-                <width>390</width>
+                <width>392</width>
                 <height>57</height>
                 <aligny>center</aligny>
                 <align>center</align>
-                <font>SmallBold</font>
+                <font>MediumBold</font>
                 <textcolor>PanelWhite100</textcolor>
             </control>
             <control type="image">
                 <posx>12</posx>
                 <posy>87</posy>
-                <width>396</width>
+                <width>402</width>
                 <height>75</height>
                 <aspectratio>stretch</aspectratio>
                 <texture border="20" colordiffuse="Black12">common/box.png</texture>
@@ -48,7 +46,7 @@
                 <description>Edit Text</description>
                 <posx>23</posx>
                 <posy>87</posy>
-                <width>375</width>
+                <width>379</width>
                 <height>75</height>
                 <align>center</align>
                 <textcolor>Black70</textcolor>
@@ -103,7 +101,7 @@
                     <height>90</height>
                     <include>DefKeyboardKeys</include>
                     <label>12314</label>
-                    <onleft>23</onleft>
+                    <onleft>100</onleft>
                     <onright>15</onright>
                     <onup>11</onup>
                     <ondown>17</ondown>
@@ -130,7 +128,7 @@
                     <include>DefKeyboardKeys</include>
                     <label>12316</label>
                     <onleft>15</onleft>
-                    <onright>23</onright>
+                    <onright>100</onright>
                     <onup>13</onup>
                     <ondown>19</ondown>
                 </control>
@@ -177,34 +175,54 @@
                     <onleft>13</onleft>
                     <onright>11</onright>
                     <onup>21</onup>
+                    <ondown>100</ondown>
+			        <radioheight>40</radioheight>
+			        <radioposx>20</radioposx>
+			        <radioposy>26</radioposy>
+                    <include>buttondimensionsnumpad</include>
+                    <include content="buttontexturesnumpad">
+                        <param name="icon" value="buttonsdialogs/backspace.png"/>
+                    </include>
+                    <posx>306</posx>
+                    <posy>0</posy>
+                </control>
+                <control type="radiobutton" id="100">
+                	<onclick>Close</onclick>
+                    <onleft>16</onleft>
+                    <onright>14</onright>
+                    <onup>23</onup>
                     <ondown>21</ondown>
                     <include>buttondimensionsnumpad</include>
                     <include content="buttontexturesnumpad">
-                        <param name="icon" value="buttonsdialogs/uninstall.png"/>
+                        <param name="icon" value="buttonsdialogs/disable.png"/>
                     </include>
-                    <posx>307</posx>
-                    <posy>0</posy>
+                    <posx>306</posx>
+                    <posy>96</posy>
                 </control>
                 <control type="radiobutton" id="21">
                     <onleft>19</onleft>
                     <onright>17</onright>
-                    <onup>23</onup>
+                    <onup>100</onup>
                     <ondown>23</ondown>
-                    <include>buttondimensionsnumpad</include>
-                    <include content="buttontexturesnumpad">
-                        <param name="icon" value="buttonsdialogs/enabled.png"/>
+                    <include content="buttondimensionsnumpad">
+                        <param name="height" value="186" />
+        				<param name="radioposy" value="74" />
                     </include>
-                    <posx>307</posx>
+                    <include content="buttontexturesnumpad">
+                        <param name="icon" value="buttonsdialogs/enabled.png" />
+                    </include>
+                    <posx>306</posx>
                     <posy>192</posy>
                 </control>
-                <control type="button" id="20">
+                <control type="radiobutton" id="20">
                     <description>prev button</description>
                     <posx>0</posx>
                     <posy>288</posy>
-                    <width>96</width>
-                    <height>90</height>
-                    <label>&lt;</label>
-                    <include>DefKeyboardKeys</include>
+                    <include>buttondimensionsnumpad</include>
+                    <include content="buttontexturesnumpad">
+                        <param name="icon" value="buttonsdialogs/play.png"/>
+                        <param name="flipx" value="true"/>
+                    </include>
                     <onleft>21</onleft>
                     <onright>10</onright>
                     <onup>17</onup>
@@ -223,14 +241,16 @@
                     <onup>18</onup>
                     <ondown>12</ondown>
                 </control>
-                <control type="button" id="22">
+                <control type="radiobutton" id="22">
                     <description>next button</description>
                     <posx>204</posx>
                     <posy>288</posy>
+                    <include>buttondimensionsnumpad</include>
+                    <include content="buttontexturesnumpad">
+                        <param name="icon" value="buttonsdialogs/play.png"/>
+                        <param name="flipx" value="false"/>
+                    </include>
                     <width>96</width>
-                    <height>90</height>
-                    <label>&gt;</label>
-                    <include>DefKeyboardKeys</include>
                     <onleft>10</onleft>
                     <onright>21</onright>
                     <onup>19</onup>

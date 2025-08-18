@@ -38,7 +38,7 @@
                             <align>center</align>
                             <aligny>center</aligny>
                             <label>$INFO[ListItem.Label]</label>
-                            <font>SmallNavi</font>
+                            <font>SmallBold</font>
                             <textcolor>Dark1</textcolor>
                             <selectedcolor>Dark1</selectedcolor>
                         </control>
@@ -78,9 +78,9 @@
                                 <top>20</top>
                                 <left>530</left>
                                 <width>250</width>
-                                <height>40</height>
+                                <height>120</height>
                                 <align>right</align>
-                                <aligny>top</aligny>
+                                <aligny>center</aligny>
                                 <label>$VAR[LabelSeason]x$VAR[LabelEpisodeZero]$INFO[ListItem.Episode]</label>
                                 <textcolor>Dark1</textcolor>
                                 <selectedcolor>Dark1</selectedcolor>
@@ -91,18 +91,19 @@
                                 <right>54</right>
                                 <height>40</height>
                                 <align>left</align>
-                                <aligny>top</aligny>
+                                <aligny>center</aligny>
                                 <label>$VAR[LabelTitle]</label>
-                                <font>SmallNavi</font>
+                                <font>Small</font>
                                 <textcolor>Dark1</textcolor>
                                 <selectedcolor>Dark1</selectedcolor>
                                 <animation effect="slide" start="0" end="50" condition="Integer.IsGreater(ListItem.Episode,99) | [Integer.IsGreater(ListItem.Episode,9) + String.Contains(ListItem.Episode,S)]">Conditional</animation>
                             </control>
                             <control type="label">
                                 <left>802</left>
-                                <centertop>103</centertop>
+                                <top>86</top>
                                 <width>50</width>
-                                <height>50</height>
+                                <height>40</height>
+                                <aligny>center</aligny>
                                 <textcolor>$VAR[WatchedLabelPosterColor]</textcolor>
                                 <selectedcolor>Dark1</selectedcolor>
                                 <font>SymbolPoster</font>
@@ -115,7 +116,7 @@
                                 <right>50</right>
                                 <height>40</height>
                                 <align>left</align>
-                                <aligny>top</aligny>
+                                <aligny>center</aligny>
                                 <label fallback="19055">$VAR[LabelYear,,  •  ]$VAR[LabelDuration,,  •  ]$VAR[RatingLabel]</label>
                                 <font>Tiny</font>
                                 <textcolor>Dark2</textcolor>
@@ -135,7 +136,7 @@
                                 <align>left</align>
                                 <aligny>top</aligny>
                                 <label>$VAR[LabelTitle]</label>
-                                <font>SmallNavi</font>
+                                <font>Small</font>
                                 <textcolor>Dark1</textcolor>
                                 <selectedcolor>Dark1</selectedcolor>
                             </control>
@@ -161,9 +162,9 @@
                                 <top>15</top>
                                 <right>420r</right>
                                 <width>150</width>
-                                <height>40</height>
+                                <height>130</height>
                                 <align>right</align>
-                                <aligny>top</aligny>
+                                <aligny>center</aligny>
                                 <label>$NUMBER[0]$NUMBER[0]</label>
                                 <textcolor>Dark1</textcolor>
                                 <selectedcolor>Dark1</selectedcolor>
@@ -174,9 +175,9 @@
                                 <top>15</top>
                                 <right>420r</right>
                                 <width>155</width>
-                                <height>40</height>
+                                <height>130</height>
                                 <align>right</align>
-                                <aligny>top</aligny>
+                                <aligny>center</aligny>
                                 <label>$INFO[ListItem.TrackNumber]</label>
                                 <textcolor>Dark1</textcolor>
                                 <selectedcolor>Dark1</selectedcolor>
@@ -187,9 +188,9 @@
                                 <top>15</top>
                                 <right>420r</right>
                                 <width>155</width>
-                                <height>40</height>
+                                <height>130</height>
                                 <align>right</align>
-                                <aligny>top</aligny>
+                                <aligny>center</aligny>
                                 <label>$INFO[ListItem.TrackNumber]</label>
                                 <textcolor>Dark1</textcolor>
                                 <selectedcolor>Dark1</selectedcolor>
@@ -206,16 +207,29 @@
                             </control>
                             <control type="label">
                                 <top>47</top>
+                                <left>490</left>
+                                <right>54</right>
+                                <height>40</height>
+                                <align>left</align>
+                                <aligny>center</aligny>
+                                <label>$INFO[ListItem.Title]</label>
+                                <font>Small</font>
+                                <textcolor>Dark1</textcolor>
+                                <selectedcolor>Dark1</selectedcolor>
+                                <visible>ListItem.IsPlaying</visible>
+                            </control>
+                            <control type="label">
+                                <top>47</top>
                                 <left>440</left>
                                 <right>54</right>
                                 <height>40</height>
                                 <align>left</align>
-                                <aligny>top</aligny>
+                                <aligny>center</aligny>
                                 <label>$INFO[ListItem.Title]</label>
-                                <font>SmallNavi</font>
+                                <font>Small</font>
                                 <textcolor>Dark1</textcolor>
                                 <selectedcolor>Dark1</selectedcolor>
-                                <animation effect="slide" start="0,0" end="50,0" time="0" condition="ListItem.IsPlaying">Conditional</animation>
+                                <visible>!ListItem.IsPlaying</visible>
                             </control>
                             <control type="label">
                                 <top>85</top>
@@ -223,7 +237,7 @@
                                 <right>50</right>
                                 <height>40</height>
                                 <align>left</align>
-                                <aligny>top</aligny>
+                                <aligny>center</aligny>
                                 <label fallback="19055">$INFO[ListItem.Artist]$INFO[ListItem.Album,  •  ,]</label>
                                 <font>Tiny</font>
                                 <textcolor>Dark2</textcolor>
@@ -253,7 +267,7 @@
                             <right>109</right>
                             <bottom>9</bottom>
                             <texture colordiffuse="Box2" border="4" infill="false">common/box21.png</texture>
-                            <visible>!Skin.HasSetting(thumbnails.white)</visible>
+                            <visible>!Skin.HasSetting(global.hideborders)</visible>
                         </control>
                         <include content="IndicatorPoster" condition="!Skin.HasSetting(hide.markers)">
                             <param name="right" value="100" />
@@ -265,7 +279,7 @@
                             <top>30</top>
                             <height>50</height>
                             <align>left</align>
-                            <font>SmallBold</font>
+                            <font>MediumBold</font>
                             <textcolor>Light1</textcolor>
                             <selectedcolor>Light1</selectedcolor>
                             <label>$INFO[ListItem.Label]</label>
@@ -337,7 +351,7 @@
                             <width>1242</width>
                             <height>272</height>
                             <texture colordiffuse="Box2" border="4" infill="false">common/box21.png</texture>
-                            <visible>!Skin.HasSetting(thumbnails.white)</visible>
+                            <visible>!Skin.HasSetting(global.hideborders)</visible>
                         </control>
                         <control type="group">
                             <visible>Integer.IsGreater(ListItem.Property(UnwatchedEpisodes),0)</visible>
@@ -421,7 +435,7 @@
                                 <width>1514</width>
                                 <height>272</height>
                                 <texture colordiffuse="Box2" border="4" infill="false">common/box21.png</texture>
-                                <visible>!Skin.HasSetting(thumbnails.white)</visible>
+                                <visible>!Skin.HasSetting(global.hideborders)</visible>
                             </control>
                             <control type="group">
                                 <animation effect="slide" end="-54,0" time="0" condition="!Integer.IsGreater(ListItem.Season,9)">Conditional</animation>
@@ -430,9 +444,9 @@
                                     <top>20</top>
                                     <left>530</left>
                                     <width>250</width>
-                                    <height>40</height>
+                                    <height>130</height>
                                     <align>right</align>
-                                    <aligny>top</aligny>
+                                    <aligny>center</aligny>
                                     <label>$VAR[LabelSeason]x$VAR[LabelEpisodeZero]$INFO[ListItem.Episode]</label>
                                     <textcolor>Light1</textcolor>
                                     <selectedcolor>Light1</selectedcolor>
@@ -441,20 +455,21 @@
                                     <top>47</top>
                                     <left>800</left>
                                     <right>54</right>
-                                    <height>40</height>
+                                    <height>50</height>
                                     <align>left</align>
-                                    <aligny>top</aligny>
+                                    <aligny>center</aligny>
                                     <label>$VAR[LabelTitle]</label>
-                                    <font>SmallBold</font>
+                                    <font>MediumBold</font>
                                     <textcolor>Light1</textcolor>
                                     <selectedcolor>Light1</selectedcolor>
                                     <animation effect="slide" start="0" end="50" condition="Integer.IsGreater(ListItem.Episode,99) | [Integer.IsGreater(ListItem.Episode,9) + String.Contains(ListItem.Episode,S)]">Conditional</animation>
                                 </control>
                                 <control type="label">
                                     <left>802</left>
-                                    <centertop>107</centertop>
+                                    <top>91</top>
                                     <width>50</width>
-                                    <height>50</height>
+                                    <height>40</height>
+                                    <aligny>center</aligny>
                                     <textcolor>Light1</textcolor>
                                     <font>SymbolPoster</font>
                                     <label>$VAR[WatchedLabelList]</label>
@@ -467,7 +482,7 @@
                                     <right>50</right>
                                     <height>40</height>
                                     <align>left</align>
-                                    <aligny>top</aligny>
+                                    <aligny>center</aligny>
                                     <label fallback="19055">$VAR[LabelYear,,  •  ]$VAR[LabelDuration,,  •  ]$VAR[RatingLabel]</label>
                                     <font>Tiny</font>
                                     <textcolor>Light1</textcolor>
@@ -476,10 +491,10 @@
                                 </control>
                             </control>
                             <control type="textbox">
-                                <top>140</top>
+                                <top>135</top>
                                 <left>530</left>
                                 <right>50</right>
-                                <bottom>70</bottom>
+                                <bottom>49</bottom>
                                 <align>justify</align>
                                 <aligny>top</aligny>
                                 <label>$INFO[ListItem.Plot]</label>
@@ -526,7 +541,7 @@
                                 <width>1094</width>
                                 <height>272</height>
                                 <texture colordiffuse="Box2" border="4" infill="false">common/box21.png</texture>
-                                <visible>!Skin.HasSetting(thumbnails.white)</visible>
+                                <visible>!Skin.HasSetting(global.hideborders)</visible>
                             </control>
                             <control type="label">
                                 <top>47</top>
@@ -536,7 +551,7 @@
                                 <align>left</align>
                                 <aligny>top</aligny>
                                 <label>$VAR[LabelTitle]</label>
-                                <font>SmallBold</font>
+                                <font>MediumBold</font>
                                 <textcolor>Light1</textcolor>
                                 <selectedcolor>Light1</selectedcolor>
                             </control>
@@ -553,10 +568,10 @@
                                 <selectedcolor>Light1</selectedcolor>
                             </control>
                             <control type="textbox">
-                                <top>140</top>
+                                <top>135</top>
                                 <left>320</left>
                                 <right>50</right>
-                                <bottom>70</bottom>
+                                <bottom>49</bottom>
                                 <align>justify</align>
                                 <aligny>top</aligny>
                                 <label>$INFO[ListItem.Property(Album_Description)]</label>
@@ -638,16 +653,16 @@
                                 <width>1094</width>
                                 <height>272</height>
                                 <texture colordiffuse="Box2" border="4" infill="false">common/box21.png</texture>
-                                <visible>!Skin.HasSetting(thumbnails.white)</visible>
+                                <visible>!Skin.HasSetting(global.hideborders)</visible>
                             </control>
                             <control type="label">
                                 <font>EpisodeNumber</font>
                                 <top>20</top>
                                 <right>420r</right>
                                 <width>150</width>
-                                <height>40</height>
+                                <height>130</height>
                                 <align>right</align>
-                                <aligny>top</aligny>
+                                <aligny>center</aligny>
                                 <label>$NUMBER[0]$NUMBER[0]</label>
                                 <textcolor>Light1</textcolor>
                                 <selectedcolor>Light1</selectedcolor>
@@ -658,9 +673,9 @@
                                 <top>20</top>
                                 <right>420r</right>
                                 <width>155</width>
-                                <height>40</height>
+                                <height>130</height>
                                 <align>right</align>
-                                <aligny>top</aligny>
+                                <aligny>center</aligny>
                                 <label>$INFO[ListItem.TrackNumber]</label>
                                 <textcolor>Light1</textcolor>
                                 <selectedcolor>Light1</selectedcolor>
@@ -668,12 +683,12 @@
                             </control>
                             <control type="label">
                                 <font>EpisodeNumber</font>
-                                <top>15</top>
+                                <top>20</top>
                                 <right>420r</right>
                                 <width>155</width>
-                                <height>40</height>
+                                <height>130</height>
                                 <align>right</align>
-                                <aligny>top</aligny>
+                                <aligny>center</aligny>
                                 <label>$INFO[ListItem.TrackNumber]</label>
                                 <textcolor>Light1</textcolor>
                                 <selectedcolor>Light1</selectedcolor>
@@ -690,16 +705,29 @@
                             </control>
                             <control type="label">
                                 <top>47</top>
+                                <left>492</left>
+                                <right>270</right>
+                                <height>40</height>
+                                <align>left</align>
+                                <aligny>center</aligny>
+                                <label>$INFO[ListItem.Title]</label>
+                                <font>MediumBold</font>
+                                <textcolor>Light1</textcolor>
+                                <selectedcolor>Light1</selectedcolor>
+                                <visible>ListItem.IsPlaying</visible>
+                            </control>
+                            <control type="label">
+                                <top>47</top>
                                 <left>440</left>
                                 <right>270</right>
                                 <height>40</height>
                                 <align>left</align>
-                                <aligny>top</aligny>
+                                <aligny>center</aligny>
                                 <label>$INFO[ListItem.Title]</label>
-                                <font>SmallBold</font>
+                                <font>MediumBold</font>
                                 <textcolor>Light1</textcolor>
                                 <selectedcolor>Light1</selectedcolor>
-                                <animation effect="slide" start="0,0" end="52,0" time="0" condition="ListItem.IsPlaying">Conditional</animation>
+                                <visible>!ListItem.IsPlaying</visible>
                             </control>
                             <control type="label">
                                 <top>92</top>
@@ -707,7 +735,7 @@
                                 <right>50</right>
                                 <height>40</height>
                                 <align>left</align>
-                                <aligny>top</aligny>
+                                <aligny>center</aligny>
                                 <label fallback="19055">$INFO[ListItem.Artist]$INFO[ListItem.Album,  •  ,]</label>
                                 <font>Tiny</font>
                                 <textcolor>Light1</textcolor>

@@ -4,6 +4,7 @@
     <defaultcontrol always="true">50</defaultcontrol>
     <menucontrol>9000</menucontrol>
     <views>50,505,506,507,508,514,500,503,54,57,51,523</views>
+    <include>Blur_OnLoad_Action</include>
     <controls>
         <include>GlobalBackground</include>
         <include>Furniture_Header</include>
@@ -31,7 +32,7 @@
             <include>GlobalOverlay</include>
         </control>
         <control type="group">
-            <animation effect="slide" start="0" end="-655" time="200" condition="Window.IsVisible(1153)">Conditional</animation>
+            <animation effect="slide" start="0" end="-655" time="200" condition="Window.IsVisible(1108)">Conditional</animation>
             <height>690</height>
             <include>Def9000Background</include>
             <control type="group">
@@ -43,7 +44,7 @@
                     <width>1000</width>
                     <posy>0</posy>
                     <include>FontTop</include>
-                    <textcolor>Dark2</textcolor>
+                    <textcolor>Black70</textcolor>
                     <label>14018</label>
                 </control>
                 <include>Kodi_Logo</include>
@@ -162,39 +163,6 @@
                     <onclick>Skin.ToggleSetting(511ListInfo)</onclick>
                     <visible>Control.IsVisible(57)</visible>
                 </control>
-                <control type="button" id="55552">
-                    <include>DefContextMenuLabel</include>
-                    <label>31508</label>
-                </control>
-                <control type="radiobutton" id="9062" description="moreshadows">
-                    <include>DefContextButtonGradient</include>
-                    <align>left</align>
-                    <label>31328</label>
-                    <selected>Skin.HasSetting(global.moreshadows)</selected>
-                    <onclick>Skin.ToggleSetting(global.moreshadows)</onclick>
-                </control>
-                <control type="radiobutton" id="9080">
-                    <include>DefContextButtonGradient</include>
-                    <align>left</align>
-                    <label>31562</label>
-                    <selected>Skin.HasSetting(show.reflections)</selected>
-                    <onclick>Skin.ToggleSetting(show.reflections)</onclick>
-                    <visible>Control.IsVisible(50) | Control.IsVisible(503)| Control.IsVisible(523)</visible>
-                </control>
-                <control type="radiobutton" id="9063">
-                    <include>DefContextButtonGradient</include>
-                    <label>31017</label>
-                    <align>left</align>
-                    <selected>Skin.HasSetting(furniture.coloredicons)</selected>
-                    <onclick>Skin.ToggleSetting(furniture.coloredicons)</onclick>
-                </control>
-                <control type="radiobutton" id="9088" description="Enable Extra Fanart">
-                    <include>DefContextButtonGradient</include>
-                    <align>left</align>
-                    <label>31259</label>
-                    <selected>Skin.HasSetting(EnableExtraFanart)</selected>
-                    <onclick>Skin.ToggleSetting(EnableExtraFanart)</onclick>
-                </control>
                 <control type="button" id="55553">
                     <include>DefContextMenuLabel</include>
                     <label>587</label>
@@ -224,7 +192,9 @@
                     <include>DefContextButtonGradient</include>
                     <align>left</align>
                     <label>137</label>
-                    <onclick>RunScript(script.globalsearch,artists=true&amp;albums=true&amp;songs=true)</onclick>
+                    <include content="Def_GlobalSearch_Actions">
+                        <param name="query" value="artists=true&amp;albums=true&amp;songs=true" />
+                    </include>
                 </control>
                 <control type="button" id="9099">
                     <include>DefContextButtonGradient</include>

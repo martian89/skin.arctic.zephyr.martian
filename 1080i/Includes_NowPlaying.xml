@@ -4,18 +4,14 @@
     <include name="ExtendedNowPlaying">
         <control type="group">
             <animation effect="slide" start="0" end="0,-34" time="150" condition="Skin.HasSetting(homemenu.clean.flix) + !Skin.HasSetting(homemenu.clean.flix.no.slide) + !Control.HasFocus(300) + !Control.HasFocus(302)">Conditional</animation>
-            <animation effect="slide" start="0" end="0,-19" time="150" condition="Skin.HasSetting(homemenu.clean.flix) + !Skin.HasSetting(homemenu.clean.flix.no.slide) + !Control.HasFocus(300) + !Control.HasFocus(302) + [Skin.HasSetting(home.oldmenuheight) | Skin.HasSetting(submenu.compatibility)]">Conditional</animation>
             <animation effect="fade" start="100" end="0" tween="sine" reversible="false" easing="out" time="350" condition="!$EXP[ExtendedNowPlayingIsVisible]">Conditional</animation>
             <animation effect="fade" start="0" end="100" tween="sine" reversible="false" easing="in" delay="350" time="450" condition="$EXP[ExtendedNowPlayingIsVisible]">Conditional</animation>
             <height>770</height>
-            <include content="def_bottom" condition="!Skin.HasSetting(home.widgets.show.reflections)">
-                <param name="bottom" value="188" />
+            <include content="def_bottom" condition="Skin.HasSetting(homemenu.netflix)">
+                <param name="bottom" value="210" />
             </include>
-            <include content="def_bottom" condition="Skin.HasSetting(homemenu.netflix) + Skin.HasSetting(home.widgets.show.reflections)">
-                <param name="bottom" value="200" />
-            </include>
-            <include content="def_bottom" condition="!Skin.HasSetting(homemenu.netflix) + Skin.HasSetting(home.widgets.show.reflections)">
-                <param name="bottom" value="230" />
+            <include content="def_bottom" condition="!Skin.HasSetting(homemenu.netflix)">
+                <param name="bottom" value="220" />
             </include>
             <width>1270</width>
             <include content="def_left" condition="$EXP[HomeIsVerticalMultiWidgets]"><param name="left" value="526" /></include>
@@ -109,10 +105,9 @@
         <!-- ClearArt -->
         <control type="group">
             <left>1360</left>
-            <animation effect="slide" start="0" end="0,30" time="0" condition="true">Conditional</animation>
-            <animation effect="slide" start="0" end="0,40" time="0" condition="!Skin.HasSetting(homemenu.netflix) + Skin.HasSetting(home.widgets.show.reflections)">Conditional</animation>
-            <animation effect="slide" start="0" end="0,10" time="0" condition="Skin.HasSetting(homemenu.netflix) + Skin.HasSetting(home.widgets.show.reflections)">Conditional</animation>
-            <animation effect="slide" start="0" end="0,-28" time="0" condition="Skin.HasSetting(home.oldmenuheight) | Skin.HasSetting(submenu.compatibility)">Conditional</animation>
+            <animation effect="slide" start="0" end="0,70" time="0" condition="!Skin.HasSetting(homemenu.netflix)">Conditional</animation>
+            <animation effect="slide" start="0" end="0,40" time="0" condition="Skin.HasSetting(homemenu.netflix)">Conditional</animation>
+            <animation effect="slide" start="0" end="0,-28" time="0" condition="true">Conditional</animation>
             <animation effect="slide" start="0" end="-43,0" time="0" condition="$EXP[HomeIsVerticalMultiWidgets] + Skin.HasSetting(homemenu.only.icons) + Skin.HasSetting(home.showicons)">Conditional</animation>
             <animation type="WindowClose" condition="!$EXP[HomeIsVerticalMultiWidgets]">
                 <effect type="slide" start="0" end="0,250" time="150"/>
@@ -127,12 +122,9 @@
             </control>
             <control type="image">
                 <width>400</width>
-                <include content="def_bottom" condition="Skin.HasSetting(ShowClearLogoMusicNowPlaying)">
-                    <param name="bottom" value="15" />
-                </include>
                 <texture>$VAR[PlayerArtMusicNowPlaying]</texture>
                 <aspectratio scalediffuse="true" align="left" aligny="bottom">keep</aspectratio>
-                <visible>[Skin.HasSetting(ShowClearArtMusicNowPlaying) | Skin.HasSetting(ShowClearLogoMusicNowPlaying)] + Player.HasAudio</visible>
+                <visible>Skin.HasSetting(ShowClearArtMusicNowPlaying) + Player.HasAudio</visible>
             </control>
         </control>
     </include>
@@ -178,7 +170,7 @@
         <control type="label">
             <left>30</left>
             <align>left</align>
-            <font>Medium</font>
+            <font>Tiny</font>
             <width>auto</width>
             <textcolor>Dark2</textcolor>
             <label>$VAR[Label_Time_NowPlaying]</label>
@@ -280,7 +272,7 @@
                 </include>
                 <control type="label">
                     <height>38</height>
-                    <font>SmallNavi</font>
+                    <font>SmallBold</font>
                     <width>auto</width>
                     <textcolor>Dark1</textcolor>
                     <label>31236</label>
@@ -295,15 +287,12 @@
                 </include>
                 <orientation>vertical</orientation>
                 <include content="def_top" condition="Skin.HasSetting(homemenu.netflix)">
-                    <param name="top" value="20" />
-                </include>
-                <include content="def_top" condition="!Skin.HasSetting(homemenu.netflix) + Skin.HasSetting(home.widgets.show.reflections)">
-                    <param name="top" value="413" />
+                    <param name="top" value="30" />
                 </include>
                 <include content="def_top" condition="!Skin.HasSetting(homemenu.netflix)">
-                    <param name="top" value="407" />
+                    <param name="top" value="413" />
                 </include>
-                <itemgap>15</itemgap>
+                <itemgap>17</itemgap>
                 <include content="NowPlayingHeaderLabel">
                     <param name="label" value="$INFO[Player.Title]" />
                     <param name="visible" value="!VideoPlayer.Content(livetv)" />
@@ -317,11 +306,18 @@
                     <width>100%</width>
                     <orientation>vertical</orientation>
                     <visible>Player.HasVideo</visible>
-                    <itemgap>15</itemgap>
+                    <itemgap>17</itemgap>
                     <usecontrolcoords>true</usecontrolcoords>
                     <control type="textbox">
-                        <include condition="Skin.HasSetting(homemenu.netflix)">MultiWidgetsPlotLabelDefinitionNetflix</include>
-                        <include condition="!Skin.HasSetting(homemenu.netflix)">MultiWidgetsPlotLabelDefinition</include>
+                        <include content="MultiWidgetsPlotLabelDefinition" condition="Skin.HasSetting(homemenu.netflix) + !Skin.HasSetting(homemenu.clean.flix)">
+                        	<param name="maxheight" value="170" />
+                        </include>
+                        <include content="MultiWidgetsPlotLabelDefinition" condition="!Skin.HasSetting(homemenu.netflix) + !Skin.HasSetting(homemenu.clean.flix)">
+                        	<param name="maxheight" value="202" />
+                        </include>
+                        <include content="MultiWidgetsPlotLabelDefinition" condition="Skin.HasSetting(homemenu.clean.flix)">
+                        	<param name="maxheight" value="74" />
+                        </include>
                         <label>$VAR[Label_NowPlaying_Plot]</label>
                         <visible>!String.IsEmpty(VideoPlayer.Plot)</visible>
                     </control>
@@ -334,10 +330,17 @@
                     <width>100%</width>
                     <orientation>vertical</orientation>
                     <visible>!Skin.HasSetting(home.extended.nowplaying.scrolling.text) + Player.HasAudio + !Skin.HasSetting(home.extended.nowplaying.tracklist)</visible>
-                    <itemgap>15</itemgap>
+                    <itemgap>17</itemgap>
                     <control type="textbox">
-                        <include condition="Skin.HasSetting(homemenu.netflix)">MultiWidgetsPlotLabelDefinitionNetflix</include>
-                        <include condition="!Skin.HasSetting(homemenu.netflix)">MultiWidgetsPlotLabelDefinition</include>
+                        <include content="MultiWidgetsPlotLabelDefinition" condition="Skin.HasSetting(homemenu.netflix) + !Skin.HasSetting(homemenu.clean.flix)">
+                        	<param name="maxheight" value="170" />
+                        </include>
+                        <include content="MultiWidgetsPlotLabelDefinition" condition="!Skin.HasSetting(homemenu.netflix) + !Skin.HasSetting(homemenu.clean.flix)">
+                        	<param name="maxheight" value="202" />
+                        </include>
+                        <include content="MultiWidgetsPlotLabelDefinition" condition="Skin.HasSetting(homemenu.clean.flix)">
+                        	<param name="maxheight" value="74" />
+                        </include>
                         <label>$VAR[Label_NowPlaying_Plot]</label>
                         <visible>!String.IsEmpty(MusicPlayer.Property(Artist_Description)) | !String.IsEmpty(MusicPlayer.Property(Album_Description))</visible>
                     </control>
@@ -369,7 +372,6 @@
                     <onup>779</onup>
                     <ondown>780</ondown>
                     <onback>300</onback>
-                    <onfocus condition="$EXP[HasHomemenuAutoSlideOutAnimation]">CancelAlarm(slide_out,true)</onfocus>
                     <orientation>vertical</orientation>
                     <itemlayout height="35">
                         <control type="label">
@@ -455,11 +457,8 @@
                 <include content="def_top" condition="Skin.HasSetting(homemenu.netflix)">
                     <param name="top" value="86" />
                 </include>
-                <include content="def_top" condition="!Skin.HasSetting(homemenu.netflix) + Skin.HasSetting(home.widgets.show.reflections)">
-                    <param name="top" value="456" />
-                </include>
                 <include content="def_top" condition="!Skin.HasSetting(homemenu.netflix)">
-                    <param name="top" value="450" />
+                    <param name="top" value="456" />
                 </include>
                 <include content="def_left" condition="$EXP[HomeIsVerticalMultiWidgets]">
                     <param name="left" value="0" />
@@ -674,7 +673,7 @@
                 <top>10</top>
                 <right>10</right>
                 <bottom>10</bottom>
-                <texture colordiffuse="ff181818" diffuse="diffuse/wall.png">common/white.png</texture>
+                <texture colordiffuse="Fallback" diffuse="diffuse/wall.png">common/white.png</texture>
             </control>
             <control type="image">
                 <left>10</left>
@@ -697,7 +696,7 @@
                 <right>10</right>
                 <bottom>10</bottom>
                 <texture colordiffuse="BoxWidget" border="4" background="true" infill="false">common/box21.png</texture>
-                <visible>!Skin.HasSetting(thumbnails.white)</visible>
+                <visible>!Skin.HasSetting(global.hideborders)</visible>
             </control>
             <control type="group">
                 <animation type="Conditional" condition="Control.HasFocus(25)">
@@ -743,7 +742,7 @@
                 <top>10</top>
                 <right>10</right>
                 <bottom>10</bottom>
-                <texture colordiffuse="ff181818" diffuse="diffuse/wall.png">common/white.png</texture>
+                <texture colordiffuse="Fallback" diffuse="diffuse/wall.png">common/white.png</texture>
             </control>
             <control type="image">
                 <left>10</left>
@@ -766,7 +765,7 @@
                 <right>10</right>
                 <bottom>10</bottom>
                 <texture colordiffuse="BoxWidget" border="4" background="true" infill="false">common/box21.png</texture>
-                <visible>!Skin.HasSetting(thumbnails.white)</visible>
+                <visible>!Skin.HasSetting(global.hideborders)</visible>
             </control>
             <control type="group">
                 <animation type="Conditional" condition="Control.HasFocus(25)">
@@ -775,8 +774,6 @@
                 </animation>
                 <include content="def_widgetfocus">
                     <param name="id" value="25"/>
-                    <param name="glow_right" value="2"/>
-                    <param name="glow_left" value="1"/>
                 </include>
             </control>
         </control>

@@ -10,8 +10,6 @@
         <property name="sort" tag="property" attribute="name|widgetSort"/>
         <property name="aspectratio" tag="property" attribute="name|widgetAspectRatio"/>
         <property name="aspectratio">keep</property>
-        <property name="IsGTO" tag="property" attribute="name|widget" value="GTO">true</property>
-        <property name="IsGTO">false</property>
         <property name="widgetauto" tag="property" attribute="name|widgetAuto" value="$NUMBER[5000]">5000</property>
         <property name="widgetauto" tag="property" attribute="name|widgetAuto" value="$NUMBER[7000]">7000</property>
         <property name="widgetauto" tag="property" attribute="name|widgetAuto" value="$NUMBER[10000]">10000</property>
@@ -34,7 +32,6 @@
                 <right>70</right>
                 <height>297</height>
                 <onup>300</onup>
-                <onclick condition="$SKINSHORTCUTS[IsGTO]">RunPlugin(plugin://script.service.gto?action=info&amp;item=$INFO[ListItem.Property(Item)])</onclick>
                 <ondown>300</ondown>
                 <onback>300</onback>
                 <onleft>301</onleft>
@@ -48,7 +45,7 @@
                         <param name="height" value="257"/>
                         <param name="height_reflection" value="257"/>
                         <param name="top" value="238"/>
-                        <param name="reflections" value="Skin.HasSetting(home.widgets.show.reflections)"/>
+                        <param name="reflections" value="Skin.HasSetting(show.reflections)"/>
                     </include>
                 </itemlayout>
                 <focusedlayout width="178" height="257" condition="!String.IsEqual(Container(300).ListItem.Property(widgetaspect),Square) + ![String.IsEqual(Container(300).ListItem.Property(widgetaspect),Fanart) | String.IsEqual(Container(300).ListItem.Property(widgetaspect),Thumbnail)] + !String.IsEqual(Container(300).ListItem.Property(widget),system)">
@@ -57,11 +54,7 @@
                         <param name="height" value="257"/>
                         <param name="height_reflection" value="257"/>
                         <param name="top" value="238"/>
-                        <param name="reflections" value="Skin.HasSetting(home.widgets.show.reflections)"/>
-                        <param name="glow_left" value="-3"/>
-                        <param name="glow_top" value="0"/>
-                        <param name="glow_right" value="-2"/>
-                        <param name="glow_height" value="255"/>
+                        <param name="reflections" value="Skin.HasSetting(show.reflections)"/>
                     </include>
                 </focusedlayout>
                 <itemlayout width="254" height="257" condition="String.IsEqual(Container(300).ListItem.Property(widgetaspect),Square) | String.IsEqual(Container(300).ListItem.Property(widget),system)">
@@ -71,7 +64,7 @@
                         <param name="distance" value="$SKINSHORTCUTS[distance]"/>
                         <param name="height_reflection" value="257"/>
                         <param name="top" value="238"/>
-                        <param name="reflections" value="Skin.HasSetting(home.widgets.show.reflections)"/>
+                        <param name="reflections" value="Skin.HasSetting(show.reflections)"/>
                     </include>
                 </itemlayout>
                 <focusedlayout width="254" height="257" condition="String.IsEqual(Container(300).ListItem.Property(widgetaspect),Square) | String.IsEqual(Container(300).ListItem.Property(widget),system)">
@@ -82,8 +75,7 @@
                         <param name="distance" value="$SKINSHORTCUTS[distance]"/>
                         <param name="height_reflection" value="257"/>
                         <param name="top" value="238"/>
-                        <param name="reflections" value="Skin.HasSetting(home.widgets.show.reflections)"/>
-                        <param name="glow_height" value="253"/>
+                        <param name="reflections" value="Skin.HasSetting(show.reflections)"/>
                     </include>
                 </focusedlayout>
                 <itemlayout width="445" height="257" condition="String.IsEqual(Container(300).ListItem.Property(widgetaspect),Fanart) + !String.IsEqual(Container(300).ListItem.Property(widget),system)">
@@ -91,7 +83,7 @@
                         <param name="height" value="257"/>
                         <param name="height_reflection" value="257"/>
                         <param name="top" value="238"/>
-                        <param name="reflections" value="Skin.HasSetting(home.widgets.show.reflections)"/>
+                        <param name="reflections" value="Skin.HasSetting(show.reflections)"/>
                     </include>
                 </itemlayout>
                 <focusedlayout width="445" height="257" condition="String.IsEqual(Container(300).ListItem.Property(widgetaspect),Fanart) + !String.IsEqual(Container(300).ListItem.Property(widget),system)">
@@ -100,11 +92,7 @@
                         <param name="height" value="257"/>
                         <param name="height_reflection" value="257"/>
                         <param name="top" value="238"/>
-                        <param name="reflections" value="Skin.HasSetting(home.widgets.show.reflections)"/>
-                        <param name="glow_left" value="6"/>
-                        <param name="glow_top" value="0"/>
-                        <param name="glow_right" value="7"/>
-                        <param name="glow_height" value="255"/>
+                        <param name="reflections" value="Skin.HasSetting(show.reflections)"/>
                     </include>
                 </focusedlayout>
                 <itemlayout width="445" height="257" condition="String.IsEqual(Container(300).ListItem.Property(widgetaspect),Thumbnail) + !String.IsEqual(Container(300).ListItem.Property(widget),system)">
@@ -112,7 +100,7 @@
                         <param name="height" value="257"/>
                         <param name="height_reflection" value="257"/>
                         <param name="top" value="238"/>
-                        <param name="reflections" value="Skin.HasSetting(home.widgets.show.reflections)"/>
+                        <param name="reflections" value="Skin.HasSetting(show.reflections)"/>
                         <param name="clearlogo" value="$SKINSHORTCUTS[widgetclearlogothumb]"/>
                     </include>
                 </itemlayout>
@@ -122,12 +110,8 @@
                         <param name="height" value="257"/>
                         <param name="height_reflection" value="257"/>
                         <param name="top" value="238"/>
-                        <param name="reflections" value="Skin.HasSetting(home.widgets.show.reflections)"/>
+                        <param name="reflections" value="Skin.HasSetting(show.reflections)"/>
                         <param name="clearlogo" value="$SKINSHORTCUTS[widgetclearlogothumb]"/>
-                        <param name="glow_left" value="6"/>
-                        <param name="glow_top" value="0"/>
-                        <param name="glow_right" value="7"/>
-                        <param name="glow_height" value="255"/>
                     </include>
                 </focusedlayout>
                 <content limit="$VAR[DefWidgetLimit]" target="$SKINSHORTCUTS[target]" sortby="$SKINSHORTCUTS[sortby]" sortorder="$SKINSHORTCUTS[sort]" browse="$SKINSHORTCUTS[browse]">$SKINSHORTCUTS[content]</content>
@@ -143,8 +127,6 @@
         <property name="browse">$VAR[DefBrowse]</property>
         <property name="sortby" tag="property" attribute="name|widgetSortby"/>
         <property name="sort" tag="property" attribute="name|widgetSort"/>
-        <property name="IsGTO" tag="property" attribute="name|widget" value="GTO">true</property>
-        <property name="IsGTO">false</property>
         <controls>
             <control type="wraplist" id="301">
                 <skinshortcuts>visibility</skinshortcuts>
@@ -152,7 +134,6 @@
                 <width>1</width>
                 <height>1</height>
                 <onup>300</onup>
-                <onclick condition="$SKINSHORTCUTS[IsGTO]">RunPlugin(plugin://script.service.gto?action=info&amp;item=$INFO[ListItem.Property(Item)])</onclick>
                 <ondown>300</ondown>
                 <onback>300</onback>
                 <onleft>301</onleft>
@@ -228,7 +209,7 @@
         <property name="layoutheight2" tag="property" attribute="name|widgetaspect" value="SquareMedium">185</property>
         <property name="layoutheight2" tag="property" attribute="name|widgetaspect" value="SquareSmall">135</property>
         <property name="layoutheight2" tag="property" attribute="name|widget" value="mysubmenu">365</property>
-        <property name="layoutheight2" tag="property" attribute="name|widgetFullscreen" value="yes">780</property>
+        <property name="layoutheight2" tag="property" attribute="name|widgetFullscreen" value="yes">750</property>
         <property name="layoutheight2">365</property>
         <property name="isfullscreenwidget" tag="property" attribute="name|widgetFullscreen" value="yes">true</property>
         <property name="isfullscreenwidget">false</property>
@@ -238,8 +219,6 @@
         <property name="labelisvisible">true</property>
         <property name="content" tag="property" attribute="name|widgetPath"/>
         <property name="content">$VAR[DefWidgetContent]</property>
-        <property name="IsGTO" tag="property" attribute="name|widget" value="GTO">true</property>
-        <property name="IsGTO">false</property>
         <property name="target" tag="property" attribute="name|widgetTarget"/>
         <property name="target">$VAR[DefWidgetTarget]</property>
         <property name="browse">$VAR[DefBrowse]</property>
@@ -277,7 +256,7 @@
                 <skinshortcuts>visibility</skinshortcuts>
                 <visible>Integer.IsGreater(Container(301$SKINSHORTCUTS[id]1).NumItems,0) | Container(301$SKINSHORTCUTS[id]1).IsUpdating</visible>
                 <control type="grouplist">
-                    <include content="widget.title.label" condition="!Skin.HasSetting(hidewidgettitle)">
+                    <include content="widget.title.label">
                         <param name="focusid" value="301$SKINSHORTCUTS[id]1"/>
                         <param name="idshort" value="1"/>
                         <param name="animation_condition" value="!Control.HasFocus(301$SKINSHORTCUTS[id]1)" />
@@ -287,7 +266,6 @@
             <control type="$SKINSHORTCUTS[widgetlisttype]" id="301$SKINSHORTCUTS[id]1">
                 <skinshortcuts>visibility</skinshortcuts>
                 <visible>Integer.IsGreater(Container(301$SKINSHORTCUTS[id]1).NumItems,0) | Container(301$SKINSHORTCUTS[id]1).IsUpdating | String.IsEqual(Container(300).ListItem.Property(widget),mysubmenu) | String.IsEqual(Container(300).ListItem.Property(widget),custom) | String.Contains(Container(300).ListItem.Property(widget),weather)</visible>
-                <onclick condition="$SKINSHORTCUTS[IsGTO]">RunPlugin(plugin://script.service.gto?action=info&amp;item=$INFO[ListItem.Property(Item)])</onclick>
                 <include content="DefMultiWidgetContainer">
                     <param name="id" value="301$SKINSHORTCUTS[id]1"/>
                     <param name="height" value="$SKINSHORTCUTS[layoutheight]"/>
@@ -417,7 +395,7 @@
         <property name="layoutheight" tag="property" attribute="name|widgetFullscreen.2" value="yes">710</property>
         <property name="layoutheight">325</property>
         <property name="layoutheight2" tag="property" attribute="name|widget.2" value="mysubmenu">365</property>
-        <property name="layoutheight2" tag="property" attribute="name|widgetFullscreen.2" value="yes">780</property>
+        <property name="layoutheight2" tag="property" attribute="name|widgetFullscreen.2" value="yes">750</property>
         <property name="layoutheight2">365</property>
         <property name="labelisvisible" tag="property" attribute="name|widget.2" value="mysubmenu">false</property>
         <property name="labelisvisible" tag="property" attribute="name|widgetTarget.2" value="weather">false</property>
@@ -425,8 +403,6 @@
         <property name="labelisvisible">true</property>
         <property name="content" tag="property" attribute="name|widgetPath.2"/>
         <property name="content">$VAR[DefWidgetContent]</property>
-        <property name="IsGTO" tag="property" attribute="name|widget.2" value="GTO">true</property>
-        <property name="IsGTO">false</property>
         <property name="target" tag="property" attribute="name|widgetTarget.2"/>
         <property name="target">$VAR[DefWidgetTarget]</property>
         <property name="browse">$VAR[DefBrowse]</property>
@@ -460,7 +436,7 @@
                 <skinshortcuts>visibility</skinshortcuts>
                 <visible>Integer.IsGreater(Container(301$SKINSHORTCUTS[id]2).NumItems,0) | Container(301$SKINSHORTCUTS[id]2).IsUpdating</visible>
                 <control type="grouplist">
-                    <include content="widget.title.label" condition="!Skin.HasSetting(hidewidgettitle)">
+                    <include content="widget.title.label">
                         <param name="focusid" value="301$SKINSHORTCUTS[id]2"/>
                         <param name="idshort" value="2"/>
                         <param name="animation_condition" value="!Control.HasFocus(301$SKINSHORTCUTS[id]2)" />
@@ -470,7 +446,6 @@
             <control type="$SKINSHORTCUTS[widgetlisttype]" id="301$SKINSHORTCUTS[id]2">
                 <skinshortcuts>visibility</skinshortcuts>
                 <visible>Integer.IsGreater(Container(301$SKINSHORTCUTS[id]2).NumItems,0) | Container(301$SKINSHORTCUTS[id]2).IsUpdating | String.IsEqual(Container(300).ListItem.Property(widget.2),custom)</visible>
-                <onclick condition="$SKINSHORTCUTS[IsGTO]">RunPlugin(plugin://script.service.gto?action=info&amp;item=$INFO[ListItem.Property(Item)])</onclick>
                 <include content="DefMultiWidgetContainer">
                     <param name="id" value="301$SKINSHORTCUTS[id]2"/>
                     <param name="height" value="$SKINSHORTCUTS[layoutheight]"/>
@@ -585,7 +560,7 @@
         <property name="layoutheight" tag="property" attribute="name|widgetFullscreen.3" value="yes">710</property>
         <property name="layoutheight">325</property>
         <property name="layoutheight2" tag="property" attribute="name|widget.3" value="mysubmenu">365</property>
-        <property name="layoutheight2" tag="property" attribute="name|widgetFullscreen.3" value="yes">780</property>
+        <property name="layoutheight2" tag="property" attribute="name|widgetFullscreen.3" value="yes">750</property>
         <property name="layoutheight2">365</property>
         <property name="labelisvisible" tag="property" attribute="name|widget.3" value="mysubmenu">false</property>
         <property name="labelisvisible" tag="property" attribute="name|widgetTarget.3" value="weather">false</property>
@@ -593,8 +568,6 @@
         <property name="labelisvisible">true</property>
         <property name="content" tag="property" attribute="name|widgetPath.3"/>
         <property name="content">$VAR[DefWidgetContent]</property>
-        <property name="IsGTO" tag="property" attribute="name|widget.3" value="GTO">true</property>
-        <property name="IsGTO">false</property>
         <property name="target" tag="property" attribute="name|widgetTarget.3"/>
         <property name="target">$VAR[DefWidgetTarget]</property>
         <property name="browse">$VAR[DefBrowse]</property>
@@ -628,7 +601,7 @@
                 <skinshortcuts>visibility</skinshortcuts>
                 <visible>Integer.IsGreater(Container(301$SKINSHORTCUTS[id]3).NumItems,0) | Container(301$SKINSHORTCUTS[id]3).IsUpdating</visible>
                 <control type="grouplist">
-                    <include content="widget.title.label" condition="!Skin.HasSetting(hidewidgettitle)">
+                    <include content="widget.title.label">
                         <param name="focusid" value="301$SKINSHORTCUTS[id]3"/>
                         <param name="idshort" value="3"/>
                         <param name="animation_condition" value="!Control.HasFocus(301$SKINSHORTCUTS[id]3)" />
@@ -638,7 +611,6 @@
             <control type="$SKINSHORTCUTS[widgetlisttype]" id="301$SKINSHORTCUTS[id]3">
                 <skinshortcuts>visibility</skinshortcuts>
                 <visible>Integer.IsGreater(Container(301$SKINSHORTCUTS[id]3).NumItems,0) | Container(301$SKINSHORTCUTS[id]3).IsUpdating | String.IsEqual(Container(300).ListItem.Property(widget.3),custom)</visible>
-                <onclick condition="$SKINSHORTCUTS[IsGTO]">RunPlugin(plugin://script.service.gto?action=info&amp;item=$INFO[ListItem.Property(Item)])</onclick>
                 <include content="DefMultiWidgetContainer">
                     <param name="id" value="301$SKINSHORTCUTS[id]3"/>
                     <param name="backid" value="301$SKINSHORTCUTS[id]1"/>
@@ -753,7 +725,7 @@
         <property name="layoutheight" tag="property" attribute="name|widgetFullscreen.4" value="yes">710</property>
         <property name="layoutheight">325</property>
         <property name="layoutheight2" tag="property" attribute="name|widget.4" value="mysubmenu">365</property>
-        <property name="layoutheight2" tag="property" attribute="name|widgetFullscreen.4" value="yes">780</property>
+        <property name="layoutheight2" tag="property" attribute="name|widgetFullscreen.4" value="yes">750</property>
         <property name="layoutheight2">365</property>
         <property name="labelisvisible" tag="property" attribute="name|widget.4" value="mysubmenu">false</property>
         <property name="labelisvisible" tag="property" attribute="name|widgetTarget.4" value="weather">false</property>
@@ -761,8 +733,6 @@
         <property name="labelisvisible">true</property>
         <property name="content" tag="property" attribute="name|widgetPath.4"/>
         <property name="content">$VAR[DefWidgetContent]</property>
-        <property name="IsGTO" tag="property" attribute="name|widget.4" value="GTO">true</property>
-        <property name="IsGTO">false</property>
         <property name="target" tag="property" attribute="name|widgetTarget.4"/>
         <property name="target">$VAR[DefWidgetTarget]</property>
         <property name="browse">$VAR[DefBrowse]</property>
@@ -796,7 +766,7 @@
                 <skinshortcuts>visibility</skinshortcuts>
                 <visible>Integer.IsGreater(Container(301$SKINSHORTCUTS[id]4).NumItems,0) | Container(301$SKINSHORTCUTS[id]4).IsUpdating</visible>
                 <control type="grouplist">
-                    <include content="widget.title.label" condition="!Skin.HasSetting(hidewidgettitle)">
+                    <include content="widget.title.label">
                         <param name="focusid" value="301$SKINSHORTCUTS[id]4"/>
                         <param name="idshort" value="4"/>
                         <param name="animation_condition" value="!Control.HasFocus(301$SKINSHORTCUTS[id]4)" />
@@ -806,7 +776,6 @@
             <control type="$SKINSHORTCUTS[widgetlisttype]" id="301$SKINSHORTCUTS[id]4">
                 <skinshortcuts>visibility</skinshortcuts>
                 <visible>Integer.IsGreater(Container(301$SKINSHORTCUTS[id]4).NumItems,0) | Container(301$SKINSHORTCUTS[id]4).IsUpdating | String.IsEqual(Container(300).ListItem.Property(widget.4),custom)</visible>
-                <onclick condition="$SKINSHORTCUTS[IsGTO]">RunPlugin(plugin://script.service.gto?action=info&amp;item=$INFO[ListItem.Property(Item)])</onclick>
                 <include content="DefMultiWidgetContainer">
                     <param name="id" value="301$SKINSHORTCUTS[id]4"/>
                     <param name="height" value="$SKINSHORTCUTS[layoutheight]"/>
@@ -921,7 +890,7 @@
         <property name="layoutheight" tag="property" attribute="name|widgetFullscreen.5" value="yes">710</property>
         <property name="layoutheight">325</property>
         <property name="layoutheight2" tag="property" attribute="name|widget.5" value="mysubmenu">365</property>
-        <property name="layoutheight2" tag="property" attribute="name|widgetFullscreen.5" value="yes">780</property>
+        <property name="layoutheight2" tag="property" attribute="name|widgetFullscreen.5" value="yes">750</property>
         <property name="layoutheight2">365</property>
         <property name="labelisvisible" tag="property" attribute="name|widget.5" value="mysubmenu">false</property>
         <property name="labelisvisible" tag="property" attribute="name|widgetTarget.5" value="weather">false</property>
@@ -929,8 +898,6 @@
         <property name="labelisvisible">true</property>
         <property name="content" tag="property" attribute="name|widgetPath.5"/>
         <property name="content">$VAR[DefWidgetContent]</property>
-        <property name="IsGTO" tag="property" attribute="name|widget.5" value="GTO">true</property>
-        <property name="IsGTO">false</property>
         <property name="target" tag="property" attribute="name|widgetTarget.5"/>
         <property name="target">$VAR[DefWidgetTarget]</property>
         <property name="browse">$VAR[DefBrowse]</property>
@@ -964,7 +931,7 @@
                 <skinshortcuts>visibility</skinshortcuts>
                 <visible>Integer.IsGreater(Container(301$SKINSHORTCUTS[id]5).NumItems,0) | Container(301$SKINSHORTCUTS[id]5).IsUpdating</visible>
                 <control type="grouplist">
-                    <include content="widget.title.label" condition="!Skin.HasSetting(hidewidgettitle)">
+                    <include content="widget.title.label">
                         <param name="focusid" value="301$SKINSHORTCUTS[id]5"/>
                         <param name="idshort" value="5"/>
                         <param name="animation_condition" value="!Control.HasFocus(301$SKINSHORTCUTS[id]5)" />
@@ -974,7 +941,6 @@
             <control type="$SKINSHORTCUTS[widgetlisttype]" id="301$SKINSHORTCUTS[id]5">
                 <skinshortcuts>visibility</skinshortcuts>
                 <visible>Integer.IsGreater(Container(301$SKINSHORTCUTS[id]5).NumItems,0) | Container(301$SKINSHORTCUTS[id]5).IsUpdating | String.IsEqual(Container(300).ListItem.Property(widget.5),custom)</visible>
-                <onclick condition="$SKINSHORTCUTS[IsGTO]">RunPlugin(plugin://script.service.gto?action=info&amp;item=$INFO[ListItem.Property(Item)])</onclick>
                 <include content="DefMultiWidgetContainer">
                     <param name="id" value="301$SKINSHORTCUTS[id]5"/>
                     <param name="height" value="$SKINSHORTCUTS[layoutheight]"/>
@@ -1089,7 +1055,7 @@
         <property name="layoutheight" tag="property" attribute="name|widgetFullscreen.6" value="yes">710</property>
         <property name="layoutheight">325</property>
         <property name="layoutheight2" tag="property" attribute="name|widget.6" value="mysubmenu">365</property>
-        <property name="layoutheight2" tag="property" attribute="name|widgetFullscreen.6" value="yes">780</property>
+        <property name="layoutheight2" tag="property" attribute="name|widgetFullscreen.6" value="yes">750</property>
         <property name="layoutheight2">365</property>
         <property name="labelisvisible" tag="property" attribute="name|widget.6" value="mysubmenu">false</property>
         <property name="labelisvisible" tag="property" attribute="name|widgetTarget.6" value="weather">false</property>
@@ -1097,8 +1063,6 @@
         <property name="labelisvisible">true</property>
         <property name="content" tag="property" attribute="name|widgetPath.6"/>
         <property name="content">$VAR[DefWidgetContent]</property>
-        <property name="IsGTO" tag="property" attribute="name|widget.6" value="GTO">true</property>
-        <property name="IsGTO">false</property>
         <property name="target" tag="property" attribute="name|widgetTarget.6"/>
         <property name="target">$VAR[DefWidgetTarget]</property>
         <property name="browse">$VAR[DefBrowse]</property>
@@ -1132,7 +1096,7 @@
                 <skinshortcuts>visibility</skinshortcuts>
                 <visible>Integer.IsGreater(Container(301$SKINSHORTCUTS[id]6).NumItems,0) | Container(301$SKINSHORTCUTS[id]6).IsUpdating</visible>
                 <control type="grouplist">
-                    <include content="widget.title.label" condition="!Skin.HasSetting(hidewidgettitle)">
+                    <include content="widget.title.label">
                         <param name="focusid" value="301$SKINSHORTCUTS[id]6"/>
                         <param name="idshort" value="6"/>
                         <param name="animation_condition" value="!Control.HasFocus(301$SKINSHORTCUTS[id]6)" />
@@ -1142,7 +1106,6 @@
             <control type="$SKINSHORTCUTS[widgetlisttype]" id="301$SKINSHORTCUTS[id]6">
                 <skinshortcuts>visibility</skinshortcuts>
                 <visible>Integer.IsGreater(Container(301$SKINSHORTCUTS[id]6).NumItems,0) | Container(301$SKINSHORTCUTS[id]6).IsUpdating | String.IsEqual(Container(300).ListItem.Property(widget.6),custom)</visible>
-                <onclick condition="$SKINSHORTCUTS[IsGTO]">RunPlugin(plugin://script.service.gto?action=info&amp;item=$INFO[ListItem.Property(Item)])</onclick>
                 <include content="DefMultiWidgetContainer">
                     <param name="id" value="301$SKINSHORTCUTS[id]6"/>
                     <param name="height" value="$SKINSHORTCUTS[layoutheight]"/>
@@ -1243,8 +1206,6 @@
         <property name="banner" tag="property" attribute="name|widgetBanner"/>
         <property name="aspectratio" tag="property" attribute="name|widgetAspectRatio"/>
         <property name="aspectratio">keep</property>
-        <property name="IsGTO" tag="property" attribute="name|widget" value="GTO">true</property>
-        <property name="IsGTO">false</property>
         <property name="aspectratio" tag="property" attribute="name|widgetAspectRatio"/>
         <property name="aspectratio">keep</property>
         <property name="widgetclearlogothumb" tag="property" attribute="name|widgetClearLogoThumb" value="no">false</property>
@@ -1275,7 +1236,6 @@
                 <onleft>300</onleft>
                 <onup>300</onup>
                 <ondown>300</ondown>
-                <onclick condition="$SKINSHORTCUTS[IsGTO]">RunPlugin(plugin://script.service.gto?action=info&amp;item=$INFO[ListItem.Property(Item)])</onclick>
                 <focusposition>0</focusposition>
                 <preloaditems>2</preloaditems>
                 <orientation>horizontal</orientation>
@@ -1284,7 +1244,7 @@
                 <include>ScrolltimeWidgetsList</include>
                 <itemlayout height="325" width="222" condition="!String.IsEqual(Container(300).ListItem.Property(widgetaspect),Square) + ![String.IsEqual(Container(300).ListItem.Property(widgetaspect),Fanart) | String.IsEqual(Container(300).ListItem.Property(widgetaspect),Thumbnail)] + !String.IsEqual(Container(300).ListItem.Property(widget),system)">
                     <include content="include.widget.poster">
-                        <param name="reflections" value="Skin.HasSetting(home.widgets.show.reflections)"/>
+                        <param name="reflections" value="Skin.HasSetting(show.reflections)"/>
                         <param name="height" value="325"/>
                     </include>
                 </itemlayout>
@@ -1292,19 +1252,19 @@
                     <include content="include.widget.square">
                         <param name="aspectratio" value="$SKINSHORTCUTS[aspectratio]"/>
                         <param name="distance" value="$SKINSHORTCUTS[distance]"/>
-                        <param name="reflections" value="Skin.HasSetting(home.widgets.show.reflections)"/>
+                        <param name="reflections" value="Skin.HasSetting(show.reflections)"/>
                         <param name="height" value="325"/>
                     </include>
                 </itemlayout>
                 <itemlayout height="325" width="562" condition="String.IsEqual(Container(300).ListItem.Property(widgetaspect),Fanart) + !String.IsEqual(Container(300).ListItem.Property(widget),system)">
                     <include content="include.widget.fanart">
-                        <param name="reflections" value="Skin.HasSetting(home.widgets.show.reflections)"/>
+                        <param name="reflections" value="Skin.HasSetting(show.reflections)"/>
                         <param name="height" value="325"/>
                     </include>
                 </itemlayout>
                 <itemlayout height="325" width="562" condition="String.IsEqual(Container(300).ListItem.Property(widgetaspect),Thumbnail) + !String.IsEqual(Container(300).ListItem.Property(widget),system)">
                     <include content="include.widget.thumb">
-                        <param name="reflections" value="Skin.HasSetting(home.widgets.show.reflections)"/>
+                        <param name="reflections" value="Skin.HasSetting(show.reflections)"/>
                         <param name="clearlogo" value="$SKINSHORTCUTS[widgetclearlogothumb]"/>
                         <param name="height" value="325"/>
                     </include>
@@ -1312,7 +1272,7 @@
                 <focusedlayout height="325" width="222" condition="!String.IsEqual(Container(300).ListItem.Property(widgetaspect),Square) + ![String.IsEqual(Container(300).ListItem.Property(widgetaspect),Fanart) | String.IsEqual(Container(300).ListItem.Property(widgetaspect),Thumbnail)] + !String.IsEqual(Container(300).ListItem.Property(widget),system)">
                     <include content="include.widget.poster.focus">
                         <param name="id" value="301"/>
-                        <param name="reflections" value="Skin.HasSetting(home.widgets.show.reflections)"/>
+                        <param name="reflections" value="Skin.HasSetting(show.reflections)"/>
                         <param name="height" value="325"/>
                     </include>
                 </focusedlayout>
@@ -1321,27 +1281,23 @@
                         <param name="id" value="301"/>
                         <param name="aspectratio" value="$SKINSHORTCUTS[aspectratio]"/>
                         <param name="distance" value="$SKINSHORTCUTS[distance]"/>
-                        <param name="reflections" value="Skin.HasSetting(home.widgets.show.reflections)"/>
+                        <param name="reflections" value="Skin.HasSetting(show.reflections)"/>
                         <param name="height" value="325"/>
                     </include>
                 </focusedlayout>
                 <focusedlayout height="325" width="562" condition="String.IsEqual(Container(300).ListItem.Property(widgetaspect),Fanart) + !String.IsEqual(Container(300).ListItem.Property(widget),system)">
                     <include content="include.widget.fanart.focus">
                         <param name="id" value="301"/>
-                        <param name="reflections" value="Skin.HasSetting(home.widgets.show.reflections)"/>
+                        <param name="reflections" value="Skin.HasSetting(show.reflections)"/>
                         <param name="height" value="325"/>
-                        <param name="glow_left" value="10"/>
-                        <param name="glow_right" value="10"/>
                     </include>
                 </focusedlayout>
                 <focusedlayout height="325" width="562" condition="String.IsEqual(Container(300).ListItem.Property(widgetaspect),Thumbnail) + !String.IsEqual(Container(300).ListItem.Property(widget),system)">
                     <include content="include.widget.thumb.focus">
                         <param name="id" value="301"/>
-                        <param name="reflections" value="Skin.HasSetting(home.widgets.show.reflections)"/>
+                        <param name="reflections" value="Skin.HasSetting(show.reflections)"/>
                         <param name="clearlogo" value="$SKINSHORTCUTS[widgetclearlogothumb]"/>
                         <param name="height" value="325"/>
-                        <param name="glow_left" value="10"/>
-                        <param name="glow_right" value="10"/>
                     </include>
                 </focusedlayout>
                 <content limit="$VAR[DefWidgetLimit]" target="$SKINSHORTCUTS[target]" sortby="$SKINSHORTCUTS[sortby]" sortorder="$SKINSHORTCUTS[sort]" browse="$SKINSHORTCUTS[browse]">$SKINSHORTCUTS[content]</content>

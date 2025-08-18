@@ -10,16 +10,9 @@
     <controls>
         <control type="group">
             <animation effect="fade" start="100" end="0" time="250" condition="Window.IsVisible(DialogSlider.xml)">Conditional</animation>
-            <include condition="!Skin.HasSetting(osd.usethemeNewOSD) + !Skin.HasSetting(osd.usethemeNewOSDSide)">OSD1</include>
-            <include condition="Skin.HasSetting(osd.usethemeNewOSD)">OSD2</include>
-            <include condition="Skin.HasSetting(osd.usethemeNewOSDSide)">OSD3</include>
+            <include condition="Skin.HasSetting(osd.usetheme) + !Skin.HasSetting(videoosd.side)">OSD1</include>
+            <include condition="!Skin.HasSetting(osd.usetheme) + !Skin.HasSetting(videoosd.side)">OSD2</include>
+            <include condition="Skin.HasSetting(videoosd.side)">OSD3</include>
         </control>
-        <!-- SIDE OSD -->
-        
-        <include content="DialogInfoOverlay">
-            <param name="headerinfo" value="$INFO[VideoPlayer.Title]" />
-            <param name="plotinfo" value="$INFO[VideoPlayer.Tagline,[B],[/B][CR][CR]]$INFO[VideoPlayer.Plot]" />
-            <param name="ondirection" value="18" />
-        </include>
     </controls>
 </window>
