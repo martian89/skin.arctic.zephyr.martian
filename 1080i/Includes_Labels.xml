@@ -598,6 +598,11 @@
         <value condition="Skin.HasSetting(furniture.showimdb) + !Skin.HasSetting(furniture.showtomatoesandmetacritics)">$INFO[Window(Home).Property(TMDbHelper.ListItem.IMDb_Rating),  •  IMDb ,]</value>
     </variable>
     
+    <variable name="WidgetSublabelUnwatchedEpisodes">
+    	<value condition="!String.IsEmpty(Container(301).ListItem.Property(UnwatchedEpisodes))">$INFO[Container(301).ListItem.Property(UnwatchedEpisodes)]</value>
+    	<value>$INFO[Window(home).Property(TMDbHelper.ListItem.UnWatchedEpisodes)]</value>
+    </variable>
+    
     <variable name="WidgetSublabelSeasonsEpisodes">
         <value condition="$EXP[HomeIsSpotlight]">$INFO[Container(301).ListItem.TvShowTitle,,  •  ]</value>
         <value>$INFO[Container(301).ListItem.TvShowTitle,,  •  ]$INFO[Container(301).ListItem.Season,$LOCALIZE[20373] ,  •  ]$INFO[Container(301).ListItem.Episode,$LOCALIZE[20359] ,  •  ]</value>
@@ -623,7 +628,7 @@
         <value condition="String.IsEqual(Container(301).ListItem.DBType,set) + !Skin.HasSetting(NewTime)">$INFO[Container(301).ListItem.Year,,  •  ]$INFO[Container(44321).NumItems,, $LOCALIZE[342]]$VAR[RatingLabel301,  •  ]$VAR[RtMclabel]</value>
         
         <!-- Tv Shows -->
-        <value condition="String.IsEqual(Container(301).ListItem.DBType,tvshow)">$INFO[Container(301).ListItem.Episode,, $LOCALIZE[20360]  •  ]$INFO[Container(301).ListItem.Property(UnWatchedEpisodes),, $LOCALIZE[16101]]$VAR[RatingLabel301,  •  ]$VAR[RtMclabel]</value>
+        <value condition="String.IsEqual(Container(301).ListItem.DBType,tvshow)">$INFO[Container(301).ListItem.Episode,, $LOCALIZE[20360]  •  ]$VAR[WidgetSublabelUnwatchedEpisodes,, $LOCALIZE[16101]]$VAR[RatingLabel301,  •  ]$VAR[RtMclabel]</value>
 
         <!-- Addons -->
         <value condition="!String.IsEmpty(Container(301).ListItem.AddonDescription)">$INFO[Container(301).ListItem.AddonVersion,v]</value>
