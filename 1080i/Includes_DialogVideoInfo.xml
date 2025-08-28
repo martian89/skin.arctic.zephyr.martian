@@ -107,12 +107,7 @@
                     <include>Animation.WikiFadeOut</include>
                     <top>86</top>
                     <left>570</left>
-                    <include content="def_width" condition="!Skin.HasSetting(furniture.logo)">
-                        <param name="width" value="1250" />
-                    </include>
-                    <include content="def_width" condition="Skin.HasSetting(furniture.logo)">
-                        <param name="width" value="850" />
-                    </include>
+                    <width>1050</width>
 			        <control type="label">
 			            <font>LargeNew</font>
 			            <description>Header Label</description>
@@ -129,17 +124,16 @@
 			        </control>
                 </control>
 
-                <!-- ClearLogo -->
-                <control type="image" description="clearlogo">
+                <!-- Studio Icon -->
+                <control type="image">
                     <include>Animation.VideoFadeOut</include>
-                    <visible>Skin.HasSetting(furniture.logo)</visible>
                     <include>Animation.WikiFadeOut</include>
-                    <centertop>140</centertop>
+                    <centertop>125</centertop>
                     <right>SidePad</right>
-		            <height>ClearLogoMaxHeight</height>
-		            <width>ClearLogoMaxWidth</width>
+                    <height>80</height>
+                    <visible>!String.IsEmpty(ListItem.Studio)</visible>
                     <aspectratio align="right" aligny="top">keep</aspectratio>
-                    <texture background="true">$VAR[ClearLogoTopVar]</texture>
+                    <texture colordiffuse="Dark1">$VAR[ThumbImageStudiosDialogInfo]</texture>
                 </control>
 
                 <!-- Arrows -->
