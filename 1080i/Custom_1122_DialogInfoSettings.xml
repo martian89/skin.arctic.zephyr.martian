@@ -344,16 +344,11 @@
                     <onclick condition="System.AddonIsEnabled(plugin.video.imdb.trailers) + !Skin.HasSetting(Use.IMDB.Trailer)">Skin.SetBool(Use.IMDB.Trailer)</onclick>
                     <visible>$EXP[IsDialogVideoInfo]</visible>
                 </control>
-                <control type="button" id="163">
+                <control type="radiobutton" id="163">
                     <include>DefContextButtonGradientSelect</include>
-                    <label>31345</label>
-                    <label2>$VAR[InfoTypeLabelTexture]</label2>
-                    <onclick condition="!Skin.HasSetting(show.studiologos) + !Skin.HasSetting(show.clearart) + !Skin.HasSetting(show.consensus)">Skin.ToggleSetting(show.clearart)</onclick>
-                    <onclick condition="Skin.HasSetting(show.clearart)">Skin.ToggleSetting(show.consensus)</onclick>
-                    <onclick condition="Skin.HasSetting(show.clearart)">Skin.Reset(show.clearart)</onclick>
-                    <onclick condition="Skin.HasSetting(show.consensus)">Skin.ToggleSetting(show.studiologos)</onclick>
-                    <onclick condition="Skin.HasSetting(show.consensus)">Skin.Reset(show.consensus)</onclick>
-                    <onclick condition="Skin.HasSetting(show.studiologos)">Skin.Reset(show.studiologos)</onclick>
+                    <label>31673</label>
+					<selected>!Skin.HasSetting(hide.clearart)</selected>
+                    <onclick>Skin.ToggleSetting(hide.clearart)</onclick>
                     <visible>$EXP[IsDialogVideoInfo]</visible>
                 </control>
                 <control type="radiobutton" id="164">
