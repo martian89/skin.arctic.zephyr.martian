@@ -186,28 +186,28 @@
     </variable>
 
     <variable name="ThumbImageGenres">
-        <value condition="[Window.IsVisible(home) | Window.IsVisible(MyVideoNav.xml)] + !String.IsEmpty(Skin.String(genre.icons.path)) + String.IsEqual(Skin.String(genre.icons.ext),.jpg)">$INFO[Skin.String(genre.icons.path)]$INFO[ListItem.Label,,.jpg]</value>
-        <value condition="[Window.IsVisible(home) | Window.IsVisible(MyVideoNav.xml)] + !String.IsEmpty(Skin.String(genre.icons.path)) + String.IsEqual(Skin.String(genre.icons.ext),.png)">$INFO[Skin.String(genre.icons.path)]$INFO[ListItem.Label,,.png]</value>
-        <value condition="Container.Content(genres) + Window.IsVisible(MyMusicNav.xml) + !String.IsEmpty(Skin.String(genre.music.path)) + String.IsEqual(Skin.String(genre.music.ext),.jpg)">$INFO[Skin.String(genre.music.path)]$INFO[ListItem.Label,,.jpg]</value>
+        <value condition="[Window.IsVisible(home) | Window.IsVisible(MyVideoNav.xml)] + !String.IsEmpty(Skin.String(genre.icons.path))">$INFO[Skin.String(genre.icons.path)]$INFO[ListItem.Label]$INFO[Skin.String(genre.icons.ext)]</value>
+        <value condition="Container.Content(genres) + Window.IsVisible(MyMusicNav.xml) + !String.IsEmpty(Skin.String(genre.music.path))">$INFO[Skin.String(genre.music.path)]$INFO[ListItem.Label]$INFO[Skin.String(genre.music.ext)]</value>
         <value>DefaultGenre.png</value>
     </variable>
 
     <variable name="ThumbImageStudios">
-        <value condition="Container.Content(studios) + Window.IsVisible(MyVideoNav.xml) + !String.IsEmpty(Skin.String(studio.logos.path))">$INFO[Skin.String(studio.logos.path),,/]$INFO[ListItem.Label,,.png]</value>
-        <value condition="Container.Content(studios) + Window.IsVisible(MyMusicNav.xml) + !String.IsEmpty(Skin.String(recordlabel.logos.path))">$INFO[Skin.String(recordlabel.logos.path),,/]$INFO[ListItem.Label,,.png]</value>
+        <value condition="Container.Content(studios) + Window.IsVisible(MyVideoNav.xml) + !String.IsEmpty(Skin.String(studio.logos.path))">$INFO[Skin.String(studio.logos.path)]$INFO[ListItem.Label]$INFO[Skin.String(studio.logos.ext)]</value>
+        <value condition="Container.Content(studios) + Window.IsVisible(MyMusicNav.xml) + !String.IsEmpty(Skin.String(recordlabel.logos.path))">$INFO[Skin.String(recordlabel.logos.path)]$INFO[ListItem.Label]$INFO[Skin.String(recordlabel.logos.ext)]</value>
     </variable>
 
     <variable name="ThumbImageStudiosDialogInfo">
-        <value condition="!String.IsEmpty(Skin.String(studio.logos.path))">$INFO[Skin.String(studio.logos.path),,/]$INFO[ListItem.Studio,,.png]</value>
-        <value condition="!String.IsEmpty(Skin.String(recordlabel.logos.path))">$INFO[Skin.String(recordlabel.logos.path),,/]$INFO[ListItem.Studio,,.png]</value>
+        <value condition="!String.IsEmpty(Skin.String(studio.logos.path)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Network.1.Name))">$INFO[Skin.String(studio.logos.path)]$INFO[Window(Home).Property(TMDbHelper.ListItem.Network.1.Name)]$INFO[Skin.String(studio.logos.ext)]</value>
+        <value condition="!String.IsEmpty(Skin.String(studio.logos.path)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Studio.1.Name))">$INFO[Skin.String(studio.logos.path)]$INFO[Window(Home).Property(TMDbHelper.ListItem.Studio.1.Name)]$INFO[Skin.String(studio.logos.ext)]</value>
+        <value condition="!String.IsEmpty(Skin.String(studio.logos.path)) + !String.IsEmpty(ListItem.Studio)">$INFO[Skin.String(studio.logos.path)]$INFO[ListItem.Studio]$INFO[Skin.String(studio.logos.ext)]</value>
     </variable>
     
     <variable name="WidgetImageStudio">
-        <value condition="!String.IsEmpty(Skin.String(studio.logos.path)) + [String.IsEqual(ListItem.DBTYPE,studio) | Container.Content(studios)]">$INFO[Skin.String(studio.logos.path),,/]$INFO[ListItem.Label,,.png]</value>
+        <value condition="!String.IsEmpty(Skin.String(studio.logos.path)) + [String.IsEqual(ListItem.DBTYPE,studio) | Container.Content(studios)]">$INFO[Skin.String(studio.logos.path)]$INFO[ListItem.Label]$INFO[Skin.String(studio.logos.ext)]</value>
     </variable>
 
     <variable name="ThumbImageRecordLabelDialogInfo">
-        <value condition="!String.IsEmpty(Skin.String(recordlabel.logos.path))">$INFO[Skin.String(recordlabel.logos.path),,/]$INFO[ListItem.Property(Album_Label),,.png]</value>
+        <value condition="!String.IsEmpty(Skin.String(recordlabel.logos.path))">$INFO[Skin.String(recordlabel.logos.path)]$INFO[ListItem.Property(Album_Label)]$INFO[Skin.String(recordlabel.logos.ext)]</value>
     </variable>
 
     <variable name="PlayerPoster">
