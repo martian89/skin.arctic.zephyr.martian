@@ -1340,7 +1340,7 @@
             <animation effect="slide" end="0,70" condition="!Integer.IsGreater(Container(302).NumItems,3)">Conditional</animation>
             <animation effect="slide" end="0,70" condition="!Integer.IsGreater(Container(302).NumItems,2)">Conditional</animation>
             <animation effect="slide" end="0,70" condition="!Integer.IsGreater(Container(302).NumItems,1)">Conditional</animation>
-            <animation effect="slide" start="0" end="0,250" time="150" condition="Control.HasFocus(301)">Conditional</animation>
+            <animation effect="slide" start="0" end="0,250" time="150" condition="!Control.HasFocus(300) + !Control.HasFocus(302)">Conditional</animation>
             <animation effect="slide" start="0" end="0,250" time="150">WindowClose</animation>
             <animation effect="slide" end="0" start="0,250" time="150">WindowOpen</animation>
             <posy>461</posy>
@@ -2674,7 +2674,7 @@
         <include>WidgetsNavigationArrows</include>
         <control type="group">
             <animation effect="slide" start="0" end="-100" time="0" delay="0" condition="Skin.HasSetting(homemenu.only.icons) + Skin.HasSetting(home.showicons)">Conditional</animation>
-            <animation effect="slide" start="0" end="-450" time="300" delay="0" center="auto" tween="sine" easing="out" condition="[!Control.HasFocus(300) + !Control.HasFocus(302)] + ![Skin.HasSetting(homemenu.only.icons) + Skin.HasSetting(home.showicons)]">Conditional</animation>
+            <animation effect="slide" start="0" end="-450" time="300" delay="0" center="auto" tween="sine" easing="out" condition="ControlGroup(301).HasFocus + ![Skin.HasSetting(homemenu.only.icons) + Skin.HasSetting(home.showicons)]">Conditional</animation>
 
             <!-- LEFT SIDE -->
             <control type="group">
@@ -2684,7 +2684,7 @@
                 <control type="list" id="300">
                     <animation effect="slide" start="0,0" end="-296,0" time="0" condition="Skin.HasSetting(homemenu.only.icons) + Skin.HasSetting(home.showicons)">Conditional</animation>
                     <animation effect="slide" start="0,0" end="0,-38" time="0" condition="true">Conditional</animation>
-                    <animation effect="fade" start="100" end="0" time="300" condition="[!Control.HasFocus(300) + !Control.HasFocus(302)] + ![Skin.HasSetting(homemenu.only.icons) + Skin.HasSetting(home.showicons)]">Conditional</animation>
+                    <animation effect="fade" start="100" end="0" time="300" condition="ControlGroup(301).HasFocus + ![Skin.HasSetting(homemenu.only.icons) + Skin.HasSetting(home.showicons)]">Conditional</animation>
                     <include condition="![Skin.HasSetting(home.showicons) + Skin.HasSetting(homemenu.only.icons)]">Animation.Slide.Vertical.Menu</include>
                     <include condition="[Skin.HasSetting(home.showicons) + Skin.HasSetting(homemenu.only.icons)]" content="Animation.Slide.Vertical.Menu">
                         <param name="left" value="-50" />
@@ -2719,7 +2719,6 @@
                 <control type="list" id="302">
                     <visible allowhiddenfocus="true">Control.HasFocus(302)</visible>
                     <animation effect="slide" start="0,0" end="0,-38" time="0" condition="true">Conditional</animation>
-                    <animation effect="fade" start="100" end="33" time="400" condition="Control.HasFocus(301)">Conditional</animation>
                     <include condition="![Skin.HasSetting(home.showicons) + Skin.HasSetting(homemenu.only.icons)]">Animation.Slide.Vertical.Menu</include>
                     <include condition="[Skin.HasSetting(home.showicons) + Skin.HasSetting(homemenu.only.icons)]" content="Animation.Slide.Vertical.Menu">
                         <param name="left" value="-50" />
@@ -2801,9 +2800,6 @@
     </include>
 
     <include name="widget.title.label">
-        <include content="Animation.FadeOutHomeFullscreenWidget" condition="Skin.HasSetting(homemenu.clean.flix)">
-            <param name="condition" value="$PARAM[animation_condition]"/>
-        </include>
         <usecontrolcoords>true</usecontrolcoords>
         <height>40</height>
         <left>SidePad</left>
@@ -3555,7 +3551,7 @@
             <animation effect="slide" start="0" end="0,460" time="0" condition="!Skin.HasSetting(homemenu.clean.flix.no.slide)">Conditional</animation>
             <animation effect="slide" start="0" end="30,0" time="0" condition="Integer.IsEqual(Container(301).NumItems,1)">Conditional</animation>
             <visible>Skin.HasSetting(homemenu.clean.flix)</visible>
-            <visible>![Window.IsVisible(DialogVideoInfo.xml) | Window.IsVisible(DialogMusicInfo.xml) | Window.IsVisible(DialogPVRInfo.xml) | Window.IsVisible(DialogAddonInfo.xml)] + !Control.HasFocus(300) + !Control.HasFocus(302)</visible>
+            <visible>![Window.IsVisible(DialogVideoInfo.xml) | Window.IsVisible(DialogMusicInfo.xml) | Window.IsVisible(DialogPVRInfo.xml) | Window.IsVisible(DialogAddonInfo.xml)] + ControlGroup(301).HasFocus</visible>
             <control type="label">
                 <include>Animation.DelayFadeIn300</include>
                 <align>right</align>

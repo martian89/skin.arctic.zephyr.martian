@@ -604,6 +604,7 @@
 
     <include name="Def9000Background">
         <visible allowhiddenfocus="true">ControlGroup(9000).HasFocus()</visible>
+        <animation effect="slide" start="0,0" end="-3000,-3000" time="0" condition="!ControlGroup(9000).HasFocus()">Conditional</animation>
         <include>Animation.ZoomIn</include>
         <include>Animation.FadeOut</include>
         <top>184</top>
@@ -1615,9 +1616,6 @@
             <include content="def_left" condition="![$EXP[HomeIsModernMultiWidgets] + !Skin.HasSetting(homemenu.clean.flix)]"><param name="left" value="70" /></include>
             <left>0</left>
             <right>0</right>
-            <include content="Animation.FadeOutHomeFullscreenWidget" condition="$EXP[HomeIsModernMultiWidgetsNetflix] | $EXP[HomeIsVerticalMultiWidgetsNetflix]">
-                <param name="condition" value="$PARAM[animation_condition]"/>
-            </include>
             <include condition="!Skin.HasSetting(widgets.fade)">Animation.Vertical.Widgets.Container</include>
             <autoscroll time="$PARAM[AutoTime]" delay="1000">$PARAM[AutoScrollCondition]</autoscroll>
             <onfocus>SetProperty(TMDbHelper.WidgetContainer,$PARAM[id],Home)</onfocus>
@@ -1645,7 +1643,7 @@
             <include>ScrolltimeWidgetsList</include>
         </definition>
     </include>
-
+    
     <include name="MultiWidgetsPlotLabelDefinition">
     	<param name="maxheight" />
     	<definition>
@@ -2167,8 +2165,38 @@
         </definition>
     </include>
 
+    <include name="Def_Item_Movement">
+        <param name="Banner" default="false"/>
+        <param name="Thumbnail" default="false"/>
+        <param name="Fanart" default="false"/>
+        <param name="FanartSmall" default="false"/>
+        <param name="ThumbnailSmall" default="false"/>
+        <param name="ThumbnailPosterSmall" default="false"/>
+        <param name="Square" default="false"/>
+        <param name="SquareSmall" default="false"/>
+        <param name="SquareMedium" default="false"/>
+        <definition>
+            <include content="def_movement" condition="![$PARAM[Banner] | $PARAM[Thumbnail] | $PARAM[Fanart] | $PARAM[FanartSmall] | $PARAM[ThumbnailSmall] | $PARAM[ThumbnailPosterSmall] | $PARAM[Square]]">
+                <param name="movement" value="7" />
+            </include>
+            <include content="def_movement" condition="$PARAM[Square]">
+                <param name="movement" value="4" />
+            </include>
+            <include content="def_movement" condition="$PARAM[ThumbnailSmall] | $PARAM[FanartSmall]">
+                <param name="movement" value="3" />
+            </include>
+            <include content="def_movement" condition="$PARAM[Thumbnail] | $PARAM[Fanart] | $PARAM[ThumbnailPosterSmall]">
+                <param name="movement" value="2" />
+            </include>
+            <include content="def_movement" condition="$PARAM[Banner]">
+                <param name="movement" value="0" />
+            </include>
+        </definition>
+    </include>
+
     <!-- Systeminfo Layout -->
     <include name="TemplateSystemItemLayout">
+        <movement>4</movement>
         <itemlayout height="325" width="325">
             <control type="group">
                 <width>325</width>
@@ -2183,6 +2211,11 @@
         <param name="SquareSmall" default="false"/>
         <param name="Square" default="false"/>
         <definition>
+        <include content="Def_Item_Movement">
+	        <param name="SquareMedium" value="$PARAM[SquareMedium]"/>
+	        <param name="SquareSmall" value="$PARAM[SquareSmall]"/>
+	        <param name="Square" value="$PARAM[Square]"/>
+        </include>
         <itemlayout height="125" width="125" condition="$PARAM[SquareSmall]">
             <control type="group">
                 <width>125</width>
@@ -2254,6 +2287,17 @@
         <param name="SquareSmall" default="false"/>
         <param name="SquareMedium" default="false"/>
         <definition>
+        <include content="Def_Item_Movement">
+	        <param name="Banner" value="$PARAM[Banner]"/>
+	        <param name="Thumbnail" value="$PARAM[Thumbnail]"/>
+	        <param name="Fanart" value="$PARAM[Fanart]"/>
+	        <param name="FanartSmall" value="$PARAM[FanartSmall]"/>
+	        <param name="ThumbnailSmall" value="$PARAM[ThumbnailSmall]"/>
+	        <param name="ThumbnailPosterSmall" value="$PARAM[ThumbnailPosterSmall]"/>
+            <param name="SquareMedium" value="$PARAM[SquareMedium]"/>
+            <param name="SquareSmall" value="$PARAM[SquareSmall]"/>
+            <param name="Square" value="$PARAM[Square]"/>
+        </include>
         <itemlayout height="325" width="222" condition="![$PARAM[Banner] | $PARAM[Thumbnail] | $PARAM[Fanart] | $PARAM[FanartSmall] | $PARAM[ThumbnailSmall] | $PARAM[ThumbnailPosterSmall] | $PARAM[Square]]">
             <control type="group">
                 <width>222</width>
@@ -2343,6 +2387,10 @@
         <param name="Fanart" default="false"/>
         <param name="Square" default="false"/>
         <definition>
+        <include content="Def_Item_Movement">
+            <param name="Fanart" value="$PARAM[Fanart]"/>
+            <param name="Square" value="$PARAM[Square]"/>
+        </include>
         <itemlayout height="325" width="222" condition="![$PARAM[Fanart] | $PARAM[Square]]">
             <control type="group">
                 <width>222</width>

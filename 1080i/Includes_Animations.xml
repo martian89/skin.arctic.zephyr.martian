@@ -655,30 +655,6 @@
         <animation effect="fade" end="0" start="100" time="150" reversible="false">Hidden</animation>
     </include>
 
-    <include name="Animation.FadeOutHomeFullscreenWidget">
-        <include condition="$EXP[HomeIsModernMultiWidgetsNetflix] | $EXP[HomeIsVerticalMultiWidgetsNetflix]" content="Animation.FadeOutHomeFullscreenWidgetType3">
-            <param name="condition" value="$PARAM[condition] + !Control.HasFocus(300) + !Control.HasFocus(302) + !Control.HasFocus(2011)"/>
-        </include>
-        <include condition="!Skin.HasSetting(homemenu.clean.flix) + !Skin.HasSetting(homemenu.netflix)" content="Animation.FadeOutHomeFullscreenWidgetType1">
-            <param name="condition" value="$PARAM[condition] + !Control.HasFocus(300) + !Control.HasFocus(302) + !Control.HasFocus(2011)"/>
-        </include>
-        <include condition="$EXP[HomeIsCleanMinimal]" content="Animation.FadeOutHomeFullscreenWidgetType2">
-            <param name="condition" value="$PARAM[condition] + !Control.HasFocus(300) + !Control.HasFocus(302) + !Control.HasFocus(2011)"/>
-        </include>
-    </include>
-
-    <include name="Animation.FadeOutHomeFullscreenWidgetType1">
-        <animation effect="fade" end="33" start="100" time="250" condition="$PARAM[condition]">Conditional</animation>
-    </include>
-
-    <include name="Animation.FadeOutHomeFullscreenWidgetType2">
-        <animation effect="fade" end="0" start="100" time="200" condition="$PARAM[condition]">Conditional</animation>
-    </include>
-
-    <include name="Animation.FadeOutHomeFullscreenWidgetType3">
-        <animation effect="fade" end="0" start="100" time="150" condition="$PARAM[condition]">Conditional</animation>
-    </include>
-
     <include name="Animation.ClearLogo.FadeOut">
         <animation effect="fade" end="0" start="100" time="150" condition="$EXP[HideViewContent] | [Control.IsVisible(514) + !Skin.HasSetting(NotShowClearart514)] | [[Control.IsVisible(512) | Control.IsVisible(511)] + Skin.HasSetting(ShowClearart511)] | [Control.IsVisible(510) + Skin.HasSetting(ShowClearart510)]">Conditional</animation>
     </include>
@@ -779,7 +755,7 @@
     </include>
 
     <include name="Animation.Home.Clean">
-        <animation effect="slide" start="0" end="0,220" time="150" tween="sine" condition="!Control.HasFocus(300) + !Control.HasFocus(302)">Conditional</animation>
+        <animation effect="slide" start="0" end="0,220" time="150" tween="sine" condition="ControlGroup(301).HasFocus">Conditional</animation>
     </include>
     
     <include name="Animation.AutoTrailer.IsPlaying">
