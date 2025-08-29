@@ -86,12 +86,7 @@
                     <include>Animation.WikiFadeOut</include>
                     <top>86</top>
                     <left>785</left>
-                    <include content="def_width" condition="!Skin.HasSetting(furniture.logo)">
-                        <param name="width" value="1035" />
-                    </include>
-                    <include content="def_width" condition="Skin.HasSetting(furniture.logo)">
-                        <param name="width" value="635" />
-                    </include>
+                    <width>835</width>
                     <control type="label">
                         <font>LargeNew</font>
                         <description>Header Label</description>
@@ -108,17 +103,17 @@
                     </control>
                 </control>
 
-                <!-- ClearLogo -->
-                <control type="image" description="clearlogo">
+                <!-- Record label Icon -->
+                <control type="image">
                     <include>Animation.MusicFadeOut</include>
-                    <visible>Skin.HasSetting(furniture.logo)</visible>
                     <include>Animation.WikiFadeOut</include>
-                    <centertop>140</centertop>
+                    <centertop>135</centertop>
                     <right>SidePad</right>
-		            <height>ClearLogoMaxHeight</height>
-		            <width>ClearLogoMaxWidth</width>
+                    <height>80</height>
+                    <visible>!String.IsEmpty(Skin.String(recordlabel.logos.path))</visible>
+                    <visible>!String.IsEmpty(ListItem.Property(Album_Label))</visible>
                     <aspectratio align="right" aligny="top">keep</aspectratio>
-                    <texture background="true">$VAR[ClearLogoTopVar]</texture>
+                    <texture colordiffuse="Dark1">$VAR[ThumbImageRecordLabelDialogInfo]</texture>
                 </control>
 
                 <include content="ArrowsNavigation">
@@ -126,17 +121,6 @@
                     <param name="centerbottom" value="560" />
                     <param name="centerleft" value="765" />
                 </include>
-                <control type="image">
-                    <height>109</height>
-                    <width>161</width>
-                    <right>SidePad</right>
-                    <top>220</top>
-                    <texture colordiffuse="Dark1">$VAR[ThumbImageRecordLabelDialogInfo]</texture>
-                    <visible>!String.IsEmpty(Skin.String(recordlabel.logos.path))</visible>
-                    <visible>!String.IsEmpty(ListItem.Property(Album_Label))</visible>
-                    <include>Animation.MusicFadeOut</include>
-                    <include>Animation.WikiFadeOut</include>
-                </control>
 
                 <!-- Content -->
                 <control type="group">
@@ -233,7 +217,7 @@
                                 <height>36</height>
                                 <width>800</width>
                                 <control type="label">
-                                    <width>230</width>
+                                    <width>265</width>
                                     <height>36</height>
                                     <font>Tiny</font>
                                     <textcolor>Dark1</textcolor>
