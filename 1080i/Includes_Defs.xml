@@ -3296,7 +3296,7 @@
         <param name="bordertopbottom" default="10"/>
         <param name="borderleftright" default="10"/>
         <param name="force_fallback" default="false" />
-        <param name="FanartCode"/>
+        <param name="FanartCode" default="$INFO[ListItem.Property(FanartCode)]"/>
         <definition>
             <control type="image">
                 <top>$PARAM[bordertopbottom]</top>
@@ -3318,7 +3318,7 @@
                 <randomize>true</randomize>
                 <aspectratio>scale</aspectratio>
                 <animation effect="fade" start="100" end="10" condition="true">Conditional</animation>
-                <imagepath background="true">$VAR[WeatherFanartPath]$PARAM[FanartCode]$INFO[ListItem.Property(FanartCode)]/</imagepath>
+                <imagepath background="true">$VAR[WeatherFanartPath]$PARAM[FanartCode]/</imagepath>
             </control>
             <control type="multiimage" description="Fanart">
                 <visible>!Skin.HasSetting(weather.hidefanart) + !Skin.HasSetting(weather.fanart.widgets) + $EXP[HasWeatherFanartMulti]</visible>
@@ -3343,7 +3343,7 @@
                 <bottom>$PARAM[bordertopbottom]</bottom>
                 <aspectratio>scale</aspectratio>
                 <animation effect="fade" start="100" end="10" condition="true">Conditional</animation>
-                <texture background="true">$VAR[WeatherFanartPath]$PARAM[FanartCode]$INFO[ListItem.Property(FanartCode)].jpg</texture>
+                <texture background="true">$VAR[WeatherFanartPath]$PARAM[FanartCode].jpg</texture>
             </control>
             <control type="image" description="Fanart">
                 <visible>!Skin.HasSetting(weather.hidefanart) + !Skin.HasSetting(weather.fanart.widgets) + $EXP[HasWeatherFanartSingle]</visible>
