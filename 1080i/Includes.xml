@@ -846,7 +846,7 @@
 	
 	<variable name="GlobalFanart_Fallback">
 		<!-- Weather -->
-       	<value condition="!String.IsEmpty(Weather.Plugin) + [$EXP[HasWeatherFanartSingle] | $EXP[HasWeatherFanartMulti]] + [String.IsEqual(Container(300).ListItem.Property(widget),weatherdaily) | String.IsEqual(Container(300).ListItem.Property(widget),weatherhourly)] + !Skin.HasSetting(home.dontshowfanart)">$VAR[Image_WeatherCurrent]</value>
+       	<value condition="!String.IsEmpty(Weather.Plugin) + [$EXP[HasWeatherFanartSingle] | $EXP[HasWeatherFanartMulti]] + [String.IsEqual(Container(300).ListItem.Property(widget),weatherdaily) | String.IsEqual(Container(300).ListItem.Property(widget),weatherhourly)] + [!Skin.HasSetting(home.dontshowfanart) | Control.HasFocus(301) | ControlGroup(301).HasFocus]">$VAR[Image_WeatherCurrent]</value>
         
 		<!-- System widget -->
         <value condition="String.IsEqual(Container(300).ListItem.Property(widgetType),system) + [!Skin.HasSetting(home.dontshowfanart) | Control.HasFocus(301) | ControlGroup(301).HasFocus]">special://skin/extras/backgrounds/systeminfo.jpg</value>
@@ -859,7 +859,7 @@
 
         <value condition="!String.IsEmpty(Container(30111).ListItem.EpgEventIcon)">$INFO[Container(30111).ListItem.EpgEventIcon]</value>
        	<value condition="![String.IsEmpty(Skin.String(home.slideshowpath)) | String.IsEqual(Skin.String(home.slideshowpath),none)] + [String.IsEmpty(Container(300).ListItem.Property(widget)) | Container(301).IsUpdating | Skin.HasSetting(home.dontshowfanart)]">$INFO[Skin.String(home.slideshowpath)]</value>
-        <value condition="!String.IsEmpty(Weather.Plugin) + [$EXP[HasWeatherFanartSingle] | $EXP[HasWeatherFanartMulti]] + Skin.HasSetting(home.showweatherfanart) + Skin.HasSetting(home.classicwidgets) + !Skin.HasSetting(furniture.weather) + [String.IsEmpty(Container(300).ListItem.Property(widget)) | Container(301).IsUpdating]">$VAR[Image_WeatherCurrent]/</value>
+        <value condition="!String.IsEmpty(Weather.Plugin) + [$EXP[HasWeatherFanartSingle] | $EXP[HasWeatherFanartMulti]] + Skin.HasSetting(home.showweatherfanart) + !$EXP[HomeShowHeader] + !Skin.HasSetting(furniture.weather) + !Skin.HasSetting(furniture.weatherleft) + !Skin.HasSetting(home.vertical) + [!Skin.HasSetting(home.vertical.widgets) | Skin.HasSetting(homemenu.netflix)] + [String.IsEmpty(Container(300).ListItem.Property(widget)) | Container(301).IsUpdating]">$VAR[Image_WeatherCurrent]/</value>
         <value condition="!Container(301).IsUpdating + !Skin.HasSetting(home.vertical.widgets) + String.IsEmpty(Skin.String(fanart.fallback))">special://skin/extras/backgrounds/default.jpg</value>
         <value condition="!Container(301).IsUpdating ">$VAR[Image_SimpleBackground]</value>
 	</variable>
