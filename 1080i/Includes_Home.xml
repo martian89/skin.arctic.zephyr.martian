@@ -1335,6 +1335,9 @@
             <animation effect="slide" start="0" end="1110" condition="Container(300).Position(5)">Conditional</animation>
             <animation effect="slide" start="0" end="1332" condition="Container(300).Position(6)">Conditional</animation>
             <animation effect="slide" start="0" end="1554" condition="Container(300).Position(7)">Conditional</animation>
+            <animation effect="slide" end="0,70" condition="!Integer.IsGreater(Container(302).NumItems,8)">Conditional</animation>
+            <animation effect="slide" end="0,70" condition="!Integer.IsGreater(Container(302).NumItems,7)">Conditional</animation>
+            <animation effect="slide" end="0,70" condition="!Integer.IsGreater(Container(302).NumItems,6)">Conditional</animation>
             <animation effect="slide" end="0,70" condition="!Integer.IsGreater(Container(302).NumItems,5)">Conditional</animation>
             <animation effect="slide" end="0,70" condition="!Integer.IsGreater(Container(302).NumItems,4)">Conditional</animation>
             <animation effect="slide" end="0,70" condition="!Integer.IsGreater(Container(302).NumItems,3)">Conditional</animation>
@@ -1343,16 +1346,37 @@
             <animation effect="slide" start="0" end="0,250" time="150" condition="!Control.HasFocus(300) + !Control.HasFocus(302)">Conditional</animation>
             <animation effect="slide" start="0" end="0,250" time="150">WindowClose</animation>
             <animation effect="slide" end="0" start="0,250" time="150">WindowOpen</animation>
-            <posy>461</posy>
+            <posy>251</posy>
             <centerleft>180</centerleft>
             <width>316</width>
-            <height>452</height>
+            <height>662</height>
+            <control type="image">
+                <description>9 Option Menu</description>
+                <width>100%</width>
+                <height>662</height>
+                <texture border="16" colordiffuse="Background">common/rounded-shadow8.png</texture>
+                <visible>Integer.IsGreater(Container(302).NumItems,8)</visible>
+            </control>
+            <control type="image">
+                <description>8 Option Menu</description>
+                <width>100%</width>
+                <height>592</height>
+                <texture border="16" colordiffuse="Background">common/rounded-shadow8.png</texture>
+                <visible>Integer.IsGreater(Container(302).NumItems,7) + !Integer.IsGreater(Container(302).NumItems,8)</visible>
+            </control>
+            <control type="image">
+                <description>7 Option Menu</description>
+                <width>100%</width>
+                <height>522</height>
+                <texture border="16" colordiffuse="Background">common/rounded-shadow8.png</texture>
+                <visible>Integer.IsGreater(Container(302).NumItems,6) + !Integer.IsGreater(Container(302).NumItems,7)</visible>
+            </control>
             <control type="image">
                 <description>6 Option Menu</description>
                 <width>100%</width>
                 <height>452</height>
                 <texture border="16" colordiffuse="Background">common/rounded-shadow8.png</texture>
-                <visible>Integer.IsGreater(Container(302).NumItems,5)</visible>
+                <visible>Integer.IsGreater(Container(302).NumItems,5) + !Integer.IsGreater(Container(302).NumItems,6)</visible>
             </control>
             <control type="image">
                 <description>5 Option Menu</description>
