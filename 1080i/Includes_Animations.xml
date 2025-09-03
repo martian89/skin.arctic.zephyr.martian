@@ -794,7 +794,7 @@
     </include>
     
     <include name="Animation.Slide.Vertical.Menu">
-        <param name="left" default="-500"/>
+        <param name="left" default="-550"/>
         <definition>
         <animation type="Visible" reversible="false">
             <effect type="fade" start="0" end="100" time="150" tween="sine" easing="in" delay="150" />
@@ -806,7 +806,21 @@
         </animation>
         </definition>
     </include>
-    
+
+    <include name="Animation.Slide.Vertical.Submenu">
+        <param name="left" default="-500"/>
+        <definition>
+        <animation type="Conditional" condition="Control.HasFocus(302)" reversible="false">
+            <effect type="fade" start="0" end="100" time="150" tween="sine" easing="in" delay="150" />
+            <effect type="slide" start="$PARAM[left],0" end="0,0" time="200" tween="sine" easing="out" delay="150" />
+        </animation>
+        <animation type="Conditional" condition="!Control.HasFocus(302)" reversible="false">
+            <effect type="fade" start="100" end="0" time="100" tween="sine" easing="out" />
+            <effect type="slide" start="0,0" end="$PARAM[left],0" time="150" tween="sine" easing="out" />
+        </animation>
+        </definition>
+    </include>
+
     <include name="Animation.Clean.Widget.Slide.Out">
         <animation type="WindowClose" condition="!ControlGroup.HasFocus(301)">
             <effect type="fade" start="100" end="0" time="100" />

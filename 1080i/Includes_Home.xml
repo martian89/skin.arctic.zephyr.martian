@@ -2239,6 +2239,10 @@
 		</definition>
 	</include>
 
+	<include name="HomeVerticalSubmenuHitrect">
+		<hitrect x="0" y="$PARAM[y]" h="720" w="510"/>
+	</include>
+	
 	<include name="HomeVerticalSubmenuListLayout">
 		<param name="height" default="80" />
 		<param name="iconsOnly" default="false" />
@@ -2421,7 +2425,7 @@
 		           	<animation effect="slide" start="0,0" end="0,40" time="0" condition="Integer.IsLess(Container(302).NumItems,4)">Conditional</animation>
 		           	<animation effect="slide" start="0,0" end="0,40" time="0" condition="Integer.IsLess(Container(302).NumItems,3)">Conditional</animation>
 		           	<animation effect="slide" start="0,0" end="0,40" time="0" condition="Integer.IsLess(Container(302).NumItems,2)">Conditional</animation>
-                    <include>Animation.Slide.Vertical.Menu</include>
+                    <include>Animation.Slide.Vertical.Submenu</include>
                     <include>Animation.FadeIn</include>
                     <include>Animation.FadeOut</include>
                     <description>Home Wraplist</description>
@@ -2429,6 +2433,9 @@
                     <top>PosterPad</top>
                     <width>PosterW</width>
                     <height>720</height>
+                    <include content="HomeVerticalSubmenuHitrect">
+                    	<param name="y" value="PosterPad" />
+                    </include>
                     <orientation>vertical</orientation>
                     <onright>300</onright>
                     <onleft>300</onleft>
@@ -2687,10 +2694,10 @@
 
 	<include name="HomeVerticalMenuWidgets_Top">
         <include content="def_top" condition="Skin.HasSetting(homemenu.netflix)">
-            <param name="top" value="253" />
+            <param name="top" value="215" />
         </include>
         <include content="def_top" condition="!Skin.HasSetting(homemenu.netflix)">
-            <param name="top" value="185" />
+            <param name="top" value="147" />
         </include>
 	</include>
 	
@@ -2710,7 +2717,6 @@
                 <!-- Home List -->
                 <control type="list" id="300">
                     <animation effect="slide" start="0,0" end="-296,0" time="0" condition="Skin.HasSetting(homemenu.only.icons) + Skin.HasSetting(home.showicons)">Conditional</animation>
-                    <animation effect="slide" start="0,0" end="0,-38" time="0" condition="true">Conditional</animation>
                     <animation effect="fade" start="100" end="0" time="300" condition="ControlGroup(301).HasFocus + ![Skin.HasSetting(homemenu.only.icons) + Skin.HasSetting(home.showicons)]">Conditional</animation>
                     <include condition="![Skin.HasSetting(home.showicons) + Skin.HasSetting(homemenu.only.icons)]">Animation.Slide.Vertical.Menu</include>
                     <include condition="[Skin.HasSetting(home.showicons) + Skin.HasSetting(homemenu.only.icons)]" content="Animation.Slide.Vertical.Menu">
@@ -2745,9 +2751,8 @@
                 <!-- SubMenu List -->
                 <control type="list" id="302">
                     <visible allowhiddenfocus="true">Control.HasFocus(302)</visible>
-                    <animation effect="slide" start="0,0" end="0,-38" time="0" condition="true">Conditional</animation>
-                    <include condition="![Skin.HasSetting(home.showicons) + Skin.HasSetting(homemenu.only.icons)]">Animation.Slide.Vertical.Menu</include>
-                    <include condition="[Skin.HasSetting(home.showicons) + Skin.HasSetting(homemenu.only.icons)]" content="Animation.Slide.Vertical.Menu">
+                    <include condition="![Skin.HasSetting(home.showicons) + Skin.HasSetting(homemenu.only.icons)]">Animation.Slide.Vertical.Submenu</include>
+                    <include condition="[Skin.HasSetting(home.showicons) + Skin.HasSetting(homemenu.only.icons)]" content="Animation.Slide.Vertical.Submenu">
                         <param name="left" value="-50" />
                     </include>
                     <animation effect="slide" start="0" end="-296" time="0" condition="[Skin.HasSetting(homemenu.only.icons) + Skin.HasSetting(home.showicons)]">Conditional</animation>
@@ -2758,6 +2763,12 @@
                     <include>HomeVerticalMenuWidgets_Top</include>
                     <width>PosterW</width>
                     <height>720</height>
+                    <include content="HomeVerticalSubmenuHitrect" condition="Skin.HasSetting(homemenu.netflix)">
+                    	<param name="y" value="215" />
+                    </include>
+                    <include content="HomeVerticalSubmenuHitrect" condition="!Skin.HasSetting(homemenu.netflix)">
+                    	<param name="y" value="147" />
+                    </include>
                     <orientation>vertical</orientation>
                     <onright>300</onright>
                     <onleft>300</onleft>
