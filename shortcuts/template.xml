@@ -1200,6 +1200,10 @@
         <property name="widgetauto" tag="property" attribute="name|widgetAuto" value="$NUMBER[15000]">15000</property>
         <property name="widgetauto" tag="property" attribute="name|widgetAuto" value="$NUMBER[20000]">20000</property>
         <property name="widgetauto" tag="property" attribute="name|widgetAuto" value="$NUMBER[25000]">25000</property>
+        <property name="widgetaspectcheck" tag="property" attribute="name|widget" value="settings">Square</property>
+        <property name="widgetaspectcheck" tag="property" attribute="name|widgetTarget" value="system">Square</property>
+        <property name="widgetaspectcheck" tag="property" attribute="name|widgetaspect" />
+        <property name="widgetaspectcheck">Poster</property>
         <controls>
             <control type="fixedlist" id="301">
                 <skinshortcuts>visibility</skinshortcuts>
@@ -1224,6 +1228,12 @@
                 <pagecontrol>60</pagecontrol>
                 <viewtype label="536">list</viewtype>
                 <include>ScrolltimeWidgetsList</include>
+                <include content="Def_Movement_Widgets">
+                    <param name="Banner" value="$PYTHON['true' if widgetaspectcheck in 'Banner' else 'false']"/>
+                    <param name="Thumbnail" value="$PYTHON['true' if widgetaspectcheck in 'Thumbnail' else 'false']"/>
+                    <param name="Fanart" value="$PYTHON['true' if widgetaspectcheck in 'Fanart' else 'false']"/>
+                    <param name="Square" value="$PYTHON['true' if widgetaspectcheck in 'Square' else 'false']"/>                   
+                </include>
                 <itemlayout height="325" width="222" condition="!String.IsEqual(Container(300).ListItem.Property(widgetaspect),Square) + ![String.IsEqual(Container(300).ListItem.Property(widgetaspect),Fanart) | String.IsEqual(Container(300).ListItem.Property(widgetaspect),Thumbnail)] + !String.IsEqual(Container(300).ListItem.Property(widget),system)">
                     <include content="include.widget.poster">
                         <param name="reflections" value="Skin.HasSetting(show.reflections)"/>
