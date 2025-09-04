@@ -97,8 +97,8 @@
                     <scrolltime>0</scrolltime>
                     <onup>9101</onup>
                     <ondown>9101</ondown>
-                    <onright condition="!ControlGroup(9101).HasFocus(100)">1500</onright>
-                    <onright condition="ControlGroup(9101).HasFocus(100)">1600</onright>
+                    <onright condition="!Control.IsVisible(30)">1500</onright>
+                    <onright condition="Control.IsVisible(30)">1600</onright>
                     <control type="button" id="95">
                         <description>General</description>
                         <include>DefSettingsButtonGradient</include>
@@ -141,7 +141,7 @@
                     <right>30</right>
                     <itemgap>0</itemgap>
                     <usecontrolcoords>true</usecontrolcoords>
-                    <visible>!ControlGroup(9101).HasFocus(100)</visible>
+                    <visible>!Control.IsVisible(30)</visible>
                     <control type="label">
                         <description>CPU Text</description>
                         <font>Tiny</font>
@@ -207,7 +207,7 @@
 			        <texturesliderbarfocus border="4" colordiffuse="Dark2">scrollbar/scrollv.png</texturesliderbarfocus>
 			        <orientation>vertical</orientation>
 			        <showonepage>false</showonepage>
-			        <animation effect="fade" start="100" end="0" time="400" condition="ControlGroup(9101).HasFocus(100) + !Container.Scrolling">Conditional</animation>
+			        <animation effect="fade" start="100" end="0" time="400" condition="Control.IsVisible(30) + !Container.Scrolling">Conditional</animation>
 				</control>
                 <control type="grouplist">
                     <left>480</left>
@@ -290,7 +290,7 @@
                         <font>Tiny</font>
                         <height>39</height>
                         <include>DefSettingsButton</include>
-                        <visible>ControlGroup(9101).HasFocus(99) + !String.IsEmpty(Control.GetLabel(13))</visible>
+                        <visible>!String.IsEmpty(Control.GetLabel(13))</visible>
                     </control>
                 </control>
 				<control type="scrollbar" id="1600">
@@ -305,12 +305,12 @@
 			        <texturesliderbarfocus border="4" colordiffuse="Dark2">scrollbar/scrollv.png</texturesliderbarfocus>
 			        <orientation>vertical</orientation>
 			        <showonepage>false</showonepage>
-			        <animation effect="fade" start="100" end="0" time="400" condition="!ControlGroup(9101).HasFocus(100) + !Container.Scrolling">Conditional</animation>
+			        <animation effect="fade" start="100" end="0" time="400" condition="!Control.IsVisible(30) + !Container.Scrolling">Conditional</animation>
 				</control>
                 <control type="textbox" id="30">
                     <left>480</left>
                     <top>150</top>
-                    <bottom>7</bottom>
+                    <bottom>10</bottom>
                     <right>38</right>
                     <font>TinyPlot</font>
                     <textcolor>PanelWhite100</textcolor>
