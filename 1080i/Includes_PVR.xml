@@ -215,7 +215,7 @@
                 <left>10</left>
                 <right>10</right>
                 <posy>370</posy>
-                <height>290</height>
+                <height>300</height>
                 <control type="label">
                     <top>8</top>
                     <aligny>center</aligny>
@@ -238,10 +238,10 @@
                     <top>126</top>
                     <bottom>25</bottom>
                     <align>justify</align>
-                    <font>Tiny</font>
+                    <font>TinyPlot</font>
                     <textcolor>Dark2</textcolor>
                     <selectedcolor>Dark2</selectedcolor>
-                    <label>$INFO[ListItem.Plot]</label>
+                    <label>[B]$INFO[ListItem.EpisodeName,,[CR]][/B]$INFO[ListItem.Plot]</label>
                 </control>
             </control>
         </control>
@@ -1549,8 +1549,8 @@
                 </focusedlayout>
             </control>
             <control type="group">
-                <top>690</top>
-                <height>175</height>
+                <top>702</top>
+                <height>170</height>
                 <left>70</left>
                 <right>70</right>
                 <control type="image">
@@ -1560,56 +1560,8 @@
                     <bottom>10</bottom>
                     <texture colordiffuse="Dark4" border="5">common/box.png</texture>
                 </control>
-                <control type="image">
-                    <fadetime>PosterFanartFadetime</fadetime>
-                    <right>30</right>
-                    <top>30</top>
-                    <bottom>30</bottom>
-                    <width>250</width>
-                    <aspectratio align="right">keep</aspectratio>
-                    <texture>$VAR[ChannelListEPGIconVar]</texture>
-                </control>
-                <control type="grouplist">
-                    <orientation>horizontal</orientation>
-                    <left>30</left>
-                    <right>30</right>
-                    <top>10</top>
-                    <align>left</align>
-                    <aligny>top</aligny>
-                    <width>1400</width>
-                    <control type="label">
-                        <width max="700">auto</width>
-                        <aligny>center</aligny>
-                        <height>64</height>
-                        <font>MediumBold</font>
-                        <textcolor>PanelWhite100</textcolor>
-                        <selectedcolor>PanelWhite100</selectedcolor>
-                        <label>[COLOR=$VAR[ColorHighlight]]$INFO[ListItem.StartTime]$INFO[ListItem.EndTime, - ,][/COLOR]$INFO[ListItem.Title,  ,]</label>
-                    </control>
-                    <control type="label">
-                        <visible>!String.IsEmpty(ListItem.Genre)</visible>
-                        <width>auto</width>
-                        <aligny>center</aligny>
-                        <height>64</height>
-                        <font>MediumBold</font>
-                        <textcolor>PanelWhite100</textcolor>
-                        <selectedcolor>PanelWhite100</selectedcolor>
-                        <label>     [COLOR=$VAR[ColorHighlight]]$LOCALIZE[515][/COLOR]$INFO[ListItem.Genre,  ,]</label>
-                    </control>
-                </control>
-                <control type="textbox">
-                    <left>30</left>
-                    <right>280</right>
-                    <top>70</top>
-                    <height>65</height>
-                    <align>left</align>
-                    <aligny>top</aligny>
-                    <font>Tiny</font>
-                    <textcolor>Dark2</textcolor>
-                    <selectedcolor>Dark2</selectedcolor>
-                    <label>$INFO[ListItem.Plot]</label>
-                </control>
-            </control>
+	            <include>PVRGuideChannelDetails</include>
+	        </control>    
             <control type="scrollbar" id="1631">
                 <include content="scrollbar_vertical">
                     <param name="scrollid" value="1631"/>
@@ -2216,7 +2168,68 @@
             </control>
         </control>
     </include>
-    
+
+	<include name="PVRGuideChannelDetails">
+		<param name="top" default="10" />
+		<param name="bottom" default="10" />
+		<param name="visible" default="true" />		
+		<definition>
+	        <control type="group">
+	            <top>$PARAM[top]</top>
+	            <bottom>$PARAM[bottom]</bottom>
+	            <left>30</left>
+	            <right>30</right>
+	            <visible>$PARAM[visible]</visible>
+	            <control type="group">
+	                <orientation>horizontal</orientation>
+	                <left>0</left>
+	                <right>240</right>
+	                <top>1</top>
+	                <control type="label">
+	                    <width max="710">auto</width>
+	                    <aligny>center</aligny>
+	                    <height>64</height>
+	                    <font>MediumBold</font>
+	                    <textcolor>PanelWhite100</textcolor>
+	                    <selectedcolor>PanelWhite100</selectedcolor>
+	                    <label>$INFO[ListItem.Title]</label>
+	                </control>
+	                <control type="label">
+	                    <visible>!String.IsEmpty(ListItem.Genre)</visible>
+	                    <width max="710">auto</width>
+	                    <aligny>center</aligny>
+	                    <align>right</align>
+	                    <right>0</right>
+	                    <height>64</height>
+	                    <font>MediumBold</font>
+	                    <textcolor>PanelWhite100</textcolor>
+	                    <selectedcolor>PanelWhite100</selectedcolor>
+	                    <label>$INFO[ListItem.Genre,, • ]$INFO[ListItem.StartTime]$INFO[ListItem.EndTime, - ,]</label>
+	                </control>
+	            </control>
+	            <control type="textbox">
+	                <top>59</top>
+	                <right>240</right>
+	                <height>75</height>
+	                <align>justify</align>
+	                <font>TinyPlot</font>
+	                <textcolor>PanelWhite70</textcolor>
+	                <selectedcolor>PanelWhite70</selectedcolor>
+	                <label>$INFO[ListItem.EpisodeName,,[CR]]$INFO[ListItem.Plot]</label>
+	            </control>
+	            <control type="image">
+	                <right>-15</right>
+	                <top>10</top>
+	                <width>240</width>
+	                <bottom>10</bottom>
+	                <aspectratio align="center" aligny="center">keep</aspectratio>
+	                <texture>$VAR[ChannelListEPGIconVar]</texture>
+	                <fadetime>PosterFanartFadetime</fadetime>
+	            </control>
+	        </control>		
+		</definition>
+	</include>
+        
     <include name="PVRGuideControlButton">
 		<param name="texture" />
 		<definition>

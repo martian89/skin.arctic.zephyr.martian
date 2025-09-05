@@ -26,58 +26,11 @@
                     <bottom>-8</bottom>
                     <texture colordiffuse="Panel" border="16">common/rounded-shadow8.png</texture>
                 </control>
-                <control type="group">
-                    <top>500</top>
-                    <bottom>10</bottom>
-                    <left>30</left>
-                    <right>30</right>
-                    <visible>!Skin.HasSetting(pvr.fullepg)</visible>
-                    <control type="group">
-                        <orientation>horizontal</orientation>
-                        <width>1460</width>
-                        <top>-9</top>
-                        <control type="label">
-                            <width max="710">auto</width>
-                            <aligny>center</aligny>
-                            <height>64</height>
-                            <font>MediumBold</font>
-                            <textcolor>PanelWhite100</textcolor>
-                            <selectedcolor>PanelWhite100</selectedcolor>
-                            <label>$INFO[ListItem.Title]</label>
-                        </control>
-                        <control type="label">
-                            <visible>!String.IsEmpty(ListItem.Genre)</visible>
-                            <width max="710">auto</width>
-                            <aligny>center</aligny>
-                            <align>right</align>
-                            <right>0</right>
-                            <height>64</height>
-                            <font>MediumBold</font>
-                            <textcolor>PanelWhite100</textcolor>
-                            <selectedcolor>PanelWhite100</selectedcolor>
-                            <label>$INFO[ListItem.Genre,, • ]$INFO[ListItem.StartTime]$INFO[ListItem.EndTime, - ,]</label>
-                        </control>
-                    </control>
-                    <control type="textbox">
-                        <top>49</top>
-                        <right>240</right>
-                        <height>75</height>
-                        <align>justify</align>
-                        <font>TinyPlot</font>
-                        <textcolor>PanelWhite70</textcolor>
-                        <selectedcolor>PanelWhite70</selectedcolor>
-                        <label>$INFO[ListItem.Plot]</label>
-                    </control>
-                    <control type="image">
-                        <right>-15</right>
-                        <top>-3</top>
-                        <width>240</width>
-                        <bottom>0</bottom>
-                        <aspectratio align="center" aligny="center">keep</aspectratio>
-                        <texture>$VAR[ChannelListEPGIconVar]</texture>
-                        <fadetime>PosterFanartFadetime</fadetime>
-                    </control>
-                </control>
+                <include content="PVRGuideChannelDetails">
+                	<param name="top" value="490"/>
+                	<param name="bottom" value="0" />
+               		<param name="visible" value="!Skin.HasSetting(pvr.fullepg)" />
+                 </include>
                 <control type="radiobutton" id="11441">
                     <top>11</top>
                     <right>0</right>
