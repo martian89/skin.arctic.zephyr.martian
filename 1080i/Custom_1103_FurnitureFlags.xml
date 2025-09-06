@@ -112,7 +112,6 @@
                     <align>left</align>
                     <include>DefContextButtonGradientSelect</include>
                     <label>$LOCALIZE[20074]</label>
-                    <visible>Skin.HasSetting(furniture.flagicons)</visible>
                     <selected>Skin.HasSetting(furniture.flags.mpaa)</selected>
                     <onclick>Skin.ToggleSetting(furniture.flags.mpaa)</onclick>
                 </control>
@@ -149,8 +148,9 @@
                     <align>left</align>
                     <include>DefContextButtonGradientSelect</include>
                     <label>38018</label>
-                    <selected>Skin.HasSetting(furniture.showuserrating)</selected>
+                    <selected>Skin.HasSetting(furniture.showuserrating)+ !Skin.HasSetting(userrating.override.rating)</selected>
                     <onclick>Skin.ToggleSetting(furniture.showuserrating)</onclick>
+                    <enable>!Skin.HasSetting(userrating.override.rating)</enable>
                 </control>
                 <control type="radiobutton" id="15">
                     <align>left</align>
@@ -208,8 +208,9 @@
                     <align>left</align>
                     <include>DefContextButtonGradientSelect</include>
                     <label>38018</label>
-                    <selected>Skin.HasSetting(furniture.showuserrating.audio)</selected>
+                    <selected>Skin.HasSetting(furniture.showuserrating.audio) + !Skin.HasSetting(userrating.override.rating)</selected>
                     <onclick>Skin.ToggleSetting(furniture.showuserrating.audio)</onclick>
+                    <enable>!Skin.HasSetting(userrating.override.rating)</enable>
                 </control>
             </control>
 

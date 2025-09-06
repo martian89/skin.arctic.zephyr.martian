@@ -1755,14 +1755,9 @@
     </variable>
     
     <variable name="Label_NowPlaying_MusicSubInfo">
-        <value condition="!String.IsEmpty(MusicPlayer.Artist) + !String.IsEmpty(MusicPlayer.Year)">$INFO[MusicPlayer.Artist]  •  $INFO[MusicPlayer.Year]$VAR[MusicPlayerRating,  •  ,]</value>
-        <value condition="!String.IsEmpty(MusicPlayer.Artist)">$INFO[MusicPlayer.Artist]$INFO[MusicPlayer.Year]$VAR[MusicPlayerRating,  •  ,]</value>
-        <value condition="!String.IsEmpty(MusicPlayer.Year)">$INFO[MusicPlayer.Year]$INFO[MusicPlayer.Year]$VAR[MusicPlayerRating,  •  ,]</value>
-    </variable>
-    
-    <variable name="MusicPlayerRating">
-        <value condition="!String.IsEmpty(MusicPlayer.UserRating) + Skin.HasSetting(userrating.stars.override.rating.stars) + Skin.HasSetting(userrating.override.rating)">$INFO[MusicPlayer.UserRating,,.0]</value>
-        <value condition="!String.IsEmpty(MusicPlayer.Rating) + !Skin.HasSetting(userrating.stars.override.rating.stars) + !Skin.HasSetting(userrating.override.rating)">$INFO[MusicPlayer.Rating]</value>
+        <value condition="!String.IsEmpty(MusicPlayer.Artist) + !String.IsEmpty(MusicPlayer.Year)">$INFO[MusicPlayer.Artist]  •  $INFO[MusicPlayer.Year]$VAR[RatingLabelMusicPlayer,  •  ,]</value>
+        <value condition="!String.IsEmpty(MusicPlayer.Artist)">$INFO[MusicPlayer.Artist]$INFO[MusicPlayer.Year]$VAR[RatingLabelMusicPlayer,  •  ,]</value>
+        <value condition="!String.IsEmpty(MusicPlayer.Year)">$INFO[MusicPlayer.Year]$INFO[MusicPlayer.Year]$VAR[RatingLabelMusicPlayer,  •  ,]</value>
     </variable>
     
     <variable name="Label_NowPlaying_Time_VideoSubInfo">
@@ -1817,12 +1812,6 @@
     <variable name="RatingLabelMusicPlayer">
         <value condition="!String.IsEmpty(MusicPlayer.UserRating) + Skin.HasSetting(userrating.override.rating)">$INFO[MusicPlayer.UserRating,,.0]</value>
         <value>$INFO[MusicPlayer.Rating]</value>
-    </variable>
-    
-    <variable name="SettingsRatingLabel">
-        <value condition="Skin.HasSetting(userrating.stars.override.rating.stars) + Skin.HasSetting(userrating.override.rating)">$LOCALIZE[31666]</value>        
-        <value condition="Skin.HasSetting(userrating.stars.override.rating.stars)">$LOCALIZE[33067]</value>
-        <value>$LOCALIZE[231]</value>
     </variable>
     
     <variable name="Label_ColorSetting">
