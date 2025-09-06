@@ -694,13 +694,12 @@
     </variable>
 
     <variable name="Def_Cast_List">
-        <value condition="$EXP[ShowTmdbCast] + String.IsEqual(ListItem.DBTYPE,episode)">plugin://plugin.video.themoviedb.helper/?info=cast&amp;tmdb_type=$VAR[Tmdb_Type]&amp;$VAR[Info_Query]$INFO[ListItem.Season,&amp;season=,]$INFO[ListItem.Episode,&amp;episode=,]&amp;limit=250&amp;nextpage=false&amp;cacheonly=true</value>
-        <value condition="$EXP[ShowTmdbCast] + String.IsEqual(ListItem.DBTYPE,tvshow)">plugin://plugin.video.themoviedb.helper/?info=cast&amp;tmdb_type=$VAR[Tmdb_Type]&amp;$VAR[Info_Query]&amp;aggregate=true&amp;limit=250&amp;nextpage=false&amp;cacheonly=true</value>
-        <value condition="$EXP[ShowTmdbCast]">plugin://plugin.video.themoviedb.helper/?info=cast&amp;tmdb_type=$VAR[Tmdb_Type]&amp;$VAR[Info_Query]&amp;limit=250&amp;nextpage=false&amp;cacheonly=true</value>
+        <value condition="$EXP[ShowTmdbCast] + String.IsEqual(ListItem.DBTYPE,tvshow)">plugin://plugin.video.themoviedb.helper/?info=cast&amp;tmdb_type=$VAR[Tmdb_Type]$VAR[Info_Query]&amp;aggregate=true&amp;limit=250&amp;nextpage=false&amp;cacheonly=true</value>
+        <value condition="$EXP[ShowTmdbCast]">plugin://plugin.video.themoviedb.helper/?info=cast&amp;tmdb_type=$VAR[Tmdb_Type]$VAR[Info_Query]&amp;limit=250&amp;nextpage=false&amp;cacheonly=true</value>
     </variable>
 
     <variable name="Def_Crew_List">
-        <value condition="$EXP[ShowTmdbCrew] + !String.IsEmpty(Window.Property(videocrew))">plugin://plugin.video.themoviedb.helper/?info=crew&amp;tmdb_type=$VAR[Tmdb_Type]&amp;$VAR[Info_Query]&amp;filter_key=job&amp;filter_value=Creator / Director / Producer / Screenplay / Writer / Original Music Composer / Novel / Storyboard / Comic Book&amp;exclude_key=job&amp;exclude_value=Associate / Assistant / Additional / Second / Supervising / Consulting / Standby / Artist / Effects Producer / Technical Director / Art Director&amp;limit=250&amp;nextpage=false&amp;cacheonly=true</value>
+        <value condition="$EXP[ShowTmdbCrew] + !String.IsEmpty(Window.Property(videocrew))">plugin://plugin.video.themoviedb.helper/?info=crew&amp;tmdb_type=$VAR[Tmdb_Type]$VAR[Info_Query]&amp;filter_key=job&amp;filter_value=Creator / Director / Producer / Screenplay / Writer / Original Music Composer / Novel / Storyboard / Comic Book&amp;exclude_key=job&amp;exclude_value=Associate / Assistant / Additional / Second / Supervising / Consulting / Standby / Artist / Effects Producer / Technical Director / Art Director&amp;limit=250&amp;nextpage=false&amp;cacheonly=true</value>
     </variable>
 
     <variable name="Def_Director_List">
@@ -713,7 +712,7 @@
     </variable>
 
     <variable name="Def_Similar_List">
-        <value condition="$EXP[ShowTmdbSimilar] + !String.IsEmpty(Window.Property(videosimilar))">plugin://plugin.video.themoviedb.helper?info=similar&amp;type=$VAR[Tmdb_Type]&amp;$VAR[Info_Query]&amp;nextpage=false&amp;cacheonly=true</value>
+        <value condition="$EXP[ShowTmdbSimilar] + !String.IsEmpty(Window.Property(videosimilar))">plugin://plugin.video.themoviedb.helper?info=similar&amp;type=$VAR[Tmdb_Type]$VAR[Info_Query]&amp;nextpage=false&amp;cacheonly=true</value>
     </variable>
 
     <variable name="Def_Actor_Image_List">
