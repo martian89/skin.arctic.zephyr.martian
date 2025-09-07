@@ -1805,11 +1805,11 @@
 
     <include name="Furniture_Home_Flags">
     	<control type="group">    	
-        	<visible>[Control.HasFocus(301) | ControlGroup(301).HasFocus] + Skin.HasSetting(home.showflags)</visible>
+        	<visible>[Control.HasFocus(301) | ControlGroup(301).HasFocus] + !Skin.HasSetting(furniture.flags) + !Skin.HasSetting(home.hideflags)</visible>
             <include>Animation.FurnitureVisible</include>
 	        <control type="group">
 	        	<visible>String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)</visible>
-	            <include content="Furniture_Flags_Include" condition="Skin.HasSetting(home.showflags)">
+	            <include content="Furniture_Flags_Include" condition="!Skin.HasSetting(furniture.flags) + !Skin.HasSetting(home.hideflags)">
 	                <param name="position_low" value="true" />
 	            </include>
 	        </control>
@@ -1826,7 +1826,7 @@
 		            <focusedlayout/>
 		            <content>$VAR[AlbumPath]</content>
 		        </control>
-                <include content="Furniture_Flags_Audio_Include" condition="Skin.HasSetting(home.showflags)">
+                <include content="Furniture_Flags_Audio_Include" condition="!Skin.HasSetting(furniture.flags) + !Skin.HasSetting(home.hideflags)">
                     <param name="position_low" value="true" />
                 </include>
             </control>
