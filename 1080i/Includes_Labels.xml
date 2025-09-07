@@ -1802,7 +1802,8 @@
     
     <variable name="RatingAndVotesLabelInfo">
         <value condition="!String.IsEmpty(ListItem.UserRating) + Skin.HasSetting(userrating.override.rating)">$INFO[ListItem.UserRating,,.0] ($LOCALIZE[38018])</value>
-        <value>$INFO[ListItem.RatingAndVotes]</value>
+        <value condition="!String.IsEmpty(ListItem.RatingAndVotes)">$INFO[ListItem.RatingAndVotes]</value>
+        <value>$INFO[Window(home).Property(TMDbHelper.ListItem.Rating)]$INFO[Window(home).Property(TMDbHelper.ListItem.Votes), (, $LOCALIZE[205])]</value>
     </variable>
     
     <variable name="RatingLabel9500">
