@@ -619,7 +619,7 @@
             <include content="def_left" condition="!$PARAM[position_low]">
                 <param name="left" value="-10" />
             </include>
-            <left>SidePad</left>
+            <left>70</left>
             <include content="def_top" condition="!$PARAM[position_low]">
                 <param name="top" value="72" />
             </include>
@@ -636,7 +636,7 @@
             <itemgap>0</itemgap>
             <usecontrolcoords>true</usecontrolcoords>
             <control type="group">
-                <visible>[[Container.Content(tvshows) | Container.Content(seasons) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)] + [!String.IsEmpty(ListItem.Property(TotalEpisodes)) | !String.IsEmpty(ListItem.Property(UnWatchedEpisodes))]] | ListItem.IsCollection | [!Skin.HasSetting(furniture.flagicons) + !String.IsEmpty(ListItem.VideoResolution)]</visible>
+                <visible>[[Container.Content(tvshows) | Container.Content(seasons) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)] + [[[!String.IsEmpty(ListItem.Property(TotalEpisodes)) | !String.IsEmpty(ListItem.Episode) | !String.IsEmpty(Window(home).Property(TMDbHelper.ListItem.TotalEpisodes)) | !String.IsEmpty(Window(home).Property(TMDbHelper.ListItem.Episode))] + !Skin.HasSetting(episodes.show.unwatched)] | [[!String.IsEmpty(ListItem.Property(UnWatchedEpisodes)) | !String.IsEmpty(Window(home).Property(TMDbHelper.ListItem.UnwatchedEpisodes))] + Skin.HasSetting(episodes.show.unwatched)]]] | ListItem.IsCollection | [!Skin.HasSetting(furniture.flagicons) + !String.IsEmpty(ListItem.VideoResolution)]</visible>
                 <centertop>50%</centertop>
                 <width>75</width>
                 <height>45</height>
@@ -948,7 +948,7 @@
             <include content="def_left" condition="!$PARAM[position_low]">
                 <param name="left" value="-10" />
             </include>
-            <left>SidePad</left>
+            <left>70</left>
             <include content="def_top" condition="!$PARAM[position_low]">
                 <param name="top" value="72" />
             </include>
@@ -965,7 +965,7 @@
             <itemgap>0</itemgap>
             <usecontrolcoords>true</usecontrolcoords>
             <control type="group">
-                <visible>[[Container.Content(tvshows) | Container.Content(seasons) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)] + [!String.IsEmpty(ListItem.Property(TotalEpisodes)) | !String.IsEmpty(ListItem.Property(UnWatchedEpisodes))]] | ListItem.IsCollection</visible>
+                <visible>[[Container.Content(tvshows) | Container.Content(seasons) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)] + [[[!String.IsEmpty(ListItem.Property(TotalEpisodes)) | !String.IsEmpty(ListItem.Episode) | !String.IsEmpty(Window(home).Property(TMDbHelper.ListItem.TotalEpisodes)) | !String.IsEmpty(Window(home).Property(TMDbHelper.ListItem.Episode))] + !Skin.HasSetting(episodes.show.unwatched)] | [[!String.IsEmpty(ListItem.Property(UnWatchedEpisodes)) | !String.IsEmpty(Window(home).Property(TMDbHelper.ListItem.UnwatchedEpisodes))] + Skin.HasSetting(episodes.show.unwatched)]]] | ListItem.IsCollection</visible>
                 <centertop>50%</centertop>
                 <width>75</width>
                 <height>45</height>
@@ -1276,7 +1276,7 @@
             <visible>![Skin.HasSetting(furniture.flagicons) + Skin.HasSetting(furniture.coloredicons)]</visible>
             <visible>String.IsEqual(Container(9500).ListItem.DBType,movie) | String.IsEqual(Container(9500).ListItem.DBType,episode) | String.IsEqual(Container(9500).ListItem.DBType,tvshow) | String.IsEqual(Container(9500).ListItem.DBType,season)</visible>
             <visible>!String.IsEqual(Container(9500).ListItem.Label,..)</visible>
-            <left>SidePad</left>
+            <left>70</left>
             <centerbottom>NavBarPad</centerbottom>
             <include content="def_right" condition="Skin.HasSetting(furniture.clock)">
                 <param name="right" value="SidePad" />
@@ -1560,7 +1560,7 @@
             <visible>Skin.HasSetting(furniture.flagicons) + Skin.HasSetting(furniture.coloredicons)</visible>
             <visible>String.IsEqual(Container(9500).ListItem.DBType,movie) | String.IsEqual(Container(9500).ListItem.DBType,episode) | String.IsEqual(Container(9500).ListItem.DBType,tvshow) | String.IsEqual(Container(9500).ListItem.DBType,season)</visible>
             <visible>!String.IsEqual(Container(9500).ListItem.Label,..)</visible>
-            <left>SidePad</left>
+            <left>70</left>
             <centerbottom>NavBarPad</centerbottom>
             <include content="def_right" condition="Skin.HasSetting(furniture.clock)">
                 <param name="right" value="SidePad" />

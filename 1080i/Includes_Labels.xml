@@ -597,6 +597,13 @@
         <value condition="!Skin.HasSetting(furniture.showimdb) + Skin.HasSetting(furniture.showtomatoesandmetacritics)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Metacritic_Rating),  •  MC ,%]$INFO[Window(Home).Property(TMDbHelper.ListItem.RottenTomatoes_Rating),  •  RT ,%]</value>
         <value condition="Skin.HasSetting(furniture.showimdb) + !Skin.HasSetting(furniture.showtomatoesandmetacritics)">$INFO[Window(Home).Property(TMDbHelper.ListItem.IMDb_Rating),  •  IMDb ,]</value>
     </variable>
+
+    <variable name="WidgetSublabelTotalEpisodes">
+    	<value condition="!String.IsEmpty(Container(301).ListItem.Property(TotalEpisodes))">$INFO[Container(301).ListItem.Property(TotalEpisodes)]</value>
+    	<value condition="!String.IsEmpty(Window(home).Property(TMDbHelper.ListItem.TotalEpisodes))">$INFO[Window(home).Property(TMDbHelper.ListItem.TotalEpisodes)]</value>
+    	<value condition="!String.IsEmpty(Container(301).ListItem.Episode)">$INFO[Container(301).ListItem.Episode]</value>
+    	<value condition="!String.IsEmpty(Window(home).Property(TMDbHelper.ListItem.Episode))">$INFO[Window(home).Property(TMDbHelper.ListItem.Episode)]</value>
+    </variable>
     
     <variable name="WidgetSublabelUnwatchedEpisodes">
     	<value condition="!String.IsEmpty(Container(301).ListItem.Property(UnwatchedEpisodes))">$INFO[Container(301).ListItem.Property(UnwatchedEpisodes)]</value>
@@ -620,15 +627,15 @@
         <value condition="String.IsEqual(Container(301).ListItem.DBType,episode) + Skin.HasSetting(NewTime) + !Integer.IsGreater(Container(301).ListItem.Duration(h),0)">$VAR[WidgetSublabelSeasonsEpisodes]$INFO[Container(301).ListItem.Premiered,,  •  ]$INFO[Container(301).ListItem.Duration(mins),,$LOCALIZE[31089]  •  ]$VAR[RatingLabel301]$VAR[RtMclabel]</value>
 
         <!-- Movies -->
-        <value condition="String.IsEqual(Container(301).ListItem.DBType,movie) + !Skin.HasSetting(NewTime) + !String.IsEqual(Container(301).ListItem.DBType,set)">$INFO[Container(301).ListItem.Year,,  •  ]$INFO[Container(301).ListItem.Duration(mins),, $LOCALIZE[31102]]$VAR[RatingLabel301,  •  ]$VAR[RtMclabel]</value>
-        <value condition="String.IsEqual(Container(301).ListItem.DBType,movie) + Skin.HasSetting(NewTime) + Integer.IsGreater(Container(301).ListItem.Duration(h),0)">$INFO[Container(301).ListItem.Year,,  •  ]$INFO[Container(301).ListItem.Duration(h),,$LOCALIZE[31088]] $INFO[Container(301).ListItem.Duration(mm),,$LOCALIZE[31089]]$VAR[RatingLabel301,  •  ]$VAR[RtMclabel]</value>
-        <value condition="String.IsEqual(Container(301).ListItem.DBType,movie) + Skin.HasSetting(NewTime) + !Integer.IsGreater(Container(301).ListItem.Duration(h),0)">$INFO[Container(301).ListItem.Year,,  •  ]$INFO[Container(301).ListItem.Duration(mins),,$LOCALIZE[31089]]$VAR[RatingLabel301,  •  ]$VAR[RtMclabel]</value>
+        <value condition="String.IsEqual(Container(301).ListItem.DBType,movie) + !Skin.HasSetting(NewTime) + !String.IsEqual(Container(301).ListItem.DBType,set)">$INFO[Container(301).ListItem.Year]$INFO[Container(301).ListItem.Duration(mins),  •  , $LOCALIZE[31102]]$VAR[RatingLabel301,  •  ]$VAR[RtMclabel]</value>
+        <value condition="String.IsEqual(Container(301).ListItem.DBType,movie) + Skin.HasSetting(NewTime) + Integer.IsGreater(Container(301).ListItem.Duration(h),0)">$INFO[Container(301).ListItem.Year]$INFO[Container(301).ListItem.Duration(h),  •  ,$LOCALIZE[31088]]$INFO[Container(301).ListItem.Duration(mm), ,$LOCALIZE[31089]]$VAR[RatingLabel301,  •  ]$VAR[RtMclabel]</value>
+        <value condition="String.IsEqual(Container(301).ListItem.DBType,movie) + Skin.HasSetting(NewTime) + !Integer.IsGreater(Container(301).ListItem.Duration(h),0)">$INFO[Container(301).ListItem.Year]$INFO[Container(301).ListItem.Duration(mins),  •  ,$LOCALIZE[31089]]$VAR[RatingLabel301,  •  ]$VAR[RtMclabel]</value>
 
         <!-- Sets -->
-        <value condition="String.IsEqual(Container(301).ListItem.DBType,set) + !Skin.HasSetting(NewTime)">$INFO[Container(301).ListItem.Year,,  •  ]$INFO[Container(44321).NumItems,, $LOCALIZE[342]]$VAR[RatingLabel301,  •  ]$VAR[RtMclabel]</value>
+        <value condition="String.IsEqual(Container(301).ListItem.DBType,set)">$INFO[Container(301).ListItem.Year,,  •  ]$INFO[Container(44321).NumItems,, $LOCALIZE[342]]$VAR[RatingLabel301,  •  ]$VAR[RtMclabel]</value>
         
         <!-- Tv Shows -->
-        <value condition="String.IsEqual(Container(301).ListItem.DBType,tvshow)">$INFO[Container(301).ListItem.Episode,, $LOCALIZE[20360]]$VAR[WidgetSublabelUnwatchedEpisodes,  •  , $LOCALIZE[16101]]$VAR[RatingLabel301,  •  ]$VAR[RtMclabel]</value>
+        <value condition="String.IsEqual(Container(301).ListItem.DBType,tvshow)">$VAR[WidgetSublabelTotalEpisodes,, $LOCALIZE[20360]]$VAR[WidgetSublabelUnwatchedEpisodes,  •  , $LOCALIZE[16101]]$VAR[RatingLabel301,  •  ]$VAR[RtMclabel]</value>
 
         <!-- Addons -->
         <value condition="!String.IsEmpty(Container(301).ListItem.AddonDescription)">$INFO[Container(301).ListItem.AddonVersion,v]</value>
@@ -696,7 +703,11 @@
 
     <variable name="HDSD">
         <value condition="[Container.Content(tvshows) | Container.Content(seasons) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)] + !String.IsEmpty(ListItem.Property(TotalEpisodes)) + !Skin.HasSetting(episodes.show.unwatched)">$INFO[ListItem.Property(TotalEpisodes)]</value>
+        <value condition="[Container.Content(tvshows) | Container.Content(seasons) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)] + !String.IsEmpty(Window(home).Property(TMDbHelper.ListItem.TotalEpisodes)) + !Skin.HasSetting(episodes.show.unwatched)">$INFO[Window(home).Property(TMDbHelper.ListItem.TotalEpisodes)]</value>
+        <value condition="[Container.Content(tvshows) | Container.Content(seasons) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)] + !String.IsEmpty(ListItem.Episode) + !Skin.HasSetting(episodes.show.unwatched)">$INFO[ListItem.Episode]</value>
+        <value condition="[Container.Content(tvshows) | Container.Content(seasons) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)] + !String.IsEmpty(Window(home).Property(TMDbHelper.ListItem.Episode)) + !Skin.HasSetting(episodes.show.unwatched)">$INFO[Window(home).Property(TMDbHelper.ListItem.Episode)]</value>
         <value condition="[Container.Content(tvshows) | Container.Content(seasons) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)] + !String.IsEmpty(ListItem.Property(UnWatchedEpisodes)) + Skin.HasSetting(episodes.show.unwatched)">$INFO[ListItem.Property(UnWatchedEpisodes)]</value>
+        <value condition="[Container.Content(tvshows) | Container.Content(seasons) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)] + !String.IsEmpty(Window(home).Property(TMDbHelper.ListItem.UnwatchedEpisodes)) + Skin.HasSetting(episodes.show.unwatched)">$INFO[Window(home).Property(TMDbHelper.ListItem.UnwatchedEpisodes)]</value>
         <value condition="String.IsEqual(ListItem.VideoResolution,4K) | String.IsEqual(ListItem.VideoResolution,8K) | [VideoPlayer.isFullscreen + [String.IsEqual(VideoPlayer.VideoResolution,4K) | String.IsEqual(VideoPlayer.VideoResolution,8K)]]">UHD</value>
         <value condition="Integer.IsGreaterOrEqual(ListItem.VideoResolution,720) | [VideoPlayer.isFullscreen + Integer.IsGreaterOrEqual(VideoPlayer.VideoResolution,720)]">HD</value>
         <value condition="!String.IsEmpty(ListItem.VideoResolution) | [VideoPlayer.isFullscreen + !String.IsEmpty(VideoPlayer.VideoResolution)]">SD</value>
