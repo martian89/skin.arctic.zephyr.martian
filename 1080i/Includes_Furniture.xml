@@ -604,6 +604,7 @@
     
     <include name="Furniture_Flags">
         <control type="group">
+    		<visible>Container.Content(movies) | Container.Content(files) | Container.Content(musicvideos) | Container.Content(episodes) | Container.Content(tvshows) | Container.Content(sets) | Container.Content(seasons)</visible>
             <include>Animation.FurnitureVisible</include>
             <include content="Furniture_Flags_Include" condition="!Skin.HasSetting(furniture.flags)">
                 <param name="position_low" value="true" />
@@ -614,7 +615,6 @@
     <include name="Furniture_Flags_Include">
         <control type="grouplist">
             <visible>![Skin.HasSetting(furniture.flagicons) + Skin.HasSetting(furniture.coloredicons)]</visible>
-            <visible>Container.Content(movies) | Container.Content(files) | Container.Content(musicvideos) | Container.Content(episodes) | Container.Content(tvshows) | Container.Content(sets) | Container.Content(seasons)</visible>
             <visible>!String.IsEqual(ListItem.Label,..)</visible>
             <include content="def_left" condition="!$PARAM[position_low]">
                 <param name="left" value="-10" />
@@ -944,7 +944,6 @@
         </control>
         <control type="grouplist">
             <visible>Skin.HasSetting(furniture.flagicons) + Skin.HasSetting(furniture.coloredicons)</visible>
-            <visible>Container.Content(movies) | Container.Content(files) | Container.Content(musicvideos) | Container.Content(episodes) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons)</visible>
             <visible>!String.IsEqual(ListItem.Label,..)</visible>
             <include content="def_left" condition="!$PARAM[position_low]">
                 <param name="left" value="-10" />
@@ -1804,6 +1803,36 @@
         </control>
     </include>
 
+    <include name="Furniture_Home_Flags">
+    	<control type="group">    	
+        	<visible>[Control.HasFocus(301) | ControlGroup(301).HasFocus] + Skin.HasSetting(home.showflags)</visible>
+            <include>Animation.FurnitureVisible</include>
+	        <control type="group">
+	        	<visible>String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)</visible>
+	            <include content="Furniture_Flags_Include" condition="Skin.HasSetting(home.showflags)">
+	                <param name="position_low" value="true" />
+	            </include>
+	        </control>
+            <control type="group">
+                <visible>String.IsEqual(ListItem.DBType,album) | String.IsEqual(ListItem.DBType,song)</visible>
+        		<!-- Fakelist Container for Album Count -->
+		        <control type="list" id="5014">
+		            <visible>String.IsEqual(ListItem.DBType,album)</visible>
+		            <top>-3000</top>
+		            <left>-3000</left>
+		            <width>1</width>
+		            <height>1</height>
+		            <itemlayout/>
+		            <focusedlayout/>
+		            <content>$VAR[AlbumPath]</content>
+		        </control>
+                <include content="Furniture_Flags_Audio_Include" condition="Skin.HasSetting(home.showflags)">
+                    <param name="position_low" value="true" />
+                </include>
+            </control>
+        </control>
+    </include>
+    
     <variable name="HeaderIcon">
         <value condition="Player.Muted">special://skin/extras/icons/mute.png</value>
         <value condition="Window.IsVisible(DialogButtonMenu.xml)">special://skin/extras/icons/power.png</value>
@@ -2457,6 +2486,7 @@
             <content>$VAR[AlbumPath]</content>
         </control>
         <control type="group">
+            <visible>Container.Content(songs) | Container.Content(albums)</visible>
             <include>Animation.FurnitureVisible</include>
             <include content="Furniture_Flags_Audio_Include" condition="!Skin.HasSetting(furniture.flags)">
                 <param name="position_low" value="true" />
@@ -2467,7 +2497,6 @@
     <include name="Furniture_Flags_Audio_Include">
         <control type="grouplist">
             <visible>![Skin.HasSetting(furniture.flagicons) + Skin.HasSetting(furniture.coloredicons)]</visible>
-            <visible>Container.Content(songs) | Container.Content(albums)</visible>
             <visible>!Control.HasFocus(9501)</visible>
             <visible>!Control.HasFocus(160)</visible>
             <visible>!String.IsEqual(ListItem.Label,..)</visible>
@@ -2689,7 +2718,6 @@
         </control>
         <control type="grouplist">
             <visible>Skin.HasSetting(furniture.flagicons) + Skin.HasSetting(furniture.coloredicons)</visible>
-            <visible>Container.Content(songs) | Container.Content(albums)</visible>
             <visible>!Control.HasFocus(9501)</visible>
             <visible>!Control.HasFocus(160)</visible>
             <visible>!String.IsEqual(ListItem.Label,..)</visible>
