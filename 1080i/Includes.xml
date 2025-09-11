@@ -398,7 +398,7 @@
     <expression name="Visualisation_ShowSlideshow">!Skin.HasSetting(musicosd.hidefanart) + System.AddonIsEnabled(script.artistslideshow) + !Skin.HasSetting(ArtistSlideShow.Disabled)</expression>
     <expression name="Visualisation_AnimateFanart">!Skin.HasSetting(musicosd.hidefanart) + Skin.HasSetting(ArtistSlideshow.Animate)</expression>
 	
-	<variable name="MediaFlagsDir">
+	<variable name="MediaFlagsPath">
 		<value condition="Skin.HasSetting(furniture.coloredicons)">flags/color</value>
 		<value>flags/monochrome</value>
 	</variable>
@@ -1359,30 +1359,6 @@
         <bottom>33</bottom>
         <itemgap>28</itemgap>
     </include>
-
-    <variable name="AudioCodecVar">
-        <value condition="$EXP[IsAudioCodecATMOS]">atmos</value>
-        <value condition="$EXP[IsAudioCodecDTSX]">dts-x</value>
-        <value condition="VideoPlayer.IsFullscreen">$INFO[VideoPlayer.AudioCodec]</value>
-        <value>$INFO[ListItem.AudioCodec]</value>
-    </variable>
-
-    <variable name="AudioCodecVarHub">
-        <value condition="$EXP[IsAudioCodecATMOSHub]">atmos</value>
-        <value condition="$EXP[IsAudioCodecDTSXHub]">dts-x</value>
-        <value>$INFO[Container(9500).ListItem.AudioCodec]</value>
-    </variable>
-
-    <variable name="VideoHDRTypeVar">
-        <value condition="$EXP[IsVideoHDR10Plus]">hdr10plus</value>
-        <value condition="VideoPlayer.IsFullscreen">$INFO[VideoPlayer.HdrType]</value>
-        <value>$INFO[ListItem.HdrType]</value>
-    </variable>
-
-    <variable name="VideoHDRTypeVarHub">
-        <value condition="$EXP[IsVideoHDR10PlusHub]">hdr10plus</value>
-        <value>$INFO[Container(9500).ListItem.HdrType]</value>
-    </variable>
 
     <include name="DialogConfirmButtons">
         <control type="button" id="12">

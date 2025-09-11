@@ -472,4 +472,45 @@
         <value condition="String.IsEqual(ListItem.DBType,tvshow)">DefaultTVShowTitle.png</value>
     </variable>
 
+    <variable name="AudioCodecImage">
+        <value condition="$EXP[IsAudioCodecATMOS]">$VAR[MediaFlagsPath]/audio/atmos.png</value>
+        <value condition="$EXP[IsAudioCodecDTSX]">$VAR[MediaFlagsPath]/audio/dtshd_ma_x.png</value>
+        <value condition="String.IsEqual(ListItem.AudioCodec,eac3_ddp_atmos) | [VideoPlayer.IsFullscreen + String.IsEqual(VideoPlayer.AudioCodec,eac3_ddp_atmos)] | [Window.IsActive(visualisation) + String.IsEqual(MusicPlayer.Codec,eac3_ddp_atmos)]">$VAR[MediaFlagsPath]/audio/atmos.png</value>
+        <value condition="String.IsEqual(ListItem.AudioCodec,truehd_atmos) | [VideoPlayer.IsFullscreen + String.IsEqual(VideoPlayer.AudioCodec,truehd_atmos)] | [Window.IsActive(visualisation) + String.IsEqual(MusicPlayer.Codec,truehd_atmos)]">$VAR[MediaFlagsPath]/audio/atmos.png</value>
+        <value condition="String.IsEqual(ListItem.AudioCodec,aac_latm) | [VideoPlayer.IsFullscreen + String.IsEqual(VideoPlayer.AudioCodec,aac_latm)] | [Window.IsActive(visualisation) + String.IsEqual(MusicPlayer.Codec,aac_latm)]">$VAR[MediaFlagsPath]/audio/aac.png</value>
+        <value condition="String.IsEqual(ListItem.AudioCodec,aac_lc) | [VideoPlayer.IsFullscreen + String.IsEqual(VideoPlayer.AudioCodec,aac_lc)] | [Window.IsActive(visualisation) + String.IsEqual(MusicPlayer.Codec,aac_lc)]">$VAR[MediaFlagsPath]/audio/aac.png</value>
+        <value condition="String.IsEqual(ListItem.AudioCodec,he_aac) | [VideoPlayer.IsFullscreen + String.IsEqual(VideoPlayer.AudioCodec,he_aac)] | [Window.IsActive(visualisation) + String.IsEqual(MusicPlayer.Codec,he_aac)]">$VAR[MediaFlagsPath]/audio/aac.png</value>
+        <value condition="String.IsEqual(ListItem.AudioCodec,he_aac_v2) | [VideoPlayer.IsFullscreen + String.IsEqual(VideoPlayer.AudioCodec,he_aac_v2)] | [Window.IsActive(visualisation) + String.IsEqual(MusicPlayer.Codec,he_aac_v2)]">$VAR[MediaFlagsPath]/audio/aac.png</value>
+        <value condition="String.IsEqual(ListItem.AudioCodec,aac_ssr) | [VideoPlayer.IsFullscreen + String.IsEqual(VideoPlayer.AudioCodec,aac_ssr)] | [Window.IsActive(visualisation) + String.IsEqual(MusicPlayer.Codec,aac_ssr)]">$VAR[MediaFlagsPath]/audio/aac.png</value>
+        <value condition="String.IsEqual(ListItem.AudioCodec,aac_ltp) | [VideoPlayer.IsFullscreen + String.IsEqual(VideoPlayer.AudioCodec,aac_ltp)] | [Window.IsActive(visualisation) + String.IsEqual(MusicPlayer.Codec,aac_ltp)]">$VAR[MediaFlagsPath]/audio/aac.png</value>
+        <value condition="!VideoPlayer.IsFullscreen + !Window.IsActive(visualisation) + !String.IsEmpty(ListItem.AudioCodec)">$VAR[MediaFlagsPath]$INFO[ListItem.AudioCodec,/audio/,.png]</value>
+        <value condition="VideoPlayer.IsFullscreen + !String.IsEmpty(VideoPlayer.AudioCodec)">$VAR[MediaFlagsPath]$INFO[VideoPlayer.AudioCodec,/audio/,.png]</value>
+        <value condition="Window.IsActive(visualisation) + !String.IsEmpty(MusicPlayer.Codec)">$VAR[MediaFlagsPath]$INFO[MusicPlayer.Codec,/audio/,.png]</value>
+    </variable>
+
+    <variable name="AudioCodecImageHub">
+        <value condition="$EXP[IsAudioCodecATMOSHub]">$VAR[MediaFlagsPath]/audio/atmos.png</value>
+        <value condition="$EXP[IsAudioCodecDTSXHub]">$VAR[MediaFlagsPath]/audio/dtshd_ma_x.png</value>
+        <value condition="String.IsEqual(Container(9500).ListItem.AudioCodec,eac3_ddp_atmos)">$VAR[MediaFlagsPath]/audio/atmos.png</value>
+        <value condition="String.IsEqual(Container(9500).ListItem.AudioCodec,truehd_atmos)">$VAR[MediaFlagsPath]/audio/atmos.png</value>
+        <value condition="String.IsEqual(Container(9500).ListItem.AudioCodec,aac_latm)">$VAR[MediaFlagsPath]/audio/aac.png</value>
+        <value condition="String.IsEqual(Container(9500).ListItem.AudioCodec,aac_lc)">$VAR[MediaFlagsPath]/audio/aac.png</value>
+        <value condition="String.IsEqual(Container(9500).ListItem.AudioCodec,he_aac)">$VAR[MediaFlagsPath]/audio/aac.png</value>
+        <value condition="String.IsEqual(Container(9500).ListItem.AudioCodec,he_aac_v2)">$VAR[MediaFlagsPath]/audio/aac.png</value>
+        <value condition="String.IsEqual(Container(9500).ListItem.AudioCodec,aac_ssr)">$VAR[MediaFlagsPath]/audio/aac.png</value>
+        <value condition="String.IsEqual(Container(9500).ListItem.AudioCodec,aac_ltp)">$VAR[MediaFlagsPath]/audio/aac.png</value>
+        <value condition="!String.IsEmpty(Container(9500).ListItem.AudioCodec)">$VAR[MediaFlagsPath]$INFO[Container(9500).ListItem.AudioCodec,/audio/,.png]</value>
+    </variable>
+
+    <variable name="VideoHDRTypeImage">
+        <value condition="$EXP[IsVideoHDR10Plus]">$VAR[MediaFlagsPath]/other/hdr10plus.png</value>
+        <value condition="!VideoPlayer.IsFullscreen + !String.IsEmpty(ListItem.HdrType)">$VAR[MediaFlagsPath]$INFO[ListItem.HdrType,/other/,.png]</value>
+        <value condition="VideoPlayer.IsFullscreen + !String.IsEmpty(VideoPlayer.HdrType)">$VAR[MediaFlagsPath]$INFO[VideoPlayer.HdrType,/other/,.png]</value>
+    </variable>
+
+    <variable name="VideoHDRTypeImageHub">
+        <value condition="$EXP[IsVideoHDR10PlusHub]">$VAR[MediaFlagsPath]/other/hdr10plus.png</value>
+        <value condition="Container(9500).ListItem.HdrType">$VAR[MediaFlagsPath]$INFO[Container(9500).ListItem.HdrType,/other/,.png]</value>
+    </variable>
+
 </includes>
