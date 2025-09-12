@@ -2694,13 +2694,24 @@
                 <visible>!String.IsEmpty(ListItem.Duration) + [Control.IsVisible(500) | Control.IsVisible(503) | Control.IsVisible(51)]</visible>
             </control>
             <control type="label">
+                <visible>!Skin.HasSetting(furniture.flagicons) + Skin.HasSetting(thumbnails.moreinfos) + !String.IsEqual(ListItem.DBType,album)</visible>
+                <width>auto</width>
+                <centertop>50%</centertop>
+                <height>64</height>
+                <align>left</align>
+                <aligny>center</aligny>
+                <label>•</label>
+                <font>Flag</font>
+                <textcolor>Dark1</textcolor>
+            </control>
+            <control type="label">
                 <visible>Skin.HasSetting(thumbnails.moreinfos) + !String.IsEqual(ListItem.DBType,album)</visible>
                 <width>auto</width>
                 <centertop>50%</centertop>
                 <height>64</height>
                 <align>left</align>
                 <aligny>center</aligny>
-                <label>$INFO[ListItem.TrackNumber,•  Track #,  ]</label>
+                <label>$INFO[ListItem.TrackNumber,  Track #,  ]</label>
                 <font>Flag</font>
                 <textcolor>Dark1</textcolor>
             </control>
@@ -2878,7 +2889,7 @@
                 <height>64</height>
                 <align>left</align>
                 <aligny>center</aligny>
-                <label>$INFO[ListItem.TrackNumber,•  Track #,  ]</label>
+                <label>$INFO[ListItem.TrackNumber,  Track #,  ]</label>
                 <font>Flag</font>
                 <textcolor>Dark1</textcolor>
             </control>
