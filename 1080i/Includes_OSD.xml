@@ -3654,7 +3654,7 @@
                 <control type="image">
                     <height>42</height> 
                     <aspectratio>keep</aspectratio>
-                    <texture colordiffuse="$VAR[OSDPanelWhite70]">flags/monochrome/other/bit.png</texture>
+                    <texture colordiffuse="$VAR[OSDPanelWhite70]">flags/monochrome/other/kbps.png</texture>
                     <aspectratio>keep</aspectratio>
                 </control>
             </control>
@@ -3678,6 +3678,29 @@
                     <height>42</height>
                     <aspectratio>keep</aspectratio>
                     <texture colordiffuse="$VAR[OSDPanelWhite70]">flags/monochrome/other/khz.png</texture>
+                    <aspectratio>keep</aspectratio>
+                </control>
+            </control>
+            <control type="grouplist">
+                <width min="20" max="70">auto</width>
+                <height>64</height>
+                <orientation>vertical</orientation>
+                <centertop>55%</centertop>
+                <align>center</align>
+                <itemgap>-15</itemgap>
+                <visible>Skin.HasSetting(furniture.flagicons) + !String.IsEmpty(MusicPlayer.BitsPerSample) + !Skin.HasSetting(musicosd.hideflags)</visible>
+                <control type="label">
+                    <height>28</height>
+                    <align>center</align>
+                    <aligny>center</aligny>
+                    <label>$INFO[MusicPlayer.BitsPerSample]</label>
+                    <font>Hint</font>
+                    <textcolor>$VAR[OSDPanelWhite70]</textcolor>
+                </control>
+                <control type="image">
+                    <height>42</height>
+                    <aspectratio>keep</aspectratio>
+                    <texture colordiffuse="$VAR[OSDPanelWhite70]">flags/monochrome/other/bit.png</texture>
                     <aspectratio>keep</aspectratio>
                 </control>
             </control>
