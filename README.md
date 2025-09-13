@@ -20,7 +20,7 @@ Instructions:
 1. Enable "Unknown Sources" in Kodi Settings > System > Add-ons
 2. Enable "Update official add-ons from: Any repositories" in Kodi Settings > System > Add-ons
 3. Install the repository using either the zip or file manager source linked above
-4. Install the latest version of Arctic: Zephyr (martin) from this repository
+4. Install the latest version of Arctic: Zephyr (martian) from this repository
 
 ## License 
 
