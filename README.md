@@ -18,9 +18,8 @@ https://martian89.github.io/repository.martian/repository.martian-1.0.0.zip
 Instructions:
 
 1. Enable "Unknown Sources" in Kodi Settings > System > Add-ons
-2. Enable "Update official add-ons from: Any repositories" in Kodi Settings > System > Add-ons
-3. Install the repository using either the zip or file manager source linked above
-4. Install the latest version of Arctic: Zephyr (martian) from this repository
+2. Install the repository using either the zip or file manager source linked above
+3. Install the latest version of Arctic: Zephyr (martian) from this repository
 
 ## License 
 
