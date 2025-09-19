@@ -2923,18 +2923,18 @@
                  <textcolor>$VAR[ColorIndicatorBackgroundLabel]</textcolor>
                  <selectedcolor>$VAR[ColorIndicatorBackgroundLabel]</selectedcolor>
                  <animation effect="rotate" center="auto" time="0" end="-45" condition="true" loop="false">Conditional</animation>
-                 <visible>!ListItem.IsPlaying</visible>
+                 <visible>!ListItem.IsPlaying + [[$EXP[IsInProgress] + !Skin.HasSetting(hide.markers.inprogress)] | [$EXP[IsUnwatched] + [$EXP[IsNewMovie] | $EXP[IsNewTVShow] | $EXP[IsNewEpisode]] + !Skin.HasSetting(hide.markers.newcontent)] | [ListItem.HasVideoVersions + !Skin.HasSetting(hide.markers.versions)] | [ListItem.HasVideoExtras + !Skin.HasSetting(hide.markers.extras)]]</visible>
             </control>
             <control type="label">
                  <right>-8</right>
                  <top>8</top>
                  <align>center</align>
-                 <label>&#62811;</label>
+                 <label>$VAR[IndicatorFlagLabelIsPlaying]</label>
                  <width>100</width>
                  <font>SymbolPoster</font>
                  <textcolor>$VAR[ColorIndicatorBackgroundIsPlayingIcon]</textcolor>
                  <selectedcolor>$VAR[ColorIndicatorBackgroundIsPlayingIcon]</selectedcolor>
-                 <visible>ListItem.IsPlaying + !Skin.HasSetting(hide.markers.isplaying)</visible>
+                 <visible>[ListItem.IsPlaying + !Skin.HasSetting(hide.markers.isplaying)] | ![$EXP[IsInProgress] + !Skin.HasSetting(hide.markers.inprogress)] + ![$EXP[IsUnwatched] + [$EXP[IsNewMovie] | $EXP[IsNewTVShow] | $EXP[IsNewEpisode]] + !Skin.HasSetting(hide.markers.newcontent)] + ![ListItem.HasVideoVersions + !Skin.HasSetting(hide.markers.versions)] + ![ListItem.HasVideoExtras + !Skin.HasSetting(hide.markers.extras)] + !String.IsEmpty(ListItem.DBID) + !String.IsEmpty(ListItem.Property(Item.Info)) + !Skin.HasSetting(hide.markers.library)</visible>
             </control>
         </control>
         </definition>
@@ -3031,18 +3031,18 @@
                  <textcolor>$VAR[ColorIndicatorBackgroundLabel]</textcolor>
                  <selectedcolor>$VAR[ColorIndicatorBackgroundLabel]</selectedcolor>
                  <animation effect="rotate" center="auto" time="0" end="-45" condition="true" loop="false">Conditional</animation>
-                 <visible>!Container(301).ListItem.IsPlaying</visible>
+                 <visible>!Container(301).ListItem.IsPlaying + [[$EXP[IsInProgress301] + !Skin.HasSetting(hide.markers.inprogress)] | [$EXP[IsUnwatched301] + [$EXP[IsNewMovie301] | $EXP[IsNewTVShow301] | $EXP[IsNewEpisode301]] + !Skin.HasSetting(hide.markers.newcontent)] | [Container(301).ListItem.HasVideoVersions + !Skin.HasSetting(hide.markers.versions)] | [Container(301).ListItem.HasVideoExtras + !Skin.HasSetting(hide.markers.extras)]]</visible>
             </control>
             <control type="label">
                  <right>-8</right>
                  <top>8</top>
                  <align>center</align>
-                 <label>&#62811;</label>
+                 <label>$VAR[IndicatorFlagLabelIsPlaying301]</label>
                  <width>100</width>
                  <font>SymbolPoster</font>
                  <textcolor>$VAR[ColorIndicatorBackgroundIsPlayingIcon]</textcolor>
                  <selectedcolor>$VAR[ColorIndicatorBackgroundIsPlayingIcon]</selectedcolor>
-                 <visible>Container(301).ListItem.IsPlaying + !Skin.HasSetting(hide.markers.isplaying)</visible>
+                 <visible>[Container(301).ListItem.IsPlaying + !Skin.HasSetting(hide.markers.isplaying)] | ![$EXP[IsInProgress301] + !Skin.HasSetting(hide.markers.inprogress)] + ![$EXP[IsUnwatched301] + [$EXP[IsNewMovie301] | $EXP[IsNewTVShow301] | $EXP[IsNewEpisode301]] + !Skin.HasSetting(hide.markers.newcontent)] + ![Container(301).ListItem.HasVideoVersions + !Skin.HasSetting(hide.markers.versions)] + ![Container(301).ListItem.HasVideoExtras + !Skin.HasSetting(hide.markers.extras)] + !String.IsEmpty(Container(301).ListItem.DBID) + !String.IsEmpty(Container(301).ListItem.Property(Item.Info)) + !Skin.HasSetting(hide.markers.library)</visible>
             </control>            
         </control>
         </definition>
