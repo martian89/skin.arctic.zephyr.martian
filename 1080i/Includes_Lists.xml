@@ -151,6 +151,7 @@
         <param name="labeltwovisible" default="true"/>
         <param name="issets" value="$PARAM[issets]" default="false"/>
         <param name="includecontent" default="true"/>
+        <param name="storageicon" default="!String.IsEmpty(ListItem.DBID)"/>
         
         <definition>
 			<control type="group"> 
@@ -252,10 +253,12 @@
 	                            <param name="fallbackpicture" value="$PARAM[fallbackpicture]"/>
 	                            <param name="poster" value="true"/>
 	                            <param name="thumb" value="false"/>
+                                <param name="storageicon" value="$PARAM[storageicon]"/>
 	                        </include>
 	                        <include content="DefExtendedInfoSetsContentWIP" condition="$PARAM[issets]">
 	                            <param name="aspect" value="$PARAM[aspect]" default="scale"/>
 	                            <param name="fallbackpicture" value="$PARAM[fallbackpicture]"/>
+                                <param name="storageicon" value="$PARAM[storageicon]"/>
 	                        </include>
 	                    </control>
 	                </itemlayout>
@@ -275,6 +278,7 @@
 	                            <param name="labeltwoleft" value="$PARAM[labeltwoleft]"/>
 	                            <param name="poster" value="true"/>
 	                            <param name="thumb" value="false"/>
+                                <param name="storageicon" value="$PARAM[storageicon]"/>
 	                        </include>
 	                        <include content="DefExtendedInfoFocusSetsContentWIP" condition="$PARAM[issets]">
 	                            <param name="fallbackpicture" value="$PARAM[fallbackpicture]"/>
@@ -286,6 +290,7 @@
 	                            <param name="labeltwovisible" value="$PARAM[labeltwovisible]"/>
 	                            <param name="labeltwobottom" value="$PARAM[labeltwobottom]"/>
 	                            <param name="labeltwoleft" value="$PARAM[labeltwoleft]"/>
+                                <param name="storageicon" value="$PARAM[storageicon]"/>
 	                        </include>
 	                    </control>
 	                </focusedlayout>
@@ -421,7 +426,6 @@
 	                        <include content="DefExtendedInfoItemContentWIP">
 	                            <param name="aspect" value="$PARAM[aspect]" default="scale"/>
 	                            <param name="fallbackpicture" value="$PARAM[fallbackpicture]"/>
-	                            <param name="storageicon" value="$PARAM[storageicon]"/>
 	                        </include>
 	                    </control>
 	                </itemlayout>
@@ -439,7 +443,6 @@
 	                            <param name="labeltwovisible" value="$PARAM[labeltwovisible]"/>
 	                            <param name="labeltwobottom" value="$PARAM[labeltwobottom]"/>
 	                            <param name="labeltwoleft" value="$PARAM[labeltwoleft]"/>
-	                            <param name="storageicon" value="$PARAM[storageicon]"/>
 	                        </include>
 	                    </control>
 	                </focusedlayout>
