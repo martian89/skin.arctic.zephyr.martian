@@ -1236,7 +1236,6 @@
     <include name="DefExtendedInfoItemContentWIP">
         <param name="aspect" value="$PARAM[aspect]" default="scale"/>
         <param name="fallbackpicture" value="$PARAM[fallbackpicture]" default="DefaultPicture.png"/>
-        <param name="storageicon" value="$PARAM[storageicon]" default="false"/>
         <param name="poster" value="$PARAM[poster]" default="false"/>
         <param name="thumb" value="$PARAM[thumb]" default="true"/>
         <definition>
@@ -1281,31 +1280,8 @@
                 <texture colordiffuse="Box2" border="4" infill="false">common/box21.png</texture>
             </control>
             <control type="group">
-                <visible>$PARAM[storageicon]</visible>
-                <right>5</right>
-                <top>1</top>
-                <control type="label">
-                    <align>right</align>
-                    <aligny>center</aligny>
-                    <width>50</width>
-                    <right>30</right>
-                    <top>6</top>
-                    <height>50</height>
-                    <font>SymbolPosterBackground</font>
-                    <label>[COLOR=FF333333]&#61833;[/COLOR]</label>
-                </control>
-                <control type="label">
-                    <align>right</align>
-                    <aligny>center</aligny>
-                    <width>50</width>
-                    <right>37</right>
-                    <top>6</top>
-                    <height>50</height>
-                    <textcolor>$VAR[WatchedLabelPosterColor]</textcolor>
-                    <selectedcolor>$VAR[WatchedLabelPosterColor]</selectedcolor>
-                    <font>SymbolPoster</font>
-                    <label>$VAR[StorageIconLabel]</label>
-                </control>
+                <right>20</right>
+                <include content="IndicatorPoster" condition="!Skin.HasSetting(hide.markers)">IndicatorPoster</include>
             </control>
         </definition>
     </include>
@@ -1313,7 +1289,6 @@
     <include name="DefExtendedInfoFocusContentWIP">
         <param name="aspect" value="$PARAM[aspect]" default="scale"/>
         <param name="fallbackpicture" default="DefaultMovieTitle.png" />
-        <param name="storageicon" value="$PARAM[storageicon]" default="false"/>
         <param name="poster" value="$PARAM[poster]" default="false"/>
         <param name="thumb" value="$PARAM[thumb]" default="true"/>
         <param name="labeltwovisible" default="true"/>
@@ -1361,33 +1336,10 @@
                     <visible>!Skin.HasSetting(global.hideborders)</visible>
                     <texture colordiffuse="BoxNotification" border="4" infill="false">common/box21.png</texture>
                 </control>
-                <control type="group">
-                    <visible>$PARAM[storageicon]</visible>
-                    <right>5</right>
-                    <top>1</top>
-                    <control type="label">
-                        <align>right</align>
-                        <aligny>center</aligny>
-                        <width>50</width>
-                        <right>30</right>
-                        <top>6</top>
-                        <height>50</height>
-                        <font>SymbolPosterBackground</font>
-                        <label>[COLOR=FF333333]&#61833;[/COLOR]</label>
-                    </control>
-                    <control type="label">
-                        <align>right</align>
-                        <aligny>center</aligny>
-                        <width>50</width>
-                        <right>37</right>
-                        <top>6</top>
-                        <height>50</height>
-                        <textcolor>$VAR[WatchedLabelPosterColor]</textcolor>
-                        <selectedcolor>$VAR[WatchedLabelPosterColor]</selectedcolor>
-                        <font>SymbolPoster</font>
-                        <label>$VAR[StorageIconLabel]</label>
-                    </control>
-                </control>
+	            <control type="group">
+	                <right>20</right>
+	                <include content="IndicatorPoster" condition="!Skin.HasSetting(hide.markers)">IndicatorPoster</include>
+	            </control>
             </control>
             <control type="label">
                 <left>$PARAM[labelleft]</left>
@@ -1421,7 +1373,6 @@
     <include name="DefExtendedInfoSetsContentWIP">
         <param name="aspect" value="$PARAM[aspect]" default="scale"/>
         <param name="fallbackpicture" value="$PARAM[fallbackpicture]" default="DefaultPicture.png"/>
-        <param name="storageicon" value="$PARAM[storageicon]" default="false"/>
         <definition>
             <control type="image">
                 <left>0</left>
@@ -1454,31 +1405,8 @@
                 <texture colordiffuse="Box2" border="4" infill="false">common/box21.png</texture>
             </control>
             <control type="group">
-                <visible>$PARAM[storageicon]</visible>
-                <right>5</right>
-                <top>1</top>
-                <control type="label">
-                    <align>right</align>
-                    <aligny>center</aligny>
-                    <width>50</width>
-                    <right>30</right>
-                    <top>6</top>
-                    <height>50</height>
-                    <font>SymbolPosterBackground</font>
-                    <label>[COLOR=FF333333]&#61833;[/COLOR]</label>
-                </control>
-                <control type="label">
-                    <align>right</align>
-                    <aligny>center</aligny>
-                    <width>50</width>
-                    <right>37</right>
-                    <top>6</top>
-                    <height>50</height>
-                    <textcolor>$VAR[WatchedLabelPosterColor]</textcolor>
-                    <selectedcolor>$VAR[WatchedLabelPosterColor]</selectedcolor>
-                    <font>SymbolPoster</font>
-                    <label>$VAR[StorageIconLabel]</label>
-                </control>
+                <right>20</right>
+                <include content="IndicatorPoster" condition="!Skin.HasSetting(hide.markers)">IndicatorPoster</include>
             </control>
         </definition>
     </include>
@@ -1486,7 +1414,6 @@
     <include name="DefExtendedInfoFocusSetsContentWIP">
         <param name="aspect" value="$PARAM[aspect]" default="scale"/>
         <param name="fallbackpicture" default="DefaultSets.png" />
-        <param name="storageicon" value="$PARAM[storageicon]" default="false"/>
         <definition>
             <control type="group">
                 <animation center="auto" easing="inout" effect="zoom" end="$PARAM[zoom]" start="100" time="200" tween="sine">Focus</animation>
@@ -1521,33 +1448,10 @@
                     <visible>!Skin.HasSetting(global.hideborders)</visible>
                     <texture colordiffuse="BoxNotification" border="4" infill="false">common/box21.png</texture>
                 </control>
-                <control type="group">
-                    <visible>$PARAM[storageicon]</visible>
-                    <right>5</right>
-                    <top>1</top>
-                    <control type="label">
-                        <align>right</align>
-                        <aligny>center</aligny>
-                        <width>50</width>
-                        <right>30</right>
-                        <top>6</top>
-                        <height>50</height>
-                        <font>SymbolPosterBackground</font>
-                        <label>[COLOR=FF333333]&#61833;[/COLOR]</label>
-                    </control>
-                    <control type="label">
-                        <align>right</align>
-                        <aligny>center</aligny>
-                        <width>50</width>
-                        <right>37</right>
-                        <top>6</top>
-                        <height>50</height>
-                        <textcolor>$VAR[WatchedLabelPosterColor]</textcolor>
-                        <selectedcolor>$VAR[WatchedLabelPosterColor]</selectedcolor>
-                        <font>SymbolPoster</font>
-                        <label>$VAR[StorageIconLabel]</label>
-                    </control>
-                </control>
+	            <control type="group">
+	                <right>20</right>
+	                <include content="IndicatorPoster" condition="!Skin.HasSetting(hide.markers)">IndicatorPoster</include>
+	            </control>
             </control>
             <control type="label">
                 <left>$PARAM[labelleft]</left>
