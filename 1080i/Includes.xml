@@ -377,6 +377,14 @@
           | String.IsEqual(Container(301).ListItem.DBType,video) ]
     </expression>
     
+    <expression name="HasPlayStatusIndicator">
+        [$EXP[IsInProgress] + !Skin.HasSetting(hide.markers.inprogress)] | [$EXP[IsWatched] + !Skin.HasSetting(hide.markers.watched)] | [$EXP[IsUnwatched] + [$EXP[IsNewMovie] | $EXP[IsNewTVShow] | $EXP[IsNewEpisode]] + !Skin.HasSetting(hide.markers.newcontent)]
+    </expression>
+
+    <expression name="HasPlayStatusIndicator301">
+        [$EXP[IsInProgress301] + !Skin.HasSetting(hide.markers.inprogress)] | [$EXP[IsWatched301] + !Skin.HasSetting(hide.markers.watched)] | [$EXP[IsUnwatched301] + [$EXP[IsNewMovie301] | $EXP[IsNewTVShow301] | $EXP[IsNewEpisode301]] + !Skin.HasSetting(hide.markers.newcontent)]
+    </expression>
+    
     <expression name="InGameMode">
         [ String.Contains(Container.FolderPath,plugin://plugin.program.ael) 
         | String.Contains(Container.FolderPath,plugin://plugin.program.advanced.launcher) 
