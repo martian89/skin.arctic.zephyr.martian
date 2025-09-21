@@ -756,20 +756,22 @@
 
     <!-- TMDbHelper TV Show status -->
     <variable name="LabelTvShowStatus">
-        <value condition="String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Status),Ended)">$LOCALIZE[31939]</value>
-        <value condition="String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Status),Rumored)">$LOCALIZE[31940]</value>
-        <value condition="String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Status),Planned)">$LOCALIZE[31941]</value>
-        <value condition="String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Status),In Production)">$LOCALIZE[31942]</value>
-        <value condition="String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Status),Post Production)">$LOCALIZE[31943]</value>
-        <value condition="String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Status),Released)">$LOCALIZE[31944]</value>
-        <value condition="String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Status),Canceled)">$LOCALIZE[31945]</value>
-        <value condition="String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Status),Returning Series)">$LOCALIZE[31946]</value>
-        <value>Window(Home).Property(TMDbHelper.ListItem.Status)</value>
+        <value condition="String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Status),Ended) | String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Status)) + String.IsEqual(ListItem.Status,Ended)">$LOCALIZE[31939]</value>
+        <value condition="String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Status),Rumored) | String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Status)) + String.IsEqual(ListItem.Status,Rumored)">$LOCALIZE[31940]</value>
+        <value condition="String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Status),Planned) | String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Status)) + String.IsEqual(ListItem.Status,Planned)">$LOCALIZE[31941]</value>
+        <value condition="String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Status),In Production) | String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Status)) + String.IsEqual(ListItem.Status,In Production)">$LOCALIZE[31942]</value>
+        <value condition="String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Status),Post Production) | String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Status)) + String.IsEqual(ListItem.Status,Post Production)">$LOCALIZE[31943]</value>
+        <value condition="String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Status),Released) | String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Status)) + String.IsEqual(ListItem.Status,Released)">$LOCALIZE[31944]</value>
+        <value condition="String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Status),Canceled) | String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Status)) + String.IsEqual(ListItem.Status,Canceled)">$LOCALIZE[31945]</value>
+        <value condition="String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Status),Returning Series) | String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Status)) + String.IsEqual(ListItem.Status,Returning Series)">$LOCALIZE[31946]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Status))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Status)]</value>
+        <value>$INFO[ListItem.Status]</value>
     </variable>
 
     <variable name="LabelNextAiredDetails">
-        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Next_Aired))">[COLOR=Dark1][B]$INFO[Window(Home).Property(TMDbHelper.ListItem.Next_Aired.Name),,   ][/B][/COLOR]$INFO[Window(Home).Property(TMDbHelper.ListItem.Air_Time),,  •  ]$INFO[Window(Home).Property(TMDbHelper.ListItem.Next_Aired)]</value>
-        <value condition="String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Next_Aired))">[COLOR=Dark1][B]$INFO[Window(Home).Property(TMDbHelper.ListItem.Last_Aired.Name),,   ][/B][/COLOR]$VAR[LabelTvShowStatus,,  •  ]$INFO[Window(Home).Property(TMDbHelper.ListItem.Last_Aired)]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Next_Aired))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Next_Aired.Name),[B],[/B]  •  ]$INFO[Window(Home).Property(TMDbHelper.ListItem.Air_Time),,  •  ]$INFO[Window(Home).Property(TMDbHelper.ListItem.Next_Aired)]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Last_Aired))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Last_Aired.Name),[B],[/B]  •  ]$VAR[LabelTvShowStatus,,  •  ]$INFO[Window(Home).Property(TMDbHelper.ListItem.Last_Aired)]</value>
+        <value>$VAR[LabelTvShowStatus]</value>
     </variable>
 
     <variable name="LabelVideoInfoCastDirector">
