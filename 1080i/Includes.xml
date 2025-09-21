@@ -206,7 +206,10 @@
 
     <expression name="HasNextAired">
         [Container.Content(tvshows) | Container.Content(seasons) | String.IsEqual(ListItem.DBTYPE,tvshow) | String.IsEqual(ListItem.DBTYPE,season)]
-        + [!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Next_Aired)) | !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Last_Aired))]
+        + [
+           !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Next_Aired)) | !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Last_Aired))
+           | !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Status)) | !String.IsEmpty(ListItem.Status)
+          ]
     </expression>
     
     <expression name="IsTVShowInProgress">
