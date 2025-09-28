@@ -379,6 +379,14 @@
           | String.IsEqual(Container(301).ListItem.DBType,set)
           | String.IsEqual(Container(301).ListItem.DBType,video) ]
     </expression>
+
+    <expression name="IsVideoAssets">
+        Container.Content(videoassets) | Container.Content(videoversions) | Container.Content(videoextras)
+    </expression>
+
+    <expression name="IsVideoAssets301">
+        Container(301).Content(videoassets) | Container(301).Content(videoversions) | Container(301).Content(videoextras)
+    </expression>
     
     <expression name="HasPlayStatusIndicator">
         [$EXP[IsInProgress] + !Skin.HasSetting(hide.markers.inprogress)] | [$EXP[IsWatched] + !Skin.HasSetting(hide.markers.watched)] | [$EXP[IsUnwatched] + [$EXP[IsNewMovie] | $EXP[IsNewTVShow] | $EXP[IsNewEpisode]] + !Skin.HasSetting(hide.markers.newcontent)]
@@ -398,11 +406,7 @@
         | Window.IsActive(games) 
         | Container.Content(games) ]
     </expression>
-    
-    <expression name="IsVideoAssets">
-        Container.Content(videoassets) | Container.Content(videoversions) | Container.Content(videoextras)
-    </expression>
-    
+        
     <expression name="IsColorSchemeDefault">
           [String.IsEmpty(Skin.String(focuscolor.name)) | String.IsEqual(Skin.String(focuscolor.name),ff0091ea)]
         + [String.IsEmpty(Skin.String(gradientcolor.name)) | String.IsEqual(Skin.String(gradientcolor.name),ff00bfa5)]
@@ -3052,7 +3056,7 @@
             <!-- Watched -->
             <control type="label">
                 <include>Def_Watched_Indicators_Clean</include>
-                <label>[COLOR=FF00DD44]&#10003;[/COLOR]</label>
+                <label>[COLOR=FF00DD44]&#62078;[/COLOR]</label>
                 <visible>!Container($PARAM[id]).ListItem.IsPlaying + [String.IsEqual(Container($PARAM[id]).ListItem.Overlay,OverlayWatched.png) | String.IsEmpty(Container($PARAM[id]).ListItem.Overlay) + !String.IsEmpty(Container($PARAM[id]).ListItem.DBID) + !Integer.IsEqual(Container($PARAM[id]).ListItem.PlayCount,0)] + !Container($PARAM[id]).ListItem.IsResumable + !Skin.HasSetting(hide.markers.watched)</visible>
             </control>
             
@@ -3141,7 +3145,7 @@
             <!-- Watched -->
             <control type="label">
                 <include>Def_Watched_Indicators_Clean</include>
-                <label>[COLOR=FF00DD44]&#10003;[/COLOR]</label>
+                <label>[COLOR=FF00DD44]&#62078;[/COLOR]</label>
                 <visible>[String.IsEqual(Container($PARAM[id]).ListItem.Overlay,OverlayWatched.png) | String.IsEmpty(Container($PARAM[id]).ListItem.Overlay) + !String.IsEmpty(Container($PARAM[id]).ListItem.DBID) + !Integer.IsEqual(Container($PARAM[id]).ListItem.PlayCount,0)] + !Container($PARAM[id]).ListItem.IsResumable + !Skin.HasSetting(hide.markers.watched)</visible>
             </control>
 
