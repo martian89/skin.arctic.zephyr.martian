@@ -10,7 +10,7 @@
             <include>ViewSlideForJumpBar</include>
             <control type="group">
                 <control type="panel" id="50">
-                    <visible>$EXP[InGameMode] | Container.Content(musicvideos) | Container.Content(movies) | Container.Content(tvshows) | Container.Content(actors) | Container.Content(sets) | Container.Content(seasons) | [Container.Content(files) + !String.Contains(Container.FolderPath,plugin://,left) + !String.IsEqual(Container.FolderPath,library://video/movies/) + !String.IsEqual(Container.FolderPath,library://video/tvshows/) + !String.IsEqual(Container.FolderPath,special://videoplaylists/)] | [Container.Content(episodes) + !String.Contains(Container.FolderPath,plugin://,left)]</visible>
+                    <visible>$EXP[InGameMode] | Container.Content(musicvideos) | Container.Content(movies) | Container.Content(tvshows) | Container.Content(actors) | Container.Content(sets) | Container.Content(seasons) | $EXP[IsVideoAssets] | [Container.Content(files) + !String.Contains(Container.FolderPath,plugin://,left) + !String.IsEqual(Container.FolderPath,library://video/movies/) + !String.IsEqual(Container.FolderPath,library://video/tvshows/) + !String.IsEqual(Container.FolderPath,special://videoplaylists/)] | [Container.Content(episodes) + !String.Contains(Container.FolderPath,plugin://,left)]</visible>
                     <include content="forced_view" condition="Skin.HasSetting(enable.forcedviews)">
                         <param name="string" value="$LOCALIZE[535]" />
                     </include>
@@ -51,46 +51,6 @@
         </control>
     </include>
 
-    <include name="50focuslayout_new">
-        <control type="image">
-            <width>100%</width>
-            <left>20</left>
-            <height>100%</height>
-            <texture border="8" colordiffuse="Dark1">common/white.png</texture>
-            <include>ListViewScrollAnim</include>
-        </control>
-        <control type="image">
-            <width>100%</width>
-            <height>100%</height>
-            <left>20</left>
-            <texture border="8" colordiffuse="Dark1">common/gradient-box-wide-cut.png</texture>
-            <include>ListViewScrollAnim</include>
-        </control>
-        <control type="label">
-            <posx>48</posx>
-            <width>160</width>
-            <aligny>center</aligny>
-            <height>52</height>
-            <font>SmallBold</font>
-            <textcolor>Light1</textcolor>
-            <selectedcolor>Light1</selectedcolor>
-            <label>$INFO[ListItem.Label]</label>
-        </control>
-    </include>
-
-    <include name="50itemlayout_new">
-        <control type="label">
-            <posx>48</posx>
-            <width>165</width>
-            <aligny>center</aligny>
-            <height>52</height>
-            <font>SmallBold</font>
-            <label>$INFO[ListItem.Label]</label>
-            <textcolor>Dark1</textcolor>
-            <selectedcolor>Dark1</selectedcolor>
-        </control>
-    </include>
-
     <include name="View_50_LowList">
         <description>List View (id=50)</description>
         <control type="group">
@@ -103,7 +63,7 @@
                 </include>
                 <top>320</top>
                 <control type="fixedlist" id="50">
-                    <visible>$EXP[InGameMode] | Container.Content(musicvideos) | Container.Content(movies) | Container.Content(tvshows) | Container.Content(actors) | Container.Content(sets) | Container.Content(seasons) | [Container.Content(files) + !String.Contains(Container.FolderPath,plugin://,left) + !String.IsEqual(Container.FolderPath,library://video/movies/) + !String.IsEqual(Container.FolderPath,library://video/tvshows/) + !String.IsEqual(Container.FolderPath,special://videoplaylists/)] | [Container.Content(episodes) + !String.Contains(Container.FolderPath,plugin://,left)]</visible>
+                    <visible>$EXP[InGameMode] | Container.Content(musicvideos) | Container.Content(movies) | Container.Content(tvshows) | Container.Content(actors) | Container.Content(sets) | Container.Content(seasons) | [Container.Content(files) + !String.Contains(Container.FolderPath,plugin://,left) + !String.IsEqual(Container.FolderPath,library://video/movies/) + !String.IsEqual(Container.FolderPath,library://video/tvshows/) + !String.IsEqual(Container.FolderPath,special://videoplaylists/)] | [Container.Content(episodes) + !String.Contains(Container.FolderPath,plugin://,left)] | $EXP[IsVideoAssets]</visible>
                     <top>PosterPad</top>
                     <include content="def_height" condition="Skin.HasSetting(511ListInfo)">
                         <param name="height" value="270" />
@@ -892,7 +852,7 @@
             <font>Tiny24</font>
             <label>$VAR[50ListExtendedMusic]</label>
             <textcolor>Dark2</textcolor>
-            <selectedcolor>Dark1</selectedcolor>
+            <selectedcolor>Dark2</selectedcolor>
             <visible>[Container.Content(songs) | Container.Content(albums) | Container.Content(artists)]</visible>
         </control>
         <control type="label">
@@ -1731,7 +1691,7 @@
             <font>Tiny24</font>
             <label>$VAR[50ListExtended]</label>
             <textcolor>Dark2</textcolor>
-            <selectedcolor>Dark1</selectedcolor>
+            <selectedcolor>Dark2</selectedcolor>
         </control>
         <control type="label">
             <visible>Skin.HasSetting(list.show.filename) + !String.IsEqual(ListItem.Label,..)</visible>

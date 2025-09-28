@@ -106,21 +106,21 @@
     </expression>
     
     <expression name="IsAudioCodecATMOS">
-        [[String.IsEqual(ListItem.AudioCodec,eac3) + Integer.isGreaterOrEqual(ListItem.AudioChannels,6)] | [String.IsEqual(ListItem.AudioCodec,truehd) + Integer.isGreaterOrEqual(ListItem.AudioChannels,8)]] + String.Contains(ListItem.FileNameAndPath,atmos) 
-        | [VideoPlayer.IsFullscreen + [[String.IsEqual(VideoPlayer.AudioCodec,eac3) + Integer.isGreaterOrEqual(VideoPlayer.AudioChannels,6)] | [String.IsEqual(VideoPlayer.AudioCodec,truehd) + Integer.isGreaterOrEqual(VideoPlayer.AudioChannels,8)]] + String.Contains(Player.FileNameAndPath,atmos)]
+        [[String.IsEqual(ListItem.AudioCodec,eac3) + Integer.isGreaterOrEqual(ListItem.AudioChannels,6)] | [String.IsEqual(ListItem.AudioCodec,truehd) + Integer.isGreaterOrEqual(ListItem.AudioChannels,8)]] + String.Contains(ListItem.FileNameAndPath,atmos) + !String.Contains(ListItem.AudioCodec,atmos)
+        | [VideoPlayer.IsFullscreen + [[String.IsEqual(VideoPlayer.AudioCodec,eac3) + Integer.isGreaterOrEqual(VideoPlayer.AudioChannels,6)] | [String.IsEqual(VideoPlayer.AudioCodec,truehd) + Integer.isGreaterOrEqual(VideoPlayer.AudioChannels,8)]] + String.Contains(Player.FileNameAndPath,atmos) + !String.Contains(Player.AudioCodec,atmos)]
     </expression>
 
     <expression name="IsAudioCodecATMOSHub">
-        [[String.IsEqual(Container(9500).ListItem.AudioCodec,eac3) + Integer.isGreaterOrEqual(Container(9500).ListItem.AudioChannels,6)] | [String.IsEqual(Container(9500).ListItem.AudioCodec,truehd) + Integer.isGreaterOrEqual(Container(9500).ListItem.AudioChannels,8)]] + String.Contains(Container(9500).ListItem.FileNameAndPath,atmos) 
+        [[String.IsEqual(Container(9500).ListItem.AudioCodec,eac3) + Integer.isGreaterOrEqual(Container(9500).ListItem.AudioChannels,6)] | [String.IsEqual(Container(9500).ListItem.AudioCodec,truehd) + Integer.isGreaterOrEqual(Container(9500).ListItem.AudioChannels,8)]] + String.Contains(Container(9500).ListItem.FileNameAndPath,atmos) + !String.Contains(Container(9500).ListItem.AudioCodec,atmos)
     </expression>
 
     <expression name="IsAudioCodecDTSX">
-        [String.Contains(ListItem.AudioCodec,dtshd) | String.isEqual(ListItem.AudioCodec,dtsma)] + Integer.isGreaterOrEqual(ListItem.AudioChannels,8) + [String.Contains(ListItem.FileNameAndPath,dts-x) | String.Contains(ListItem.FileNameAndPath,dtsx)]
-        | [VideoPlayer.IsFullscreen + [String.Contains(VideoPlayer.AudioCodec,dtshd) | String.isEqual(VideoPlayer.AudioCodec,dtsma)] + Integer.isGreaterOrEqual(VideoPlayer.AudioChannels,8) + [String.Contains(Player.FileNameAndPath,dts-x) | String.Contains(Player.FileNameAndPath,dtsx)]]
+        [String.Contains(ListItem.AudioCodec,dtshd) | String.isEqual(ListItem.AudioCodec,dtsma)] + Integer.isGreaterOrEqual(ListItem.AudioChannels,8) + [String.Contains(ListItem.FileNameAndPath,dts-x) | String.Contains(ListItem.FileNameAndPath,dtsx)] + !String.Contains(ListItem.AudioCodec,_x)
+        | [VideoPlayer.IsFullscreen + [String.Contains(VideoPlayer.AudioCodec,dtshd) | String.isEqual(VideoPlayer.AudioCodec,dtsma)] + Integer.isGreaterOrEqual(VideoPlayer.AudioChannels,8) + [String.Contains(Player.FileNameAndPath,dts-x) | String.Contains(Player.FileNameAndPath,dtsx)]] + !String.Contains(Player.AudioCodec,_x)
     </expression>
 
     <expression name="IsAudioCodecDTSXHub">
-        [String.Contains(Container(9500).ListItem.AudioCodec,dtshd) | String.isEqual(Container(9500).ListItem.AudioCodec,dtsma)] + Integer.isGreaterOrEqual(Container(9500).ListItem.AudioChannels,8) + [String.Contains(Container(9500).ListItem.FileNameAndPath,dts-x) | String.Contains(Container(9500).ListItem.FileNameAndPath,dtsx)]
+        [String.Contains(Container(9500).ListItem.AudioCodec,dtshd) | String.isEqual(Container(9500).ListItem.AudioCodec,dtsma)] + Integer.isGreaterOrEqual(Container(9500).ListItem.AudioChannels,8) + [String.Contains(Container(9500).ListItem.FileNameAndPath,dts-x) | String.Contains(Container(9500).ListItem.FileNameAndPath,dtsx)] + !String.Contains(Container(9500).ListItem.AudioCodec,_x)
     </expression>
 
     <expression name="IsVideoHDR10Plus">
@@ -397,6 +397,10 @@
         | String.Contains(Container.FolderPath,plugin://plugin.program.iagl) 
         | Window.IsActive(games) 
         | Container.Content(games) ]
+    </expression>
+    
+    <expression name="IsVideoAssets">
+        Container.Content(videoassets) | Container.Content(videoversions) | Container.Content(videoextras)
     </expression>
     
     <expression name="IsColorSchemeDefault">

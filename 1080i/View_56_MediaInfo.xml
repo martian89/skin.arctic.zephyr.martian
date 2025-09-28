@@ -10,7 +10,7 @@
             <include>ViewSlideForJumpBar</include>
             <control type="group">
                 <control type="panel" id="56">
-                    <visible>$EXP[InGameMode] | Container.Content(musicvideos) | Container.Content(movies) | Container.Content(tvshows) | [Container.Content(episodes) + !String.Contains(Container.FolderPath,plugin://,left)] | Container.Content(actors) | Container.Content(sets) | Container.Content(videos) | Container.Content(seasons)</visible>
+                    <visible>$EXP[InGameMode] | Container.Content(musicvideos) | Container.Content(movies) | Container.Content(tvshows) | [Container.Content(episodes) + !String.Contains(Container.FolderPath,plugin://,left)] | Container.Content(actors) | Container.Content(sets) | Container.Content(videos) | Container.Content(seasons) | $EXP[IsVideoAssets]</visible>
                     <top>PosterPad</top>
                     <height>458</height>
                     <left>ListX</left>
@@ -47,83 +47,8 @@
                 </control>
                 <!-- Scrollbar End -->
             </control>
-            <control type="group" description="Poster">
-                <left>SidePad</left>
-                <top>PosterPad</top>
-                <control type="image">
-                    <top>PosterH</top>
-                    <width>PosterW</width>
-                    <height>PosterH</height>
-                    <fadetime>PosterFanartFadetime</fadetime>
-                    <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
-                    <texture flipy="true" diffuse="diffuse/listposter-ref-widgets.png" background="true">$VAR[PosterImage]</texture>
-                    <visible>Skin.HasSetting(show.reflections)</visible>
-                </control>
-                <control type="image">
-                    <centertop>PosterH</centertop>
-                    <width>PosterW</width>
-                    <height>48</height>
-                    <aspectratio>stretch</aspectratio>
-                    <texture>diffuse/shadowspot.png</texture>
-                </control>
-                <control type="image">
-                    <width>PosterW</width>
-                    <height>PosterH</height>
-                    <texture border="5" colordiffuse="Fallback">common/box.png</texture>
-                </control>
-                <control type="image">
-                    <left>-24</left>
-                    <top>-24</top>
-                    <width>PosterShadowW</width>
-                    <height>PosterShadowH</height>
-                    <texture border="32" infill="false">common/$VAR[shadow-24]</texture>
-                </control>
-                <control type="image">
-                    <width>PosterW</width>
-                    <height>PosterH</height>
-                    <fadetime>PosterFanartFadetime</fadetime>
-                    <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
-                    <texture diffuse="diffuse/listposter.png" background="true">$VAR[PosterImage]</texture>
-                </control>
-                <control type="image">
-                    <width>PosterW</width>
-                    <height>PosterH</height>
-                    <texture colordiffuse="Box2" border="4" background="true" infill="false">common/box21.png</texture>
-                    <visible>!Skin.HasSetting(global.hideborders)</visible>
-                </control>
-            </control>
-            <control type="group" description="Plot">
-                <left>ListX</left>
-                <right>SidePad</right>
-                <control type="grouplist">
-                    <left>30</left>
-                    <right>30</right>
-                    <top>695</top>
-                    <orientation>vertical</orientation>
-                    <animation effect="fade" start="0" end="100" delay="450" time="250" reversible="false">Visible</animation>
-                    <control type="label">
-                        <font>MediumBold</font>
-                        <label>$VAR[LabelDirector]</label>
-                        <textcolor>Dark1</textcolor>
-                        <height>40</height>
-                        <aligny>top</aligny>
-                    </control>
-                    <control type="label">
-                        <font>Tiny</font>
-                        <label>$VAR[LabelGenre]</label>
-                        <textcolor>Dark1</textcolor>
-                        <height>42</height>
-                        <aligny>top</aligny>
-                    </control>
-                    <control type="textbox">
-                        <font>Tiny</font>
-                        <label>$VAR[LabelPlotBox]</label>
-                        <textcolor>Dark2</textcolor>
-                        <height>74</height>
-                        <align>justify</align>
-                    </control>
-                </control>
-            </control>
+            <include>View_50_SidePoster</include>
+            <include>MediaInfoPlot</include>
         </control>
     </include>
 
@@ -135,7 +60,7 @@
             <include>ViewSlideForJumpBar</include>
             <control type="group">
                 <control type="panel" id="56">
-                    <visible>$EXP[InGameMode] | Container.Content(musicvideos) | Container.Content(movies) | Container.Content(tvshows) | [Container.Content(episodes) + !String.Contains(Container.FolderPath,plugin://,left)] | Container.Content(actors) | Container.Content(sets) | Container.Content(videos) | Container.Content(seasons)</visible>
+                    <visible>$EXP[InGameMode] | Container.Content(musicvideos) | Container.Content(movies) | Container.Content(tvshows) | [Container.Content(episodes) + !String.Contains(Container.FolderPath,plugin://,left)] | Container.Content(actors) | Container.Content(sets) | Container.Content(videos) | Container.Content(seasons) | $EXP[IsVideoAssets]</visible>
                     <top>PosterPad</top>
                     <height>PosterH</height>
                     <right>732</right>
@@ -191,7 +116,7 @@
                 </include>
                 <top>320</top>
                 <control type="panel" id="56">
-                    <visible>$EXP[InGameMode] | Container.Content(musicvideos) | Container.Content(movies) | Container.Content(tvshows) | [Container.Content(episodes) + !String.Contains(Container.FolderPath,plugin://,left)] | Container.Content(actors) | Container.Content(sets) | Container.Content(seasons)</visible>
+                    <visible>$EXP[InGameMode] | Container.Content(musicvideos) | Container.Content(movies) | Container.Content(tvshows) | [Container.Content(episodes) + !String.Contains(Container.FolderPath,plugin://,left)] | Container.Content(actors) | Container.Content(sets) | Container.Content(seasons) | $EXP[IsVideoAssets]</visible>
                     <top>PosterPad</top>
                     <include content="def_height" condition="Skin.HasSetting(511ListInfo)">
                         <param name="height" value="270" />
@@ -247,6 +172,41 @@
         </control>
     </include>
 
+    <include name="MediaInfoPlot">
+	    <control type="group" description="Plot">
+	        <left>ListX</left>
+	        <right>SidePad</right>
+	        <control type="grouplist">
+	            <left>30</left>
+	            <right>30</right>
+	            <top>695</top>
+	            <orientation>vertical</orientation>
+	            <animation effect="fade" start="0" end="100" delay="450" time="250" reversible="false">Visible</animation>
+	            <control type="label">
+	                <font>MediumBold</font>
+	                <label>$VAR[LabelDirector]</label>
+	                <textcolor>Dark1</textcolor>
+	                <height>40</height>
+	                <aligny>top</aligny>
+	            </control>
+	            <control type="label">
+	                <font>Tiny</font>
+	                <label>$VAR[LabelGenre]</label>
+	                <textcolor>Dark1</textcolor>
+	                <height>42</height>
+	                <aligny>top</aligny>
+	            </control>
+	            <control type="textbox">
+	                <font>Tiny</font>
+	                <label>$VAR[LabelPlotBox]</label>
+	                <textcolor>Dark2</textcolor>
+	                <height>74</height>
+	                <align>justify</align>
+	            </control>
+	        </control>
+	    </control>
+    </include>
+    
     <include name="56focuslayout">
         <control type="image">
             <width>100%</width>
