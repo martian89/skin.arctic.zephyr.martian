@@ -120,11 +120,12 @@
         <value condition="$EXP[IsInProgress] + !Skin.HasSetting(hide.markers.inprogress)">&#62595;</value>
         <value condition="$EXP[IsWatched] + !Skin.HasSetting(hide.markers.watched)">[COLOR=WatchedProgress]&#62078;[/COLOR]</value>
         <value condition="$EXP[IsUnwatched] + [$EXP[IsNewMovie] | $EXP[IsNewTVShow] | $EXP[IsNewEpisode]] + !Skin.HasSetting(hide.markers.newcontent)">[COLOR=NewContentProgress]&#62079;[/COLOR]</value>
+        <value condition="ListItem.IsFolder">&#59649;</value>
+        <value condition="ListItem.IsCollection + !Skin.HasSetting(hide.markers.collection)">&#59648;</value>
         <value condition="ListItem.HasVideoVersions + !$EXP[IsVideoAssets] + [!Skin.HasSetting(hide.markers.versions) | !Skin.HasSetting(furniture.markers.alternative)]">&#63341;</value>
         <value condition="ListItem.HasVideoExtras + !$EXP[IsVideoAssets] + [!Skin.HasSetting(hide.markers.extras) | !Skin.HasSetting(furniture.markers.alternative)]">&#61754;</value>
         <value condition="!String.IsEmpty(ListItem.Property(Item.Info)) + !String.IsEmpty(ListItem.DBID) + !Skin.HasSetting(hide.markers.library)">&#62698;</value>
-        <value condition="ListItem.IsCollection + !Skin.HasSetting(hide.markers.collection)">&#59648;</value>
-        <value condition="ListItem.IsFolder">&#59649;</value>
+        <value condition="$EXP[IsUnwatched] + !Skin.HasSetting(hide.markers.unwatched) + !Skin.HasSetting(furniture.markers.alternative)">&#61833;</value>
         <value condition="!String.IsEmpty(ListItem.DBID)">&#62698;</value>
     </variable>
 
@@ -572,6 +573,7 @@
         <value condition="!String.IsEmpty(ListItem.AddonDescription)">$INFO[ListItem.AddonDescription]</value>
         <value condition="Container.Content(songs)">$INFO[ListItem.Artist,[B],[/B][CR]]$INFO[ListItem.Album]$INFO[ListItem.Year,  (,)]</value>
         <value condition="Container.Content(episodes)">$INFO[ListItem.Title,[B],[/B][CR],]$INFO[ListItem.Plot]</value>
+        <value condition="Container.Content(seasons) + String.IsEmpty(ListItem.Plot)">$INFO[Container.ShowPlot]</value>
         <value condition="$EXP[InGameMode]">$VAR[GamePlot]</value>
         <value condition="Control.HasFocus(5161)">$INFO[Container(5161).ListItem.Plot]</value>
         <value condition="Control.HasFocus(5261)">$INFO[Container(5261).ListItem.Plot]</value>
