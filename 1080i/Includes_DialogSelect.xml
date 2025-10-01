@@ -635,9 +635,11 @@
     </variable>
 
     <variable name="VideoVersionFileVar">
+        <value condition="Control.HasFocus(50) + !String.IsEmpty(ListItem.DecodedFileNameAndPath)">$INFO[Container(50).ListItem.DecodedFileNameAndPath]</value>
+        <value condition="Control.HasFocus(3) + !String.IsEmpty(ListItem.DecodedFileNameAndPath)">$INFO[Container(3).ListItem.DecodedFileNameAndPath]</value>
         <value condition="Control.HasFocus(50)">$INFO[Container(50).ListItem.FileNameAndPath]</value>
         <value condition="Control.HasFocus(3)">$INFO[Container(3).ListItem.FileNameAndPath]</value>
-        <value>$INFO[ListItem.FileNameAndPath]</value>
+        <value>$VAR[Label_FileNameAndPath]</value>
     </variable>
    	
 	<include name="DialogSelectVideoVersion">

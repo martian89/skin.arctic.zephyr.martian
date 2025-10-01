@@ -1765,6 +1765,11 @@
         <value condition="!String.IsEmpty(ListItem.AddonLastUpdated)">$INFO[ListItem.AddonLastUpdated]$INFO[ListItem.AddonOrigin,  •  ,]</value>
     </variable>
 
+    <variable name="Label_FileNameAndPath">
+        <value condition="!String.IsEmpty(ListItem.DecodedFileNameAndPath)">$INFO[ListItem.DecodedFileNameAndPath]</value>
+        <value>$INFO[ListItem.FileNameAndPath]</value>
+    </variable>
+
     <variable name="LabelGenreHomeSmallWidget">
         <value condition="String.IsEqual(ListItem.DBType,episode) + !String.IsEmpty(ListItem.TvShowTitle) + Window.IsVisible(Home.xml)">$INFO[ListItem.TvShowTitle]</value>
         <value condition="String.IsEqual(ListItem.DBType,episode)">$VAR[LabelDurationTimeCheck]</value>
