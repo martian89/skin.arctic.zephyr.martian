@@ -205,7 +205,7 @@
     </expression>
 
     <expression name="HasNextAired">
-        [Container.Content(tvshows) | Container.Content(seasons) | String.IsEqual(ListItem.DBTYPE,tvshow) | String.IsEqual(ListItem.DBTYPE,season)]
+        [[Container.Content(tvshows) | Container.Content(seasons)] + !String.IsEqual(ListItem.DBTYPE,movie) | String.IsEqual(ListItem.DBTYPE,tvshow) | String.IsEqual(ListItem.DBTYPE,season)]
         + [
            !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Next_Aired)) | !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Last_Aired))
            | !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Status)) | !String.IsEmpty(ListItem.Status)
@@ -213,27 +213,27 @@
     </expression>
     
     <expression name="IsTVShowInProgress">
-        [Container.Content(tvshows) | String.IsEqual(ListItem.DBTYPE,tvshow) | Container.Content(season) | String.IsEqual(ListItem.DBTYPE,season)]
+        [[Container.Content(tvshows) | Container.Content(season)] + !String.IsEqual(ListItem.DBTYPE,movie) | String.IsEqual(ListItem.DBTYPE,tvshow) | String.IsEqual(ListItem.DBTYPE,season)]
         + !String.IsEqual(ListItem.Overlay,OverlayWatched.png) 
         + [
         	[!String.IsEqual(ListItem.Property(WatchedEpisodes),ListItem.Property(TotalEpisodes)) + !String.IsEqual(ListItem.Property(WatchedEpisodes),0) + !String.IsEmpty(ListItem.Property(WatchedEpisodes))] 
-        	| Integer.IsGreater(ListItem.Property(WatchedEpisodes),0)
+        	| !String.IsEmpty(ListItem.Property(WatchedEpisodePercent)) + !Integer.IsEqual(ListItem.Property(WatchedEpisodePercent),0) + !Integer.IsEqual(ListItem.Property(WatchedEpisodePercent),100)
         	| Integer.IsGreater(Window(home).Property(TMDbHelper.ListItem.TotalEpisodes),Window(home).Property(TMDbHelper.ListItem.UnwatchedEpisodes))
           ]
     </expression>
     
     <expression name="IsTVShowInProgress301">
-        [Container.Content(tvshows) | String.IsEqual(Container(301).ListItem.DBTYPE,tvshow) | Container.Content(season) | String.IsEqual(Container(301).ListItem.DBTYPE,season)]
+        [[Container(301).Content(tvshows) | Container(301).Content(season)] + !String.IsEqual(Container(301).ListItem.DBTYPE,movie) | String.IsEqual(Container(301).ListItem.DBTYPE,tvshow) | String.IsEqual(Container(301).ListItem.DBTYPE,season)]
         + !String.IsEqual(Container(301).ListItem.Overlay,OverlayWatched.png)
         + [
         	[!String.IsEqual(Container(301).ListItem.Property(WatchedEpisodes),Container(301).ListItem.Property(TotalEpisodes)) + !String.IsEqual(Container(301).ListItem.Property(WatchedEpisodes),0) + !String.IsEmpty(Container(301).ListItem.Property(WatchedEpisodes))] 
-        	| Integer.IsGreater(Container(301).ListItem.Property(WatchedEpisodes),0)
+            | !String.IsEmpty(Container(301).ListItem.Property(WatchedEpisodePercent)) + !Integer.IsEqual(Container(301).ListItem.Property(WatchedEpisodePercent),0) + !Integer.IsEqual(Container(301).ListItem.Property(WatchedEpisodePercent),100)
         	| Integer.IsGreater(Window(home).Property(TMDbHelper.ListItem.TotalEpisodes),Window(home).Property(TMDbHelper.ListItem.UnwatchedEpisodes))
           ]
     </expression>
     
     <expression name="IsNewMovie">
-        [Container.Content(movies) | Window.isVisible(Home.xml)]
+        [Container.Content(movies) | String.IsEqual(ListItem.DBTYPE,movie) | Window.isVisible(Home.xml)]
         + [
             String.IsEqual(Window(Home).Property(LatestMovie.1.Title),ListItem.Label)
             | String.IsEqual(Window(Home).Property(LatestMovie.2.Title),ListItem.Label)
@@ -248,7 +248,7 @@
           ]
     </expression>
     <expression name="IsNewTVShow">
-        [Container.Content(tvshows) | Window.isVisible(Home.xml)]
+        [Container.Content(tvshows) | String.IsEqual(ListItem.DBTYPE,tvshow) | Window.isVisible(Home.xml)]
         + [
             String.IsEqual(Window(Home).Property(LatestEpisode.1.ShowTitle),ListItem.TvShowTitle)
             | String.IsEqual(Window(Home).Property(LatestEpisode.2.ShowTitle),ListItem.TvShowTitle)
@@ -263,7 +263,7 @@
           ]
     </expression>
     <expression name="IsNewEpisode">
-        [Container.Content(episodes) | Window.isVisible(Home.xml)]
+        [Container.Content(episodes) | String.IsEqual(ListItem.DBTYPE,episode) | Window.isVisible(Home.xml)]
         + [
             String.IsEqual(Window(Home).Property(LatestEpisode.1.EpisodeTitle),ListItem.Title)
             | String.IsEqual(Window(Home).Property(LatestEpisode.2.EpisodeTitle),ListItem.Title)
@@ -279,7 +279,7 @@
     </expression>
     
     <expression name="IsNewMovie301">
-        [Container.Content(movies) | Window.isVisible(Home.xml)]
+        [Container(301).Content(movies) | String.IsEqual(ListItem.DBTYPE,movie) | Window.isVisible(Home.xml)]
         + [
             String.IsEqual(Window(Home).Property(LatestMovie.1.Title),Container(301).ListItem.Label)
             | String.IsEqual(Window(Home).Property(LatestMovie.2.Title),Container(301).ListItem.Label)
@@ -294,7 +294,7 @@
           ]
     </expression>
     <expression name="IsNewTVShow301">
-        [Container.Content(tvshows) | Window.isVisible(Home.xml)]
+        [Container(301).Content(tvshows) | String.IsEqual(Container(301).ListItem.DBTYPE,tvshow) | Window.isVisible(Home.xml)]
         + [
             String.IsEqual(Window(Home).Property(LatestEpisode.1.ShowTitle),Container(301).ListItem.TvShowTitle)
             | String.IsEqual(Window(Home).Property(LatestEpisode.2.ShowTitle),Container(301).ListItem.TvShowTitle)
@@ -309,7 +309,7 @@
           ]
     </expression>
     <expression name="IsNewEpisode301">
-        [Container.Content(episodes) | Window.isVisible(Home.xml)]
+        [Container().Content(episodes) | String.IsEqual(Container(301).ListItem.DBTYPE,episode) | Window.isVisible(Home.xml)]
         + [
             String.IsEqual(Window(Home).Property(LatestEpisode.1.EpisodeTitle),Container(301).ListItem.Title)
             | String.IsEqual(Window(Home).Property(LatestEpisode.2.EpisodeTitle),Container(301).ListItem.Title)
@@ -3056,7 +3056,7 @@
             <!-- Watched -->
             <control type="label">
                 <include>Def_Watched_Indicators_Clean</include>
-                <label>[COLOR=FF00DD44]&#62078;[/COLOR]</label>
+                <label>[COLOR=WatchedProgress]&#62078;[/COLOR]</label>
                 <visible>!Container($PARAM[id]).ListItem.IsPlaying + [String.IsEqual(Container($PARAM[id]).ListItem.Overlay,OverlayWatched.png) | String.IsEmpty(Container($PARAM[id]).ListItem.Overlay) + !String.IsEmpty(Container($PARAM[id]).ListItem.DBID) + !Integer.IsEqual(Container($PARAM[id]).ListItem.PlayCount,0)] + !Container($PARAM[id]).ListItem.IsResumable + !Skin.HasSetting(hide.markers.watched)</visible>
             </control>
             
@@ -3070,7 +3070,7 @@
             <!-- New -->
             <control type="label">
                 <include>Def_Watched_Indicators_Clean</include>
-                <label>[COLOR=ColoredIcons]&#62079;[/COLOR]</label>
+                <label>[COLOR=NewContentProgress]&#62079;[/COLOR]</label>
                 <visible>!Container($PARAM[id]).ListItem.IsPlaying + [String.IsEqual(Container($PARAM[id]).ListItem.Overlay,OverlayUnwatched.png) | String.IsEmpty(Container($PARAM[id]).ListItem.Overlay) + !String.IsEmpty(Container($PARAM[id]).ListItem.DBID) + Integer.IsEqual(Container($PARAM[id]).ListItem.PlayCount,0)] + !Container($PARAM[id]).ListItem.IsResumable + !Skin.HasSetting(hide.markers.newcontent) + [
                     [
                         String.IsEqual(Window(Home).Property(LatestMovie.1.Title),Container($PARAM[id]).ListItem.Label)
@@ -3145,14 +3145,14 @@
             <!-- Watched -->
             <control type="label">
                 <include>Def_Watched_Indicators_Clean</include>
-                <label>[COLOR=FF00DD44]&#62078;[/COLOR]</label>
+                <label>[COLOR=WatchedProgress]&#62078;[/COLOR]</label>
                 <visible>[String.IsEqual(Container($PARAM[id]).ListItem.Overlay,OverlayWatched.png) | String.IsEmpty(Container($PARAM[id]).ListItem.Overlay) + !String.IsEmpty(Container($PARAM[id]).ListItem.DBID) + !Integer.IsEqual(Container($PARAM[id]).ListItem.PlayCount,0)] + !Container($PARAM[id]).ListItem.IsResumable + !Skin.HasSetting(hide.markers.watched)</visible>
             </control>
 
             <!-- New -->
             <control type="label">
                 <include>Def_Watched_Indicators_Clean</include>
-                <label>[COLOR=ColoredIcons]&#62079;[/COLOR]</label>
+                <label>[COLOR=NewContentProgress]&#62079;[/COLOR]</label>
                 <visible>[String.IsEqual(Container($PARAM[id]).ListItem.Overlay,OverlayUnwatched.png) | String.IsEmpty(Container($PARAM[id]).ListItem.Overlay) + !String.IsEmpty(Container($PARAM[id]).ListItem.DBID) + Integer.IsEqual(Container($PARAM[id]).ListItem.PlayCount,0)] + !Container($PARAM[id]).ListItem.IsResumable + !Skin.HasSetting(hide.markers.newcontent) +
                 [
                     String.IsEqual(Window(Home).Property(LatestEpisode.1.ShowTitle),Container($PARAM[id]).ListItem.TvShowTitle)

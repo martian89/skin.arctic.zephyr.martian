@@ -21,7 +21,7 @@
                     <texture border="15" colordiffuse="Panel">common/rounded-shadow8.png</texture>
                 </control>
                 <control type="wraplist" id="51">
-                    <visible>$EXP[InGameMode] | Container.Content(musicvideos) | Container.Content(artists) | Container.Content(movies) | Container.Content(tvshows) | Container.Content(episodes) | Container.Content(sets) | Container.Content(videos) | Container.Content(albums) | Container.Content(songs) | $EXP[IsVideoAssets]</visible>
+                    <visible>$EXP[InGameMode] | Container.Content(musicvideos) | Container.Content(artists) | Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(sets) | Container.Content(videos) | Container.Content(albums) | Container.Content(songs) | $EXP[IsVideoAssets]</visible>
                     <include content="forced_view" condition="Skin.HasSetting(enable.forcedviews)">
                         <param name="string" value="$LOCALIZE[31422]" />
                     </include>
@@ -214,9 +214,10 @@
                         <right>83</right>
                         <top>-72</top>
                         <height>50</height>
-                        <textcolor>$VAR[WatchedLabelColor]</textcolor>
-                        <font>SymbolPoster</font>
-                        <label>$VAR[WatchedLabelList]</label>
+                        <font>WatchedIcon</font>
+                        <textcolor>PanelWhite100</textcolor>
+                        <selectedcolor>PanelWhite100</selectedcolor>
+                        <label>$VAR[LabelPercentWatched]</label>
                         <visible>!String.IsEqual(ListItem.Label,..)</visible>
                         <animation effect="slide" start="0" end="60" time="0" condition="Container.Content(Seasons)">Conditional</animation>
                     </control>
@@ -290,9 +291,10 @@
                         <right>83</right>
                         <top>8</top>
                         <height>50</height>
-                        <textcolor>$VAR[WatchedLabelColor]</textcolor>
-                        <font>SymbolPoster</font>
-                        <label>$VAR[WatchedLabelList]</label>
+                        <font>WatchedIcon</font>
+                        <textcolor>PanelWhite70</textcolor>
+                        <selectedcolor>PanelWhite70</selectedcolor>
+                        <label>$VAR[LabelPercentWatched]</label>
                         <visible>!String.IsEqual(ListItem.Label,..)</visible>
                         <animation effect="slide" start="0" end="60" time="0" condition="Container.Content(Seasons)">Conditional</animation>
                     </control>
@@ -381,10 +383,10 @@
                         <centertop>32</centertop>
                         <width>50</width>
                         <height>50</height>
-                        <font>SymbolPoster</font>
-                        <textcolor>WatchedIconsList</textcolor>
-                        <selectedcolor>WatchedIconsList</selectedcolor>
-                        <label>$VAR[PercentWatchedN3]</label>
+                        <font>WatchedIcon</font>
+                        <textcolor>PanelWhite70</textcolor>
+                        <selectedcolor>PanelWhite70</selectedcolor>
+                        <label>$VAR[LabelPercentWatchedN3]</label>
                         <visible>!String.IsEqual(ListItem(-3).Label,..)</visible>
                     </control>
                 </control>
@@ -433,10 +435,10 @@
                         <centertop>32</centertop>
                         <width>50</width>
                         <height>50</height>
-                        <font>SymbolPoster</font>
-                        <textcolor>WatchedIconsList</textcolor>
-                        <selectedcolor>WatchedIconsList</selectedcolor>
-                        <label>$VAR[PercentWatchedN2]</label>
+                        <font>WatchedIcon</font>
+                        <textcolor>PanelWhite70</textcolor>
+                        <selectedcolor>PanelWhite70</selectedcolor>
+                        <label>$VAR[LabelPercentWatchedN2]</label>
                         <visible>!String.IsEqual(ListItem(-2).Label,..)</visible>
                     </control>
                 </control>
@@ -485,10 +487,10 @@
                         <centertop>32</centertop>
                         <width>50</width>
                         <height>50</height>
-                        <font>SymbolPoster</font>
-                        <textcolor>WatchedIconsList</textcolor>
-                        <selectedcolor>WatchedIconsList</selectedcolor>
-                        <label>$VAR[PercentWatchedN1]</label>
+                        <font>WatchedIcon</font>
+                        <textcolor>PanelWhite70</textcolor>
+                        <selectedcolor>PanelWhite70</selectedcolor>
+                        <label>$VAR[LabelPercentWatchedN1]</label>
                         <visible>!String.IsEqual(ListItem(-1).Label,..)</visible>
                     </control>
                 </control>
@@ -537,10 +539,10 @@
                         <centertop>32</centertop>
                         <width>50</width>
                         <height>50</height>
-                        <font>SymbolPoster</font>
-                        <textcolor>WatchedIconsList</textcolor>
-                        <selectedcolor>WatchedIconsList</selectedcolor>
-                        <label>$VAR[PercentWatchedP3]</label>
+                        <font>WatchedIcon</font>
+                        <textcolor>PanelWhite70</textcolor>
+                        <selectedcolor>PanelWhite70</selectedcolor>
+                        <label>$VAR[LabelPercentWatchedP3]</label>
                         <visible>!String.IsEqual(ListItem(3).Label,..)</visible>
                     </control>
                 </control>
@@ -589,10 +591,10 @@
                         <centertop>32</centertop>
                         <width>50</width>
                         <height>50</height>
-                        <font>SymbolPoster</font>
-                        <textcolor>WatchedIconsList</textcolor>
-                        <selectedcolor>WatchedIconsList</selectedcolor>
-                        <label>$VAR[PercentWatchedP2]</label>
+                        <font>WatchedIcon</font>
+                        <textcolor>PanelWhite70</textcolor>
+                        <selectedcolor>PanelWhite70</selectedcolor>
+                        <label>$VAR[LabelPercentWatchedP2]</label>
                         <visible>!String.IsEqual(ListItem(2).Label,..)</visible>
                     </control>
                 </control>
@@ -641,10 +643,10 @@
                         <centertop>32</centertop>
                         <width>50</width>
                         <height>50</height>
-                        <font>SymbolPoster</font>
-                        <textcolor>WatchedIconsList</textcolor>
-                        <selectedcolor>WatchedIconsList</selectedcolor>
-                        <label>$VAR[PercentWatchedP1]</label>
+                        <font>WatchedIcon</font>
+                        <textcolor>PanelWhite70</textcolor>
+                        <selectedcolor>PanelWhite70</selectedcolor>
+                        <label>$VAR[LabelPercentWatchedP1]</label>
                         <visible>!String.IsEqual(ListItem(1).Label,..)</visible>
                     </control>
                 </control>
@@ -669,7 +671,7 @@
                     <texture colordiffuse="Fallback" border="4" background="true">common/box.png</texture>
                 </control>
                 <control type="wraplist" id="51">
-                    <visible>$EXP[InGameMode] | Container.Content(musicvideos) | Container.Content(artists) | Container.Content(movies) | Container.Content(tvshows) | Container.Content(episodes) | Container.Content(sets) | Container.Content(videos) | Container.Content(albums) | Container.Content(songs) | $EXP[IsVideoAssets]</visible>
+                    <visible>$EXP[InGameMode] | Container.Content(musicvideos) | Container.Content(artists) | Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(sets) | Container.Content(videos) | Container.Content(albums) | Container.Content(songs) | $EXP[IsVideoAssets]</visible>
                     <include content="forced_view" condition="Skin.HasSetting(enable.forcedviews)">
                         <param name="string" value="$LOCALIZE[31422]" />
                     </include>
@@ -726,9 +728,10 @@
                         <left>10</left>
                         <top>8</top>
                         <height>50</height>
-                        <textcolor>$VAR[WatchedLabelColor]</textcolor>
-                        <font>SymbolPoster</font>
-                        <label>$VAR[WatchedLabelList]</label>
+                        <font>WatchedIcon</font>
+                        <textcolor>PanelWhite70</textcolor>
+                        <selectedcolor>PanelWhite70</selectedcolor>
+                        <label>$VAR[LabelPercentWatched]</label>
                         <visible>!String.IsEqual(ListItem.Label,..)</visible>
                         <visible>Container.Content(songs)</visible>
                     </control>
@@ -750,9 +753,10 @@
                         <right>83</right>
                         <top>9</top>
                         <height>50</height>
-                        <textcolor>$VAR[WatchedLabelColor]</textcolor>
-                        <font>SymbolPoster</font>
-                        <label>$VAR[WatchedLabelList]</label>
+                        <font>WatchedIcon</font>
+                        <textcolor>PanelWhite70</textcolor>
+                        <selectedcolor>PanelWhite70</selectedcolor>
+                        <label>$VAR[LabelPercentWatched]</label>
                         <visible>!String.IsEqual(ListItem.Label,..)</visible>
                         <visible>!Container.Content(songs)</visible>
                         <animation effect="slide" start="0" end="60" time="0" condition="Container.Content(Seasons)">Conditional</animation>
