@@ -635,9 +635,11 @@
     </variable>
 
     <variable name="VideoVersionFileVar">
+        <value condition="Control.HasFocus(50) + !String.IsEmpty(ListItem.DecodedFileNameAndPath)">$INFO[Container(50).ListItem.DecodedFileNameAndPath]</value>
+        <value condition="Control.HasFocus(3) + !String.IsEmpty(ListItem.DecodedFileNameAndPath)">$INFO[Container(3).ListItem.DecodedFileNameAndPath]</value>
         <value condition="Control.HasFocus(50)">$INFO[Container(50).ListItem.FileNameAndPath]</value>
         <value condition="Control.HasFocus(3)">$INFO[Container(3).ListItem.FileNameAndPath]</value>
-        <value>$INFO[ListItem.FileNameAndPath]</value>
+        <value>$VAR[Label_FileNameAndPath]</value>
     </variable>
    	
 	<include name="DialogSelectVideoVersion">
@@ -648,7 +650,7 @@
 		<definition>
 	        <include content="DefDialog">
 	            <param name="header_id" value="$PARAM[header_id]"/>
-	            <param name="width" value="1500"/>
+	            <param name="width" value="1550"/>
 	
 	            <!-- Start of dialog specific (nested) content -->
 	            <control type="group">
@@ -688,7 +690,7 @@
 	            <control type="group" id="100">
                     <top>115</top>              
                     <right>376</right>
-                    <width>746</width>
+                    <width>796</width>
                     <height>690</height>
                     <control type="list" id="$PARAM[list_id]">
                         <right>0</right>
@@ -699,7 +701,7 @@
                         <pagecontrol>1723</pagecontrol>
                         <include content="Def_MediaInfoListLayout">
                             <param name="focused" value="Control.HasFocus($PARAM[list_id])"/>
-                            <param name="width" value="746"/>
+                            <param name="width" value="796"/>
                             <param name="indicators" value="!Window.IsVisible(DialogSelect.xml)" />
                         </include>
                     </control>

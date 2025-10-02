@@ -16,7 +16,7 @@
                 <description>Header Label</description>
                 <textcolor>Dark1</textcolor>
                 <font>MediumBold</font>
-                <label fallback="19055">$INFO[ListItem.Title]</label>
+                <label fallback="19055">$INFO[ListItem.Label]</label>
             </control>
             <control type="image" description="clearlogo">
                 <animation effect="slide" start="0,0" end="-735,0" time="200" condition="Skin.HasSetting(509NoCenter)">Conditional</animation>
@@ -30,7 +30,7 @@
                 <fadetime>ClearArtFadetime</fadetime>
             </control>
             <control type="panel" id="509">
-                <visible>Container.Content(movies) | Container.Content(musicvideos) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(sets) | Container.Content(videos) | $EXP[InGameMode]</visible>
+                <visible>Container.Content(movies) | Container.Content(musicvideos) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(sets) | Container.Content(videos) | $EXP[IsVideoAssets] | $EXP[InGameMode]</visible>
                 <top>350</top>
                 <left>71</left>
                 <width>1780</width>
@@ -127,7 +127,7 @@
                 <font>Tiny</font>
                 <textcolor>Dark2</textcolor>
                 <selectedcolor>Dark2</selectedcolor>
-                <label>$INFO[ListItem.Plot]</label>
+                <label>$VAR[LabelPlot]</label>
             </control>
         </control>
     </include>

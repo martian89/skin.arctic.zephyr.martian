@@ -81,10 +81,10 @@
                         <scroll>true</scroll>
                         <scrollspeed>40</scrollspeed>
                         <textcolor>Dark3</textcolor>
-                        <label>$INFO[ListItem.FileNameAndPath]</label>
+                        <label>$VAR[Label_FileNameAndPath]</label>
                         <aligny>center</aligny>
                         <align>right</align>
-                        <visible>ControlGroup(9000).HasFocus() + !Skin.HasSetting(HideFileNameAndPath)</visible>
+                        <visible>ControlGroup(9000).HasFocus()</visible>
                         <include>Animation.FileNameAndPath</include>
                     </control>
                     <control type="label">
@@ -97,7 +97,7 @@
                         <aligny>center</aligny>
                         <align>right</align>
                         <visible>ControlGroup(9000).HasFocus()</visible>
-                        <include condition="!Skin.HasSetting(HideFileNameAndPath)">Animation.ButtonLabel</include>
+                        <include>Animation.ButtonLabel</include>
                     </control>
                 </control>
 
@@ -597,7 +597,7 @@
                             <font>TinyPlot</font>
                             <textcolor>Dark2</textcolor>
                             <align>left</align>
-                            <label fallback="19055">$INFO[ListItem.Plot]</label>
+                            <label fallback="19055">$VAR[LabelPlot]</label>
                         </control>
                     </control>
                     <!-- DETAILS -->
@@ -1040,7 +1040,7 @@
         </include>
          <include content="DialogInfoOverlay">
             <param name="headerinfo" value="$INFO[ListItem.Title]" />
-            <param name="plotinfo" value="$INFO[ListItem.Tagline,[B],[/B][CR][CR]]$INFO[ListItem.Plot]" />
+            <param name="plotinfo" value="$INFO[ListItem.Tagline,[B],[/B][CR][CR]]$VAR[LabelPlot]" />
         </include>
        <include>DialogCustomSettings</include>
     </include>

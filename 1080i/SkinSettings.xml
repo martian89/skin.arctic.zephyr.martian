@@ -1270,6 +1270,7 @@
                                 <height>70</height>
                                 <label>$LOCALIZE[31495]</label>
                             </control>
+                            <visible>Skin.HasSetting(furniture.markers.alternative)</visible>
                         </control> 
                         <control type="radiobutton" id="9699">
                             <width>1360</width>
@@ -1279,7 +1280,7 @@
                             </include>
                             <label>$LOCALIZE[31110] - $LOCALIZE[31650]</label>
 	                        <onclick>Skin.SetColor(indicatorcolorbackgroundisplaying.name,31699,$VAR[ColorIndicatorBackgroundIsPlaying],special://skin/extras/colors.xml)</onclick>
-                            <enable>Skin.HasSetting(furniture.markers.alternative)</enable>
+                            <visible>Skin.HasSetting(furniture.markers.alternative)</visible>
                         </control>
                         <control type="radiobutton" id="9698">
                             <width>1360</width>
@@ -1289,7 +1290,7 @@
                             </include>
                             <label>$LOCALIZE[31297]$LOCALIZE[31651] - $LOCALIZE[31650]</label>
                             <onclick>Skin.SetColor(indicatorcolorbackgroundisplayingicon.name,31699,$VAR[ColorIndicatorBackgroundIsPlayingIcon],special://skin/extras/colors.xml)</onclick>
-                            <enable>Skin.HasSetting(furniture.markers.alternative)</enable>
+                            <visible>Skin.HasSetting(furniture.markers.alternative)</visible>
                         </control>                       
                         <control type="radiobutton" id="9673">
                             <width>1360</width>
@@ -1299,7 +1300,7 @@
                             </include>
                             <label>$LOCALIZE[31110] - $LOCALIZE[575]</label>
                             <onclick>Skin.SetColor(indicatorcolorbackgroundinprogress.name,31699,$VAR[ColorIndicatorBackgroundInprogress],special://skin/extras/colors.xml)</onclick>
-                            <enable>Skin.HasSetting(furniture.markers.alternative)</enable>
+                            <visible>Skin.HasSetting(furniture.markers.alternative)</visible>
                         </control>
                         <control type="radiobutton" id="9672">
                             <width>1360</width>
@@ -1309,7 +1310,7 @@
                             </include>
                             <label>$LOCALIZE[31110] - $LOCALIZE[16102]</label>
                             <onclick>Skin.SetColor(indicatorcolorbackgroundwatched.name,31699,$VAR[ColorIndicatorBackgroundWatched],special://skin/extras/colors.xml)</onclick>
-                            <enable>Skin.HasSetting(furniture.markers.alternative)</enable>
+                            <visible>Skin.HasSetting(furniture.markers.alternative)</visible>
                         </control>
                         <control type="radiobutton" id="9674">
                             <width>1360</width>
@@ -1319,7 +1320,7 @@
                             </include>
                             <label>$LOCALIZE[31110] - $LOCALIZE[842]</label>
                             <onclick>Skin.SetColor(indicatorcolorbackgroundnew.name,31699,$VAR[ColorIndicatorBackgroundNew],special://skin/extras/colors.xml)</onclick>
-                            <enable>Skin.HasSetting(furniture.markers.alternative)</enable>
+                            <visible>Skin.HasSetting(furniture.markers.alternative)</visible>
                         </control>
  
                         <control type="radiobutton" id="96741">
@@ -1330,7 +1331,7 @@
                             </include>
                             <label>$LOCALIZE[31110] - $LOCALIZE[40000]</label>
                             <onclick>Skin.SetColor(indicatorcolorbackgroundversions.name,31699,$VAR[ColorIndicatorBackgroundVersions],special://skin/extras/colors.xml)</onclick>
-                            <enable>Skin.HasSetting(furniture.markers.alternative)</enable>
+                            <visible>Skin.HasSetting(furniture.markers.alternative)</visible>
                         </control>
                         <control type="radiobutton" id="96742">
                             <width>1360</width>
@@ -1340,7 +1341,7 @@
                             </include>
                             <label>$LOCALIZE[31110] - $LOCALIZE[40211]</label>
                             <onclick>Skin.SetColor(indicatorcolorbackgroundextras.name,31699,$VAR[ColorIndicatorBackgroundExtras],special://skin/extras/colors.xml)</onclick>
-                            <enable>Skin.HasSetting(furniture.markers.alternative)</enable>
+                            <visible>Skin.HasSetting(furniture.markers.alternative)</visible>
                         </control>
                         <control type="radiobutton" id="96743">
                             <width>1360</width>
@@ -1350,7 +1351,7 @@
                             </include>
                             <label>$LOCALIZE[31110] - $LOCALIZE[14022]</label>
                             <onclick>Skin.SetColor(indicatorcolorbackgroundlibrary.name,31699,$VAR[ColorIndicatorBackgroundLibrary],special://skin/extras/colors.xml)</onclick>
-                            <enable>Skin.HasSetting(furniture.markers.alternative)</enable>
+                            <visible>Skin.HasSetting(furniture.markers.alternative)</visible>
                         </control>
 
                         <control type="radiobutton" id="9677">
@@ -1361,7 +1362,7 @@
                             </include>
                             <label>$LOCALIZE[31496]</label>
                             <onclick>Skin.SetColor(indicatorcolorbackgroundlabel.name,31699,$VAR[ColorIndicatorBackgroundLabel],special://skin/extras/colors.xml)</onclick>
-                            <enable>Skin.HasSetting(furniture.markers.alternative)</enable>
+                            <visible>Skin.HasSetting(furniture.markers.alternative)</visible>
                         </control>
                     </control>
 
@@ -1624,12 +1625,6 @@
                             <param name="id" value="11028"/>
                             <param name="visible" value="String.IsEqual(Window.Property(content),8)"/>
                             <param name="addonname" value="script.favourites"/>
-                        </include>
-                        <include content="DefSkinAddons">
-                            <param name="id" value="11030"/>
-                            <param name="visible" value="String.IsEqual(Window.Property(content),8)"/>
-                            <param name="addonname" value="script.preshowexperience"/>
-                            <param name="installable" value="false" />
                         </include>
                     </control>
 
@@ -1975,10 +1970,10 @@
                             <align>left</align>
                             <label>$LOCALIZE[31985]</label>
                             <label2>$VAR[MarkersTypeLabel]</label2>
+                            <onclick condition="!Skin.HasSetting(hide.markers) + !Skin.HasSetting(furniture.markers.alternative)">Skin.SetBool(furniture.markers.alternative)</onclick>
                             <onclick condition="!Skin.HasSetting(hide.markers) + Skin.HasSetting(furniture.markers.alternative)">Skin.Reset(furniture.markers.alternative)</onclick>
-                            <onclick condition="!Skin.HasSetting(hide.markers) + !Skin.HasSetting(furniture.markers.alternative)">Skin.SetBool(hide.markers)</onclick>
+                            <onclick condition="!Skin.HasSetting(hide.markers) + Skin.HasSetting(furniture.markers.alternative)">Skin.SetBool(hide.markers)</onclick>
                             <onclick condition="Skin.HasSetting(hide.markers)">Skin.Reset(hide.markers)</onclick>
-                            <onclick condition="Skin.HasSetting(hide.markers)">Skin.SetBool(furniture.markers.alternative)</onclick>
                         </control>
                         <control type="radiobutton" id="9599">
                             <visible>String.IsEqual(Window.Property(content),4)</visible>
@@ -1987,6 +1982,24 @@
                             <align>left</align>
                             <selected>!Skin.HasSetting(hide.markers.isplaying)</selected>
                             <onclick>Skin.ToggleSetting(hide.markers.isplaying)</onclick>
+                            <visible>!Skin.HasSetting(hide.markers)</visible>
+                        </control>
+                        <control type="radiobutton" id="9588">
+                            <visible>String.IsEqual(Window.Property(content),4)</visible>
+                            <include>DefSettingsButtonGradientSkinSettings</include>
+                            <label>$LOCALIZE[16102]</label>
+                            <align>left</align>
+                            <selected>!Skin.HasSetting(hide.markers.watched)</selected>
+                            <onclick>Skin.ToggleSetting(hide.markers.watched)</onclick>
+                            <visible>!Skin.HasSetting(hide.markers)</visible>
+                        </control>
+                        <control type="radiobutton" id="9589">
+                            <visible>String.IsEqual(Window.Property(content),4)</visible>
+                            <include>DefSettingsButtonGradientSkinSettings</include>
+                            <label>$LOCALIZE[842]</label>
+                            <align>left</align>
+                            <selected>!Skin.HasSetting(hide.markers.newcontent)</selected>
+                            <onclick>Skin.ToggleSetting(hide.markers.newcontent)</onclick>
                             <visible>!Skin.HasSetting(hide.markers)</visible>
                         </control>
                         <control type="radiobutton" id="9586">
@@ -2021,49 +2034,22 @@
                         <control type="radiobutton" id="9587">
                             <visible>String.IsEqual(Window.Property(content),4)</visible>
                             <include>DefSettingsButtonGradientSkinSettings</include>
-                            <label>$LOCALIZE[16101]</label>
+                            <label>$LOCALIZE[16101]$VAR[OnlyInListsLabel]</label>
                             <align>left</align>
                             <selected>!Skin.HasSetting(hide.markers.unwatched)</selected>
                             <onclick>Skin.ToggleSetting(hide.markers.unwatched)</onclick>
-                            <visible>!Skin.HasSetting(hide.markers) + !Skin.HasSetting(furniture.markers.alternative)</visible>
-                        </control>
-                        <control type="radiobutton" id="9588">
-                            <visible>String.IsEqual(Window.Property(content),4)</visible>
-                            <include>DefSettingsButtonGradientSkinSettings</include>
-                            <label>$LOCALIZE[16102]</label>
-                            <align>left</align>
-                            <selected>!Skin.HasSetting(hide.markers.watched)</selected>
-                            <onclick>Skin.ToggleSetting(hide.markers.watched)</onclick>
-                            <visible>!Skin.HasSetting(hide.markers)</visible>
-                        </control>
-                        <control type="radiobutton" id="9589">
-                            <visible>String.IsEqual(Window.Property(content),4)</visible>
-                            <include>DefSettingsButtonGradientSkinSettings</include>
-                            <label>$LOCALIZE[842]</label>
-                            <align>left</align>
-                            <selected>!Skin.HasSetting(hide.markers.newcontent)</selected>
-                            <onclick>Skin.ToggleSetting(hide.markers.newcontent)</onclick>
-                            <visible>!Skin.HasSetting(hide.markers)</visible>
-                        </control>
-                        <control type="radiobutton" id="95891">
-                            <visible>String.IsEqual(Window.Property(content),4)</visible>
-                            <include>DefSettingsButtonGradientSkinSettings</include>
-                            <label>$LOCALIZE[40000]</label>
-                            <align>left</align>
-                            <selected>!Skin.HasSetting(hide.markers.versions)</selected>
-                            <onclick>Skin.ToggleSetting(hide.markers.versions)</onclick>
                             <visible>!Skin.HasSetting(hide.markers)</visible>
                         </control>
                         <control type="radiobutton" id="95892">
                             <visible>String.IsEqual(Window.Property(content),4)</visible>
                             <include>DefSettingsButtonGradientSkinSettings</include>
-                            <label>$LOCALIZE[40211]</label>
+                            <label>$LOCALIZE[31498]$VAR[OnlyInListsLabel]</label>
                             <align>left</align>
-                            <selected>!Skin.HasSetting(hide.markers.extras)</selected>
-                            <onclick>Skin.ToggleSetting(hide.markers.extras)</onclick>
+                            <selected>!Skin.HasSetting(hide.markers.collection)</selected>
+                            <onclick>Skin.ToggleSetting(hide.markers.collection)</onclick>
                             <visible>!Skin.HasSetting(hide.markers)</visible>
                         </control>
-                        <control type="radiobutton" id="95893">
+                        <control type="radiobutton" id="95891">
                             <visible>String.IsEqual(Window.Property(content),4)</visible>
                             <include>DefSettingsButtonGradientSkinSettings</include>
                             <label>$LOCALIZE[14022]</label>
@@ -2071,6 +2057,24 @@
                             <selected>!Skin.HasSetting(hide.markers.library)</selected>
                             <onclick>Skin.ToggleSetting(hide.markers.library)</onclick>
                             <visible>!Skin.HasSetting(hide.markers)</visible>
+                        </control>
+                        <control type="radiobutton" id="95893">
+                            <visible>String.IsEqual(Window.Property(content),4)</visible>
+                            <include>DefSettingsButtonGradientSkinSettings</include>
+                            <label>$LOCALIZE[40000]</label>
+                            <align>left</align>
+                            <selected>!Skin.HasSetting(hide.markers.versions)</selected>
+                            <onclick>Skin.ToggleSetting(hide.markers.versions)</onclick>
+                            <visible>!Skin.HasSetting(hide.markers) + Skin.HasSetting(furniture.markers.alternative)</visible>
+                        </control>
+                        <control type="radiobutton" id="95894">
+                            <visible>String.IsEqual(Window.Property(content),4)</visible>
+                            <include>DefSettingsButtonGradientSkinSettings</include>
+                            <label>$LOCALIZE[40211]</label>
+                            <align>left</align>
+                            <selected>!Skin.HasSetting(hide.markers.extras)</selected>
+                            <onclick>Skin.ToggleSetting(hide.markers.extras)</onclick>
+                            <visible>!Skin.HasSetting(hide.markers) + Skin.HasSetting(furniture.markers.alternative)</visible>
                         </control>
                         <control type="grouplist" id="11996">
                             <visible>String.IsEqual(Window.Property(content),4)</visible>

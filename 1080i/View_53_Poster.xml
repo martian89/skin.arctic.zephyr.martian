@@ -4,7 +4,7 @@
 
     <include name="53Content">
         <height>1080</height>
-        <visible>$EXP[InGameMode] | Container.Content(musicvideos) | Container.Content(movies) | Container.Content(tvshows) | Container.Content(sets) | Container.Content(videos) | Container.Content(seasons)</visible>
+        <visible>$EXP[InGameMode] | Container.Content(musicvideos) | Container.Content(movies) | Container.Content(tvshows) | Container.Content(sets) | Container.Content(videos) | Container.Content(seasons) | $EXP[IsVideoAssets]</visible>
         <posy>96</posy>
         <posx>-190</posx>
         <width>2300</width>
@@ -78,7 +78,7 @@
                     <width>PosterW</width>
                     <height>PosterH</height>
                     <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
-                    <texture diffuse="diffuse/listposter.png" background="true">$VAR[PosterImage]</texture>
+                    <texture diffuse="diffuse/listposter.png" background="true" fallback="DefaultMovies.png">$VAR[PosterImage]</texture>
                 </control>
                 <control type="image">
                     <width>PosterW</width>

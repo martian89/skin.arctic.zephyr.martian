@@ -604,7 +604,7 @@
     
     <include name="Furniture_Flags">
         <control type="group">
-    		<visible>Container.Content(movies) | Container.Content(files) | Container.Content(musicvideos) | Container.Content(episodes) | Container.Content(tvshows) | Container.Content(sets) | Container.Content(seasons)</visible>
+    		<visible>Container.Content(movies) | Container.Content(files) | Container.Content(musicvideos) | Container.Content(episodes) | Container.Content(tvshows) | Container.Content(sets) | Container.Content(seasons) | $EXP[IsVideoAssets] + !ListItem.IsFolder</visible>
             <include>Animation.FurnitureVisible</include>
             <include content="Furniture_Flags_Include" condition="!Skin.HasSetting(furniture.flags)">
                 <param name="position_low" value="true" />
@@ -645,7 +645,7 @@
                     <height>45</height>
                     <left>10</left>
                     <align>center</align>
-                    <texture border="0" colordiffuse="Dark1">common/circle2.png</texture>
+                    <texture border="0" colordiffuse="Dark1">common/circle.png</texture>
                     <visible>!ListItem.IsCollection</visible>
                 </control>
                 <control type="image" description="Sets">
@@ -974,7 +974,7 @@
                     <height>45</height>
                     <align>center</align>
                     <left>10</left>
-                    <texture border="0" colordiffuse="Dark1">common/circle2.png</texture>
+                    <texture border="0" colordiffuse="Dark1">common/circle.png</texture>
                     <visible>!ListItem.IsCollection</visible>
                 </control>
                 <control type="image" description="Sets">
@@ -1299,7 +1299,7 @@
                     <height>45</height>
                     <left>10</left>
                     <align>center</align>
-                    <texture border="0" colordiffuse="Dark1">common/circle2.png</texture>
+                    <texture border="0" colordiffuse="Dark1">common/circle.png</texture>
                     <visible>!Container(9500).ListItem.IsCollection</visible>
                 </control>
                 <control type="image" description="Sets">
@@ -1583,7 +1583,7 @@
                     <height>45</height>
                     <align>center</align>
                     <left>10</left>
-                    <texture border="0" colordiffuse="Dark1">common/circle2.png</texture>
+                    <texture border="0" colordiffuse="Dark1">common/circle.png</texture>
                     <visible>!Container(9500).ListItem.IsCollection</visible>
                 </control>
                 <control type="image" description="Sets">
@@ -1914,6 +1914,9 @@
         <value condition="Window.IsVisible(MyGames.xml) + !String.IsEmpty(Container.FolderName)">$INFO[Container.FolderName]</value>
         <value condition="$EXP[InGameMode]">$LOCALIZE[10821]</value>
         <value condition="Window.IsVisible(MyGames.xml)">$LOCALIZE[10821]</value>
+        <value condition="Container.Content(videoassets)">$INFO[Container.FolderName,, - ]$LOCALIZE[40209]</value>
+        <value condition="Container.Content(videoversions)">$INFO[Container.FolderName,, - ]$LOCALIZE[40210]</value>
+        <value condition="Container.Content(videoextras)">$INFO[Container.FolderName,, - ]$LOCALIZE[40211]</value>
         <value condition="Window.IsVisible(MyVideoNav.xml) + String.IsEqual(Container.FolderPath,videodb://movies/titles/)">$LOCALIZE[20342]</value>
         <value condition="Window.IsVisible(MyVideoNav.xml) + String.IsEqual(Container.FolderPath,videodb://tvshows/titles/)">$LOCALIZE[20343]</value>
         <value condition="Window.IsVisible(MyVideoNav.xml) + String.Contains(Container.FolderPath,videodb://movies/,Left)">$INFO[Container.FolderName]</value>
@@ -2136,7 +2139,7 @@
             <control type="group">
                 <visible>Skin.HasSetting(furniture.weatherleft) + !String.IsEmpty(Weather.Plugin)</visible>
                 <animation effect="slide" start="0" end="-20,0" time="0" condition="Integer.IsGreater(System.Time(hh),9) + !String.IsEmpty(System.Time(xx))">Conditional</animation>
-                <animation effect="slide" start="0" end="-30,0" time="0" condition="!String.IsEmpty(System.Time(xx))">Conditional</animation>
+                <animation effect="slide" start="0" end="-28,0" time="0" condition="!String.IsEmpty(System.Time(xx))">Conditional</animation>
                 <control type="grouplist">
                     <visible>!String.Contains(Weather.Temperature,$LOCALIZE[503]) + Weather.IsFetched</visible>
                     <include>Animation.FadeInWeatherDelay</include>
@@ -2236,17 +2239,17 @@
             </control>
             <control type="label">
                 <centertop>24</centertop>
-                <right>135</right>
+                <right>130</right>
                 <align>right</align>
                 <font>LargeBold</font>
                 <textcolor>$VAR[ColorHighlight]</textcolor>
                 <label>$INFO[System.Time(hh:mm)]</label>
-                <animation effect="slide" start="0" end="55" time="0" condition="String.IsEmpty(System.Time(xx))">Conditional</animation>
+                <animation effect="slide" start="0" end="50" time="0" condition="String.IsEmpty(System.Time(xx))">Conditional</animation>
             </control>
             <control type="label">
-                <centertop>30</centertop>
+                <centertop>31</centertop>
                 <right>SidePad</right>
-                <font>MediumBold</font>
+                <font>SmallBold</font>
                 <textcolor>Dark3</textcolor>
                 <align>right</align>
                 <width>120</width>
@@ -2449,7 +2452,7 @@
                 <height>45</height>
                 <left>10</left>
                 <align>center</align>
-                <texture border="0" colordiffuse="Dark1">common/circle2.png</texture>
+                <texture border="0" colordiffuse="Dark1">common/circle.png</texture>
             </control>
             <control type="label">
                 <width>45</width>

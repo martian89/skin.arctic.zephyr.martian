@@ -57,7 +57,7 @@
         <include>Furniture_Weather</include>
         <include content="DialogInfoOverlay">
             <param name="headerinfo" value="$INFO[ListItem.Title]" />
-            <param name="plotinfo" value="$INFO[ListItem.Tagline,[B],[/B][CR][CR]]$INFO[ListItem.Plot]" />
+            <param name="plotinfo" value="$INFO[ListItem.Tagline,[B],[/B][CR][CR]]$VAR[LabelPlot]" />
             <param name="ondirection" value="50" />
         </include>
         <include>AlbumAndSetsCount</include>
@@ -407,6 +407,17 @@
                     <onclick>Skin.ToggleSetting(504clearlogo)</onclick>
                     <visible>Control.IsVisible(504)</visible>
                 </control>
+                <control type="radiobutton" id="9053" description="list.show.filename">
+                    <include>DefContextButtonGradient</include>
+                    <align>left</align>
+                    <label>31989</label>
+                    <selected>!Skin.HasSetting(list.hide.mediainfo) + !Skin.HasSetting(list.show.filename)</selected>
+                    <onclick>Skin.ToggleSetting(list.hide.mediainfo)</onclick>
+                    <onclick>ReloadSkin()</onclick>
+                    <enable>!Skin.HasSetting(list.show.filename)</enable>
+                    <visible>Skin.HasSetting(511ListInfo) + [!Control.IsVisible(56) | !Skin.HasSetting(56media.showinfo) + !Skin.HasSetting(56media.low)] + $EXP[IsVideoAssets]</visible>
+                    <visible>Control.IsVisible(50) | Control.IsVisible(57) | Control.IsVisible(56)</visible>
+                </control>
                 <control type="radiobutton" id="9029" description="list.show.filename">
                     <include>DefContextButtonGradient</include>
                     <align>left</align>
@@ -440,7 +451,7 @@
                     <selected>Skin.HasSetting(furniture.overlayinfobalken)</selected>
                     <onclick>Skin.ToggleSetting(furniture.overlayinfobalken)</onclick>
                     <onclick>ReloadSkin()</onclick>
-                    <visible>Control.IsVisible(55) | Control.IsVisible(57) | Control.IsVisible(56) | Control.IsVisible(501) | Control.IsVisible(507)</visible>
+                    <visible>Control.IsVisible(55) | Control.IsVisible(57) | Control.IsVisible(56) | Control.IsVisible(507)</visible>
                 </control>
                 <control type="radiobutton" id="9062" description="Discart">
                     <include>DefContextButtonGradient</include>
@@ -448,7 +459,7 @@
                     <label>31459</label>
                     <selected>Skin.HasSetting(discartfanart)</selected>
                     <onclick>Skin.ToggleSetting(discartfanart)</onclick>
-                    <visible>Control.IsVisible(507) | Control.IsVisible(501) | Control.IsVisible(504)</visible>
+                    <visible>Control.IsVisible(507) | Control.IsVisible(504)</visible>
                 </control>
                 <control type="radiobutton" id="9063" description="Alternative CD Case">
                     <include>DefContextButtonGradient</include>
@@ -456,7 +467,7 @@
                     <label>31010</label>
                     <selected>Skin.HasSetting(ModernCase)</selected>
                     <onclick>Skin.ToggleSetting(ModernCase)</onclick>
-                    <visible>Control.IsVisible(507) | Control.IsVisible(501)</visible>
+                    <visible>Control.IsVisible(507)</visible>
                 </control>
                 <control type="radiobutton" id="9067">
                     <include>DefContextButtonGradient</include>
@@ -648,6 +659,13 @@
                         <param name="query" value="tvshows=true&amp;movies=true&amp;episodes=true&amp;actors=true" />
                     </include>
                 </control>
+                <control type="button" id="9098">
+                    <include>DefContextButtonGradient</include>
+                    <align>left</align>
+	                <label>10140</label>
+	                <onclick>Addon.OpenSettings($INFO[Container.PluginName])</onclick>
+	                <visible>!String.IsEmpty(Container.PluginName)</visible>
+	            </control>    
                 <control type="button" id="9099">
                     <include>DefContextButtonGradient</include>
                     <align>left</align>
