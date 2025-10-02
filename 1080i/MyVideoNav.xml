@@ -407,6 +407,17 @@
                     <onclick>Skin.ToggleSetting(504clearlogo)</onclick>
                     <visible>Control.IsVisible(504)</visible>
                 </control>
+                <control type="radiobutton" id="9053" description="list.show.filename">
+                    <include>DefContextButtonGradient</include>
+                    <align>left</align>
+                    <label>31989</label>
+                    <selected>!Skin.HasSetting(list.hide.mediainfo) + !Skin.HasSetting(list.show.filename)</selected>
+                    <onclick>Skin.ToggleSetting(list.hide.mediainfo)</onclick>
+                    <onclick>ReloadSkin()</onclick>
+                    <enable>!Skin.HasSetting(list.show.filename)</enable>
+                    <visible>Skin.HasSetting(511ListInfo) + [!Control.IsVisible(56) | !Skin.HasSetting(56media.showinfo) + !Skin.HasSetting(56media.low)] + $EXP[IsVideoAssets]</visible>
+                    <visible>Control.IsVisible(50) | Control.IsVisible(57) | Control.IsVisible(56)</visible>
+                </control>
                 <control type="radiobutton" id="9029" description="list.show.filename">
                     <include>DefContextButtonGradient</include>
                     <align>left</align>
