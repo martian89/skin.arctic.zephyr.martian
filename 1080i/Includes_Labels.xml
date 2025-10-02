@@ -120,12 +120,12 @@
         <value condition="$EXP[IsInProgress] + !Skin.HasSetting(hide.markers.inprogress)">&#62595;</value>
         <value condition="$EXP[IsWatched] + !Skin.HasSetting(hide.markers.watched)">[COLOR=WatchedProgress]&#62078;[/COLOR]</value>
         <value condition="$EXP[IsUnwatched] + [$EXP[IsNewMovie] | $EXP[IsNewTVShow] | $EXP[IsNewEpisode]] + !Skin.HasSetting(hide.markers.newcontent)">[COLOR=NewContentProgress]&#62079;[/COLOR]</value>
-        <value condition="ListItem.IsFolder">&#59649;</value>
-        <value condition="ListItem.IsCollection + !Skin.HasSetting(hide.markers.collection)">&#59648;</value>
+        <value condition="$EXP[IsUnwatched] + !String.IsEmpty(ListItem.DBID) + !Skin.HasSetting(hide.markers.unwatched)">&#61833;</value>
         <value condition="ListItem.HasVideoVersions + !$EXP[IsVideoAssets] + [!Skin.HasSetting(hide.markers.versions) | !Skin.HasSetting(furniture.markers.alternative)]">&#63341;</value>
         <value condition="ListItem.HasVideoExtras + !$EXP[IsVideoAssets] + [!Skin.HasSetting(hide.markers.extras) | !Skin.HasSetting(furniture.markers.alternative)]">&#61754;</value>
+        <value condition="ListItem.IsCollection + !Skin.HasSetting(hide.markers.collection)">&#59648;</value>
+        <value condition="ListItem.IsFolder">&#59649;</value>
         <value condition="!String.IsEmpty(ListItem.Property(Item.Info)) + !String.IsEmpty(ListItem.DBID) + !Skin.HasSetting(hide.markers.library)">&#62698;</value>
-        <value condition="$EXP[IsUnwatched] + !Skin.HasSetting(hide.markers.unwatched) + !Skin.HasSetting(furniture.markers.alternative)">&#61833;</value>
         <value condition="!String.IsEmpty(ListItem.DBID)">&#62698;</value>
     </variable>
 
@@ -1577,9 +1577,13 @@
     </variable>
 
     <variable name="MarkersTypeLabel">
-        <value condition="!Skin.HasSetting(furniture.markers.alternative) + !Skin.HasSetting(hide.markers)">$LOCALIZE[536]</value>
+        <value condition="!Skin.HasSetting(furniture.markers.alternative) + !Skin.HasSetting(hide.markers)">$LOCALIZE[571]</value>
         <value condition="Skin.HasSetting(furniture.markers.alternative) + !Skin.HasSetting(hide.markers)">$LOCALIZE[31986]</value>
         <value>$LOCALIZE[591]</value>
+    </variable>
+
+    <variable name="OnlyInListsLabel">
+        <value condition="Skin.HasSetting(furniture.markers.alternative)">$LOCALIZE[31988]</value>
     </variable>
 
     <variable name="OSDDiscArtLabel">
