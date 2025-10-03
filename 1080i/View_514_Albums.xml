@@ -3,7 +3,7 @@
 <includes>
 
     <include name="514Content">
-        <visible>Container.Content(artists) | Container.Content(musicvideos) | Container.Content(albums) | Container.Content(movies) | Container.Content(tvshows) | Container.Content(sets) | Container.Content(videos) | Container.Content(episodes) | $EXP[IsVideoAssets] | $EXP[InGameMode]</visible>
+        <visible>Container.Content(artists) | Container.Content(musicvideos) | Container.Content(albums) | Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(sets) | Container.Content(videos) | $EXP[IsVideoAssets] | $EXP[InGameMode]</visible>
         <top>306</top>
         <left>70</left>
         <width>1800</width>
@@ -90,7 +90,7 @@
                     <fadetime>ClearArtFadetime</fadetime>
                 </control>
                 <control type="grouplist">
-                    <visible>!String.IsEqual(ListItem.Label,..) + !ListItem.IsFolder</visible>
+                    <visible>!String.IsEqual(ListItem.Label,..) + ![$EXP[IsVideoAssets] + String.IsEmpty(ListItem.DBTYPE)]</visible>
                     <left>SidePad</left>
                     <top>620</top>
                     <height>600</height>
