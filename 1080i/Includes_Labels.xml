@@ -120,7 +120,7 @@
         <value condition="$EXP[IsInProgress] + !Skin.HasSetting(hide.markers.inprogress)">&#62595;</value>
         <value condition="$EXP[IsWatched] + !Skin.HasSetting(hide.markers.watched)">[COLOR=WatchedProgress]&#62078;[/COLOR]</value>
         <value condition="$EXP[IsNewContent] + !Skin.HasSetting(hide.markers.newcontent)">[COLOR=NewContentProgress]&#62079;[/COLOR]</value>
-        <value condition="$EXP[IsUnwatched] + !String.IsEmpty(ListItem.DBID) + !Skin.HasSetting(hide.markers.unwatched)">&#61833;</value>
+        <value condition="$EXP[IsUnwatched] + !String.IsEmpty(ListItem.DBID) + Skin.HasSetting(markers.unwatched)">&#61833;</value>
         <value condition="ListItem.HasVideoVersions + !$EXP[IsVideoAssets] + [!Skin.HasSetting(hide.markers.versions) | !Skin.HasSetting(furniture.markers.alternative)]">&#63341;</value>
         <value condition="ListItem.HasVideoExtras + !$EXP[IsVideoAssets] + [!Skin.HasSetting(hide.markers.extras) | !Skin.HasSetting(furniture.markers.alternative)]">&#61754;</value>
         <value condition="ListItem.IsCollection + !Skin.HasSetting(hide.markers.collection)">&#59648;</value>
@@ -2281,7 +2281,7 @@
     </variable>
  
     <variable name="MediaInfoListLabel2">
-        <value condition="[Window.IsVisible(DialogSelect.xml) | Window.IsVisible(DialogVideoManager.xml)] + [!String.IsEmpty(ListItem.VideoCodec) | !String.IsEmpty(ListItem.AudioCodec)]">$INFO[ListItem.VideoResolution,, ]$VAR[HDSD]$VAR[Video3DLabel,  •  ,]$VAR[VideoHdrTypeLabel,  •  ,]$VAR[MediaInfoListAudioCodecLabel,  •  ,]$VAR[LabelAudioChannels, ,]</value>
+        <value condition="[Window.IsVisible(DialogSelect.xml) | Window.IsVisible(DialogVideoManager.xml)] + [!String.IsEmpty(ListItem.VideoCodec) | !String.IsEmpty(ListItem.AudioCodec)]">$INFO[ListItem.VideoResolution,, ]$VAR[HDSD]$VAR[VideoCodecLabel,  •  ,]$VAR[VideoAspectLabel,  •  ,]$VAR[Video3DLabel,  •  ,]$VAR[VideoHdrTypeLabel,  •  ,]$VAR[AudioCodecLabel,  •  ,]$VAR[LabelAudioChannels, ,]</value>
         <value condition="[!String.IsEmpty(ListItem.VideoCodec) | !String.IsEmpty(ListItem.AudioCodec)]">$INFO[ListItem.VideoResolution,, ]$VAR[HDSD]$VAR[VideoCodecLabel,  •  ,]$VAR[VideoAspectLabel,  •  ,]$VAR[Video3DLabel,  •  ,]$VAR[VideoHdrTypeLabel,  •  ,]$VAR[MediaInfoListAudioCodecLabel,  •  ,]$VAR[LabelAudioChannels, ,]</value>
     </variable>
 
