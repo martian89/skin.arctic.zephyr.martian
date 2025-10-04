@@ -447,7 +447,7 @@
 
     <variable name="VideoHDRTypeImageHub">
         <value condition="$EXP[IsVideoHDR10PlusHub]">$VAR[MediaFlagsPath]/other/hdr10plus.png</value>
-        <value condition="Container(9500).ListItem.HdrType">$VAR[MediaFlagsPath]$INFO[Container(9500).ListItem.HdrType,/other/,.png]</value>
+        <value condition="!String.IsEmpty(Container(9500).ListItem.HdrType)">$VAR[MediaFlagsPath]$INFO[Container(9500).ListItem.HdrType,/other/,.png]</value>
     </variable>
 
 </includes>
