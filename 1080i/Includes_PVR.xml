@@ -73,20 +73,27 @@
                     <align>left</align>
                 </control>
                 <control type="button" id="9004">
+                    <description>Providers</description>
+                    <label>19348</label>
+                    <onclick>ActivateWindow(TVProviders)</onclick>
+                    <include>DefContextButtonGradient</include>
+                    <align>left</align>
+                </control>
+                <control type="button" id="9005">
                     <description>Timers</description>
                     <label>19040</label>
                     <onclick>ActivateWindow(TVTimers)</onclick>
                     <include>DefContextButtonGradient</include>
                     <align>left</align>
                 </control>
-                <control type="button" id="9005">
+                <control type="button" id="9006">
                     <description>Search</description>
                     <label>19138</label>
                     <onclick>ActivateWindow(TvTimerRules)</onclick>
                     <include>DefContextButtonGradient</include>
                     <align>left</align>
                 </control>
-                <control type="button" id="9006">
+                <control type="button" id="9007">
                     <description>Search</description>
                     <label>137</label>
                     <onclick>ActivateWindow(TVSearch)</onclick>
@@ -103,7 +110,7 @@
                     <include>DefContextButtonGradient</include>
                     <align>left</align>
                 </control>
-                <control type="radiobutton" id="9007">
+                <control type="radiobutton" id="9008">
                     <description>Search</description>
                     <label>31384</label>
                     <selected>Skin.HasSetting(pvr.fullepg)</selected>
@@ -152,6 +159,7 @@
     </include>
 
     <include name="PVRInfoPanel">
+        
         <control type="group">
             <left>70</left>
             <width>645</width>
@@ -244,6 +252,46 @@
                     <label>[B]$INFO[ListItem.EpisodeName,,[CR]][/B]$INFO[ListItem.Plot]</label>
                 </control>
             </control>
+            <control type="group">
+                <visible>Window.IsVisible(MyPVRProviders.xml)</visible>
+                <left>10</left>
+                <right>10</right>
+                <posy>370</posy>
+                <height>300</height>
+                <control type="label">
+                    <top>8</top>
+                    <aligny>center</aligny>
+                    <height>64</height>
+                    <font>MediumBold</font>
+                    <textcolor>Dark1</textcolor>
+                    <selectedcolor>Dark1</selectedcolor>
+                    <label>$INFO[ListItem.Label]</label>
+                </control>
+				<control type="list" id="5000">
+					<top>64</top>
+					<bottom>0</bottom>
+					<width>100%</width>
+					<itemlayout height="64" width="200">
+						<control type="label">
+		                    <textcolor>Dark1</textcolor>
+							<height>64</height>
+							<width>200</width>
+		                    <label>$INFO[ListItem.Property(totalcount)] $INFO[ListItem.Label]</label>
+		                    <visible>Integer.IsGreater(ListItem.Property(totalcount),0)</visible>
+						</control>
+					</itemlayout>
+					<focusedlayout height="64" width="200">
+						<control type="label">
+		                    <textcolor>Dark1</textcolor>
+							<height>64</height>
+							<width>200</width>
+		                    <label>$INFO[ListItem.Property(totalcount)] $INFO[ListItem.Label]</label>
+		                    <visible>Integer.IsGreater(ListItem.Property(totalcount),0)</visible>
+						</control>
+					</focusedlayout>
+					<content>$INFO[ListItem.FilenameAndPath]</content>
+				</control>
+            </control>    
         </control>
     </include>
 
@@ -530,6 +578,19 @@
                                 <label>$INFO[ListItem.ChannelName]</label>
                             </control>
                         </control>
+                        <control type="group">
+                            <visible>Window.IsVisible(MyPVRProviders.xml)</visible>
+                            <control type="label">
+                                <left>140</left>
+                                <right>100</right>
+                                <aligny>center</aligny>
+                                <height>100%</height>
+                                <font>SmallBold</font>
+                                <textcolor>Dark1</textcolor>
+                                <selectedcolor>Dark1</selectedcolor>
+                                <label>$INFO[ListItem.Label]</label>
+                            </control>
+                    	</control>
                     </itemlayout>
                     <focusedlayout height="128" width="1100">
                         <control type="group">
@@ -696,6 +757,19 @@
                                 </control>
                             </control>
                         </control>
+                        <control type="group">
+                            <visible>Window.IsVisible(MyPVRProviders.xml)</visible>
+                            <control type="label">
+                                <left>140</left>
+                                <right>100</right>
+                                <aligny>center</aligny>
+                                <height>100%</height>
+                                <font>SmallBold</font>
+                                <textcolor>Light1</textcolor>
+                                <selectedcolor>Light1</selectedcolor>
+                                <label>$INFO[ListItem.Label]</label>
+                            </control>
+                    	</control>
                     </focusedlayout>
                 </control>
             </control>
