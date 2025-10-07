@@ -192,7 +192,7 @@
                 <fadetime>PosterFanartFadetime</fadetime>
                 <aspectratio align="center" aligny="center" scalediffuse="false">keep</aspectratio>
                 <texture flipy="true" diffuse="diffuse/listposter-ref-widgets.png" background="true">$VAR[PosterImageSquare]</texture>
-                <visible>Skin.HasSetting(show.reflections) + !String.IsEqual(ListItem.DBType,genre)</visible>
+                <visible>Skin.HasSetting(show.reflections) + !String.IsEqual(ListItem.DBType,genre) +  !String.IsEqual(ListItem.DBType,studio)</visible>
             </control>
             <control type="image">
                 <top>PosterH</top>
@@ -202,6 +202,15 @@
                 <aspectratio align="center" aligny="center" scalediffuse="false">keep</aspectratio>
                 <texture flipy="true" diffuse="diffuse/listposter-ref-widgets.png" background="true" fallback="DefaultGenre.png">$VAR[ThumbImageGenres]</texture>
                 <visible>Skin.HasSetting(show.reflections) + String.IsEqual(ListItem.DBType,genre)</visible>
+            </control>
+            <control type="image">
+                <top>PosterH</top>
+                <width>PosterH</width>
+                <height>PosterH</height>
+                <fadetime>PosterFanartFadetime</fadetime>
+                <aspectratio align="center" aligny="center" scalediffuse="false">keep</aspectratio>
+                <texture flipy="true" diffuse="diffuse/listposter-ref-widgets.png" background="true" fallback="DefaultStudios.png">$VAR[ThumbImageStudios]</texture>
+                <visible>Skin.HasSetting(show.reflections) + String.IsEqual(ListItem.DBType,studio)</visible>
             </control>
             <control type="image">
                 <centertop>PosterH</centertop>
@@ -228,7 +237,7 @@
                 <fadetime>PosterFanartFadetime</fadetime>
                 <aspectratio align="center" aligny="center" scalediffuse="false">keep</aspectratio>
                 <texture diffuse="diffuse/listposter.png" background="true">$VAR[PosterImageSquare]</texture>
-                <visible>!String.IsEqual(ListItem.DBType,genre)</visible>
+                <visible>!String.IsEqual(ListItem.DBType,genre) + !String.IsEqual(ListItem.DBType,studio)</visible>
             </control>
             <control type="image">
                 <width>PosterH</width>
@@ -237,6 +246,14 @@
                 <aspectratio align="center" aligny="center" scalediffuse="false">keep</aspectratio>
                 <texture diffuse="diffuse/listposter.png" background="true" fallback="DefaultGenre.png">$VAR[ThumbImageGenres]</texture>
                 <visible>String.IsEqual(ListItem.DBType,genre)</visible>
+            </control>
+            <control type="image">
+                <width>PosterH</width>
+                <height>PosterH</height>
+                <fadetime>PosterFanartFadetime</fadetime>
+                <aspectratio align="center" aligny="center" scalediffuse="false">keep</aspectratio>
+                <texture diffuse="diffuse/listposter.png" background="true" fallback="DefaultStudios.png">$VAR[ThumbImageStudios]</texture>
+                <visible>String.IsEqual(ListItem.DBType,studio)</visible>
             </control>
             <control type="image">
                 <width>PosterH</width>
