@@ -743,6 +743,7 @@
     </variable>
 
     <variable name="Def_CastList_Item">
+        <value condition="Control.HasFocus(50) + !String.IsEqual(ListItem.DBType,set)">RunScript(plugin.video.themoviedb.helper,add_query=$INFO[Container(50).ListItem.Label],type=person,call_auto=1190)</value>    
         <value condition="Control.HasFocus(52) + !String.IsEmpty(Container(52).ListItem.Property(tmdb_id))">RunScript(plugin.video.themoviedb.helper,add_path=$INFO[Container(52).ListItem.Property(tmdb_id),plugin://plugin.video.themoviedb.helper/?info=details&amp;tmdb_type=person&amp;tmdb_id=,],call_auto=1190)</value>    
         <value condition="Control.HasFocus(52)">RunScript(plugin.video.themoviedb.helper,add_query=$INFO[Container(52).ListItem.Label],type=person,call_auto=1190)</value>    
         <value condition="Control.HasFocus(56) + !String.IsEmpty(Container(56).ListItem.Property(tmdb_id))">RunScript(plugin.video.themoviedb.helper,add_path=$INFO[Container(56).ListItem.Property(tmdb_id),plugin://plugin.video.themoviedb.helper/?info=details&amp;tmdb_type=person&amp;tmdb_id=,],call_auto=1190)</value>    

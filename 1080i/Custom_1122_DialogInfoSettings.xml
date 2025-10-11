@@ -180,39 +180,6 @@
                     <onclick>Skin.ToggleSetting(hidebutton.video.trakt)</onclick>
                     <visible>$EXP[IsDialogVideoInfo] + !String.IsEmpty(Window(Home).Property(TMDbHelper.TraktIsAuth))</visible>
                 </control>
-                <control type="button" id="120">
-                    <font>Button</font>
-                    <textcolor>PanelWhite30</textcolor>
-                    <height>66</height>
-                    <include>DefSettingsButtonLabelContextName</include>
-                    <label>31170</label>
-                    <enable>false</enable>
-                    <visible>$EXP[IsDialogVideoInfo]</visible>
-                    <visible>System.AddonIsEnabled(script.preshowexperience)</visible>
-                </control>
-                <control type="button" id="121">
-                    <include>DefContextButtonGradientSelect</include>
-                    <label>31455</label>
-                    <label2>$VAR[Label_IntroPath]</label2>
-                    <onclick>Skin.SetPath(IntroPath)</onclick>
-                    <visible>$EXP[IsDialogVideoInfo]</visible>
-                    <visible>System.AddonIsEnabled(script.preshowexperience)</visible>
-                    <enable>!Skin.HasSetting(hidebutton.video.cinema)</enable>
-                </control>
-                <control type="button" id="122">
-                    <include>DefContextButtonGradientSelect</include>
-                    <label>31456</label>
-                    <label2>$VAR[Label_TrailerCount]</label2>
-                    <onclick condition="!Skin.String(TrailerCount)">Skin.SetString(TrailerCount,1)</onclick>
-                    <onclick condition="Skin.String(TrailerCount,1)">Skin.SetString(TrailerCount,2)</onclick>
-                    <onclick condition="Skin.String(TrailerCount,2)">Skin.SetString(TrailerCount,3)</onclick>
-                    <onclick condition="Skin.String(TrailerCount,3)">Skin.SetString(TrailerCount,4)</onclick>
-                    <onclick condition="Skin.String(TrailerCount,4)">Skin.SetString(TrailerCount,5)</onclick>
-                    <onclick condition="Skin.String(TrailerCount,5)">Skin.Reset(TrailerCount)</onclick>
-                    <visible>$EXP[IsDialogVideoInfo]</visible>
-                    <visible>System.AddonIsEnabled(script.preshowexperience)</visible>
-                    <enable>!Skin.HasSetting(hidebutton.video.cinema)</enable>
-                </control>
 
                 <!-- Music Section -->
                 <control type="radiobutton" id="130">
@@ -257,6 +224,37 @@
                     <selected>!Skin.HasSetting(hidebutton.music.more)</selected>
                     <onclick>Skin.ToggleSetting(hidebutton.music.more)</onclick>
                     <visible>Window.IsVisible(DialogMusicInfo.xml)</visible>
+                </control>
+
+                <control type="button" id="136">
+                    <font>Button</font>
+                    <textcolor>PanelWhite30</textcolor>
+                    <height>66</height>
+                    <include>DefSettingsButtonLabelContextName</include>
+                    <label>33063</label>
+                    <enable>false</enable>
+                    <visible>$EXP[IsDialogVideoInfo]</visible>
+                </control>
+                <control type="radiobutton" id="137">
+                    <include>DefContextButtonGradientSelect</include>
+                    <label>31990</label>
+                    <selected>!Skin.HasSetting(extended.info.local.cast)</selected>
+                    <onclick>Skin.ToggleSetting(extended.info.local.cast)</onclick>
+                    <visible>$EXP[IsDialogVideoInfo]</visible>
+                </control>
+                <control type="radiobutton" id="138">
+                    <include>DefContextButtonGradientSelect</include>
+                    <label>31991</label>
+                    <selected>!Skin.HasSetting(extended.info.local.collections)</selected>
+                    <onclick>Skin.ToggleSetting(extended.info.local.collections)</onclick>
+                    <visible>$EXP[IsDialogVideoInfo]</visible>
+                </control>
+                <control type="radiobutton" id="139">
+                    <include>DefContextButtonGradientSelect</include>
+                    <label>31992</label>
+                    <selected>!Skin.HasSetting(extended.info.local.artwork)</selected>
+                    <onclick>Skin.ToggleSetting(extended.info.local.artwork)</onclick>
+                    <visible>$EXP[IsDialogVideoInfo]</visible>
                 </control>
                 
                 <control type="button" id="140">
@@ -310,14 +308,41 @@
                     <visible>$EXP[IsDialogVideoInfo]</visible>
                     <enable>!Skin.HasSetting(hidebutton.video.fanart)</enable>
                 </control>
-                <control type="radiobutton" id="153">
-                    <include>DefContextButtonGradientSelect</include>
-                    <label>31550</label>
-                    <selected>Skin.HasSetting(showartwork.video.tmdbhelper) + !Skin.HasSetting(hidebutton.video.fanart)</selected>
-                    <onclick>Skin.ToggleSetting(showartwork.video.tmdbhelper)</onclick>
+
+                <control type="button" id="120">
+                    <font>Button</font>
+                    <textcolor>PanelWhite30</textcolor>
+                    <height>66</height>
+                    <include>DefSettingsButtonLabelContextName</include>
+                    <label>31170</label>
+                    <enable>false</enable>
                     <visible>$EXP[IsDialogVideoInfo]</visible>
-                    <enable>!Skin.HasSetting(hidebutton.video.fanart)</enable>
+                    <visible>System.AddonIsEnabled(script.preshowexperience)</visible>
                 </control>
+                <control type="button" id="121">
+                    <include>DefContextButtonGradientSelect</include>
+                    <label>31455</label>
+                    <label2>$VAR[Label_IntroPath]</label2>
+                    <onclick>Skin.SetPath(IntroPath)</onclick>
+                    <visible>$EXP[IsDialogVideoInfo]</visible>
+                    <visible>System.AddonIsEnabled(script.preshowexperience)</visible>
+                    <enable>!Skin.HasSetting(hidebutton.video.cinema)</enable>
+                </control>
+                <control type="button" id="122">
+                    <include>DefContextButtonGradientSelect</include>
+                    <label>31456</label>
+                    <label2>$VAR[Label_TrailerCount]</label2>
+                    <onclick condition="!Skin.String(TrailerCount)">Skin.SetString(TrailerCount,1)</onclick>
+                    <onclick condition="Skin.String(TrailerCount,1)">Skin.SetString(TrailerCount,2)</onclick>
+                    <onclick condition="Skin.String(TrailerCount,2)">Skin.SetString(TrailerCount,3)</onclick>
+                    <onclick condition="Skin.String(TrailerCount,3)">Skin.SetString(TrailerCount,4)</onclick>
+                    <onclick condition="Skin.String(TrailerCount,4)">Skin.SetString(TrailerCount,5)</onclick>
+                    <onclick condition="Skin.String(TrailerCount,5)">Skin.Reset(TrailerCount)</onclick>
+                    <visible>$EXP[IsDialogVideoInfo]</visible>
+                    <visible>System.AddonIsEnabled(script.preshowexperience)</visible>
+                    <enable>!Skin.HasSetting(hidebutton.video.cinema)</enable>
+                </control>
+
                 <control type="button" id="160">
                     <font>Button</font>
                     <textcolor>PanelWhite30</textcolor>
@@ -349,13 +374,6 @@
                     <label>31673</label>
 					<selected>!Skin.HasSetting(hide.clearart)</selected>
                     <onclick>Skin.ToggleSetting(hide.clearart)</onclick>
-                    <visible>$EXP[IsDialogVideoInfo]</visible>
-                </control>
-                <control type="radiobutton" id="164">
-                    <include>DefContextButtonGradientSelect</include>
-                    <label>31501</label>
-                    <selected>Skin.HasSetting(extended.info.only.local)</selected>
-                    <onclick>Skin.ToggleSetting(extended.info.only.local)</onclick>
                     <visible>$EXP[IsDialogVideoInfo]</visible>
                 </control>
                 <control type="button" id="170">
