@@ -54,42 +54,48 @@
                 <control type="button" id="9001">
                     <description>Channels</description>
                     <label>19019</label>
-                    <onclick>ActivateWindow(TVChannels)</onclick>
+                    <onclick condition="String.IsEmpty(Window.Property(IsRadio))">ActivateWindow(TVChannels)</onclick>
+                    <onclick condition="!String.IsEmpty(Window.Property(IsRadio))">ActivateWindow(RadioChannels)</onclick>
                     <include>DefContextButtonGradient</include>
                     <align>left</align>
                 </control>
                 <control type="button" id="9002">
                     <description>Guide</description>
                     <label>22020</label>
-                    <onclick>ActivateWindow(TvGuide)</onclick>
+                    <onclick condition="String.IsEmpty(Window.Property(IsRadio))">ActivateWindow(TvGuide)</onclick>
+                    <onclick condition="!String.IsEmpty(Window.Property(IsRadio))">ActivateWindow(RadioGuide)</onclick>
                     <include>DefContextButtonGradient</include>
                     <align>left</align>
                 </control>
                 <control type="button" id="9003">
                     <description>Recordings</description>
                     <label>19017</label>
-                    <onclick>ActivateWindow(TVRecordings)</onclick>
+                    <onclick condition="String.IsEmpty(Window.Property(IsRadio))">ActivateWindow(TVRecordings)</onclick>
+                    <onclick condition="!String.IsEmpty(Window.Property(IsRadio))">ActivateWindow(RadioRecordings)</onclick>
                     <include>DefContextButtonGradient</include>
                     <align>left</align>
                 </control>
                 <control type="button" id="9004">
                     <description>Timers</description>
                     <label>19040</label>
-                    <onclick>ActivateWindow(TVTimers)</onclick>
+                    <onclick condition="String.IsEmpty(Window.Property(IsRadio))">ActivateWindow(TVTimers)</onclick>
+                    <onclick condition="!String.IsEmpty(Window.Property(IsRadio))">ActivateWindow(RadioTimers)</onclick>
                     <include>DefContextButtonGradient</include>
                     <align>left</align>
                 </control>
                 <control type="button" id="9005">
                     <description>Search</description>
                     <label>19138</label>
-                    <onclick>ActivateWindow(TvTimerRules)</onclick>
+                    <onclick condition="String.IsEmpty(Window.Property(IsRadio))">ActivateWindow(TvTimerRules)</onclick>
+                    <onclick condition="!String.IsEmpty(Window.Property(IsRadio))">ActivateWindow(RadioTimerRules)</onclick>
                     <include>DefContextButtonGradient</include>
                     <align>left</align>
                 </control>
                 <control type="button" id="9006">
                     <description>Search</description>
                     <label>137</label>
-                    <onclick>ActivateWindow(TVSearch)</onclick>
+                    <onclick condition="String.IsEmpty(Window.Property(IsRadio))">ActivateWindow(TVSearch)</onclick>
+                    <onclick condition="!String.IsEmpty(Window.Property(IsRadio))">ActivateWindow(RadioSearch)</onclick>
                     <include>DefContextButtonGradient</include>
                     <align>left</align>
                 </control>
