@@ -434,74 +434,6 @@
         </item>
     </include>
 
-    <include name="CustomSettings_Items.DefWidgetLimit">
-        <item>
-            <label>$NUMBER[10]</label>
-            <property name="SettingsName">$LOCALIZE[31000]</property>
-            <onclick>Skin.SetString(WidgetLimit,10)</onclick>
-            <onclick>Close</onclick>
-            <include condition="Integer.IsEqual(Skin.String(WidgetLimit),10) | String.IsEmpty(Skin.String(WidgetLimit))">Item_Selected</include>
-        </item>
-        <item>
-            <label>$NUMBER[25] - $LOCALIZE[571]</label>
-            <onclick>Skin.SetString(WidgetLimit,25)</onclick>
-            <onclick>Close</onclick>
-            <include condition="String.IsEqual(Skin.String(WidgetLimit),25)">Item_Selected</include>
-        </item>
-        <item>
-            <label>$NUMBER[50]</label>
-            <onclick>Skin.SetString(WidgetLimit,50)</onclick>
-            <onclick>Close</onclick>
-            <include condition="String.IsEqual(Skin.String(WidgetLimit),50)">Item_Selected</include>
-        </item>
-        <item>
-            <label>$NUMBER[100]</label>
-            <onclick>Skin.SetString(WidgetLimit,100)</onclick>
-            <onclick>Close</onclick>
-            <include condition="String.IsEqual(Skin.String(WidgetLimit),100)">Item_Selected</include>
-        </item>
-        <item>
-            <label>$NUMBER[200]</label>
-            <onclick>Skin.SetString(WidgetLimit,200)</onclick>
-            <onclick>Close</onclick>
-            <include condition="String.IsEqual(Skin.String(WidgetLimit),200)">Item_Selected</include>
-        </item>
-        <item>
-            <label>$LOCALIZE[37030]</label>
-            <onclick>Skin.SetString(WidgetLimit,$LOCALIZE[37030])</onclick>
-            <onclick>Close</onclick>
-            <include condition="String.IsEqual(Skin.String(WidgetLimit),$LOCALIZE[37030])">Item_Selected</include>
-        </item>
-    </include>
-
-    <include name="CustomSettings_Items.DefHubLimit">
-        <item>
-            <label>$NUMBER[10]</label>
-            <property name="SettingsName">$LOCALIZE[31000]</property>
-            <onclick>Skin.SetString(HubLimit,10)</onclick>
-            <onclick>Close</onclick>
-            <include condition="Integer.IsEqual(Skin.String(HubLimit),10) | String.IsEmpty(Skin.String(HubLimit))">Item_Selected</include>
-        </item>
-        <item>
-            <label>$NUMBER[25] - $LOCALIZE[571]</label>
-            <onclick>Skin.SetString(HubLimit,25)</onclick>
-            <onclick>Close</onclick>
-            <include condition="Integer.IsEqual(Skin.String(HubLimit),25)">Item_Selected</include>
-        </item>
-        <item>
-            <label>$NUMBER[50]</label>
-            <onclick>Skin.SetString(HubLimit,50)</onclick>
-            <onclick>Close</onclick>
-            <include condition="Integer.IsEqual(Skin.String(HubLimit),50)">Item_Selected</include>
-        </item>
-        <item>
-            <label>$LOCALIZE[37030]</label>
-            <onclick>Skin.SetString(HubLimit,$LOCALIZE[37030])</onclick>
-            <onclick>Close</onclick>
-            <include condition="String.IsEqual(Skin.String(HubLimit),$LOCALIZE[37030])">Item_Selected</include>
-        </item>
-    </include>
-
     <include name="CustomSettings_Items.TrailerCount">
         <item>
             <label>$LOCALIZE[231] - $LOCALIZE[571]</label>
@@ -903,6 +835,7 @@
 	            <property name="FanartCode">$INFO[Window(Weather).Property(Daily.$PARAM[item_index].FanartCode)]</property>
 	            <thumb>$INFO[Window(weather).Property(Daily.$PARAM[item_index].OutlookIconWMO)]</thumb>
 	            <visible>!String.IsEmpty(Window(weather).Property(Daily.IsFetched)) + !String.IsEmpty(Window(Weather).Property(Daily.$PARAM[item_index].Outlook))</visible>
+                <visible>Integer.IsEqual(Skin.String(WidgetLimit),0) | Integer.IsLess($PARAM[item_index],Skin.String(WidgetLimit))</visible>
 	            <onclick>ActivateWindow(Weather)</onclick>
 	            <onclick>SetFocus(9100,0,absolute)</onclick>
 	        </item>
@@ -919,6 +852,7 @@
             <property name="FanartCode">$INFO[Window(Weather).Property(Hourly.$PARAM[item_index].FanartCode)]</property>
             <thumb>$INFO[Window(weather).Property(Hourly.$PARAM[item_index].OutlookIconWMO)]</thumb>
             <visible>!String.IsEmpty(Window(weather).Property(Hourly.IsFetched)) + !String.IsEmpty(Window(Weather).Property(Hourly.$PARAM[item_index].Outlook))</visible>
+            <visible>Integer.IsEqual(Skin.String(WidgetLimit),0) | Integer.IsLessOrEqual($PARAM[item_index],Skin.String(WidgetLimit))</visible>
             <onclick>ActivateWindow(Weather)</onclick>
             <onclick>SetFocus(9100,1,absolute)</onclick>
         </item>		
