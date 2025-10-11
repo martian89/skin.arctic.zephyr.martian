@@ -232,7 +232,7 @@
                     <font>Tiny</font>
                     <textcolor>Dark1</textcolor>
                     <selectedcolor>Dark1</selectedcolor>
-                    <label>$INFO[ListItem.Genre]</label>
+                    <label>$VAR[PVRGenreLabel]</label>
                 </control>
                 <control type="textbox">
                     <top>126</top>
@@ -398,7 +398,7 @@
                             <height>100</height>
                             <aspectratio>keep</aspectratio>
                             <texture colordiffuse="$VAR[ColorHighlight]">progress/play.png</texture>
-                            <visible>ListItem.IsPlaying</visible>
+                            <visible>ListItem.IsPlaying + Window.IsVisible(MyPVRChannels.xml)</visible>
                         </control>
                         <control type="image">
                             <left>10</left>
@@ -563,7 +563,7 @@
                                 <height>100</height>
                                 <aspectratio>keep</aspectratio>
                                 <texture colordiffuse="$VAR[ColorHighlight]">progress/play.png</texture>
-                                <visible>ListItem.IsPlaying</visible>
+                                <visible>ListItem.IsPlaying + Window.IsVisible(MyPVRChannels.xml)</visible>
                             </control>
                             <control type="image">
                                 <left>10</left>
@@ -595,6 +595,8 @@
                                     <label>$INFO[ListItem.ChannelNumberLabel,,  ]$INFO[ListItem.ChannelName]</label>
                                 </control>
                                 <control type="label">
+                                    <animation effect="slide" end="30" time="0" condition="ListItem.IsRecording">Conditional</animation>
+                                    <animation effect="slide" end="30" time="0" condition="ListItem.IsPlaying">Conditional</animation>
                                     <left>150</left>
                                     <bottom>20</bottom>
                                     <right>100</right>
@@ -604,8 +606,6 @@
                                     <textcolor>Light2</textcolor>
                                     <selectedcolor>Light2</selectedcolor>
                                     <label fallback="19055">$INFO[ListItem.Title]</label>
-                                    <animation effect="slide" end="30" time="0" condition="ListItem.IsRecording">Conditional</animation>
-                                    <animation effect="slide" end="30" time="0" condition="ListItem.IsPlaying">Conditional</animation>
                                 </control>
                                 <control type="label">
                                     <right>30</right>
@@ -672,7 +672,7 @@
                                     <visible>!String.IsEqual(ListItem.Label,..)</visible>
                                 </control>
                                 <control type="label">
-                                    <animation effect="slide" end="30" time="0" condition="ListItem.IsRecording">Conditional</animation>
+	                                <animation effect="slide" end="30" time="0" condition="ListItem.IsRecording">Conditional</animation>
                                     <left>140</left>
                                     <bottom>8</bottom>
                                     <right>100</right>
@@ -755,7 +755,7 @@
                             <height>100</height>
                             <aspectratio>keep</aspectratio>
                             <texture colordiffuse="$VAR[ColorHighlight]">progress/play.png</texture>
-                            <visible>ListItem.IsPlaying</visible>
+                            <visible>ListItem.IsPlaying + Window.IsVisible(MyPVRChannels.xml)</visible>
                         </control>
                         <control type="image">
                             <left>10</left>
@@ -920,7 +920,7 @@
                                 <height>100</height>
                                 <aspectratio>keep</aspectratio>
                                 <texture colordiffuse="$VAR[ColorHighlight]">progress/play.png</texture>
-                                <visible>ListItem.IsPlaying</visible>
+                                <visible>ListItem.IsPlaying + Window.IsVisible(MyPVRChannels.xml)</visible>
                             </control>
                             <control type="image">
                                 <left>10</left>
@@ -952,6 +952,8 @@
                                     <label>$INFO[ListItem.ChannelNumberLabel,,  ]$INFO[ListItem.ChannelName]</label>
                                 </control>
                                 <control type="label">
+                                    <animation effect="slide" end="30" time="0" condition="ListItem.IsRecording">Conditional</animation>
+                                    <animation effect="slide" end="30" time="0" condition="ListItem.IsPlaying">Conditional</animation>
                                     <left>150</left>
                                     <bottom>20</bottom>
                                     <right>100</right>
@@ -961,8 +963,6 @@
                                     <textcolor>Light2</textcolor>
                                     <selectedcolor>Light2</selectedcolor>
                                     <label fallback="19055">$INFO[ListItem.Title]</label>
-                                    <animation effect="slide" end="30" time="0" condition="ListItem.IsRecording">Conditional</animation>
-                                    <animation effect="slide" end="30" time="0" condition="ListItem.IsPlaying">Conditional</animation>
                                 </control>
                                 <control type="label">
                                     <right>30</right>
@@ -2211,7 +2211,6 @@
 	                    <label>$INFO[ListItem.Title]</label>
 	                </control>
 	                <control type="label">
-	                    <visible>!String.IsEmpty(ListItem.Genre)</visible>
 	                    <width max="710">auto</width>
 	                    <aligny>center</aligny>
 	                    <align>right</align>
@@ -2220,7 +2219,7 @@
 	                    <font>MediumBold</font>
 	                    <textcolor>PanelWhite100</textcolor>
 	                    <selectedcolor>PanelWhite100</selectedcolor>
-	                    <label>$INFO[ListItem.Genre,, • ]$INFO[ListItem.StartTime]$INFO[ListItem.EndTime, - ,]</label>
+	                    <label>$VAR[PVRGenreLabel,,  •  ]$INFO[ListItem.StartTime]$INFO[ListItem.EndTime, - ,]</label>
 	                </control>
 	            </control>
 	            <control type="textbox">

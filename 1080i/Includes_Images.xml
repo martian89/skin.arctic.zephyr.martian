@@ -59,6 +59,7 @@
         <value condition="!String.IsEmpty(ListItem.Art(poster))">$INFO[ListItem.Art(poster)]</value>
         <value condition="!String.IsEmpty(ListItem.Art(tvshow.poster))">$INFO[ListItem.Art(tvshow.poster)]</value>
         <value condition="String.IsEqual(ListItem.DBType,genre) | String.EndsWith(Container.FolderPath,Genres)">$VAR[ThumbImageGenres]</value>
+        <value condition="String.IsEqual(ListItem.DBType,studio)">$VAR[ThumbImageStudios]</value>
         <value condition="!String.IsEmpty(ListItem.EpgEventIcon) + String.StartsWith(ListItem.FolderPath,pvr://timers)">$INFO[ListItem.EpgEventIcon]</value>
         <value>$INFO[ListItem.Icon]</value>
     </variable>
@@ -94,8 +95,8 @@
     </variable>
 
     <variable name="PosterImageSquare">
-        <value condition="!String.IsEmpty(Skin.String(genre.icons.path)) + String.IsEqual(ListItem.DBType,genre)">$VAR[ThumbImageGenres]</value>
-        <value condition="!String.IsEmpty(Skin.String(studio.logos.path)) + String.IsEqual(ListItem.DBTYPE,studio)">$INFO[Skin.String(studio.logos.path),,/]$INFO[ListItem.Label,,.png]</value>
+        <value condition="String.IsEqual(ListItem.DBType,genre)">$VAR[ThumbImageGenres]</value>
+        <value condition="String.IsEqual(ListItem.DBTYPE,studio)">$VAR[ThumbImageStudios]</value>
         <value condition="!String.IsEmpty(ListItem.Art(poster))">$INFO[ListItem.Art(poster)]</value>
         <value condition="!String.IsEmpty(ListItem.Art(thumb))">$INFO[ListItem.Art(thumb)]</value>
         <value condition="!String.IsEmpty(ListItem.Icon)">$INFO[ListItem.Icon]</value>
@@ -135,8 +136,10 @@
     </variable>
 
     <variable name="ThumbImageStudios">
+        <value condition="Window.IsVisible(home) + [String.IsEqual(ListItem.DBTYPE,studio) | Container.Content(studios)] + !String.IsEmpty(Skin.String(studio.logos.path))">$INFO[Skin.String(studio.logos.path)]$INFO[ListItem.Label]$INFO[Skin.String(studio.logos.ext)]</value>
         <value condition="Container.Content(studios) + Window.IsVisible(MyVideoNav.xml) + !String.IsEmpty(Skin.String(studio.logos.path))">$INFO[Skin.String(studio.logos.path)]$INFO[ListItem.Label]$INFO[Skin.String(studio.logos.ext)]</value>
         <value condition="Container.Content(studios) + Window.IsVisible(MyMusicNav.xml) + !String.IsEmpty(Skin.String(recordlabel.logos.path))">$INFO[Skin.String(recordlabel.logos.path)]$INFO[ListItem.Label]$INFO[Skin.String(recordlabel.logos.ext)]</value>
+        <value>DefaultStudios.png</value>
     </variable>
 
     <variable name="ThumbImageStudiosDialogInfo">
@@ -145,10 +148,6 @@
         <value condition="!String.IsEmpty(Skin.String(studio.logos.path)) + !String.IsEmpty(ListItem.Studio)">$INFO[Skin.String(studio.logos.path)]$INFO[ListItem.Studio]$INFO[Skin.String(studio.logos.ext)]</value>
     </variable>
     
-    <variable name="WidgetImageStudio">
-        <value condition="!String.IsEmpty(Skin.String(studio.logos.path)) + [String.IsEqual(ListItem.DBTYPE,studio) | Container.Content(studios)]">$INFO[Skin.String(studio.logos.path)]$INFO[ListItem.Label]$INFO[Skin.String(studio.logos.ext)]</value>
-    </variable>
-
     <variable name="ThumbImageRecordLabelDialogInfo">
         <value condition="!String.IsEmpty(Skin.String(recordlabel.logos.path))">$INFO[Skin.String(recordlabel.logos.path)]$INFO[ListItem.Property(Album_Label)]$INFO[Skin.String(recordlabel.logos.ext)]</value>
     </variable>

@@ -200,6 +200,23 @@
                 <include>Animation.DelayFadeIn</include>
             </control>
 
+            <control type="group">
+                <visible>$PARAM[visi]</visible>
+                <left>-211</left>
+                <top>82</top>
+                <visible>$PARAM[uparrow] + !$PARAM[issets] + Control.HasFocus($PARAM[controlid]) + !Container($PARAM[controlid]).OnNext + !Container($PARAM[controlid]).OnPrevious</visible>
+                <include>Animation.DelayFadeIn</include>
+                <control type="image">
+                    <include>arrowdimensions</include>
+                    <texture colordiffuse="Dark1" flipy="true">common/arrow-small.png</texture>
+                </control>
+                <control type="image">
+                    <top>12</top>
+                    <include>arrowdimensions</include>
+                    <texture colordiffuse="Dark1" flipy="true">common/arrow-small.png</texture>
+                </control>
+            </control>
+
             <include content="ListInfoArrows">
                 <param name="controlid" value="$PARAM[controlid]"/>
                 <param name="arrowleft" value="$PARAM[arrowleft]"/>
@@ -230,7 +247,6 @@
 	                <width>2288</width>
 	                <height>670</height>
 	                <onunfocus condition="Integer.IsEqual(Container($PARAM[controlid]).NumItems,0)">SetFocus(110$PARAM[controlid])</onunfocus>
-	                <onup>$PARAM[onup1]</onup>
 	                <onleft>$PARAM[controlid]</onleft>
 	                <onright>$PARAM[controlid]</onright>
 	                <ondown>9000</ondown>
@@ -238,6 +254,9 @@
 	                <onclick>$PARAM[onclick1]</onclick>
 	                <onclick>$PARAM[onclick2]</onclick>
 	                <onclick>$PARAM[onclick3]</onclick>
+                    <onup condition="!$PARAM[issets]">$PARAM[onup1]</onup>
+                    <onup condition="!$PARAM[issets]">$PARAM[onup2]</onup>
+                    <onup condition="!$PARAM[issets]">$PARAM[onup3]</onup>
 	                <include>ScrolltimeDetailsList</include>
 	                <focusposition>$PARAM[focusposition]</focusposition>
 	                <orientation>horizontal</orientation>
