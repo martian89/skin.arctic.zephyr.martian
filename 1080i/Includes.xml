@@ -1724,6 +1724,7 @@
             <onup>9601</onup>
             <orientation>horizontal</orientation>
             <control type="radiobutton" id="8">
+                <onfocus>ClearProperty(TMDbHelper.HideView,Home)</onfocus>
                 <onfocus>ClearProperty(moviecontent)</onfocus>
                 <include>buttondimensions</include>
                 <texturenofocus colordiffuse="Dark4" border="0">common/boxsquare.png</texturenofocus>
@@ -1739,6 +1740,7 @@
             </control>
             
             <control type="radiobutton" id="10001">
+                <onfocus>ClearProperty(TMDbHelper.HideView,Home)</onfocus>
                 <onfocus>ClearProperty(moviecontent)</onfocus>
 		        <onclick condition="!ListItem.IsFolder + !String.IsEmpty(ListItem.FileNameAndPath)">RunScript(plugin.video.themoviedb.helper,close_dialog=1190,playmedia='$ESCINFO[ListItem.FileNameAndPath]')</onclick>
 		        <onclick condition="!ListItem.IsFolder + String.IsEmpty(ListItem.FileNameAndPath)">RunScript(plugin.video.themoviedb.helper,close_dialog=1190,playmedia='$ESCINFO[ListItem.FolderPath]')</onclick>
@@ -1756,6 +1758,7 @@
             </control>
 
             <control type="radiobutton" id="10002">
+                <onfocus>ClearProperty(TMDbHelper.HideView,Home)</onfocus>
                 <onfocus>ClearProperty(moviecontent)</onfocus>
                 <onclick condition="Skin.HasSetting(home.netflix.autoplay.trailer) + $EXP[TrailerIsPlaying] + !Skin.HasSetting(trailer.dont.stop.on.unfocus)">Stop</onclick>
                 <onclick condition="Skin.HasSetting(home.netflix.autoplay.trailer) + $EXP[TrailerIsPlaying] + !Skin.HasSetting(trailer.dont.stop.on.unfocus)">ClearProperty(TrailerPath,home)</onclick>
@@ -1770,6 +1773,7 @@
             </control>
 
             <control type="radiobutton" id="10003">
+                <onfocus>ClearProperty(TMDbHelper.HideView,Home)</onfocus>
                 <onfocus>ClearProperty(moviecontent)</onfocus>
                 <include>buttondimensions</include>
                 <onclick condition="Player.Playing">Pause</onclick>
@@ -1786,6 +1790,7 @@
 
             <control type="radiobutton" id="10004">
                 <visible>String.IsEqual(ListItem.DBType,tvshow) + Integer.IsGreater(ListItem.Property(UnwatchedEpisodes),0) + !String.IsEmpty(ListItem.DBID) + !Skin.HasSetting(HideNextUpEpisodeButton) + !String.IsEmpty(Container(9911).ListItem.FileNameAndPath)</visible>
+                <onfocus>ClearProperty(TMDbHelper.HideView,Home)</onfocus>
                 <onfocus>ClearProperty(moviecontent)</onfocus>
                 <onclick condition="!Window.IsVisible(1190)">Dialog.Close(all)</onclick>
                 <onclick condition="!Window.IsVisible(1190)">PlayMedia($ESCINFO[Container(9911).ListItem.FileNameAndPath])</onclick>
@@ -1798,6 +1803,7 @@
 
             <!-- Trailer - ListItem.Trailer | IMDB.Trailer -->
             <control type="radiobutton" id="10005">
+                <onfocus>ClearProperty(TMDbHelper.HideView,Home)</onfocus>
                 <onfocus>ClearProperty(moviecontent)</onfocus>
                 <onclick condition="Skin.HasSetting(PlayTrailerWindowed)">SetProperty(moviecontent,6)</onclick>
                 <onclick condition="Skin.HasSetting(PlayTrailerWindowed)">SetFocus(7011)</onclick>
@@ -1812,6 +1818,7 @@
 
             <!-- Cinema -->
             <control type="radiobutton" id="10006">
+                <onfocus>ClearProperty(TMDbHelper.HideView,Home)</onfocus>
                 <onfocus>ClearProperty(moviecontent)</onfocus>
                 <description>Home Theatre</description>
                 <include>buttondimensions</include>
@@ -1823,6 +1830,7 @@
                 <visible>!Skin.HasSetting(hidebutton.video.cinema) + System.AddonIsEnabled(script.preshowexperience)</visible>
             </control>
             <control type="radiobutton" id="7">
+                <onfocus>ClearProperty(TMDbHelper.HideView,Home)</onfocus>
                 <onfocus>ClearProperty(moviecontent)</onfocus>
                 <include>OnFocusOnClick</include>
                 <include>ClearOnFocusOnClick</include>
@@ -1840,6 +1848,7 @@
 
             <control type="radiobutton" id="10008">
                 <visible>String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow)</visible>
+                <onfocus>ClearProperty(TMDbHelper.HideView,Home)</onfocus>
                 <onfocus>ClearProperty(moviecontent)</onfocus>
                 <onfocus>ClearProperty(dontslide,home)</onfocus>
                 <onclick>SetProperty(dontslide,1,home)</onclick>
@@ -1855,6 +1864,7 @@
             <!-- Cast -->
             <control type="radiobutton" id="10009">
                 <visible>String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,episode)</visible>
+                <onfocus>ClearProperty(TMDbHelper.HideView,Home)</onfocus>
                 <onfocus>ClearProperty(moviecontent)</onfocus>
                 <onfocus>ClearProperty(dontslide,home)</onfocus>
                 <onclick>SetProperty(moviecontent,1)</onclick>
@@ -1870,6 +1880,7 @@
 
             <control type="radiobutton" id="10010">
                 <visible>String.IsEqual(ListItem.DBType,set)</visible>
+                <onfocus>ClearProperty(TMDbHelper.HideView,Home)</onfocus>
                 <onfocus>ClearProperty(moviecontent)</onfocus>
                 <onclick>SetProperty(moviecontent,1)</onclick>
                 <onclick>SetFocus(10050)</onclick>
@@ -1883,6 +1894,7 @@
             <!-- Crew -->
             <control type="radiobutton" id="10011">
                 <visible>$EXP[ShowTmdbCrew]</visible>
+                <onfocus>ClearProperty(TMDbHelper.HideView,Home)</onfocus>
                 <onfocus>ClearProperty(moviecontent)</onfocus>
                 <onfocus>SetProperty(videocrew,1)</onfocus>
                 <onclick>SetProperty(moviecontent,9)</onclick>
@@ -1895,6 +1907,7 @@
 
              <control type="radiobutton" id="10012">
                 <visible>$EXP[ShowTmdbSimilar]</visible>
+                <onfocus>ClearProperty(TMDbHelper.HideView,Home)</onfocus>
                 <onfocus>ClearProperty(moviecontent)</onfocus>
                 <onfocus>SetProperty(videosimilar,1)</onfocus>
                 <onclick>SetProperty(moviecontent,2)</onclick>
@@ -1906,6 +1919,7 @@
             </control>
             <control type="radiobutton" id="10013">
                 <visible>$EXP[ShowTmdbStudio]</visible>
+                <onfocus>ClearProperty(TMDbHelper.HideView,Home)</onfocus>
                 <onfocus>ClearProperty(moviecontent)</onfocus>
                 <onfocus>SetProperty(videostudio,1)</onfocus>
                 <onclick>SetProperty(moviecontent,3)</onclick>
@@ -1918,6 +1932,7 @@
 
             <control type="radiobutton" id="10014">
                 <visible>$EXP[ShowTmdbDirector]</visible>
+                <onfocus>ClearProperty(TMDbHelper.HideView,Home)</onfocus>
                 <onfocus>ClearProperty(moviecontent)</onfocus>
                 <onfocus>SetProperty(videodirector,1)</onfocus>
                 <onclick>SetProperty(moviecontent,7)</onclick>
@@ -1930,6 +1945,7 @@
 
             <control type="radiobutton" id="10015">
                 <visible>String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow)</visible>
+                <onfocus>ClearProperty(TMDbHelper.HideView,Home)</onfocus>
                 <onfocus>ClearProperty(moviecontent)</onfocus>
                 <onfocus>SetProperty(videoyoutube,1)</onfocus>
                 <onclick>SetProperty(moviecontent,4)</onclick>
@@ -1943,6 +1959,7 @@
             </control>
 
            <control type="radiobutton" id="14">
+                <onfocus>ClearProperty(TMDbHelper.HideView,Home)</onfocus>
                 <onfocus>ClearProperty(moviecontent)</onfocus>
                 <include>buttondimensions</include>
                 <include content="buttontextures">
@@ -1952,6 +1969,7 @@
                 <visible>!Skin.HasSetting(hidebutton.video.versions)</visible>
             </control>
             <control type="radiobutton" id="15">
+                <onfocus>ClearProperty(TMDbHelper.HideView,Home)</onfocus>
                 <onfocus>ClearProperty(moviecontent)</onfocus>
                 <include>buttondimensions</include>
                 <include content="buttontextures">
@@ -1962,6 +1980,7 @@
             </control>
             <control type="radiobutton" id="10016">
                 <visible>$EXP[ShowTmdbSet]</visible>
+                <onfocus>ClearProperty(TMDbHelper.HideView,Home)</onfocus>
                 <onfocus>ClearProperty(moviecontent)</onfocus>
                 <onfocus>SetProperty(videoset,1)</onfocus>
                 <onclick>SetProperty(moviecontent,8)</onclick>
@@ -1972,6 +1991,7 @@
                 </include>
             </control>
             <control type="radiobutton" id="10017">
+                <onfocus>ClearProperty(TMDbHelper.HideView,Home)</onfocus>
                 <onfocus>ClearProperty(moviecontent)</onfocus>
                 <onclick>SetProperty(moviecontent,5)</onclick>
                 <onclick>SetFocus(10055)</onclick>
@@ -1982,6 +2002,7 @@
                 <visible>!Skin.HasSetting(hidebutton.video.fanart)</visible>
             </control>
             <control type="radiobutton" id="10018">
+                <onfocus>ClearProperty(TMDbHelper.HideView,Home)</onfocus>
                 <onfocus>ClearProperty(moviecontent)</onfocus>
                 <include>buttondimensions</include>
                 <include content="buttontextures">
@@ -1992,6 +2013,7 @@
                 <visible>!Skin.HasSetting(hidebutton.video.trakt) + [!String.IsEmpty(ListItem.Property(tmdb_id)) | !String.IsEmpty(window(home).property(tmdbhelper.listitem.tmdb_id))] + [String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow)] + !String.IsEmpty(Window(Home).Property(TMDbHelper.TraktIsAuth))</visible>
             </control>
             <control type="radiobutton" id="10019">
+                <onfocus>ClearProperty(TMDbHelper.HideView,Home)</onfocus>
                 <onfocus>ClearProperty(moviecontent)</onfocus>
                 <include>buttondimensions</include>
                 <include content="buttontextures">
@@ -2001,6 +2023,7 @@
                 <visible>!Skin.HasSetting(global.kioskmode) + ![String.IsEmpty(ListItem.DBID) | String.StartsWith(ListItem.Path,plugin://)]</visible>
             </control>
             <control type="radiobutton" id="10020">
+                <onfocus>ClearProperty(TMDbHelper.HideView,Home)</onfocus>
                 <onfocus>ClearProperty(moviecontent)</onfocus>
                 <include>buttondimensions</include>
                 <include content="buttontextures">
