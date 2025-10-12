@@ -150,6 +150,7 @@
         <param name="labeltwoleft" value="$PARAM[labeltwoleft]" default="130"/>
         <param name="labeltwovisible" default="true"/>
         <param name="issets" value="$PARAM[issets]" default="false"/>
+        <param name="uparrow" default="false"/>
         <param name="includecontent" default="true"/>
         
         <definition>
@@ -233,6 +234,8 @@
 	               	<include>HiddenButton</include>
 	                <ondown>9000</ondown>
 		            <onback>9000</onback>
+	                <onback>ClearProperty(TMDbHelper.HideView,Home)</onback>
+	                <ondown>ClearProperty(TMDbHelper.HideView,Home)</ondown>
 	 			</control>
 			
 	            <!-- Focused List -->
@@ -249,6 +252,8 @@
 	                <onunfocus condition="Integer.IsEqual(Container($PARAM[controlid]).NumItems,0)">SetFocus(110$PARAM[controlid])</onunfocus>
 	                <onleft>$PARAM[controlid]</onleft>
 	                <onright>$PARAM[controlid]</onright>
+	                <onback>ClearProperty(TMDbHelper.HideView,Home)</onback>
+	                <ondown>ClearProperty(TMDbHelper.HideView,Home)</ondown>
 	                <ondown>9000</ondown>
 		            <onback>9000</onback>
 	                <onclick>$PARAM[onclick1]</onclick>
