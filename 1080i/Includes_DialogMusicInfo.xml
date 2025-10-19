@@ -779,4 +779,161 @@
         </include>
         <include>DialogCustomSettings</include>
     </include>
+
+    <include name="DialogMusicInfoNavigation">
+        <control type="grouplist" id="9000">
+            <bottom>144</bottom>
+            <left>783</left>
+            <right>SidePad</right>
+            <include>listdimensions</include>
+            <orientation>horizontal</orientation>
+            <onleft>SetFocus($VAR[MusicInfoNavigation_onleft_control_id])</onleft>
+            <onright>SetFocus($VAR[MusicInfoNavigation_onright_control_id])</onright>
+            <ondown>9601</ondown>
+            <onup>9601</onup>
+            <control type="radiobutton" id="9001">
+                <visible>[String.IsEqual(ListItem.DBType,album) | String.IsEqual(ListItem.DBType,song)] + ![ListItem.IsPlaying | [!String.IsEmpty(ListItem.FolderPath) + String.IsEqual(ListItem.FileNameAndPath,Player.Folderpath)]]</visible>
+                <onfocus>ClearProperty(musiccontent)</onfocus>
+                <onclick condition="String.IsEmpty(ListItem.DBID)">PlayMedia($INFO[ListItem.FilenameAndPath])</onclick>
+                <onclick condition="System.HasAddon(script.playalbum) + String.IsEqual(ListItem.DBType,song) + !String.IsEmpty(ListItem.DBID)">RunScript(script.playalbum,songid=$INFO[ListItem.DBID])</onclick>
+                <onclick condition="System.HasAddon(script.playalbum) + String.IsEqual(ListItem.DBType,album) + !String.IsEmpty(ListItem.DBID)">RunScript(script.playalbum,albumid=$INFO[ListItem.DBID])</onclick>
+                <onclick condition="!System.HasAddon(script.playalbum) + !String.IsEmpty(ListItem.DBID)">InstallAddon(script.playalbum)</onclick>
+                <include>buttondimensionssquare</include>
+                <include content="buttontextures">
+                    <param name="icon" value="buttonsdialogs/play.png"/>
+                </include>
+            </control>
+            <control type="radiobutton" id="9201">
+                <visible>[String.IsEqual(ListItem.DBType,album) | String.IsEqual(ListItem.DBType,song)] + [ListItem.IsPlaying | [!String.IsEmpty(ListItem.FolderPath) + String.IsEqual(ListItem.FileNameAndPath,Player.Folderpath)]]</visible>
+                <onfocus>ClearProperty(musiccontent)</onfocus>
+                <include>buttondimensionssquare</include>
+                <onclick condition="Player.Playing">Pause</onclick>
+                <onclick condition="!Player.Playing">Play</onclick>
+                <texturenofocus colordiffuse="Dark4" border="0">common/boxsquare.png</texturenofocus>
+                <texturefocus colordiffuse="$VAR[ColorHighlight]" border="0">common/boxsquare.png</texturefocus>
+                <textureradioonfocus colordiffuse="FFFFFFFF">buttonsdialogs/pause.png</textureradioonfocus>
+                <textureradioonnofocus colordiffuse="FFFFFFFF">buttonsdialogs/pause.png</textureradioonnofocus>
+                <textureradioofffocus colordiffuse="FFFFFFFF">buttonsdialogs/continue.png</textureradioofffocus>
+                <textureradiooffnofocus colordiffuse="FFFFFFFF">buttonsdialogs/continue.png</textureradiooffnofocus>
+                <selected>Player.Playing</selected>
+            </control>
+
+            <!-- Rating Button -->
+            <control type="radiobutton" id="9007">
+                <visible>!String.IsEqual(ListItem.DBType,artist)</visible>
+                <include>OnFocusOnClick</include>
+                <include>ClearOnFocusOnClick</include>
+                <onfocus>ClearProperty(musiccontent)</onfocus>
+                <onclick>SendClick(7)</onclick>
+                <include>buttondimensionssquare</include>
+                <texturenofocus colordiffuse="Dark4" border="0">common/boxsquare.png</texturenofocus>
+                <texturefocus colordiffuse="$VAR[ColorHighlight]" border="0">common/boxsquare.png</texturefocus>
+                <textureradioonfocus colordiffuse="FFFFFFFF">buttonsdialogs/rating.png</textureradioonfocus>
+                <textureradioonnofocus colordiffuse="FFFFFFFF">buttonsdialogs/rating.png</textureradioonnofocus>
+                <textureradioofffocus colordiffuse="FFFFFFFF">buttonsdialogs/rating_new.png</textureradioofffocus>
+                <textureradiooffnofocus colordiffuse="FFFFFFFF">buttonsdialogs/rating_new.png</textureradiooffnofocus>
+                <selected>String.IsEmpty(ListItem.UserRating)</selected>
+                <textcolor>Dark4</textcolor>
+                <font>Null</font>
+                <visible>!Skin.HasSetting(hidebutton.music.rating)</visible>
+            </control>
+            
+            <!-- Wikipedia Button -->
+            <control type="radiobutton" id="9030">
+                <onfocus>ClearProperty(musiccontent)</onfocus>
+                <include>buttondimensionssquare</include>
+                <onclick>RunScript(script.wikipedia,wikipedia=$VAR[Wiki_Label],language=$VAR[LanguageCheck])</onclick>
+                <include content="buttontextures">
+                    <param name="icon" value="buttonsdialogs/wiki.png"/>
+                </include>
+                <visible>!Skin.HasSetting(hidebutton.music.wiki) + System.AddonIsEnabled(script.wikipedia)</visible>
+            </control>
+
+            <!-- Tracklist Button -->
+            <control type="radiobutton" id="9003">
+                <visible>String.IsEqual(ListItem.DBType,album)</visible>
+                <onfocus>ClearProperty(musiccontent)</onfocus>
+                <onclick>SetProperty(musiccontent,1)</onclick>
+                <onclick>SetFocus(9009)</onclick>
+                <include>buttondimensionssquare</include>
+                <include content="buttontextures">
+                    <param name="icon" value="buttonsdialogs/musictracklist.png"/>
+                </include>
+            </control>
+
+            <!-- Discography Button -->
+            <control type="radiobutton" id="9004">
+                <visible>String.IsEqual(ListItem.DBType,artist)</visible>
+                <onfocus>ClearProperty(musiccontent)</onfocus>
+                <onclick>SetProperty(musiccontent,2)</onclick>
+                <onclick>SetFocus(10051)</onclick>
+                <include>buttondimensionssquare</include>
+                <include content="buttontextures">
+                    <param name="icon" value="buttonsdialogs/set.png"/>
+                </include>
+                <visible>!Skin.HasSetting(hidebutton.music.sets)</visible>
+                <visible>Integer.IsGreater(Container(51).NumItems,0)</visible>
+            </control>
+
+            <!-- Youtube Button -->
+            <control type="radiobutton" id="9005">
+                <onfocus>ClearProperty(musiccontent)</onfocus>
+                <onfocus>SetProperty(musicyoutube,1)</onfocus>
+                <onclick>SetProperty(musiccontent,3)</onclick>
+                <onclick>SetFocus(10052)</onclick>
+                <include>buttondimensionssquare</include>
+                <include content="buttontextures">
+                    <param name="icon" value="buttonsdialogs/youtube.png"/>
+                </include>
+                <visible>!Skin.HasSetting(hidebutton.music.youtube) + System.AddonIsEnabled(plugin.video.youtube)</visible>
+            </control>
+
+            <!-- Fanart Button -->
+            <control type="radiobutton" id="9006">
+                <onfocus>ClearProperty(musiccontent)</onfocus>
+                <onclick>SetProperty(musiccontent,4)</onclick>
+                <onclick>SetFocus(10053)</onclick>
+                <font>Button</font>
+                <textcolor>Dark2</textcolor>
+                <include>buttondimensionssquare</include>
+                <texturenofocus colordiffuse="Dark4" border="0">common/boxsquare.png</texturenofocus>
+                <texturefocus colordiffuse="$VAR[ColorHighlight]" border="0">common/boxsquare.png</texturefocus>
+                <include content="buttontextures">
+                    <param name="icon" value="buttonsdialogs/image.png"/>
+                </include>
+                <visible>!Skin.HasSetting(hidebutton.music.fanart)</visible>
+                <visible>Integer.IsGreater(Container(53).NumItems,0)</visible>
+            </control>
+
+            <!-- More Of Artist Button -->
+            <control type="radiobutton" id="9029">
+                <visible>String.IsEqual(ListItem.DBType,song)</visible>
+                <onfocus>ClearProperty(musiccontent)</onfocus>
+                <onclick>SetProperty(musiccontent,8)</onclick>
+                <onclick>SetFocus(10054)</onclick>
+                <font>Button</font>
+                <textcolor>Dark2</textcolor>
+                <include>buttondimensionssquare</include>
+                <texturenofocus colordiffuse="Dark4" border="0">common/boxsquare.png</texturenofocus>
+                <texturefocus colordiffuse="$VAR[ColorHighlight]" border="0">common/boxsquare.png</texturefocus>
+                <include content="buttontextures">
+                    <param name="icon" value="buttonsdialogs/more.png"/>
+                </include>
+                <visible>!Skin.HasSetting(hidebutton.music.more)</visible>
+                <visible>Integer.IsGreater(Container(54).NumItems,1)</visible>
+            </control>
+
+            <!-- Setting Button -->
+            <control type="radiobutton" id="9008">
+                <onfocus>ClearProperty(musiccontent)</onfocus>
+                <include>buttondimensions</include>
+                <include content="buttontextures">
+                    <param name="icon" value="buttonsdialogs/manage.png"/>
+                </include>
+                <onclick>SetFocus(9400)</onclick>
+                <visible>!Skin.HasSetting(global.kioskmode)</visible>
+            </control>
+        </control>
+    </include>
+
 </includes>
