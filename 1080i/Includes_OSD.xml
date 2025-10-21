@@ -10,7 +10,8 @@
     </include>
 
     <include name="OSDExtendedInfo_Click_Action">
-        <onclick condition="!VideoPlayer.Content(livetv) + !Player.Paused + !Skin.HasSetting(osd.disablepauseoninfo)">SetProperty(OSDExtendedInfo,1,Home)</onclick>
+        <onclick condition="!VideoPlayer.Content(livetv) + [Player.Paused | Skin.HasSetting(osd.disablepauseoninfo)]">SetProperty(OSDExtendedInfo,1,Home)</onclick>
+        <onclick condition="!VideoPlayer.Content(livetv) + !Player.Paused + !Skin.HasSetting(osd.disablepauseoninfo)">SetProperty(OSDExtendedInfo,2,Home)</onclick>
         <onclick condition="!VideoPlayer.Content(livetv) + !Player.Paused + !Skin.HasSetting(osd.disablepauseoninfo)">Pause</onclick>     
 
 		<onclick>Close</onclick>
