@@ -1136,7 +1136,7 @@
                     <!-- Actor in Movies -->
                     <include content="VideoListCast">
                         <param name="fallbackpicture" value="DefaultMovieTitle.png"/>
-                        <param name="visi" value="String.IsEqual(Window.Property(actinfo),1)"/>
+                        <param name="visi" value="String.IsEqual(Window.Property(moviecontent),11)"/>
                         <param name="controlid" value="70"/>
                         <param name="onclick1" value="$VAR[Def_VideoList_Item]"/>
                         <param name="onclick2" value="SetProperty(TMDbHelper.HideView,1,Home)"/>
@@ -1146,7 +1146,7 @@
 	                <!-- Actor in TV Shows -->
                     <include content="VideoListCast">
                         <param name="fallbackpicture" value="DefaultTVShowTitle.png"/>
-                        <param name="visi" value="String.IsEqual(Window.Property(actinfo),2)"/>
+                        <param name="visi" value="String.IsEqual(Window.Property(moviecontent),12)"/>
                         <param name="controlid" value="71"/>
                         <param name="onclick1" value="$VAR[Def_VideoList_Item]"/>
                         <param name="onclick2" value="SetProperty(TMDbHelper.HideView,1,Home)"/>
@@ -1156,7 +1156,7 @@
 	                <!-- Crew -->
                     <include content="VideoListCast">
                         <param name="fallbackpicture" value="DefaultMovieTitle.png"/>
-                        <param name="visi" value="String.IsEqual(Window.Property(actinfo),3)"/>
+                        <param name="visi" value="String.IsEqual(Window.Property(moviecontent),13)"/>
                         <param name="controlid" value="72"/>
                         <param name="onclick1" value="$VAR[Def_VideoList_Item]"/>
                         <param name="onclick2" value="SetProperty(TMDbHelper.HideView,1,Home)"/>
@@ -1166,7 +1166,7 @@
                     <!-- Images -->
                     <include content="VideoListCast">
                         <param name="fallbackpicture" value="DefaultActor.png"/>
-                        <param name="visi" value="String.IsEqual(Window.Property(actinfo),4)"/>
+                        <param name="visi" value="String.IsEqual(Window.Property(moviecontent),14)"/>
                         <param name="controlid" value="73"/>
                         <param name="onclick1" value="SetFocus(161)" />
                         <param name="ContentToLoad" value="$VAR[Def_Actor_Image_List]" />
@@ -1386,9 +1386,9 @@
 
             <!-- Person Info -->
             <control type="radiobutton" id="11001">
-                <onfocus>ClearProperty(actinfo)</onfocus>
+                <onfocus>ClearProperty(moviecontent)</onfocus>
                 <onfocus>SetProperty(actormovies,1)</onfocus>
-                <onclick>SetProperty(actinfo,1)</onclick>
+                <onclick>SetProperty(moviecontent,11)</onclick>
                 <onclick>SetFocus(10070)</onclick>
                 <include>buttondimensions</include>
                 <include content="buttontextures">
@@ -1398,9 +1398,9 @@
                 <visible>$EXP[IsDialogPersonInfo]</visible>
             </control>
             <control type="radiobutton" id="11002">
-                <onfocus>ClearProperty(actinfo)</onfocus>
+                <onfocus>ClearProperty(moviecontent)</onfocus>
                 <onfocus>SetProperty(actortvshows,1)</onfocus>
-                <onclick>SetProperty(actinfo,2)</onclick>
+                <onclick>SetProperty(moviecontent,12)</onclick>
                 <onclick>SetFocus(10071)</onclick>
                 <include>buttondimensions</include>
                 <include content="buttontextures">
@@ -1410,9 +1410,9 @@
                 <visible>$EXP[IsDialogPersonInfo]</visible>
             </control>
             <control type="radiobutton" id="11003">
-                <onfocus>ClearProperty(actinfo)</onfocus>
+                <onfocus>ClearProperty(moviecontent)</onfocus>
                 <onfocus>SetProperty(videocrew,1)</onfocus>
-                <onclick>SetProperty(actinfo,3)</onclick>
+                <onclick>SetProperty(moviecontent,13)</onclick>
                 <onclick>SetFocus(10072)</onclick>
                 <include>buttondimensions</include>
                 <include content="buttontextures">
@@ -1424,7 +1424,6 @@
 
             <control type="radiobutton" id="10008">
                 <onfocus>ClearProperty(TMDbHelper.HideView,Home)</onfocus>
-                <onfocus>ClearProperty(actinfo)</onfocus>
                 <onfocus>ClearProperty(moviecontent)</onfocus>
                 <onfocus>ClearProperty(dontslide,home)</onfocus>
                 <onclick>SetProperty(dontslide,1,home)</onclick>
@@ -1528,7 +1527,6 @@
             <control type="radiobutton" id="10015">
                 <onfocus>ClearProperty(TMDbHelper.HideView,Home)</onfocus>
                 <onfocus>ClearProperty(moviecontent)</onfocus>
-                <onfocus>ClearProperty(actinfo)</onfocus>
                 <onfocus>SetProperty(videoyoutube,1)</onfocus>
                 <onclick>SetProperty(moviecontent,4)</onclick>
                 <onclick>SetFocus(10054)</onclick>
@@ -1601,8 +1599,8 @@
             </control>
 
             <control type="radiobutton" id="11005">
-                <onfocus>ClearProperty(actinfo)</onfocus>
-                <onclick>SetProperty(actinfo,4)</onclick>
+                <onfocus>ClearProperty(moviecontent)</onfocus>
+                <onclick>SetProperty(moviecontent,14)</onclick>
                 <onclick>SetFocus(10073)</onclick>
                 <include>buttondimensions</include>
                 <include content="buttontextures">
@@ -1625,7 +1623,6 @@
             <control type="radiobutton" id="10020">
                 <onfocus>ClearProperty(TMDbHelper.HideView,Home)</onfocus>
                 <onfocus>ClearProperty(moviecontent)</onfocus>
-                <onfocus>ClearProperty(actinfo)</onfocus>
                 <include>buttondimensions</include>
                 <include content="buttontextures">
                     <param name="icon" value="buttonsdialogs/settings.png"/>
