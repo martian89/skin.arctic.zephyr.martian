@@ -83,10 +83,10 @@
     <expression name="IsPVRAudio">Player.HasAudio + VideoPlayer.Content(livetv)</expression>
     <expression name="IsAudio">Player.HasAudio + !VideoPlayer.Content(livetv)</expression>
     <expression name="IsVideo">Player.HasVideo + !VideoPlayer.Content(livetv)</expression>
-	<expression name="IsPersonInfo">String.IsEqual(ListItem.Property(item.type),person) | String.IsEqual(ListItem.Property(dbtype),person) | String.IsEqual(ListItem.Property(Param.Info),person)</expression>
     <expression name="MusicSeekbarIsVisible">Window.IsVisible(musicosd) + !Skin.HasSetting(musicosd.side) | !Window.IsVisible(musicosd) + [Window.IsVisible(script-cu-lrclyrics-main.xml) | Player.ShowInfo | Player.Seeking | Player.HasPerformedSeek(3) | Player.Paused | Player.Forwarding | Player.Rewinding]</expression>
-    <expression name="VideoOSDShort">!String.IsEmpty(Window(home).Property(osdshowinfo)) | !String.IsEmpty(Window(home).Property(osdinfo)) | Player.ShowInfo | [Player.Paused + Skin.HasSetting(osd.showinfoonpause)] | [Window.IsVisible(videoosd) + Window.IsVisible(DialogFullScreenInfo.xml)]</expression>
-    <expression name="VideoOSDWide">String.IsEmpty(Window(home).Property(osdshowinfo)) + String.IsEmpty(Window(home).Property(osdinfo)) + !Player.ShowInfo + ![Player.Paused + Skin.HasSetting(osd.showinfoonpause)] + ![Window.IsVisible(videoosd) + Window.IsVisible(DialogFullScreenInfo.xml)]</expression>
+    <expression name="ShowInfoOnPause">Player.Paused + Skin.HasSetting(osd.showinfoonpause) + String.IsEmpty(Window(Home).Property(OSDExtendedInfo))</expression>
+    <expression name="VideoOSDShort">!String.IsEmpty(Window(home).Property(osdshowinfo)) | !String.IsEmpty(Window(home).Property(osdinfo)) | Player.ShowInfo | $EXP[ShowInfoOnPause] | [Window.IsVisible(videoosd) + Window.IsVisible(DialogFullScreenInfo.xml)]</expression>
+    <expression name="VideoOSDWide">String.IsEmpty(Window(home).Property(osdshowinfo)) + String.IsEmpty(Window(home).Property(osdinfo)) + !Player.ShowInfo + !$EXP[ShowInfoOnPause] + ![Window.IsVisible(videoosd) + Window.IsVisible(DialogFullScreenInfo.xml)]</expression>
     <expression name="TrailerWindowIsActive">Skin.HasSetting(home.netflix.autoplay.trailer) + [[Window.IsVisible(Home.xml) + [$EXP[HomeIsModernMultiWidgetsNetflix] | $EXP[HomeIsCleanMinimal] | $EXP[HomeIsVerticalMultiWidgetsNetflix]]] | Control.IsVisible(521) | Control.IsVisible(522) | Control.IsVisible(510)] + !Window.IsVisible(DialogVideoInfo.xml) + String.IsEqual(Window(home).Property(TrailerPath2),Player.FileNameAndPath) + !String.IsEmpty(Player.FileNameAndPath)</expression>
     <expression name="TrailerIsReady">Skin.HasSetting(home.netflix.autoplay.trailer) + [Window.IsVisible(Home.xml) | Window.IsVisible(MyVideoNav.xml) | $EXP[InGameMode]] + !Control.HasFocus(300) + !Player.HasMedia + !String.IsEmpty(Window(home).Property(listitem.trailer)) + !System.HasVisibleModalDialog + !Window.IsVisible(script-globalsearch.xml) + !String.IsEqual(Window(home).Property(TrailerPath),Window(home).Property(listitem.trailer)) + !System.IdleTime(30)</expression>
     <expression name="TrailerWaitingForPlayer">!String.IsEmpty(Window(home).Property(TrailerPath2)) + !String.IsEmpty(Window(home).Property(TrailerPath)) + String.IsEmpty(Player.FileNameAndPath)</expression>
@@ -97,8 +97,8 @@
     <expression name="ExtendedNowPlayingHelperAutoClose">!$EXP[TrailerIsReady] + !$EXP[TrailerIsPlaying] + !$EXP[TrailerWaitingForPlayer] + !$EXP[TrailerWindowIsActive] + [[!String.IsEmpty(Window(home).Property(controlsvisible)) | Control.HasFocus(25) | Control.HasFocus(778)] + Skin.HasSetting(extended.nowplaying) + Window.IsVisible(Home) + !Player.HasMedia + !Player.Playing + !Skin.HasSetting(hide.home.nowplaying.controls)]</expression>
     <expression name="TitleClearlogoAvailable">[!String.IsEmpty(ListItem.Art(clearlogo)) | !String.IsEmpty(ListItem.Art(artist.clearlogo)) | !String.IsEmpty(ListItem.Art(tvshow.clearlogo))]</expression>
     <expression name="UseNewJumpbar">!System.AddonIsEnabled(script.embuary.helper) | Skin.HasSetting(use.new.jumpbar)</expression>
-	<expression name="IsDialogVideoInfo">Window.IsVisible(DialogVideoInfo.xml) + String.IsEqual(Window(home).Property(infodialog),video)</expression>
-	<expression name="IsDialogPersonInfo">Window.IsVisible(DialogVideoInfo.xml) + String.IsEqual(Window(home).Property(infodialog),person)</expression>
+	<expression name="IsDialogVideoInfo">Window.IsVisible(DialogVideoInfo.xml) + ![String.IsEqual(ListItem.Property(item.type),person) | String.IsEqual(ListItem.Property(dbtype),person) | String.IsEqual(ListItem.Property(Param.Info),person)]</expression>
+	<expression name="IsDialogPersonInfo">Window.IsVisible(DialogVideoInfo.xml) + [String.IsEqual(ListItem.Property(item.type),person) | String.IsEqual(ListItem.Property(dbtype),person) | String.IsEqual(ListItem.Property(Param.Info),person)]</expression>
 
     <expression name="HideViewContent">
         Window.IsVisible(DialogAddonInfo.xml) | Window.IsVisible(DialogPVRInfo.xml) | Window.IsVisible(DialogMusicInfo.xml) | Window.IsVisible(DialogVideoInfo.xml)
@@ -294,7 +294,7 @@
     </expression>
     
     <expression name="IsNewMovie301">
-        [Container(301).Content(movies) | String.IsEqual(ListItem.DBTYPE,movie)]
+        [Container(301).Content(movies) | String.IsEqual(Container(301).ListItem.DBTYPE,movie)]
         + [
             String.IsEqual(Window(Home).Property(LatestMovie.1.Title),Container(301).ListItem.Title)
             | String.IsEqual(Window(Home).Property(LatestMovie.2.Title),Container(301).ListItem.Title)
@@ -324,7 +324,7 @@
           ]
     </expression>
     <expression name="IsNewSeason301">
-        [Container(301).Content(seasons) | String.IsEqual(ListItem.DBTYPE,season)]
+        [Container(301).Content(seasons) | String.IsEqual(Container(301).ListItem.DBTYPE,season)]
         + [
             String.IsEqual(Window(Home).Property(LatestEpisode.1.ShowTitle),Container(301).ListItem.TvShowTitle) + String.IsEqual(Window(Home).Property(LatestEpisode.1.EpisodeSeason),Container(301).ListItem.Season)
             | String.IsEqual(Window(Home).Property(LatestEpisode.2.ShowTitle),Container(301).ListItem.TvShowTitle) + String.IsEqual(Window(Home).Property(LatestEpisode.2.EpisodeSeason),Container(301).ListItem.Season)
@@ -339,7 +339,7 @@
           ]
     </expression>
     <expression name="IsNewEpisode301">
-        [Container().Content(episodes) | String.IsEqual(Container(301).ListItem.DBTYPE,episode)]
+        [Container(301).Content(episodes) | String.IsEqual(Container(301).ListItem.DBTYPE,episode)]
         + [
             String.IsEqual(Window(Home).Property(LatestEpisode.1.ShowTitle),Container(301).ListItem.TvShowTitle) + String.IsEqual(Window(Home).Property(LatestEpisode.1.EpisodeSeason),Container(301).ListItem.Season) + String.IsEqual(Window(Home).Property(LatestEpisode.1.EpisodeTitle),Container(301).ListItem.Title)
             | String.IsEqual(Window(Home).Property(LatestEpisode.2.ShowTitle),Container(301).ListItem.TvShowTitle) + String.IsEqual(Window(Home).Property(LatestEpisode.2.EpisodeSeason),Container(301).ListItem.Season) + String.IsEqual(Window(Home).Property(LatestEpisode.2.EpisodeTitle),Container(301).ListItem.Title)
@@ -359,8 +359,8 @@
     </expression>
     
     <expression name="IsWatched">
-        String.IsEqual(ListItem.Overlay,OverlayWatched.png)
-        | String.IsEmpty(ListItem.Overlay) + !String.IsEmpty(ListItem.DBID) + Integer.IsGreater(ListItem.PlayCount,0)
+        [String.IsEqual(ListItem.Overlay,OverlayWatched.png)
+        | String.IsEmpty(ListItem.Overlay) + !String.IsEmpty(ListItem.DBID) + Integer.IsGreater(ListItem.PlayCount,0)]
         + !ListItem.IsPlaying + !$EXP[IsInProgress]
         + [ String.IsEqual(ListItem.DBType,movie)
           | String.IsEqual(ListItem.DBType,tvshow)
@@ -371,8 +371,8 @@
     </expression>
 
     <expression name="IsUnwatched">
-        String.IsEqual(ListItem.Overlay,OverlayUnwatched.png)
-        | String.IsEmpty(ListItem.Overlay) + !String.IsEmpty(ListItem.DBID) + Integer.IsEqual(ListItem.PlayCount,0)
+        [String.IsEqual(ListItem.Overlay,OverlayUnwatched.png)
+        | String.IsEmpty(ListItem.Overlay) + !String.IsEmpty(ListItem.DBID) + Integer.IsEqual(ListItem.PlayCount,0)]
         + !ListItem.IsPlaying + !$EXP[IsInProgress]
         + [ String.IsEqual(ListItem.DBType,movie)
           | String.IsEqual(ListItem.DBType,tvshow)
@@ -391,9 +391,9 @@
     </expression>
 
     <expression name="IsWatched301">
-        String.IsEqual(Container(301).ListItem.Overlay,OverlayWatched.png)
-        | String.IsEmpty(Container(301).ListItem.Overlay) + !String.IsEmpty(Container(301).ListItem.DBID) + Integer.IsGreater(Container(301).ListItem.PlayCount,0)
-        + !Container(301).ListItem.IsPlaying + !$EXP[IsShowInProgress301]
+        [String.IsEqual(Container(301).ListItem.Overlay,OverlayWatched.png)
+        | String.IsEmpty(Container(301).ListItem.Overlay) + !String.IsEmpty(Container(301).ListItem.DBID) + Integer.IsGreater(Container(301).ListItem.PlayCount,0)]
+        + !Container(301).ListItem.IsPlaying + !$EXP[IsInProgress301]
         + [ String.IsEqual(Container(301).ListItem.DBType,movie)
           | String.IsEqual(Container(301).ListItem.DBType,tvshow)
           | String.IsEqual(Container(301).ListItem.DBType,season)
@@ -403,8 +403,8 @@
     </expression>
 
     <expression name="IsUnwatched301">
-        String.IsEqual(Container(301).ListItem.Overlay,OverlayUnwatched.png)
-        | String.IsEmpty(Container(301).ListItem.Overlay) + !String.IsEmpty(Container(301).ListItem.DBID) + Integer.IsEqual(Container(301).ListItem.PlayCount,0)
+        [String.IsEqual(Container(301).ListItem.Overlay,OverlayUnwatched.png)
+        | String.IsEmpty(Container(301).ListItem.Overlay) + !String.IsEmpty(Container(301).ListItem.DBID) + Integer.IsEqual(Container(301).ListItem.PlayCount,0)]
         + !Container(301).ListItem.IsPlaying + !$EXP[IsInProgress301]
         + [ String.IsEqual(Container(301).ListItem.DBType,movie)
           | String.IsEqual(Container(301).ListItem.DBType,tvshow)
@@ -1525,12 +1525,12 @@
     </include>
 
 	<variable name="MusicInfoNavigation_onleft_control_id">
-		<value condition="!Control.HasFocus(11100) + !String.IsEmpty(ListItem.Art(discart))">11100</value>
+		<value condition="!Control.HasFocus(11100) + !String.IsEmpty(ListItem.Art(discart)) + !Skin.HasSetting(hide.discart)">11100</value>
 		<value>9008</value>
 	</variable>
 
 	<variable name="MusicInfoNavigation_onright_control_id">
-		<value condition="!Control.HasFocus(11100) + !String.IsEmpty(ListItem.Art(discart))">11100</value>
+		<value condition="!Control.HasFocus(11100) + !String.IsEmpty(ListItem.Art(discart)) + !Skin.HasSetting(hide.discart)">11100</value>
 		<value condition="Control.IsVisible(9001)">9001</value>
 		<value condition="Control.IsVisible(9007)">9007</value>
 		<value condition="Control.IsVisible(9030)">9030</value>
@@ -1542,749 +1542,31 @@
 		<value>9008</value>
 	</variable>
 
-    <include name="DialogMusicInfoNavigation">
-        <control type="grouplist" id="9000">
-            <bottom>144</bottom>
-            <left>783</left>
-            <right>SidePad</right>
-            <include>listdimensions</include>
-            <orientation>horizontal</orientation>
-            <onleft>SetFocus($VAR[MusicInfoNavigation_onleft_control_id])</onleft>
-            <onright>SetFocus($VAR[MusicInfoNavigation_onright_control_id])</onright>
-            <ondown>9601</ondown>
-            <onup>9601</onup>
-            <control type="radiobutton" id="9001">
-                <visible>[String.IsEqual(ListItem.DBType,album) | String.IsEqual(ListItem.DBType,song)] + ![ListItem.IsPlaying | [!String.IsEmpty(ListItem.FolderPath) + String.IsEqual(ListItem.FileNameAndPath,Player.Folderpath)]]</visible>
-                <onfocus>ClearProperty(musiccontent)</onfocus>
-                <onclick condition="String.IsEmpty(ListItem.DBID)">PlayMedia($INFO[ListItem.FilenameAndPath])</onclick>
-                <onclick condition="System.HasAddon(script.playalbum) + String.IsEqual(ListItem.DBType,song) + !String.IsEmpty(ListItem.DBID)">RunScript(script.playalbum,songid=$INFO[ListItem.DBID])</onclick>
-                <onclick condition="System.HasAddon(script.playalbum) + String.IsEqual(ListItem.DBType,album) + !String.IsEmpty(ListItem.DBID)">RunScript(script.playalbum,albumid=$INFO[ListItem.DBID])</onclick>
-                <onclick condition="!System.HasAddon(script.playalbum) + !String.IsEmpty(ListItem.DBID)">InstallAddon(script.playalbum)</onclick>
-                <include>buttondimensionssquare</include>
-                <include content="buttontextures">
-                    <param name="icon" value="buttonsdialogs/play.png"/>
-                </include>
-            </control>
-            <control type="radiobutton" id="9201">
-                <visible>[String.IsEqual(ListItem.DBType,album) | String.IsEqual(ListItem.DBType,song)] + [ListItem.IsPlaying | [!String.IsEmpty(ListItem.FolderPath) + String.IsEqual(ListItem.FileNameAndPath,Player.Folderpath)]]</visible>
-                <onfocus>ClearProperty(musiccontent)</onfocus>
-                <include>buttondimensionssquare</include>
-                <onclick condition="Player.Playing">Pause</onclick>
-                <onclick condition="!Player.Playing">Play</onclick>
-                <texturenofocus colordiffuse="Dark4" border="0">common/boxsquare.png</texturenofocus>
-                <texturefocus colordiffuse="$VAR[ColorHighlight]" border="0">common/boxsquare.png</texturefocus>
-                <textureradioonfocus colordiffuse="FFFFFFFF">buttonsdialogs/pause.png</textureradioonfocus>
-                <textureradioonnofocus colordiffuse="FFFFFFFF">buttonsdialogs/pause.png</textureradioonnofocus>
-                <textureradioofffocus colordiffuse="FFFFFFFF">buttonsdialogs/continue.png</textureradioofffocus>
-                <textureradiooffnofocus colordiffuse="FFFFFFFF">buttonsdialogs/continue.png</textureradiooffnofocus>
-                <selected>Player.Playing</selected>
-            </control>
-
-            <!-- Rating Button -->
-            <control type="radiobutton" id="9007">
-                <visible>!String.IsEqual(ListItem.DBType,artist)</visible>
-                <include>OnFocusOnClick</include>
-                <include>ClearOnFocusOnClick</include>
-                <onfocus>ClearProperty(musiccontent)</onfocus>
-                <onclick>SendClick(7)</onclick>
-                <include>buttondimensionssquare</include>
-                <texturenofocus colordiffuse="Dark4" border="0">common/boxsquare.png</texturenofocus>
-                <texturefocus colordiffuse="$VAR[ColorHighlight]" border="0">common/boxsquare.png</texturefocus>
-                <textureradioonfocus colordiffuse="FFFFFFFF">buttonsdialogs/rating.png</textureradioonfocus>
-                <textureradioonnofocus colordiffuse="FFFFFFFF">buttonsdialogs/rating.png</textureradioonnofocus>
-                <textureradioofffocus colordiffuse="FFFFFFFF">buttonsdialogs/rating_new.png</textureradioofffocus>
-                <textureradiooffnofocus colordiffuse="FFFFFFFF">buttonsdialogs/rating_new.png</textureradiooffnofocus>
-                <selected>String.IsEmpty(ListItem.UserRating)</selected>
-                <textcolor>Dark4</textcolor>
-                <font>Null</font>
-                <visible>!Skin.HasSetting(hidebutton.music.rating)</visible>
-            </control>
-            
-            <!-- Wikipedia Button -->
-            <control type="radiobutton" id="9030">
-                <onfocus>ClearProperty(musiccontent)</onfocus>
-                <include>buttondimensionssquare</include>
-                <onclick>RunScript(script.wikipedia,wikipedia=$VAR[Wiki_Label],language=$VAR[LanguageCheck])</onclick>
-                <include content="buttontextures">
-                    <param name="icon" value="buttonsdialogs/wiki.png"/>
-                </include>
-                <visible>!Skin.HasSetting(hidebutton.music.wiki) + System.AddonIsEnabled(script.wikipedia)</visible>
-            </control>
-
-            <!-- Tracklist Button -->
-            <control type="radiobutton" id="9003">
-                <visible>String.IsEqual(ListItem.DBType,album)</visible>
-                <onfocus>ClearProperty(musiccontent)</onfocus>
-                <onclick>SetProperty(musiccontent,1)</onclick>
-                <onclick>SetFocus(9009)</onclick>
-                <include>buttondimensionssquare</include>
-                <include content="buttontextures">
-                    <param name="icon" value="buttonsdialogs/musictracklist.png"/>
-                </include>
-            </control>
-
-            <!-- Discography Button -->
-            <control type="radiobutton" id="9004">
-                <visible>String.IsEqual(ListItem.DBType,artist)</visible>
-                <onfocus>ClearProperty(musiccontent)</onfocus>
-                <onclick>SetProperty(musiccontent,2)</onclick>
-                <onclick>SetFocus(10051)</onclick>
-                <include>buttondimensionssquare</include>
-                <include content="buttontextures">
-                    <param name="icon" value="buttonsdialogs/set.png"/>
-                </include>
-                <visible>!Skin.HasSetting(hidebutton.music.sets)</visible>
-                <visible>Integer.IsGreater(Container(51).NumItems,0)</visible>
-            </control>
-
-            <!-- Youtube Button -->
-            <control type="radiobutton" id="9005">
-                <onfocus>ClearProperty(musiccontent)</onfocus>
-                <onfocus>SetProperty(musicyoutube,1)</onfocus>
-                <onclick>SetProperty(musiccontent,3)</onclick>
-                <onclick>SetFocus(10052)</onclick>
-                <include>buttondimensionssquare</include>
-                <include content="buttontextures">
-                    <param name="icon" value="buttonsdialogs/youtube.png"/>
-                </include>
-                <visible>!Skin.HasSetting(hidebutton.music.youtube) + System.AddonIsEnabled(plugin.video.youtube)</visible>
-            </control>
-
-            <!-- Fanart Button -->
-            <control type="radiobutton" id="9006">
-                <onfocus>ClearProperty(musiccontent)</onfocus>
-                <onclick>SetProperty(musiccontent,4)</onclick>
-                <onclick>SetFocus(10053)</onclick>
-                <font>Button</font>
-                <textcolor>Dark2</textcolor>
-                <include>buttondimensionssquare</include>
-                <texturenofocus colordiffuse="Dark4" border="0">common/boxsquare.png</texturenofocus>
-                <texturefocus colordiffuse="$VAR[ColorHighlight]" border="0">common/boxsquare.png</texturefocus>
-                <include content="buttontextures">
-                    <param name="icon" value="buttonsdialogs/image.png"/>
-                </include>
-                <visible>!Skin.HasSetting(hidebutton.music.fanart)</visible>
-                <visible>Integer.IsGreater(Container(53).NumItems,0)</visible>
-            </control>
-
-            <!-- More Of Artist Button -->
-            <control type="radiobutton" id="9029">
-                <visible>String.IsEqual(ListItem.DBType,song)</visible>
-                <onfocus>ClearProperty(musiccontent)</onfocus>
-                <onclick>SetProperty(musiccontent,8)</onclick>
-                <onclick>SetFocus(10054)</onclick>
-                <font>Button</font>
-                <textcolor>Dark2</textcolor>
-                <include>buttondimensionssquare</include>
-                <texturenofocus colordiffuse="Dark4" border="0">common/boxsquare.png</texturenofocus>
-                <texturefocus colordiffuse="$VAR[ColorHighlight]" border="0">common/boxsquare.png</texturefocus>
-                <include content="buttontextures">
-                    <param name="icon" value="buttonsdialogs/more.png"/>
-                </include>
-                <visible>!Skin.HasSetting(hidebutton.music.more)</visible>
-                <visible>Integer.IsGreater(Container(54).NumItems,1)</visible>
-            </control>
-
-            <!-- Setting Button -->
-            <control type="radiobutton" id="9008">
-                <onfocus>ClearProperty(musiccontent)</onfocus>
-                <include>buttondimensions</include>
-                <include content="buttontextures">
-                    <param name="icon" value="buttonsdialogs/manage.png"/>
-                </include>
-                <onclick>SetFocus(9400)</onclick>
-                <visible>!Skin.HasSetting(global.kioskmode)</visible>
-            </control>
-        </control>
-    </include>
-
 	<variable name="VideoInfoNavigation_onleft_control_id">
-		<value condition="!Control.HasFocus(11100) + !String.IsEmpty(ListItem.Art(discart))">11100</value>
+		<value condition="!Control.HasFocus(11100) + !String.IsEmpty(ListItem.Art(discart)) + !Skin.HasSetting(hide.discart)">11100</value>
 		<value condition="Control.IsVisible(10019)">10019</value>
 		<value condition="Control.IsVisible(10020)">10020</value>
 	</variable>
 
 	<variable name="VideoInfoNavigation_onright_control_id">
-		<value condition="!Control.HasFocus(11100) + !String.IsEmpty(ListItem.Art(discart))">11100</value>
+		<value condition="!Control.HasFocus(11100) + !String.IsEmpty(ListItem.Art(discart)) + !Skin.HasSetting(hide.discart)">11100</value>
 		<value condition="Control.IsVisible(8)">8</value>
 		<value condition="Control.IsVisible(10001)">10001</value>
 		<value condition="Control.IsVisible(10002)">10002</value>
 		<value condition="Control.IsVisible(10003)">10003</value>
+		<value condition="Control.IsVisible(11001)">11001</value>
+		<value condition="Control.IsVisible(11002)">11002</value>
+        <value condition="Control.IsVisible(10008)">10008</value>
+        <value condition="Control.IsVisible(10015)">10015</value>
+		<value condition="Control.IsVisible(11005)">11005</value>
 	</variable>
-
-    <include name="DialogVideoInfoNavigation">
-        <control type="grouplist" id="9000">
-            <bottom>224</bottom>
-            <left>570</left>
-            <right>81</right>
-            <include>listdimensions</include>
-            <onleft>SetFocus($VAR[VideoInfoNavigation_onleft_control_id])</onleft>
-            <onright>SetFocus($VAR[VideoInfoNavigation_onright_control_id])</onright>
-            <ondown>9601</ondown>
-            <onup>9601</onup>
-            <orientation>horizontal</orientation>
-            <control type="radiobutton" id="8">
-                <onfocus>ClearProperty(TMDbHelper.HideView,Home)</onfocus>
-                <onfocus>ClearProperty(moviecontent)</onfocus>
-                <include>buttondimensions</include>
-                <texturenofocus colordiffuse="Dark4" border="0">common/boxsquare.png</texturenofocus>
-                <texturefocus colordiffuse="$VAR[ColorHighlight]" border="0">common/boxsquare.png</texturefocus>
-                <textureradioonfocus colordiffuse="FFFFFFFF">buttonsdialogs/continue.png</textureradioonfocus>
-                <textureradioonnofocus colordiffuse="FFFFFFFF">buttonsdialogs/continue.png</textureradioonnofocus>
-                <textureradioofffocus colordiffuse="FFFFFFFF">buttonsdialogs/play.png</textureradioofffocus>
-                <textureradiooffnofocus colordiffuse="FFFFFFFF">buttonsdialogs/play.png</textureradiooffnofocus>
-                <selected>ListItem.IsResumable</selected>
-                <visible>!ListItem.IsPlaying</visible>
-                <visible>!ListItem.IsFolder</visible>
-                <visible>!Window.IsVisible(1190)</visible>
-            </control>
-            
-            <control type="radiobutton" id="10001">
-                <onfocus>ClearProperty(TMDbHelper.HideView,Home)</onfocus>
-                <onfocus>ClearProperty(moviecontent)</onfocus>
-		        <onclick condition="!ListItem.IsFolder + !String.IsEmpty(ListItem.FileNameAndPath)">RunScript(plugin.video.themoviedb.helper,close_dialog=1190,playmedia='$ESCINFO[ListItem.FileNameAndPath]')</onclick>
-		        <onclick condition="!ListItem.IsFolder + String.IsEmpty(ListItem.FileNameAndPath)">RunScript(plugin.video.themoviedb.helper,close_dialog=1190,playmedia='$ESCINFO[ListItem.FolderPath]')</onclick>
-                <include>buttondimensions</include>
-                <texturenofocus colordiffuse="Dark4" border="0">common/boxsquare.png</texturenofocus>
-                <texturefocus colordiffuse="$VAR[ColorHighlight]" border="0">common/boxsquare.png</texturefocus>
-                <textureradioonfocus colordiffuse="FFFFFFFF">buttonsdialogs/continue.png</textureradioonfocus>
-                <textureradioonnofocus colordiffuse="FFFFFFFF">buttonsdialogs/continue.png</textureradioonnofocus>
-                <textureradioofffocus colordiffuse="FFFFFFFF">buttonsdialogs/play.png</textureradioofffocus>
-                <textureradiooffnofocus colordiffuse="FFFFFFFF">buttonsdialogs/play.png</textureradiooffnofocus>
-                <selected>ListItem.IsResumable</selected>
-                <visible>!ListItem.IsPlaying</visible>
-                <visible>!ListItem.IsFolder</visible>
-                <visible>Window.IsVisible(1190)</visible>
-            </control>
-
-            <control type="radiobutton" id="10002">
-                <onfocus>ClearProperty(TMDbHelper.HideView,Home)</onfocus>
-                <onfocus>ClearProperty(moviecontent)</onfocus>
-                <onclick condition="Skin.HasSetting(home.netflix.autoplay.trailer) + $EXP[TrailerIsPlaying] + !Skin.HasSetting(trailer.dont.stop.on.unfocus)">Stop</onclick>
-                <onclick condition="Skin.HasSetting(home.netflix.autoplay.trailer) + $EXP[TrailerIsPlaying] + !Skin.HasSetting(trailer.dont.stop.on.unfocus)">ClearProperty(TrailerPath,home)</onclick>
-                <onclick>SendClick(8)</onclick>
-                <include>buttondimensions</include>
-                <texturenofocus colordiffuse="Dark4" border="0">common/boxsquare.png</texturenofocus>
-                <texturefocus colordiffuse="$VAR[ColorHighlight]" border="0">common/boxsquare.png</texturefocus>
-                <include content="buttontextures">
-                    <param name="icon" value="buttonsdialogs/folder.png"/>
-                </include>
-                <visible>ListItem.IsFolder</visible>
-            </control>
-
-            <control type="radiobutton" id="10003">
-                <onfocus>ClearProperty(TMDbHelper.HideView,Home)</onfocus>
-                <onfocus>ClearProperty(moviecontent)</onfocus>
-                <include>buttondimensions</include>
-                <onclick condition="Player.Playing">Pause</onclick>
-                <onclick condition="!Player.Playing">Play</onclick>
-                <texturenofocus colordiffuse="Dark4" border="0">common/boxsquare.png</texturenofocus>
-                <texturefocus colordiffuse="$VAR[ColorHighlight]" border="0">common/boxsquare.png</texturefocus>
-                <textureradioonfocus colordiffuse="FFFFFFFF">buttonsdialogs/pause.png</textureradioonfocus>
-                <textureradioonnofocus colordiffuse="FFFFFFFF">buttonsdialogs/pause.png</textureradioonnofocus>
-                <textureradioofffocus colordiffuse="FFFFFFFF">buttonsdialogs/continue.png</textureradioofffocus>
-                <textureradiooffnofocus colordiffuse="FFFFFFFF">buttonsdialogs/continue.png</textureradiooffnofocus>
-                <selected>Player.Playing</selected>
-                <visible>ListItem.IsPlaying</visible>
-            </control>
-
-            <control type="radiobutton" id="10004">
-                <visible>String.IsEqual(ListItem.DBType,tvshow) + Integer.IsGreater(ListItem.Property(UnwatchedEpisodes),0) + !String.IsEmpty(ListItem.DBID) + !Skin.HasSetting(HideNextUpEpisodeButton) + !String.IsEmpty(Container(9911).ListItem.FileNameAndPath)</visible>
-                <onfocus>ClearProperty(TMDbHelper.HideView,Home)</onfocus>
-                <onfocus>ClearProperty(moviecontent)</onfocus>
-                <onclick condition="!Window.IsVisible(1190)">Dialog.Close(all)</onclick>
-                <onclick condition="!Window.IsVisible(1190)">PlayMedia($ESCINFO[Container(9911).ListItem.FileNameAndPath])</onclick>
-                <onclick condition="Window.IsVisible(1190)">RunScript(plugin.video.themoviedb.helper,close_dialog=1190,playmedia='$ESCINFO[Container(9911).ListItem.FileNameAndPath]')</onclick>
-                <include>buttondimensions</include>
-                <include content="buttontextures">
-                    <param name="icon" value="buttonsdialogs/upnext.png"/>
-                </include>
-            </control>
-
-            <!-- Trailer - ListItem.Trailer | IMDB.Trailer -->
-            <control type="radiobutton" id="10005">
-                <onfocus>ClearProperty(TMDbHelper.HideView,Home)</onfocus>
-                <onfocus>ClearProperty(moviecontent)</onfocus>
-                <onclick condition="Skin.HasSetting(PlayTrailerWindowed)">SetProperty(moviecontent,6)</onclick>
-                <onclick condition="Skin.HasSetting(PlayTrailerWindowed)">SetFocus(7011)</onclick>
-                <include>buttondimensions</include>
-                <include content="buttontextures">
-                    <param name="icon" value="buttonsdialogs/trailer.png"/>
-                </include>
-                <include>DialogVideoInfo_Trailer_Click_Action</include>
-                <visible>!Skin.HasSetting(hidebutton.video.trailer)</visible>
-                <visible>[Skin.HasSetting(Use.IMDB.Trailer) + System.AddonIsEnabled(plugin.video.imdb.trailers) + [!String.IsEmpty(Window(home).Property(TMDbHelper.ListItem.imdb_id)) | $EXP[IMDBNumberIsIMDbId]]] | [!Skin.HasSetting(Use.IMDB.Trailer) + !String.IsEmpty(ListItem.Trailer)]</visible>
-            </control>
-
-            <!-- Cinema -->
-            <control type="radiobutton" id="10006">
-                <onfocus>ClearProperty(TMDbHelper.HideView,Home)</onfocus>
-                <onfocus>ClearProperty(moviecontent)</onfocus>
-                <description>Home Theatre</description>
-                <include>buttondimensions</include>
-                <include content="buttontextures">
-                    <param name="icon" value="buttonsdialogs/playcinema.png"/>
-                </include>
-                <onclick>RunScript(script.preshowexperience,dbtype=$INFO[ListItem.DBType],dbid=$INFO[ListItem.DBID])</onclick>
-                <visible>String.IsEqual(ListItem.DBTYPE,movie) | String.IsEqual(ListItem.DBTYPE,episode)</visible>
-                <visible>!Skin.HasSetting(hidebutton.video.cinema) + System.AddonIsEnabled(script.preshowexperience)</visible>
-            </control>
-            <control type="radiobutton" id="7">
-                <onfocus>ClearProperty(TMDbHelper.HideView,Home)</onfocus>
-                <onfocus>ClearProperty(moviecontent)</onfocus>
-                <include>OnFocusOnClick</include>
-                <include>ClearOnFocusOnClick</include>
-                <include>buttondimensions</include>
-                <texturenofocus colordiffuse="Dark4" border="0">common/boxsquare.png</texturenofocus>
-                <texturefocus colordiffuse="$VAR[ColorHighlight]" border="0">common/boxsquare.png</texturefocus>
-                <textureradioonfocus colordiffuse="FFFFFFFF">buttonsdialogs/rating.png</textureradioonfocus>
-                <textureradioonnofocus colordiffuse="FFFFFFFF">buttonsdialogs/rating.png</textureradioonnofocus>
-                <textureradioofffocus colordiffuse="FFFFFFFF">buttonsdialogs/rating_new.png</textureradioofffocus>
-                <textureradiooffnofocus colordiffuse="FFFFFFFF">buttonsdialogs/rating_new.png</textureradiooffnofocus>
-                <selected>String.IsEmpty(ListItem.UserRating)</selected>
-                <visible>Control.IsEnabled(7)</visible>
-                <visible>!Skin.HasSetting(hidebutton.video.rating)</visible>
-            </control>
-
-            <control type="radiobutton" id="10008">
-                <visible>String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow)</visible>
-                <onfocus>ClearProperty(TMDbHelper.HideView,Home)</onfocus>
-                <onfocus>ClearProperty(moviecontent)</onfocus>
-                <onfocus>ClearProperty(dontslide,home)</onfocus>
-                <onclick>SetProperty(dontslide,1,home)</onclick>
-                <onclick condition="String.IsEqual(ListItem.DBType,movie)">RunScript(script.wikipedia,wikipedia=$VAR[Wiki_Label],tmdb_type=movie,language=$VAR[LanguageCheck])</onclick>
-                <onclick condition="String.IsEqual(ListItem.DBType,tvshow)">RunScript(script.wikipedia,wikipedia=$VAR[Wiki_Label],tmdb_type=tv,language=$VAR[LanguageCheck])</onclick>
-                <include>buttondimensions</include>
-                <include content="buttontextures">
-                    <param name="icon" value="buttonsdialogs/wiki.png"/>
-                </include>
-                <visible>!Skin.HasSetting(hidebutton.video.wiki) + System.AddonIsEnabled(script.wikipedia)</visible>
-            </control>
-
-            <!-- Cast -->
-            <control type="radiobutton" id="10009">
-                <visible>String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,episode)</visible>
-                <onfocus>ClearProperty(TMDbHelper.HideView,Home)</onfocus>
-                <onfocus>ClearProperty(moviecontent)</onfocus>
-                <onfocus>ClearProperty(dontslide,home)</onfocus>
-                <onclick>SetProperty(moviecontent,1)</onclick>
-                <onclick condition="Skin.HasSetting(extended.info.local.cast)">SetProperty(dontslide,1,home)</onclick>
-                <onclick condition="Skin.HasSetting(extended.info.local.cast)">SetFocus(10050)</onclick>
-                <onclick condition="!Skin.HasSetting(extended.info.local.cast)">SetFocus(10052)</onclick>
-                <include>buttondimensions</include>
-                <include content="buttontextures">
-                    <param name="icon" value="buttonsdialogs/cast.png"/>
-                </include>
-                <visible>!Skin.HasSetting(hidebutton.video.cast)</visible>
-            </control>
-
-            <control type="radiobutton" id="10010">
-                <visible>String.IsEqual(ListItem.DBType,set)</visible>
-                <onfocus>ClearProperty(TMDbHelper.HideView,Home)</onfocus>
-                <onfocus>ClearProperty(moviecontent)</onfocus>
-                <onclick>SetProperty(moviecontent,1)</onclick>
-                <onclick>SetFocus(10050)</onclick>
-                <include>buttondimensions</include>
-                <include content="buttontextures">
-                    <param name="icon" value="buttonsdialogs/set.png"/>
-                </include>
-                <visible>Skin.HasSetting(extended.info.local.collections)</visible>
-            </control>
-
-            <!-- Crew -->
-            <control type="radiobutton" id="10011">
-                <visible>$EXP[ShowTmdbCrew]</visible>
-                <onfocus>ClearProperty(TMDbHelper.HideView,Home)</onfocus>
-                <onfocus>ClearProperty(moviecontent)</onfocus>
-                <onfocus>SetProperty(videocrew,1)</onfocus>
-                <onclick>SetProperty(moviecontent,9)</onclick>
-                <onclick>SetFocus(10056)</onclick>
-                <include>buttondimensions</include>
-                <include content="buttontextures">
-                    <param name="icon" value="buttonsdialogs/crew.png"/>
-                </include>
-            </control>
-
-             <control type="radiobutton" id="10012">
-                <visible>$EXP[ShowTmdbSimilar]</visible>
-                <onfocus>ClearProperty(TMDbHelper.HideView,Home)</onfocus>
-                <onfocus>ClearProperty(moviecontent)</onfocus>
-                <onfocus>SetProperty(videosimilar,1)</onfocus>
-                <onclick>SetProperty(moviecontent,2)</onclick>
-                <onclick>SetFocus(10053)</onclick>
-                <include>buttondimensions</include>
-                <include content="buttontextures">
-                    <param name="icon" value="buttonsdialogs/similar.png"/>
-                </include>
-            </control>
-            <control type="radiobutton" id="10013">
-                <visible>$EXP[ShowTmdbStudio]</visible>
-                <onfocus>ClearProperty(TMDbHelper.HideView,Home)</onfocus>
-                <onfocus>ClearProperty(moviecontent)</onfocus>
-                <onfocus>SetProperty(videostudio,1)</onfocus>
-                <onclick>SetProperty(moviecontent,3)</onclick>
-                <onclick>SetFocus(10060)</onclick>
-                <include>buttondimensions</include>
-                <include content="buttontextures">
-                    <param name="icon" value="buttonsdialogs/studio.png"/>
-                </include>
-            </control>
-
-            <control type="radiobutton" id="10014">
-                <visible>$EXP[ShowTmdbDirector]</visible>
-                <onfocus>ClearProperty(TMDbHelper.HideView,Home)</onfocus>
-                <onfocus>ClearProperty(moviecontent)</onfocus>
-                <onfocus>SetProperty(videodirector,1)</onfocus>
-                <onclick>SetProperty(moviecontent,7)</onclick>
-                <onclick>SetFocus(10062)</onclick>
-                <include>buttondimensions</include>
-                <include content="buttontextures">
-                    <param name="icon" value="buttonsdialogs/director.png"/>
-                </include>
-            </control>
-
-            <control type="radiobutton" id="10015">
-                <visible>String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow)</visible>
-                <onfocus>ClearProperty(TMDbHelper.HideView,Home)</onfocus>
-                <onfocus>ClearProperty(moviecontent)</onfocus>
-                <onfocus>SetProperty(videoyoutube,1)</onfocus>
-                <onclick>SetProperty(moviecontent,4)</onclick>
-                <onclick>SetFocus(10054)</onclick>
-                <include>buttondimensions</include>
-                <include content="buttontextures">
-                    <param name="icon" value="buttonsdialogs/youtube.png"/>
-                </include>
-                <visible>!Skin.HasSetting(hidebutton.video.youtube)</visible>
-                <visible>System.AddonIsEnabled(plugin.video.youtube)</visible>
-            </control>
-
-           <control type="radiobutton" id="14">
-                <onfocus>ClearProperty(TMDbHelper.HideView,Home)</onfocus>
-                <onfocus>ClearProperty(moviecontent)</onfocus>
-                <include>buttondimensions</include>
-                <include content="buttontextures">
-                    <param name="icon" value="buttonsdialogs/versions.png"/>
-                </include>
-                <visible>!String.IsEmpty(ListItem.DBID) + String.IsEqual(ListItem.DBTYPE,movie)</visible>
-                <visible>!Skin.HasSetting(hidebutton.video.versions)</visible>
-            </control>
-            <control type="radiobutton" id="15">
-                <onfocus>ClearProperty(TMDbHelper.HideView,Home)</onfocus>
-                <onfocus>ClearProperty(moviecontent)</onfocus>
-                <include>buttondimensions</include>
-                <include content="buttontextures">
-                    <param name="icon" value="buttonsdialogs/extras.png"/>
-                </include>
-                <visible>!String.IsEmpty(ListItem.DBID) + String.IsEqual(ListItem.DBTYPE,movie)</visible>
-                <visible>!Skin.HasSetting(hidebutton.video.extras)</visible>
-            </control>
-            <control type="radiobutton" id="10016">
-                <visible>$EXP[ShowTmdbSet]</visible>
-                <onfocus>ClearProperty(TMDbHelper.HideView,Home)</onfocus>
-                <onfocus>ClearProperty(moviecontent)</onfocus>
-                <onfocus>SetProperty(videoset,1)</onfocus>
-                <onclick>SetProperty(moviecontent,8)</onclick>
-                <onclick>SetFocus(10057)</onclick>
-                <include>buttondimensions</include>
-                <include content="buttontextures">
-                    <param name="icon" value="buttonsdialogs/set.png"/>
-                </include>
-            </control>
-            <control type="radiobutton" id="10017">
-                <onfocus>ClearProperty(TMDbHelper.HideView,Home)</onfocus>
-                <onfocus>ClearProperty(moviecontent)</onfocus>
-                <onclick>SetProperty(moviecontent,5)</onclick>
-                <onclick>SetFocus(10055)</onclick>
-                <include>buttondimensions</include>
-                <include content="buttontextures">
-                    <param name="icon" value="buttonsdialogs/image.png"/>
-                </include>
-                <visible>!Skin.HasSetting(hidebutton.video.fanart)</visible>
-            </control>
-            <control type="radiobutton" id="10018">
-                <onfocus>ClearProperty(TMDbHelper.HideView,Home)</onfocus>
-                <onfocus>ClearProperty(moviecontent)</onfocus>
-                <include>buttondimensions</include>
-                <include content="buttontextures">
-                    <param name="icon" value="buttonsdialogs/trakt.png"/>
-                </include>
-                <onclick condition="!String.IsEmpty(ListItem.Property(tmdb_id))">RunScript(plugin.video.themoviedb.helper,sync_trakt=watchlist,tmdb_id=$INFO[ListItem.Property(tmdb_id)],cache_refresh)</onclick>
-                <onclick condition="String.IsEmpty(ListItem.Property(tmdb_id))">RunScript(plugin.video.themoviedb.helper,sync_trakt=watchlist,tmdb_id=$INFO[window(home).property(tmdbhelper.listitem.tmdb_id)],$VAR[DB_type],cache_refresh)</onclick>
-                <visible>!Skin.HasSetting(hidebutton.video.trakt) + [!String.IsEmpty(ListItem.Property(tmdb_id)) | !String.IsEmpty(window(home).property(tmdbhelper.listitem.tmdb_id))] + [String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow)] + !String.IsEmpty(Window(Home).Property(TMDbHelper.TraktIsAuth))</visible>
-            </control>
-            <control type="radiobutton" id="10019">
-                <onfocus>ClearProperty(TMDbHelper.HideView,Home)</onfocus>
-                <onfocus>ClearProperty(moviecontent)</onfocus>
-                <include>buttondimensions</include>
-                <include content="buttontextures">
-                    <param name="icon" value="buttonsdialogs/manage.png"/>
-                </include>
-                <onclick>SetFocus(9400)</onclick>
-                <visible>!Skin.HasSetting(global.kioskmode) + ![String.IsEmpty(ListItem.DBID) | String.StartsWith(ListItem.Path,plugin://)]</visible>
-            </control>
-            <control type="radiobutton" id="10020">
-                <onfocus>ClearProperty(TMDbHelper.HideView,Home)</onfocus>
-                <onfocus>ClearProperty(moviecontent)</onfocus>
-                <include>buttondimensions</include>
-                <include content="buttontextures">
-                    <param name="icon" value="buttonsdialogs/settings.png"/>
-                </include>
-                <visible>!Skin.HasSetting(global.kioskmode) + [String.IsEmpty(ListItem.DBID) | String.StartsWith(ListItem.Path,plugin://)]</visible>
-                <onclick>ActivateWindow(1122)</onclick>
-            </control>
-        </control>
-    </include>
-
-    <include name="DialogPersonInfoNavigation">
-        <control type="grouplist" id="9000">
-            <bottom>224</bottom>
-            <left>571</left>
-            <right>SidePad</right>
-            <include>listdimensions</include>
-            <onup>9601</onup>
-            <ondown>9601</ondown>
-            <orientation>horizontal</orientation>
-            <control type="radiobutton" id="11001">
-                <onfocus>ClearProperty(actinfo)</onfocus>
-                <onfocus>SetProperty(actormovies,1)</onfocus>
-                <onclick>SetProperty(actinfo,1)</onclick>
-                <onclick>SetFocus(10070)</onclick>
-                <include>buttondimensions</include>
-                <include content="buttontextures">
-                    <param name="icon" value="buttonsdialogs/trailer.png"/>
-                </include>
-                <visible>$EXP[ShowTmdbActorMovies]</visible>
-            </control>
-            <control type="radiobutton" id="11002">
-                <onfocus>ClearProperty(actinfo)</onfocus>
-                <onfocus>SetProperty(actortvshows,1)</onfocus>
-                <onclick>SetProperty(actinfo,2)</onclick>
-                <onclick>SetFocus(10071)</onclick>
-                <include>buttondimensions</include>
-                <include content="buttontextures">
-                    <param name="icon" value="buttonsdialogs/tvshows.png"/>
-                </include>
-                <visible>$EXP[ShowTmdbActorTvShows]</visible>
-            </control>
-            <control type="radiobutton" id="11003">
-                <onfocus>ClearProperty(actinfo)</onfocus>
-                <onfocus>SetProperty(videocrew,1)</onfocus>
-                <onclick>SetProperty(actinfo,3)</onclick>
-                <onclick>SetFocus(10072)</onclick>
-                <include>buttondimensions</include>
-                <include content="buttontextures">
-                    <param name="icon" value="buttonsdialogs/crew.png"/>
-                </include>
-                <visible>$EXP[ShowTmdbActorInCrew]</visible>
-            </control>
-            <control type="radiobutton" id="11004">
-                <onfocus>ClearProperty(actinfo)</onfocus>
-                <onfocus>ClearProperty(dontslide,home)</onfocus>
-                <onclick>SetProperty(dontslide,1,home)</onclick>
-                <onclick>RunScript(script.wikipedia,wikipedia=$VAR[Wiki_Label],language=$VAR[LanguageCheck])</onclick>
-                <include>buttondimensions</include>
-                <include content="buttontextures">
-                    <param name="icon" value="buttonsdialogs/wiki.png"/>
-                </include>
-                <visible>!Skin.HasSetting(hidebutton.person.wiki) + System.AddonIsEnabled(script.wikipedia)</visible>
-            </control>
-            <control type="radiobutton" id="11005">
-                <onfocus>ClearProperty(actinfo)</onfocus>
-                <onclick>SetProperty(actinfo,4)</onclick>
-                <onclick>SetFocus(10073)</onclick>
-                <include>buttondimensions</include>
-                <include content="buttontextures">
-                    <param name="icon" value="buttonsdialogs/thumb.png"/>
-                </include>
-                <visible>$EXP[ShowTmdbActorFanart]</visible>
-            </control>
-            <control type="radiobutton" id="11006">
-                <onfocus>ClearProperty(actinfo)</onfocus>
-                <include>buttondimensions</include>
-                <include content="buttontextures">
-                    <param name="icon" value="buttonsdialogs/settings.png"/>
-                </include>
-                <visible>!Skin.HasSetting(global.kioskmode)</visible>
-                <onclick>ActivateWindow(1122)</onclick>
-            </control>
-        </control>
-    </include>
-
-    <include name="DialogAddonInfoNavigation">
-        <control type="grouplist" id="9000">
-            <bottom>224</bottom>
-            <left>783</left>
-            <right>SidePad</right>
-            <include>listdimensions</include>
-            <ondown>9601</ondown>
-            <onup condition="Control.IsVisible(50)">50</onup>
-            <orientation>horizontal</orientation>
-            <control type="radiobutton" id="12">
-                <include>buttondimensionssquare</include>
-                <include content="buttontextures">
-                    <param name="icon" value="buttonsdialogs/launch.png"/>
-                </include>
-                <textcolor>Dark4</textcolor>
-                <font>Null</font>
-                <visible>Control.IsEnabled(12)</visible>
-            </control>
-            <control type="radiobutton" id="6">
-                <include>buttondimensionssquare</include>
-                <texturenofocus colordiffuse="Dark4" border="0">common/boxsquare.png</texturenofocus>
-                <texturefocus colordiffuse="$VAR[ColorHighlight]" border="0">common/boxsquare.png</texturefocus>
-                <textureradioonfocus colordiffuse="FFFFFFFF">buttonsdialogs/uninstall.png</textureradioonfocus>
-                <textureradioonnofocus colordiffuse="FFFFFFFF">buttonsdialogs/uninstall.png</textureradioonnofocus>
-                <textureradioofffocus colordiffuse="FFFFFFFF">buttonsdialogs/install.png</textureradioofffocus>
-                <textureradiooffnofocus colordiffuse="FFFFFFFF">buttonsdialogs/install.png</textureradiooffnofocus>
-                <visible>!Skin.HasSetting(global.kioskmode)</visible>
-                <visible>Control.IsEnabled(6)</visible>
-                <textcolor>Dark4</textcolor>
-                <font>Null</font>
-                <selected>ListItem.Property(addon.isinstalled) | !Window.IsActive(addonbrowser)</selected>
-            </control>
-            <control type="radiobutton" id="7">
-                <include>buttondimensionssquare</include>
-                <texturenofocus colordiffuse="Dark4" border="0">common/boxsquare.png</texturenofocus>
-                <texturefocus colordiffuse="$VAR[ColorHighlight]" border="0">common/boxsquare.png</texturefocus>
-                <textureradioonfocus colordiffuse="FFFFFFFF">buttonsdialogs/disable.png</textureradioonfocus>
-                <textureradioonnofocus colordiffuse="FFFFFFFF">buttonsdialogs/disable.png</textureradioonnofocus>
-                <textureradioofffocus colordiffuse="FFFFFFFF">buttonsdialogs/enabled.png</textureradioofffocus>
-                <textureradiooffnofocus colordiffuse="FFFFFFFF">buttonsdialogs/enabled.png</textureradiooffnofocus>
-                <visible>!Skin.HasSetting(global.kioskmode)</visible>
-                <visible>Control.IsEnabled(7)</visible>
-                <textcolor>Dark4</textcolor>
-                <font>Null</font>
-                <selected>!String.StartsWith(Control.GetLabel(7),$LOCALIZE[24022]) | !Window.IsActive(addonbrowser)</selected>
-            </control>
-            <control type="radiobutton" id="9">
-                <include>buttondimensionssquare</include>
-                <include content="buttontextures">
-                    <param name="icon" value="buttonsdialogs/configure.png"/>
-                </include>
-                <visible allowhiddenfocus="true">Control.IsEnabled(9)</visible>
-            </control>
-            <control type="radiobutton" id="8">
-                <include>buttondimensionssquare</include>
-                <include content="buttontextures">
-                    <param name="icon" value="buttonsdialogs/install.png"/>
-                </include>
-                <visible>Control.IsEnabled(8)</visible>
-            </control>
-            <control type="radiobutton" id="14">
-                <include>buttondimensionssquare</include>
-                <include content="buttontextures">
-                    <param name="icon" value="buttonsdialogs/update.png"/>
-                </include>
-                <visible>Control.IsEnabled(14)</visible>
-            </control>
-            <control type="radiobutton" id="13">
-                <include>buttondimensionssquare</include>
-                <texturenofocus colordiffuse="Dark4" border="0">common/boxsquare.png</texturenofocus>
-                <texturefocus colordiffuse="$VAR[ColorHighlight]" border="0">common/boxsquare.png</texturefocus>
-                <textureradioonfocus colordiffuse="FFFFFFFF">buttonsdialogs/autoupdateon.png</textureradioonfocus>
-                <textureradioonnofocus colordiffuse="FFFFFFFF">buttonsdialogs/autoupdateon.png</textureradioonnofocus>
-                <textureradioofffocus colordiffuse="FFFFFFFF">buttonsdialogs/autoupdate.png</textureradioofffocus>
-                <textureradiooffnofocus colordiffuse="FFFFFFFF">buttonsdialogs/autoupdate.png</textureradiooffnofocus>
-                <visible>!Skin.HasSetting(global.kioskmode)</visible>
-                <visible>Control.IsEnabled(13)</visible>
-                <textcolor>Dark4</textcolor>
-                <font>Null</font>
-            </control>
-            <control type="radiobutton" id="10">
-                <include>buttondimensionssquare</include>
-                <include content="buttontextures">
-                    <param name="icon" value="buttonsdialogs/dependency.png"/>
-                </include>
-                <visible>Control.IsEnabled(10)</visible>
-            </control>
-        </control>
-    </include>
-
-    <include name="DialogPVRInfoNavigation">
-        <control type="grouplist" id="9000">
-            <bottom>224</bottom>
-            <left>783</left>
-            <right>SidePad</right>
-            <include>listdimensions</include>
-            <onup>9601</onup>
-            <ondown>9601</ondown>
-            <orientation>horizontal</orientation>
-            <control type="radiobutton" id="5">
-                <include>buttondimensionssquare</include>
-                <include content="buttontextures">
-                    <param name="icon" value="buttonsdialogs/launch.png"/>
-                </include>
-                <visible>Window.IsVisible(PVRGuideInfo)</visible>
-            </control>
-            <control type="radiobutton" id="4">
-                <include>buttondimensionssquare</include>
-                <include content="buttontextures">
-                    <param name="icon" value="buttonsdialogs/similar.png"/>
-                </include>
-                <visible>Window.IsVisible(PVRGuideInfo)</visible>
-            </control>
-            <control type="radiobutton" id="6">
-                <include>buttondimensionssquare</include>
-                <include content="buttontextures">
-                    <param name="icon" value="buttonsdialogs/record2.png"/>
-                </include>
-                <visible>Window.IsVisible(PVRGuideInfo)</visible>
-            </control>
-            <control type="radiobutton" id="8">
-                <include>buttondimensionssquare</include>
-                <include content="buttontextures">
-                    <param name="icon" value="buttonsdialogs/play_record.png"/>
-                </include>
-                <visible>Window.IsVisible(PVRGuideInfo) | Window.IsVisible(PVRRecordingInfo)</visible>
-            </control>
-            <control type="radiobutton" id="9">
-                <include>buttondimensionssquare</include>
-                <include content="buttontextures">
-                    <param name="icon" value="buttonsdialogs/timer.png"/>
-                </include>
-                <visible>Window.IsVisible(PVRGuideInfo)</visible>
-            </control>
-            <control type="radiobutton" id="11">
-                <include>buttondimensionssquare</include>
-                <include content="buttontextures">
-                    <param name="icon" value="buttonsdialogs/ring.png"/>
-                </include>
-                <visible>Window.IsVisible(PVRGuideInfo)</visible>
-            </control>
-            <control type="radiobutton" id="666">
-                <include>buttondimensionssquare</include>
-                <include content="buttontextures">
-                    <param name="icon" value="buttonsdialogs/record2.png"/>
-                </include>
-                <onclick>Action(close)</onclick>
-                <onclick>RunScript(plugin.video.iptv.recorder,$ESCINFO[ListItem.ChannelName],$ESCINFO[ListItem.Title],$ESCINFO[ListItem.Date],$ESCINFO[ListItem.Duration],$ESCINFO[ListItem.Plot])</onclick>
-                <visible>System.AddonIsEnabled(plugin.video.iptv.recorder)</visible>
-            </control>
-            <control type="radiobutton" id="667">
-                <include>buttondimensionssquare</include>
-                <include content="buttontextures">
-                    <param name="icon" value="buttonsdialogs/play_record.png"/>
-                </include>
-                <onclick>Action(close)</onclick>
-                <onclick>ActivateWindow(10025,&quot;plugin://plugin.video.iptv.recorder/recordings&quot;,return)</onclick>
-                <visible>System.AddonIsEnabled(plugin.video.iptv.recorder)</visible>
-            </control>
-            <control type="radiobutton" id="10">
-                <include>buttondimensionssquare</include>
-                <include content="buttontextures">
-                    <param name="icon" value="buttonsdialogs/play.png"/>
-                </include>
-                <visible>Window.IsVisible(PVRGuideInfo)</visible>
-            </control>
-        </control>
-    </include>
 
     <expression name="ShowTmdbCast">!Skin.HasSetting(extended.info.local.cast) + !Skin.HasSetting(hidebutton.video.cast) + [String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,episode)]</expression>
     <expression name="ShowTmdbDirector">!Skin.HasSetting(hidebutton.video.director) + String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(Window(home).Property(TMDbHelper.ListItem.Director))</expression>
     <expression name="ShowTmdbCrew">Skin.HasSetting(showbutton.video.crew) + [String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow)]</expression>
     <expression name="ShowTmdbStudio">Skin.HasSetting(showbutton.video.studio) + [String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow)] + !String.IsEmpty(Window(home).Property(TMDbHelper.ListItem.Studio))</expression>
     <expression name="ShowTmdbSimilar">Skin.HasSetting(showbutton.video.similar) + [String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow)]</expression>
-    <expression name="ShowTmdbSet">!Skin.HasSetting(hidebutton.video.set) + [[String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(Window(home).Property(TMDbHelper.ListItem.Set.TMDb_ID))] | [!Skin.HasSetting(extended.info.local.collections) + String.IsEqual(ListItem.DBType,set) + !String.IsEmpty(Window(home).Property(TMDbHelper.ListItem.TMDb_ID))]]</expression>
+    <expression name="ShowTmdbSet">!Skin.HasSetting(extended.info.local.collections) + !Skin.HasSetting(hidebutton.video.set) + [[String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(Window(home).Property(TMDbHelper.ListItem.Set.TMDb_ID))] | [String.IsEqual(ListItem.DBType,set) + !String.IsEmpty(Window(home).Property(TMDbHelper.ListItem.TMDb_ID))]]</expression>
     <expression name="ShowTmdbActorFanart">!Skin.HasSetting(hidebutton.person.fanart)</expression>
     <expression name="ShowTmdbActorMovies">!Skin.HasSetting(hidebutton.person.movies) + Integer.IsGreater(ListItem.Property(numitems.tmdb.movies.cast),0)</expression>
     <expression name="ShowTmdbActorTvShows">!Skin.HasSetting(hidebutton.person.tvshows) + Integer.IsGreater(ListItem.Property(numitems.tmdb.tvshows.cast),0)</expression>
@@ -3061,178 +2343,6 @@
 
     <include name="Image_Content_Additional_Fanart">
         <content>$VAR[Image_Content_Additional_Fanart]</content>
-    </include>
-
-    <include name="IndicatorMoviesCleanHome">
-        <control type="grouplist">
-            <orientation>horizontal</orientation>
-            <control type="label">
-                <include>MultiWidgetsSubLabelDefinition</include>
-                <label>  •  </label>
-                <visible>Container($PARAM[id]).ListItem.IsPlaying | Container($PARAM[id]).ListItem.IsResumable |
-                [
-                    [
-                        String.IsEqual(Container($PARAM[id]).ListItem.Overlay,OverlayWatched.png)
-                        | String.IsEmpty(Container($PARAM[id]).ListItem.Overlay) + !String.IsEmpty(Container($PARAM[id]).ListItem.DBID) + !Integer.IsEqual(Container($PARAM[id]).ListItem.PlayCount,0)
-                    ] + !Container($PARAM[id]).ListItem.IsResumable + !Skin.HasSetting(hide.markers.watched)
-                ] |
-                [
-                    [
-                        String.IsEqual(Container($PARAM[id]).ListItem.Overlay,OverlayUnwatched.png)
-                        | String.IsEmpty(Container($PARAM[id]).ListItem.Overlay) + !String.IsEmpty(Container($PARAM[id]).ListItem.DBID) + Integer.IsEqual(Container($PARAM[id]).ListItem.PlayCount,0)
-                    ] + !Container($PARAM[id]).ListItem.IsResumable + !Skin.HasSetting(hide.markers.newcontent) +
-                    [
-                        [
-                            String.IsEqual(Window(Home).Property(LatestMovie.1.Title),Container($PARAM[id]).ListItem.Label)
-                            | String.IsEqual(Window(Home).Property(LatestMovie.2.Title),Container($PARAM[id]).ListItem.Label)
-                            | String.IsEqual(Window(Home).Property(LatestMovie.3.Title),Container($PARAM[id]).ListItem.Label)
-                            | String.IsEqual(Window(Home).Property(LatestMovie.4.Title),Container($PARAM[id]).ListItem.Label)
-                            | String.IsEqual(Window(Home).Property(LatestMovie.5.Title),Container($PARAM[id]).ListItem.Label)
-                            | String.IsEqual(Window(Home).Property(LatestMovie.6.Title),Container($PARAM[id]).ListItem.Label)
-                            | String.IsEqual(Window(Home).Property(LatestMovie.7.Title),Container($PARAM[id]).ListItem.Label)
-                            | String.IsEqual(Window(Home).Property(LatestMovie.8.Title),Container($PARAM[id]).ListItem.Label)
-                            | String.IsEqual(Window(Home).Property(LatestMovie.9.Title),Container($PARAM[id]).ListItem.Label)
-                            | String.IsEqual(Window(Home).Property(LatestMovie.10.Title),Container($PARAM[id]).ListItem.Label)
-                        ]
-                        |
-                        [
-                            String.IsEqual(Window(Home).Property(LatestEpisode.1.EpisodeTitle),Container($PARAM[id]).ListItem.Title)
-                            | String.IsEqual(Window(Home).Property(LatestEpisode.2.EpisodeTitle),Container($PARAM[id]).ListItem.Title)
-                            | String.IsEqual(Window(Home).Property(LatestEpisode.3.EpisodeTitle),Container($PARAM[id]).ListItem.Title)
-                            | String.IsEqual(Window(Home).Property(LatestEpisode.4.EpisodeTitle),Container($PARAM[id]).ListItem.Title)
-                            | String.IsEqual(Window(Home).Property(LatestEpisode.5.EpisodeTitle),Container($PARAM[id]).ListItem.Title)
-                            | String.IsEqual(Window(Home).Property(LatestEpisode.6.EpisodeTitle),Container($PARAM[id]).ListItem.Title)
-                            | String.IsEqual(Window(Home).Property(LatestEpisode.7.EpisodeTitle),Container($PARAM[id]).ListItem.Title)
-                            | String.IsEqual(Window(Home).Property(LatestEpisode.8.EpisodeTitle),Container($PARAM[id]).ListItem.Title)
-                            | String.IsEqual(Window(Home).Property(LatestEpisode.9.EpisodeTitle),Container($PARAM[id]).ListItem.Title)
-                            | String.IsEqual(Window(Home).Property(LatestEpisode.10.EpisodeTitle),Container($PARAM[id]).ListItem.Title)
-                        ]
-                    ]
-                ]</visible>
-            </control>
-
-            <!-- Resumable -->
-            <control type="label">
-                <include>Def_Watched_Indicators_Clean</include>
-                <label>[COLOR=Dark2]&#62596;[/COLOR]</label>
-                <visible>!Container($PARAM[id]).ListItem.IsPlaying + Container($PARAM[id]).ListItem.IsResumable</visible>
-            </control>
-
-            <!-- Watched -->
-            <control type="label">
-                <include>Def_Watched_Indicators_Clean</include>
-                <label>[COLOR=WatchedProgress]&#62078;[/COLOR]</label>
-                <visible>!Container($PARAM[id]).ListItem.IsPlaying + [String.IsEqual(Container($PARAM[id]).ListItem.Overlay,OverlayWatched.png) | String.IsEmpty(Container($PARAM[id]).ListItem.Overlay) + !String.IsEmpty(Container($PARAM[id]).ListItem.DBID) + !Integer.IsEqual(Container($PARAM[id]).ListItem.PlayCount,0)] + !Container($PARAM[id]).ListItem.IsResumable + !Skin.HasSetting(hide.markers.watched)</visible>
-            </control>
-            
-            <!-- Is Playing -->
-            <control type="label">
-                <include>Def_Watched_Indicators_Clean</include>
-                <label>[COLOR=Dark2]&#62811;[/COLOR]</label>
-                <visible>Container($PARAM[id]).ListItem.IsPlaying + !Skin.HasSetting(hide.markers.isplaying)</visible>
-            </control>
-
-            <!-- New -->
-            <control type="label">
-                <include>Def_Watched_Indicators_Clean</include>
-                <label>[COLOR=NewContentProgress]&#62079;[/COLOR]</label>
-                <visible>!Container($PARAM[id]).ListItem.IsPlaying + [String.IsEqual(Container($PARAM[id]).ListItem.Overlay,OverlayUnwatched.png) | String.IsEmpty(Container($PARAM[id]).ListItem.Overlay) + !String.IsEmpty(Container($PARAM[id]).ListItem.DBID) + Integer.IsEqual(Container($PARAM[id]).ListItem.PlayCount,0)] + !Container($PARAM[id]).ListItem.IsResumable + !Skin.HasSetting(hide.markers.newcontent) + [
-                    [
-                        String.IsEqual(Window(Home).Property(LatestMovie.1.Title),Container($PARAM[id]).ListItem.Label)
-                        | String.IsEqual(Window(Home).Property(LatestMovie.2.Title),Container($PARAM[id]).ListItem.Label)
-                        | String.IsEqual(Window(Home).Property(LatestMovie.3.Title),Container($PARAM[id]).ListItem.Label)
-                        | String.IsEqual(Window(Home).Property(LatestMovie.4.Title),Container($PARAM[id]).ListItem.Label)
-                        | String.IsEqual(Window(Home).Property(LatestMovie.5.Title),Container($PARAM[id]).ListItem.Label)
-                        | String.IsEqual(Window(Home).Property(LatestMovie.6.Title),Container($PARAM[id]).ListItem.Label)
-                        | String.IsEqual(Window(Home).Property(LatestMovie.7.Title),Container($PARAM[id]).ListItem.Label)
-                        | String.IsEqual(Window(Home).Property(LatestMovie.8.Title),Container($PARAM[id]).ListItem.Label)
-                        | String.IsEqual(Window(Home).Property(LatestMovie.9.Title),Container($PARAM[id]).ListItem.Label)
-                        | String.IsEqual(Window(Home).Property(LatestMovie.10.Title),Container($PARAM[id]).ListItem.Label)
-                    ]
-                    |
-                    [
-                        String.IsEqual(Window(Home).Property(LatestEpisode.1.EpisodeTitle),Container($PARAM[id]).ListItem.Title)
-                        | String.IsEqual(Window(Home).Property(LatestEpisode.2.EpisodeTitle),Container($PARAM[id]).ListItem.Title)
-                        | String.IsEqual(Window(Home).Property(LatestEpisode.3.EpisodeTitle),Container($PARAM[id]).ListItem.Title)
-                        | String.IsEqual(Window(Home).Property(LatestEpisode.4.EpisodeTitle),Container($PARAM[id]).ListItem.Title)
-                        | String.IsEqual(Window(Home).Property(LatestEpisode.5.EpisodeTitle),Container($PARAM[id]).ListItem.Title)
-                        | String.IsEqual(Window(Home).Property(LatestEpisode.6.EpisodeTitle),Container($PARAM[id]).ListItem.Title)
-                        | String.IsEqual(Window(Home).Property(LatestEpisode.7.EpisodeTitle),Container($PARAM[id]).ListItem.Title)
-                        | String.IsEqual(Window(Home).Property(LatestEpisode.8.EpisodeTitle),Container($PARAM[id]).ListItem.Title)
-                        | String.IsEqual(Window(Home).Property(LatestEpisode.9.EpisodeTitle),Container($PARAM[id]).ListItem.Title)
-                        | String.IsEqual(Window(Home).Property(LatestEpisode.10.EpisodeTitle),Container($PARAM[id]).ListItem.Title)
-                    ]
-                ]</visible>
-            </control>
-        </control>
-    </include>
-
-    <include name="IndicatorTvShowsCleanHome">
-        <control type="grouplist">
-            <orientation>horizontal</orientation>
-            <control type="label">
-                <include>MultiWidgetsSubLabelDefinition</include>
-                <label>  •  </label>
-                <visible>Container($PARAM[id]).ListItem.IsResumable |
-                [
-                    [
-	                    String.IsEqual(Container($PARAM[id]).ListItem.Overlay,OverlayWatched.png)
-	                    | String.IsEmpty(Container($PARAM[id]).ListItem.Overlay) + !String.IsEmpty(Container($PARAM[id]).ListItem.DBID) + !Integer.IsEqual(Container($PARAM[id]).ListItem.PlayCount,0)
-                    ] + !Container($PARAM[id]).ListItem.IsResumable + !Skin.HasSetting(hide.markers.watched)
-                ] |
-                [
-                    [
-	                    String.IsEqual(Container($PARAM[id]).ListItem.Overlay,OverlayUnwatched.png)
-	                    | String.IsEmpty(Container($PARAM[id]).ListItem.Overlay) + !String.IsEmpty(Container($PARAM[id]).ListItem.DBID) + Integer.IsEqual(Container($PARAM[id]).ListItem.PlayCount,0)
-	                ] + !Container($PARAM[id]).ListItem.IsResumable + !Skin.HasSetting(hide.markers.newcontent) +
-                    [
-                        String.IsEqual(Window(Home).Property(LatestEpisode.1.ShowTitle),Container($PARAM[id]).ListItem.TvShowTitle)
-                        | String.IsEqual(Window(Home).Property(LatestEpisode.2.ShowTitle),Container($PARAM[id]).ListItem.TvShowTitle)
-                        | String.IsEqual(Window(Home).Property(LatestEpisode.3.ShowTitle),Container($PARAM[id]).ListItem.TvShowTitle)
-                        | String.IsEqual(Window(Home).Property(LatestEpisode.4.ShowTitle),Container($PARAM[id]).ListItem.TvShowTitle)
-                        | String.IsEqual(Window(Home).Property(LatestEpisode.5.ShowTitle),Container($PARAM[id]).ListItem.TvShowTitle)
-                        | String.IsEqual(Window(Home).Property(LatestEpisode.6.ShowTitle),Container($PARAM[id]).ListItem.TvShowTitle)
-                        | String.IsEqual(Window(Home).Property(LatestEpisode.7.ShowTitle),Container($PARAM[id]).ListItem.TvShowTitle)
-                        | String.IsEqual(Window(Home).Property(LatestEpisode.8.ShowTitle),Container($PARAM[id]).ListItem.TvShowTitle)
-                        | String.IsEqual(Window(Home).Property(LatestEpisode.9.ShowTitle),Container($PARAM[id]).ListItem.TvShowTitle)
-                        | String.IsEqual(Window(Home).Property(LatestEpisode.10.ShowTitle),Container($PARAM[id]).ListItem.TvShowTitle)
-                    ]
-                ]</visible>
-            </control>
-
-            <!-- Resumable -->
-            <control type="label">
-                <include>Def_Watched_Indicators_Clean</include>
-                <label>[COLOR=Dark2]&#62596;[/COLOR]</label>
-                <visible>Container($PARAM[id]).ListItem.IsResumable</visible>
-            </control>
-
-            <!-- Watched -->
-            <control type="label">
-                <include>Def_Watched_Indicators_Clean</include>
-                <label>[COLOR=WatchedProgress]&#62078;[/COLOR]</label>
-                <visible>[String.IsEqual(Container($PARAM[id]).ListItem.Overlay,OverlayWatched.png) | String.IsEmpty(Container($PARAM[id]).ListItem.Overlay) + !String.IsEmpty(Container($PARAM[id]).ListItem.DBID) + !Integer.IsEqual(Container($PARAM[id]).ListItem.PlayCount,0)] + !Container($PARAM[id]).ListItem.IsResumable + !Skin.HasSetting(hide.markers.watched)</visible>
-            </control>
-
-            <!-- New -->
-            <control type="label">
-                <include>Def_Watched_Indicators_Clean</include>
-                <label>[COLOR=NewContentProgress]&#62079;[/COLOR]</label>
-                <visible>[String.IsEqual(Container($PARAM[id]).ListItem.Overlay,OverlayUnwatched.png) | String.IsEmpty(Container($PARAM[id]).ListItem.Overlay) + !String.IsEmpty(Container($PARAM[id]).ListItem.DBID) + Integer.IsEqual(Container($PARAM[id]).ListItem.PlayCount,0)] + !Container($PARAM[id]).ListItem.IsResumable + !Skin.HasSetting(hide.markers.newcontent) +
-                [
-                    String.IsEqual(Window(Home).Property(LatestEpisode.1.ShowTitle),Container($PARAM[id]).ListItem.TvShowTitle)
-                    | String.IsEqual(Window(Home).Property(LatestEpisode.2.ShowTitle),Container($PARAM[id]).ListItem.TvShowTitle)
-                    | String.IsEqual(Window(Home).Property(LatestEpisode.3.ShowTitle),Container($PARAM[id]).ListItem.TvShowTitle)
-                    | String.IsEqual(Window(Home).Property(LatestEpisode.4.ShowTitle),Container($PARAM[id]).ListItem.TvShowTitle)
-                    | String.IsEqual(Window(Home).Property(LatestEpisode.5.ShowTitle),Container($PARAM[id]).ListItem.TvShowTitle)
-                    | String.IsEqual(Window(Home).Property(LatestEpisode.6.ShowTitle),Container($PARAM[id]).ListItem.TvShowTitle)
-                    | String.IsEqual(Window(Home).Property(LatestEpisode.7.ShowTitle),Container($PARAM[id]).ListItem.TvShowTitle)
-                    | String.IsEqual(Window(Home).Property(LatestEpisode.8.ShowTitle),Container($PARAM[id]).ListItem.TvShowTitle)
-                    | String.IsEqual(Window(Home).Property(LatestEpisode.9.ShowTitle),Container($PARAM[id]).ListItem.TvShowTitle)
-                    | String.IsEqual(Window(Home).Property(LatestEpisode.10.ShowTitle),Container($PARAM[id]).ListItem.TvShowTitle)
-                ]</visible>
-            </control>
-        </control>
     </include>
 
     <variable name="SetsPath">

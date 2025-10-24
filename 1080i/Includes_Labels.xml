@@ -123,9 +123,9 @@
         <value condition="$EXP[IsUnwatched] + !String.IsEmpty(ListItem.DBID) + Skin.HasSetting(markers.unwatched)">&#61833;</value>
         <value condition="ListItem.HasVideoVersions + !$EXP[IsVideoAssets] + !Skin.HasSetting(hide.markers.versions)">&#63341;</value>
         <value condition="ListItem.HasVideoExtras + !$EXP[IsVideoAssets] + !Skin.HasSetting(hide.markers.extras)">&#61754;</value>
+        <value condition="!String.IsEmpty(ListItem.Property(Item.Info)) + !String.IsEmpty(ListItem.DBID) + !Skin.HasSetting(hide.markers.library)">&#62698;</value>
         <value condition="ListItem.IsCollection + !Skin.HasSetting(hide.markers.collection)">&#59649;</value>
         <value condition="ListItem.IsFolder">&#59650;</value>
-        <value condition="!String.IsEmpty(ListItem.Property(Item.Info)) + !String.IsEmpty(ListItem.DBID) + !Skin.HasSetting(hide.markers.library)">&#62698;</value>
         <value condition="!String.IsEmpty(ListItem.DBID)">&#62698;</value>
     </variable>
 
@@ -720,6 +720,10 @@
         <value condition="String.IsEqual(ListItem.DBType,set) | Container.Content(seasons) | Container.Content(sets)">$INFO[ListItem.Year]$INFO[Container(55).NumItems,  •  , $LOCALIZE[342]]$VAR[RatingLabel,  •  ]</value>
         <value condition="$EXP[InGameMode]">$VAR[GameYear]$VAR[GameRating,  •  ]</value>
         <value>$VAR[LabelDurationTimeCheck]</value>
+    </variable>
+
+    <variable name="PVREpisodeLabel">
+        <value condition="!String.IsEqual(ListItem.Title,ListItem.EpisodeName) + !String.StartsWith(ListItem.Plot,ListItem.EpisodeName)">$INFO[ListItem.EpisodeName]</value>
     </variable>
 
     <variable name="PVRGenreLabel">
@@ -1378,7 +1382,6 @@
         <value condition="Control.HasFocus(11001) + Window.IsVisible(DialogVideoInfo.xml)">$LOCALIZE[31187] $INFO[ListItem.Label]</value>
         <value condition="Control.HasFocus(11002) + Window.IsVisible(DialogVideoInfo.xml)">$LOCALIZE[31228]</value>
         <value condition="Control.HasFocus(11003) + Window.IsVisible(DialogVideoInfo.xml)">$LOCALIZE[31818]</value>
-        <value condition="Control.HasFocus(11004) + Window.IsVisible(DialogVideoInfo.xml)">$LOCALIZE[31711]</value>
         <value condition="Control.HasFocus(11005) + Window.IsVisible(DialogVideoInfo.xml)">$LOCALIZE[39123]</value>
         <value condition="Control.HasFocus(11006) + Window.IsVisible(DialogVideoInfo.xml)">$LOCALIZE[5]</value>
         <value condition="Control.HasFocus(13) + Window.IsVisible(DialogVideoInfo.xml)">$LOCALIZE[31497]</value>
@@ -1523,6 +1526,7 @@
     </variable>
 
     <variable name="LabelExtendedInfoPlot">
+    	<value condition="$EXP[IsDialogVideoInfo]">$INFO[ListItem.Tagline,[B],[/B][CR][CR]]$VAR[LabelPlot]</value>
         <value condition="$EXP[IsDialogPersonInfo]">[B]$INFO[ListItem.Property(numitems.tmdb.movies.cast),, $LOCALIZE[342]]$INFO[ListItem.Property(numitems.tmdb.tvshows.cast), / , $LOCALIZE[20343]  ]$VAR[LabelKnownFor][/B][CR][CR]$INFO[ListItem.Property(Biography)]</value>
         <value condition="Window.IsVisible(DialogMusicInfo.xml) + Container.Content(albums)">$VAR[LabelWIPMusicTagline,[B],[/B][CR][CR]]$VAR[LabelPlotBox]</value>
         <value condition="Window.IsVisible(DialogMusicInfo.xml) + !Container.Content(albums)">$VAR[LabelWIPMusicTagline,[B],[/B][CR][CR]]$INFO[ListItem.Property(Artist_Description)]</value>

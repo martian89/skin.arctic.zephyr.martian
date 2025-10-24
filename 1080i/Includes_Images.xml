@@ -38,6 +38,8 @@
         <value condition="$EXP[IsWatched301] + !Skin.HasSetting(hide.markers.watched)">indicator/poster-checkmark.png</value>
         <value condition="$EXP[IsNewContent301] + !Skin.HasSetting(hide.markers.newcontent)">indicator/poster-new.png</value>
         <value condition="$EXP[IsUnwatched301] + !String.IsEmpty(Container(301).ListItem.DBID) + Skin.HasSetting(markers.unwatched)">indicator/poster-unwatched.png</value>
+        <value condition="Container(301).ListItem.HasVideoVersions + !$EXP[IsVideoAssets301] + !Skin.HasSetting(hide.markers.versions)">indicator/poster-versions.png</value>
+        <value condition="Container(301).ListItem.HasVideoExtras + !$EXP[IsVideoAssets301] + !Skin.HasSetting(hide.markers.extras)">indicator/poster-extras.png</value>
         <value condition="Container(301).ListItem.IsCollection + !Skin.HasSetting(hide.markers.collection)">indicator/poster-movieset.png</value>
         <value condition="!String.IsEmpty(Container(301).ListItem.DBID) + !String.IsEmpty(Container(301).ListItem.Property(Item.Info)) + !Skin.HasSetting(hide.markers.library)">indicator/poster-library.png</value>
     </variable>
@@ -49,6 +51,8 @@
         <value condition="$EXP[IsWatched301] + !Skin.HasSetting(hide.markers.watched)">indicator/backing.png</value>
         <value condition="$EXP[IsNewContent301] + !Skin.HasSetting(hide.markers.newcontent)">indicator/backing.png</value>
         <value condition="$EXP[IsUnwatched301] + !String.IsEmpty(Container(301).ListItem.DBID) + Skin.HasSetting(markers.unwatched)">indicator/backing.png</value>
+        <value condition="Container(301).ListItem.HasVideoVersions + !$EXP[IsVideoAssets301] + !Skin.HasSetting(hide.markers.versions)">indicator/backing.png</value>
+        <value condition="Container(301).ListItem.HasVideoExtras + !$EXP[IsVideoAssets301] + !Skin.HasSetting(hide.markers.extras)">indicator/backing.png</value>
         <value condition="Container(301).ListItem.IsCollection + !Skin.HasSetting(hide.markers.collection)">indicator/backing.png</value>
         <value condition="!String.IsEmpty(Container(301).ListItem.DBID) + !String.IsEmpty(Container(301).ListItem.Property(Item.Info)) + !Skin.HasSetting(hide.markers.library)">indicator/backing.png</value>
     </variable>
@@ -374,7 +378,7 @@
     </variable>
     
     <variable name="Image_Content_Additional_Fanart">
-        <value>plugin://plugin.video.themoviedb.helper/?info=fanart&amp;type=$VAR[Tmdb_Type]$VAR[Info_Query]&amp;nextpage=false</value>
+        <value condition="!$EXP[IsDialogPersonInfo]">plugin://plugin.video.themoviedb.helper/?info=fanart&amp;type=$VAR[Tmdb_Type]$VAR[Info_Query]&amp;nextpage=false</value>
     </variable>
 
     <variable name="Image_SimpleBackground">
