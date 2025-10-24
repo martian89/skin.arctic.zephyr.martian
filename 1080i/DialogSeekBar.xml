@@ -7,9 +7,8 @@
     <visible>[[VideoPlayer.IsFullscreen] + [Window.IsVisible(videoosd) | Window.IsVisible(fullscreeninfo) | Player.Seeking | Player.HasPerformedSeek(3) | Player.Paused | !String.IsEmpty(Player.SeekNumeric) | !String.IsEmpty(PVR.ChannelNumberInput) | Player.Forwarding | Player.Rewinding | Player.ShowInfo | !String.IsEmpty(Window(home).Property(osdshowinfo))]] | !String.IsEmpty(Window(home).Property(osdinfo))</visible>
     <zorder>0</zorder>
 
-    <onload>ClearProperty(OSDExtendedInfo,Home)</onload>
-    <onload condition="Player.Paused + String.IsEqual(Window(Home).Property(OSDExtendedInfo),2)">PlayerControl(Play)</onload>
-    <onload condition="Player.Paused + !String.IsEmpty(Window(Home).Property(OSDExtendedInfo))">Action(OSD)</onload>
+    <onload condition="Player.Paused + !String.IsEmpty(Window(Home).Property(OSDExtendedInfo))">PlayerControl(Play)</onload>
+    <onload condition="Player.Paused + !String.IsEmpty(Window(Home).Property(OSDExtendedInfo))">ClearProperty(OSDExtendedInfo,Home)</onload>
 
     <controls>
         <control type="group">
