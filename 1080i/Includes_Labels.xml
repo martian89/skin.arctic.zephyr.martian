@@ -841,14 +841,6 @@
         <value>$VAR[LabelTvShowStatus]</value>
     </variable>
 
-    <variable name="LabelVideoInfoCastDirector">
-        <value condition="String.IsEqual(Window.Property(content),1)">$INFO[ListItem.Studio,$LOCALIZE[31205] ,]</value>
-        <value condition="String.IsEqual(Window.Property(content),2)">$INFO[ListItem.Title,$LOCALIZE[31204] ,]</value>
-        <value condition="String.IsEqual(Window.Property(content),3) + !Control.IsVisible(50)">$INFO[ListItem.Director,$LOCALIZE[31191] ,]</value>
-        <value condition="Control.IsVisible(50)">$INFO[ListItem.Title,, $LOCALIZE[206]]</value>
-        <value condition="!String.IsEmpty(ListItem.Tagline)">$INFO[ListItem.Tagline]</value>
-    </variable>
-
     <variable name="LabelHomeWidgetStyle">
         <value condition="Skin.HasSetting(home.modernwidgets) + Skin.HasSetting(homemenu.netflix) + Skin.HasSetting(home.vertical.widgets) + Skin.HasSetting(homemenu.clean.flix)">$LOCALIZE[31533]</value>
         <value condition="!Skin.HasSetting(home.classicwidgets) + Skin.HasSetting(home.vertical) + Skin.HasSetting(home.vertical.widgets) + Skin.HasSetting(homemenu.netflix)">$LOCALIZE[31250] $LOCALIZE[31394] $LOCALIZE[31014]</value>
@@ -1438,7 +1430,7 @@
     <variable name="LabelWIPMusicHeader">
         <value condition="Container.Content(albums)">$INFO[ListItem.Album]</value>
         <value condition="Container.Content(songs)">$INFO[ListItem.Title]</value>
-        <value condition="Container.Content(artists) + String.IsEqual(Window.Property(musiccontent),4)">$LOCALIZE[31463] $INFO[ListItem.Artist]</value>
+        <value condition="Container.Content(artists) + String.IsEqual(Window.Property(content),4)">$LOCALIZE[31463] $INFO[ListItem.Artist]</value>
         <value condition="Container.Content(artists)">$INFO[ListItem.Artist]</value>
     </variable>
 
@@ -1449,31 +1441,31 @@
     </variable>
 
     <variable name="VideoListLabelHeader">
-        <value condition="String.IsEqual(Window.Property(moviecontent),2)">$LOCALIZE[31181] $INFO[ListItem.Label]</value>
-        <value condition="String.IsEqual(Window.Property(moviecontent),3) + String.IsEqual(ListItem.DBType,tvshow) + !String.IsEmpty(ListItem.Studio)">$LOCALIZE[31160] $INFO[ListItem.Studio]</value>
-        <value condition="String.IsEqual(Window.Property(moviecontent),3) + String.IsEqual(ListItem.DBType,tvshow)">$LOCALIZE[31160] $INFO[Window(Home).Property(TMDBHelper.ListItem.Studio)]</value>
-        <value condition="String.IsEqual(Window.Property(moviecontent),3)">$LOCALIZE[31207] $INFO[ListItem.Studio]</value>
-        <value condition="String.IsEqual(Window.Property(moviecontent),4)">$LOCALIZE[31183] $INFO[ListItem.Label]</value>
-        <value condition="String.IsEqual(Window.Property(moviecontent),7)">$LOCALIZE[31497]</value>
-        <value condition="String.IsEqual(Window.Property(moviecontent),8) + !String.IsEqual(ListItem.DBType,set)">$INFO[ListItem.Set]</value>
-        <value condition="String.IsEqual(Window.Property(moviecontent),8) + String.IsEqual(ListItem.DBType,set)">$LOCALIZE[31196] $INFO[ListItem.Label]</value>
-        <value condition="String.IsEqual(Window.Property(moviecontent),9)">$LOCALIZE[31184] $INFO[ListItem.Title]</value>
-        <value condition="String.IsEqual(Window.Property(moviecontent),10)">$LOCALIZE[31251] $INFO[ListItem.Title]</value>
-        <value condition="String.IsEqual(Window.Property(moviecontent),11)">$LOCALIZE[31187] $INFO[ListItem.Label]</value>
-        <value condition="String.IsEqual(Window.Property(moviecontent),12)">$LOCALIZE[31188] $INFO[ListItem.Label]</value>
-        <value condition="String.IsEqual(Window.Property(moviecontent),13)">$LOCALIZE[31819] $INFO[ListItem.Label] </value>
-        <value condition="String.IsEqual(Window.Property(moviecontent),14)">$LOCALIZE[31182] $INFO[ListItem.Label]</value>
-        <value condition="String.IsEqual(Window.Property(musiccontent),2)">$LOCALIZE[31189] $INFO[ListItem.Label]</value>
-        <value condition="String.IsEqual(Window.Property(musiccontent),3)">$LOCALIZE[31183] $INFO[ListItem.Label]</value>
-        <value condition="String.IsEqual(Window.Property(musiccontent),8)">$LOCALIZE[31332] $INFO[ListItem.Artist]</value>
-        <value condition="Control.HasFocus(50) + Window.IsVisible(DialogAddonInfo.xml)">$LOCALIZE[31231] $INFO[ListItem.Label]</value>
-        <value condition="ListItem.IsCollection">$LOCALIZE[31196] $INFO[ListItem.Label]</value>
-        <value>$LOCALIZE[31180] $INFO[ListItem.Label]</value>
+        <value condition="String.IsEqual(Window.Property(content),1) + Window.IsVisible(DialogVideoInfo.xml) + String.IsEqual(ListItem.DBType,set)">$LOCALIZE[31196] $INFO[ListItem.Label]</value>
+        <value condition="String.IsEqual(Window.Property(content),1) + Window.IsVisible(DialogVideoInfo.xml)">$LOCALIZE[31180] $INFO[ListItem.Title]</value>
+        <value condition="String.IsEqual(Window.Property(content),2) + Window.IsVisible(DialogVideoInfo.xml)">$LOCALIZE[31181] $INFO[ListItem.Title]</value>
+        <value condition="String.IsEqual(Window.Property(content),3) + Window.IsVisible(DialogVideoInfo.xml) + String.IsEqual(ListItem.DBType,tvshow) + !String.IsEmpty(ListItem.Studio)">$LOCALIZE[31160] $INFO[ListItem.Studio]</value>
+        <value condition="String.IsEqual(Window.Property(content),3) + Window.IsVisible(DialogVideoInfo.xml) + String.IsEqual(ListItem.DBType,tvshow)">$LOCALIZE[31160] $INFO[Window(Home).Property(TMDBHelper.ListItem.Studio)]</value>
+        <value condition="String.IsEqual(Window.Property(content),3) + Window.IsVisible(DialogVideoInfo.xml)">$LOCALIZE[31207] $INFO[ListItem.Studio]</value>
+        <value condition="String.IsEqual(Window.Property(content),4) + Window.IsVisible(DialogVideoInfo.xml)">$LOCALIZE[31183] $INFO[ListItem.Title]</value>
+        <value condition="String.IsEqual(Window.Property(content),7) + Window.IsVisible(DialogVideoInfo.xml)">$LOCALIZE[31497]</value>
+        <value condition="String.IsEqual(Window.Property(content),8) + Window.IsVisible(DialogVideoInfo.xml) + !String.IsEqual(ListItem.DBType,set)">$INFO[ListItem.Set]</value>
+        <value condition="String.IsEqual(Window.Property(content),8) + Window.IsVisible(DialogVideoInfo.xml) + String.IsEqual(ListItem.DBType,set)">$LOCALIZE[31196] $INFO[ListItem.Title]</value>
+        <value condition="String.IsEqual(Window.Property(content),9) + Window.IsVisible(DialogVideoInfo.xml)">$LOCALIZE[31184] $INFO[ListItem.Title]</value>
+        <value condition="String.IsEqual(Window.Property(content),10) + Window.IsVisible(DialogVideoInfo.xml)">$LOCALIZE[31251] $INFO[ListItem.Title]</value>
+        <value condition="String.IsEqual(Window.Property(content),11) + Window.IsVisible(DialogVideoInfo.xml)">$LOCALIZE[31187] $INFO[ListItem.Label]</value>
+        <value condition="String.IsEqual(Window.Property(content),12) + Window.IsVisible(DialogVideoInfo.xml)">$LOCALIZE[31188] $INFO[ListItem.Label]</value>
+        <value condition="String.IsEqual(Window.Property(content),13) + Window.IsVisible(DialogVideoInfo.xml)">$LOCALIZE[31819] $INFO[ListItem.Label] </value>
+        <value condition="String.IsEqual(Window.Property(content),14) + Window.IsVisible(DialogVideoInfo.xml)">$LOCALIZE[31182] $INFO[ListItem.Label]</value>
+        <value condition="String.IsEqual(Window.Property(content),2) + Window.IsVisible(DialogMusicInfo.xml)">$LOCALIZE[31189] $INFO[ListItem.Label]</value>
+        <value condition="String.IsEqual(Window.Property(content),3) + Window.IsVisible(DialogMusicInfo.xml)">$LOCALIZE[31183] $INFO[ListItem.Label]</value>
+        <value condition="String.IsEqual(Window.Property(content),8) + Window.IsVisible(DialogMusicInfo.xml)">$LOCALIZE[31332] $INFO[ListItem.Artist]</value>
+        <value condition="Window.IsVisible(DialogAddonInfo.xml)">$LOCALIZE[31231] $INFO[ListItem.Label]</value>
     </variable>
 
     <variable name="LabelWIPDialogVideoInfoHeader">
-        <value condition="String.IsEqual(Window.Property(moviecontent),5)">$LOCALIZE[31463] $INFO[ListItem.Title]</value>
-        <value condition="String.IsEqual(Window.Property(moviecontent),6)">$LOCALIZE[31158] $INFO[ListItem.Title]</value>
+        <value condition="String.IsEqual(Window.Property(content),5)">$LOCALIZE[31463] $INFO[ListItem.Title]</value>
+        <value condition="String.IsEqual(Window.Property(content),6)">$LOCALIZE[31158] $INFO[ListItem.Title]</value>
         <value>$INFO[ListItem.Title]</value>
     </variable>
 
@@ -1526,8 +1518,8 @@
     </variable>
 
     <variable name="LabelExtendedInfoPlot">
-    	<value condition="$EXP[IsDialogVideoInfo]">$INFO[ListItem.Tagline,[B],[/B][CR][CR]]$VAR[LabelPlot]</value>
-        <value condition="$EXP[IsDialogPersonInfo]">[B]$INFO[ListItem.Property(numitems.tmdb.movies.cast),, $LOCALIZE[342]]$INFO[ListItem.Property(numitems.tmdb.tvshows.cast), / , $LOCALIZE[20343]  ]$VAR[LabelKnownFor][/B][CR][CR]$INFO[ListItem.Property(Biography)]</value>
+    	<value condition="$EXP[IsVideoInfo]">$INFO[ListItem.Tagline,[B],[/B][CR][CR]]$VAR[LabelPlot]</value>
+        <value condition="$EXP[IsPersonInfo]">[B]$INFO[ListItem.Property(numitems.tmdb.movies.cast),, $LOCALIZE[342]]$INFO[ListItem.Property(numitems.tmdb.tvshows.cast), / , $LOCALIZE[20343]  ]$VAR[LabelKnownFor][/B][CR][CR]$INFO[ListItem.Property(Biography)]</value>
         <value condition="Window.IsVisible(DialogMusicInfo.xml) + Container.Content(albums)">$VAR[LabelWIPMusicTagline,[B],[/B][CR][CR]]$VAR[LabelPlotBox]</value>
         <value condition="Window.IsVisible(DialogMusicInfo.xml) + !Container.Content(albums)">$VAR[LabelWIPMusicTagline,[B],[/B][CR][CR]]$INFO[ListItem.Property(Artist_Description)]</value>
     </variable>
