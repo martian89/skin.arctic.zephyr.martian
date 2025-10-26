@@ -67,7 +67,7 @@
 
             <!-- INFOCONTENT -->
             <control type="label">
-                <visible>Control.HasFocus($PARAM[controlid])</visible>
+                <visible>$PARAM[visi]</visible>
                 <width>1020</width>
                 <bottom>$PARAM[headerbottom]</bottom>
                 <left>$PARAM[headerleft]</left>
@@ -77,17 +77,8 @@
                 <label>$VAR[VideoListLabelHeader] ($INFO[Container($PARAM[controlid]).NumItems])</label>
                 <include>Animation.DelayFadeIn</include>
             </control>
-            <include content="ListInfoArrows">
-                <param name="controlid" value="$PARAM[controlid]"/>
-                <param name="arrowleft" value="$PARAM[arrowleft]"/>
-                <param name="arrowtop" value="$PARAM[arrowtop]"/>
-                <param name="arrowright" value="$PARAM[arrowright]"/>
-                <param name="visi" value="false"/>
-            </include>
             <control type="wraplist" id="$PARAM[controlid]">
                 <visible>!Container($PARAM[controlid]).IsUpdating</visible>
-                <visible>$PARAM[visi]</visible>
-	            <animation effect="slide" start="0,0" end="-3000,-3000" time="0" condition="!$PARAM[visi]">Conditional</animation>
                 <include>Animation.FadeOutDialogInfo</include>
                 <include>Animation.FadeInDialogWIP</include>
                 <include>$PARAM[animation]</include>
@@ -172,7 +163,7 @@
 	                </control>
 	            </control>
                 <control type="label">
-	                <visible>Control.HasFocus(110$PARAM[controlid])</visible>
+	                <visible>$PARAM[visi]</visible>
 	                <visible>!Container($PARAM[controlid]).IsUpdating</visible>
 	                <visible>Integer.IsEqual(Container($PARAM[controlid]).NumItems,0)</visible>
 	                <include>Animation.DelayFadeIn</include>
@@ -189,7 +180,7 @@
             <!-- INFOCONTENT -->
             <control type="label">
                 <visible>$PARAM[visi]</visible>
-                <visible>Control.HasFocus($PARAM[controlid])</visible>
+                <visible>Integer.IsGreater(Container($PARAM[controlid]).NumItems,0)</visible>
                 <visible>!Container($PARAM[controlid]).IsUpdating</visible>
                 <width>1020</width>
                 <bottom>$PARAM[headerbottom]</bottom>
@@ -227,13 +218,15 @@
             </include>
 
 			<control type="group" id="100$PARAM[controlid]">
-				<defaultcontrol>200$PARAM[controlid]</defaultcontrol>				
-				<control type="button" id="200$PARAM[controlid]">
+				<defaultcontrol>110$PARAM[controlid]</defaultcontrol>				
+				<control type="button" id="110$PARAM[controlid]">
+                    <visible>$PARAM[visi]</visible>
 					<onfocus condition="Container($PARAM[controlid]).IsUpdating">SetFocus($PARAM[controlid])</onfocus>
 					<onfocus condition="!Container($PARAM[controlid]).IsUpdating + Integer.IsGreater(Container($PARAM[controlid]).NumItems,0)">SetFocus($PARAM[controlid])</onfocus>
-	               	<include>HiddenButton</include>
 	                <ondown>9000</ondown>
 		            <onback>9000</onback>
+		            <left>-2000</left>
+		            <top>-2000</top>
 	 			</control>
 			
 	            <!-- Focused List -->
@@ -265,7 +258,6 @@
 	                <viewtype label="536">list</viewtype>
 	                <itemlayout height="$PARAM[height]" width="$PARAM[width]">
 	                    <control type="group">
-	                        <visible>Control.HasFocus($PARAM[controlid]) | Window.IsVisible(DialogContextMenu.xml) | Window.IsVisible(DialogSelect.xml) | Window.IsVisible(DialogBusy.xml)</visible>
 	                        <animation effect="fade" tween="sine" easing="inout" start="0" end="100" time="450" delay="50">Visible</animation>
 	                        <include content="DefExtendedInfoItemContentWIP" condition="!$PARAM[issets]">
 	                            <param name="aspect" value="$PARAM[aspect]" default="scale"/>
@@ -281,7 +273,6 @@
 	                </itemlayout>
 	                <focusedlayout height="$PARAM[height]" width="$PARAM[width]">
 	                    <control type="group">
-	                        <visible>Control.HasFocus($PARAM[controlid]) | Window.IsVisible(DialogContextMenu.xml) | Window.IsVisible(DialogSelect.xml) | Window.IsVisible(DialogBusy.xml)</visible>
 	                        <animation effect="fade" start="0" end="100" time="0" delay="150">Visible</animation>
 	                        <include content="DefExtendedInfoFocusContentWIP" condition="!$PARAM[issets]">
 	                            <param name="fallbackpicture" value="$PARAM[fallbackpicture]"/>
@@ -362,7 +353,7 @@
 	                </control>
 	            </control>
                 <control type="label">
-	                <visible>Control.HasFocus(110$PARAM[controlid])</visible>
+                    <visible>$PARAM[visi]</visible>
 	                <visible>!Container($PARAM[controlid]).IsUpdating</visible>
 	                <visible>Integer.IsEqual(Container($PARAM[controlid]).NumItems,0)</visible>
 	                <include>Animation.DelayFadeIn</include>
@@ -378,9 +369,9 @@
 
             <!-- INFOCONTENT -->
             <control type="label">
-                <visible>Control.HasFocus($PARAM[controlid])</visible>
                 <visible>$PARAM[visi]</visible>
                 <visible>!Container($PARAM[controlid]).IsUpdating</visible>
+                <visible>Integer.IsGreater(Container($PARAM[controlid]).NumItems,0)</visible>
                 <width>1020</width>
                 <bottom>$PARAM[headerbottom]</bottom>
                 <left>$PARAM[headerleft]</left>
@@ -401,11 +392,13 @@
 			<control type="group" id="100$PARAM[controlid]">
 				<defaultcontrol>110$PARAM[controlid]</defaultcontrol>				
 				<control type="button" id="110$PARAM[controlid]">
+                    <visible>$PARAM[visi]</visible>
 					<onfocus condition="Container($PARAM[controlid]).IsUpdating">SetFocus($PARAM[controlid])</onfocus>
 					<onfocus condition="!Container($PARAM[controlid]).IsUpdating + Integer.IsGreater(Container($PARAM[controlid]).NumItems,0)">SetFocus($PARAM[controlid])</onfocus>
-	               	<include>HiddenButton</include>
 	                <ondown>9000</ondown>
 		            <onback>9000</onback>
+		            <top>-2000</top>
+		            <left>-2000</left>
 	 			</control>
 
 	            <!-- Focused List -->
@@ -436,7 +429,6 @@
 	                <viewtype label="536">list</viewtype>
 	                <itemlayout height="$PARAM[height]" width="$PARAM[width]">
 	                    <control type="group">
-	                        <visible>Control.HasFocus($PARAM[controlid]) | Window.IsVisible(DialogContextMenu.xml) | Window.IsVisible(DialogSelect.xml) | Window.IsVisible(DialogBusy.xml)</visible>
 	                        <animation effect="fade" tween="sine" easing="inout" start="0" end="100" time="450" delay="50">Visible</animation>
 	                        <include content="DefExtendedInfoItemContentWIP">
 	                            <param name="aspect" value="$PARAM[aspect]" default="scale"/>
@@ -446,7 +438,6 @@
 	                </itemlayout>
 	                <focusedlayout height="$PARAM[height]" width="$PARAM[width]">
 	                    <control type="group">
-	                        <visible>Control.HasFocus($PARAM[controlid]) | Window.IsVisible(DialogContextMenu.xml) | Window.IsVisible(DialogSelect.xml) | Window.IsVisible(DialogBusy.xml)</visible>
 	                        <animation effect="fade" start="0" end="100" time="0" delay="150">Visible</animation>
 	                        <include content="DefExtendedInfoFocusContentWIP">
 	                            <param name="aspect" value="$PARAM[aspect]" default="scale"/>

@@ -481,34 +481,6 @@
         <animation effect="fade" start="0" end="100" time="50" delay="200">Visible</animation>
     </include>
 
-    <include name="Animation.ActorZoom">
-        <animation center="970,522" condition="!Control.HasFocus(50)" easing="inout" effect="zoom" end="60" start="100" time="300" tween="sine">Conditional</animation>
-    </include>
-
-    <include name="Animation.ActorZoomNew">
-        <animation center="2330,990" condition="!Control.HasFocus(50)" effect="zoom" end="80" tween="sine" easing="inout" start="100" time="300">Conditional</animation>
-    </include>
-
-    <include name="Animation.MovieZoom">
-        <animation condition="Control.HasFocus(9501) | Control.HasFocus(160) | Control.HasFocus(10053) | Control.HasFocus(9503)" effect="slide" end="-600,0" start="0,0" reversible="true" time="300" tween="sine">Conditional</animation>
-    </include>
-
-    <include name="Animation.MovieZoomNew">
-        <animation center="2712,1182" condition="!Control.HasFocus(9501) + !Control.HasFocus(160) + !Control.HasFocus(10053) + !Control.HasFocus(9503)" effect="zoom" end="78" tween="sine" easing="inout" start="100" time="300">Conditional</animation>
-    </include>
-
-    <include name="Animation.MovieZoomYoutubeNew">
-        <animation center="4130,1182" condition="!Control.HasFocus(9501) + !Control.HasFocus(160) + !Control.HasFocus(10053) + !Control.HasFocus(9503)" effect="zoom" end="78" tween="sine" easing="inout" start="100" time="300">Conditional</animation>
-    </include>
-
-    <include name="Animation.MusicZoomNew">
-        <animation center="3739,1255" condition="!Control.HasFocus(9501) + !Control.HasFocus(160) + !Control.HasFocus(9502) + !Control.HasFocus(9503) + !Control.HasFocus(1113)" effect="zoom" end="78" tween="sine" easing="inout" start="100" time="300">Conditional</animation>
-    </include>
-
-    <include name="Animation.MusicYoutubeNew">
-        <animation center="4749,1255" condition="!Control.HasFocus(9501) + !Control.HasFocus(160) + !Control.HasFocus(9502) + !Control.HasFocus(9503) + !Control.HasFocus(1113)" effect="zoom" end="78" tween="sine" easing="inout" start="100" time="300">Conditional</animation>
-    </include>
-
     <include name="Animation.PosterSlide">
         <animation condition="[Control.HasFocus(11100) + !String.IsEmpty(ListItem.Art(discart))]" effect="slide" end="0,80" start="0,0" time="300">Conditional</animation>
     </include>
@@ -522,14 +494,6 @@
         <animation type="Hidden">
             <effect type="slide" reversible="false" start="0,-130" end="0,0" delay="0" time="200" tween="quadratic" easing="out"/>
         </animation>
-    </include>
-
-    <include name="Animation.ActorZoom.Focus0">
-        <focusposition>0</focusposition>
-    </include>
-
-    <include name="Animation.ActorZoom.Focus2">
-        <focusposition>2</focusposition>
     </include>
 
     <include name="Animation.DelayFadeIn">
@@ -698,25 +662,21 @@
         <animation effect="fade" start="0" end="100" time="350" delay="300">Visible</animation>
     </include>
 
-    <include name="Animation.FadeInDialogWIP2">
-        <animation effect="fade" start="0" end="100" time="250" delay="200">Visible</animation>
-    </include>
-
     <include name="Animation.addoninfo">
-        <animation center="2636,116" condition="ControlGroup(9000).HasFocus() | Control.HasFocus(9601)" effect="zoom" end="77" tween="sine" easing="inout" start="100" time="300">Conditional</animation>
+        <animation center="2636,116" condition="String.IsEmpty(Window.Property(content) | Control.HasFocus(9601)" effect="zoom" end="77" tween="sine" easing="inout" start="100" time="300">Conditional</animation>
         <animation condition="Control.HasFocus(9601)" effect="fade" end="0" start="100" time="300">Conditional</animation>
     </include>
 
     <include name="Animation.AddonFadeOut">
-        <animation condition="Control.HasFocus(50) | Control.HasFocus(9601)" effect="fade" end="0" start="100" time="300">Conditional</animation>
+        <animation condition="!String.IsEmpty(Window.Property(content)) | Control.HasFocus(9601)" effect="fade" end="0" start="100" time="300">Conditional</animation>
     </include>
 
     <include name="Animation.MusicFadeOut">
-        <animation condition="ControlGroup(10051).HasFocus | ControlGroup(10052).HasFocus | ControlGroup(10054).HasFocus | Control.HasFocus(9601)" effect="fade" end="0" start="100" time="300">Conditional</animation>
+        <animation condition="[!String.IsEmpty(Window.Property(content)) + !String.IsEqual(Window.Property(content),1) + !String.IsEqual(Window.Property(content),4)] | Control.HasFocus(9601)" effect="fade" end="0" start="100" time="300">Conditional</animation>
     </include>
 
     <include name="Animation.VideoFadeOut">
-        <animation condition="[ControlGroup(9600).HasFocus | ControlGroup(10050).HasFocus | ControlGroup(10051).HasFocus | ControlGroup(10052).HasFocus | ControlGroup(10053).HasFocus | ControlGroup(10054).HasFocus | ControlGroup(10056).HasFocus | ControlGroup(10057).HasFocus | ControlGroup(10060).HasFocus | ControlGroup(10062).HasFocus | ControlGroup(10070).HasFocus | ControlGroup(10071).HasFocus | ControlGroup(10072).HasFocus | ControlGroup(10073).HasFocus | Control.HasFocus(160) | Control.HasFocus(161) |Control.HasFocus(9601)]" effect="fade" end="0" start="100" time="300">Conditional</animation>
+        <animation condition="[!String.IsEmpty(Window.Property(content)) + !String.IsEqual(Window.Property(content),5) + !String.IsEqual(Window.Property(content),6)] | ControlGroup(9600).HasFocus | Control.HasFocus(160) | Control.HasFocus(161) | Control.HasFocus(9601)" effect="fade" end="0" start="100" time="300">Conditional</animation>
     </include>
 
     <include name="Animation.WikiFadeOut">

@@ -135,16 +135,16 @@
     </include>
 
     <include name="DefInfoButtons">
-        <font>Button</font>
-        <textcolor>Dark2</textcolor>
-        <width>247</width>
-        <height>68</height>
         <onfocus>ClearProperty(content)</onfocus>
-        <texturenofocus colordiffuse="Dark4" border="5">common/box.png</texturenofocus>
-        <texturefocus colordiffuse="$VAR[ColorHighlight]" border="5">common/box.png</texturefocus>
-        <alttexturenofocus colordiffuse="Dark4" border="5">common/box.png</alttexturenofocus>
-        <alttexturefocus colordiffuse="$VAR[ColorHighlight]" border="5">common/box.png</alttexturefocus>
-    </include>
+        <width>126</width>
+        <height>88</height>
+        <radioposx>40</radioposx>
+        <radioposy>18</radioposy>
+        <radiowidth>48</radiowidth>
+        <include content="buttontextures">
+            <param name="icon" value="$PARAM[icon]"/>
+        </include>
+     </include>
 
     <include name="DefDialogInfoPanel">
         <include>Animation.FadeIn.Slide</include>
@@ -693,6 +693,10 @@
         <value>plugin://plugin.video.themoviedb.helper?info=airing_today&amp;type=tv&amp;nextpage=false&amp;cacheonly=true</value>
     </variable>
 
+    <variable name="Def_Fanart_List">
+        <value condition="$EXP[ShowTmdbArtwork]">plugin://plugin.video.themoviedb.helper/?info=fanart&amp;type=$VAR[Tmdb_Type]$VAR[Info_Query]&amp;nextpage=false</value>
+    </variable>
+
     <variable name="Def_Set_List">
         <value condition="$EXP[ShowTmdbSet] + String.IsEqual(ListItem.DBTYPE,set)">plugin://plugin.video.themoviedb.helper/?info=collection&amp;type=collection&amp;tmdb_id=$INFO[Window(home).Property(TMDbHelper.ListItem.TMDb_ID)]&amp;nextpage=false&amp;cacheonly=true</value>
         <value condition="$EXP[ShowTmdbSet]">plugin://plugin.video.themoviedb.helper/?info=collection&amp;type=collection&amp;tmdb_id=$INFO[Window(home).Property(TMDbHelper.ListItem.Set.TMDb_ID)]&amp;nextpage=false&amp;cacheonly=true</value>
@@ -721,7 +725,7 @@
     </variable>
 
     <variable name="Def_Actor_Image_List">
-        <value condition="$EXP[ShowTmdbActorFanart] + $EXP[IsDialogPersonInfo]">plugin://plugin.video.themoviedb.helper?info=images&amp;type=person&amp;tmdb_id=$INFO[ListItem.Property(tmdb_id)]</value>
+        <value condition="$EXP[ShowTmdbActorFanart] + $EXP[IsPersonInfo]">plugin://plugin.video.themoviedb.helper?info=images&amp;type=person&amp;tmdb_id=$INFO[ListItem.Property(tmdb_id)]</value>
     </variable>
 
     <variable name="Def_Actor_in_Movies_List">
