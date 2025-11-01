@@ -79,7 +79,7 @@
     <expression name="Widget6Enabled">String.IsEqual(Container(300).ListItem.Property(widgetEnable.6),yes)</expression>
     <expression name="HomeShowHeader">Skin.HasSetting(home.showheader) + !Skin.HasSetting(home.vertical.widgets)</expression>
     
-    <expression name="InfoDialogsActive">[Window.IsActive(DialogVideoInfo.xml) | Window.IsActive(DialogMusicInfo.xml) | Window.IsActive(DialogAddonInfo.xml) | Window.IsActive(DialogPVRInfo.xml)]</expression>
+    <expression name="InfoDialogsActive">Window.IsActive(DialogVideoInfo.xml) | Window.IsActive(DialogMusicInfo.xml) | Window.IsActive(DialogAddonInfo.xml) | Window.IsActive(DialogPVRInfo.xml)</expression>
     <expression name="IsPVRVideo">!Player.HasAudio + VideoPlayer.Content(livetv)</expression>
     <expression name="IsPVRAudio">Player.HasAudio + VideoPlayer.Content(livetv)</expression>
     <expression name="IsAudio">Player.HasAudio + !VideoPlayer.Content(livetv)</expression>
@@ -1261,40 +1261,62 @@
         <include condition="Skin.HasSetting(home.netflix.autoplay.trailer)">TrailerWindow</include>
 
         <!-- Global Fanart -->
-        <control type="multiimage" description="Fanart">
-            <visible>!Skin.HasSetting(TMDbHelper.EnableBlur) | [Window.IsVisible(home) + !$EXP[InfoDialogsActive] + !Window.IsVisible(1190)]</visible>
+        <control type="group">
             <visible>![Window.IsVisible(Home.xml) + Skin.HasSetting(homemenu.netflix) + !Skin.HasSetting(homemenu.clean.flix) + !Skin.HasSetting(hide.homemenu.netflix.preview) | [Control.IsVisible(510) | Control.IsVisible(520) | Control.IsVisible(521) | Control.IsVisible(522) | Control.IsVisible(523) | Control.IsVisible(524)] + !Skin.HasSetting(hide.views.netflix.preview) + !Skin.HasSetting(TMDbHelper.EnableBlur)] | $EXP[InfoDialogsActive]</visible>
-            <visible>!Skin.HasSetting(global.hidefanart) | Window.IsVisible(home)</visible>
-            <visible>!Player.HasMedia | [!Skin.HasSetting(global.showvideo) + Player.HasVideo] | [!Skin.HasSetting(global.showvisualisation) + Player.HasAudio] | [Skin.HasSetting(global.showvisualisation) + String.IsEmpty(Visualisation.Name) + Player.HasAudio]</visible>
-            <include condition="![ [$EXP[HomeIsSpotlight] | $EXP[HomeIsClassic] | $EXP[HomeIsModern]] + Window.IsVisible(home)]">GlobalBackgroundFade</include>
-            <include>Dimensions_Fullscreen</include>
-            <include>Animation.Background.OpenClose</include>
-            <include>BackgroundFanartFadetime</include>
-            <timeperimage>HomeTimePerImage</timeperimage>
-            <randomize>true</randomize>
-            <aspectratio>scale</aspectratio>
-            <imagepath background="true">$VAR[GlobalFanart]</imagepath>
-            <include>Animation.Animate.Fanart</include>
-            <include>Animation.AutoTrailer.FadeOut.Background</include>
+	        <control type="multiimage" description="Fanart">
+	            <visible>!Skin.HasSetting(TMDbHelper.EnableBlur) | [Window.IsVisible(home) + !$EXP[InfoDialogsActive] + !Window.IsVisible(1190)]</visible>
+	            <visible>!Skin.HasSetting(global.hidefanart) | Window.IsVisible(home)</visible>
+	            <visible>!Player.HasMedia | [!Skin.HasSetting(global.showvideo) + Player.HasVideo] | [!Skin.HasSetting(global.showvisualisation) + Player.HasAudio] | [Skin.HasSetting(global.showvisualisation) + String.IsEmpty(Visualisation.Name) + Player.HasAudio]</visible>
+	            <include condition="![ [$EXP[HomeIsSpotlight] | $EXP[HomeIsClassic] | $EXP[HomeIsModern]] + Window.IsVisible(home)]">GlobalBackgroundFade</include>
+	            <include>Dimensions_Fullscreen</include>
+	            <include>Animation.Background.OpenClose</include>
+	            <include>BackgroundFanartFadetime</include>
+	            <timeperimage>HomeTimePerImage</timeperimage>
+	            <randomize>true</randomize>
+	            <aspectratio>scale</aspectratio>
+	            <imagepath background="true">$VAR[GlobalFanart]</imagepath>
+	            <include>Animation.Animate.Fanart</include>
+	            <include>Animation.AutoTrailer.FadeOut.Background</include>
+	        </control>
+	
+	        <!-- BLUR Global Fanart -->
+	        <control type="multiimage" description="Fanart">
+	            <visible>Skin.HasSetting(TMDbHelper.EnableBlur) + [!Window.IsVisible(home) | $EXP[InfoDialogsActive] | Window.IsVisible(1190)]</visible>
+	            <visible>!Skin.HasSetting(global.hidefanart) | Window.IsVisible(home)</visible>
+	            <visible>!Player.HasMedia | [!Skin.HasSetting(global.showvideo) + Player.HasVideo] | [!Skin.HasSetting(global.showvisualisation) + Player.HasAudio] | [Skin.HasSetting(global.showvisualisation) + String.IsEmpty(Visualisation.Name) + Player.HasAudio]</visible>
+	            <include>GlobalBackgroundFadeBlur</include>
+	            <include>Dimensions_Fullscreen</include>
+	            <include>Animation.Background.OpenClose</include>
+	            <include>BackgroundFanartFadetime</include>
+	            <timeperimage>HomeTimePerImage</timeperimage>
+	            <randomize>true</randomize>
+	            <aspectratio>scale</aspectratio>
+	            <imagepath background="true">$VAR[GlobalFanart_Blur]</imagepath>
+	            <include>Animation.Animate.Fanart</include>
+	            <include>Animation.AutoTrailer.FadeOut.Background</include>
+	        </control>
+		
+	        <!-- Final Overlays -->
+	        <control type="image" description="FanartOverlay">
+                <visible>!Window.IsVisible(Home.xml) | [!Skin.HasSetting(homemenu.clean.flix) + !$EXP[HomeIsSpotlight] + !$EXP[HomeIsClassic] + !$EXP[HomeIsModern]]</visible>
+	            <include>Dimensions_Fullscreen</include>
+	            <texture colordiffuse="FloorFade">common/floor.png</texture>
+	            <include>Animation.AutoTrailer.FadeOut.Background</include>
+	        </control>
+	        
+	        <control type="image" description="FanartOverlay">
+	            <visible>Window.IsVisible(Home.xml) + Skin.HasSetting(homemenu.clean.flix)</visible>
+	            <include>Dimensions_Fullscreen</include>
+	            <animation type="WindowOpen" reversible="false">
+	                <effect type="fade" start="66" end="100" time="150"/>
+	            </animation>
+	            <animation type="WindowClose" reversible="false">
+	                <effect type="fade" end="33" start="100" time="300"/>
+	            </animation>
+	            <texture colordiffuse="FloorFade">common/netflix-clean.png</texture>
+	        </control>
         </control>
-
-        <!-- BLUR Global Fanart -->
-        <control type="multiimage" description="Fanart">
-            <visible>Skin.HasSetting(TMDbHelper.EnableBlur) + [!Window.IsVisible(home) | $EXP[InfoDialogsActive] | Window.IsVisible(1190)]</visible>
-            <visible>!Skin.HasSetting(global.hidefanart) | Window.IsVisible(home)</visible>
-            <visible>!Player.HasMedia | [!Skin.HasSetting(global.showvideo) + Player.HasVideo] | [!Skin.HasSetting(global.showvisualisation) + Player.HasAudio] | [Skin.HasSetting(global.showvisualisation) + String.IsEmpty(Visualisation.Name) + Player.HasAudio]</visible>
-            <include>GlobalBackgroundFadeBlur</include>
-            <include>Dimensions_Fullscreen</include>
-            <include>Animation.Background.OpenClose</include>
-            <include>BackgroundFanartFadetime</include>
-            <timeperimage>HomeTimePerImage</timeperimage>
-            <randomize>true</randomize>
-            <aspectratio>scale</aspectratio>
-            <imagepath background="true">$VAR[GlobalFanart_Blur]</imagepath>
-            <include>Animation.Animate.Fanart</include>
-            <include>Animation.AutoTrailer.FadeOut.Background</include>
-        </control>
-
+        
         <!-- Netflix Preview Window -->
         <control type="multiimage" description="Fanart">
             <visible>Window.IsVisible(Home.xml) + Skin.HasSetting(homemenu.netflix) + !Skin.HasSetting(homemenu.clean.flix) + !Skin.HasSetting(hide.homemenu.netflix.preview) | [Control.IsVisible(510) | Control.IsVisible(520) | Control.IsVisible(521) | Control.IsVisible(522) | Control.IsVisible(523) | Control.IsVisible(524)] + !Skin.HasSetting(hide.views.netflix.preview) + !Skin.HasSetting(TMDbHelper.EnableBlur)</visible>
@@ -1316,29 +1338,10 @@
             <include>BackgroundFanartFadetime</include>
             <timeperimage>HomeTimePerImage</timeperimage>
             <randomize>true</randomize>
-	        <aspectratio>scale</aspectratio>
-	        <imagepath background="true" diffuse="common/netflix-combined.png">$VAR[GlobalFanart]</imagepath>
+            <aspectratio>scale</aspectratio>
+            <imagepath background="true" diffuse="common/netflix-combined.png">$VAR[GlobalFanart]</imagepath>
             <include>Animation.Animate.Fanart</include>
             <include>Animation.AutoTrailer.FadeOut.Background</include>
-        </control>
-
-        <!-- Final Overlays -->
-        <control type="image" description="FanartOverlay">
-            <visible>!Window.IsVisible(Home.xml) + [![Control.IsVisible(510) | Control.IsVisible(520) | Control.IsVisible(521) | Control.IsVisible(522) | Control.IsVisible(523) | Control.IsVisible(524)] | Skin.HasSetting(hide.views.netflix.preview) | Skin.HasSetting(TMDbHelper.EnableBlur)] | [!Skin.HasSetting(homemenu.clean.flix) + [!Skin.HasSetting(homemenu.netflix) | Skin.HasSetting(hide.homemenu.netflix.preview)] + !$EXP[HomeIsSpotlight] + !$EXP[HomeIsClassic] + !$EXP[HomeIsModern]] | [$EXP[InfoDialogsActive] | Window.IsVisible(1190)]</visible>
-            <include>Dimensions_Fullscreen</include>
-            <texture colordiffuse="FloorFade">common/floor.png</texture>
-            <include>Animation.AutoTrailer.FadeOut.Background</include>
-        </control>
-        <control type="image" description="FanartOverlay">
-            <visible>Window.IsVisible(Home.xml) + Skin.HasSetting(homemenu.clean.flix)</visible>
-            <include>Dimensions_Fullscreen</include>
-            <animation type="WindowOpen" reversible="false">
-                <effect type="fade" start="66" end="100" time="150"/>
-            </animation>
-            <animation type="WindowClose" reversible="false">
-                <effect type="fade" end="33" start="100" time="300"/>
-            </animation>
-            <texture colordiffuse="FloorFade">common/netflix-clean.png</texture>
         </control>
     </include>
 
