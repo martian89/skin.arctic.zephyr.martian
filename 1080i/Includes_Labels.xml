@@ -2199,8 +2199,6 @@
     </variable>
 
     <variable name="MediaInfoListAudioCodecLabel">
-        <value condition="$EXP[IsAudioCodecATMOS]">Atmos</value>
-        <value condition="$EXP[IsAudioCodecDTSX]">DTS:X</value>
         <value condition="String.IsEqual(ListItem.AudioCodec,aac)">AAC</value>
         <value condition="String.IsEqual(ListItem.AudioCodec,aac_latm)">AAC LATM</value>
         <value condition="String.IsEqual(ListItem.AudioCodec,aac_lc)">AAC-LC</value>
@@ -2220,10 +2218,12 @@
         <value condition="String.IsEqual(ListItem.AudioCodec,dolbydigital)">Dolby Digital</value>
         <value condition="String.IsEqual(ListItem.AudioCodec,dts)">DTS</value>
         <value condition="String.IsEqual(ListItem.AudioCodec,dtshd_hra)">DTS-HD HRA</value>
+        <value condition="String.IsEqual(ListItem.AudioCodec,dtshd_ma) + $EXP[IsAudioCodecDTSX]">DTS-HD MA / DTS:X</value>
         <value condition="String.IsEqual(ListItem.AudioCodec,dtshd_ma)">DTS-HD MA</value>
         <value condition="String.IsEqual(ListItem.AudioCodec,dtshd_ma_x)">DTS-HD MA / DTS:X</value>
         <value condition="String.IsEqual(ListItem.AudioCodec,dtshd_ma_x_imax)">DTS-HD MA / DTS:X IMAX</value>
         <value condition="String.IsEqual(ListItem.AudioCodec,dtsma)">DTS-HD MA</value>
+        <value condition="String.IsEqual(ListItem.AudioCodec,eac3) + $EXP[IsAudioCodecATMOS]">Dolby Digital Plus Atmos</value>
         <value condition="String.IsEqual(ListItem.AudioCodec,eac3)">Dolby Digital Plus</value>
         <value condition="String.IsEqual(ListItem.AudioCodec,eac3_ddp_atmos)">Dolby Digital Plus Atmos</value>
         <value condition="String.IsEqual(ListItem.AudioCodec,flac)">FLAC</value>
@@ -2237,6 +2237,7 @@
         <value condition="String.IsEqual(ListItem.AudioCodec,pcm_bluray)">PCM</value>
         <value condition="String.IsEqual(ListItem.AudioCodec,pcm_s16le)">PCM</value>
         <value condition="String.IsEqual(ListItem.AudioCodec,pcm_s24le)">PCM</value>
+        <value condition="String.IsEqual(ListItem.AudioCodec,truehd) + $EXP[IsAudioCodecATMOS]">Dolby TrueHD Atmos</value>
         <value condition="String.IsEqual(ListItem.AudioCodec,truehd)">Dolby TrueHD</value>
         <value condition="String.IsEqual(ListItem.AudioCodec,truehd_atmos)">Dolby TrueHD Atmos</value>
         <value condition="String.IsEqual(ListItem.AudioCodec,vorbis)">Vorbis</value>
@@ -2273,7 +2274,6 @@
     </variable>
  
     <variable name="MediaInfoListLabel2">
-        <value condition="[Window.IsVisible(DialogSelect.xml) | Window.IsVisible(DialogVideoManager.xml)] + [!String.IsEmpty(ListItem.VideoCodec) | !String.IsEmpty(ListItem.AudioCodec)]">$INFO[ListItem.VideoResolution,, ]$VAR[HDSD]$VAR[VideoCodecLabel,  •  ,]$VAR[VideoAspectLabel,  •  ,]$VAR[Video3DLabel,  •  ,]$VAR[VideoHdrTypeLabel,  •  ,]$VAR[AudioCodecLabel,  •  ,]$VAR[LabelAudioChannels, ,]</value>
         <value condition="[!String.IsEmpty(ListItem.VideoCodec) | !String.IsEmpty(ListItem.AudioCodec)]">$INFO[ListItem.VideoResolution,, ]$VAR[HDSD]$VAR[VideoCodecLabel,  •  ,]$VAR[VideoAspectLabel,  •  ,]$VAR[Video3DLabel,  •  ,]$VAR[VideoHdrTypeLabel,  •  ,]$VAR[MediaInfoListAudioCodecLabel,  •  ,]$VAR[LabelAudioChannels, ,]</value>
     </variable>
 
