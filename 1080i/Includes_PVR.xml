@@ -160,30 +160,22 @@
     <include name="PVRInfoPanel">
         <control type="group">
             <left>70</left>
-            <width>645</width>
+            <width>642</width>
             <top>206</top>
             <height>660</height>
             <control type="group">
                 <height>370</height>
                 <control type="image">
-                    <width>642</width>
+                    <width>100%</width>
                     <height>100%</height>
                     <texture border="10" infill="false">common/$VAR[nofocus-shadow10]</texture>
                 </control>
                 <control type="image">
-                    <left>11</left>
+                    <left>10</left>
                     <top>10</top>
-                    <right>11</right>
+                    <right>10</right>
                     <bottom>10</bottom>
-                    <texture colordiffuse="Fallback" border="4" background="true">common/diffuse_box.png</texture>
-                    <visible>!Player.HasVideo</visible>
-                </control>
-                <control type="image">
-                    <left>11</left>
-                    <top>10</top>
-                    <right>11</right>
-                    <bottom>10</bottom>
-                    <texture colordiffuse="FF000000" border="4" background="true">common/box.png</texture>
+                    <texture colordiffuse="FF000000" border="10">diffuse/pvrinfo.png</texture>
                     <visible>Player.HasVideo</visible>
                 </control>
                 <control type="videowindow">
@@ -196,6 +188,14 @@
                     </animation>
                     <visible>Player.HasVideo</visible>
                     <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
+                </control>
+                <control type="image">
+                    <left>10</left>
+                    <top>10</top>
+                    <right>10</right>
+                    <bottom>10</bottom>
+                    <texture colordiffuse="Fallback" border="4" background="true">common/diffuse_box.png</texture>
+                    <visible>!Player.HasVideo</visible>
                 </control>
                 <control type="image">
                     <visible>!Player.HasVideo + String.IsEmpty(Listitem.EpgEventIcon) + String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Fanart)) + String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Poster))</visible>
