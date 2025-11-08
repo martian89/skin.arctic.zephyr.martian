@@ -53,27 +53,9 @@
         <control type="group">
             <include>Animation.FadeIn</include>
             <include>Animation.FadeOut</include>
-            <visible>Window.IsVisible(DialogVideoInfo.xml) | Window.IsVisible(DialogMusicInfo.xml) | Window.IsVisible(DialogPVRInfo.xml) | Window.IsVisible(DialogAddonInfo.xml)</visible>
-            <include condition="[[!Skin.HasSetting(home.vertical) + !$EXP[HomeIsModernMultiWidgets]] | Skin.HasSetting(homemenu.clean.flix)]">GlobalBackgroundExtended</include>
+			<include>Animation.BackgroundHideView</include>
+            <visible>$EXP[InfoDialogsActive]</visible>
+            <include condition="$EXP[InfoDialogsExtendedBackground]">GlobalBackgroundExtended</include>
         </control>
-
-        <!--<control type="label">
-            <left>60</left>
-            <right>60</right>
-            <posy>60</posy>
-            <font>EpisodeNumber</font>
-            <textcolor>Dark1</textcolor>
-            <height>45</height>
-            <label fallback="19055">$INFO[Container(301).NumItems]</label>
-        </control>
-        <control type="label">
-            <left>60</left>
-            <right>60</right>
-            <posy>100</posy>
-            <font>EpisodeNumber</font>
-            <textcolor>Dark1</textcolor>
-            <height>45</height>
-            <label fallback="19055">$INFO[Window(home).Property(LastId)]</label>
-        </control>-->
     </controls>
 </window>

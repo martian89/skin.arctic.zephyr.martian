@@ -41,7 +41,7 @@
 	                    <left>90</left>
 	                    <width>405</width>
 	                    <height>405</height>
-	                    <texture>$INFO[ListItem.Art(discart)]</texture>
+	                    <texture diffuse="diffuse/diffuse_cd_full.png">$INFO[ListItem.Art(discart)]</texture>
 	                </control>
                 </control>
                 <control type="group">
@@ -56,6 +56,7 @@
                 <include>Animation.RightSide</include>
                 <control type="button" id="7011">
                     <include>HiddenButton</include>
+                    <onunfocus>PlayerControl(stop)</onunfocus>
                     <onback>9000</onback>
                     <onup>9000</onup>
                     <ondown>9000</ondown>
@@ -388,7 +389,7 @@
 
                 <!-- TRAILER SEITE -->
                 <control type="group">
-                    <visible>String.IsEqual(Window.Property(content),6)</visible>
+                    <visible>String.IsEqual(Window.Property(content),6) + !Window.IsVisible(DialogBusy.xml)</visible>
                     <include>Animation.FadeInDialogInfo</include>
                     <include>Animation.FadeOutDialogInfo</include>
                     <left>570</left>
@@ -420,11 +421,11 @@
                         <height>607</height>
                         <width>1268</width>
                         <left>1</left>
-                        <texture colordiffuse="Background" border="4">common/box.png</texture>
+                        <texture colordiffuse="FF000000" border="4">common/box.png</texture>
                     </control>
                     <control type="group">
                         <height>607</height>
-                        <width>1267</width>
+                        <width>1268</width>
                         <left>1</left>
                         <control type="videowindow">
                             <visible>String.IsEqual(Window.Property(content),6)</visible>
@@ -456,7 +457,7 @@
                                 <width>60</width>
                                 <height>60</height>
                                 <aspectratio align="center" aligny="center">keep</aspectratio>
-                                <texture colordiffuse="Dark2">osd/play2.png</texture>
+                                <texture colordiffuse="PanelWhite70">osd/play2.png</texture>
                                 <visible>!Control.HasFocus(7011)</visible>
                             </control>
                         </control>
@@ -465,7 +466,7 @@
 
                 <!-- INFOSEITE -->
                 <control type="group">
-                    <visible>!String.IsEqual(Window.Property(content),5) + !String.IsEqual(Window.Property(content),6) + ![Window.IsVisible(script-wikipedia.xml) + !Skin.HasSetting(hidebutton.video.wiki)]</visible>
+                    <visible>!String.IsEqual(Window.Property(content),5) + ![String.IsEqual(Window.Property(content),6) + !Window.IsVisible(DialogBusy.xml)] + ![Window.IsVisible(script-wikipedia.xml) + !Skin.HasSetting(hidebutton.video.wiki)]</visible>
                     <include>Animation.VideoFadeOut</include>
                     <include>Animation.FadeInDialogInfo</include>
                     <include>Animation.FadeOutDialogInfo</include>
@@ -1328,6 +1329,7 @@
             <!-- Trailer - ListItem.Trailer | IMDB.Trailer -->
             <control type="radiobutton" id="10005">
                 <onclick condition="Skin.HasSetting(PlayTrailerWindowed)">SetProperty(content,6)</onclick>
+                <onclick condition="Skin.HasSetting(PlayTrailerWindowed)">SetProperty(dontslide,1,home)</onclick>
                 <onclick condition="Skin.HasSetting(PlayTrailerWindowed)">SetFocus(7011)</onclick>
                 <include content="DialogVideoInfoButtons">
                     <param name="icon" value="buttonsdialogs/trailer.png" />
@@ -1486,20 +1488,6 @@
                 <visible>System.AddonIsEnabled(plugin.video.youtube)</visible>
             </control>
 
-           <control type="radiobutton" id="14">
-                <include content="DialogVideoInfoButtons">
-                    <param name="icon" value="buttonsdialogs/versions.png" />
-                </include>
-                <visible>!String.IsEmpty(ListItem.DBID) + String.IsEqual(ListItem.DBTYPE,movie)</visible>
-                <visible>!Skin.HasSetting(hidebutton.video.versions)</visible>
-            </control>
-            <control type="radiobutton" id="15">
-                <include content="DialogVideoInfoButtons">
-                    <param name="icon" value="buttonsdialogs/extras.png" />
-                </include>
-                <visible>!String.IsEmpty(ListItem.DBID) + String.IsEqual(ListItem.DBTYPE,movie)</visible>
-                <visible>!Skin.HasSetting(hidebutton.video.extras)</visible>
-            </control>
             <control type="radiobutton" id="10016">
                 <visible>$EXP[ShowTmdbSet] | Skin.HasSetting(extended.info.local.collections) + !String.IsEmpty(ListItem.SetId) + !Skin.HasSetting(hidebutton.video.collections)</visible>
                 <onfocus>SetProperty(videoset,1)</onfocus>

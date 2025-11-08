@@ -376,6 +376,9 @@
 
         <!-- Widget Info -->
         <control type="group">
+	        <visible>!$EXP[HideViewContent]</visible>
+            <animation effect="fade" start="100" end="0" time="150">Hidden</animation>
+            <animation effect="fade" start="0" end="100" time="350">Visible</animation>
             <animation effect="slide" end="0,-30" start="0,0" time="1" reversible="false" condition="true">Conditional</animation>
             <animation type="WindowClose" condition="!Skin.HasSetting(home.modernwidgets)">
                 <effect type="fade" start="100" end="0" time="150"/>
@@ -1664,6 +1667,9 @@
 	
     <include name="HomeClassicWidgets">
         <control type="group">
+	        <visible>!$EXP[HideViewContent]</visible>
+            <animation effect="fade" start="100" end="0" time="150">Hidden</animation>
+            <animation effect="fade" start="0" end="100" time="350">Visible</animation>
             <animation effect="slide" start="0" end="0,800" time="250">WindowClose</animation>
             <animation effect="slide" end="0" start="0,550" time="200">WindowOpen</animation>
             <control type="group">
@@ -2493,7 +2499,7 @@
                             <right>71</right>
                             <top>-9</top>
                             <height>250</height>
-                            <texture diffuse="diffuse/pvrinfo2.png" border="10" background="true" infill="false">common/$VAR[nofocus-shadow10]</texture>
+                            <texture border="10" background="true" infill="false">common/$VAR[nofocus-shadow10]</texture>
                         </control>
                         <control type="image">
                             <right>SidePad</right>
@@ -4017,7 +4023,7 @@
             <animation effect="slide" start="0" end="0,460" time="0" condition="Skin.HasSetting(homemenu.clean.flix) + !Skin.HasSetting(homemenu.clean.flix.no.slide)">Conditional</animation>
           	<animation effect="slide" start="0" end="0,-10" time="0" condition="Skin.HasSetting(home.vertical.widgets)">Conditional</animation>
             <visible>Integer.IsGreater(Container(301).NumItems,1) + ControlGroup(301).HasFocus()</visible>
-            <visible>![Window.IsVisible(DialogVideoInfo.xml) | Window.IsVisible(DialogMusicInfo.xml) | Window.IsVisible(DialogPVRInfo.xml) | Window.IsVisible(DialogAddonInfo.xml)]</visible>
+            <visible>!$EXP[InfoDialogsActive]</visible>
             <right>SidePad</right>
             <control type="group">
                 <top>538</top>
@@ -4077,7 +4083,7 @@
             <animation effect="slide" start="0" end="0,460" time="0" condition="!Skin.HasSetting(homemenu.clean.flix.no.slide)">Conditional</animation>
             <animation effect="slide" start="0" end="30,0" time="0" condition="Integer.IsEqual(Container(301).NumItems,1)">Conditional</animation>
             <visible>Skin.HasSetting(homemenu.clean.flix)</visible>
-            <visible>![Window.IsVisible(DialogVideoInfo.xml) | Window.IsVisible(DialogMusicInfo.xml) | Window.IsVisible(DialogPVRInfo.xml) | Window.IsVisible(DialogAddonInfo.xml)] + ControlGroup(301).HasFocus</visible>
+            <visible>!$EXP[InfoDialogsActive] + ControlGroup(301).HasFocus</visible>
             <control type="label">
                 <include>Animation.DelayFadeIn300</include>
                 <align>right</align>
