@@ -3628,7 +3628,10 @@
                 <width min="20" max="90">auto</width>
                 <height>56</height>
                 <centertop>53%</centertop>
-                <texture colordiffuse="$VAR[OSDPanelWhite70]" fallback="flags/fallback.png">$VAR[AudioCodecImage]</texture>
+                <include content="def_colordiffuse" condition="!Skin.HasSetting(furniture.coloredicons)">
+                	<param name="colordiffuse" value="$VAR[OSDPanelWhite70]"/>
+                </include>
+                <texture fallback="flags/fallback.png">$VAR[AudioCodecImage]</texture>
                 <aspectratio align="center">keep</aspectratio>
                 <visible>Skin.HasSetting(furniture.flagicons) + !String.IsEmpty(MusicPlayer.Codec) + !Skin.HasSetting(musicosd.hideflags)</visible>
             </control>
