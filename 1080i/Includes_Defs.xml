@@ -680,26 +680,26 @@
     </variable>
 
     <variable name="DefMovieDBMoviesContent">
-        <value condition="String.IsEqual(Window(1104).Property(content),1)">plugin://plugin.video.themoviedb.helper?info=top_rated&amp;type=movie&amp;nextpage=false&amp;cacheonly=true</value>
-        <value condition="String.IsEqual(Window(1104).Property(content),2)">plugin://plugin.video.themoviedb.helper?info=popular&amp;type=movie&amp;nextpage=false&amp;cacheonly=true</value>
-        <value condition="String.IsEqual(Window(1104).Property(content),3)">plugin://plugin.video.themoviedb.helper?info=upcoming&amp;type=movie&amp;nextpage=false&amp;cacheonly=true</value>
-        <value>plugin://plugin.video.themoviedb.helper?info=now_playing&amp;type=movie&amp;nextpage=false&amp;cacheonly=true</value>
+        <value condition="String.IsEqual(Window(1104).Property(content),1)">plugin://plugin.video.themoviedb.helper?info=top_rated&amp;tmdb_type=movie&amp;nextpage=false&amp;cacheonly=true</value>
+        <value condition="String.IsEqual(Window(1104).Property(content),2)">plugin://plugin.video.themoviedb.helper?info=popular&amp;tmdb_type=movie&amp;nextpage=false&amp;cacheonly=true</value>
+        <value condition="String.IsEqual(Window(1104).Property(content),3)">plugin://plugin.video.themoviedb.helper?info=upcoming&amp;tmdb_type=movie&amp;nextpage=false&amp;cacheonly=true</value>
+        <value>plugin://plugin.video.themoviedb.helper?info=now_playing&amp;tmdb_type=movie&amp;nextpage=false&amp;cacheonly=true</value>
     </variable>
 
     <variable name="DefMovieDBEpisodesContent">
-        <value condition="String.IsEqual(Window(1105).Property(content),1)">plugin://plugin.video.themoviedb.helper?info=top_rated&amp;type=tv&amp;nextpage=false&amp;cacheonly=true</value>
-        <value condition="String.IsEqual(Window(1105).Property(content),2)">plugin://plugin.video.themoviedb.helper?info=popular&amp;type=tv&amp;nextpage=false&amp;cacheonly=true</value>
-        <value condition="String.IsEqual(Window(1105).Property(content),3)">plugin://plugin.video.themoviedb.helper?info=on_the_air&amp;type=tv&amp;nextpage=false&amp;cacheonly=true</value>
-        <value>plugin://plugin.video.themoviedb.helper?info=airing_today&amp;type=tv&amp;nextpage=false&amp;cacheonly=true</value>
+        <value condition="String.IsEqual(Window(1105).Property(content),1)">plugin://plugin.video.themoviedb.helper?info=top_rated&amp;tmdb_type=tv&amp;nextpage=false&amp;cacheonly=true</value>
+        <value condition="String.IsEqual(Window(1105).Property(content),2)">plugin://plugin.video.themoviedb.helper?info=popular&amp;tmdb_type=tv&amp;nextpage=false&amp;cacheonly=true</value>
+        <value condition="String.IsEqual(Window(1105).Property(content),3)">plugin://plugin.video.themoviedb.helper?info=on_the_air&amp;tmdb_type=tv&amp;nextpage=false&amp;cacheonly=true</value>
+        <value>plugin://plugin.video.themoviedb.helper?info=airing_today&amp;tmdb_type=tv&amp;nextpage=false&amp;cacheonly=true</value>
     </variable>
 
     <variable name="Def_Fanart_List">
-        <value condition="$EXP[ShowTmdbArtwork]">plugin://plugin.video.themoviedb.helper/?info=fanart&amp;type=$VAR[Tmdb_Type]$VAR[Info_Query]&amp;nextpage=false</value>
+        <value condition="$EXP[ShowTmdbArtwork]">plugin://plugin.video.themoviedb.helper/?info=fanart&amp;tmdb_type=$VAR[Tmdb_Type]$VAR[Info_Query]&amp;nextpage=false</value>
     </variable>
 
     <variable name="Def_Set_List">
-        <value condition="$EXP[ShowTmdbSet] + String.IsEqual(ListItem.DBTYPE,set)">plugin://plugin.video.themoviedb.helper/?info=collection&amp;type=collection&amp;tmdb_id=$INFO[Window(home).Property(TMDbHelper.ListItem.TMDb_ID)]&amp;nextpage=false&amp;cacheonly=true</value>
-        <value condition="$EXP[ShowTmdbSet]">plugin://plugin.video.themoviedb.helper/?info=collection&amp;type=collection&amp;tmdb_id=$INFO[Window(home).Property(TMDbHelper.ListItem.Set.TMDb_ID)]&amp;nextpage=false&amp;cacheonly=true</value>
+        <value condition="$EXP[ShowTmdbSet] + String.IsEqual(ListItem.DBTYPE,set)">plugin://plugin.video.themoviedb.helper/?info=collection&amp;tmdb_type=collection&amp;tmdb_id=$INFO[Window(home).Property(TMDbHelper.ListItem.TMDb_ID)]&amp;nextpage=false&amp;cacheonly=true</value>
+        <value condition="$EXP[ShowTmdbSet]">plugin://plugin.video.themoviedb.helper/?info=collection&amp;tmdb_type=collection&amp;tmdb_id=$INFO[Window(home).Property(TMDbHelper.ListItem.Set.TMDb_ID)]&amp;nextpage=false&amp;cacheonly=true</value>
     </variable>
 
     <variable name="Def_Cast_List">
@@ -712,7 +712,7 @@
     </variable>
 
     <variable name="Def_Director_List">
-        <value condition="$EXP[ShowTmdbDirector] + !String.IsEmpty(Window.Property(videodirector))">plugin://plugin.video.themoviedb.helper/?info=crew_in_movies&amp;type=person&amp;filter_key=job&amp;filter_value=Director&amp;$VAR[Director_Query]&amp;exclude_key=title&amp;exclude_value=$INFO[ListItem.Title]&amp;sort_key=release_date$VAR[Tmdb_Query_Params]</value>
+        <value condition="$EXP[ShowTmdbDirector] + !String.IsEmpty(Window.Property(videodirector))">plugin://plugin.video.themoviedb.helper/?info=crew_in_movies&amp;tmdb_type=person&amp;filter_key=job&amp;filter_value=Director&amp;$VAR[Director_Query]&amp;exclude_key=title&amp;exclude_value=$INFO[ListItem.Title]&amp;sort_key=release_date$VAR[Tmdb_Query_Params]</value>
     </variable>
 
     <variable name="Def_Studio_List">
@@ -721,29 +721,29 @@
     </variable>
 
     <variable name="Def_Similar_List">
-        <value condition="$EXP[ShowTmdbSimilar] + !String.IsEmpty(Window.Property(videosimilar))">plugin://plugin.video.themoviedb.helper?info=similar&amp;type=$VAR[Tmdb_Type]$VAR[Info_Query]&amp;nextpage=false&amp;cacheonly=true</value>
+        <value condition="$EXP[ShowTmdbSimilar] + !String.IsEmpty(Window.Property(videosimilar))">plugin://plugin.video.themoviedb.helper?info=similar&amp;tmdb_type=$VAR[Tmdb_Type]$VAR[Info_Query]&amp;nextpage=false&amp;cacheonly=true</value>
     </variable>
 
     <variable name="Def_Actor_Image_List">
-        <value condition="$EXP[ShowTmdbActorFanart] + $EXP[IsPersonInfo]">plugin://plugin.video.themoviedb.helper?info=images&amp;type=person&amp;tmdb_id=$INFO[ListItem.Property(tmdb_id)]</value>
+        <value condition="$EXP[ShowTmdbActorFanart] + $EXP[IsPersonInfo]">plugin://plugin.video.themoviedb.helper?info=images&amp;tmdb_type=person&amp;tmdb_id=$INFO[ListItem.Property(tmdb_id)]</value>
     </variable>
 
     <variable name="Def_Actor_in_Movies_List">
-        <value condition="$EXP[ShowTmdbActorMovies] + !String.IsEmpty(Window.Property(actormovies))">plugin://plugin.video.themoviedb.helper?info=stars_in_movies&amp;type=person&amp;tmdb_id=$INFO[ListItem.Property(tmdb_id)]&amp;sort_key=release_date$VAR[Tmdb_Query_Params]</value>
+        <value condition="$EXP[ShowTmdbActorMovies] + !String.IsEmpty(Window.Property(actormovies))">plugin://plugin.video.themoviedb.helper?info=stars_in_movies&amp;tmdb_type=person&amp;tmdb_id=$INFO[ListItem.Property(tmdb_id)]&amp;sort_key=release_date$VAR[Tmdb_Query_Params]</value>
     </variable>
 
     <variable name="Def_Actor_in_TVShows_List">
-        <value condition="$EXP[ShowTmdbActorTvShows] + !String.IsEmpty(Window.Property(actortvshows))">plugin://plugin.video.themoviedb.helper?info=stars_in_tvshows&amp;type=person&amp;tmdb_id=$INFO[ListItem.Property(tmdb_id)]&amp;sort_key=first_air_date$VAR[Tmdb_Query_Params]</value>
+        <value condition="$EXP[ShowTmdbActorTvShows] + !String.IsEmpty(Window.Property(actortvshows))">plugin://plugin.video.themoviedb.helper?info=stars_in_tvshows&amp;tmdb_type=person&amp;tmdb_id=$INFO[ListItem.Property(tmdb_id)]&amp;sort_key=first_air_date$VAR[Tmdb_Query_Params]</value>
     </variable>
 
     <variable name="Def_Crew_In_Both_List">
-        <value condition="$EXP[ShowTmdbActorInCrew] + !String.IsEmpty(Window.Property(videocrew))">plugin://plugin.video.themoviedb.helper?info=crew_in_both&amp;type=person&amp;tmdb_id=$INFO[ListItem.Property(tmdb_id)]&amp;sort_key=year$VAR[Tmdb_Query_Params]</value>
+        <value condition="$EXP[ShowTmdbActorInCrew] + !String.IsEmpty(Window.Property(videocrew))">plugin://plugin.video.themoviedb.helper?info=crew_in_both&amp;tmdb_type=person&amp;tmdb_id=$INFO[ListItem.Property(tmdb_id)]&amp;sort_key=year$VAR[Tmdb_Query_Params]</value>
     </variable>
 
     <variable name="Def_VideoList_Item">
-        <value condition="String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(ListItem.IMDBNumber) + String.StartsWith(ListItem.IMDBNumber,tt)">RunScript(plugin.video.themoviedb.helper,add_path=plugin://plugin.video.themoviedb.helper/?info=details&amp;type=movie$INFO[ListItem.IMDBNumber,&amp;imdb_id=,],call_auto=1190)</value>
-        <value condition="String.IsEqual(ListItem.DBType,movie)">RunScript(plugin.video.themoviedb.helper,add_path=plugin://plugin.video.themoviedb.helper/?info=details&amp;type=movie$INFO[ListItem.Property(tmdb_id),&amp;tmdb_id=,]$INFO[ListItem.Title,&amp;query=,]$INFO[ListItem.Year,&amp;year=,],call_auto=1190)</value>
-        <value condition="String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)">RunScript(plugin.video.themoviedb.helper,add_path=plugin://plugin.video.themoviedb.helper/?info=details&amp;type=tv$INFO[ListItem.Property(tmdb_id),&amp;tmdb_id=,]$INFO[ListItem.TVShowTitle,&amp;query=,]$INFO[ListItem.Year,&amp;year=,],call_auto=1190)</value>
+        <value condition="String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(ListItem.IMDBNumber) + String.StartsWith(ListItem.IMDBNumber,tt)">RunScript(plugin.video.themoviedb.helper,add_path=plugin://plugin.video.themoviedb.helper/?info=details&amp;tmdb_type=movie$INFO[ListItem.IMDBNumber,&amp;imdb_id=,],call_auto=1190)</value>
+        <value condition="String.IsEqual(ListItem.DBType,movie)">RunScript(plugin.video.themoviedb.helper,add_path=plugin://plugin.video.themoviedb.helper/?info=details&amp;tmdb_type=movie$INFO[ListItem.Property(tmdb_id),&amp;tmdb_id=,]$INFO[ListItem.Title,&amp;query=,]$INFO[ListItem.Year,&amp;year=,],call_auto=1190)</value>
+        <value condition="String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)">RunScript(plugin.video.themoviedb.helper,add_path=plugin://plugin.video.themoviedb.helper/?info=details&amp;tmdb_type=tv$INFO[ListItem.Property(tmdb_id),&amp;tmdb_id=,]$INFO[ListItem.TVShowTitle,&amp;query=,]$INFO[ListItem.Year,&amp;year=,],call_auto=1190)</value>
     </variable>
 
     <variable name="Def_CastList_Item">
