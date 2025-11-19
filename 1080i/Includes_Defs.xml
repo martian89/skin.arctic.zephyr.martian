@@ -305,6 +305,77 @@
         </control>
     </include>
 
+	<include name="DefDialogSettings">
+		<param name="header_label" />
+		<param name="controlid" default="11" />
+		<definition>
+			<include content="DefDialog">
+				<param name="header_label" value="$PARAM[header_label]" />
+				<param name="width" value="1080" />
+				<param name="height" value="860" />
+
+				<include content="Def_Gradient_Settings_Image">
+					<param name="controlid" value="$PARAM[controlid]" />
+					<param name="left" value="8" />
+					<param name="top" value="115" />
+					<param name="width" value="696" />
+					<param name="height" value="66" />
+					<param name="slide" value="66" />
+				</include>
+
+				<nested />
+
+				<include content="scrollbar_dialog">
+					<param name="scrollid" value="1600" />
+					<param name="onleft" value="$PARAM[controlid]" />
+					<param name="onright" value="5" />
+					<param name="visible" value="true" />
+					<param name="height" value="660" />
+				</include>
+
+				<!-- Lines -->
+				<control type="image">
+					<top>115</top>
+					<right>375</right>
+					<height>660</height>
+					<width>1</width>
+					<texture colordiffuse="Black12">common/white.png</texture>
+					<animation effect="fade" start="0" end="100" time="100"
+						condition="!Control.HasFocus(1600) + !Container.Scrolling">Conditional</animation>
+				</control>
+
+				<!-- Buttons -->
+				<control type="grouplist">
+					<top>115</top>
+					<right>42</right>
+					<width>300</width>
+					<itemgap>DialogButtonsItemgap</itemgap>
+					<orientation>vertical</orientation>
+					<onleft>1600</onleft>
+					<onright>$PARAM[controlid]</onright>
+					<control type="button" id="5">
+						<include>DefDialogButtons</include>
+						<label>15067</label>
+						<onclick>Close</onclick>
+					</control>
+				</control>
+			</include>
+		</definition>
+	</include>
+    
+    <include name="DefDialogSettingsList">
+		<left>8</left>
+		<height>660</height>
+		<width>705</width>
+		<top>115</top>
+		<onleft>5</onleft>
+		<onright>1600</onright>
+		<usecontrolcoords>true</usecontrolcoords>
+		<itemgap>0</itemgap>
+		<pagecontrol>1600</pagecontrol>
+		<scrolltime>0</scrolltime>    
+    </include>
+    
     <include name="DefPVRDialogButton">
         <width>600</width>
         <height>66</height>
@@ -354,11 +425,28 @@
     </include>
 
     <include name="DefContextButtonGradientSelect">
-        <radioposx>620</radioposx>
+        <radioposx>612</radioposx>
         <left>30</left>
         <align>left</align>
         <textwidth>600</textwidth>
-        <width>677</width>
+        <width>666</width>
+        <height>66</height>
+        <font>Small</font>
+        <disabledcolor>Black12</disabledcolor>
+        <textcolor>Black70</textcolor>
+        <textureradiofocus colordiffuse="Black70">buttons/radio-on.png</textureradiofocus>
+        <textureradionofocus colordiffuse="Black30">buttons/radio-off.png</textureradionofocus>
+        <focusedcolor>Selected</focusedcolor>
+        <alttexturefocus colordiffuse="$VAR[ColorGradient]" border="5">common/gradient-box-wide-cut.png</alttexturefocus>
+        <texturefocus colordiffuse="$VAR[ColorGradient]" border="5">common/gradient-box-wide-cut.png</texturefocus>
+    </include>
+
+    <include name="DefContextButtonGradientIndicators">
+        <radioposx>642</radioposx>
+        <left>0</left>
+        <align>left</align>
+        <textwidth>600</textwidth>
+        <width>696</width>
         <height>66</height>
         <font>Small</font>
         <disabledcolor>Black12</disabledcolor>

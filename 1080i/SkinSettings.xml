@@ -1742,23 +1742,7 @@
                             <selected>Skin.HasSetting(labels.autoscroll)</selected>
                             <onclick>Skin.ToggleSetting(labels.autoscroll)</onclick>
                         </control>
-                        <control type="radiobutton" id="9273" description="Unwatched episodes">
-                            <width>1360</width>
-                            <visible>String.IsEqual(Window.Property(content),4)</visible>
-                            <include>DefSettingsButtonGradientSkinSettings</include>
-                            <label>31368</label>
-                            <selected>Skin.HasSetting(episodes.show.unwatched)</selected>
-                            <onclick>Skin.ToggleSetting(episodes.show.unwatched)</onclick>
-                        </control>
-                        <control type="radiobutton" id="92721">
-                            <width>1360</width>
-                            <visible>String.IsEqual(Window.Property(content),4)</visible>
-                            <include>DefSettingsButtonGradientSkinSettings</include>
-                            <label>$LOCALIZE[31983]</label>
-                            <selected>Skin.HasSetting(userrating.override.rating)</selected>
-                            <onclick>Skin.ToggleSetting(userrating.override.rating)</onclick>
-                        </control>
-                        <control type="grouplist" id="988100">
+                        <control type="grouplist" id="92720">
                             <visible>String.IsEqual(Window.Property(content),4)</visible>
                             <orientation>horizontal</orientation>
                             <enable>false</enable>
@@ -1771,60 +1755,44 @@
                                 <width>1310</width>
                                 <disabledcolor>PanelWhite30</disabledcolor>
                                 <height>70</height>
-                                <label>31603</label>
+                                <label>31712</label>
                             </control>
                         </control>
-                        <control type="radiobutton" id="988101" description="Enable Auto Trailer">
+                        <control type="radiobutton" id="92721">
                             <width>1360</width>
                             <visible>String.IsEqual(Window.Property(content),4)</visible>
                             <include>DefSettingsButtonGradientSkinSettings</include>
-                            <label>31593</label>
-                            <selected>Skin.HasSetting(home.netflix.autoplay.trailer)</selected>
-                            <onclick>Skin.ToggleSetting(home.netflix.autoplay.trailer)</onclick>
+                            <label>$LOCALIZE[31983]</label>
+                            <selected>Skin.HasSetting(userrating.override.rating)</selected>
+                            <onclick>Skin.ToggleSetting(userrating.override.rating)</onclick>
                         </control>
-                        <control type="button" id="988102" description="Auto Trailer Delay">
+                        <control type="button" id="92722" description="Additional Movie Rating 1">
                             <width>1360</width>
                             <visible>String.IsEqual(Window.Property(content),4)</visible>
                             <include>DefSettingsButtonGradientSkinSettings</include>
-                            <label>$LOCALIZE[31297]$LOCALIZE[31599]</label>
-                            <label2>$VAR[NetflixTrailerDelayLabel] $LOCALIZE[31425]</label2>
-                            <onclick>SetProperty(includesetting,NetflixTrailerDelay,home)</onclick>
+                            <label>$LOCALIZE[31713]</label>
+                            <label2>$VAR[AdditionalMovieRatingLabel1]</label2>
+                            <onclick>SetProperty(includesetting,AdditionalMovieRating1,home)</onclick>
                             <onclick>ActivateWindow(1101)</onclick>
-                            <visible>Skin.HasSetting(home.netflix.autoplay.trailer)</visible>
                         </control>
-                        <control type="button" id="988103" description="Auto Trailer Black Bars">
+                        <control type="button" id="92723" description="Additional Movie Rating 2">
                             <width>1360</width>
                             <visible>String.IsEqual(Window.Property(content),4)</visible>
                             <include>DefSettingsButtonGradientSkinSettings</include>
-                            <label>$LOCALIZE[31297]$LOCALIZE[31595]</label>
-                            <label2>$VAR[NetflixTrailerBlackBarsLabel]</label2>
-                            <onclick condition="!Skin.HasSetting(home.netflix.autoplay.trailer.custom.window) + !Skin.HasSetting(home.netflix.autoplay.trailer.custom.window.force)">Skin.SetBool(home.netflix.autoplay.trailer.custom.window)</onclick>
-                            <onclick condition="Skin.HasSetting(home.netflix.autoplay.trailer.custom.window)">Skin.SetBool(home.netflix.autoplay.trailer.custom.window.force)</onclick>
-                            <onclick condition="Skin.HasSetting(home.netflix.autoplay.trailer.custom.window)">Skin.Reset(home.netflix.autoplay.trailer.custom.window)</onclick>
-                            <onclick condition="Skin.HasSetting(home.netflix.autoplay.trailer.custom.window.force)">Skin.Reset(home.netflix.autoplay.trailer.custom.window.force)</onclick>
-                            <visible>Skin.HasSetting(home.netflix.autoplay.trailer)</visible>
+                            <label>$LOCALIZE[31714]</label>
+                            <label2>$VAR[AdditionalMovieRatingLabel2]</label2>
+                            <onclick>SetProperty(includesetting,AdditionalMovieRating2,home)</onclick>
+                            <onclick>ActivateWindow(1101)</onclick>
                         </control>
-                        <control type="radiobutton" id="988104" description="Auto Trailer Stop">
+                        <control type="button" id="92724" description="Additional TV Show Rating">
                             <width>1360</width>
                             <visible>String.IsEqual(Window.Property(content),4)</visible>
                             <include>DefSettingsButtonGradientSkinSettings</include>
-                            <label>$LOCALIZE[31297]$LOCALIZE[31632]</label>
-                            <selected>!Skin.HasSetting(trailer.dont.stop.on.unfocus)</selected>
-                            <onclick>Skin.ToggleSetting(trailer.dont.stop.on.unfocus)</onclick>
-                            <visible>Skin.HasSetting(home.netflix.autoplay.trailer)</visible>
-                        </control>
-                        <control type="button" id="988105" description="Playback Action When DialogVideoInfo">
-                            <width>1360</width>
-                            <visible>String.IsEqual(Window.Property(content),4)</visible>
-                            <include>DefSettingsButtonGradientSkinSettings</include>
-                            <label>$LOCALIZE[31297]$LOCALIZE[31631]</label>
-                            <label2>$VAR[Label_PlaybackAction]</label2>
-                            <onclick condition="!Skin.HasSetting(trailer.stop.on.dialogvideoinfo) + !Skin.HasSetting(trailer.pause.on.dialogvideoinfo)">Skin.SetBool(trailer.pause.on.dialogvideoinfo)</onclick>
-                            <onclick condition="Skin.HasSetting(trailer.pause.on.dialogvideoinfo)">Skin.SetBool(trailer.stop.on.dialogvideoinfo)</onclick>
-                            <onclick condition="Skin.HasSetting(trailer.pause.on.dialogvideoinfo)">Skin.Reset(trailer.pause.on.dialogvideoinfo)</onclick>
-                            <onclick condition="Skin.HasSetting(trailer.stop.on.dialogvideoinfo)">Skin.Reset(trailer.stop.on.dialogvideoinfo)</onclick>
-                            <visible>Skin.HasSetting(home.netflix.autoplay.trailer)</visible>
-                        </control>
+                            <label>$LOCALIZE[31715]</label>
+                            <label2>$VAR[AdditionalTVShowsRatingLabel]</label2>
+                            <onclick>SetProperty(includesetting,AdditionalTVShowRating,home)</onclick>
+                            <onclick>ActivateWindow(1101)</onclick>
+                        </control> 
                         <control type="grouplist" id="9259">
                             <visible>String.IsEqual(Window.Property(content),4)</visible>
                             <orientation>horizontal</orientation>
@@ -1882,6 +1850,43 @@
                             <onclick>Skin.ToggleSetting(furniture.numericrating)</onclick>
                             <enable>![Skin.HasSetting(furniture.flags.rating) + Skin.HasSetting(furniture.hide.musicrating)]</enable>
                         </control>
+                        <!-- Indicators -->
+                        <control type="grouplist" id="9580">
+                            <visible>String.IsEqual(Window.Property(content),4)</visible>
+                            <orientation>horizontal</orientation>
+                            <enable>false</enable>
+                            <height>70</height>
+                            <control type="button">
+                                <enable>false</enable>
+                                <textoffsetx>30</textoffsetx>
+                                <font>Button</font>
+                                <align>left</align>
+                                <width>1310</width>
+                                <disabledcolor>PanelWhite30</disabledcolor>
+                                <height>70</height>
+                                <label>31478</label>
+                            </control>
+                        </control>
+                        <control type="button" id="9581">
+                            <visible>String.IsEqual(Window.Property(content),4)</visible>
+                            <width>1360</width>
+                            <include>DefSettingsButtonGradientSkinSettings</include>
+                            <align>left</align>
+                            <label>$LOCALIZE[31985]</label>
+                            <label2>$VAR[MarkersTypeLabel]</label2>
+                            <onclick condition="!Skin.HasSetting(hide.markers) + !Skin.HasSetting(furniture.markers.alternative)">Skin.SetBool(furniture.markers.alternative)</onclick>
+                            <onclick condition="!Skin.HasSetting(hide.markers) + Skin.HasSetting(furniture.markers.alternative)">Skin.Reset(furniture.markers.alternative)</onclick>
+                            <onclick condition="!Skin.HasSetting(hide.markers) + Skin.HasSetting(furniture.markers.alternative)">Skin.SetBool(hide.markers)</onclick>
+                            <onclick condition="Skin.HasSetting(hide.markers)">Skin.Reset(hide.markers)</onclick>
+                        </control>
+                        <control type="button" id="9582" description="Select indicators">
+                            <width>1360</width>
+                            <visible>String.IsEqual(Window.Property(content),4)</visible>
+                            <include>DefSettingsButtonGradientSkinSettings</include>
+                            <label>$LOCALIZE[31716]</label>
+                            <onclick>ActivateWindow(1126)</onclick>
+                            <enable>!Skin.HasSetting(hide.markers)</enable>
+                        </control>
                         <control type="grouplist" id="9274">
                             <visible>String.IsEqual(Window.Property(content),4)</visible>
                             <orientation>horizontal</orientation>
@@ -1931,8 +1936,7 @@
                             <onclick>Skin.ToggleSetting(ModernCase)</onclick>
                         </control>
 
-                        <!-- Indicators -->
-                        <control type="grouplist" id="9580">
+                        <control type="grouplist" id="988100">
                             <visible>String.IsEqual(Window.Property(content),4)</visible>
                             <orientation>horizontal</orientation>
                             <enable>false</enable>
@@ -1945,122 +1949,60 @@
                                 <width>1310</width>
                                 <disabledcolor>PanelWhite30</disabledcolor>
                                 <height>70</height>
-                                <label>31478</label>
+                                <label>31603</label>
                             </control>
                         </control>
-                        <control type="button" id="9581">
-                            <visible>String.IsEqual(Window.Property(content),4)</visible>
+                        <control type="radiobutton" id="988101" description="Enable Auto Trailer">
                             <width>1360</width>
-                            <include>DefSettingsButtonGradientSkinSettings</include>
-                            <align>left</align>
-                            <label>$LOCALIZE[31985]</label>
-                            <label2>$VAR[MarkersTypeLabel]</label2>
-                            <onclick condition="!Skin.HasSetting(hide.markers) + !Skin.HasSetting(furniture.markers.alternative)">Skin.SetBool(furniture.markers.alternative)</onclick>
-                            <onclick condition="!Skin.HasSetting(hide.markers) + Skin.HasSetting(furniture.markers.alternative)">Skin.Reset(furniture.markers.alternative)</onclick>
-                            <onclick condition="!Skin.HasSetting(hide.markers) + Skin.HasSetting(furniture.markers.alternative)">Skin.SetBool(hide.markers)</onclick>
-                            <onclick condition="Skin.HasSetting(hide.markers)">Skin.Reset(hide.markers)</onclick>
-                        </control>
-                        <control type="radiobutton" id="9599">
                             <visible>String.IsEqual(Window.Property(content),4)</visible>
                             <include>DefSettingsButtonGradientSkinSettings</include>
-                            <label>$LOCALIZE[31650]</label>
-                            <align>left</align>
-                            <selected>!Skin.HasSetting(hide.markers.isplaying)</selected>
-                            <onclick>Skin.ToggleSetting(hide.markers.isplaying)</onclick>
-                            <visible>!Skin.HasSetting(hide.markers)</visible>
-                        </control>
-                        <control type="radiobutton" id="9588">
+                            <label>31593</label>
+                            <selected>Skin.HasSetting(home.netflix.autoplay.trailer)</selected>
+                            <onclick>Skin.ToggleSetting(home.netflix.autoplay.trailer)</onclick>
+                        </control> 
+                        <control type="button" id="988102" description="Auto Trailer Delay">
+                            <width>1360</width>
                             <visible>String.IsEqual(Window.Property(content),4)</visible>
                             <include>DefSettingsButtonGradientSkinSettings</include>
-                            <label>$LOCALIZE[16102]</label>
-                            <align>left</align>
-                            <selected>!Skin.HasSetting(hide.markers.watched)</selected>
-                            <onclick>Skin.ToggleSetting(hide.markers.watched)</onclick>
-                            <visible>!Skin.HasSetting(hide.markers)</visible>
+                            <label>$LOCALIZE[31297]$LOCALIZE[31599]</label>
+                            <label2>$VAR[NetflixTrailerDelayLabel] $LOCALIZE[31425]</label2>
+                            <onclick>SetProperty(includesetting,NetflixTrailerDelay,home)</onclick>
+                            <onclick>ActivateWindow(1101)</onclick>
+                            <visible>Skin.HasSetting(home.netflix.autoplay.trailer)</visible>
                         </control>
-                        <control type="radiobutton" id="9589">
+                        <control type="button" id="988103" description="Auto Trailer Black Bars">
+                            <width>1360</width>
                             <visible>String.IsEqual(Window.Property(content),4)</visible>
                             <include>DefSettingsButtonGradientSkinSettings</include>
-                            <label>$LOCALIZE[842]</label>
-                            <align>left</align>
-                            <selected>!Skin.HasSetting(hide.markers.newcontent)</selected>
-                            <onclick>Skin.ToggleSetting(hide.markers.newcontent)</onclick>
-                            <visible>!Skin.HasSetting(hide.markers)</visible>
+                            <label>$LOCALIZE[31297]$LOCALIZE[31595]</label>
+                            <label2>$VAR[NetflixTrailerBlackBarsLabel]</label2>
+                            <onclick condition="!Skin.HasSetting(home.netflix.autoplay.trailer.custom.window) + !Skin.HasSetting(home.netflix.autoplay.trailer.custom.window.force)">Skin.SetBool(home.netflix.autoplay.trailer.custom.window)</onclick>
+                            <onclick condition="Skin.HasSetting(home.netflix.autoplay.trailer.custom.window)">Skin.SetBool(home.netflix.autoplay.trailer.custom.window.force)</onclick>
+                            <onclick condition="Skin.HasSetting(home.netflix.autoplay.trailer.custom.window)">Skin.Reset(home.netflix.autoplay.trailer.custom.window)</onclick>
+                            <onclick condition="Skin.HasSetting(home.netflix.autoplay.trailer.custom.window.force)">Skin.Reset(home.netflix.autoplay.trailer.custom.window.force)</onclick>
+                            <visible>Skin.HasSetting(home.netflix.autoplay.trailer)</visible>
                         </control>
-                        <control type="radiobutton" id="9586">
+                        <control type="radiobutton" id="988104" description="Auto Trailer Stop">
+                            <width>1360</width>
                             <visible>String.IsEqual(Window.Property(content),4)</visible>
                             <include>DefSettingsButtonGradientSkinSettings</include>
-                            <label>$LOCALIZE[575]</label>
-                            <align>left</align>
-                            <selected>!Skin.HasSetting(hide.markers.inprogress)</selected>
-                            <onclick>Skin.ToggleSetting(hide.markers.inprogress)</onclick>
-                            <visible>!Skin.HasSetting(hide.markers)</visible>
+                            <label>$LOCALIZE[31297]$LOCALIZE[31632]</label>
+                            <selected>!Skin.HasSetting(trailer.dont.stop.on.unfocus)</selected>
+                            <onclick>Skin.ToggleSetting(trailer.dont.stop.on.unfocus)</onclick>
+                            <visible>Skin.HasSetting(home.netflix.autoplay.trailer)</visible>
                         </control>
-                        <control type="radiobutton" id="95861">
+                        <control type="button" id="988105" description="Playback Action When DialogVideoInfo">
+                            <width>1360</width>
                             <visible>String.IsEqual(Window.Property(content),4)</visible>
                             <include>DefSettingsButtonGradientSkinSettings</include>
-                            <label>$LOCALIZE[31297]$LOCALIZE[31500]</label>
-                            <align>left</align>
-                            <enable>!Skin.HasSetting(hide.markers.inprogress)</enable>
-                            <selected>Skin.HasSetting(markers.inprogress.percentage) + !Skin.HasSetting(hide.markers.inprogress)</selected>
-                            <onclick>Skin.ToggleSetting(markers.inprogress.percentage)</onclick>
-                            <visible>!Skin.HasSetting(hide.markers) + Skin.HasSetting(furniture.markers.alternative)</visible>
-                        </control>
-                        <control type="radiobutton" id="95862">
-                            <visible>String.IsEqual(Window.Property(content),4)</visible>
-                            <include>DefSettingsButtonGradientSkinSettings</include>
-                            <label>$LOCALIZE[31297]$LOCALIZE[21457]</label>
-                            <align>left</align>
-                            <enable>!Skin.HasSetting(hide.markers.inprogress)</enable>
-                            <selected>!Skin.HasSetting(markers.inprogress.tvshow.label) + !Skin.HasSetting(hide.markers.inprogress)</selected>
-                            <onclick>Skin.ToggleSetting(markers.inprogress.tvshow.label)</onclick>
-                            <visible>!Skin.HasSetting(hide.markers) + Skin.HasSetting(furniture.markers.alternative)</visible>
-                        </control>
-                        <control type="radiobutton" id="9587">
-                            <visible>String.IsEqual(Window.Property(content),4)</visible>
-                            <include>DefSettingsButtonGradientSkinSettings</include>
-                            <label>$LOCALIZE[16101]$VAR[OnlyInListsLabel]</label>
-                            <align>left</align>
-                            <selected>Skin.HasSetting(markers.unwatched)</selected>
-                            <onclick>Skin.ToggleSetting(markers.unwatched)</onclick>
-                            <visible>!Skin.HasSetting(hide.markers)</visible>
-                        </control>
-                        <control type="radiobutton" id="95892">
-                            <visible>String.IsEqual(Window.Property(content),4)</visible>
-                            <include>DefSettingsButtonGradientSkinSettings</include>
-                            <label>$LOCALIZE[31498]$VAR[OnlyInListsLabel]</label>
-                            <align>left</align>
-                            <selected>!Skin.HasSetting(hide.markers.collection)</selected>
-                            <onclick>Skin.ToggleSetting(hide.markers.collection)</onclick>
-                            <visible>!Skin.HasSetting(hide.markers)</visible>
-                        </control>
-                        <control type="radiobutton" id="95891">
-                            <visible>String.IsEqual(Window.Property(content),4)</visible>
-                            <include>DefSettingsButtonGradientSkinSettings</include>
-                            <label>$LOCALIZE[14022]</label>
-                            <align>left</align>
-                            <selected>!Skin.HasSetting(hide.markers.library)</selected>
-                            <onclick>Skin.ToggleSetting(hide.markers.library)</onclick>
-                            <visible>!Skin.HasSetting(hide.markers)</visible>
-                        </control>
-                        <control type="radiobutton" id="95893">
-                            <visible>String.IsEqual(Window.Property(content),4)</visible>
-                            <include>DefSettingsButtonGradientSkinSettings</include>
-                            <label>$LOCALIZE[40000]</label>
-                            <align>left</align>
-                            <selected>!Skin.HasSetting(hide.markers.versions)</selected>
-                            <onclick>Skin.ToggleSetting(hide.markers.versions)</onclick>
-                            <visible>!Skin.HasSetting(hide.markers)</visible>
-                        </control>
-                        <control type="radiobutton" id="95894">
-                            <visible>String.IsEqual(Window.Property(content),4)</visible>
-                            <include>DefSettingsButtonGradientSkinSettings</include>
-                            <label>$LOCALIZE[40211]</label>
-                            <align>left</align>
-                            <selected>!Skin.HasSetting(hide.markers.extras)</selected>
-                            <onclick>Skin.ToggleSetting(hide.markers.extras)</onclick>
-                            <visible>!Skin.HasSetting(hide.markers)</visible>
-                        </control>
+                            <label>$LOCALIZE[31297]$LOCALIZE[31631]</label>
+                            <label2>$VAR[Label_PlaybackAction]</label2>
+                            <onclick condition="!Skin.HasSetting(trailer.stop.on.dialogvideoinfo) + !Skin.HasSetting(trailer.pause.on.dialogvideoinfo)">Skin.SetBool(trailer.pause.on.dialogvideoinfo)</onclick>
+                            <onclick condition="Skin.HasSetting(trailer.pause.on.dialogvideoinfo)">Skin.SetBool(trailer.stop.on.dialogvideoinfo)</onclick>
+                            <onclick condition="Skin.HasSetting(trailer.pause.on.dialogvideoinfo)">Skin.Reset(trailer.pause.on.dialogvideoinfo)</onclick>
+                            <onclick condition="Skin.HasSetting(trailer.stop.on.dialogvideoinfo)">Skin.Reset(trailer.stop.on.dialogvideoinfo)</onclick>
+                            <visible>Skin.HasSetting(home.netflix.autoplay.trailer)</visible>
+                        </control>  
                         <control type="grouplist" id="11996">
                             <visible>String.IsEqual(Window.Property(content),4)</visible>
                             <orientation>horizontal</orientation>
