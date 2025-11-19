@@ -1027,4 +1027,63 @@
             <onclick>ActivateWindow(SystemSettings)</onclick>
         </item>
     </include>
+
+    <include name="CustomSettings_Items.Ratings">
+    	<item id="1">
+            <property name="SettingsName">$LOCALIZE[31712]</property>
+    		<label>231</label>
+    		<onclick>Skin.Reset(Ratings.$PARAM[content].$PARAM[slot])</onclick>
+    		<onclick>Close</onclick>
+    	</item>
+        <item id="2">
+            <include content="RatingItem">
+                <param name="label" value="$LOCALIZE[31717]"/>
+                <param name="flag" value="TMDb"/>
+                <param name="content" value="$PARAM[content]"/>
+                <param name="slot" value="$PARAM[slot]"/>
+            </include>
+        </item> 
+        <item id="3">
+            <include content="RatingItem">
+                <param name="label" value="$LOCALIZE[368]"/>
+                <param name="flag" value="IMDb"/>
+                <param name="content" value="$PARAM[content]"/>
+                <param name="slot" value="$PARAM[slot]"/>
+            </include>
+        </item> 
+        <item id="4">
+            <include content="RatingItem">
+                <param name="label" value="$LOCALIZE[31486]"/>
+                <param name="flag" value="Trakt"/>
+                <param name="content" value="$PARAM[content]"/>
+                <param name="slot" value="$PARAM[slot]"/>
+            </include>
+        </item> 
+    	<item id="5">
+    		<include content="RatingItem">
+    			<param name="label" value="$LOCALIZE[31719]"/>
+    			<param name="flag" value="MC"/>
+    			<param name="content" value="$PARAM[content]"/>
+    			<param name="slot" value="$PARAM[slot]"/>
+    		</include>
+    	</item>	
+    	<item id="6">
+    		<include content="RatingItem">
+    			<param name="label" value="$LOCALIZE[31720]"/>
+    			<param name="flag" value="RT"/>
+    			<param name="content" value="$PARAM[content]"/>
+    			<param name="slot" value="$PARAM[slot]"/>
+    		</include>
+    	</item>	
+    </include>
+    
+    <include name="RatingItem">
+    	<label>$PARAM[label]</label>
+    	<onclick>Skin.SetString(Ratings.$PARAM[content].$PARAM[slot],$PARAM[flag])</onclick>
+    	<onclick condition="!Integer.IsEqual($PARAM[slot],1) + String.IsEqual(Skin.String(Ratings.$PARAM[content].1),$PARAM[flag])">Skin.Reset(Ratings.$PARAM[content].1)</onclick>
+    	<onclick condition="!Integer.IsEqual($PARAM[slot],2) + String.IsEqual(Skin.String(Ratings.$PARAM[content].2),$PARAM[flag])">Skin.Reset(Ratings.$PARAM[content].2)</onclick>
+		<onclick>Close</onclick>
+        <include condition="String.IsEqual(Skin.String(Ratings.$PARAM[content].$PARAM[slot]),$PARAM[flag])">Item_Selected</include>
+    </include>
+
 </includes>

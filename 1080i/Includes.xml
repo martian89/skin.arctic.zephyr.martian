@@ -1969,14 +1969,6 @@
         <animation effect="fade" start="100" end="70" time="400" condition="Control.HasFocus(300) | Control.HasFocus(302)">Conditional</animation>
     </include>
 
-    <include name="defaultcontroltrue">
-        <defaultcontrol always="true">300</defaultcontrol>
-    </include>
-
-    <include name="defaultcontrolfalse">
-        <defaultcontrol always="false">300</defaultcontrol>
-    </include>
-
     <include name="ProgressBar">
         <control type="ranges">
             <visible>Skin.HasSetting(cutlist.markers)</visible>
@@ -2305,7 +2297,7 @@
     
     <variable name="Info_Query">
         <value condition="String.IsEqual(ListItem.DBType,movie) + $EXP[IMDBNumberIsIMDbId]">$INFO[ListItem.IMDBNumber,&amp;imdb_id=,]</value>
-        <value condition="String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(Window(home).Property(TMDbHelper.ListItem.imdb_id))">$INFO[Window(home).Property(TMDbHelper.ListItem.imdb_id),&amp;imdb_id=,]</value>
+        <value condition="String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(ListItem.Property(imdb_id))">$INFO[ListItem.Property(imdb_id),&amp;imdb_id=,]</value>
         <value condition="String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow)">$INFO[Window(home).Property(TMDbHelper.ListItem.tmdb_id),&amp;tmdb_id=,]$INFO[ListItem.Title,&amp;query=,]$INFO[ListItem.Year,&amp;year=,]</value>        
         <value condition="String.IsEqual(ListItem.DBType,episode)">$INFO[Window(home).Property(TMDbHelper.ListItem.tvshow.tmdb_id),&amp;tmdb_id=,]$INFO[ListItem.TvShowTitle,&amp;query=,]$INFO[VideoPlayer.Season,&amp;season=,]$INFO[ListItem.Episode,&amp;episode=,]$INFO[ListItem.Year,&amp;episode_year=,]</value>
         <value condition="String.IsEqual(ListItem.DBType,season) | String.StartsWith(ListItem.Label,Season)">$INFO[Window(home).Property(TMDbHelper.ListItem.tvshow.tmdb_id),&amp;tmdb_id=,]$INFO[ListItem.TvShowTitle,&amp;query=,]$INFO[VideoPlayer.Season,&amp;season=,]</value>
@@ -2316,12 +2308,12 @@
 	<!-- TMDb vars taken from https://github.com/jurialmunkey/skin.arctic.fuse.2 -->
 	
     <variable name="Studio_Query">
-        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Network.1.TMDb_ID))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Network.1.TMDb_ID),&amp;type=tv&amp;with_networks=,&amp;with_id=True]</value>
-        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Network.2.TMDb_ID))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Network.2.TMDb_ID),&amp;type=tv&amp;with_networks=,&amp;with_id=True]</value>
-        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Network.3.TMDb_ID))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Network.3.TMDb_ID),&amp;type=tv&amp;with_networks=,&amp;with_id=True]</value>
-        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Studio.1.TMDb_ID))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Studio.1.TMDb_ID),&amp;type=movie&amp;with_companies=,&amp;with_id=True]</value>
-        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Studio.2.TMDb_ID))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Studio.2.TMDb_ID),&amp;type=movie&amp;with_companies=,&amp;with_id=True]</value>
-        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Studio.3.TMDb_ID))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Studio.3.TMDb_ID),&amp;type=movie&amp;with_companies=,&amp;with_id=True]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Network.1.TMDb_ID))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Network.1.TMDb_ID),&amp;tmdb_type=tv&amp;with_networks=,&amp;with_id=True]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Network.2.TMDb_ID))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Network.2.TMDb_ID),&amp;tmdb_type=tv&amp;with_networks=,&amp;with_id=True]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Network.3.TMDb_ID))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Network.3.TMDb_ID),&amp;tmdb_type=tv&amp;with_networks=,&amp;with_id=True]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Studio.1.TMDb_ID))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Studio.1.TMDb_ID),&amp;tmdb_type=movie&amp;with_companies=,&amp;with_id=True]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Studio.2.TMDb_ID))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Studio.2.TMDb_ID),&amp;tmdb_type=movie&amp;with_companies=,&amp;with_id=True]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Studio.3.TMDb_ID))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Studio.3.TMDb_ID),&amp;tmdb_type=movie&amp;with_companies=,&amp;with_id=True]</value>
     </variable>
 
     <variable name="Director_Query">

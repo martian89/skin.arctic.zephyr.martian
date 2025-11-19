@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Foundation -->
 <window id="0">
+    <defaultcontrol>300</defaultcontrol>
     <backgroundcolor>0</backgroundcolor>
-    <include condition="![Skin.HasSetting(home.vertical) + Skin.HasSetting(home.vertical.widgets)] + ![Skin.HasSetting(home.modernwidgets) + Skin.HasSetting(home.vertical.widgets)]">defaultcontroltrue</include>
-    <include condition="[Skin.HasSetting(home.vertical) + Skin.HasSetting(home.vertical.widgets)] | [Skin.HasSetting(home.modernwidgets) + Skin.HasSetting(home.vertical.widgets)]">defaultcontrolfalse</include>
     <include>Blur_OnLoad_Action</include>
     <onload>RunScript(script.skinshortcuts,type=buildxml&amp;mainmenuID=300&amp;group=mainmenu|x1111|x1112|x1113|x1114|x1115|x1116|x1117|x1118|x1119|powermenu&amp;levels=6)</onload>
     <onload condition="!String.IsEqual(Window(home).Property(ClearArtAnimation),Container(300).ListItem.Label)">SetProperty(ClearArtAnimation,$INFO[Container(300).ListItem.Label],home)</onload>
@@ -11,6 +10,7 @@
     <onload condition="false">ReplaceWindow(1296)</onload>
     <onunload>ClearProperty(TMDbHelper.WidgetContainer,home)</onunload>
     <onload>ClearProperty(TMDbHelper.HideView,Home)</onload>
+    <onload condition="[!$EXP[HomeIsModernMultiWidgets] + !$EXP[HomeIsVerticalMultiWidgets] | $EXP[HomeIsCleanMinimal]] + !Window.Previous(1190)">SetFocus(300)</onload>
     <onload condition="!$EXP[HomeIsModernMultiWidgets] + !$EXP[HomeIsVerticalMultiWidgets]">SetProperty(TMDbHelper.WidgetContainer,301,home)</onload>
     <onload condition="System.AddonIsEnabled(script.favourites)">RunScript(script.favourites)</onload>
     <onload condition="System.AddonIsEnabled(script.wikipedia) + String.IsEmpty(Skin.String(Wikipedia.Format.Link))">Skin.SetString(Wikipedia.Format.Link,[COLOR=Dark2]{}[/COLOR])</onload>

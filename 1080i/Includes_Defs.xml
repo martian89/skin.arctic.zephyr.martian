@@ -305,6 +305,77 @@
         </control>
     </include>
 
+	<include name="DefDialogSettings">
+		<param name="header_label" />
+		<param name="controlid" default="11" />
+		<definition>
+			<include content="DefDialog">
+				<param name="header_label" value="$PARAM[header_label]" />
+				<param name="width" value="1080" />
+				<param name="height" value="860" />
+
+				<include content="Def_Gradient_Settings_Image">
+					<param name="controlid" value="$PARAM[controlid]" />
+					<param name="left" value="8" />
+					<param name="top" value="115" />
+					<param name="width" value="696" />
+					<param name="height" value="66" />
+					<param name="slide" value="66" />
+				</include>
+
+				<nested />
+
+				<include content="scrollbar_dialog">
+					<param name="scrollid" value="1600" />
+					<param name="onleft" value="$PARAM[controlid]" />
+					<param name="onright" value="5" />
+					<param name="visible" value="true" />
+					<param name="height" value="660" />
+				</include>
+
+				<!-- Lines -->
+				<control type="image">
+					<top>115</top>
+					<right>375</right>
+					<height>660</height>
+					<width>1</width>
+					<texture colordiffuse="Black12">common/white.png</texture>
+					<animation effect="fade" start="0" end="100" time="100"
+						condition="!Control.HasFocus(1600) + !Container.Scrolling">Conditional</animation>
+				</control>
+
+				<!-- Buttons -->
+				<control type="grouplist">
+					<top>115</top>
+					<right>42</right>
+					<width>300</width>
+					<itemgap>DialogButtonsItemgap</itemgap>
+					<orientation>vertical</orientation>
+					<onleft>1600</onleft>
+					<onright>$PARAM[controlid]</onright>
+					<control type="button" id="5">
+						<include>DefDialogButtons</include>
+						<label>15067</label>
+						<onclick>Close</onclick>
+					</control>
+				</control>
+			</include>
+		</definition>
+	</include>
+    
+    <include name="DefDialogSettingsList">
+		<left>8</left>
+		<height>660</height>
+		<width>705</width>
+		<top>115</top>
+		<onleft>5</onleft>
+		<onright>1600</onright>
+		<usecontrolcoords>true</usecontrolcoords>
+		<itemgap>0</itemgap>
+		<pagecontrol>1600</pagecontrol>
+		<scrolltime>0</scrolltime>    
+    </include>
+    
     <include name="DefPVRDialogButton">
         <width>600</width>
         <height>66</height>
@@ -354,11 +425,28 @@
     </include>
 
     <include name="DefContextButtonGradientSelect">
-        <radioposx>620</radioposx>
+        <radioposx>612</radioposx>
         <left>30</left>
         <align>left</align>
         <textwidth>600</textwidth>
-        <width>677</width>
+        <width>666</width>
+        <height>66</height>
+        <font>Small</font>
+        <disabledcolor>Black12</disabledcolor>
+        <textcolor>Black70</textcolor>
+        <textureradiofocus colordiffuse="Black70">buttons/radio-on.png</textureradiofocus>
+        <textureradionofocus colordiffuse="Black30">buttons/radio-off.png</textureradionofocus>
+        <focusedcolor>Selected</focusedcolor>
+        <alttexturefocus colordiffuse="$VAR[ColorGradient]" border="5">common/gradient-box-wide-cut.png</alttexturefocus>
+        <texturefocus colordiffuse="$VAR[ColorGradient]" border="5">common/gradient-box-wide-cut.png</texturefocus>
+    </include>
+
+    <include name="DefContextButtonGradientIndicators">
+        <radioposx>642</radioposx>
+        <left>0</left>
+        <align>left</align>
+        <textwidth>600</textwidth>
+        <width>696</width>
         <height>66</height>
         <font>Small</font>
         <disabledcolor>Black12</disabledcolor>
@@ -680,26 +768,26 @@
     </variable>
 
     <variable name="DefMovieDBMoviesContent">
-        <value condition="String.IsEqual(Window(1104).Property(content),1)">plugin://plugin.video.themoviedb.helper?info=top_rated&amp;type=movie&amp;nextpage=false&amp;cacheonly=true</value>
-        <value condition="String.IsEqual(Window(1104).Property(content),2)">plugin://plugin.video.themoviedb.helper?info=popular&amp;type=movie&amp;nextpage=false&amp;cacheonly=true</value>
-        <value condition="String.IsEqual(Window(1104).Property(content),3)">plugin://plugin.video.themoviedb.helper?info=upcoming&amp;type=movie&amp;nextpage=false&amp;cacheonly=true</value>
-        <value>plugin://plugin.video.themoviedb.helper?info=now_playing&amp;type=movie&amp;nextpage=false&amp;cacheonly=true</value>
+        <value condition="String.IsEqual(Window(1104).Property(content),1)">plugin://plugin.video.themoviedb.helper?info=top_rated&amp;tmdb_type=movie&amp;nextpage=false&amp;cacheonly=true</value>
+        <value condition="String.IsEqual(Window(1104).Property(content),2)">plugin://plugin.video.themoviedb.helper?info=popular&amp;tmdb_type=movie&amp;nextpage=false&amp;cacheonly=true</value>
+        <value condition="String.IsEqual(Window(1104).Property(content),3)">plugin://plugin.video.themoviedb.helper?info=upcoming&amp;tmdb_type=movie&amp;nextpage=false&amp;cacheonly=true</value>
+        <value>plugin://plugin.video.themoviedb.helper?info=now_playing&amp;tmdb_type=movie&amp;nextpage=false&amp;cacheonly=true</value>
     </variable>
 
     <variable name="DefMovieDBEpisodesContent">
-        <value condition="String.IsEqual(Window(1105).Property(content),1)">plugin://plugin.video.themoviedb.helper?info=top_rated&amp;type=tv&amp;nextpage=false&amp;cacheonly=true</value>
-        <value condition="String.IsEqual(Window(1105).Property(content),2)">plugin://plugin.video.themoviedb.helper?info=popular&amp;type=tv&amp;nextpage=false&amp;cacheonly=true</value>
-        <value condition="String.IsEqual(Window(1105).Property(content),3)">plugin://plugin.video.themoviedb.helper?info=on_the_air&amp;type=tv&amp;nextpage=false&amp;cacheonly=true</value>
-        <value>plugin://plugin.video.themoviedb.helper?info=airing_today&amp;type=tv&amp;nextpage=false&amp;cacheonly=true</value>
+        <value condition="String.IsEqual(Window(1105).Property(content),1)">plugin://plugin.video.themoviedb.helper?info=top_rated&amp;tmdb_type=tv&amp;nextpage=false&amp;cacheonly=true</value>
+        <value condition="String.IsEqual(Window(1105).Property(content),2)">plugin://plugin.video.themoviedb.helper?info=popular&amp;tmdb_type=tv&amp;nextpage=false&amp;cacheonly=true</value>
+        <value condition="String.IsEqual(Window(1105).Property(content),3)">plugin://plugin.video.themoviedb.helper?info=on_the_air&amp;tmdb_type=tv&amp;nextpage=false&amp;cacheonly=true</value>
+        <value>plugin://plugin.video.themoviedb.helper?info=airing_today&amp;tmdb_type=tv&amp;nextpage=false&amp;cacheonly=true</value>
     </variable>
 
     <variable name="Def_Fanart_List">
-        <value condition="$EXP[ShowTmdbArtwork]">plugin://plugin.video.themoviedb.helper/?info=fanart&amp;type=$VAR[Tmdb_Type]$VAR[Info_Query]&amp;nextpage=false</value>
+        <value condition="$EXP[ShowTmdbArtwork]">plugin://plugin.video.themoviedb.helper/?info=fanart&amp;tmdb_type=$VAR[Tmdb_Type]$VAR[Info_Query]&amp;nextpage=false</value>
     </variable>
 
     <variable name="Def_Set_List">
-        <value condition="$EXP[ShowTmdbSet] + String.IsEqual(ListItem.DBTYPE,set)">plugin://plugin.video.themoviedb.helper/?info=collection&amp;type=collection&amp;tmdb_id=$INFO[Window(home).Property(TMDbHelper.ListItem.TMDb_ID)]&amp;nextpage=false&amp;cacheonly=true</value>
-        <value condition="$EXP[ShowTmdbSet]">plugin://plugin.video.themoviedb.helper/?info=collection&amp;type=collection&amp;tmdb_id=$INFO[Window(home).Property(TMDbHelper.ListItem.Set.TMDb_ID)]&amp;nextpage=false&amp;cacheonly=true</value>
+        <value condition="$EXP[ShowTmdbSet] + String.IsEqual(ListItem.DBTYPE,set)">plugin://plugin.video.themoviedb.helper/?info=collection&amp;tmdb_type=collection&amp;tmdb_id=$INFO[Window(home).Property(TMDbHelper.ListItem.TMDb_ID)]&amp;nextpage=false&amp;cacheonly=true</value>
+        <value condition="$EXP[ShowTmdbSet]">plugin://plugin.video.themoviedb.helper/?info=collection&amp;tmdb_type=collection&amp;tmdb_id=$INFO[Window(home).Property(TMDbHelper.ListItem.Set.TMDb_ID)]&amp;nextpage=false&amp;cacheonly=true</value>
     </variable>
 
     <variable name="Def_Cast_List">
@@ -708,11 +796,11 @@
     </variable>
 
     <variable name="Def_Crew_List">
-        <value condition="$EXP[ShowTmdbCrew] + !String.IsEmpty(Window.Property(videocrew))">plugin://plugin.video.themoviedb.helper/?info=crew&amp;tmdb_type=$VAR[Tmdb_Type]$VAR[Info_Query]&amp;filter_key=job&amp;filter_value=Creator / Director / Producer / Screenplay / Writer / Original Music Composer / Novel / Storyboard / Comic Book&amp;exclude_key=job&amp;exclude_value=Associate / Assistant / Additional / Second / Supervising / Consulting / Standby / Intermediate / Artist / Line Producer / Digital Producer / Effects Producer / Technical Director / Art Director / Casting Director&amp;limit=250&amp;nextpage=false&amp;cacheonly=true</value>
+        <value condition="$EXP[ShowTmdbCrew] + !String.IsEmpty(Window.Property(videocrew))">plugin://plugin.video.themoviedb.helper/?info=crew&amp;tmdb_type=$VAR[Tmdb_Type]$VAR[Info_Query]&amp;filter_key=job&amp;filter_value=Creator / Director / Producer / Screenplay / Writer / Original Music Composer / Novel / Storyboard / Comic Book&amp;exclude_key=job&amp;exclude_value=Associate / Assistant / Additional / Second / Supervising / Consulting / Standby / Intermediate / Artist / Line Producer / Digital Producer / Effects Producer / Music Producer / Technical Director / Art Director / Casting Director&amp;limit=250&amp;nextpage=false&amp;cacheonly=true</value>
     </variable>
 
     <variable name="Def_Director_List">
-        <value condition="$EXP[ShowTmdbDirector] + !String.IsEmpty(Window.Property(videodirector))">plugin://plugin.video.themoviedb.helper/?info=crew_in_movies&amp;type=person&amp;filter_key=job&amp;filter_value=Director&amp;$VAR[Director_Query]&amp;exclude_key=title&amp;exclude_value=$INFO[ListItem.Title]&amp;sort_key=release_date$VAR[Tmdb_Query_Params]</value>
+        <value condition="$EXP[ShowTmdbDirector] + !String.IsEmpty(Window.Property(videodirector))">plugin://plugin.video.themoviedb.helper/?info=crew_in_movies&amp;tmdb_type=person&amp;filter_key=job&amp;filter_value=Director&amp;$VAR[Director_Query]&amp;exclude_key=title&amp;exclude_value=$INFO[ListItem.Title]&amp;sort_key=release_date$VAR[Tmdb_Query_Params]</value>
     </variable>
 
     <variable name="Def_Studio_List">
@@ -721,29 +809,29 @@
     </variable>
 
     <variable name="Def_Similar_List">
-        <value condition="$EXP[ShowTmdbSimilar] + !String.IsEmpty(Window.Property(videosimilar))">plugin://plugin.video.themoviedb.helper?info=similar&amp;type=$VAR[Tmdb_Type]$VAR[Info_Query]&amp;nextpage=false&amp;cacheonly=true</value>
+        <value condition="$EXP[ShowTmdbSimilar] + !String.IsEmpty(Window.Property(videosimilar))">plugin://plugin.video.themoviedb.helper?info=similar&amp;tmdb_type=$VAR[Tmdb_Type]$VAR[Info_Query]&amp;nextpage=false&amp;cacheonly=true</value>
     </variable>
 
     <variable name="Def_Actor_Image_List">
-        <value condition="$EXP[ShowTmdbActorFanart] + $EXP[IsPersonInfo]">plugin://plugin.video.themoviedb.helper?info=images&amp;type=person&amp;tmdb_id=$INFO[ListItem.Property(tmdb_id)]</value>
+        <value condition="$EXP[ShowTmdbActorFanart] + $EXP[IsPersonInfo]">plugin://plugin.video.themoviedb.helper?info=images&amp;tmdb_type=person&amp;tmdb_id=$INFO[ListItem.Property(tmdb_id)]</value>
     </variable>
 
     <variable name="Def_Actor_in_Movies_List">
-        <value condition="$EXP[ShowTmdbActorMovies] + !String.IsEmpty(Window.Property(actormovies))">plugin://plugin.video.themoviedb.helper?info=stars_in_movies&amp;type=person&amp;tmdb_id=$INFO[ListItem.Property(tmdb_id)]&amp;sort_key=release_date$VAR[Tmdb_Query_Params]</value>
+        <value condition="$EXP[ShowTmdbActorMovies] + !String.IsEmpty(Window.Property(actormovies))">plugin://plugin.video.themoviedb.helper?info=stars_in_movies&amp;tmdb_type=person&amp;tmdb_id=$INFO[ListItem.Property(tmdb_id)]&amp;sort_key=release_date$VAR[Tmdb_Query_Params]</value>
     </variable>
 
     <variable name="Def_Actor_in_TVShows_List">
-        <value condition="$EXP[ShowTmdbActorTvShows] + !String.IsEmpty(Window.Property(actortvshows))">plugin://plugin.video.themoviedb.helper?info=stars_in_tvshows&amp;type=person&amp;tmdb_id=$INFO[ListItem.Property(tmdb_id)]&amp;sort_key=first_air_date$VAR[Tmdb_Query_Params]</value>
+        <value condition="$EXP[ShowTmdbActorTvShows] + !String.IsEmpty(Window.Property(actortvshows))">plugin://plugin.video.themoviedb.helper?info=stars_in_tvshows&amp;tmdb_type=person&amp;tmdb_id=$INFO[ListItem.Property(tmdb_id)]&amp;sort_key=first_air_date$VAR[Tmdb_Query_Params]</value>
     </variable>
 
     <variable name="Def_Crew_In_Both_List">
-        <value condition="$EXP[ShowTmdbActorInCrew] + !String.IsEmpty(Window.Property(videocrew))">plugin://plugin.video.themoviedb.helper?info=crew_in_both&amp;type=person&amp;tmdb_id=$INFO[ListItem.Property(tmdb_id)]&amp;sort_key=year$VAR[Tmdb_Query_Params]</value>
+        <value condition="$EXP[ShowTmdbActorInCrew] + !String.IsEmpty(Window.Property(videocrew))">plugin://plugin.video.themoviedb.helper?info=crew_in_both&amp;tmdb_type=person&amp;tmdb_id=$INFO[ListItem.Property(tmdb_id)]&amp;sort_key=year$VAR[Tmdb_Query_Params]</value>
     </variable>
 
     <variable name="Def_VideoList_Item">
-        <value condition="String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(ListItem.IMDBNumber) + String.StartsWith(ListItem.IMDBNumber,tt)">RunScript(plugin.video.themoviedb.helper,add_path=plugin://plugin.video.themoviedb.helper/?info=details&amp;type=movie$INFO[ListItem.IMDBNumber,&amp;imdb_id=,],call_auto=1190)</value>
-        <value condition="String.IsEqual(ListItem.DBType,movie)">RunScript(plugin.video.themoviedb.helper,add_path=plugin://plugin.video.themoviedb.helper/?info=details&amp;type=movie$INFO[ListItem.Property(tmdb_id),&amp;tmdb_id=,]$INFO[ListItem.Title,&amp;query=,]$INFO[ListItem.Year,&amp;year=,],call_auto=1190)</value>
-        <value condition="String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)">RunScript(plugin.video.themoviedb.helper,add_path=plugin://plugin.video.themoviedb.helper/?info=details&amp;type=tv$INFO[ListItem.Property(tmdb_id),&amp;tmdb_id=,]$INFO[ListItem.TVShowTitle,&amp;query=,]$INFO[ListItem.Year,&amp;year=,],call_auto=1190)</value>
+        <value condition="String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(ListItem.IMDBNumber) + String.StartsWith(ListItem.IMDBNumber,tt)">RunScript(plugin.video.themoviedb.helper,add_path=plugin://plugin.video.themoviedb.helper/?info=details&amp;tmdb_type=movie$INFO[ListItem.IMDBNumber,&amp;imdb_id=,],call_auto=1190)</value>
+        <value condition="String.IsEqual(ListItem.DBType,movie)">RunScript(plugin.video.themoviedb.helper,add_path=plugin://plugin.video.themoviedb.helper/?info=details&amp;tmdb_type=movie$INFO[ListItem.Property(tmdb_id),&amp;tmdb_id=,]$INFO[ListItem.Title,&amp;query=,]$INFO[ListItem.Year,&amp;year=,],call_auto=1190)</value>
+        <value condition="String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)">RunScript(plugin.video.themoviedb.helper,add_path=plugin://plugin.video.themoviedb.helper/?info=details&amp;tmdb_type=tv$INFO[ListItem.Property(tmdb_id),&amp;tmdb_id=,]$INFO[ListItem.TVShowTitle,&amp;query=,]$INFO[ListItem.Year,&amp;year=,],call_auto=1190)</value>
     </variable>
 
     <variable name="Def_CastList_Item">
@@ -1718,6 +1806,10 @@
 
     <include name="def_label">
         <label>$PARAM[label]</label>
+    </include>
+
+    <include name="def_colordiffuse">
+        <colordiffuse>$PARAM[colordiffuse]</colordiffuse>
     </include>
     
     <include name="def_textheight">
