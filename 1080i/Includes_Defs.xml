@@ -4844,13 +4844,7 @@
         <param name="header" />
         <param name="property" />
         <definition>
-            <onclick condition="!System.AddonIsEnabled(script.embuary.helper)">Skin.Reset($PARAM[property])</onclick>
-            <onclick condition="!System.AddonIsEnabled(script.embuary.helper)">Skin.SetImage($PARAM[property])</onclick>
-            <onclick condition="System.AddonIsEnabled(script.embuary.helper)">SetProperty(Dialog.1.Label,$LOCALIZE[16018])</onclick>
-            <onclick condition="System.AddonIsEnabled(script.embuary.helper)">SetProperty(Dialog.1.BuiltIn,Skin.Reset($PARAM[property]))</onclick>
-            <onclick condition="System.AddonIsEnabled(script.embuary.helper)">SetProperty(Dialog.2.Label,$LOCALIZE[31271])</onclick>
-            <onclick condition="System.AddonIsEnabled(script.embuary.helper)">SetProperty(Dialog.2.BuiltIn,Skin.SetImage($PARAM[property]))</onclick>
-            <onclick condition="System.AddonIsEnabled(script.embuary.helper)">RunScript(script.embuary.helper,action=createselect,header=$PARAM[header])</onclick>
+            <onclick>RunScript(script.skinvariables,run_dialog=select,heading=$PARAM[header],list=$LOCALIZE[16018] / $LOCALIZE[31271],"executebuiltin_0=Skin.Reset($PARAM[property])","executebuiltin=Skin.SetImage($PARAM[property])")</onclick>          
         </definition>
     </include>
 
