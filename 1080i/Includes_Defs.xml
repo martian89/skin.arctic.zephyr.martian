@@ -375,7 +375,50 @@
 		<pagecontrol>1600</pagecontrol>
 		<scrolltime>0</scrolltime>    
     </include>
-    
+
+    <include name="DefDialogSelectViewtype">
+        <param name="header_id"/>
+        <param name="header_label"/>
+        <param name="control_id" default="3" />
+        <param name="scrollid" default="1600" />
+        <definition>
+	        <include content="DefDialog">
+                <param name="header_label" value="$PARAM[header_label]"/>
+	            <param name="header_id" value="$PARAM[header_id]"/>
+	            <param name="height" value="754"/>
+	            <param name="width" value="1570"/>
+
+                <nested/>
+
+	            <control type="image">
+	                <posx>520</posx>
+	                <top>115</top>
+	                <height>550</height>
+	                <width>1</width>
+	                <texture colordiffuse="Black12">common/white.png</texture>
+	            </control>
+	            <control type="image">
+	                <left>556</left>
+	                <top>115</top>
+	                <height>548</height>
+	                <width>974</width>
+	                <fadetime>150</fadetime>
+	                <texture background="true">$PARAM[image]</texture>
+	            </control>
+
+	            <include content="scrollbar_dialog">
+	                <param name="scrollid" value="$PARAM[scrollid]"/>
+	                <param name="onleft" value="$PARAM[control_id]"/>
+	                <param name="onright" value="$PARAM[control_id]"/>
+	                <param name="height" value="550"/>
+	                <param name="centerright" value="1049" />
+	            </include>
+
+	            <include>DialogSelectlabelInclude</include>
+	        </include>
+        </definition>
+    </include>    
+
     <include name="DefPVRDialogButton">
         <width>600</width>
         <height>66</height>
