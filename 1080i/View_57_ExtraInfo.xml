@@ -10,7 +10,7 @@
             <include>ViewSlideForJumpBar</include>
             <control type="group">
                 <control type="panel" id="57">
-                    <visible>$EXP[InGameMode] | Container.Content(musicvideos) | Container.Content(artists) | Container.Content(movies) | Container.Content(files) | Container.Content(tvshows) | Container.Content(episodes) | Container.Content(actors) | Container.Content(sets) | Container.Content(seasons) | Container.Content(videos) | $EXP[IsVideoAssets]</visible>
+                    <visible>$EXP[Exp_View_57]</visible>
                     <top>PosterPad</top>
                     <height>PosterH</height>
                     <right>SidePad</right>
@@ -64,7 +64,7 @@
                 </include>
                 <top>320</top>
                 <control type="fixedlist" id="57">
-                    <visible>$EXP[InGameMode] | Container.Content(musicvideos) | Container.Content(artists) | Container.Content(movies) | Container.Content(files) | Container.Content(tvshows) | [Container.Content(episodes) + !String.Contains(Container.FolderPath,plugin://,left)] | Container.Content(actors) | Container.Content(sets) | Container.Content(seasons) | Container.Content(videos) | $EXP[IsVideoAssets]</visible>
+                    <visible>$EXP[Exp_View_57]</visible>
                     <top>PosterPad</top>
                     <include content="def_height" condition="Skin.HasSetting(511ListInfo)">
                         <param name="height" value="270" />
@@ -85,9 +85,6 @@
                     </include>
                     <movement>2</movement>
                     <pagecontrol>60</pagecontrol>
-                    <include content="forced_view" condition="Skin.HasSetting(enable.forcedviews)">
-                        <param name="string" value="$LOCALIZE[31147]" />
-                    </include>
                     <viewtype label="31147">list</viewtype>
                     <include>ScrolltimeViewsList</include>
                     <itemlayout condition="!Skin.HasSetting(511ListInfo)" width="1100" height="64">
