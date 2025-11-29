@@ -38,7 +38,6 @@
                 </focusedlayout>
             </control>
             <control type="group">
-                <animation effect="slide" start="-100" end="-100" condition="true">Conditional</animation>
                 <control type="scrollbar" id="1626">
                     <include content="scrollbar_vertical">
                         <param name="scrollid" value="1626"/>
@@ -118,24 +117,7 @@
     </include>
 
     <include name="View_52_BigList_ItemLayout">
-        <control type="image">
-            <left>10</left>
-            <top>10</top>
-            <width>100</width>
-            <height>100</height>
-            <aspectratio scalediffuse="false">scale</aspectratio>
-            <texture diffuse="common/circle.png" background="true">$VAR[PosterImage]</texture>
-            <visible>!Skin.HasSetting(global.hidecirles)</visible>
-        </control>
-        <control type="image">
-            <left>1</left>
-            <top>1</top>
-            <width>80</width>
-            <height>119</height>
-            <aspectratio scalediffuse="false">scale</aspectratio>
-            <texture background="true">$VAR[PosterImage]</texture>
-            <visible>Skin.HasSetting(global.hidecirles)</visible>
-        </control>
+    	<include>View_52_Thumbnail_Image</include>
         <control type="label">
             <left>130</left>
             <top>10</top>
@@ -146,7 +128,6 @@
             <textcolor>Dark1</textcolor>
             <selectedcolor>Dark1</selectedcolor>
             <label>$INFO[ListItem.Label]</label>
-            <animation effect="slide" start="0,0" end="-17,0" time="0" condition="Skin.HasSetting(global.hidecirles)">Conditional</animation>
         </control>
         <control type="label">
             <left>130</left>
@@ -159,7 +140,7 @@
             <textcolor>Dark1</textcolor>
             <selectedcolor>Dark1</selectedcolor>
             <label>$INFO[ListItem.Label2]</label>
-            <animation effect="slide" start="0" end="60" time="0" condition="Skin.HasSetting(hide.markers)">Conditional</animation>
+            <animation effect="slide" start="0" end="60" time="0" condition="Skin.HasSetting(hide.markers) | ![Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)]">Conditional</animation>
         </control>
         <control type="label">
             <align>right</align>
@@ -184,24 +165,7 @@
             <height>119</height>
             <texture border="5" colordiffuse="Dark1">common/box.png</texture>
         </control>
-        <control type="image">
-            <left>10</left>
-            <top>10</top>
-            <width>100</width>
-            <height>100</height>
-            <aspectratio scalediffuse="false">scale</aspectratio>
-            <texture diffuse="common/circle.png" background="true">$VAR[PosterImage]</texture>
-            <visible>!Skin.HasSetting(global.hidecirles)</visible>
-        </control>
-        <control type="image">
-            <left>1</left>
-            <top>1</top>
-            <width>80</width>
-            <height>119</height>
-            <aspectratio scalediffuse="false">scale</aspectratio>
-            <texture background="true">$VAR[PosterImage]</texture>
-            <visible>Skin.HasSetting(global.hidecirles)</visible>
-        </control>
+    	<include>View_52_Thumbnail_Image</include>
         <control type="label">
             <left>130</left>
             <top>10</top>
@@ -212,7 +176,6 @@
             <textcolor>Light1</textcolor>
             <selectedcolor>Light1</selectedcolor>
             <label>$INFO[ListItem.Label]</label>
-            <animation effect="slide" start="0,0" end="-17,0" time="0" condition="Skin.HasSetting(global.hidecirles)">Conditional</animation>
         </control>
         <control type="label">
             <left>130</left>
@@ -225,7 +188,7 @@
             <textcolor>Light1</textcolor>
             <selectedcolor>Light1</selectedcolor>
             <label>$INFO[ListItem.Label2]</label>
-            <animation effect="slide" start="0" end="60" time="0" condition="Skin.HasSetting(hide.markers)">Conditional</animation>
+            <animation effect="slide" start="0" end="60" time="0" condition="Skin.HasSetting(hide.markers) | ![Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)]">Conditional</animation>
         </control>
         <control type="label">
             <align>right</align>
@@ -241,4 +204,71 @@
             <visible>!String.IsEqual(ListItem.Label,..)</visible>
         </control>
     </include>
+    
+    <include name="View_52_Thumbnail_Image">
+		<control type="group">
+			<visible>!String.IsEqual(ListItem.DBType,studio) + !String.IsEqual(ListItem.DBType,genre)</visible>
+	        <control type="image">
+	            <left>10</left>
+	            <top>10</top>
+	            <width>100</width>
+	            <height>100</height>
+	            <aspectratio scalediffuse="false">scale</aspectratio>
+	            <texture diffuse="common/circle.png" background="true">$VAR[PosterImage]</texture>
+	            <visible>!Skin.HasSetting(global.hidecirles)</visible>
+	        </control>
+	        <control type="image">
+	            <left>10</left>
+	            <top>10</top>
+	            <width>100</width>
+	            <height>100</height>
+	            <aspectratio scalediffuse="false">scale</aspectratio>
+	            <texture background="true">$VAR[PosterImage]</texture>
+	            <visible>Skin.HasSetting(global.hidecirles)</visible>
+	        </control>
+        </control>
+		<control type="group">
+			<visible>String.IsEqual(ListItem.DBType,studio)</visible>
+	        <control type="image">
+	            <left>10</left>
+	            <top>10</top>
+	            <width>100</width>
+	            <height>100</height>
+	            <aspectratio scalediffuse="false">keep</aspectratio>
+	            <texture diffuse="common/circle.png" background="true" fallback="DefaultStudios.png">$VAR[ThumbImageStudios]</texture>
+	            <visible>!Skin.HasSetting(global.hidecirles)</visible>
+	        </control>
+	        <control type="image">
+	            <left>10</left>
+	            <top>10</top>
+	            <width>100</width>
+	            <height>100</height>
+	            <aspectratio scalediffuse="false">keep</aspectratio>
+	            <texture background="true" fallback="DefaultStudios.png">$VAR[ThumbImageStudios]</texture>
+	            <visible>Skin.HasSetting(global.hidecirles)</visible>
+	        </control>
+        </control>
+		<control type="group">
+			<visible>String.IsEqual(ListItem.DBType,genre)</visible>
+	        <control type="image">
+	            <left>10</left>
+	            <top>10</top>
+	            <width>100</width>
+	            <height>100</height>
+	            <aspectratio scalediffuse="false">keep</aspectratio>
+	            <texture diffuse="common/circle.png" background="true" fallback="DefaultGenre.png">$VAR[ThumbImageGenres]</texture>
+	            <visible>!Skin.HasSetting(global.hidecirles)</visible>
+	        </control>
+	        <control type="image">
+	            <left>10</left>
+	            <top>10</top>
+	            <width>100</width>
+	            <height>100</height>
+	            <aspectratio scalediffuse="false">keep</aspectratio>
+	            <texture background="true" fallback="DefaultGenre.png">$VAR[ThumbImageGenres]</texture>
+	            <visible>Skin.HasSetting(global.hidecirles)</visible>
+	        </control>
+        </control>
+    </include>
+
 </includes>
