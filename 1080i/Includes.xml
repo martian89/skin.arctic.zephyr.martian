@@ -214,7 +214,7 @@
     </expression>
     
     <expression name="IsTVShowInProgress">
-        [[Container.Content(tvshows) | Container.Content(season)] + !String.IsEqual(ListItem.DBTYPE,movie) | String.IsEqual(ListItem.DBTYPE,tvshow) | String.IsEqual(ListItem.DBTYPE,season)]
+        [String.IsEqual(ListItem.DBTYPE,tvshow) | String.IsEqual(ListItem.DBTYPE,season)]
         + !String.IsEqual(ListItem.Overlay,OverlayWatched.png) 
         + [
         	[!String.IsEqual(ListItem.Property(WatchedEpisodes),ListItem.Property(TotalEpisodes)) + !String.IsEqual(ListItem.Property(WatchedEpisodes),0) + !String.IsEmpty(ListItem.Property(WatchedEpisodes))] 
@@ -224,7 +224,7 @@
     </expression>
     
     <expression name="IsTVShowInProgress301">
-        [[Container(301).Content(tvshows) | Container(301).Content(season)] + !String.IsEqual(Container(301).ListItem.DBTYPE,movie) | String.IsEqual(Container(301).ListItem.DBTYPE,tvshow) | String.IsEqual(Container(301).ListItem.DBTYPE,season)]
+        [String.IsEqual(Container(301).ListItem.DBTYPE,tvshow) | String.IsEqual(Container(301).ListItem.DBTYPE,season)]
         + !String.IsEqual(Container(301).ListItem.Overlay,OverlayWatched.png)
         + [
         	[!String.IsEqual(Container(301).ListItem.Property(WatchedEpisodes),Container(301).ListItem.Property(TotalEpisodes)) + !String.IsEqual(Container(301).ListItem.Property(WatchedEpisodes),0) + !String.IsEmpty(Container(301).ListItem.Property(WatchedEpisodes))] 
@@ -234,7 +234,7 @@
     </expression>
     
     <expression name="IsNewMovie">
-        [Container.Content(movies) | String.IsEqual(ListItem.DBTYPE,movie)]
+        String.IsEqual(ListItem.DBTYPE,movie)
         + [
             String.IsEqual(Window(Home).Property(LatestMovie.1.Title),ListItem.Title)
             | String.IsEqual(Window(Home).Property(LatestMovie.2.Title),ListItem.Title)
@@ -249,7 +249,7 @@
           ]
     </expression>
     <expression name="IsNewTVShow">
-        [Container.Content(tvshows) | String.IsEqual(ListItem.DBTYPE,tvshow)]
+        String.IsEqual(ListItem.DBTYPE,tvshow)
         + [
             String.IsEqual(Window(Home).Property(LatestEpisode.1.ShowTitle),ListItem.TvShowTitle)
             | String.IsEqual(Window(Home).Property(LatestEpisode.2.ShowTitle),ListItem.TvShowTitle)
@@ -264,7 +264,7 @@
           ]
     </expression>
     <expression name="IsNewSeason">
-        [Container.Content(seasons) | String.IsEqual(ListItem.DBTYPE,season)]
+        String.IsEqual(ListItem.DBTYPE,season)
         + [
             String.IsEqual(Window(Home).Property(LatestEpisode.1.ShowTitle),ListItem.TvShowTitle) + String.IsEqual(Window(Home).Property(LatestEpisode.1.EpisodeSeason),ListItem.Season)
             | String.IsEqual(Window(Home).Property(LatestEpisode.2.ShowTitle),ListItem.TvShowTitle) + String.IsEqual(Window(Home).Property(LatestEpisode.2.EpisodeSeason),ListItem.Season)
@@ -279,7 +279,7 @@
           ]
     </expression>
     <expression name="IsNewEpisode">
-        [Container.Content(episodes) | String.IsEqual(ListItem.DBTYPE,episode)]
+        String.IsEqual(ListItem.DBTYPE,episode)
         + [
             String.IsEqual(Window(Home).Property(LatestEpisode.1.ShowTitle),ListItem.TvShowTitle) + String.IsEqual(Window(Home).Property(LatestEpisode.1.EpisodeSeason),ListItem.Season) + String.IsEqual(Window(Home).Property(LatestEpisode.1.EpisodeTitle),ListItem.Title)
             | String.IsEqual(Window(Home).Property(LatestEpisode.2.ShowTitle),ListItem.TvShowTitle) + String.IsEqual(Window(Home).Property(LatestEpisode.2.EpisodeSeason),ListItem.Season) + String.IsEqual(Window(Home).Property(LatestEpisode.2.EpisodeTitle),ListItem.Title)
@@ -295,7 +295,7 @@
     </expression>
     
     <expression name="IsNewMovie301">
-        [Container(301).Content(movies) | String.IsEqual(Container(301).ListItem.DBTYPE,movie)]
+        String.IsEqual(Container(301).ListItem.DBTYPE,movie)
         + [
             String.IsEqual(Window(Home).Property(LatestMovie.1.Title),Container(301).ListItem.Title)
             | String.IsEqual(Window(Home).Property(LatestMovie.2.Title),Container(301).ListItem.Title)
@@ -310,7 +310,7 @@
           ]
     </expression>
     <expression name="IsNewTVShow301">
-        [Container(301).Content(tvshows) | String.IsEqual(Container(301).ListItem.DBTYPE,tvshow)]
+        String.IsEqual(Container(301).ListItem.DBTYPE,tvshow)
         + [
             String.IsEqual(Window(Home).Property(LatestEpisode.1.ShowTitle),Container(301).ListItem.TvShowTitle)
             | String.IsEqual(Window(Home).Property(LatestEpisode.2.ShowTitle),Container(301).ListItem.TvShowTitle)
@@ -325,7 +325,7 @@
           ]
     </expression>
     <expression name="IsNewSeason301">
-        [Container(301).Content(seasons) | String.IsEqual(Container(301).ListItem.DBTYPE,season)]
+        String.IsEqual(Container(301).ListItem.DBTYPE,season)
         + [
             String.IsEqual(Window(Home).Property(LatestEpisode.1.ShowTitle),Container(301).ListItem.TvShowTitle) + String.IsEqual(Window(Home).Property(LatestEpisode.1.EpisodeSeason),Container(301).ListItem.Season)
             | String.IsEqual(Window(Home).Property(LatestEpisode.2.ShowTitle),Container(301).ListItem.TvShowTitle) + String.IsEqual(Window(Home).Property(LatestEpisode.2.EpisodeSeason),Container(301).ListItem.Season)
@@ -340,7 +340,7 @@
           ]
     </expression>
     <expression name="IsNewEpisode301">
-        [Container(301).Content(episodes) | String.IsEqual(Container(301).ListItem.DBTYPE,episode)]
+        String.IsEqual(Container(301).ListItem.DBTYPE,episode)
         + [
             String.IsEqual(Window(Home).Property(LatestEpisode.1.ShowTitle),Container(301).ListItem.TvShowTitle) + String.IsEqual(Window(Home).Property(LatestEpisode.1.EpisodeSeason),Container(301).ListItem.Season) + String.IsEqual(Window(Home).Property(LatestEpisode.1.EpisodeTitle),Container(301).ListItem.Title)
             | String.IsEqual(Window(Home).Property(LatestEpisode.2.ShowTitle),Container(301).ListItem.TvShowTitle) + String.IsEqual(Window(Home).Property(LatestEpisode.2.EpisodeSeason),Container(301).ListItem.Season) + String.IsEqual(Window(Home).Property(LatestEpisode.2.EpisodeTitle),Container(301).ListItem.Title)
