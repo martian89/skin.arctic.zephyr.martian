@@ -4,57 +4,21 @@
     <defaultcontrol always="true">50</defaultcontrol>
     <backgroundcolor>0</backgroundcolor>
     <menucontrol>9000</menucontrol>
-    <views>50,550,508,509,511,512,513,504,56,57,53,55,555,59,54,51,58,52,500,514,515,516,517,519,521,522,524,526,527</views>
+    <include>ViewIDs</include>
     <include>Blur_OnLoad_Action</include>
     <onunload condition="Skin.HasSetting(home.netflix.autoplay.trailer) + $EXP[TrailerIsPlaying] + !Skin.HasSetting(trailer.dont.stop.on.unfocus) + !Window.Next(FullScreenVideo)">ClearProperty(TrailerPath,home)</onunload>
     <onunload condition="Skin.HasSetting(home.netflix.autoplay.trailer) + $EXP[TrailerIsPlaying] + !Skin.HasSetting(trailer.dont.stop.on.unfocus) + !Window.Next(FullScreenVideo)">Stop</onunload>
     <onunload condition="Skin.HasSetting(home.netflix.autoplay.trailer)">ClearProperty(listitem.trailer,home)</onunload>
     <controls>
         <include>GlobalBackground</include>
-        <include condition="$EXP[Exp_View_50_Include] + !Skin.HasSetting(50list.low)">View_50_List</include>
-        <include condition="$EXP[Exp_View_50_Include] + Skin.HasSetting(50list.low)">View_50_LowList</include>
-        <include condition="$EXP[Exp_View_51_Include] + Skin.HasSetting(51bigwide.showinfo)">View_51_BigWide_Info</include>
-        <include condition="$EXP[Exp_View_51_Include] + Skin.HasSetting(51bigwide.showinfo.alternative)">View_51_BigWide</include>
-        <include condition="$EXP[Exp_View_51_Include] + !Skin.HasSetting(51bigwide.showinfo) + !Skin.HasSetting(51bigwide.showinfo.alternative)">View_51_BigWide_Classic</include>
-        <include condition="$EXP[Exp_View_52_Include] + Skin.HasSetting(52biglist.singlepane)">View_52_BigList_SinglePane</include>
-        <include condition="$EXP[Exp_View_52_Include] + !Skin.HasSetting(52biglist.singlepane)">View_52_BigList_DoublePane</include>
-        <include condition="$EXP[Exp_View_53_Include]">View_53_Poster</include>
-        <include condition="$EXP[Exp_View_54_Include]">View_54_Banner</include>
-        <include condition="$EXP[Exp_View_55_Include] + Skin.HasSetting(55wall.showinfo)">View_55_Wall_Info</include>
-        <include condition="$EXP[Exp_View_55_Include] + Skin.HasSetting(55wall.showposter)">View_55_Wall_Poster</include>
-        <include condition="$EXP[Exp_View_55_Include] + !Skin.HasSetting(55wall.showinfo) + !Skin.HasSetting(55wall.showposter)">View_55_Wall</include>
-        <include condition="$EXP[Exp_View_56_Include] + !Skin.HasSetting(56media.showinfo) + !Skin.HasSetting(56media.low)">View_56_MediaInfo</include>
-        <include condition="$EXP[Exp_View_56_Include] + Skin.HasSetting(56media.showinfo) + !Skin.HasSetting(56media.low)">View_56_MediaInfo2</include>
-        <include condition="$EXP[Exp_View_56_Include] + Skin.HasSetting(56media.low)">View_56_MediaInfo3</include>
-        <include condition="$EXP[Exp_View_57_Include] + !Skin.HasSetting(57list.low)">View_57_ExtraInfo</include>
-        <include condition="$EXP[Exp_View_57_Include] + Skin.HasSetting(57list.low)">View_57_ExtraInfo_LowList</include>
-        <include condition="$EXP[Exp_View_58_Include]">View_58_Cards</include>
-        <include condition="$EXP[Exp_View_59_Include]">View_59_BannerWall</include>
-        <include condition="$EXP[Exp_View_500_Include]">View_500_Thumbnails</include>
-        <include condition="$EXP[Exp_View_504_Include]">View_504_Fanart</include>
-        <include condition="$EXP[Exp_View_508_Include]">View_508_Fanart2</include>
-        <include condition="$EXP[Exp_View_509_Include]">View_509_Shift</include>
-        <include condition="$EXP[Exp_View_511_Include]">View_511_Double</include>
-        <include condition="$EXP[Exp_View_512_Include]">View_511_Double_Banner</include>
-        <include condition="$EXP[Exp_View_513_Include]">View_513_Shifted</include>
-        <include condition="$EXP[Exp_View_514_Include]">View_514_Albums</include>
-        <include condition="$EXP[Exp_View_515_Include]">View_515_SideCards</include>
-        <include condition="$EXP[Exp_View_516_Include]">View_516_SeasonsInfo</include>
-        <include condition="$EXP[Exp_View_517_Include]">View_517_WallSmall</include>
-        <include condition="$EXP[Exp_View_519_Include]">View_519_Shift_Modern</include>
-        <include condition="$EXP[Exp_View_521_Include]">View_521_Minimal_V2</include>
-        <include condition="$EXP[Exp_View_522_Include]">View_522_Minimal_V2_Episodes</include>
-        <include condition="$EXP[Exp_View_524_Include]">View_524_Minimal_V2_Seasons</include>
-        <include condition="$EXP[Exp_View_526_Include]">View_526_SeasonsInfo_V2</include>
-        <include condition="$EXP[Exp_View_527_Include]">View_527_List_V2</include>
-        <include condition="$EXP[Exp_View_550_Include]">View_550_List</include>
-        <include condition="$EXP[Exp_View_555_Include]">View_555_Wall_Episodes</include>
-        <include>JumpBarHorizontal2</include>
         <include>Furniture_Header</include>
         <include>Furniture_NowPlaying</include>
         <include>Furniture_Clock</include>
         <include>Furniture_Flags</include>
         <include>Furniture_Weather</include>
+        <include>ViewModes</include>
+
+        <include>JumpBarHorizontal2</include>
         <include content="DialogInfoOverlay">
             <param name="headerinfo" value="$INFO[ListItem.Title]" />
             <param name="plotinfo" value="$INFO[ListItem.Tagline,[B],[/B][CR][CR]]$VAR[LabelPlot]" />

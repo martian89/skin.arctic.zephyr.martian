@@ -2077,9 +2077,58 @@
         <value condition="Control.IsVisible(30191)">AlarmClock(Preload,SetProperty(TMDbHelper.WidgetContainer,30191),00:00,silent)</value>
     </variable>
 
+    <include name="ViewIDs">
+        <views>50,550,505,506,507,508,509,511,512,513,504,56,57,53,55,555,59,54,51,58,52,500,503,514,515,516,517,519,521,522,523,524,526,527</views>  
+    </include>
+    
+    <include name="ViewModes">
+        <include condition="$EXP[Exp_View_50_Include] + !Skin.HasSetting(50list.low)">View_50_List</include>
+        <include condition="$EXP[Exp_View_50_Include] + Skin.HasSetting(50list.low)">View_50_LowList</include>
+        <include condition="$EXP[Exp_View_51_Include] + Skin.HasSetting(51bigwide.showinfo)">View_51_BigWide_Info</include>
+        <include condition="$EXP[Exp_View_51_Include] + Skin.HasSetting(51bigwide.showinfo.alternative)">View_51_BigWide</include>
+        <include condition="$EXP[Exp_View_51_Include] + !Skin.HasSetting(51bigwide.showinfo) + !Skin.HasSetting(51bigwide.showinfo.alternative)">View_51_BigWide_Classic</include>
+        <include condition="$EXP[Exp_View_52_Include] + Skin.HasSetting(52biglist.singlepane)">View_52_BigList_SinglePane</include>
+        <include condition="$EXP[Exp_View_52_Include] + !Skin.HasSetting(52biglist.singlepane)">View_52_BigList_DoublePane</include>
+        <include condition="$EXP[Exp_View_53_Include]">View_53_Poster</include>
+        <include condition="$EXP[Exp_View_54_Include]">View_54_Banner</include>
+        <include condition="$EXP[Exp_View_55_Include] + Skin.HasSetting(55wall.showinfo)">View_55_Wall_Info</include>
+        <include condition="$EXP[Exp_View_55_Include] + Skin.HasSetting(55wall.showposter)">View_55_Wall_Poster</include>
+        <include condition="$EXP[Exp_View_55_Include] + !Skin.HasSetting(55wall.showinfo) + !Skin.HasSetting(55wall.showposter)">View_55_Wall</include>
+        <include condition="$EXP[Exp_View_56_Include] + !Skin.HasSetting(56media.showinfo) + !Skin.HasSetting(56media.low)">View_56_MediaInfo</include>
+        <include condition="$EXP[Exp_View_56_Include] + Skin.HasSetting(56media.showinfo) + !Skin.HasSetting(56media.low)">View_56_MediaInfo2</include>
+        <include condition="$EXP[Exp_View_56_Include] + Skin.HasSetting(56media.low)">View_56_MediaInfo3</include>
+        <include condition="$EXP[Exp_View_57_Include] + !Skin.HasSetting(57list.low)">View_57_ExtraInfo</include>
+        <include condition="$EXP[Exp_View_57_Include] + Skin.HasSetting(57list.low)">View_57_ExtraInfo_LowList</include>
+        <include condition="$EXP[Exp_View_58_Include]">View_58_Cards</include>
+        <include condition="$EXP[Exp_View_59_Include]">View_59_BannerWall</include>
+        <include condition="$EXP[Exp_View_500_Include]">View_500_Thumbnails</include>
+        <include condition="$EXP[Exp_View_504_Include]">View_504_Fanart</include>
+        <include condition="$EXP[Exp_View_503_Include]">View_503_Poster_Square</include>
+        <include condition="$EXP[Exp_View_505_Include]">View_505_Wall</include>
+        <include condition="$EXP[Exp_View_506_Include]">View_506_Wall</include>
+        <include condition="$EXP[Exp_View_507_Include]">View_507_Wall</include>
+        <include condition="$EXP[Exp_View_508_Include]">View_508_Fanart2</include>
+        <include condition="$EXP[Exp_View_509_Include]">View_509_Shift</include>
+        <include condition="$EXP[Exp_View_511_Include]">View_511_Double</include>
+        <include condition="$EXP[Exp_View_512_Include]">View_511_Double_Banner</include>
+        <include condition="$EXP[Exp_View_513_Include]">View_513_Shifted</include>
+        <include condition="$EXP[Exp_View_514_Include]">View_514_Albums</include>
+        <include condition="$EXP[Exp_View_515_Include]">View_515_SideCards</include>
+        <include condition="$EXP[Exp_View_516_Include]">View_516_SeasonsInfo</include>
+        <include condition="$EXP[Exp_View_517_Include]">View_517_WallSmall</include>
+        <include condition="$EXP[Exp_View_519_Include]">View_519_Shift_Modern</include>
+        <include condition="$EXP[Exp_View_521_Include]">View_521_Minimal_V2</include>
+        <include condition="$EXP[Exp_View_522_Include]">View_522_Minimal_V2_Episodes</include>
+        <include condition="$EXP[Exp_View_523_Include]">View_523_Minimal_V2_Music</include>
+        <include condition="$EXP[Exp_View_524_Include]">View_524_Minimal_V2_Seasons</include>
+        <include condition="$EXP[Exp_View_526_Include]">View_526_SeasonsInfo_V2</include>
+        <include condition="$EXP[Exp_View_527_Include]">View_527_List_V2</include>
+        <include condition="$EXP[Exp_View_550_Include]">View_550_List</include>
+        <include condition="$EXP[Exp_View_555_Include]">View_555_Wall_Episodes</include>    
+    </include>
+
    <variable name="ViewModeSwitch">
         <value condition="Container.Content(files) + Window.IsVisible(MyMusicNav.xml)">files-music</value>
-        <value condition="Container.Content(musicvideos) + Window.IsVisible(MyMusicNav.xml)">musicvideos-music</value>
         <value condition="Container.Content(tvshows) + String.IsEqual(Container.Property(param.info),episode_groups)">episode-groups-tvshows</value>
         <value condition="Container.Content(seasons) + String.IsEqual(Container.Property(param.info),episode_group_seasons)">episode-groups-seasons</value>
         <value condition="Container.Content() + String.IsEqual(Container.Property(param.info),watch_providers)">none-providers</value>
@@ -2089,7 +2138,7 @@
         <value condition="$EXP[InGameMode]">none-games</value>
         <value>none</value>
     </variable>
-
+    
     <include name="unlock_views">
         <onclick condition="[Container.Content() + !String.IsEmpty(Skin.String(Skin.ForcedView.))]">Skin.Reset(Skin.ForcedView.)</onclick>
         <onclick condition="[Container.Content(tags) + !String.IsEmpty(Skin.String(Skin.ForcedView.tags))]">Skin.Reset(Skin.ForcedView.tags)</onclick>
