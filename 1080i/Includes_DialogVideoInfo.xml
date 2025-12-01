@@ -1280,8 +1280,8 @@
             </control>
             
             <control type="radiobutton" id="10001">
- 		        <onclick condition="!ListItem.IsFolder + !String.IsEmpty(ListItem.FileNameAndPath)">RunScript(plugin.video.themoviedb.helper,close_dialog=1190,playmedia='$ESCINFO[ListItem.FileNameAndPath]')</onclick>
-		        <onclick condition="!ListItem.IsFolder + String.IsEmpty(ListItem.FileNameAndPath)">RunScript(plugin.video.themoviedb.helper,close_dialog=1190,playmedia='$ESCINFO[ListItem.FolderPath]')</onclick>
+ 		        <onclick condition="!ListItem.IsFolder + !String.IsEmpty(ListItem.FileNameAndPath)">RunScript(plugin.video.themoviedb.helper,close_dialog=1190,"playmedia=$INFO[ListItem.FileNameAndPath]")</onclick>
+		        <onclick condition="!ListItem.IsFolder + String.IsEmpty(ListItem.FileNameAndPath)">RunScript(plugin.video.themoviedb.helper,close_dialog=1190,"playmedia=$INFO[ListItem.FolderPath]")</onclick>
                 <textureradioonfocus colordiffuse="FFFFFFFF">buttonsdialogs/continue.png</textureradioonfocus>
                 <textureradioonnofocus colordiffuse="FFFFFFFF">buttonsdialogs/continue.png</textureradioonnofocus>
                 <include content="DialogVideoInfoButtons">
@@ -1320,7 +1320,7 @@
                 <visible>String.IsEqual(ListItem.DBType,tvshow) + Integer.IsGreater(ListItem.Property(UnwatchedEpisodes),0) + !String.IsEmpty(ListItem.DBID) + !Skin.HasSetting(HideNextUpEpisodeButton) + !String.IsEmpty(Container(9911).ListItem.FileNameAndPath)</visible>
                 <onclick condition="!Window.IsVisible(1190)">Dialog.Close(all)</onclick>
                 <onclick condition="!Window.IsVisible(1190)">PlayMedia($ESCINFO[Container(9911).ListItem.FileNameAndPath])</onclick>
-                <onclick condition="Window.IsVisible(1190)">RunScript(plugin.video.themoviedb.helper,close_dialog=1190,playmedia='$ESCINFO[Container(9911).ListItem.FileNameAndPath]')</onclick>
+                <onclick condition="Window.IsVisible(1190)">RunScript(plugin.video.themoviedb.helper,close_dialog=1190,"playmedia=$INFO[Container(9911).ListItem.FileNameAndPath]")</onclick>
                 <include content="DialogVideoInfoButtons">
                     <param name="icon" value="buttonsdialogs/upnext.png" />
                 </include>

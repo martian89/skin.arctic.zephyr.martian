@@ -1578,8 +1578,8 @@
 		<onclick condition="!Skin.HasSetting(PlayTrailerWindowed) + !Window.IsVisible(1190) + [Skin.HasSetting(Use.IMDB.Trailer) | !String.IsEmpty(ListItem.Trailer)]">Dialog.Close(movieinformation)</onclick>                
        	<onclick condition="!Skin.HasSetting(PlayTrailerWindowed) + !Window.IsVisible(1190) + !Skin.HasSetting(Use.IMDB.Trailer) + !String.IsEmpty(ListItem.Trailer)">SendClick(11)</onclick>
         <onclick condition="!Skin.HasSetting(PlayTrailerWindowed) + !Window.IsVisible(1190) + Skin.HasSetting(Use.IMDB.Trailer)">PlayMedia($VAR[ContentIMDbTrailer])</onclick>                
-        <onclick condition="!Skin.HasSetting(PlayTrailerWindowed) + Window.IsVisible(1190) + !Skin.HasSetting(Use.IMDB.Trailer) + !String.IsEmpty(ListItem.Trailer)">RunScript(plugin.video.themoviedb.helper,close_dialog=1190,playmedia='$ESCINFO[ListItem.Trailer]')</onclick>
-        <onclick condition="!Skin.HasSetting(PlayTrailerWindowed) + Window.IsVisible(1190) + Skin.HasSetting(Use.IMDB.Trailer)">RunScript(plugin.video.themoviedb.helper,close_dialog=1190,playmedia='$ESCVAR[ContentIMDbTrailer]')</onclick>                
+        <onclick condition="!Skin.HasSetting(PlayTrailerWindowed) + Window.IsVisible(1190) + !Skin.HasSetting(Use.IMDB.Trailer) + !String.IsEmpty(ListItem.Trailer)">RunScript(plugin.video.themoviedb.helper,close_dialog=1190,"playmedia=$INFO[ListItem.Trailer]")</onclick>
+        <onclick condition="!Skin.HasSetting(PlayTrailerWindowed) + Window.IsVisible(1190) + Skin.HasSetting(Use.IMDB.Trailer)">RunScript(plugin.video.themoviedb.helper,close_dialog=1190,"playmedia=$VAR[ContentIMDbTrailer]")</onclick>                
 	</include>
 
     <include name="ExtendedImage">
