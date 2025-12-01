@@ -102,6 +102,14 @@
                     <visible>!Container.Content(songs)</visible>
                 </control>
                 <control type="label">
+                    <font>Tiny</font>
+                    <label>$INFO[ListItem.Artist]$INFO[ListItem.Genre,  •  ]</label>
+                    <textcolor>Dark1</textcolor>
+                    <height>42</height>
+                    <aligny>top</aligny>
+                    <visible>!Container.Content(songs)</visible>
+                </control>
+                <control type="label">
                     <font>MediumBold</font>
                     <label>$INFO[ListItem.Title]</label>
                     <textcolor>Dark1</textcolor>
@@ -111,19 +119,11 @@
                 </control>
                 <control type="label">
                     <font>Tiny</font>
-                    <label>$INFO[ListItem.Artist]</label>
+                    <label>$INFO[ListItem.Artist]$INFO[ListItem.Album,  •  ]</label>
                     <textcolor>Dark1</textcolor>
                     <height>42</height>
                     <aligny>top</aligny>
-                    <visible>!Skin.HasSetting(thumbnails.moreinfos)</visible>
-                </control>
-                <control type="label">
-                    <font>Tiny</font>
-                    <label>$INFO[ListItem.Artist]$INFO[ListItem.Genre,  •  ]</label>
-                    <textcolor>Dark1</textcolor>
-                    <height>42</height>
-                    <aligny>top</aligny>
-                    <visible>Skin.HasSetting(thumbnails.moreinfos)</visible>
+                    <visible>Container.Content(songs)</visible>
                 </control>
             </control>
         </control>
