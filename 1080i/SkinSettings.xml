@@ -1887,6 +1887,49 @@
                             <onclick>ActivateWindow(1102)</onclick>
                             <enable>!Skin.HasSetting(hide.markers)</enable>
                         </control>
+                        <control type="grouplist" id="11996">
+                            <visible>String.IsEqual(Window.Property(content),4)</visible>
+                            <orientation>horizontal</orientation>
+                            <enable>false</enable>
+                            <height>70</height>
+                            <control type="button">
+                                <enable>false</enable>
+                                <textoffsetx>30</textoffsetx>
+                                <font>Button</font>
+                                <align>left</align>
+                                <width>1310</width>
+                                <disabledcolor>PanelWhite30</disabledcolor>
+                                <height>70</height>
+                                <label>31667</label>
+                            </control>
+                        </control>
+                        <control type="radiobutton" id="11297">
+                            <width>1360</width>
+                            <visible>String.IsEqual(Window.Property(content),4)</visible>
+                            <include>DefSettingsButtonGradientSkinSettings</include>
+                            <label>31003</label>
+                            <selected>Skin.HasSetting(furniture.animatedfanarts)</selected>
+                            <onclick>Skin.ToggleSetting(furniture.animatedfanarts)</onclick>
+                        </control>
+                        <control type="radiobutton" id="11298">
+                            <width>1360</width>
+                            <visible>String.IsEqual(Window.Property(content),4)</visible>
+                            <include>DefSettingsButtonGradientSkinSettings</include>
+                            <label>31002</label>
+                            <selected>Skin.HasSetting(furniture.animatedposters)</selected>
+                            <onclick>Skin.ToggleSetting(furniture.animatedposters)</onclick>
+                            <onclick condition="!Skin.HasSetting(furniture.animatedposters)">Skin.SetBool(Skin_EnableAnimatedPosters)</onclick>
+                            <onclick condition="Skin.HasSetting(furniture.animatedposters)">Skin.Reset(Skin_EnableAnimatedPosters)</onclick>
+                        </control>
+                        <control type="button" id="11299">
+                            <width>1360</width>
+                            <visible>String.IsEqual(Window.Property(content),4)</visible>
+                            <include>DefSettingsButtonGradientSkinSettings</include>
+                            <label>$LOCALIZE[31668]</label>
+                            <label2>$INFO[Skin.String(ap_source)]</label2>
+                            <onclick>Skin.SetPath(ap_source)</onclick>
+                            <visible>System.AddonIsEnabled(script.module.animated_artwork)</visible>
+                        </control>
                         <control type="grouplist" id="9274">
                             <visible>String.IsEqual(Window.Property(content),4)</visible>
                             <orientation>horizontal</orientation>
@@ -1903,6 +1946,13 @@
                                 <label>31304</label>
                             </control>
                         </control>
+                        <control type="button" id="9275">
+                            <width>1360</width>
+                            <visible>String.IsEqual(Window.Property(content),4)</visible>
+                            <include>DefSettingsButtonGradientSkinSettings</include>
+                            <label>31424</label>
+                            <onclick>RunScript(script.skinvariables,action=buildviews,configure)</onclick>
+                        </control>
                         <control type="radiobutton" id="9279" description="Plot Overlay">
                             <width>1360</width>
                             <visible>String.IsEqual(Window.Property(content),4)</visible>
@@ -1910,47 +1960,6 @@
                             <label>31254</label>
                             <selected>Skin.HasSetting(furniture.overlayinfo)</selected>
                             <onclick>Skin.ToggleSetting(furniture.overlayinfo)</onclick>
-                        </control>
-                        <control type="radiobutton" id="9285">
-                            <width>1360</width>
-                            <visible>String.IsEqual(Window.Property(content),4)</visible>
-                            <include>DefSettingsButtonGradientSkinSettings</include>
-                            <label>31008</label>
-                            <selected>Skin.HasSetting(furniture.overlayinfobalken)</selected>
-                            <onclick>Skin.ToggleSetting(furniture.overlayinfobalken)</onclick>
-                        </control>
-                        <control type="radiobutton" id="9288">
-                            <width>1360</width>
-                            <visible>String.IsEqual(Window.Property(content),4)</visible>
-                            <include>DefSettingsButtonGradientSkinSettings</include>
-                            <label>31004</label>
-                            <selected>Skin.HasSetting(discartfanart)</selected>
-                            <onclick>Skin.ToggleSetting(discartfanart)</onclick>
-                        </control>
-                        <control type="radiobutton" id="9289">
-                            <width>1360</width>
-                            <visible>String.IsEqual(Window.Property(content),4)</visible>
-                            <include>DefSettingsButtonGradientSkinSettings</include>
-                            <label>31005</label>
-                            <selected>Skin.HasSetting(ModernCase)</selected>
-                            <onclick>Skin.ToggleSetting(ModernCase)</onclick>
-                        </control>
-
-                        <control type="grouplist" id="988100">
-                            <visible>String.IsEqual(Window.Property(content),4)</visible>
-                            <orientation>horizontal</orientation>
-                            <enable>false</enable>
-                            <height>70</height>
-                            <control type="button">
-                                <enable>false</enable>
-                                <textoffsetx>30</textoffsetx>
-                                <font>Button</font>
-                                <align>left</align>
-                                <width>1310</width>
-                                <disabledcolor>PanelWhite30</disabledcolor>
-                                <height>70</height>
-                                <label>31603</label>
-                            </control>
                         </control>
                         <control type="radiobutton" id="988101" description="Enable Auto Trailer">
                             <width>1360</width>
@@ -2003,49 +2012,6 @@
                             <onclick condition="Skin.HasSetting(trailer.stop.on.dialogvideoinfo)">Skin.Reset(trailer.stop.on.dialogvideoinfo)</onclick>
                             <visible>Skin.HasSetting(home.netflix.autoplay.trailer)</visible>
                         </control>  
-                        <control type="grouplist" id="11996">
-                            <visible>String.IsEqual(Window.Property(content),4)</visible>
-                            <orientation>horizontal</orientation>
-                            <enable>false</enable>
-                            <height>70</height>
-                            <control type="button">
-                                <enable>false</enable>
-                                <textoffsetx>30</textoffsetx>
-                                <font>Button</font>
-                                <align>left</align>
-                                <width>1310</width>
-                                <disabledcolor>PanelWhite30</disabledcolor>
-                                <height>70</height>
-                                <label>31667</label>
-                            </control>
-                        </control>
-                        <control type="radiobutton" id="11297">
-                            <width>1360</width>
-                            <visible>String.IsEqual(Window.Property(content),4)</visible>
-                            <include>DefSettingsButtonGradientSkinSettings</include>
-                            <label>31003</label>
-                            <selected>Skin.HasSetting(furniture.animatedfanarts)</selected>
-                            <onclick>Skin.ToggleSetting(furniture.animatedfanarts)</onclick>
-                        </control>
-                        <control type="radiobutton" id="11298">
-                            <width>1360</width>
-                            <visible>String.IsEqual(Window.Property(content),4)</visible>
-                            <include>DefSettingsButtonGradientSkinSettings</include>
-                            <label>31002</label>
-                            <selected>Skin.HasSetting(furniture.animatedposters)</selected>
-                            <onclick>Skin.ToggleSetting(furniture.animatedposters)</onclick>
-                            <onclick condition="!Skin.HasSetting(furniture.animatedposters)">Skin.SetBool(Skin_EnableAnimatedPosters)</onclick>
-                            <onclick condition="Skin.HasSetting(furniture.animatedposters)">Skin.Reset(Skin_EnableAnimatedPosters)</onclick>
-                        </control>
-                        <control type="button" id="11299">
-                            <width>1360</width>
-                            <visible>String.IsEqual(Window.Property(content),4)</visible>
-                            <include>DefSettingsButtonGradientSkinSettings</include>
-                            <label>$LOCALIZE[31668]</label>
-                            <label2>$INFO[Skin.String(ap_source)]</label2>
-                            <onclick>Skin.SetPath(ap_source)</onclick>
-                            <visible>System.AddonIsEnabled(script.module.animated_artwork)</visible>
-                        </control>
                         <control type="grouplist" id="9296">
                             <visible>String.IsEqual(Window.Property(content),4)</visible>
                             <orientation>horizontal</orientation>
