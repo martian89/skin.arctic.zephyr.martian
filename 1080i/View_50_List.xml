@@ -25,16 +25,16 @@
                     <pagecontrol>1627</pagecontrol>
                     <viewtype label="535">list</viewtype>
                     <include>ScrolltimeViewsList</include>
-                    <itemlayout condition="!Skin.HasSetting(511ListInfo) | Container.Content(files)" width="auto" height="64">
+                    <itemlayout condition="!Skin.HasSetting(511ListInfo) | !$EXP[Has50ListExtended]" width="auto" height="64">
                         <include>50itemlayout</include>
                     </itemlayout>
-                    <itemlayout condition="Skin.HasSetting(511ListInfo) + !Container.Content(files)" width="auto" height="91.4">
+                    <itemlayout condition="Skin.HasSetting(511ListInfo) + $EXP[Has50ListExtended]" width="auto" height="91.4">
                         <include>50itemlayout_info</include>
                     </itemlayout>
-                    <focusedlayout width="auto" height="91.4" condition="Skin.HasSetting(511ListInfo) + !Container.Content(files)">
+                    <focusedlayout width="auto" height="91.4" condition="Skin.HasSetting(511ListInfo) + $EXP[Has50ListExtended]">
                         <include>50focuslayout_info</include>
                     </focusedlayout>
-                    <focusedlayout width="auto" height="64" condition="!Skin.HasSetting(511ListInfo) | Container.Content(files)">
+                    <focusedlayout width="auto" height="64" condition="!Skin.HasSetting(511ListInfo) | !$EXP[Has50ListExtended]">
                         <include>50focuslayout</include>
                     </focusedlayout>
                 </control>
@@ -55,14 +55,14 @@
             <visible>Control.IsVisible(50)</visible>
             <include>ViewSlideForJumpBar</include>
             <control type="group">
-                <include content="def_top" condition="Skin.HasSetting(511ListInfo)">
+                <include content="def_top" condition="Skin.HasSetting(511ListInfo) + $EXP[Has50ListExtended]">
                     <param name="top" value="370" />
                 </include>
                 <top>320</top>
                 <control type="fixedlist" id="50">
                     <visible>$EXP[Exp_View_50]</visible>
                     <top>PosterPad</top>
-                    <include content="def_height" condition="Skin.HasSetting(511ListInfo)">
+                    <include content="def_height" condition="Skin.HasSetting(511ListInfo) + $EXP[Has50ListExtended]">
                         <param name="height" value="270" />
                     </include>
                     <height>320</height>
@@ -72,21 +72,21 @@
                     <onright>1699</onright>
                     <onup>50</onup>
                     <ondown>50</ondown>
-                    <include content="def_focusposition" condition="Skin.HasSetting(511ListInfo)">
+                    <include content="def_focusposition" condition="Skin.HasSetting(511ListInfo) + $EXP[Has50ListExtended]">
                         <param name="focusposition" value="1" />
                     </include>
                     <focusposition>2</focusposition>
-                    <include content="def_movement" condition="Skin.HasSetting(511ListInfo)">
+                    <include content="def_movement" condition="Skin.HasSetting(511ListInfo) + $EXP[Has50ListExtended]">
                         <param name="movement" value="1" />
                     </include>
                     <movement>2</movement>
                     <pagecontrol>1699</pagecontrol>
                     <viewtype label="535">list</viewtype>
                     <include>ScrolltimeViewsList</include>
-                    <itemlayout condition="!Skin.HasSetting(511ListInfo)" width="ListW" height="64">
+                    <itemlayout condition="!Skin.HasSetting(511ListInfo) | !$EXP[Has50ListExtended]" width="ListW" height="64">
                         <include>50itemlayout</include>
                     </itemlayout>
-                    <focusedlayout condition="!Skin.HasSetting(511ListInfo)" width="ListW" height="64">
+                    <focusedlayout condition="!Skin.HasSetting(511ListInfo) | $EXP[Has50ListExtended]" width="ListW" height="64">
                         <control type="group">
                             <visible>Control.HasFocus(50)</visible>
                             <include>50focuslayout</include>
@@ -96,10 +96,10 @@
                             <include>50itemlayout</include>
                         </control>
                     </focusedlayout>
-                    <itemlayout condition="Skin.HasSetting(511ListInfo)" width="ListW" height="90">
+                    <itemlayout condition="Skin.HasSetting(511ListInfo) + $EXP[Has50ListExtended]" width="ListW" height="90">
                         <include>50itemlayout_info</include>
                     </itemlayout>
-                    <focusedlayout condition="Skin.HasSetting(511ListInfo)" width="ListW" height="90">
+                    <focusedlayout condition="Skin.HasSetting(511ListInfo) + $EXP[Has50ListExtended]" width="ListW" height="90">
                         <control type="group">
                             <visible>Control.HasFocus(50)</visible>
                             <include>50focuslayout_info</include>
@@ -111,11 +111,11 @@
                     </focusedlayout>
                 </control>
                 <control type="scrollbar" id="1699">
-                    <include content="scrollbar_vertical" condition="!Skin.HasSetting(511ListInfo)">
+                    <include content="scrollbar_vertical" condition="!Skin.HasSetting(511ListInfo) | !$EXP[Has50ListExtended]">
                         <param name="scrollid" value="1699"/>
                         <param name="height" value="320"/>
                     </include>
-                    <include content="scrollbar_vertical" condition="Skin.HasSetting(511ListInfo)">
+                    <include content="scrollbar_vertical" condition="Skin.HasSetting(511ListInfo) + $EXP[Has50ListExtended]">
                         <param name="scrollid" value="1699"/>
                         <param name="height" value="270"/>
                     </include>
@@ -331,16 +331,16 @@
                     <pagecontrol>60</pagecontrol>
                     <viewtype label="535">list</viewtype>
                     <scrolltime>200</scrolltime>
-                    <itemlayout condition="!Skin.HasSetting(511ListInfo)" width="ListSquareW" height="64">
+                    <itemlayout condition="!Skin.HasSetting(511ListInfo) | !$EXP[Has50ListExtended]" width="ListSquareW" height="64">
                         <include>50itemlayout_square_playlist</include>
                     </itemlayout>
-                    <focusedlayout condition="!Skin.HasSetting(511ListInfo)" width="ListSquareW" height="64">
+                    <focusedlayout condition="!Skin.HasSetting(511ListInfo) | !$EXP[Has50ListExtended]" width="ListSquareW" height="64">
                         <include>50focuslayout_square_playlist</include>
                     </focusedlayout>
-                    <itemlayout condition="Skin.HasSetting(511ListInfo)" width="ListSquareW" height="91.4">
+                    <itemlayout condition="Skin.HasSetting(511ListInfo) + $EXP[Has50ListExtended]" width="ListSquareW" height="91.4">
                         <include>50itemlayout_square_playlist_info</include>
                     </itemlayout>
-                    <focusedlayout condition="Skin.HasSetting(511ListInfo)" width="ListSquareW" height="91.4">
+                    <focusedlayout condition="Skin.HasSetting(511ListInfo) + $EXP[Has50ListExtended]" width="ListSquareW" height="91.4">
                         <include>50focuslayout_square_playlist_info</include>
                     </focusedlayout>
                 </control>
@@ -413,16 +413,16 @@
                     <pagecontrol>60</pagecontrol>
                     <viewtype label="535">list</viewtype>
                     <scrolltime>200</scrolltime>
-                    <itemlayout condition="Skin.HasSetting(No50ListInfo) | [!Container.Content(songs) + !Container.Content(albums) + !Container.Content(artists)]" width="ListSquareW" height="64">
+                    <itemlayout condition="Skin.HasSetting(No50ListInfo) | !$EXP[Has50ListExtended]" width="ListSquareW" height="64">
                         <include>50itemlayout_square</include>
                     </itemlayout>
-                    <itemlayout condition="!Skin.HasSetting(No50ListInfo) + [Container.Content(songs) | Container.Content(albums) | Container.Content(artists)]" width="ListSquareW" height="91.4">
+                    <itemlayout condition="!Skin.HasSetting(No50ListInfo) + $EXP[Has50ListExtended]" width="ListSquareW" height="91.4">
                         <include>50itemlayout_square_info</include>
                     </itemlayout>
-                    <focusedlayout condition="Skin.HasSetting(No50ListInfo) | [!Container.Content(songs) + !Container.Content(albums) + !Container.Content(artists)]" width="ListSquareW" height="64">
+                    <focusedlayout condition="Skin.HasSetting(No50ListInfo) | !$EXP[Has50ListExtended]" width="ListSquareW" height="64">
                         <include>50focuslayout_square</include>
                     </focusedlayout>
-                    <focusedlayout condition="!Skin.HasSetting(No50ListInfo) + [Container.Content(songs) | Container.Content(albums) | Container.Content(artists)]" width="ListSquareW" height="91.4">
+                    <focusedlayout condition="!Skin.HasSetting(No50ListInfo) + $EXP[Has50ListExtended]" width="ListSquareW" height="91.4">
                         <include>50focuslayout_square_info</include>
                     </focusedlayout>
                 </control>
