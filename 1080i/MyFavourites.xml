@@ -3,20 +3,15 @@
 	<defaultcontrol always="true">50</defaultcontrol>
     <backgroundcolor>0</backgroundcolor>
     <menucontrol>9000</menucontrol>
-    <views>50,550,55,500,517</views>
+    <include>View_IDs</include>
     <include>Blur_OnLoad_Action</include>
+    <include>Generator_BuildViewTypes_Onload</include>
     <onunload condition="Skin.HasSetting(home.netflix.autoplay.trailer) + $EXP[TrailerIsPlaying] + !Skin.HasSetting(trailer.dont.stop.on.unfocus) + !Window.Next(FullScreenVideo)">ClearProperty(TrailerPath,home)</onunload>
     <onunload condition="Skin.HasSetting(home.netflix.autoplay.trailer) + $EXP[TrailerIsPlaying] + !Skin.HasSetting(trailer.dont.stop.on.unfocus) + !Window.Next(FullScreenVideo)">Stop</onunload>
     <onunload condition="Skin.HasSetting(home.netflix.autoplay.trailer)">ClearProperty(listitem.trailer,home)</onunload>
     <controls>
         <include>GlobalBackground</include>
-        <include>View_550_List</include>
-        <include condition="!Skin.HasSetting(50list.low)">View_50_List</include>
-        <include condition="Skin.HasSetting(55wall.showinfo)">View_55_Wall_Info</include>
-        <include condition="Skin.HasSetting(55wall.showposter)">View_55_Wall_Poster</include>
-        <include condition="!Skin.HasSetting(55wall.showinfo) + !Skin.HasSetting(55wall.showposter)">View_55_Wall</include>
-        <include>View_500_Thumbnails</include>
-        <include>View_517_WallSmall</include>
+        <include>View_Includes</include>
         <include>JumpBarHorizontal2</include>
         <include>Furniture_Header</include>
         <include>Furniture_NowPlaying</include>
@@ -49,130 +44,7 @@
                 <usecontrolcoords>true</usecontrolcoords>
                 <include content="Def9000GroupList"><param name="height" value="560" /></include>
                 <scrolltime>0</scrolltime>
-
-                <!-- Sort Options -->
-                <control type="button" id="9305">
-                    <include>DefContextButtonGradient</include>
-                    <label>$LOCALIZE[582]: $INFO[Container.Viewmode]</label>
-                    <align>left</align>
-                    <onclick>Runscript(script.skinvariables,action=buildviews,contentid=$VAR[View_ModeSwitch],pluginname=$INFO[Container.PluginName])</onclick>
-                </control>
-                <control type="radiobutton" id="1111">
-                    <selected>[Container.Content() + !String.IsEmpty(Skin.String(Skin.ForcedView.))] | [Container.Content(tags) + !String.IsEmpty(Skin.String(Skin.ForcedView.tags))] | [Container.Content(years) + !String.IsEmpty(Skin.String(Skin.ForcedView.years))] | [Container.Content(genres) + !String.IsEmpty(Skin.String(Skin.ForcedView.genres))] | [Container.Content(countries) + !String.IsEmpty(Skin.String(Skin.ForcedView.countries))] | [Container.Content(studios) + !String.IsEmpty(Skin.String(Skin.ForcedView.studios))] | [Container.Content(playlists) + !String.IsEmpty(Skin.String(Skin.ForcedView.playlists))] | [Container.Content(movies) + !String.IsEmpty(Skin.String(Skin.ForcedView.movies))] | [Container.Content(sets) + !String.IsEmpty(Skin.String(Skin.ForcedView.sets))] | [Container.Content(tvshows) + !String.IsEmpty(Skin.String(Skin.ForcedView.tvshows))] | [Container.Content(seasons) + !String.IsEmpty(Skin.String(Skin.ForcedView.seasons))] | [Container.Content(episodes) + !String.IsEmpty(Skin.String(Skin.ForcedView.episodes))] | [Container.Content(artists) + !String.IsEmpty(Skin.String(Skin.ForcedView.artists))] | [Container.Content(albums) + !String.IsEmpty(Skin.String(Skin.ForcedView.albums))] | [Container.Content(songs) + !String.IsEmpty(Skin.String(Skin.ForcedView.songs))] | [Container.Content(musicvideos) + !String.IsEmpty(Skin.String(Skin.ForcedView.musicvideos))] | [Container.Content(addons) + !String.IsEmpty(Skin.String(Skin.ForcedView.addons))] | [Container.Content(actors) + !String.IsEmpty(Skin.String(Skin.ForcedView.actors))] | [Container.Content(directors) + !String.IsEmpty(Skin.String(Skin.ForcedView.directors))] | [Container.Content(files) + !String.IsEmpty(Skin.String(Skin.ForcedView.files))] | [Container.Content(mixed) + !String.IsEmpty(Skin.String(Skin.ForcedView.mixed))] | [Container.Content(images) + !String.IsEmpty(Skin.String(Skin.ForcedView.images))] | [Container.Content(games) + !String.IsEmpty(Skin.String(Skin.ForcedView.games))] | [Container.Content(unknown) + !String.IsEmpty(Skin.String(Skin.ForcedView.unknown))] | [Container.Content(videos) + !String.IsEmpty(Skin.String(Skin.ForcedView.videos))]</selected>
-                    <include>DefContextButtonGradient</include>
-                    <align>left</align>
-                    <label>$LOCALIZE[31420] $VAR[label_container]</label>
-                    <include>unlock_views</include>
-                    <include>lock_views</include>
-                    <visible>!String.IsEmpty(Container.Content) + Skin.HasSetting(enable.forcedviews)</visible>
-                </control>
-                <control type="button" id="3">
-                    <description>Sort</description>
-                    <include>DefContextButtonGradient</include>
-                    <align>left</align>
-                </control>
-                <control type="togglebutton" id="4">
-                    <description>Ascending</description>
-                    <include>DefContextButtonGradient</include>
-                    <align>left</align>
-                    <label>584</label>
-                    <altlabel>585</altlabel>
-                </control>
-                <control type="button" id="55551">
-                    <include>DefContextMenuLabel</include>
-                    <label>31076</label>
-                    <visible>!Control.IsVisible(519) + !Control.IsVisible(500) + !Control.IsVisible(550) + !Control.IsVisible(555) + !Control.IsVisible(59) + !Control.IsVisible(58) + !Control.IsVisible(52) + !Control.IsVisible(515) + !Control.IsVisible(513)</visible>
-                </control>
-                <control type="radiobutton" id="9028">
-                    <include>DefContextButtonGradient</include>
-                    <align>left</align>
-                    <label>31264</label>
-                    <selected>Skin.HasSetting(511ListInfo)</selected>
-                    <onclick>Skin.ToggleSetting(511ListInfo)</onclick>
-                    <visible>[Control.IsVisible(511) + Skin.HasSetting(ListView511)] | [Control.IsVisible(512) + Skin.HasSetting(ListView511)] | Control.IsVisible(56) | Control.IsVisible(50) | Control.IsVisible(516) | Control.IsVisible(57)</visible>
-                </control>
-                <control type="radiobutton" id="9030">
-                    <include>DefContextButtonGradient</include>
-                    <align>left</align>
-                    <label>31262</label>
-                    <selected>!Skin.HasSetting(disable.poster)</selected>
-                    <onclick>Skin.ToggleSetting(disable.poster)</onclick>
-                    <onclick>ReloadSkin()</onclick>
-                    <visible>Control.IsVisible(50) + !Skin.HasSetting(50list.low)</visible>
-                </control>
-                <control type="radiobutton" id="9032" description="Low List (50)">
-                    <include>DefContextButtonGradient</include>
-                    <align>left</align>
-                    <label>31564</label>
-                    <selected>Skin.HasSetting(50list.low)</selected>
-                    <onclick>Skin.ToggleSetting(50list.low)</onclick>
-                    <onclick>ReloadSkin()</onclick>
-                    <visible>Control.IsVisible(50)</visible>
-                </control>
-                <control type="radiobutton" id="9031">
-                    <include>DefContextButtonGradient</include>
-                    <align>left</align>
-                    <label>31676</label>
-                    <selected>!Skin.HasSetting(hide.ratings)</selected>
-                    <onclick>Skin.ToggleSetting(hide.ratings)</onclick>
-                    <visible>Control.IsVisible(50) | Control.IsVisible(57) | Control.IsVisible(56)</visible>
-                </control>
-                <control type="radiobutton" id="9034" description="Info Wall (55)">
-                    <include>DefContextButtonGradient</include>
-                    <align>left</align>
-                    <label>31147</label>
-                    <selected>Skin.HasSetting(55wall.showinfo)</selected>
-                    <onclick>Skin.Reset(55wall.showposter)</onclick>
-                    <onclick>Skin.ToggleSetting(55wall.showinfo)</onclick>
-                    <onclick>ReloadSkin()</onclick>
-                    <visible>Control.IsVisible(55)</visible>
-                </control>
-                <control type="radiobutton" id="9035" description="Poster Wall (55)">
-                    <include>DefContextButtonGradient</include>
-                    <align>left</align>
-                    <label>31185</label>
-                    <selected>Skin.HasSetting(55wall.showposter)</selected>
-                    <onclick>Skin.Reset(55wall.showinfo)</onclick>
-                    <onclick>Skin.ToggleSetting(55wall.showposter)</onclick>
-                    <onclick>ReloadSkin()</onclick>
-                    <visible>Control.IsVisible(55)</visible>
-                </control>
-                <control type="radiobutton" id="9029" description="list.show.filename">
-                    <include>DefContextButtonGradient</include>
-                    <align>left</align>
-                    <label>31565</label>
-                    <selected>Skin.HasSetting(list.show.filename)</selected>
-                    <onclick>Skin.ToggleSetting(list.show.filename)</onclick>
-                    <visible>Skin.HasSetting(511ListInfo)</visible>
-                    <visible>Control.IsVisible(50) | Control.IsVisible(57) | Control.IsVisible(56)</visible>
-                </control>
-                <control type="radiobutton" id="90871">
-                    <include>DefContextButtonGradient</include>
-                    <align>left</align>
-                    <label>31007</label>
-                    <selected>Skin.HasSetting(view.title.overlay)</selected>
-                    <onclick>Skin.ToggleSetting(view.title.overlay)</onclick>
-                    <visible>Control.IsVisible(55)</visible>
-                    <onclick>ReloadSkin()</onclick>
-                </control>
-                <control type="radiobutton" id="9059" description="Slider Info">
-                    <include>DefContextButtonGradient</include>
-                    <align>left</align>
-                    <label>31537</label>
-                    <selected>Skin.HasSetting(55wall.slideinfo)</selected>
-                    <onclick>Skin.ToggleSetting(55wall.slideinfo)</onclick>
-                    <visible>Control.IsVisible(55) + !Skin.HasSetting(55wall.showinfo) + !Skin.HasSetting(55wall.showposter)</visible>
-                </control>
-                <control type="radiobutton" id="9060" description="Show progress">
-                    <include>DefContextButtonGradient</include>
-                    <align>left</align>
-                    <label>31577</label>
-                    <selected>Skin.HasSetting(furniture.overlayinfobalken)</selected>
-                    <onclick>Skin.ToggleSetting(furniture.overlayinfobalken)</onclick>
-                    <onclick>ReloadSkin()</onclick>
-                    <visible>Control.IsVisible(55) | Control.IsVisible(57) | Control.IsVisible(56) | Control.IsVisible(501) | Control.IsVisible(508)</visible>
-                </control>
-
+                <include>View_Options</include>
                 <!-- Other Options -->
                 <control type="button" id="55553">
                     <include>DefContextMenuLabel</include>
@@ -223,20 +95,6 @@
                     <include content="Def_GlobalSearch_Actions">
                         <param name="query" value="tvshows=true&amp;movies=true&amp;episodes=true&amp;actors=true" />
                     </include>
-                </control>
-                <control type="button" id="9099">
-                    <include>DefContextButtonGradient</include>
-                    <align>left</align>
-                    <label>14247</label>
-                    <onclick>CleanLibrary(video)</onclick>
-                </control>
-                <control type="togglebutton" id="20">
-                    <description>Update</description>
-                    <align>left</align>
-                    <label>653</label>
-                    <altlabel>13353</altlabel>
-                    <include>DefContextButtonGradient</include>
-                    <usealttexture>Library.IsScanningVideo</usealttexture>
                 </control>
                 <include>ButtonPlaylist</include>
                 <control type="button" id="5555">
