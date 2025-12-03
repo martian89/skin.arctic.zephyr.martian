@@ -52,7 +52,7 @@
     </include>
 
    <variable name="View_ModeSwitch">
-        <value condition="Container.Content(files) + Window.IsVisible(MyMusicNav.xml)">files-music</value>
+        <value condition="Container.Content(files) + Window.IsVisible(MyVideoNav.xml) + !String.Contains(Container.FolderPath,plugin://,left) + !String.IsEqual(Container.FolderPath,library://video/movies/) + !String.IsEqual(Container.FolderPath,library://video/tvshows/) + !String.IsEqual(Container.FolderPath,special://videoplaylists/)">files-videos</value>
         <value condition="Container.Content(tvshows) + String.IsEqual(Container.Property(param.info),episode_groups)">episode-groups-tvshows</value>
         <value condition="Container.Content(seasons) + String.IsEqual(Container.Property(param.info),episode_group_seasons)">episode-groups-seasons</value>
         <value condition="Container.Content() + String.IsEqual(Container.Property(param.info),watch_providers)">none-providers</value>

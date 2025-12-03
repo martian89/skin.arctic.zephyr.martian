@@ -188,16 +188,16 @@
             "plugins": "550"
         },
         "files": {
-            "rule": "Container.Content(files) + !Window.IsVisible(MyMusicNav.xml)",
-            "viewtypes": ["50", "52", "500"],
-            "library": "50",
-            "plugins": "50"
-        },
-        "files-music": {
-            "rule": "Container.Content(files) + Window.IsVisible(MyMusicNav.xml)",
-            "viewtypes": ["550", "52", "500"],
+            "rule": "Container.Content(files) + ![Window.IsVisible(MyVideoNav.xml) + !String.Contains(Container.FolderPath,plugin://,left) + !String.IsEqual(Container.FolderPath,library://video/movies/) + !String.IsEqual(Container.FolderPath,library://video/tvshows/) + !String.IsEqual(Container.FolderPath,special://videoplaylists/)]",
+            "viewtypes": ["550", "57", "555", "513", "52", "500"],
             "library": "550",
             "plugins": "550"
+        },
+        "files-videos": {
+            "rule": "Container.Content(files) + [Window.IsVisible(MyVideoNav.xml) + !String.Contains(Container.FolderPath,plugin://,left) + !String.IsEqual(Container.FolderPath,library://video/movies/) + !String.IsEqual(Container.FolderPath,library://video/tvshows/) + !String.IsEqual(Container.FolderPath,special://videoplaylists/)]",
+            "viewtypes": ["50", "57", "555", "513", "52", "500"],
+            "library": "50",
+            "plugins": "50"
         },
         "sources": {
             "rule": "Container.Content(sources)",
@@ -243,7 +243,7 @@
         },
         "none": {
             "rule": "Container.Content() + !Window.IsVisible(MyGames.xml) + !String.IsEqual(Container.Property(param.info),watch_providers) + ![String.IsEqual(Container.Property(param.info),dir_calendar_library) | String.IsEqual(Container.Property(param.info),dir_calendar_trakt)]",
-            "viewtypes": ["550", "52", "500"],
+            "viewtypes": ["550", "555", "52", "500"],
             "library": "550",
             "plugins": "550"
         }
