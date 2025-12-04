@@ -457,6 +457,23 @@
         | Window.IsActive(games) 
         | Container.Content(games) ]
     </expression>
+
+    <expression name="UsePreviewImageSquare">
+        [ !String.Contains(Control.GetLabel(1),(videos))
+        + !String.Contains(Control.GetLabel(1),(movies)) 
+        + !String.Contains(Control.GetLabel(1),(sets)) 
+        + !String.Contains(Control.GetLabel(1),(tvshows)) 
+        + !String.Contains(Control.GetLabel(1),(episode-groups-tvshows)) 
+        + !String.Contains(Control.GetLabel(1),(seasons)) 
+        + !String.Contains(Control.GetLabel(1),(episode-groups-seasons)) 
+        + !String.Contains(Control.GetLabel(1),(episodes)) 
+        + !String.Contains(Control.GetLabel(1),(actors)) 
+        + !String.Contains(Control.GetLabel(1),(videoassets)) 
+        + !String.Contains(Control.GetLabel(1),(videoextras)) 
+        + !String.Contains(Control.GetLabel(1),(games)) 
+        + !String.Contains(Control.GetLabel(1),(none-games)) 
+        + !String.Contains(Control.GetLabel(1),(files-videos)) ]
+    </expression>
         
     <expression name="IsColorSchemeDefault">
           [String.IsEmpty(Skin.String(focuscolor.name)) | String.IsEqual(Skin.String(focuscolor.name),ff0091ea)]
