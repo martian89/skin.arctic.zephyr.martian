@@ -426,11 +426,11 @@
     </expression>
 
     <expression name="IsVideoAssets">
-        Container.Content(videoassets) | Container.Content(videoversions) | Container.Content(videoextras)
+        Container.Content(videoversions) + !String.IsEqual(Container.FolderPath,videodb://movies/videoversions/) | Container.Content(videoassets) | Container.Content(videoextras)
     </expression>
 
     <expression name="IsVideoAssets301">
-        Container(301).Content(videoassets) | Container(301).Content(videoversions) | Container(301).Content(videoextras)
+        Container(301).Content(videoversions) + !String.IsEqual(Container(301).FolderPath,videodb://movies/videoversions/) | Container(301).Content(videoassets) | Container(301).Content(videoextras)
     </expression>
     
     <expression name="HasPlayStatusIndicator">
@@ -444,7 +444,7 @@
     <expression name="IsMediaInfoList">$EXP[IsVideoAssets] + !Skin.HasSetting(list.hide.mediainfo) + !Skin.HasSetting(list.show.filename)</expression>
     
     <expression name="Has50ListExtended">
-        Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(songs) | Container.Content(albums) | Container.Content(artists) | Container.Content(musicvideos) | Container.Content(favourites)
+        Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(songs) | Container.Content(albums) | Container.Content(artists) | Container.Content(musicvideos) | Container.Content(favourites) | $EXP[IsVideoAssets]
     </expression>
         
     <expression name="InGameMode">
@@ -468,8 +468,9 @@
         + !String.Contains(Control.GetLabel(1),(episode-groups-seasons)) 
         + !String.Contains(Control.GetLabel(1),(episodes)) 
         + !String.Contains(Control.GetLabel(1),(actors)) 
-        + !String.Contains(Control.GetLabel(1),(videoassets)) 
+        + !String.Contains(Control.GetLabel(1),(videoversions)) 
         + !String.Contains(Control.GetLabel(1),(videoextras)) 
+        + !String.Contains(Control.GetLabel(1),(videoassets)) 
         + !String.Contains(Control.GetLabel(1),(games)) 
         + !String.Contains(Control.GetLabel(1),(none-games)) 
         + !String.Contains(Control.GetLabel(1),(files-videos)) ]
