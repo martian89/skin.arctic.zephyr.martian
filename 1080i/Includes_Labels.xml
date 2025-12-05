@@ -1323,7 +1323,7 @@
         <value condition="$EXP[IsMediaInfoList]">$VAR[MediaInfoListLabel2]</value>
         <value condition="$EXP[InGameMode]">$VAR[GameGenre]</value>
         <value condition="!String.IsEmpty(ListItem.Genre)">$INFO[ListItem.Genre]</value>
-        <value condition="!String.IsEqual(ListItem.Label,..) + [Container.Content(songs) | Container.Content(albums) | Container.Content(artists)]">$LOCALIZE[19055]</value>
+        <value condition="!String.IsEqual(ListItem.Label,..) + [Container.Content(songs) | Container.Content(albums) | Container.Content(artists) | Container.Content(musicvideos)]">$LOCALIZE[19055]</value>
         <value>$VAR[LabelDurationTimeCheck]</value>
     </variable>
 
@@ -1965,8 +1965,8 @@
     </variable>
     
     <variable name="Label_Music_Title_50">
-        <value condition="[String.IsEqual(Container.SortMethod,$LOCALIZE[551]) | String.IsEqual(Container.SortMethod,$LOCALIZE[554])] + !String.IsEmpty(ListItem.Title)">$INFO[ListItem.TrackNumber,,. ]$INFO[ListItem.Title]</value>
-        <value condition="!String.IsEmpty(ListItem.Title)">$INFO[ListItem.Title]</value>
+        <value condition="Container.Content(songs) + [String.IsEqual(Container.SortMethod,$LOCALIZE[551]) | String.IsEqual(Container.SortMethod,$LOCALIZE[554])] + !String.IsEmpty(ListItem.Title)">$INFO[ListItem.TrackNumber,,. ]$INFO[ListItem.Title]</value>
+        <value condition="Container.Content(songs) + !String.IsEmpty(ListItem.Title)">$INFO[ListItem.Title]</value>
         <value>$INFO[ListItem.Label]</value>
     </variable>
 
