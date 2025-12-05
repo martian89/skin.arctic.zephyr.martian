@@ -93,9 +93,9 @@
 				| Control.IsVisible(54) + !Container.Content(episodes) + !Container.Content(albums) + !Container.Content(songs)
 				| Control.IsVisible(55) | Control.IsVisible(56) | Control.IsVisible(57) | Control.IsVisible(504) | Control.IsVisible(508)
 				| Control.IsVisible(509) | Control.IsVisible(511) | Control.IsVisible(512) | Control.IsVisible(514)
-				| Control.IsVisible(516) + $EXP[Has50ListExtended] | Control.IsVisible(517) | Control.IsVisible(521)
+				| Control.IsVisible(516) + $EXP[HasEnableExtendedListInfo] | Control.IsVisible(517) | Control.IsVisible(521)
 				| Control.IsVisible(523) | Control.IsVisible(524) | Control.IsVisible(526)
-				| Control.IsVisible(550) + $EXP[Has50ListExtended]
+				| Control.IsVisible(550) + $EXP[HasEnableExtendedListInfo]
 			</visible>
 			<include>DefContextMenuLabel</include>
 			<label>31076</label>
@@ -124,12 +124,12 @@
 			<include>DefContextButtonGradient</include>
 			<align>left</align>
 			<label>31264</label>
-			<selected>Skin.HasSetting(511ListInfo)</selected>
-			<onclick>Skin.ToggleSetting(511ListInfo)</onclick>
+			<selected>!Skin.HasSetting(No511ListInfo)</selected>
+			<onclick>Skin.ToggleSetting(No511ListInfo)</onclick>
 			<onclick
 				condition="[Control.IsVisible(50) + Skin.HasSetting(50list.low)] | [Control.IsVisible(57) + Skin.HasSetting(57list.low)] | [Control.IsVisible(56) + Skin.HasSetting(56media.low)]">ReloadSkin()</onclick>
 			<visible>[[Control.IsVisible(511) + Skin.HasSetting(ListView511)] | [Control.IsVisible(512) + Skin.HasSetting(ListView511)] | Control.IsVisible(56) |
-				Control.IsVisible(50) | Control.IsVisible(516) | Control.IsVisible(57)] + $EXP[Has50ListExtended]
+				Control.IsVisible(50) | Control.IsVisible(516) | Control.IsVisible(57)] + $EXP[HasEnableExtendedListInfo]
 			</visible>
 		</control>
 
@@ -160,7 +160,7 @@
 			<selected>!Skin.HasSetting(hide.ratings)</selected>
 			<onclick>Skin.ToggleSetting(hide.ratings)</onclick>
 			<visible>Control.IsVisible(50) | Control.IsVisible(57) | Control.IsVisible(56)</visible>
-			<visible>Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(episodes) | $EXP[InGameMode] | $EXP[IsVideoAssets]</visible>
+			<visible>$EXP[HasEnableRatingInfo]</visible>
 		</control>
 
 		<control type="radiobutton" id="9008" description="No Wrap (53)">
@@ -334,7 +334,7 @@
 			<onclick>Skin.ToggleSetting(furniture.overlayinfobalken)</onclick>
 			<onclick>ReloadSkin()</onclick>
 			<visible>Control.IsVisible(55) | Control.IsVisible(57) | Control.IsVisible(56) | Control.IsVisible(508)</visible>
-            <visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | $EXP[IsVideoAssets]</visible>
+            <visible>$EXP[HasEnableProgressInfo]</visible>
 		</control>
 
 		<control type="radiobutton" id="9025" description="List Show Filename (50,56,57)">
@@ -345,7 +345,7 @@
 			<onclick>Skin.ToggleSetting(list.hide.mediainfo)</onclick>
 			<onclick>ReloadSkin()</onclick>
 			<enable>!Skin.HasSetting(list.show.filename)</enable>
-			<visible>Skin.HasSetting(511ListInfo) + [!Control.IsVisible(56) | !Skin.HasSetting(56media.showinfo) + !Skin.HasSetting(56media.low)] + $EXP[IsVideoAssets]
+			<visible>$EXP[Show511ListInfo] + [!Control.IsVisible(56) | !Skin.HasSetting(56media.showinfo) + !Skin.HasSetting(56media.low)] + $EXP[IsVideoAssets]
 			</visible>
 			<visible>Control.IsVisible(50) | Control.IsVisible(57) | Control.IsVisible(56)</visible>
 		</control>
@@ -356,7 +356,7 @@
 			<label>31565</label>
 			<selected>Skin.HasSetting(list.show.filename)</selected>
 			<onclick>Skin.ToggleSetting(list.show.filename)</onclick>
-			<visible>Skin.HasSetting(511ListInfo) + $EXP[Has50ListExtended]</visible>
+			<visible>$EXP[Show511ListInfo]</visible>
 			<visible>Control.IsVisible(50) | Control.IsVisible(57) | Control.IsVisible(56)</visible>
 		</control>
 
@@ -598,9 +598,9 @@
 			<include>DefContextButtonGradient</include>
 			<align>left</align>
 			<label>31264</label>
-			<selected>!Skin.HasSetting(No50ListInfo)</selected>
-			<onclick>Skin.ToggleSetting(No50ListInfo)</onclick>
-			<visible>Control.IsVisible(550) + $EXP[Has50ListExtended]</visible>
+			<selected>!Skin.HasSetting(No550ListInfo)</selected>
+			<onclick>Skin.ToggleSetting(No550ListInfo)</onclick>
+			<visible>Control.IsVisible(550) + $EXP[HasEnableExtendedListInfo]</visible>
 		</control>
 	</include>
 

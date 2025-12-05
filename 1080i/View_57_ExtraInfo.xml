@@ -24,16 +24,16 @@
                     <pagecontrol>1603</pagecontrol>
                     <viewtype label="31147">list</viewtype>
                     <include>ScrolltimeViewsList</include>
-                    <itemlayout condition="!Skin.HasSetting(511ListInfo) | !$EXP[Has50ListExtended]" width="1100" height="64">
+                    <itemlayout condition="!$EXP[Show511ListInfo]" width="1100" height="64">
                         <include>50itemlayout</include>
                     </itemlayout>
-                    <focusedlayout condition="!Skin.HasSetting(511ListInfo) | !$EXP[Has50ListExtended]" width="1100" height="64">
+                    <focusedlayout condition="!$EXP[Show511ListInfo]" width="1100" height="64">
                         <include>50focuslayout</include>
                     </focusedlayout>
-                    <itemlayout condition="Skin.HasSetting(511ListInfo) + $EXP[Has50ListExtended]" width="1100" height="91.4">
+                    <itemlayout condition="$EXP[Show511ListInfo]" width="1100" height="91.4">
                         <include>50itemlayout_info</include>
                     </itemlayout>
-                    <focusedlayout condition="Skin.HasSetting(511ListInfo) + $EXP[Has50ListExtended]" width="1100" height="91.4">
+                    <focusedlayout condition="$EXP[Show511ListInfo]" width="1100" height="91.4">
                         <include>50focuslayout_info</include>
                     </focusedlayout>
                 </control>
@@ -56,14 +56,14 @@
             <visible>Control.IsVisible(57)</visible>
             <include>ViewSlideForJumpBar</include>
             <control type="group">
-                <include content="def_top" condition="Skin.HasSetting(511ListInfo) + $EXP[Has50ListExtended]">
+                <include content="def_top" condition="$EXP[Show511ListInfo]">
                     <param name="top" value="370" />
                 </include>
                 <top>320</top>
                 <control type="fixedlist" id="57">
                     <visible>$EXP[Exp_View_57]</visible>
                     <top>PosterPad</top>
-                    <include content="def_height" condition="Skin.HasSetting(511ListInfo) + $EXP[Has50ListExtended]">
+                    <include content="def_height" condition="$EXP[Show511ListInfo]">
                         <param name="height" value="270" />
                     </include>
                     <height>320</height>
@@ -73,21 +73,21 @@
                     <onright>60</onright>
                     <onup>57</onup>
                     <ondown>57</ondown>
-                    <include content="def_focusposition" condition="Skin.HasSetting(511ListInfo) + $EXP[Has50ListExtended]">
+                    <include content="def_focusposition" condition="$EXP[Show511ListInfo]">
                         <param name="focusposition" value="1" />
                     </include>
                     <focusposition>2</focusposition>
-                    <include content="def_movement" condition="Skin.HasSetting(511ListInfo) + $EXP[Has50ListExtended]">
+                    <include content="def_movement" condition="$EXP[Show511ListInfo]">
                         <param name="movement" value="1" />
                     </include>
                     <movement>2</movement>
                     <pagecontrol>60</pagecontrol>
                     <viewtype label="31147">list</viewtype>
                     <include>ScrolltimeViewsList</include>
-                    <itemlayout condition="!Skin.HasSetting(511ListInfo) | !$EXP[Has50ListExtended]" width="1100" height="64">
+                    <itemlayout condition="!$EXP[Show511ListInfo]" width="1100" height="64">
                         <include>50itemlayout</include>
                     </itemlayout>
-                    <focusedlayout condition="!Skin.HasSetting(511ListInfo) | !$EXP[Has50ListExtended]" width="1100" height="64">
+                    <focusedlayout condition="!$EXP[Show511ListInfo]" width="1100" height="64">
                         <control type="group">
                             <visible>Control.HasFocus(57)</visible>
                             <include>50focuslayout</include>
@@ -97,10 +97,10 @@
                             <include>50itemlayout</include>
                         </control>
                     </focusedlayout>
-                    <itemlayout condition="Skin.HasSetting(511ListInfo) + $EXP[Has50ListExtended]" width="1100" height="90">
+                    <itemlayout condition="$EXP[Show511ListInfo]" width="1100" height="90">
                         <include>50itemlayout_info</include>
                     </itemlayout>
-                    <focusedlayout condition="Skin.HasSetting(511ListInfo) + $EXP[Has50ListExtended]" width="1100" height="90">
+                    <focusedlayout condition="$EXP[Show511ListInfo]" width="1100" height="90">
                         <control type="group">
                             <visible>Control.HasFocus(57)</visible>
                             <include>50focuslayout_info</include>
@@ -112,24 +112,24 @@
                     </focusedlayout>
                 </control>
                 <control type="scrollbar" id="60">
-                    <include content="scrollbar_vertical" condition="Skin.HasSetting(511ListInfo) + $EXP[Has50ListExtended]">
+                    <include content="scrollbar_vertical" condition="$EXP[Show511ListInfo]">
                         <param name="scrollid" value="60"/>
                         <param name="posy" value="216"/>
                         <param name="height" value="270"/>
                     </include>
-                    <include content="scrollbar_vertical" condition="!Skin.HasSetting(511ListInfo) | !$EXP[Has50ListExtended]">
+                    <include content="scrollbar_vertical" condition="!$EXP[Show511ListInfo]">
                         <param name="scrollid" value="60"/>
                         <param name="posy" value="216"/>
                         <param name="height" value="325"/>
                     </include>
                 </control>
             </control>
-            <include content="LowList_Info" condition="Skin.HasSetting(511ListInfo) + $EXP[Has50ListExtended]">
+            <include content="LowList_Info" condition="$EXP[Show511ListInfo]">
                 <param name="left" value="70"/>
                 <param name="bottom" value="165"/>
                 <param name="group_height" value="298"/>
             </include>
-            <include content="LowList_Info" condition="!Skin.HasSetting(511ListInfo) | !$EXP[Has50ListExtended]">
+            <include content="LowList_Info" condition="!$EXP[Show511ListInfo]">
                 <param name="left" value="70"/>
             </include>
         </control>
@@ -183,7 +183,7 @@
 
     <include name="Fanart_Info">
         <param name="top" value="$PARAM[top]" default="206"/>
-        <param name="width_condition" value="$PARAM[width_condition]" default="Skin.HasSetting(furniture.overlayinfobalken)"/>
+        <param name="width_condition" value="$PARAM[width_condition]" default="$EXP[ShowProgressInfo]"/>
         <param name="visible" value="$PARAM[visible]" default="true"/>
         <param name="visible_progress" value="$PARAM[visible_progress]" default="true"/>
         <param name="infobox_height" value="$PARAM[infobox_height]" default="300"/>
@@ -274,7 +274,7 @@
                 <left>526</left>
                 <width>155</width>
                 <height>155</height>
-                <visible>Skin.HasSetting(furniture.overlayinfobalken) + !String.IsEqual(ListItem.Label,..) + !String.IsEqual(ListItem.DBType,set) + !Window.IsVisible(MyMusicNav.xml) + $PARAM[visible_progress]</visible>
+                <visible>$EXP[ShowProgressInfo] + !String.IsEqual(ListItem.Label,..) + !String.IsEqual(ListItem.DBType,set) + !Window.IsVisible(MyMusicNav.xml) + $PARAM[visible_progress]</visible>
                 <control type="group">
                     <control type="image" description="Back">
                         <centertop>44%</centertop>

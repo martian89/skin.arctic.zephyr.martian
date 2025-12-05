@@ -424,6 +424,16 @@
         $EXP[IsUnwatched301] + [$EXP[IsNewMovie301] | $EXP[IsNewTVShow301] | $EXP[IsNewSeason301] | $EXP[IsNewEpisode301]]
     </expression>
 
+    <expression name="HasPlayStatusIndicator">
+        [$EXP[IsInProgress] + !Skin.HasSetting(hide.markers.inprogress)] | [$EXP[IsWatched] + !Skin.HasSetting(hide.markers.watched)] | [$EXP[IsNewContent] + !Skin.HasSetting(hide.markers.newcontent)]
+    </expression>
+
+    <expression name="HasPlayStatusIndicator301">
+        [$EXP[IsInProgress301] + !Skin.HasSetting(hide.markers.inprogress)] | [$EXP[IsWatched301] + !Skin.HasSetting(hide.markers.watched)] | [$EXP[IsNewContent301] + !Skin.HasSetting(hide.markers.newcontent)]
+    </expression>
+
+    <expression name="InGameMode">Window.IsVisible(MyGames.xml) | Container.Content(games)</expression>
+    
     <expression name="IsVideoAssets">
         Container.Content(videoversions) + !String.IsEqual(Container.FolderPath,videodb://movies/videoversions/) | Container.Content(videoassets) | Container.Content(videoextras)
     </expression>
@@ -432,24 +442,23 @@
         Container(301).Content(videoversions) + !String.IsEqual(Container(301).FolderPath,videodb://movies/videoversions/) | Container(301).Content(videoassets) | Container(301).Content(videoextras)
     </expression>
     
-    <expression name="HasPlayStatusIndicator">
-        [$EXP[IsInProgress] + !Skin.HasSetting(hide.markers.inprogress)] | [$EXP[IsWatched] + !Skin.HasSetting(hide.markers.watched)] | [$EXP[IsNewContent] + !Skin.HasSetting(hide.markers.newcontent)]
+    <expression name="HasEnableExtendedListInfo">
+        Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(songs) | Container.Content(albums) | Container.Content(artists) | Container.Content(musicvideos) | $EXP[IsVideoAssets]
     </expression>
+    <expression name="HasEnableProgressInfo">
+        Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | $EXP[IsVideoAssets]
+    </expression>
+    <expression name="HasEnableRatingInfo">
+        Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(episodes) | $EXP[InGameMode] | $EXP[IsVideoAssets]
+    </expression>
+ 
+    <expression name="Show550ListInfo">!Skin.HasSetting(No550ListInfo) + $EXP[HasEnableExtendedListInfo]</expression>
+    <expression name="Show511ListInfo">!Skin.HasSetting(No511ListInfo) + $EXP[HasEnableExtendedListInfo]</expression>
+    <expression name="ShowProgressInfo">Skin.HasSetting(furniture.overlayinfobalken) + $EXP[HasEnableProgressInfo]</expression>
+    <expression name="ShowRatingInfo">!Skin.HasSetting(hide.ratings) + $EXP[HasEnableRatingInfo]</expression>
 
-    <expression name="HasPlayStatusIndicator301">
-        [$EXP[IsInProgress301] + !Skin.HasSetting(hide.markers.inprogress)] | [$EXP[IsWatched301] + !Skin.HasSetting(hide.markers.watched)] | [$EXP[IsNewContent301] + !Skin.HasSetting(hide.markers.newcontent)]
-    </expression>
-    
     <expression name="IsMediaInfoList">$EXP[IsVideoAssets] + !Skin.HasSetting(list.hide.mediainfo) + !Skin.HasSetting(list.show.filename)</expression>
-    
-    <expression name="Has50ListExtended">
-        Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(songs) | Container.Content(albums) | Container.Content(artists) | Container.Content(musicvideos) | Container.Content(favourites) | $EXP[IsVideoAssets]
-    </expression>
-        
-    <expression name="InGameMode">
-        Window.IsVisible(MyGames.xml) | Container.Content(games)
-    </expression>
-
+            
     <expression name="UsePreviewImageSquare">
         [ !String.Contains(Control.GetLabel(1),(videos))
         + !String.Contains(Control.GetLabel(1),(movies)) 
