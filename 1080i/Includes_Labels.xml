@@ -1298,6 +1298,12 @@
         <value condition="!Container.Content(tvshows)">$VAR[LabelDuration]</value>
     </variable>
 
+    <variable name="50ListTitle">
+        <value condition="[Container.Content(songs) | Container.Content(musicvideos)] + [String.IsEqual(Container.SortMethod,$LOCALIZE[551]) | String.IsEqual(Container.SortMethod,$LOCALIZE[554])] + !String.IsEmpty(ListItem.Title)">$INFO[ListItem.TrackNumber,,. ]$INFO[ListItem.Title]</value>
+        <value condition="[Container.Content(songs) | Container.Content(musicvideos)] + !String.IsEmpty(ListItem.Title)">$INFO[ListItem.Title]</value>
+        <value>$INFO[ListItem.Label]</value>
+    </variable>
+
     <variable name="50ListNormal">
         <value condition="String.IsEqual(Container.SortMethod,$LOCALIZE[553]) | String.IsEqual(Container.SortMethod,$LOCALIZE[561])"></value>
         <value condition="!String.IsEqual(ListItem.DBType,movie) + Container.Content(tvshows) + !String.IsEqual(ListItem.Label,..)">$INFO[ListItem.Year]</value>
@@ -1970,12 +1976,6 @@
         <value>$LOCALIZE[231]</value>
     </variable>
     
-    <variable name="Label_Music_Title_50">
-        <value condition="Container.Content(songs) + [String.IsEqual(Container.SortMethod,$LOCALIZE[551]) | String.IsEqual(Container.SortMethod,$LOCALIZE[554])] + !String.IsEmpty(ListItem.Title)">$INFO[ListItem.TrackNumber,,. ]$INFO[ListItem.Title]</value>
-        <value condition="Container.Content(songs) + !String.IsEmpty(ListItem.Title)">$INFO[ListItem.Title]</value>
-        <value>$INFO[ListItem.Label]</value>
-    </variable>
-
     <variable name="Label_Music_Duration_50">
         <value condition="String.IsEqual(Container.SortMethod,$LOCALIZE[567])">$INFO[ListItem.PlayCount]</value>
         <value condition="!String.IsEqual(Container.SortMethod,$LOCALIZE[556]) + !String.IsEqual(Container.SortMethod,$LOCALIZE[557]) + !String.IsEqual(Container.SortMethod,$LOCALIZE[558]) + !String.IsEqual(Container.SortMethod,$LOCALIZE[578]) + !String.IsEqual(Container.SortMethod,$LOCALIZE[562])">$INFO[ListItem.Label2]</value>
