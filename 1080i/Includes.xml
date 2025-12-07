@@ -1177,7 +1177,7 @@
 
         <!--Hidden video window to prevent audio errors-->
         <control type="videowindow">
-            <include>Dimensions_Fullscreen</include>
+            <visible>Player.HasVideo</visible>
         </control>
     </include>
 
@@ -1199,7 +1199,7 @@
     </include>
     
     <include name="GlobalBackground">        
-        <include condition="!Skin.HasSetting(global.showvideo) + Skin.HasSetting(background.video.fix.audio.errors)">HiddenVideoWindow</include>
+        <include condition="!Skin.HasSetting(global.showvideo) + !Skin.HasSetting(disable.background.video.fix.audio.errors)">HiddenVideoWindow</include>
         <include>GlobalVideoWindow</include>
         <include condition="Skin.HasSetting(global.showvisualisation) + Visualisation.Enabled">GlobalVisualisation</include>
         <control type="fadelabel" id="4399">
