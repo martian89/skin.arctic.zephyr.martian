@@ -8,7 +8,7 @@
     <include>Blur_OnLoad_Action</include>
     <controls>
         <include>GlobalBackground</include>
-        <include>View_50_List_Square_Playlist</include>
+        <include>View_50_List_Square</include>
         <include>Furniture_NowPlaying</include>
         <include>Furniture_Header</include>
         <include>Furniture_Clock</include>
@@ -23,47 +23,8 @@
         <control type="group">
             <height>690</height>
             <include>Def9000Background</include>
-            <control type="group">
-                <left>22</left>
-                <top>22</top>
-                <control type="label">
-                    <description>Header Label</description>
-                    <left>70</left>
-                    <width>1000</width>
-                    <posy>0</posy>
-                    <include>FontTop</include>
-                    <textcolor>Black70</textcolor>
-                    <label>14018</label>
-                </control>
-                <include>Kodi_Logo</include>
-
-                <!-- Lines -->
-                <control type="image">
-                    <top>70</top>
-                    <left>17</left>
-                    <width>385</width>
-                    <height>1</height>
-                    <bottom>10</bottom>
-                    <colordiffuse>Black12</colordiffuse>
-                    <texture>common/white.png</texture>
-                </control>
-            </control>
-            <control type="group">
-                <control type="image">
-                    <description>arrow image</description>
-                    <centerleft>50%</centerleft>
-                    <posy>-16</posy>
-                    <include>arrowdimensions</include>
-                    <texture colordiffuse="White70" flipy="true">common/arrow-small.png</texture>
-                </control>
-                <control type="image">
-                    <description>arrow image</description>
-                    <centerleft>50%</centerleft>
-                    <posy>690</posy>
-                    <include>arrowdimensions</include>
-                    <texture colordiffuse="White70" flipy="false">common/arrow-small.png</texture>
-                </control>
-            </control>
+            <include>Def9000Header</include>
+            <include>Def9000Arrows</include>
             <include content="Def_Gradient_Settings_Image">
                 <param name="controlid" value="9000"/>
                 <param name="left" value="8"/>
@@ -77,11 +38,6 @@
                 <include content="Def9000GroupList"><param name="height" value="560" /></include>
                 <top>112</top>
                 <scrolltime>0</scrolltime>
-                <control type="button" id="2">
-                    <description>View</description>
-                    <include>DefContextButtonGradient</include>
-                    <align>left</align>
-                </control>
                 <control type="button" id="3">
                     <description>Sort</description>
                     <include>DefContextButtonGradient</include>
@@ -93,21 +49,6 @@
                     <align>left</align>
                     <label>584</label>
                     <altlabel>585</altlabel>
-                </control>
-                <control type="radiobutton" id="9028">
-                    <include>DefContextButtonGradient</include>
-                    <align>left</align>
-                    <label>31264</label>
-                    <selected>!Skin.HasSetting(No511ListInfo)</selected>
-                    <onclick>Skin.ToggleSetting(511ListInfo)</onclick>
-                </control>
-                <control type="radiobutton" id="9029">
-                    <include>DefContextButtonGradient</include>
-                    <align>left</align>
-                    <label>31366</label>
-                    <selected>Skin.HasSetting(list.show.filename)</selected>
-                    <onclick>Skin.ToggleSetting(list.show.filename)</onclick>
-                    <visible>!Skin.HasSetting(No511ListInfo)</visible>
                 </control>
                 <control type="radiobutton" id="20">
                     <description>Shuffle</description>

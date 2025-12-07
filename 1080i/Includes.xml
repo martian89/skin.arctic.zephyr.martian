@@ -366,26 +366,26 @@
     
     <expression name="IsWatched">
         [String.IsEqual(ListItem.Overlay,OverlayWatched.png)
-        | String.IsEmpty(ListItem.Overlay) + !String.IsEmpty(ListItem.DBID) + Integer.IsGreater(ListItem.PlayCount,0)]
-        + !ListItem.IsPlaying + !$EXP[IsInProgress]
+        | String.IsEmpty(ListItem.Overlay) + !String.IsEmpty(ListItem.DBID) + Integer.IsGreater(ListItem.PlayCount,0)
         + [ String.IsEqual(ListItem.DBType,movie)
           | String.IsEqual(ListItem.DBType,tvshow)
           | String.IsEqual(ListItem.DBType,season)
           | String.IsEqual(ListItem.DBType,episode)
           | String.IsEqual(ListItem.DBType,set)
-          | String.IsEqual(ListItem.DBType,video) ]
+          | String.IsEqual(ListItem.DBType,video) ]]
+        + !ListItem.IsPlaying + !$EXP[IsInProgress]          
     </expression>
 
     <expression name="IsUnwatched">
         [String.IsEqual(ListItem.Overlay,OverlayUnwatched.png)
-        | String.IsEmpty(ListItem.Overlay) + !String.IsEmpty(ListItem.DBID) + Integer.IsEqual(ListItem.PlayCount,0)]
-        + !ListItem.IsPlaying + !$EXP[IsInProgress]
+        | String.IsEmpty(ListItem.Overlay) + !String.IsEmpty(ListItem.DBID) + Integer.IsEqual(ListItem.PlayCount,0)
         + [ String.IsEqual(ListItem.DBType,movie)
           | String.IsEqual(ListItem.DBType,tvshow)
           | String.IsEqual(ListItem.DBType,season)
           | String.IsEqual(ListItem.DBType,episode)
           | String.IsEqual(ListItem.DBType,set)
-          | String.IsEqual(ListItem.DBType,video) ]
+          | String.IsEqual(ListItem.DBType,video) ]]
+        + !ListItem.IsPlaying + !$EXP[IsInProgress]          
     </expression>
 
     <expression name="IsNewContent">
@@ -398,26 +398,26 @@
 
     <expression name="IsWatched301">
         [String.IsEqual(Container(301).ListItem.Overlay,OverlayWatched.png)
-        | String.IsEmpty(Container(301).ListItem.Overlay) + !String.IsEmpty(Container(301).ListItem.DBID) + Integer.IsGreater(Container(301).ListItem.PlayCount,0)]
-        + !Container(301).ListItem.IsPlaying + !$EXP[IsInProgress301]
+        | String.IsEmpty(Container(301).ListItem.Overlay) + !String.IsEmpty(Container(301).ListItem.DBID) + Integer.IsGreater(Container(301).ListItem.PlayCount,0)
         + [ String.IsEqual(Container(301).ListItem.DBType,movie)
           | String.IsEqual(Container(301).ListItem.DBType,tvshow)
           | String.IsEqual(Container(301).ListItem.DBType,season)
           | String.IsEqual(Container(301).ListItem.DBType,episode)
           | String.IsEqual(Container(301).ListItem.DBType,set)
-          | String.IsEqual(Container(301).ListItem.DBType,video) ]
+          | String.IsEqual(Container(301).ListItem.DBType,video) ]]
+        + !Container(301).ListItem.IsPlaying + !$EXP[IsInProgress301]
     </expression>
 
     <expression name="IsUnwatched301">
         [String.IsEqual(Container(301).ListItem.Overlay,OverlayUnwatched.png)
-        | String.IsEmpty(Container(301).ListItem.Overlay) + !String.IsEmpty(Container(301).ListItem.DBID) + Integer.IsEqual(Container(301).ListItem.PlayCount,0)]
-        + !Container(301).ListItem.IsPlaying + !$EXP[IsInProgress301]
+        | String.IsEmpty(Container(301).ListItem.Overlay) + !String.IsEmpty(Container(301).ListItem.DBID) + Integer.IsEqual(Container(301).ListItem.PlayCount,0)
         + [ String.IsEqual(Container(301).ListItem.DBType,movie)
           | String.IsEqual(Container(301).ListItem.DBType,tvshow)
           | String.IsEqual(Container(301).ListItem.DBType,season)
           | String.IsEqual(Container(301).ListItem.DBType,episode)
           | String.IsEqual(Container(301).ListItem.DBType,set)
-          | String.IsEqual(Container(301).ListItem.DBType,video) ]
+          | String.IsEqual(Container(301).ListItem.DBType,video) ]]
+        + !Container(301).ListItem.IsPlaying + !$EXP[IsInProgress301]
     </expression>
 
     <expression name="IsNewContent301">
