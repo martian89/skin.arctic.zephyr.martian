@@ -571,11 +571,13 @@
     </variable>
 
     <variable name="LabelDuration">
+        <value condition="[Container.Content(songs) | Container.Content(albums) | Container.Content(musicvideos)] + !String.IsEqual(Container.SortMethod,$LOCALIZE[556]) + !String.IsEqual(Container.SortMethod,$LOCALIZE[557]) + !String.IsEqual(Container.SortMethod,$LOCALIZE[558]) + !String.IsEqual(Container.SortMethod,$LOCALIZE[578]) + !String.IsEqual(Container.SortMethod,$LOCALIZE[562]) + !String.IsEqual(Container.SortMethod,$LOCALIZE[567])">$INFO[ListItem.Label2]</value>
         <value condition="String.IsEqual(Container.SortMethod,$LOCALIZE[552]) + String.StartsWith(Container.FolderPath,videodb://recentlyadded)">$INFO[ListItem.DateAdded]</value>
         <value condition="String.IsEqual(Container.SortMethod,$LOCALIZE[552])">$INFO[ListItem.Date]</value>
         <value condition="String.IsEqual(Container.SortMethod,$LOCALIZE[20074])">$INFO[ListItem.MPAA]</value>
         <value condition="String.IsEqual(Container.SortMethod,$LOCALIZE[570])">$INFO[ListItem.DateAdded]</value>
         <value condition="String.IsEqual(Container.SortMethod,$LOCALIZE[567])">$INFO[ListItem.PlayCount]</value>
+        <value condition="[Container.Content(songs) | Container.Content(albums) | Container.Content(musicvideos)]">$INFO[ListItem.Duration]</value>
         <value condition="!String.IsEmpty(ListItem.Duration(mins))">$VAR[LabelDurationTimeCheck]</value>
         <value condition="[Container.Content(tvshows) + !Control.IsVisible(54) + !Control.IsVisible(58) + !Control.IsVisible(555)] | Container.Content(episodes)">$VAR[LabelYear]</value>
     </variable>
@@ -1974,12 +1976,6 @@
         <value condition="!String.IsEmpty(Skin.String(weather.fanart.name))">$INFO[Skin.String(weather.fanart.name)]</value>
         <value condition="$EXP[HasWeatherFanartSingle] | $EXP[HasWeatherFanartMulti]">$LOCALIZE[571]</value>
         <value>$LOCALIZE[231]</value>
-    </variable>
-    
-    <variable name="Label_Music_Duration_50">
-        <value condition="String.IsEqual(Container.SortMethod,$LOCALIZE[567])">$INFO[ListItem.PlayCount]</value>
-        <value condition="!String.IsEqual(Container.SortMethod,$LOCALIZE[556]) + !String.IsEqual(Container.SortMethod,$LOCALIZE[557]) + !String.IsEqual(Container.SortMethod,$LOCALIZE[558]) + !String.IsEqual(Container.SortMethod,$LOCALIZE[578]) + !String.IsEqual(Container.SortMethod,$LOCALIZE[562])">$INFO[ListItem.Label2]</value>
-        <value>$INFO[ListItem.Duration]</value>
     </variable>
     
     <variable name="Label_Title_51">
