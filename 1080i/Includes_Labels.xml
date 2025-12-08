@@ -1829,16 +1829,16 @@
     
     <variable name="Label_NowPlaying_VideoSubInfo">
         <value condition="VideoPlayer.Content(livetv)">$INFO[VideoPlayer.ChannelName]$INFO[VideoPlayer.StartTime,  •  ,]$INFO[VideoPlayer.EndTime, - ]$INFO[PVR.EpgEventDuration(mins),  •  , $LOCALIZE[31102]]</value>
-        <value condition="VideoPlayer.Content(movies)">$INFO[VideoPlayer.Year,,  •  ]$VAR[LabelDurationPlayer]$VAR[RatingLabelVideoPlayer,  •  ,]$VAR[LabelMovieRatings]</value>
-        <value condition="VideoPlayer.Content(episodes)">$INFO[VideoPlayer.Season,$LOCALIZE[36904] ,  •  ]$INFO[VideoPlayer.Episode,$LOCALIZE[36906] ,  •  ]$INFO[VideoPlayer.Premiered,,  •  ]$VAR[LabelDurationPlayer]$VAR[RatingLabelVideoPlayer,  •  ,]$VAR[LabelTvShowRatings]</value>
+        <value condition="VideoPlayer.Content(movies)">$INFO[VideoPlayer.Year,,  •  ]$VAR[LabelDurationPlayer]$VAR[RatingLabelVideoPlayer,  •  ,]$VAR[LabelMovieRatingsPlayer]</value>
+        <value condition="VideoPlayer.Content(episodes)">$INFO[VideoPlayer.Season,$LOCALIZE[36904] ,  •  ]$INFO[VideoPlayer.Episode,$LOCALIZE[36906] ,  •  ]$INFO[VideoPlayer.Premiered,,  •  ]$VAR[LabelDurationPlayer]$VAR[RatingLabelVideoPlayer,  •  ,]$VAR[LabelTvShowRatingsPlayer]</value>
         <value condition="VideoPlayer.Content(files) + !String.IsEmpty(VideoPlayer.Studio)">$INFO[VideoPlayer.Studio]</value>
         <value condition="VideoPlayer.Content(files) + !String.IsEmpty(VideoPlayer.Artist)">$INFO[VideoPlayer.Artist]</value>
     </variable>
     
     <variable name="Label_NowPlaying_MusicSubInfo">
         <value condition="!String.IsEmpty(MusicPlayer.Artist) + !String.IsEmpty(MusicPlayer.Year)">$INFO[MusicPlayer.Artist]  •  $INFO[MusicPlayer.Year]$VAR[RatingLabelMusicPlayer,  •  ,]</value>
-        <value condition="!String.IsEmpty(MusicPlayer.Artist)">$INFO[MusicPlayer.Artist]$INFO[MusicPlayer.Year]$VAR[RatingLabelMusicPlayer,  •  ,]</value>
-        <value condition="!String.IsEmpty(MusicPlayer.Year)">$INFO[MusicPlayer.Year]$INFO[MusicPlayer.Year]$VAR[RatingLabelMusicPlayer,  •  ,]</value>
+        <value condition="!String.IsEmpty(MusicPlayer.Artist)">$INFO[MusicPlayer.Artist]$VAR[RatingLabelMusicPlayer,  •  ,]</value>
+        <value condition="!String.IsEmpty(MusicPlayer.Year)">$INFO[MusicPlayer.Year]$VAR[RatingLabelMusicPlayer,  •  ,]</value>
     </variable>
     
     <variable name="Label_NowPlaying_Time_VideoSubInfo">
@@ -1914,6 +1914,26 @@
 	<variable name="LabelMovieRatings">
         <value>$VAR[LabelMovieRating1]$VAR[LabelMovieRating2]</value>
 	</variable>
+
+    <variable name="LabelMovieRatingPlayer1">
+        <value condition="String.IsEqual(Skin.String(Ratings.Movies.1),TMDb) + !String.StartsWith(Window(Home).Property(TMDbHelper.Player.TMDb_Rating),0)">$INFO[Window(Home).Property(TMDbHelper.Player.TMDb_Rating),  •  TMDb ,]</value>
+        <value condition="String.IsEqual(Skin.String(Ratings.Movies.1),IMDb) + !String.StartsWith(Window(Home).Property(TMDbHelper.Player.IMDb_Rating),0)">$INFO[Window(Home).Property(TMDbHelper.Player.IMDb_Rating),  •  IMDb ,]</value>
+        <value condition="String.IsEqual(Skin.String(Ratings.Movies.1),Trakt) + !String.StartsWith(Window(Home).Property(TMDbHelper.Player.Trakt_Rating),0)">$INFO[Window(Home).Property(TMDbHelper.Player.Trakt_Rating),  •  Trakt ,]</value>
+        <value condition="String.IsEqual(Skin.String(Ratings.Movies.1),MC)">$INFO[Window(Home).Property(TMDbHelper.Player.Metacritic_Rating),  •  MC ,%]</value>
+        <value condition="String.IsEqual(Skin.String(Ratings.Movies.1),RT)">$INFO[Window(Home).Property(TMDbHelper.Player.RottenTomatoes_Rating),  •  RT ,%]</value>
+    </variable>
+
+    <variable name="LabelMovieRatingPlayer2">
+        <value condition="String.IsEqual(Skin.String(Ratings.Movies.2),TMDb) + !String.StartsWith(Window(Home).Property(TMDbHelper.Player.TMDb_Rating),0)">$INFO[Window(Home).Property(TMDbHelper.Player.TMDb_Rating),  •  TMDb ,]</value>
+        <value condition="String.IsEqual(Skin.String(Ratings.Movies.2),IMDb) + !String.StartsWith(Window(Home).Property(TMDbHelper.Player.IMDb_Rating),0)">$INFO[Window(Home).Property(TMDbHelper.Player.IMDb_Rating),  •  IMDb ,]</value>
+        <value condition="String.IsEqual(Skin.String(Ratings.Movies.2),Trakt) + !String.StartsWith(Window(Home).Property(TMDbHelper.Player.Trakt_Rating),0)">$INFO[Window(Home).Property(TMDbHelper.Player.Trakt_Rating),  •  Trakt ,]</value>
+        <value condition="String.IsEqual(Skin.String(Ratings.Movies.2),MC)">$INFO[Window(Home).Property(TMDbHelper.Player.Metacritic_Rating),  •  MC ,%]</value>
+        <value condition="String.IsEqual(Skin.String(Ratings.Movies.2),RT)">$INFO[Window(Home).Property(TMDbHelper.Player.RottenTomatoes_Rating),  •  RT ,%]</value>
+    </variable>
+
+	<variable name="LabelMovieRatingsPlayer">
+        <value>$VAR[LabelMovieRatingPlayer1]$VAR[LabelMovieRatingPlayer2]</value>
+	</variable>
     
     <variable name="LabelTvShowRatings">
         <value condition="String.IsEqual(Skin.String(Ratings.TvShows.1),TMDb) + !String.StartsWith(Window(Home).Property(TMDbHelper.ListItem.TMDb_Rating),0)">$INFO[Window(Home).Property(TMDbHelper.ListItem.TMDb_Rating),  •  TMDb ,]</value>
@@ -1921,6 +1941,14 @@
         <value condition="String.IsEqual(Skin.String(Ratings.TvShows.1),Trakt) + !String.StartsWith(Window(Home).Property(TMDbHelper.ListItem.Trakt_Rating),0)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Trakt_Rating),  •  Trakt ,]</value>
         <value condition="String.IsEqual(Skin.String(Ratings.TvShows.1),MC)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Metacritic_Rating),  •  MC ,%]</value>
         <value condition="String.IsEqual(Skin.String(Ratings.TvShows.1),RT)">$INFO[Window(Home).Property(TMDbHelper.ListItem.RottenTomatoes_Rating),  •  RT ,%]</value>
+    </variable>
+
+    <variable name="LabelTvShowRatingsPlayer">
+        <value condition="String.IsEqual(Skin.String(Ratings.TvShows.1),TMDb) + !String.StartsWith(Window(Home).Property(TMDbHelper.Player.TMDb_Rating),0)">$INFO[Window(Home).Property(TMDbHelper.Player.TMDb_Rating),  •  TMDb ,]</value>
+        <value condition="String.IsEqual(Skin.String(Ratings.TvShows.1),IMDb) + !String.StartsWith(Window(Home).Property(TMDbHelper.Player.IMDb_Rating),0)">$INFO[Window(Home).Property(TMDbHelper.Player.IMDb_Rating),  •  IMDb ,]</value>
+        <value condition="String.IsEqual(Skin.String(Ratings.TvShows.1),Trakt) + !String.StartsWith(Window(Home).Property(TMDbHelper.Player.Trakt_Rating),0)">$INFO[Window(Home).Property(TMDbHelper.Player.Trakt_Rating),  •  Trakt ,]</value>
+        <value condition="String.IsEqual(Skin.String(Ratings.TvShows.1),MC)">$INFO[Window(Home).Property(TMDbHelper.Player.Metacritic_Rating),  •  MC ,%]</value>
+        <value condition="String.IsEqual(Skin.String(Ratings.TvShows.1),RT)">$INFO[Window(Home).Property(TMDbHelper.Player.RottenTomatoes_Rating),  •  RT ,%]</value>
     </variable>
 
     <variable name="AdditionalMovieRatingLabel1">
