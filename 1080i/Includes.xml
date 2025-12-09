@@ -1068,7 +1068,24 @@
     <include name="Blur_SimpleBackground_Onload_Action">
 	    <onload condition="Skin.HasSetting(TMDbHelper.EnableBlur)">RunScript(plugin.video.themoviedb.helper,blur_image='"$VAR[Image_SimpleBackground]"')</onload>
     </include>
-    
+
+    <include name="TrailerWindow">
+        <control type="videowindow">
+            <visible>$EXP[TrailerWindowIsActive] + !$EXP[ExtendedNowPlayingIsVisible]</visible>
+            <include condition="![$EXP[HomeIsCleanMinimal] + Window.IsVisible(Home)]">DefTrailerVideoWindowSmall</include>
+            <include condition="$EXP[HomeIsCleanMinimal] + Window.IsVisible(Home)">DefTrailerVideoWindowFullscreen</include>
+        </control>        
+        <control type="image" description="Background">
+            <animation effect="slide" start="0,0" end="0,-90" time="0" condition="Skin.HasSetting(home.netflix.autoplay.trailer.custom.window.force)">Conditional</animation>
+            <animation effect="slide" start="0,0" end="0,-50" time="0" condition="Skin.HasSetting(home.netflix.autoplay.trailer.custom.window) + String.IsEqual(VideoPlayer.VideoAspect,1.85) + !String.IsEmpty(VideoPlayer.VideoAspect)">Conditional</animation>
+            <animation effect="slide" start="0,0" end="0,-90" time="0" condition="Skin.HasSetting(home.netflix.autoplay.trailer.custom.window) + !String.IsEqual(VideoPlayer.VideoAspect,1.85) + !String.IsEqual(VideoPlayer.VideoAspect,1.78) + !String.IsEqual(VideoPlayer.VideoAspect,1.66) + !String.IsEqual(VideoPlayer.VideoAspect,1.37) + !String.IsEqual(VideoPlayer.VideoAspect,1.33) + !String.IsEmpty(VideoPlayer.VideoAspect)">Conditional</animation>
+            <visible>$EXP[TrailerWindowIsActive] + !$EXP[ExtendedNowPlayingIsVisible] + ![$EXP[HomeIsCleanMinimal] + Window.IsVisible(Home)]</visible>
+            <top>0</top>
+            <include>Dimensions_Fullscreen</include>
+            <texture colordiffuse="Background">common/trailerwindow.png</texture>
+        </control>
+    </include>
+        
     <include name="GlobalVideoWindow">
         <control type="image" description="Background">
             <include>Dimensions_Fullscreen</include>
@@ -1082,6 +1099,14 @@
         <control type="videowindow">
             <include>Dimensions_Fullscreen</include>
             <visible>Player.HasVideo + Skin.HasSetting(global.showvideo)</visible>
+        </control>
+    </include>
+
+    <include name="GlobalVideoWindowHidden">
+        <!--Hidden video window to prevent audio errors-->
+        <control type="videowindow">
+            <visible>Player.HasVideo + !Player.Paused</visible>
+            <include>Dimensions_Fullscreen</include>
         </control>
     </include>
 
@@ -1157,49 +1182,13 @@
         <include condition="Integer.IsEqual(Skin.String(Fadetime),400)">FadetimeFast</include>
     </include>
 
-    <include name="FadetimeFast">
-        <fadetime>400</fadetime>
-    </include>
+    <include name="FadetimeFast"><fadetime>400</fadetime></include>
+    <include name="FadetimeSlow"><fadetime>1800</fadetime></include>
+    <include name="FadetimeSuperSlow"><fadetime>3600</fadetime></include>
+    <include name="FadetimeDefault"><fadetime>BackgroundFanartFadetime</fadetime></include>
 
-    <include name="FadetimeDefault">
-        <fadetime>BackgroundFanartFadetime</fadetime>
-    </include>
-
-    <include name="FadetimeSlow">
-        <fadetime>1800</fadetime>
-    </include>
-
-    <include name="FadetimeSuperSlow">
-        <fadetime>3600</fadetime>
-    </include>
-
-    <include name="HiddenVideoWindow">
-
-        <!--Hidden video window to prevent audio errors-->
-        <control type="videowindow">
-            <visible>Player.HasVideo</visible>
-        </control>
-    </include>
-
-    <include name="TrailerWindow">
-        <control type="videowindow">
-            <visible>$EXP[TrailerWindowIsActive] + !$EXP[ExtendedNowPlayingIsVisible]</visible>
-            <include condition="![$EXP[HomeIsCleanMinimal] + Window.IsVisible(Home)]">DefTrailerVideoWindowSmall</include>
-            <include condition="$EXP[HomeIsCleanMinimal] + Window.IsVisible(Home)">DefTrailerVideoWindowFullscreen</include>
-        </control>        
-        <control type="image" description="Background">
-            <animation effect="slide" start="0,0" end="0,-90" time="0" condition="Skin.HasSetting(home.netflix.autoplay.trailer.custom.window.force)">Conditional</animation>
-            <animation effect="slide" start="0,0" end="0,-50" time="0" condition="Skin.HasSetting(home.netflix.autoplay.trailer.custom.window) + String.IsEqual(VideoPlayer.VideoAspect,1.85) + !String.IsEmpty(VideoPlayer.VideoAspect)">Conditional</animation>
-            <animation effect="slide" start="0,0" end="0,-90" time="0" condition="Skin.HasSetting(home.netflix.autoplay.trailer.custom.window) + !String.IsEqual(VideoPlayer.VideoAspect,1.85) + !String.IsEqual(VideoPlayer.VideoAspect,1.78) + !String.IsEqual(VideoPlayer.VideoAspect,1.66) + !String.IsEqual(VideoPlayer.VideoAspect,1.37) + !String.IsEqual(VideoPlayer.VideoAspect,1.33) + !String.IsEmpty(VideoPlayer.VideoAspect)">Conditional</animation>
-            <visible>$EXP[TrailerWindowIsActive] + !$EXP[ExtendedNowPlayingIsVisible] + ![$EXP[HomeIsCleanMinimal] + Window.IsVisible(Home)]</visible>
-            <top>0</top>
-            <include>Dimensions_Fullscreen</include>
-            <texture colordiffuse="Background">common/trailerwindow.png</texture>
-        </control>
-    </include>
-    
     <include name="GlobalBackground">        
-        <include condition="!Skin.HasSetting(global.showvideo) + !Skin.HasSetting(disable.background.video.fix.audio.errors)">HiddenVideoWindow</include>
+        <include condition="!Skin.HasSetting(global.showvideo)">GlobalVideoWindowHidden</include>
         <include>GlobalVideoWindow</include>
         <include condition="Skin.HasSetting(global.showvisualisation) + Visualisation.Enabled">GlobalVisualisation</include>
         <control type="fadelabel" id="4399">
