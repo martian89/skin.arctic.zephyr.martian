@@ -571,7 +571,7 @@
     </variable>
 
     <variable name="LabelDuration">
-        <value condition="[Container.Content(songs) | Container.Content(albums) | Container.Content(musicvideos)] + !String.IsEqual(Container.SortMethod,$LOCALIZE[556]) + !String.IsEqual(Container.SortMethod,$LOCALIZE[557]) + !String.IsEqual(Container.SortMethod,$LOCALIZE[558]) + !String.IsEqual(Container.SortMethod,$LOCALIZE[578]) + !String.IsEqual(Container.SortMethod,$LOCALIZE[562]) + !String.IsEqual(Container.SortMethod,$LOCALIZE[567])">$INFO[ListItem.Label2]</value>
+        <value condition="[Container.Content(songs) | Container.Content(albums) | Container.Content(musicvideos)] + !String.IsEqual(Container.SortMethod,$LOCALIZE[551]) + !String.IsEqual(Container.SortMethod,$LOCALIZE[556]) + !String.IsEqual(Container.SortMethod,$LOCALIZE[557]) + !String.IsEqual(Container.SortMethod,$LOCALIZE[558]) + !String.IsEqual(Container.SortMethod,$LOCALIZE[578]) + !String.IsEqual(Container.SortMethod,$LOCALIZE[562]) + !String.IsEqual(Container.SortMethod,$LOCALIZE[567])">$INFO[ListItem.Label2]</value>
         <value condition="String.IsEqual(Container.SortMethod,$LOCALIZE[552]) + String.StartsWith(Container.FolderPath,videodb://recentlyadded)">$INFO[ListItem.DateAdded]</value>
         <value condition="String.IsEqual(Container.SortMethod,$LOCALIZE[552])">$INFO[ListItem.Date]</value>
         <value condition="String.IsEqual(Container.SortMethod,$LOCALIZE[20074])">$INFO[ListItem.MPAA]</value>
@@ -1321,6 +1321,7 @@
     </variable>
 
     <variable name="50ListExtended">
+        <value condition="String.IsEmpty(ListItem.DBTYPE)">$INFO[ListItem.FolderPath]</value>
         <value condition="ListItem.IsCollection">$LOCALIZE[31476]</value>
         <value condition="String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(ListItem.Genre)">$INFO[ListItem.Genre]</value>
         <value condition="Container.Content(seasons) + !String.IsEqual(ListItem.Label,..)">$INFO[ListItem.Year]</value>
