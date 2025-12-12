@@ -2,7 +2,7 @@
 <window type="window" id="1198">
     <defaultcontrol always="true">9000</defaultcontrol>
     <animation effect="fade" start="100" end="0" time="500">WindowClose</animation>
-    <onunload>CancelAlarm(RepWin,true)</onunload>
+    <onunload>CancelAlarm(Refocus,true)</onunload>
     <controls>
         <control type="group">
             <control type="image" description="Background">
@@ -12,21 +12,21 @@
             </control>
             <control type="button" id="9000">
                 <include>HiddenButton</include>
-                <onfocus>AlarmClock(RepWin,SetFocus(9001),00:01,silent)</onfocus>
+                <onfocus>AlarmClock(ReFocus,SetFocus(9001),00:01,silent)</onfocus>
                 <onfocus condition="!String.IsEmpty(Skin.String(StartupPlaylist)) + !Player.HasMedia">AlarmClock(PlayStartupVideo,PlayMedia($ESCINFO[Skin.String(StartupPlaylist)],1),00:00,silent,false)</onfocus>
                 <onback>ReplaceWindow($INFO[System.StartupWindow])</onback>
                 <onback>Stop</onback>
             </control>
             <control type="button" id="9001">
                 <include>HiddenButton</include>
-                <onfocus>AlarmClock(RepWin,SetFocus(9002),00:01,silent)</onfocus>
+                <onfocus>AlarmClock(ReFocus,SetFocus(9002),00:01,silent)</onfocus>
                 <onback>ReplaceWindow($INFO[System.StartupWindow])</onback>
                 <onback>Stop</onback>
             </control>
             <control type="button" id="9002">
                 <include>HiddenButton</include>
-                <onfocus condition="!Player.HasMedia">ReplaceWindow($INFO[System.StartupWindow])</onfocus>
-                <onfocus>AlarmClock(ReFocus,SetFocus(9001),00:00,silent)</onfocus>
+                <onfocus condition="!Player.HasMedia">AlarmClock(RepWin,ReplaceWindow($INFO[System.StartupWindow]),00:00,silent)</onfocus>
+                <onfocus>AlarmClock(ReFocus,SetFocus(9001),00:01,silent)</onfocus>
                 <onback>ReplaceWindow($INFO[System.StartupWindow])</onback>
                 <onback>Stop</onback>
             </control>   
