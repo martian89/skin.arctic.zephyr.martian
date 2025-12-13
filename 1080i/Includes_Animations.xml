@@ -654,7 +654,7 @@
     </include>
 
     <include name="Animation.TestIn">
-        <visible>!Container().OnNext + !Container().OnPrevious + !ListItem.IsCollection + !Container.Content(musicvideos) + !$EXP[IsMediaInfoList]</visible>
+        <visible>!Container().OnNext + !Container().OnPrevious + $EXP[HasDurationInfo]</visible>
         <animation type="VisibleChange" reversible="false">
             <effect type="fade" start="0" end="100" time="400" delay="2300"/>
         </animation>
@@ -664,7 +664,7 @@
     </include>
 
     <include name="Animation.TestOut">
-        <animation type="Conditional" condition="!Container().OnNext + !Container().OnPrevious + !ListItem.IsCollection + !Container.Content(musicvideos) + !$EXP[IsMediaInfoList]" reversible="false">
+        <animation type="Conditional" condition="!Container().OnNext + !Container().OnPrevious + $EXP[HasDurationInfo]" reversible="false">
             <effect type="fade" start="100" end="0" time="400" delay="2000"/>
         </animation>
     </include>
