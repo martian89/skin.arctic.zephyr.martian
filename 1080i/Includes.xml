@@ -2047,22 +2047,29 @@
         </control>
     </include>
 
-    <variable name="SetTMDBHelperWidgetContainer">
-        <value condition="Control.IsVisible(30111)">AlarmClock(Preload,SetProperty(TMDbHelper.WidgetContainer,30111),00:00,silent)</value>
-        <value condition="Control.IsVisible(30121)">AlarmClock(Preload,SetProperty(TMDbHelper.WidgetContainer,30121),00:00,silent)</value>
-        <value condition="Control.IsVisible(30131)">AlarmClock(Preload,SetProperty(TMDbHelper.WidgetContainer,30131),00:00,silent)</value>
-        <value condition="Control.IsVisible(30141)">AlarmClock(Preload,SetProperty(TMDbHelper.WidgetContainer,30141),00:00,silent)</value>
-        <value condition="Control.IsVisible(30151)">AlarmClock(Preload,SetProperty(TMDbHelper.WidgetContainer,30151),00:00,silent)</value>
-        <value condition="Control.IsVisible(30161)">AlarmClock(Preload,SetProperty(TMDbHelper.WidgetContainer,30161),00:00,silent)</value>
-        <value condition="Control.IsVisible(30171)">AlarmClock(Preload,SetProperty(TMDbHelper.WidgetContainer,30171),00:00,silent)</value>
-        <value condition="Control.IsVisible(30181)">AlarmClock(Preload,SetProperty(TMDbHelper.WidgetContainer,30181),00:00,silent)</value>
-        <value condition="Control.IsVisible(30191)">AlarmClock(Preload,SetProperty(TMDbHelper.WidgetContainer,30191),00:00,silent)</value>
+    <include name="DialogForcedArrow">
+        <align>center</align>
+        <top>20</top>
+        <include>arrowdimensions</include>
+        <texture colordiffuse="Dark1" flipy="false">common/arrow-small-right.png</texture>
+    </include>
+
+    <variable name="TMDBHelperWidgetContainer">
+        <value condition="Control.IsVisible(30111)">$NUMBER[30111]</value>
+        <value condition="Control.IsVisible(30121)">$NUMBER[30121]</value>
+        <value condition="Control.IsVisible(30131)">$NUMBER[30131]</value>
+        <value condition="Control.IsVisible(30141)">$NUMBER[30141]</value>
+        <value condition="Control.IsVisible(30151)">$NUMBER[30151]</value>
+        <value condition="Control.IsVisible(30161)">$NUMBER[30161]</value>
+        <value condition="Control.IsVisible(30171)">$NUMBER[30171]</value>
+        <value condition="Control.IsVisible(30181)">$NUMBER[30181]</value>
+        <value condition="Control.IsVisible(30191)">$NUMBER[30191]</value>
     </variable>
 
     <include name="SetWidgetContainerForTMDB">
         <control type="button">
             <visible>false</visible>
-            <onfocus>$VAR[SetTMDBHelperWidgetContainer]</onfocus>
+            <onfocus>AlarmClock(Preload,SetProperty(TMDbHelper.WidgetContainer,$VAR[TMDBHelperWidgetContainer]),00:00,silent)</onfocus>
             <onfocus>SetProperty(WindowTitle,$INFO[Container(300).ListItem.Label],home)</onfocus>
         </control>
     </include>
