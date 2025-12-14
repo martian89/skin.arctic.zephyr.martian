@@ -786,12 +786,14 @@
     </variable>
 
     <variable name="Def_Director_List">
-        <value condition="$EXP[ShowTmdbDirector] + !String.IsEmpty(Window.Property(videodirector))">plugin://plugin.video.themoviedb.helper/?info=crew_in_movies&amp;tmdb_type=person&amp;filter_key=job&amp;filter_value=Director&amp;$VAR[Director_Query]&amp;exclude_key=title&amp;exclude_value=$INFO[ListItem.Title]&amp;sort_key=release_date$VAR[Tmdb_Query_Params]</value>
+        <value condition="$EXP[ShowTmdbDirector] + !String.IsEmpty(Window.Property(videodirector)) + !String.IsEmpty(TvShowTitle)">plugin://plugin.video.themoviedb.helper/?info=crew_in_tvshows&amp;tmdb_type=person&amp;filter_key=job&amp;filter_value=Director$VAR[Director_Query]&amp;exclude_key=title&amp;exclude_value=$INFO[ListItem.TvShowTitle]&amp;sort_key=first_air_date$VAR[Tmdb_Query_Params]</value>
+        <value condition="$EXP[ShowTmdbDirector] + !String.IsEmpty(Window.Property(videodirector)) + String.IsEqual(ListItem.DBType,tvshow)">plugin://plugin.video.themoviedb.helper/?info=crew_in_tvshows&amp;tmdb_type=person&amp;filter_key=job&amp;filter_value=Director$VAR[Director_Query]&amp;exclude_key=title&amp;exclude_value=$INFO[ListItem.Title]&amp;sort_key=first_air_date$VAR[Tmdb_Query_Params]</value>
+        <value condition="$EXP[ShowTmdbDirector] + !String.IsEmpty(Window.Property(videodirector))">plugin://plugin.video.themoviedb.helper/?info=crew_in_movies&amp;tmdb_type=person&amp;filter_key=job&amp;filter_value=Director$VAR[Director_Query]&amp;exclude_key=title&amp;exclude_value=$INFO[ListItem.Title]&amp;sort_key=release_date$VAR[Tmdb_Query_Params]</value>
     </variable>
 
     <variable name="Def_Studio_List">
-        <value condition="$EXP[ShowTmdbStudio] + !String.IsEmpty(Window.Property(videostudio)) + String.IsEqual(ListItem.DBTYPE,movie)">plugin://plugin.video.themoviedb.helper?info=discover$VAR[Studio_Query]&amp;exclude_key=title&amp;exclude_value=$INFO[ListItem.Title]&amp;sort_key=release_date$VAR[Tmdb_Query_Params]</value>
-        <value condition="$EXP[ShowTmdbStudio] + !String.IsEmpty(Window.Property(videostudio))">plugin://plugin.video.themoviedb.helper?info=discover$VAR[Studio_Query]&amp;exclude_key=title&amp;exclude_value=$INFO[ListItem.Title]&amp;sort_key=first_air_date$VAR[Tmdb_Query_Params]</value>
+        <value condition="$EXP[ShowTmdbStudio] + !String.IsEmpty(Window.Property(videostudio)) + !String.IsEmpty(TvShowTitle)">plugin://plugin.video.themoviedb.helper?info=discover$VAR[Studio_Query]&amp;exclude_key=title&amp;exclude_value=$INFO[ListItem.TvShowTitle]$VAR[Tmdb_Query_Params]</value>
+        <value condition="$EXP[ShowTmdbStudio] + !String.IsEmpty(Window.Property(videostudio))">plugin://plugin.video.themoviedb.helper?info=discover$VAR[Studio_Query]&amp;exclude_key=title&amp;exclude_value=$INFO[ListItem.Title]$VAR[Tmdb_Query_Params]</value>
     </variable>
 
     <variable name="Def_Similar_List">
