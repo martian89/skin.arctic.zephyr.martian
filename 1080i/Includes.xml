@@ -458,7 +458,7 @@
     <expression name="ShowRatingInfo">!Skin.HasSetting(hide.ratings) + $EXP[HasEnableRatingInfo]</expression>
 
     <expression name="IsMediaInfoList">$EXP[IsVideoAssets] + !Skin.HasSetting(list.hide.mediainfo) + !Skin.HasSetting(list.show.filename)</expression>
-    <expression name="HasDurationInfo">!String.IsEmpty(ListItem.Duration(mins)) + [String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode) | $EXP[IsVideoAssets]] + !$EXP[IsMediaInfoList]</expression>
+    <expression name="HasDurationInfo">[[Control.HasFocus(5161) + !String.IsEmpty(Container(5161).ListItem.Duration(mins))] | [Container.Content(artists) + !String.IsEmpty(ListItem.Property(Artist_Born))] | [[String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)] + Integer.IsGreater(ListItem.Property(TotalEpisodes),0)] | [[String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,episode) | $EXP[IsVideoAssets]] + !String.IsEmpty(ListItem.Duration(mins))]] + !$EXP[IsMediaInfoList]</expression>
             
     <expression name="UsePreviewImageSquare">
         [ !String.Contains(Control.GetLabel(1),(videos))
