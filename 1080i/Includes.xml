@@ -461,8 +461,7 @@
     <expression name="HasDurationInfo">[[Control.HasFocus(5161) + !String.IsEmpty(Container(5161).ListItem.Duration(mins))] | [Container.Content(artists) + !String.IsEmpty(ListItem.Property(Artist_Born))] | [[String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)] + Integer.IsGreater(ListItem.Property(TotalEpisodes),0)] | [[String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,episode) | $EXP[IsVideoAssets]] + !String.IsEmpty(ListItem.Duration(mins))]] + !$EXP[IsMediaInfoList]</expression>
             
     <expression name="UsePreviewImageSquare">
-        [ !String.Contains(Control.GetLabel(1),(videos))
-        + !String.Contains(Control.GetLabel(1),(movies)) 
+        [ !String.Contains(Control.GetLabel(1),(movies)) 
         + !String.Contains(Control.GetLabel(1),(sets)) 
         + !String.Contains(Control.GetLabel(1),(tvshows)) 
         + !String.Contains(Control.GetLabel(1),(episode-groups-tvshows)) 
