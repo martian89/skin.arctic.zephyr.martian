@@ -473,6 +473,13 @@
         + !String.Contains(Control.GetLabel(1),(videoextras)) 
         + !String.Contains(Control.GetLabel(1),(videoassets)) ]
     </expression>
+
+    <expression name="UsePreviewImageMusic">
+        [ String.Contains(Control.GetLabel(1),(albums)) 
+        | String.Contains(Control.GetLabel(1),(songs)) 
+        | String.Contains(Control.GetLabel(1),(artists)) 
+        | String.Contains(Control.GetLabel(1),(musicvideos))]
+    </expression>
         
     <expression name="IsColorSchemeDefault">
           [String.IsEmpty(Skin.String(focuscolor.name)) | String.IsEqual(Skin.String(focuscolor.name),ff0091ea)]
