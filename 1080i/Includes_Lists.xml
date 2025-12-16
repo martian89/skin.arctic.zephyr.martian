@@ -522,31 +522,6 @@
         </control>
     </include>
 
-    <!-- Hidden list for counting sets/albumtracks -->
-    <include name="MovieSetsList">
-        <control type="list" id="44321">
-            <visible>String.IsEqual(Container(301).ListItem.DBType,set) + !String.IsEmpty(Container(301).ListItem.DBID)</visible>
-            <include>HiddenListControl</include>
-            <content>videodb://movies/sets/$INFO[Container(301).ListItem.DBID]/?setid=$INFO[Container(301).ListItem.DBID]</content>
-        </control>
-        <control type="list" id="44322">
-            <visible>String.IsEqual(Container(301).ListItem.DBType,album)</visible>
-            <include>HiddenListControl</include>
-            <content>$VAR[AlbumPath301]</content>
-        </control>
-    </include>
-
-    <include name="AlbumAndSetsCount">
-        <control type="list" id="44023">
-            <include>HiddenListControl</include>
-            <content>$VAR[SetsPath]</content>
-        </control>
-        <control type="list" id="44022">
-            <include>HiddenListControl</include>
-            <content>$VAR[AlbumPath]</content>
-        </control>
-    </include>
-
     <include name="HiddenUpNextEpisode">
         <control type="list" id="9911">
             <include>HiddenListControl</include>
@@ -569,10 +544,25 @@
         </control>
     </include>
     
+    <include name="AlbumInfo">
+        <control type="list" id="44022">
+            <include>HiddenListControl</include>
+            <content>$VAR[AlbumPath]</content>
+        </control>
+    </include>
+
+    <include name="MovieSetInfo">
+        <control type="list" id="44023">
+            <include>HiddenListControl</include>
+            <content>$VAR[SetsPath]</content>
+        </control>
+    </include>
+
     <include name="ActorInfo">
         <control type="list" id="44422">
             <include>HiddenListControl</include>
             <content target="videos">$VAR[ActorPath]</content>
         </control>
     </include>
+
 </includes>

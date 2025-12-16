@@ -610,17 +610,6 @@
                 <param name="position_low" value="true" />
             </include>
         </control>
-        <!-- Fakelist Container for Album Count -->
-        <control type="list" id="5014">
-            <visible>String.IsEqual(ListItem.DBType,album)</visible>
-            <top>-3000</top>
-            <left>-3000</left>
-            <width>1</width>
-            <height>1</height>
-            <itemlayout/>
-            <focusedlayout/>
-            <content>$VAR[AlbumPath]</content>
-        </control>
         <control type="group">
             <visible>String.IsEqual(ListItem.DBType,album) | String.IsEqual(ListItem.DBType,song)</visible>
             <include>Animation.FurnitureVisible</include>
@@ -628,6 +617,7 @@
                 <param name="position_low" value="true" />
             </include>
         </control>
+        <include condition="!Skin.HasSetting(furniture.flags)">AlbumInfo</include>
     </include>
     
     <include name="Furniture_Flags_Include">
@@ -1833,17 +1823,6 @@
 	        </control>
             <control type="group">
                 <visible>String.IsEqual(ListItem.DBType,album) | String.IsEqual(ListItem.DBType,song)</visible>
-        		<!-- Fakelist Container for Album Count -->
-		        <control type="list" id="5014">
-		            <visible>String.IsEqual(ListItem.DBType,album)</visible>
-		            <top>-3000</top>
-		            <left>-3000</left>
-		            <width>1</width>
-		            <height>1</height>
-		            <itemlayout/>
-		            <focusedlayout/>
-		            <content>$VAR[AlbumPath]</content>
-		        </control>
                 <include content="Furniture_Flags_Audio_Include" condition="!Skin.HasSetting(furniture.flags) + !Skin.HasSetting(home.hideflags)">
                     <param name="position_low" value="true" />
                 </include>

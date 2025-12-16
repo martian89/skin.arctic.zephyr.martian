@@ -629,7 +629,7 @@
         <value condition="String.IsEqual(Container(300).ListItem.Property(widget),NextAired)"/>
         <value condition="String.Contains(Container(300).ListItem.Property(widgetType),artists) + !String.IsEmpty(Container(301).ListItem.Property(Artist_Style))">$INFO[Container(301).ListItem.Property(Artist_Style)]</value>
         <value condition="String.Contains(Container(300).ListItem.Property(widgetType),artists) + String.IsEmpty(Container(301).ListItem.Property(Artist_Style))">$INFO[Container(301).ListItem.Artist]</value>
-        <value condition="String.Contains(Container(300).ListItem.Property(widgetType),music) | String.Contains(Container(300).ListItem.Property(widgetType),albums) | String.Contains(Container(300).ListItem.Property(widgetType),songs)">$INFO[Container(301).ListItem.Artist]$INFO[Container(301).ListItem.Year,  •  ,]$INFO[Container(44322).NumItems,  •  , $LOCALIZE[134]]</value>
+        <value condition="String.Contains(Container(300).ListItem.Property(widgetType),music) | String.Contains(Container(300).ListItem.Property(widgetType),albums) | String.Contains(Container(300).ListItem.Property(widgetType),songs)">$INFO[Container(301).ListItem.Artist]$INFO[Container(301).ListItem.Year,  •  ,]$INFO[Container(44022).NumItems,  •  , $LOCALIZE[134]]</value>
 
         <!-- Episodes -->
         <value condition="String.IsEqual(Container(301).ListItem.DBType,episode) + !Skin.HasSetting(NewTime)">$VAR[WidgetSublabelSeasonsEpisodes]$INFO[Container(301).ListItem.Premiered,,  •  ]$INFO[Container(301).ListItem.Duration(mins),, $LOCALIZE[31102]  •  ]$VAR[RatingLabel301]$VAR[LabelTvShowRatings]</value>
@@ -642,7 +642,7 @@
         <value condition="String.IsEqual(Container(301).ListItem.DBType,movie) + Skin.HasSetting(NewTime) + !Integer.IsGreater(Container(301).ListItem.Duration(h),0)">$INFO[Container(301).ListItem.Year]$INFO[Container(301).ListItem.Duration(mins),  •  ,$LOCALIZE[31089]]$VAR[RatingLabel301,  •  ]$VAR[LabelMovieRatings]</value>
 
         <!-- Sets -->
-        <value condition="String.IsEqual(Container(301).ListItem.DBType,set)">$INFO[Container(301).ListItem.Year,,  •  ]$INFO[Container(44321).NumItems,, $LOCALIZE[342]]$VAR[RatingLabel301,  •  ]$VAR[LabelMovieRatings]</value>
+        <value condition="String.IsEqual(Container(301).ListItem.DBType,set)">$INFO[Container(301).ListItem.Year,,  •  ]$INFO[Container(44023).NumItems,, $LOCALIZE[342]]$VAR[RatingLabel301,  •  ]$VAR[LabelMovieRatings]</value>
         
         <!-- Tv Shows -->
         <value condition="String.IsEqual(Container(301).ListItem.DBType,tvshow)">$VAR[WidgetSublabelTotalEpisodes,, $LOCALIZE[20360]]$VAR[WidgetSublabelUnwatchedEpisodes,  •  , $LOCALIZE[16101]]$VAR[RatingLabel301,  •  ]$VAR[LabelTvShowRatings]</value>
@@ -2023,7 +2023,7 @@
     
     <variable name="Label_AlbumCount">
         <value condition="[Container.Content(albums) | String.IsEqual(ListItem.DBType,album)] + Window.IsVisible(DialogMusicInfo.xml)">$INFO[Container(50).NumItems]</value>
-        <value>$INFO[Container(5014).NumItems]</value>
+        <value>$INFO[Container(44022).NumItems]</value>
     </variable>
     
     <variable name="Label_ArtistBorn">
