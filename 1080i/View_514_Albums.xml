@@ -102,7 +102,7 @@
                         <label fallback="19055">$VAR[LabelSub_1_GenreAlbum]</label>
                     </control>
                     <control type="textbox">
-                        <visible>!String.Empty(ListItem.Plot) | [!String.IsEmpty(ListItem.Property(Artist_Description)) + Container.Content(artists)] | [!String.IsEmpty(ListItem.Property(Album_Description)) + Container.Content(albums)] | [!String.Empty(Container.ShowPlot) + Container.Content(seasons)]</visible>
+                        <visible>[!String.IsEmpty(ListItem.Property(Artist_Description)) + Container.Content(artists)] | [!String.IsEmpty(ListItem.Property(Album_Description)) + Container.Content(albums)] | [!String.IsEmpty(ListItem.Plot) + [Container.Content(movies) | Container.Content(tvshows) | Container.Content(sets) | Container.Content(episodes) | Container.Content(seasons) | Container.Content(musicvideos) | $EXP[IsVideoAssets]]] | [!String.IsEmpty(Container.ShowPlot) + Container.Content(seasons)]</visible>
                         <left>SidePad</left>
                         <include condition="!Skin.HasSetting(514NoCenter)">CenterInfo</include>
                         <animation effect="slide" start="0,0" end="100,0" time="200" condition="!Skin.HasSetting(514NoCenter)">Conditional</animation>

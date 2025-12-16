@@ -96,7 +96,7 @@
                     <textcolor>Dark2</textcolor>
                     <selectedcolor>Dark2</selectedcolor>
                     <label>$VAR[LabelArtistAlbumDescription]</label>
-                    <visible>!String.Empty(ListItem.Plot) | [!String.IsEmpty(ListItem.Property(Artist_Description)) | !String.IsEmpty(ListItem.Property(Album_Description))] + !String.IsEqual(ListItem.DBTYPE,song)</visible>
+                    <visible>[!String.IsEmpty(ListItem.Property(Artist_Description)) | !String.IsEmpty(ListItem.Property(Album_Description))] + !String.IsEqual(ListItem.DBTYPE,song) | !String.IsEmpty(ListItem.Plot) + String.IsEqual(ListItem.DBType,musicvideo)</visible>
                 </control>
                 <control type="label">
                     <font>Tiny</font>
