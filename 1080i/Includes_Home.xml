@@ -3490,10 +3490,10 @@
                 <visible>String.IsEqual(Container($PARAM[id]).ListItem.DBType,set)</visible>
             </control>
             
-            <!-- Albums -->
+            <!-- Albums / Videos -->
             <control type="grouplist">
                 <itemgap>0</itemgap>
-                <visible>String.IsEqual(Container($PARAM[id]).ListItem.DBType,album)</visible>
+                <visible>String.IsEqual(Container($PARAM[id]).ListItem.DBType,album) | String.IsEqual(Container($PARAM[id]).ListItem.DBType,video)</visible>
                 <orientation>horizontal</orientation>
                 <height>36</height>
                 <usecontrolcoords>true</usecontrolcoords>
@@ -3509,6 +3509,7 @@
                 <control type="label">
                     <include>MultiWidgetsSubLabelDefinition</include>
                     <label>$INFO[Container($PARAM[id]).ListItem.Year]  $INFO[Control.GetLabel(9967)]</label>
+ 					<visible>String.IsEqual(Container($PARAM[id]).ListItem.DBType,album)</visible>
                 </control>
             </control>
             
@@ -3524,11 +3525,11 @@
                 <visible>String.IsEqual(Container($PARAM[id]).ListItem.DBType,artist) + String.IsEmpty(Container($PARAM[id]).ListItem.Property(Artist_Style))</visible>
             </control>
             
-            <!-- Songs -->
+            <!-- Songs / Musicvideos -->
             <control type="label">
                 <include>MultiWidgetsSubLabelDefinition</include>
                 <label>$INFO[Container($PARAM[id]).ListItem.Artist]$INFO[Container($PARAM[id]).ListItem.Year,  •  ,]</label>
-                <visible>String.IsEqual(Container($PARAM[id]).ListItem.DBType,song)</visible>
+                <visible>String.IsEqual(Container($PARAM[id]).ListItem.DBType,song) | String.IsEqual(Container($PARAM[id]).ListItem.DBType,musicvideo)</visible>
             </control>
             
             <!-- Addons -->
