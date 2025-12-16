@@ -616,8 +616,11 @@
             <include content="Furniture_Flags_Audio_Include" condition="!Skin.HasSetting(furniture.flags)">
                 <param name="position_low" value="true" />
             </include>
+	        <control type="group">
+	            <visible>String.IsEqual(ListItem.DBType,album)</visible>
+	            <include condition="!Skin.HasSetting(furniture.flags)">AlbumInfo</include>
+	        </control>
         </control>
-        <include condition="!Skin.HasSetting(furniture.flags)">AlbumInfo</include>
     </include>
     
     <include name="Furniture_Flags_Include">
