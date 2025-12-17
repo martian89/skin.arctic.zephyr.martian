@@ -4,9 +4,7 @@
     <variable name="PosterPercentWatched">
         <value condition="Skin.HasSetting(hide.markers)"></value>
         <value condition="ListItem.IsPlaying + !Skin.HasSetting(hide.markers.isplaying)">indicator/poster-play.png</value>
-        <value condition="$EXP[IsInProgress] + [Integer.IsGreater(ListItem.PercentPlayed,66) | Integer.IsGreater(ListItem.Property(WatchedEpisodePercent),66)] + !Skin.HasSetting(hide.markers.inprogress)">indicator/poster-inprogress-75.png</value>
-        <value condition="$EXP[IsInProgress] + [Integer.IsGreater(ListItem.PercentPlayed,33) | Integer.IsGreater(ListItem.Property(WatchedEpisodePercent),33)] + !Skin.HasSetting(hide.markers.inprogress)">indicator/poster-inprogress-50.png</value>
-        <value condition="$EXP[IsInProgress] + !Skin.HasSetting(hide.markers.inprogress)">indicator/poster-inprogress-25.png</value>
+        <value condition="$EXP[IsInProgress] + !Skin.HasSetting(hide.markers.inprogress)">$VAR[PosterInProgressIndicator]</value>
         <value condition="$EXP[IsWatched] + !Skin.HasSetting(hide.markers.watched)">indicator/poster-checkmark.png</value>
         <value condition="$EXP[IsNewContent] + !Skin.HasSetting(hide.markers.newcontent)">indicator/poster-new.png</value>
         <value condition="$EXP[IsUnwatched] + !String.IsEmpty(ListItem.DBID) + Skin.HasSetting(markers.unwatched)">indicator/poster-unwatched.png</value>
@@ -29,12 +27,16 @@
         <value condition="!String.IsEmpty(ListItem.DBID) + !String.IsEmpty(ListItem.Property(Item.Info)) + !Skin.HasSetting(hide.markers.library)">indicator/backing.png</value>
     </variable>
 
+    <variable name="PosterInProgressIndicator">
+        <value condition="Integer.IsGreater(ListItem.PercentPlayed,66) | Integer.IsGreater(ListItem.Property(WatchedEpisodePercent),66)">indicator/poster-inprogress-75.png</value>
+        <value condition="Integer.IsGreater(ListItem.PercentPlayed,33) | Integer.IsGreater(ListItem.Property(WatchedEpisodePercent),33)">indicator/poster-inprogress-50.png</value>
+        <value>indicator/poster-inprogress-25.png</value>    
+    </variable>
+
     <variable name="PosterPercentWatched301">
         <value condition="Skin.HasSetting(hide.markers)"></value>
         <value condition="Container(301).ListItem.IsPlaying + !Skin.HasSetting(hide.markers.isplaying)">indicator/poster-play.png</value>
-        <value condition="$EXP[IsInProgress301] + [Integer.IsGreater(Container(301).ListItem.PercentPlayed,66) | Integer.IsGreater(Container(301).ListItem.Property(WatchedEpisodePercent),66)] + !Skin.HasSetting(hide.markers.inprogress)">indicator/poster-inprogress-75.png</value>
-        <value condition="$EXP[IsInProgress301] + [Integer.IsGreater(Container(301).ListItem.PercentPlayed,33) | Integer.IsGreater(Container(301).ListItem.Property(WatchedEpisodePercent),33)] + !Skin.HasSetting(hide.markers.inprogress)">indicator/poster-inprogress-50.png</value>
-        <value condition="$EXP[IsInProgress301] + !Skin.HasSetting(hide.markers.inprogress)">indicator/poster-inprogress-25.png</value>
+        <value condition="$EXP[IsInProgress301] + !Skin.HasSetting(hide.markers.inprogress)">$VAR[PosterInProgressIndicator301]</value>
         <value condition="$EXP[IsWatched301] + !Skin.HasSetting(hide.markers.watched)">indicator/poster-checkmark.png</value>
         <value condition="$EXP[IsNewContent301] + !Skin.HasSetting(hide.markers.newcontent)">indicator/poster-new.png</value>
         <value condition="$EXP[IsUnwatched301] + !String.IsEmpty(Container(301).ListItem.DBID) + Skin.HasSetting(markers.unwatched)">indicator/poster-unwatched.png</value>
@@ -56,6 +58,13 @@
         <value condition="Container(301).ListItem.IsCollection + !Skin.HasSetting(hide.markers.collection)">indicator/backing.png</value>
         <value condition="!String.IsEmpty(Container(301).ListItem.DBID) + !String.IsEmpty(Container(301).ListItem.Property(Item.Info)) + !Skin.HasSetting(hide.markers.library)">indicator/backing.png</value>
     </variable>
+
+    <variable name="PosterInProgressIndicator301">
+        <value condition="Integer.IsGreater(Container(301).ListItem.PercentPlayed,66) | Integer.IsGreater(Container(301).ListItem.Property(WatchedEpisodePercent),66)">indicator/poster-inprogress-75.png</value>
+        <value condition="Integer.IsGreater(Container(301).ListItem.PercentPlayed,33) | Integer.IsGreater(Container(301).ListItem.Property(WatchedEpisodePercent),33)">indicator/poster-inprogress-50.png</value>
+        <value>indicator/poster-inprogress-25.png</value>    
+    </variable>
+
 
     <variable name="PosterImage">
         <value condition="!String.IsEmpty(ListItem.Art(animatedposter)) + Skin.HasSetting(furniture.animatedposters)">$INFO[ListItem.Art(animatedposter)]</value>
