@@ -3564,16 +3564,14 @@
 
         <!-- Resumable -->
         <control type="grouplist">
-            <visible>[!Container($PARAM[id]).ListItem.IsPlaying | Skin.HasSetting(hide.markers.isplaying)] + !Skin.HasSetting(hide.markers.inprogress) +
-              [Container($PARAM[id]).ListItem.IsResumable |
-                [[Container($PARAM[id]).Content(tvshows) | String.IsEqual(Container($PARAM[id]).ListItem.DBTYPE,tvshow)] + !String.IsEqual(Container($PARAM[id]).ListItem.Overlay,OverlayWatched.png)
-                + [
-                    [!String.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedEpisodes),Container($PARAM[id]).ListItem.Property(TotalEpisodes)) + !String.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedEpisodes),0) + !String.IsEmpty(Container($PARAM[id]).ListItem.Property(WatchedEpisodes))] 
-                    | !String.IsEmpty(Container($PARAM[id]).ListItem.Property(WatchedEpisodePercent)) + !Integer.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedEpisodePercent),0) + !Integer.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedEpisodePercent),100)
-                    | Integer.IsGreater(Window(home).Property(TMDbHelper.ListItem.TotalEpisodes),Window(home).Property(TMDbHelper.ListItem.UnwatchedEpisodes))
-                  ]
+            <visible>[!Container($PARAM[id]).ListItem.IsPlaying | Skin.HasSetting(hide.markers.isplaying)] + !Skin.HasSetting(hide.markers.inprogress)
+              + Container($PARAM[id]).ListItem.IsResumable
+              | String.IsEqual(Container($PARAM[id]).ListItem.DBTYPE,tvshow) + !String.IsEqual(Container($PARAM[id]).ListItem.Overlay,OverlayWatched.png)
+              + [
+                  [!String.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedEpisodes),Container($PARAM[id]).ListItem.Property(TotalEpisodes)) + !String.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedEpisodes),0) + !String.IsEmpty(Container($PARAM[id]).ListItem.Property(WatchedEpisodes))] 
+                  | !String.IsEmpty(Container($PARAM[id]).ListItem.Property(WatchedEpisodePercent)) + !Integer.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedEpisodePercent),0) + !Integer.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedEpisodePercent),100)
+                  | Integer.IsGreater(Window(home).Property(TMDbHelper.ListItem.TotalEpisodes),Window(home).Property(TMDbHelper.ListItem.UnwatchedEpisodes))
                 ]
-              ]
             </visible>
             <orientation>horizontal</orientation>
             <control type="label">
@@ -3599,20 +3597,21 @@
         
         <!-- Watched -->
         <control type="grouplist">
-            <visible>[!Container($PARAM[id]).ListItem.IsPlaying | Skin.HasSetting(hide.markers.isplaying)] + !Container($PARAM[id]).ListItem.IsResumable + !Skin.HasSetting(hide.markers.watched) +
-              [
-                [String.IsEqual(Container($PARAM[id]).ListItem.Overlay,OverlayWatched.png) | String.IsEmpty(Container($PARAM[id]).ListItem.Overlay) + !String.IsEmpty(Container($PARAM[id]).ListItem.DBID) + Integer.IsGreater(Container($PARAM[id]).ListItem.PlayCount,0)] +
-                ![
-                  [Container($PARAM[id]).Content(tvshows) | String.IsEqual(Container($PARAM[id]).ListItem.DBTYPE,tvshow)] + !String.IsEqual(Container($PARAM[id]).ListItem.Overlay,OverlayWatched.png)
-                  + [
-                      [!String.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedEpisodes),Container($PARAM[id]).ListItem.Property(TotalEpisodes)) + !String.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedEpisodes),0) + !String.IsEmpty(Container($PARAM[id]).ListItem.Property(WatchedEpisodes))] 
-                      | !String.IsEmpty(Container($PARAM[id]).ListItem.Property(WatchedEpisodePercent)) + !Integer.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedEpisodePercent),0) + !Integer.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedEpisodePercent),100)
-                      | Integer.IsGreater(Window(home).Property(TMDbHelper.ListItem.TotalEpisodes),Window(home).Property(TMDbHelper.ListItem.UnwatchedEpisodes))
-                    ]
-                ] +
-                  [ String.IsEqual(Container($PARAM[id]).ListItem.DBType,movie)
-                  | String.IsEqual(Container($PARAM[id]).ListItem.DBType,tvshow)
-                  | String.IsEqual(Container($PARAM[id]).ListItem.DBType,episode)]
+            <visible>[!Container($PARAM[id]).ListItem.IsPlaying | Skin.HasSetting(hide.markers.isplaying)] + !Container($PARAM[id]).ListItem.IsResumable + !Skin.HasSetting(hide.markers.watched)
+              + [
+                  String.IsEqual(Container($PARAM[id]).ListItem.Overlay,OverlayWatched.png)
+                  | String.IsEmpty(Container($PARAM[id]).ListItem.Overlay) + !String.IsEmpty(Container($PARAM[id]).ListItem.DBID) + Integer.IsGreater(Container($PARAM[id]).ListItem.PlayCount,0)
+                  + [ String.IsEqual(Container($PARAM[id]).ListItem.DBType,movie)
+                    | String.IsEqual(Container($PARAM[id]).ListItem.DBType,tvshow)
+                    | String.IsEqual(Container($PARAM[id]).ListItem.DBType,episode)
+                  ]
+              ] + 
+                ![String.IsEqual(Container($PARAM[id]).ListItem.DBTYPE,tvshow) + !String.IsEqual(Container($PARAM[id]).ListItem.Overlay,OverlayWatched.png)
+                   + [
+                       [!String.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedEpisodes),Container($PARAM[id]).ListItem.Property(TotalEpisodes)) + !String.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedEpisodes),0) + !String.IsEmpty(Container($PARAM[id]).ListItem.Property(WatchedEpisodes))] 
+                       | !String.IsEmpty(Container($PARAM[id]).ListItem.Property(WatchedEpisodePercent)) + !Integer.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedEpisodePercent),0) + !Integer.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedEpisodePercent),100)
+                       | Integer.IsGreater(Window(home).Property(TMDbHelper.ListItem.TotalEpisodes),Window(home).Property(TMDbHelper.ListItem.UnwatchedEpisodes))
+                   ]
               ]
             </visible>
             <orientation>horizontal</orientation>
@@ -3628,23 +3627,23 @@
         
         <!-- New -->
         <control type="grouplist">
-            <visible>[!Container($PARAM[id]).ListItem.IsPlaying | Skin.HasSetting(hide.markers.isplaying)] + !Container($PARAM[id]).ListItem.IsResumable + !Skin.HasSetting(hide.markers.newcontent) +
-              [
-                [String.IsEqual(Container($PARAM[id]).ListItem.Overlay,OverlayUnwatched.png) | String.IsEmpty(Container($PARAM[id]).ListItem.Overlay) + !String.IsEmpty(Container($PARAM[id]).ListItem.DBID) + Integer.IsEqual(Container($PARAM[id]).ListItem.PlayCount,0)] +
-                ![
-                  [Container($PARAM[id]).Content(tvshows) | String.IsEqual(Container($PARAM[id]).ListItem.DBTYPE,tvshow)] + !String.IsEqual(Container($PARAM[id]).ListItem.Overlay,OverlayWatched.png)
-                  + [
-                      [!String.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedEpisodes),Container($PARAM[id]).ListItem.Property(TotalEpisodes)) + !String.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedEpisodes),0) + !String.IsEmpty(Container($PARAM[id]).ListItem.Property(WatchedEpisodes))] 
-                      | !String.IsEmpty(Container($PARAM[id]).ListItem.Property(WatchedEpisodePercent)) + !Integer.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedEpisodePercent),0) + !Integer.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedEpisodePercent),100)
-                      | Integer.IsGreater(Window(home).Property(TMDbHelper.ListItem.TotalEpisodes),Window(home).Property(TMDbHelper.ListItem.UnwatchedEpisodes))
-                    ]
-                ] +
-                  [ String.IsEqual(Container($PARAM[id]).ListItem.DBType,movie)
-                  | String.IsEqual(Container($PARAM[id]).ListItem.DBType,tvshow)
-                  | String.IsEqual(Container($PARAM[id]).ListItem.DBType,episode)]
-              ] +
-              [
-                [Container($PARAM[id]).Content(movies) | String.IsEqual(Container($PARAM[id]).ListItem.DBTYPE,movie)]
+            <visible>!String.IsEmpty(Container($PARAM[id]).ListItem.DBID) + [!Container($PARAM[id]).ListItem.IsPlaying | Skin.HasSetting(hide.markers.isplaying)] + !Container($PARAM[id]).ListItem.IsResumable + !Skin.HasSetting(hide.markers.newcontent)
+              + [
+                  String.IsEqual(Container($PARAM[id]).ListItem.Overlay,OverlayUnwatched.png)
+                  | String.IsEmpty(Container($PARAM[id]).ListItem.Overlay) + !String.IsEmpty(Container($PARAM[id]).ListItem.DBID) + Integer.IsEqual(Container($PARAM[id]).ListItem.PlayCount,0)
+                  + [ String.IsEqual(Container($PARAM[id]).ListItem.DBType,movie)
+                    | String.IsEqual(Container($PARAM[id]).ListItem.DBType,tvshow)
+                    | String.IsEqual(Container($PARAM[id]).ListItem.DBType,episode)
+                  ]
+              ] + 
+                ![String.IsEqual(Container($PARAM[id]).ListItem.DBTYPE,tvshow) + !String.IsEqual(Container($PARAM[id]).ListItem.Overlay,OverlayWatched.png)
+                   + [
+                       [!String.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedEpisodes),Container($PARAM[id]).ListItem.Property(TotalEpisodes)) + !String.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedEpisodes),0) + !String.IsEmpty(Container($PARAM[id]).ListItem.Property(WatchedEpisodes))] 
+                       | !String.IsEmpty(Container($PARAM[id]).ListItem.Property(WatchedEpisodePercent)) + !Integer.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedEpisodePercent),0) + !Integer.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedEpisodePercent),100)
+                       | Integer.IsGreater(Window(home).Property(TMDbHelper.ListItem.TotalEpisodes),Window(home).Property(TMDbHelper.ListItem.UnwatchedEpisodes))
+                   ]
+              ] + [
+                String.IsEqual(Container($PARAM[id]).ListItem.DBTYPE,movie)
                 + [
                     String.IsEqual(Window(Home).Property(LatestMovie.1.Title),Container($PARAM[id]).ListItem.Title)
                     | String.IsEqual(Window(Home).Property(LatestMovie.2.Title),Container($PARAM[id]).ListItem.Title)
@@ -3656,8 +3655,8 @@
                     | String.IsEqual(Window(Home).Property(LatestMovie.8.Title),Container($PARAM[id]).ListItem.Title)
                     | String.IsEqual(Window(Home).Property(LatestMovie.9.Title),Container($PARAM[id]).ListItem.Title)
                     | String.IsEqual(Window(Home).Property(LatestMovie.10.Title),Container($PARAM[id]).ListItem.Title)
-                  ] |
-                [Container($PARAM[id]).Content(tvshows) | String.IsEqual(Container($PARAM[id]).ListItem.DBTYPE,tvshow)]
+                  ] 
+                | String.IsEqual(Container($PARAM[id]).ListItem.DBTYPE,tvshow)
                 + [
                     String.IsEqual(Window(Home).Property(LatestEpisode.1.ShowTitle),Container($PARAM[id]).ListItem.TvShowTitle)
                     | String.IsEqual(Window(Home).Property(LatestEpisode.2.ShowTitle),Container($PARAM[id]).ListItem.TvShowTitle)
@@ -3669,8 +3668,8 @@
                     | String.IsEqual(Window(Home).Property(LatestEpisode.8.ShowTitle),Container($PARAM[id]).ListItem.TvShowTitle)
                     | String.IsEqual(Window(Home).Property(LatestEpisode.9.ShowTitle),Container($PARAM[id]).ListItem.TvShowTitle)
                     | String.IsEqual(Window(Home).Property(LatestEpisode.10.ShowTitle),Container($PARAM[id]).ListItem.TvShowTitle)
-                  ] |
-                [Container().Content(episodes) | String.IsEqual(Container($PARAM[id]).ListItem.DBTYPE,episode)]
+                  ]
+                | String.IsEqual(Container($PARAM[id]).ListItem.DBTYPE,episode)
                 + [
                     String.IsEqual(Window(Home).Property(LatestEpisode.1.ShowTitle),Container($PARAM[id]).ListItem.TvShowTitle) + String.IsEqual(Window(Home).Property(LatestEpisode.1.EpisodeSeason),Container($PARAM[id]).ListItem.Season) + String.IsEqual(Window(Home).Property(LatestEpisode.1.EpisodeTitle),Container($PARAM[id]).ListItem.Title)
                     | String.IsEqual(Window(Home).Property(LatestEpisode.2.ShowTitle),Container($PARAM[id]).ListItem.TvShowTitle) + String.IsEqual(Window(Home).Property(LatestEpisode.2.EpisodeSeason),Container($PARAM[id]).ListItem.Season) + String.IsEqual(Window(Home).Property(LatestEpisode.2.EpisodeTitle),Container($PARAM[id]).ListItem.Title)
@@ -3698,23 +3697,23 @@
 
         <!-- Unwatched -->
         <control type="grouplist">
-            <visible>[!Container($PARAM[id]).ListItem.IsPlaying | Skin.HasSetting(hide.markers.isplaying)] + !String.IsEmpty(Container($PARAM[id]).ListItem.DBID) + !Container($PARAM[id]).ListItem.IsResumable + Skin.HasSetting(markers.unwatched) + 
-              [
-                [String.IsEqual(Container($PARAM[id]).ListItem.Overlay,OverlayUnwatched.png) | String.IsEmpty(Container($PARAM[id]).ListItem.Overlay) + !String.IsEmpty(Container($PARAM[id]).ListItem.DBID) + Integer.IsEqual(Container($PARAM[id]).ListItem.PlayCount,0)] +
-                ![
-                  [Container($PARAM[id]).Content(tvshows) | String.IsEqual(Container($PARAM[id]).ListItem.DBTYPE,tvshow)] + !String.IsEqual(Container($PARAM[id]).ListItem.Overlay,OverlayWatched.png)
-                  + [
-                      [!String.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedEpisodes),Container($PARAM[id]).ListItem.Property(TotalEpisodes)) + !String.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedEpisodes),0) + !String.IsEmpty(Container($PARAM[id]).ListItem.Property(WatchedEpisodes))] 
-                      | !String.IsEmpty(Container($PARAM[id]).ListItem.Property(WatchedEpisodePercent)) + !Integer.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedEpisodePercent),0) + !Integer.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedEpisodePercent),100)
-                      | Integer.IsGreater(Window(home).Property(TMDbHelper.ListItem.TotalEpisodes),Window(home).Property(TMDbHelper.ListItem.UnwatchedEpisodes))
-                    ]
-                ] +
-                  [ String.IsEqual(Container($PARAM[id]).ListItem.DBType,movie)
-                  | String.IsEqual(Container($PARAM[id]).ListItem.DBType,tvshow)
-                  | String.IsEqual(Container($PARAM[id]).ListItem.DBType,episode)]
-              ] + [Skin.HasSetting(hide.markers.newcontent) |
-              ![
-                [Container($PARAM[id]).Content(movies) | String.IsEqual(Container($PARAM[id]).ListItem.DBTYPE,movie)]
+            <visible>!String.IsEmpty(Container($PARAM[id]).ListItem.DBID) + [!Container($PARAM[id]).ListItem.IsPlaying | Skin.HasSetting(hide.markers.isplaying)] + !Container($PARAM[id]).ListItem.IsResumable + Skin.HasSetting(markers.unwatched) 
+              + [
+                  String.IsEqual(Container($PARAM[id]).ListItem.Overlay,OverlayUnwatched.png)
+                  | String.IsEmpty(Container($PARAM[id]).ListItem.Overlay) + !String.IsEmpty(Container($PARAM[id]).ListItem.DBID) + Integer.IsEqual(Container($PARAM[id]).ListItem.PlayCount,0)
+                  + [ String.IsEqual(Container($PARAM[id]).ListItem.DBType,movie)
+                    | String.IsEqual(Container($PARAM[id]).ListItem.DBType,tvshow)
+                    | String.IsEqual(Container($PARAM[id]).ListItem.DBType,episode)
+                  ]
+              ] + 
+                ![String.IsEqual(Container($PARAM[id]).ListItem.DBTYPE,tvshow) + !String.IsEqual(Container($PARAM[id]).ListItem.Overlay,OverlayWatched.png)
+                   + [
+                       [!String.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedEpisodes),Container($PARAM[id]).ListItem.Property(TotalEpisodes)) + !String.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedEpisodes),0) + !String.IsEmpty(Container($PARAM[id]).ListItem.Property(WatchedEpisodes))] 
+                       | !String.IsEmpty(Container($PARAM[id]).ListItem.Property(WatchedEpisodePercent)) + !Integer.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedEpisodePercent),0) + !Integer.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedEpisodePercent),100)
+                       | Integer.IsGreater(Window(home).Property(TMDbHelper.ListItem.TotalEpisodes),Window(home).Property(TMDbHelper.ListItem.UnwatchedEpisodes))
+                   ]
+              ] + ![
+                String.IsEqual(Container($PARAM[id]).ListItem.DBTYPE,movie)
                 + [
                     String.IsEqual(Window(Home).Property(LatestMovie.1.Title),Container($PARAM[id]).ListItem.Title)
                     | String.IsEqual(Window(Home).Property(LatestMovie.2.Title),Container($PARAM[id]).ListItem.Title)
@@ -3726,8 +3725,8 @@
                     | String.IsEqual(Window(Home).Property(LatestMovie.8.Title),Container($PARAM[id]).ListItem.Title)
                     | String.IsEqual(Window(Home).Property(LatestMovie.9.Title),Container($PARAM[id]).ListItem.Title)
                     | String.IsEqual(Window(Home).Property(LatestMovie.10.Title),Container($PARAM[id]).ListItem.Title)
-                  ] |
-                [Container($PARAM[id]).Content(tvshows) | String.IsEqual(Container($PARAM[id]).ListItem.DBTYPE,tvshow)]
+                  ] 
+                | String.IsEqual(Container($PARAM[id]).ListItem.DBTYPE,tvshow)
                 + [
                     String.IsEqual(Window(Home).Property(LatestEpisode.1.ShowTitle),Container($PARAM[id]).ListItem.TvShowTitle)
                     | String.IsEqual(Window(Home).Property(LatestEpisode.2.ShowTitle),Container($PARAM[id]).ListItem.TvShowTitle)
@@ -3739,8 +3738,8 @@
                     | String.IsEqual(Window(Home).Property(LatestEpisode.8.ShowTitle),Container($PARAM[id]).ListItem.TvShowTitle)
                     | String.IsEqual(Window(Home).Property(LatestEpisode.9.ShowTitle),Container($PARAM[id]).ListItem.TvShowTitle)
                     | String.IsEqual(Window(Home).Property(LatestEpisode.10.ShowTitle),Container($PARAM[id]).ListItem.TvShowTitle)
-                  ] |
-                [Container().Content(episodes) | String.IsEqual(Container($PARAM[id]).ListItem.DBTYPE,episode)]
+                  ]
+                | String.IsEqual(Container($PARAM[id]).ListItem.DBTYPE,episode)
                 + [
                     String.IsEqual(Window(Home).Property(LatestEpisode.1.ShowTitle),Container($PARAM[id]).ListItem.TvShowTitle) + String.IsEqual(Window(Home).Property(LatestEpisode.1.EpisodeSeason),Container($PARAM[id]).ListItem.Season) + String.IsEqual(Window(Home).Property(LatestEpisode.1.EpisodeTitle),Container($PARAM[id]).ListItem.Title)
                     | String.IsEqual(Window(Home).Property(LatestEpisode.2.ShowTitle),Container($PARAM[id]).ListItem.TvShowTitle) + String.IsEqual(Window(Home).Property(LatestEpisode.2.EpisodeSeason),Container($PARAM[id]).ListItem.Season) + String.IsEqual(Window(Home).Property(LatestEpisode.2.EpisodeTitle),Container($PARAM[id]).ListItem.Title)
@@ -3753,7 +3752,7 @@
                     | String.IsEqual(Window(Home).Property(LatestEpisode.9.ShowTitle),Container($PARAM[id]).ListItem.TvShowTitle) + String.IsEqual(Window(Home).Property(LatestEpisode.9.EpisodeSeason),Container($PARAM[id]).ListItem.Season) + String.IsEqual(Window(Home).Property(LatestEpisode.9.EpisodeTitle),Container($PARAM[id]).ListItem.Title)
                     | String.IsEqual(Window(Home).Property(LatestEpisode.10.ShowTitle),Container($PARAM[id]).ListItem.TvShowTitle) + String.IsEqual(Window(Home).Property(LatestEpisode.10.EpisodeSeason),Container($PARAM[id]).ListItem.Season) + String.IsEqual(Window(Home).Property(LatestEpisode.10.EpisodeTitle),Container($PARAM[id]).ListItem.Title)
                   ]
-              ]]
+              ]
             </visible>
             <orientation>horizontal</orientation>                 
             <control type="label">
