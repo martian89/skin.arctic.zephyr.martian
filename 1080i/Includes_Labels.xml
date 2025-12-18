@@ -1379,12 +1379,12 @@
     <variable name="LabelExtendedInfoPlot">
     	<value condition="$EXP[IsVideoInfo]">$INFO[ListItem.Tagline,[B],[/B][CR][CR]]$VAR[LabelPlot]</value>
         <value condition="$EXP[IsPersonInfo]">[B]$INFO[ListItem.Property(numitems.tmdb.movies.cast),, $LOCALIZE[342]]$INFO[ListItem.Property(numitems.tmdb.tvshows.cast), / , $LOCALIZE[20343]  ]$VAR[LabelKnownFor][/B][CR][CR]$INFO[ListItem.Property(Biography)]</value>
-        <value condition="Window.IsVisible(DialogMusicInfo.xml) + Container.Content(albums)">$VAR[LabelWIPMusicTagline,[B],[/B][CR][CR]]$VAR[LabelPlotBox]</value>
+        <value condition="Window.IsVisible(DialogMusicInfo.xml) + Container.Content(albums)">$VAR[LabelWIPMusicTagline,[B],[/B][CR][CR]]$VAR[LabelPlotBox]$VAR[AlbumItemsSpacer]$VAR[AlbumItems]</value>
         <value condition="Window.IsVisible(DialogMusicInfo.xml) + !Container.Content(albums)">$VAR[LabelWIPMusicTagline,[B],[/B][CR][CR]]$INFO[ListItem.Property(Artist_Description)]</value>
     </variable>
 
-    <variable name="AlbumTagline">
-        <value condition="Window.IsVisible(DialogMusicInfo.xml) + Container.Content(albums) + [!String.IsEmpty(ListItem.Property(Artist_Description)) | !String.IsEmpty(ListItem.Property(Album_Description))]">[CR][CR]</value>
+    <variable name="AlbumItemsSpacer">
+        <value>!String.IsEmpty(ListItem.Property(Artist_Description)) | !String.IsEmpty(ListItem.Property(Album_Description))">[CR][CR]</value>
     </variable>
 
     <variable name="AlbumItems">
