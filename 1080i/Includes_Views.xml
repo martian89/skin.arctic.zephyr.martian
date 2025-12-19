@@ -327,26 +327,13 @@
             <visible>$EXP[HasEnableProgressInfo]</visible>
 		</control>
 
-		<control type="radiobutton" id="9025" description="List Show Filename (50,56,57)">
+		<control type="radiobutton" id="9025" description="List Show Mediainfo (50,56,57)">
 			<include>DefContextButtonGradient</include>
 			<align>left</align>
 			<label>31989</label>
-			<selected>!Skin.HasSetting(list.hide.mediainfo) + !Skin.HasSetting(list.show.filename)</selected>
+			<selected>!Skin.HasSetting(list.hide.mediainfo)</selected>
 			<onclick>Skin.ToggleSetting(list.hide.mediainfo)</onclick>
-			<onclick>ReloadSkin()</onclick>
-			<enable>!Skin.HasSetting(list.show.filename)</enable>
-			<visible>$EXP[Show511ListInfo] + [!Control.IsVisible(56) | !Skin.HasSetting(56media.showinfo) + !Skin.HasSetting(56media.low)] + $EXP[IsVideoAssets]
-			</visible>
-			<visible>Control.IsVisible(50) | Control.IsVisible(57) | Control.IsVisible(56)</visible>
-		</control>
-
-		<control type="radiobutton" id="9026" description="List Show Filename (50,56,57)">
-			<include>DefContextButtonGradient</include>
-			<align>left</align>
-			<label>31565</label>
-			<selected>Skin.HasSetting(list.show.filename)</selected>
-			<onclick>Skin.ToggleSetting(list.show.filename)</onclick>
-			<visible>$EXP[Show511ListInfo]</visible>
+			<visible>$EXP[Show511ListInfo] + [!Control.IsVisible(56) | !Skin.HasSetting(56media.showinfo) + !Skin.HasSetting(56media.low)] + $EXP[IsVideoAssets]</visible>
 			<visible>Control.IsVisible(50) | Control.IsVisible(57) | Control.IsVisible(56)</visible>
 		</control>
 
