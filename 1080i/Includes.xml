@@ -1279,7 +1279,7 @@
         <control type="image" description="Background">
             <include>Dimensions_Fullscreen</include>
             <texture colordiffuse="Background">common/bg.jpg</texture>
-            <visible>!$EXP[HomeIsSpotlight] + !$EXP[HomeIsClassic] + !$EXP[HomeIsModern] + [[Player.HasVideo + Skin.HasSetting(global.showvideo)] | [Player.HasAudio + Skin.HasSetting(global.showvisualisation) + !String.IsEmpty(Visualisation.Name)]]</visible>
+            <visible>!$EXP[HomeIsSpotlight] + !$EXP[HomeIsClassic] + [[Player.HasVideo + Skin.HasSetting(global.showvideo)] | [Player.HasAudio + Skin.HasSetting(global.showvisualisation) + !String.IsEmpty(Visualisation.Name)]]</visible>
             <animation effect="fade" start="100" end="75" time="0" condition="true">Conditional</animation>
         </control>
 
@@ -1294,7 +1294,7 @@
 	            <visible>!Skin.HasSetting(TMDbHelper.EnableBlur) | [Window.IsVisible(home) + !$EXP[InfoDialogsActive]]</visible>
 	            <visible>!Skin.HasSetting(global.hidefanart) | Window.IsVisible(home)</visible>
 	            <visible>!Player.HasMedia | [!Skin.HasSetting(global.showvideo) + Player.HasVideo] | [!Skin.HasSetting(global.showvisualisation) + Player.HasAudio] | [Skin.HasSetting(global.showvisualisation) + String.IsEmpty(Visualisation.Name) + Player.HasAudio]</visible>
-	            <include condition="![Window.IsVisible(home) + [$EXP[HomeIsSpotlight] | $EXP[HomeIsClassic] | $EXP[HomeIsModern]]]">GlobalBackgroundFade</include>
+	            <include condition="![Window.IsVisible(home) + [$EXP[HomeIsSpotlight] | $EXP[HomeIsClassic]]]">GlobalBackgroundFade</include>
  	            <include>Dimensions_Fullscreen</include>
 	            <include>Animation.Background.OpenClose</include>
 	            <include>BackgroundFanartFadetime</include>
@@ -1324,7 +1324,7 @@
 		
 	        <!-- Final Overlays -->
 	        <control type="image" description="FanartOverlay">
-                <visible>!Window.IsVisible(Home.xml) | [!$EXP[HomeIsSpotlight] + !$EXP[HomeIsClassic] + !$EXP[HomeIsModern]]</visible>
+                <visible>!Window.IsVisible(Home.xml) | [!$EXP[HomeIsSpotlight] + !$EXP[HomeIsClassic]]</visible>
 	            <include>Dimensions_Fullscreen</include>
 	            <texture colordiffuse="FloorFade">common/floor.png</texture>
 	            <include>Animation.AutoTrailer.FadeOut.Background</include>
