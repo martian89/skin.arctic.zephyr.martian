@@ -5,52 +5,18 @@
     <onunload condition="Control.IsVisible(9900)">ClearProperty(custommenu,Home)</onunload>
     <onunload>RunScript(script.skinshortcuts,type=buildxml&amp;mainmenuID=300&amp;group=mainmenu|x1111|x1112|x1113|x1114|x1115|x1116|x1117|x1118|x1119|powermenu&amp;levels=6)</onunload>
     <controls>
-        <include>GlobalOverlay</include>
-        <control type="group">
-            <include>Animation.FadeIn.Slide</include>
-            <include>Animation.FadeOut</include>
-            <centerleft>50%</centerleft>
-            <centertop>50%</centertop>
-            <width>1550</width>
-            <height>680</height>
-            <control type="image">
-                <description>background image</description>
-                <top>0</top>
-                <bottom>0</bottom>
-                <left>0</left>
-                <right>0</right>
-                <texture border="16" colordiffuse="White100">common/rounded-shadow8.png</texture>
-            </control>
-            <control type="label" id="500">
-                <include content="DefDialogHeader">
-                    <param name="width" value="1410"/>
-                </include>
-                <label/>
-            </control>
-            <include content="Kodi_Logo">
-                <param name="dimensions" value="40"/>
-                <param name="top" value="40"/>
-                <param name="left" value="40"/>
-            </include>
-
-            <!-- Lines -->
-            <control type="image">
-                <top>95</top>
-                <left>40</left>
-                <right>40</right>
-                <height>1</height>
-                <bottom>10</bottom>
-                <colordiffuse>Black12</colordiffuse>
-                <texture>common/white.png</texture>
-            </control>
+        <include content="DefDialog">
+	        <param name="header_id" value="500"/>
+	        <param name="header_label" value=""/>
+			<param name="width" value="1600" />
 
             <!-- Left List: Current Shortcuts -->
             <control type="list" id="211">
                 <description>Rules List Control</description>
-                <left>15</left>
-                <bottom>12</bottom>
+                <left>40</left>
+                <bottom>94</bottom>
                 <width>600</width>
-                <height>552</height>
+                <height>690</height>
                 <onup>211</onup>
                 <onleft>211</onleft>
                 <onright>9100</onright>
@@ -66,12 +32,12 @@
                     </control>
                     <control type="label">
                         <left>30</left>
-                        <right>30</right>
+                        <right>100</right>
                         <info>ListItem.Label</info>
                         <animation effect="fade" start="100" end="50" time="0" condition="String.IsEqual(Container(211).ListItem.Property(skinshortcuts-disabled),True)">Conditional</animation>
                     </control>
                     <control type="image">
-                        <right>15</right>
+                        <right>30</right>
                         <top>0</top>
                         <width>66</width>
                         <height>66</height>
@@ -95,13 +61,13 @@
                     </control>
                     <control type="label">
                         <left>30</left>
-                        <right>30</right>
+                        <right>280</right>
                         <info>ListItem.Label</info>
                         <textcolor>Selected</textcolor>
                         <animation effect="fade" start="100" end="50" time="0" condition="String.IsEqual(Container(211).ListItem.Property(skinshortcuts-disabled),True)">Conditional</animation>
                     </control>
                     <control type="image">
-                        <right>15</right>
+                        <right>30</right>
                         <top>0</top>
                         <width>66</width>
                         <height>66</height>
@@ -110,7 +76,7 @@
                         <animation effect="fade" start="0" end="100" time="1" delay="1" reversible="false">Visible</animation>
                     </control>
                     <control type="image">
-                        <right>15</right>
+                        <right>30</right>
                         <top>0</top>
                         <width>66</width>
                         <height>66</height>
@@ -140,7 +106,7 @@
                 <onup>Control.Move(211,-1)</onup>
                 <ondown>Control.Move(211,1)</ondown>
                 <orientation>horizontal</orientation>
-                <animation effect="slide" end="-48" condition="true">Conditional</animation>
+                <animation effect="slide" end="-38" condition="true">Conditional</animation>
                 <animation effect="slide" end="0,69" condition="Integer.IsGreater(Container(211).Position,0)">Conditional</animation>
                 <animation effect="slide" end="0,69" condition="Integer.IsGreater(Container(211).Position,1)">Conditional</animation>
                 <animation effect="slide" end="0,69" condition="Integer.IsGreater(Container(211).Position,2)">Conditional</animation>
@@ -154,32 +120,32 @@
                 <animation effect="slide" end="0,69" condition="Integer.IsGreater(Container(211).Position,10)">Conditional</animation>
                 <animation effect="slide" end="0,69" condition="Integer.IsGreater(Container(211).Position,11)">Conditional</animation>
                 <control type="button" id="302" description="Delete">
-                    <width>64</width>
-                    <height>64</height>
+                    <width>66</width>
+                    <height>66</height>
                     <font>Null</font>
                     <texturenofocus colordiffuse="PanelBlack30">buttons/delete.png</texturenofocus>
                     <texturefocus colordiffuse="Selected">buttons/delete.png</texturefocus>
                     <onfocus condition="!String.IsEqual(Window(Home).Property(custommenu),yes)">ClearProperty(skinshortcuts-Widget,Home)</onfocus>
                 </control>
                 <control type="button" id="301" description="Add">
-                    <width>64</width>
-                    <height>64</height>
+                    <width>66</width>
+                    <height>66</height>
                     <font>Null</font>
                     <texturenofocus colordiffuse="PanelBlack30">buttons/add.png</texturenofocus>
                     <texturefocus colordiffuse="Selected">buttons/add.png</texturefocus>
                     <onfocus condition="!String.IsEqual(Window(Home).Property(custommenu),yes)">ClearProperty(skinshortcuts-Widget,Home)</onfocus>
                 </control>
                 <control type="button" id="303" description="Up">
-                    <width>64</width>
-                    <height>64</height>
+                    <width>66</width>
+                    <height>66</height>
                     <font>Null</font>
                     <texturenofocus colordiffuse="PanelBlack30">buttons/moveup.png</texturenofocus>
                     <texturefocus colordiffuse="Selected">buttons/moveup.png</texturefocus>
                     <onfocus condition="!String.IsEqual(Window(Home).Property(custommenu),yes)">ClearProperty(skinshortcuts-Widget,Home)</onfocus>
                 </control>
                 <control type="button" id="304" description="Down">
-                    <width>64</width>
-                    <height>64</height>
+                    <width>66</width>
+                    <height>66</height>
                     <font>Null</font>
                     <texturenofocus colordiffuse="PanelBlack30" flipy="true">buttons/moveup.png</texturenofocus>
                     <texturefocus colordiffuse="Selected" flipy="true">buttons/moveup.png</texturefocus>
@@ -190,13 +156,6 @@
             <!-- Home -->
             <include content="Def_Gradient_Settings_Image_Shortcuts">
                 <param name="controlid" value="9100"/>
-                <param name="width" value="905"/>
-                <param name="left" value="630"/>
-                <param name="top" value="116"/>
-                <param name="height" value="66"/>
-                <param name="slide" value="69"/>
-                <param name="border" value="8"/>
-                <param name="image" value="common/box.png"/>
             </include>
             <include content="Def_Gradient_Settings_Image_Shortcuts">
                 <param name="controlid" value="9300"/>
@@ -225,10 +184,10 @@
                 <onright>303</onright>
                 <onup>9100</onup>
                 <ondown>9100</ondown>
-                <right>15</right>
-                <bottom>15</bottom>
+                <right>40</right>
+                <bottom>97</bottom>
                 <width>905</width>
-                <height>549</height>
+                <height>687</height>
                 <orientation>vertical</orientation>
                 <visible>String.IsEmpty(Window(Home).Property(custommenu))</visible>
                 <itemgap>3</itemgap>
@@ -356,10 +315,10 @@
                 <onright>303</onright>
                 <onup>9100</onup>
                 <ondown>9100</ondown>
-                <right>15</right>
-                <bottom>15</bottom>
+                <right>40</right>
+                <bottom>97</bottom>
                 <width>905</width>
-                <height>549</height>
+                <height>697</height>
                 <orientation>vertical</orientation>
                 <itemgap>3</itemgap>
                 <visible>!String.IsEmpty(Window(Home).Property(custommenu))</visible>
@@ -416,10 +375,10 @@
                 <onback>ClearProperty(skinshortcuts-Widget,Home)</onback>
                 <onup>9300</onup>
                 <ondown>9300</ondown>
-                <right>15</right>
-                <bottom>15</bottom>
+                <right>40</right>
+                <bottom>97</bottom>
                 <width>905</width>
-                <height>549</height>
+                <height>687</height>
                 <orientation>vertical</orientation>
                 <itemgap>3</itemgap>
                 <scrolltime>0</scrolltime>
@@ -583,7 +542,7 @@
                     <height>66</height>
                     <label>31820</label>
                     <visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
-                    <visible>String.IsEmpty(Container(211).ListItem.Property(widgetSortby)) | String.IsEqual(Container(211).ListItem.Property(widgetSortby),userpreference)</visible>
+                    <enable>String.IsEmpty(Container(211).ListItem.Property(widgetSortby)) | String.IsEqual(Container(211).ListItem.Property(widgetSortby),userpreference)</enable>
                     <texturenofocus colordiffuse="Black12" border="5">common/box.png</texturenofocus>
                     <align>left</align>
                     <include>DefDialogButtonsGradient</include>
@@ -603,10 +562,10 @@
                 <onback>ClearProperty(skinshortcuts-Widget,Home)</onback>
                 <onup>9400</onup>
                 <ondown>9400</ondown>
-                <right>15</right>
-                <bottom>15</bottom>
+                <right>40</right>
+                <bottom>97</bottom>
                 <width>905</width>
-                <height>549</height>
+                <height>687</height>
                 <orientation>vertical</orientation>
                 <itemgap>3</itemgap>
                 <scrolltime>0</scrolltime>
@@ -772,7 +731,7 @@
                     <height>66</height>
                     <label>31820</label>
                     <visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
-                    <visible>String.IsEmpty(Container(211).ListItem.Property(widgetSortby.2)) | String.IsEqual(Container(211).ListItem.Property(widgetSortby.2),userpreference)</visible>
+                    <enable>String.IsEmpty(Container(211).ListItem.Property(widgetSortby.2)) | String.IsEqual(Container(211).ListItem.Property(widgetSortby.2),userpreference)</enable>
                     <texturenofocus colordiffuse="Black12" border="5">common/box.png</texturenofocus>
                     <align>left</align>
                     <include>DefDialogButtonsGradient</include>
@@ -792,10 +751,10 @@
                 <onback>ClearProperty(skinshortcuts-Widget,Home)</onback>
                 <onup>9500</onup>
                 <ondown>9500</ondown>
-                <right>15</right>
-                <bottom>15</bottom>
+                <right>40</right>
+                <bottom>97</bottom>
                 <width>905</width>
-                <height>549</height>
+                <height>687</height>
                 <orientation>vertical</orientation>
                 <itemgap>3</itemgap>
                 <scrolltime>0</scrolltime>
@@ -961,7 +920,7 @@
                     <height>66</height>
                     <label>31820</label>
                     <visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
-                    <visible>String.IsEmpty(Container(211).ListItem.Property(widgetSortby.3)) | String.IsEqual(Container(211).ListItem.Property(widgetSortby.3),userpreference)</visible>
+                    <enable>String.IsEmpty(Container(211).ListItem.Property(widgetSortby.3)) | String.IsEqual(Container(211).ListItem.Property(widgetSortby.3),userpreference)</enable>
                     <texturenofocus colordiffuse="Black12" border="5">common/box.png</texturenofocus>
                     <align>left</align>
                     <include>DefDialogButtonsGradient</include>
@@ -981,10 +940,10 @@
                 <onback>ClearProperty(skinshortcuts-Widget,Home)</onback>
                 <onup>9600</onup>
                 <ondown>9600</ondown>
-                <right>15</right>
-                <bottom>15</bottom>
+                <right>40</right>
+                <bottom>97</bottom>
                 <width>905</width>
-                <height>549</height>
+                <height>687</height>
                 <orientation>vertical</orientation>
                 <itemgap>3</itemgap>
                 <scrolltime>0</scrolltime>
@@ -1151,7 +1110,7 @@
                     <height>66</height>
                     <label>31820</label>
                     <visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
-                    <visible>String.IsEmpty(Container(211).ListItem.Property(widgetSortby.4)) | String.IsEqual(Container(211).ListItem.Property(widgetSortby.4),userpreference)</visible>
+                    <enable>String.IsEmpty(Container(211).ListItem.Property(widgetSortby.4)) | String.IsEqual(Container(211).ListItem.Property(widgetSortby.4),userpreference)</enable>
                     <texturenofocus colordiffuse="Black12" border="5">common/box.png</texturenofocus>
                     <align>left</align>
                     <include>DefDialogButtonsGradient</include>
@@ -1171,10 +1130,10 @@
                 <onback>ClearProperty(skinshortcuts-Widget,Home)</onback>
                 <onup>9700</onup>
                 <ondown>9700</ondown>
-                <right>15</right>
-                <bottom>15</bottom>
+                <right>40</right>
+                <bottom>97</bottom>
                 <width>905</width>
-                <height>549</height>
+                <height>687</height>
                 <orientation>vertical</orientation>
                 <itemgap>3</itemgap>
                 <scrolltime>0</scrolltime>
@@ -1341,7 +1300,7 @@
                     <height>66</height>
                     <label>31820</label>
                     <visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
-                    <visible>String.IsEmpty(Container(211).ListItem.Property(widgetSortby.5)) | String.IsEqual(Container(211).ListItem.Property(widgetSortby.5),userpreference)</visible>
+                    <enable>String.IsEmpty(Container(211).ListItem.Property(widgetSortby.5)) | String.IsEqual(Container(211).ListItem.Property(widgetSortby.5),userpreference)</enable>
                     <texturenofocus colordiffuse="Black12" border="5">common/box.png</texturenofocus>
                     <align>left</align>
                     <include>DefDialogButtonsGradient</include>
@@ -1361,10 +1320,10 @@
                 <onback>ClearProperty(skinshortcuts-Widget,Home)</onback>
                 <onup>11000</onup>
                 <ondown>11000</ondown>
-                <right>15</right>
-                <bottom>15</bottom>
+                <right>40</right>
+                <bottom>97</bottom>
                 <width>905</width>
-                <height>549</height>
+                <height>687</height>
                 <orientation>vertical</orientation>
                 <itemgap>3</itemgap>
                 <scrolltime>0</scrolltime>
@@ -1533,7 +1492,7 @@
                     <height>66</height>
                     <label>31820</label>
                     <visible>String.IsEqual(Window.Property(groupname),mainmenu)</visible>
-                    <visible>String.IsEmpty(Container(211).ListItem.Property(widgetSortby.6)) | String.IsEqual(Container(211).ListItem.Property(widgetSortby.6),userpreference)</visible>
+                    <enable>String.IsEmpty(Container(211).ListItem.Property(widgetSortby.6)) | String.IsEqual(Container(211).ListItem.Property(widgetSortby.6),userpreference)</enable>
                     <texturenofocus colordiffuse="Black12" border="5">common/box.png</texturenofocus>
                     <align>left</align>
                     <include>DefDialogButtonsGradient</include>
@@ -1543,7 +1502,9 @@
                     <onclick>SendClick(404)</onclick>
                 </control>
             </control>
-        </control>
+            <include>DialogSelectlabelInclude</include>
+        </include>
+        
         <include content="SkinShortcutsBackButton"><param name="controlid" value="7011" /><param name="setfocus" value="9101" /></include>
         <include content="SkinShortcutsBackButton"><param name="controlid" value="7012" /><param name="setfocus" value="9102" /></include>
         <include content="SkinShortcutsBackButton"><param name="controlid" value="7013" /><param name="setfocus" value="9103" /></include>
