@@ -101,37 +101,35 @@
 			<label>31076</label>
 		</control>
 
-		<control type="radiobutton" id="9002" description="Show CLearart (511,512)">
-			<include>DefContextButtonGradient</include>
-			<align>left</align>
-			<label>31569</label>
-			<selected>Skin.HasSetting(ShowClearart511)</selected>
-			<onclick>Skin.ToggleSetting(ShowClearart511)</onclick>
-			<visible>Control.IsVisible(511) | Control.IsVisible(512)</visible>
-		</control>
-
-		<control type="radiobutton" id="9003" description="List View (511,512)">
-			<include>DefContextButtonGradient</include>
-			<align>left</align>
-			<label>31083</label>
-			<selected>Skin.HasSetting(ListView511)</selected>
-			<onclick>Skin.ToggleSetting(ListView511)</onclick>
-			<visible>Control.IsVisible(511) | Control.IsVisible(512)</visible>
-			<onclick>ReloadSkin()</onclick>
-		</control>
-
-		<control type="radiobutton" id="9004" description="Extended List (50,56,57,511,512,516)">
+		<control type="radiobutton" id="9004" description="Extended List (50)">
 			<include>DefContextButtonGradient</include>
 			<align>left</align>
 			<label>31264</label>
-			<selected>!Skin.HasSetting(No511ListInfo)</selected>
-			<onclick>Skin.ToggleSetting(No511ListInfo)</onclick>
-			<onclick
-				condition="[Control.IsVisible(50) + Skin.HasSetting(50list.low)] | [Control.IsVisible(57) + Skin.HasSetting(57list.low)] | [Control.IsVisible(56) + Skin.HasSetting(56media.low)]">ReloadSkin()</onclick>
-			<visible>[[Control.IsVisible(511) + Skin.HasSetting(ListView511)] | [Control.IsVisible(512) + Skin.HasSetting(ListView511)] | Control.IsVisible(56) |
-				Control.IsVisible(50) | Control.IsVisible(516) | Control.IsVisible(57)] + $EXP[HasEnableExtendedListInfo]
-			</visible>
+			<selected>!Skin.HasSetting(No50ListInfo)</selected>
+			<onclick>Skin.ToggleSetting(No50ListInfo)</onclick>
+			<onclick condition="Control.IsVisible(50) + Skin.HasSetting(50list.low)">ReloadSkin()</onclick>
+			<visible>Control.IsVisible(50) + $EXP[HasEnableExtendedListInfo]</visible>
 		</control>
+
+        <control type="radiobutton" id="90041" description="Extended List (56)">
+            <include>DefContextButtonGradient</include>
+            <align>left</align>
+            <label>31264</label>
+            <selected>!Skin.HasSetting(No56ListInfo)</selected>
+            <onclick>Skin.ToggleSetting(No56ListInfo)</onclick>
+            <onclick condition="Control.IsVisible(56) + Skin.HasSetting(56media.low)">ReloadSkin()</onclick>
+            <visible>Control.IsVisible(56) + $EXP[HasEnableExtendedListInfo]</visible>
+        </control>
+
+        <control type="radiobutton" id="90042" description="Extended List (57)">
+            <include>DefContextButtonGradient</include>
+            <align>left</align>
+            <label>31264</label>
+            <selected>!Skin.HasSetting(No57ListInfo)</selected>
+            <onclick>Skin.ToggleSetting(No57ListInfo)</onclick>
+            <onclick condition="Control.IsVisible(57) + Skin.HasSetting(57list.low)">ReloadSkin()</onclick>
+            <visible>Control.IsVisible(57) + $EXP[HasEnableExtendedListInfo]</visible>
+        </control>
 
 		<control type="radiobutton" id="9005" description="Disable Poster (50)">
 			<include>DefContextButtonGradient</include>
@@ -333,7 +331,7 @@
 			<label>31989</label>
 			<selected>!Skin.HasSetting(list.hide.mediainfo)</selected>
 			<onclick>Skin.ToggleSetting(list.hide.mediainfo)</onclick>
-			<visible>$EXP[Show511ListInfo] + [!Control.IsVisible(56) | !Skin.HasSetting(56media.showinfo) + !Skin.HasSetting(56media.low)] + $EXP[IsVideoAssets]</visible>
+			<visible>$EXP[ShowListInfo] + [!Control.IsVisible(56) | !Skin.HasSetting(56media.showinfo) + !Skin.HasSetting(56media.low)] + $EXP[IsVideoAssets]</visible>
 			<visible>Control.IsVisible(50) | Control.IsVisible(57) | Control.IsVisible(56)</visible>
 		</control>
 
@@ -392,6 +390,34 @@
 			<visible>Control.IsVisible(509)</visible>
 			<onclick>ReloadSkin()</onclick>
 		</control>
+
+        <control type="radiobutton" id="90321" description="Show CLearart (511,512)">
+            <include>DefContextButtonGradient</include>
+            <align>left</align>
+            <label>31569</label>
+            <selected>Skin.HasSetting(ShowClearart511)</selected>
+            <onclick>Skin.ToggleSetting(ShowClearart511)</onclick>
+            <visible>Control.IsVisible(511) | Control.IsVisible(512)</visible>
+        </control>
+
+        <control type="radiobutton" id="90322" description="List View (511,512)">
+            <include>DefContextButtonGradient</include>
+            <align>left</align>
+            <label>31083</label>
+            <selected>Skin.HasSetting(ListView511)</selected>
+            <onclick>Skin.ToggleSetting(ListView511)</onclick>
+            <visible>Control.IsVisible(511) | Control.IsVisible(512)</visible>
+            <onclick>ReloadSkin()</onclick>
+        </control>
+
+        <control type="radiobutton" id="90323" description="Extended List (511,512)">
+            <include>DefContextButtonGradient</include>
+            <align>left</align>
+            <label>31264</label>
+            <selected>!Skin.HasSetting(No511ListInfo)</selected>
+            <onclick>Skin.ToggleSetting(No511ListInfo)</onclick>
+            <visible>[Control.IsVisible(511) | Control.IsVisible(512)] + Skin.HasSetting(ListView511) + $EXP[HasEnableExtendedListInfo]</visible>
+        </control>
 
 		<control type="radiobutton" id="9033">
 			<include>DefContextButtonGradient</include>
@@ -479,6 +505,15 @@
 			<visible>Control.IsVisible(514)</visible>
 			<onclick>ReloadSkin()</onclick>
 		</control>
+
+        <control type="radiobutton" id="90411" description="Extended List (516)">
+            <include>DefContextButtonGradient</include>
+            <align>left</align>
+            <label>31264</label>
+            <selected>!Skin.HasSetting(No516ListInfo)</selected>
+            <onclick>Skin.ToggleSetting(No516ListInfo)</onclick>
+            <visible>Control.IsVisible(516) + $EXP[HasEnableExtendedListInfo]</visible>
+        </control>
 
 		<control type="radiobutton" id="9042" description="Show Poster (517)">
 			<include>DefContextButtonGradient</include>
