@@ -72,7 +72,12 @@
         <value condition="!String.IsEmpty(ListItem.Art(poster))">$INFO[ListItem.Art(poster)]</value>
         <value condition="!String.IsEmpty(ListItem.Art(tvshow.poster))">$INFO[ListItem.Art(tvshow.poster)]</value>
         <value condition="!String.IsEmpty(ListItem.EpgEventIcon) + String.StartsWith(ListItem.FolderPath,pvr://timers)">$INFO[ListItem.EpgEventIcon]</value>
-        <value>$INFO[ListItem.Icon]</value>
+        <value condition="!String.IsEmpty(ListItem.Icon)">$INFO[ListItem.Icon]</value>
+        <value condition="String.IsEqual(ListItem.DBTYPE,movie)">DefaultMovieTitle.png</value>
+        <value condition="String.IsEqual(ListItem.DBTYPE,set)">DefaultSets.png</value>
+        <value condition="String.IsEqual(ListItem.DBTYPE,tvshow)">DefaultTVShowTitle.png</value>
+        <value condition="String.IsEqual(ListItem.DBTYPE,season)">DefaultTVShowTitle.png</value>
+        <value condition="String.IsEqual(ListItem.DBTYPE,episode)">DefaultTVShowTitle.png</value>
     </variable>
 
     <variable name="SeasonImage">
