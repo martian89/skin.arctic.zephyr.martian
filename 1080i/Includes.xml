@@ -459,11 +459,11 @@
     <expression name="ShowListInfo">
         [   
           Control.IsVisible(50) + !Skin.HasSetting(No50ListInfo)
-          | Control.IsVisible(56) + !Skin.HasSetting(No56ListInfo)
-          | Control.IsVisible(57) + !Skin.HasSetting(No57ListInfo)
-          | Control.IsVisible(516) + !Skin.HasSetting(No516ListInfo)
           | Control.IsVisible(550) + !Skin.HasSetting(No550ListInfo)
-          | [Control.IsVisible(511) | Control.IsVisible(511)] + !Skin.HasSetting(No511ListInfo)
+          | Control.IsVisible(56) + Skin.HasSetting(56ListInfo)
+          | Control.IsVisible(57) + Skin.HasSetting(57ListInfo)
+          | Control.IsVisible(516) + Skin.HasSetting(516ListInfo)
+          | [Control.IsVisible(511) | Control.IsVisible(512)] + Skin.HasSetting(511ListInfo)
         ] + $EXP[HasEnableExtendedListInfo]</expression>
 
     <expression name="ShowProgressInfo">Skin.HasSetting(furniture.overlayinfobalken) + $EXP[HasEnableProgressInfo]</expression>
