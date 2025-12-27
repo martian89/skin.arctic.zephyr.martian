@@ -644,7 +644,7 @@
     
     <include name="Furniture_Flags">
         <control type="group">
-    		<visible>[Container.Content(movies) | Container.Content(episodes) | Container.Content(musicvideos) | Container.Content(files) | Container.Content(videos) | $EXP[IsVideoAssets]] + !ListItem.IsFolder | Container.Content(tvshows) | Container.Content(sets) | Container.Content(seasons)</visible>
+    		<visible>[Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(musicvideos) | Container.Content(files) | Container.Content(videos) | $EXP[IsVideoAssets]] + [!ListItem.IsFolder | String.IsEqual(ListItem.DBType,set) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)]</visible>
             <include>Animation.FurnitureVisible</include>
             <include content="Furniture_Flags_Include" condition="!Skin.HasSetting(furniture.flags)">
                 <param name="position_low" value="true" />
@@ -3390,7 +3390,7 @@
 
     <include name="ExtendedRatingFlags_Furniture">
         <control type="image" description="TMDb Rating">
-            <visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.TMDb_Rating)) + Skin.HasSetting(furniture.showtmdb)</visible>
+            <visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.TMDb_Rating)) + !String.StartsWith(Window(Home).Property(TMDbHelper.ListItem.TMDb_Rating),0) + Skin.HasSetting(furniture.showtmdb)</visible>
             <centertop>50%</centertop>
             <width>29</width>
             <height>29</height>
@@ -3398,7 +3398,7 @@
             <texture colordiffuse="Dark1" background="true">flags/monochrome/ratings/tmdb.png</texture>
         </control>
         <control type="label" description="TMDb Rating">
-            <visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.TMDb_Rating)) + Skin.HasSetting(furniture.showtmdb)</visible>
+            <visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.TMDb_Rating)) + !String.StartsWith(Window(Home).Property(TMDbHelper.ListItem.TMDb_Rating),0) + Skin.HasSetting(furniture.showtmdb)</visible>
             <centertop>50%</centertop>
             <width>auto</width>
             <height>64</height>
@@ -3407,7 +3407,7 @@
             <label>$INFO[Window(Home).Property(TMDbHelper.ListItem.TMDb_Rating)]</label>
         </control>
         <control type="image" description="IMDb_Rating">
-            <visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.IMDb_Rating)) + Skin.HasSetting(furniture.showimdb)</visible>
+            <visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.IMDb_Rating)) + !String.StartsWith(Window(Home).Property(TMDbHelper.ListItem.IMDb_Rating),0) + Skin.HasSetting(furniture.showimdb)</visible>
             <centertop>50%</centertop>
             <width>50</width>
             <height>64</height>
@@ -3416,7 +3416,7 @@
             <texture colordiffuse="Dark1" background="true">flags/monochrome/ratings/imdb.png</texture>
         </control>
         <control type="label" description="IMDb_Rating">
-            <visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.IMDb_Rating)) + Skin.HasSetting(furniture.showimdb)</visible>
+            <visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.IMDb_Rating)) + !String.StartsWith(Window(Home).Property(TMDbHelper.ListItem.IMDb_Rating),0) + Skin.HasSetting(furniture.showimdb)</visible>
             <centertop>50%</centertop>
             <width>auto</width>
             <height>64</height>
@@ -3425,7 +3425,7 @@
             <label>$INFO[Window(Home).Property(TMDbHelper.ListItem.IMDb_Rating)]</label>
         </control>          
         <control type="image" description="Trakt Rating">
-            <visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Trakt_Rating)) + Skin.HasSetting(furniture.showtrakt)</visible>
+            <visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Trakt_Rating)) + !String.StartsWith(Window(Home).Property(TMDbHelper.ListItem.Trakt_Rating),0) + Skin.HasSetting(furniture.showtrakt)</visible>
             <centertop>50%</centertop>
             <width>33</width>
             <height>33</height>
@@ -3433,7 +3433,7 @@
             <texture colordiffuse="Dark1" background="true">flags/monochrome/ratings/trakt.png</texture>
         </control>
         <control type="label" description="Trakt Rating">
-            <visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Trakt_Rating)) + Skin.HasSetting(furniture.showtrakt)</visible>
+            <visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Trakt_Rating)) + !String.StartsWith(Window(Home).Property(TMDbHelper.ListItem.Trakt_Rating),0) + Skin.HasSetting(furniture.showtrakt)</visible>
             <centertop>50%</centertop>
             <width>auto</width>
             <height>64</height>
@@ -3498,7 +3498,7 @@
     
     <include name="ExtendedRatingFlags_Furniture_Color">
         <control type="image" description="TMDb Rating">
-            <visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.TMDb_Rating)) + Skin.HasSetting(furniture.showtmdb)</visible>
+            <visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.TMDb_Rating)) + !String.StartsWith(Window(Home).Property(TMDbHelper.ListItem.TMDb_Rating),0) + Skin.HasSetting(furniture.showtmdb)</visible>
             <centertop>50%</centertop>
             <width>30</width>
             <height>30</height>
@@ -3506,7 +3506,7 @@
             <texture background="true">flags/color/ratings/tmdb.png</texture>
         </control>
         <control type="label" description="TMDb Rating">
-            <visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.TMDb_Rating)) + Skin.HasSetting(furniture.showtmdb)</visible>
+            <visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.TMDb_Rating)) + !String.StartsWith(Window(Home).Property(TMDbHelper.ListItem.TMDb_Rating),0) + Skin.HasSetting(furniture.showtmdb)</visible>
             <centertop>50%</centertop>
             <width>auto</width>
             <height>64</height>
@@ -3515,7 +3515,7 @@
             <label>$INFO[Window(Home).Property(TMDbHelper.ListItem.TMDb_Rating)]</label>
         </control>
         <control type="image" description="IMDb_Rating">
-            <visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.IMDb_Rating)) + Skin.HasSetting(furniture.showimdb)</visible>
+            <visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.IMDb_Rating)) + !String.StartsWith(Window(Home).Property(TMDbHelper.ListItem.IMDb_Rating),0) + Skin.HasSetting(furniture.showimdb)</visible>
             <centertop>50%</centertop>
             <width>52</width>
             <height>64</height>
@@ -3524,7 +3524,7 @@
             <texture background="true">flags/color/ratings/imdb.png</texture>
         </control>
         <control type="label" description="IMDb_Rating">
-            <visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.IMDb_Rating)) + Skin.HasSetting(furniture.showimdb)</visible>
+            <visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.IMDb_Rating)) + !String.StartsWith(Window(Home).Property(TMDbHelper.ListItem.IMDb_Rating),0) + Skin.HasSetting(furniture.showimdb)</visible>
             <centertop>50%</centertop>
             <width>auto</width>
             <height>64</height>
@@ -3533,7 +3533,7 @@
             <label>$INFO[Window(Home).Property(TMDbHelper.ListItem.IMDb_Rating)]</label>
         </control>
         <control type="image" description="Trakt Rating">
-            <visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Trakt_Rating)) + Skin.HasSetting(furniture.showtrakt)</visible>
+            <visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Trakt_Rating)) + !String.StartsWith(Window(Home).Property(TMDbHelper.ListItem.Trakt_Rating),0) + Skin.HasSetting(furniture.showtrakt)</visible>
             <centertop>50%</centertop>
             <width>34</width>
             <height>34</height>
@@ -3541,7 +3541,7 @@
             <texture background="true">flags/color/ratings/trakt.png</texture>
         </control>
         <control type="label" description="Trakt Rating">
-            <visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Trakt_Rating)) + Skin.HasSetting(furniture.showtrakt)</visible>
+            <visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Trakt_Rating)) + !String.StartsWith(Window(Home).Property(TMDbHelper.ListItem.Trakt_Rating),0) + Skin.HasSetting(furniture.showtrakt)</visible>
             <centertop>50%</centertop>
             <width>auto</width>
             <height>64</height>
