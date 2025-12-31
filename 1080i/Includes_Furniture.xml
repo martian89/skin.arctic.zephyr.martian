@@ -644,7 +644,7 @@
     
     <include name="Furniture_Flags">
         <control type="group">
-    		<visible>[Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(musicvideos) | Container.Content(files) | Container.Content(videos) | $EXP[IsVideoAssets]] + [!ListItem.IsFolder | String.IsEqual(ListItem.DBType,set) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)]</visible>
+    		<visible>[Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(musicvideos) | Container.Content(files) | Container.Content(videos) | $EXP[IsVideoAssets]] + [!ListItem.IsFolder | String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,set) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)] + ![String.IsEqual(ListItem.DBType,album) | String.IsEqual(ListItem.DBType,song)]</visible>
             <include>Animation.FurnitureVisible</include>
             <include content="Furniture_Flags_Include" condition="!Skin.HasSetting(furniture.flags)">
                 <param name="position_low" value="true" />
