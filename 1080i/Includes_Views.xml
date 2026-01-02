@@ -51,9 +51,13 @@
 	</include>
 
 	<variable name="View_ModeSwitch">
+        <value condition="Container.Content(movies) + String.IsEmpty(Container.PluginName) + !String.StartsWith(Container.FolderPath,videodb://)">movies-files</value>
+        <value condition="Container.Content(tvshows) + String.IsEmpty(Container.PluginName) + !String.StartsWith(Container.FolderPath,videodb://)">tvshows-files</value>
+        <value condition="Container.Content(episodes) + String.IsEmpty(Container.PluginName) + !String.StartsWith(Container.FolderPath,videodb://)">episodes-files</value>
+        <value condition="Container.Content(musicvideos) + String.IsEmpty(Container.PluginName) + !String.StartsWith(Container.FolderPath,videodb://)">musicvideos-files</value>
 		<value condition="Container.Content(tvshows) + String.IsEqual(Container.Property(param.info),episode_groups)">episode-groups-tvshows</value>
 		<value condition="Container.Content(seasons) + String.IsEqual(Container.Property(param.info),episode_group_seasons)">episode-groups-seasons</value>
-        <value condition="Container.Content(videoversions) + String.IsEqual(Container.FolderPath,videodb://movies/videoversions/)">videoversions-versions</value>
+        <value condition="Container.Content(videoversions) + !String.IsEqual(Container.FolderPath,videodb://movies/videoversions/)">movies-videoversions</value>
 		<value condition="Container.Content() + String.IsEqual(Container.Property(param.info),watch_providers)">none-providers</value>
 		<value condition="Container.Content() + String.IsEqual(Container.Property(param.info),dir_calendar_library)">none-calendar</value>
 		<value condition="Container.Content() + String.IsEqual(Container.Property(param.info),dir_calendar_trakt)">none-calendar</value>
