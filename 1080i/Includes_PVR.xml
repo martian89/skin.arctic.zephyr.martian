@@ -54,7 +54,8 @@
                 <control type="button" id="9004">
                     <description>Providers</description>
                     <label>19348</label>
-                    <onclick>ActivateWindow(TVProviders)</onclick>
+                    <onclick condition="String.IsEmpty(Window.Property(IsRadio))">ActivateWindow(TVProviders)</onclick>
+                    <onclick condition="!String.IsEmpty(Window.Property(IsRadio))">ActivateWindow(RadioProviders)</onclick>
                     <include>DefContextButtonGradient</include>
                     <align>left</align>
                 </control>
@@ -222,7 +223,7 @@
                     <font>MediumBold</font>
                     <textcolor>Dark1</textcolor>
                     <selectedcolor>Dark1</selectedcolor>
-                    <label>$INFO[ListItem.Title]</label>
+                    <label>$VAR[PVRInfoLabel]</label>
                 </control>
                 <control type="label">
                     <top>48</top>
@@ -253,42 +254,37 @@
                     <selectedcolor>Dark2</selectedcolor>
                     <label>$VAR[PVREpisodeLabel,[B],[/B][CR]]$INFO[ListItem.Plot]</label>
                 </control>
-            </control>
-            <control type="group">
-                <visible>Window.IsVisible(MyPVRProviders.xml)</visible>
-                <left>10</left>
-                <right>10</right>
-                <posy>370</posy>
-                <height>300</height>
                 <control type="label">
-                    <top>8</top>
-                    <aligny>center</aligny>
+                	<visible>Window.IsVisible(MyPVRProviders.xml)</visible>
+	                <visible>!String.IsEqual(Container.FolderPath,pvr://providers/tv/) + !String.IsEqual(Container.FolderPath,pvr://providers/radio/)</visible>
+                    <top>64</top>
                     <height>64</height>
-                    <font>MediumBold</font>
+                    <aligny>center</aligny>
+                    <font>Tiny</font>
                     <textcolor>Dark1</textcolor>
                     <selectedcolor>Dark1</selectedcolor>
-                    <label>$INFO[ListItem.Label]</label>
+                    <label>$INFO[ListItem.Property(totalcount),, $LOCALIZE[31101]]</label>
                 </control>
 				<control type="list" id="5000">
+                	<visible>Window.IsVisible(MyPVRProviders.xml)</visible>
+	                <visible>String.IsEqual(Container.FolderPath,pvr://providers/tv/) | String.IsEqual(Container.FolderPath,pvr://providers/radio/)</visible>
 					<top>64</top>
 					<bottom>0</bottom>
 					<width>100%</width>
-					<itemlayout height="64" width="200">
+					<itemlayout height="48">
 						<control type="label">
+							<font>Tiny</font>
 		                    <textcolor>Dark1</textcolor>
-							<height>64</height>
-							<width>200</width>
-		                    <label>$INFO[ListItem.Property(totalcount)] $INFO[ListItem.Label]</label>
-		                    <visible>Integer.IsGreater(ListItem.Property(totalcount),0)</visible>
+							<width>100%</width>
+		                    <label>$INFO[ListItem.Property(totalcount),, ]$INFO[ListItem.Label]</label>
 						</control>
 					</itemlayout>
-					<focusedlayout height="64" width="200">
+					<focusedlayout height="48">
 						<control type="label">
+							<font>Tiny</font>
 		                    <textcolor>Dark1</textcolor>
-							<height>64</height>
-							<width>200</width>
-		                    <label>$INFO[ListItem.Property(totalcount)] $INFO[ListItem.Label]</label>
-		                    <visible>Integer.IsGreater(ListItem.Property(totalcount),0)</visible>
+							<width>100%</width>
+		                    <label>$INFO[ListItem.Property(totalcount),, ]$INFO[ListItem.Label]</label>
 						</control>
 					</focusedlayout>
 					<content>$INFO[ListItem.FilenameAndPath]</content>

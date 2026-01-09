@@ -673,6 +673,11 @@
         <value condition="String.StartsWith(Container(301).ListItem.FolderPath,pvr://) + Skin.HasSetting(NewTime) + !Integer.IsGreater(Container(301).ListItem.Duration(h),0)">$INFO[Container(301).ListItem.Label]$INFO[Container(301).ListItem.StartTime,  •  ,]$INFO[Container(301).ListItem.EndTime, - ]$INFO[Container(301).ListItem.Duration(mins),  •  ,$LOCALIZE[31089]]$VAR[Label_TvShow_Ratings]</value>
     </variable>
 
+    <variable name="PVRInfoLabel">
+        <value condition="!String.IsEmpty(ListItem.Title)">$INFO[ListItem.Title]</value>
+        <value condition="Window.IsVisible(MyPVRProviders.xml) + !String.IsEqual(ListItem.Label,..)">$INFO[ListItem.Label]</value>
+    </variable>
+
     <variable name="PVREpisodeLabel">
         <value condition="!String.IsEqual(ListItem.Title,ListItem.EpisodeName) + !String.StartsWith(ListItem.Plot,ListItem.EpisodeName)">$INFO[ListItem.EpisodeName]</value>
     </variable>
