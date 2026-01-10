@@ -10,61 +10,30 @@
             <include>GlobalOverlay</include>
         </control>
         <control type="group">
-            <centerleft>50%</centerleft>
-            <centertop>50%</centertop>
-            <width>468</width>
-            <height>545</height>
+            <height>550</height>
             <visible allowhiddenfocus="true">ControlGroup(9000).HasFocus()</visible>
             <include>Animation.ZoomIn</include>
             <include>Animation.FadeOut</include>
-            <visible>!Window.IsActive(1122) + !Window.IsActive(InGameSaves)</visible>
-            <control type="image">
-                <left>-8</left>
-                <top>-20</top>
-                <right>10</right>
-                <bottom>15</bottom>
-                <colordiffuse>White100</colordiffuse>
-                <texture border="16">common/rounded-shadow8.png</texture>
-            </control>
-            <control type="group">
-                <left>17</left>
-                <top>0</top>
-                <control type="label">
-                    <description>Header Label</description>
-                    <left>70</left>
-                    <width>1000</width>
-                    <posy>0</posy>
-                    <include>FontTop</include>
-                    <textcolor>Black70</textcolor>
-                    <label>35221</label>
-                </control>
-                <include>Kodi_Logo</include>
-                <!-- Lines -->
-                <control type="image">
-                    <top>70</top>
-                    <left>17</left>
-                    <width>385</width>
-                    <height>1</height>
-                    <bottom>10</bottom>
-                    <colordiffuse>Black12</colordiffuse>
-                    <texture>common/white.png</texture>
-                </control>
-            </control>
-            <control type="group">
-                <height>490</height>
-                <left>-20</left>
-                <top>-18</top>
-                <include content="Def9000Arrows"><param name="arrow_bottom" value="755" /></include>
-            </control>
-            <include content="Def_Gradient_Settings_Image">
-                <param name="controlid" value="9000"/>
-                <param name="left" value="0"/>
-                <param name="top" value="90"/>
-                <param name="width" value="450"/>
-            </include>
+            <visible>!Window.IsActive(1101) + !Window.IsActive(InGameSaves)</visible>
+			<include>Def9000Background</include>
+			<include content="Def9000Header">
+				<param name="header_label" value="35221" />
+			</include>
+			<include content="Def9000Arrows">
+				<param name="arrow_bottom" value="550" />
+			</include>
+			<include content="Def_Gradient_Settings_Image">
+				<param name="controlid" value="9000" />
+				<param name="left" value="8" />
+				<param name="top" value="112" />
+				<param name="width" value="450" />
+			</include>
             <control type="grouplist" id="9000">
-                <top>90</top>
-                <height>420</height>
+				<posx>8</posx>
+				<posy>112</posy>
+				<width>510</width>
+				<height>420</height>
+				<itemgap>0</itemgap>
                 <scrolltime>0</scrolltime>
                 <onleft>Close</onleft>
                 <onright>Close</onright>
@@ -110,7 +79,8 @@
                     <align>left</align>
                     <label>$LOCALIZE[5]</label>
                     <include>DefContextButtonGradient</include>
-                    <onclick>ActivateWindow(1122)</onclick>
+		            <onclick>SetProperty(CustomDialogSettingsContent,gamesettings,home)</onclick>
+                    <onclick>ActivateWindow(1101)</onclick>
                 </control>
             </control>
         </control>

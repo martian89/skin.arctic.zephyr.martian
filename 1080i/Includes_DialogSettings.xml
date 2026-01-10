@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<includes>
+
+	<include name="DialogSettingsLayout">
+		<param name="header_label" default="5" />
+		<param name="content_include" />
+
+		<definition>
+	        <control type="group">
+	            <include>Animation.FadeIn</include>
+	            <include>Animation.FadeOut</include>
+	            <visible>!Window.IsActive(gameosd)</visible>
+	            <include>GlobalOverlay</include>
+	        </control>
+			<control type="group">
+	            <visible>!Window.IsActive(GameVideoFilter) + !Window.IsActive(GameStretchMode) + !Window.IsActive(GameVideoRotation) + !Window.IsActive(DialogSlider.xml)</visible>
+	            <include>Animation.ZoomIn</include>
+	            <include>Animation.FadeOut</include>
+				<height>620</height>
+				<include>Def9000Background</include>
+				<include content="Def9000Header">
+					<param name="header_label" value="$PARAM[header_label]" />
+				</include>
+				<include content="Def9000Arrows">
+					<param name="arrow_bottom" value="620" />
+				</include>
+				<include content="Def_Gradient_Settings_Image">
+					<param name="controlid" value="9000" />
+					<param name="left" value="8" />
+					<param name="top" value="112" />
+					<param name="width" value="450" />
+				</include>
+				<control type="grouplist" id="9000">
+					<posx>8</posx>
+					<posy>112</posy>
+					<width>510</width>
+					<height>490</height>
+					<itemgap>0</itemgap>
+					<usecontrolcoords>true</usecontrolcoords>
+					<scrolltime>0</scrolltime>
+					<onright>Dialog.Close(1101)</onright>
+					<onleft>Dialog.Close(1101)</onleft>
+					<defaultcontrol always="true">101</defaultcontrol>
+					<include condition="String.IsEqual(Window(home).Property(CustomDialogSettingsContent),videosettings)">DialogVideoSettingsContent</include>
+					<include condition="String.IsEqual(Window(home).Property(CustomDialogSettingsContent),musicsettings)">DialogMusicSettingsContent</include>
+					<include condition="String.IsEqual(Window(home).Property(CustomDialogSettingsContent),gamesettings)">DialogGameSettingsContent</include>
+				</control>
+			</control>
+		</definition>
+	</include>
+
+	<include name="DialogVideoSettingsContent">
+		<control type="button" id="101">
+			<align>left</align>
+			<include>DefContextButtonGradient</include>
+			<label>$LOCALIZE[298]</label>
+			<onclick>Close</onclick>
+			<onclick>ActivateWindow(125)</onclick>
+		</control>
+		<control type="button" id="102">
+			<align>left</align>
+			<include>DefContextButtonGradient</include>
+			<label>$LOCALIZE[13395]</label>
+			<onclick>ActivateWindow(osdvideosettings)</onclick>
+		</control>
+		<control type="button" id="103">
+			<align>left</align>
+			<include>DefContextButtonGradient</include>
+			<label>$LOCALIZE[13396]</label>
+			<onclick>ActivateWindow(osdaudiosettings)</onclick>
+		</control>
+		<control type="button" id="104">
+			<align>left</align>
+			<include>DefContextButtonGradient</include>
+			<label>$LOCALIZE[24133]</label>
+			<onclick>ActivateWindow(osdsubtitlesettings)</onclick>
+		</control>
+		<control type="button" id="105">
+			<align>left</align>
+			<include>DefContextButtonGradient</include>
+			<label>297</label>
+			<onclick>audiodelay</onclick>
+		</control>
+		<control type="button" id="106">
+			<align>left</align>
+			<include>DefContextButtonGradient</include>
+			<label>22006</label>
+			<onclick>subtitledelay</onclick>
+		</control>
+		<control type="button" id="107">
+			<align>left</align>
+			<include>DefContextButtonGradient</include>
+			<label>$LOCALIZE[169]/$LOCALIZE[170]</label>
+			<onclick>PlayerResolutionSelect</onclick>
+			<visible>Player.HasResolutions</visible>
+		</control>
+		<control type="button" id="108">
+			<description>Filter</description>
+			<include>DefContextButtonGradient</include>
+			<label>31290</label>
+			<align>left</align>
+			<onclick>Dialog.Close(1101)</onclick>
+			<onclick>ActivateWindow(playerprocessinfo)</onclick>
+		</control>
+	</include>
+
+	<include name="DialogMusicSettingsContent">
+		<control type="radiobutton" id="101">
+			<include>DefContextButtonGradient</include>
+			<align>left</align>
+			<label>31026</label>
+			<disabledcolor>$VAR[OSDPanelWhite12]</disabledcolor>
+			<selected>Skin.HasSetting(musicosd.showvideolyrics)</selected>
+			<onclick>Skin.ToggleSetting(musicosd.showvideolyrics)</onclick>
+			<visible>System.AddonIsEnabled(script.cu.lrclyrics)</visible>
+		</control>
+		<control type="radiobutton" id="102">
+			<include>DefContextButtonGradient</include>
+			<align>left</align>
+			<label>31559</label>
+			<selected>Skin.HasSetting(EnableMusicScrollingText)</selected>
+			<onclick>Skin.ToggleSetting(EnableMusicScrollingText)</onclick>
+		</control>
+		<control type="radiobutton" id="103" description="Show Fanart">
+			<align>left</align>
+			<include>DefContextButtonGradient</include>
+			<label>20445</label>
+			<selected>$EXP[Visualisation_ShowFanart]</selected>
+			<onclick>Skin.ToggleSetting(musicosd.hidefanart)</onclick>
+		</control>
+		<control type="button" id="104" description="Fallback Fanart">
+			<include>DefContextButtonGradient</include>
+			<align>left</align>
+			<label>$LOCALIZE[31567]:</label>
+			<label2>$VAR[LabelFallbackImage]</label2>
+			<include content="Def_SelectImage_Actions">
+				<param name="header" value="$LOCALIZE[31150]" />
+				<param name="property" value="fanart.fallback.music" />
+			</include>
+			<enable>$EXP[Visualisation_ShowFanart]</enable>
+		</control>
+		<control type="radiobutton" id="105" description="Show slideshow in background">
+			<align>left</align>
+			<include>DefContextButtonGradient</include>
+			<label>31561</label>
+			<selected>$EXP[Visualisation_ShowSlideshow]</selected>
+			<onclick condition="!System.HasAddon(script.artistslideshow)">InstallAddon(script.artistslideshow)</onclick>
+			<onclick condition="System.HasAddon(script.artistslideshow) + !System.AddonIsEnabled(script.artistslideshow)">EnableAddon(script.artistslideshow)</onclick>
+			<onclick condition="System.AddonIsEnabled(script.artistslideshow) + Skin.HasSetting(ArtistSlideShow.Disabled)">Skin.Reset(ArtistSlideShow.Disabled)</onclick>
+			<onclick condition="System.AddonIsEnabled(script.artistslideshow) + !Skin.HasSetting(ArtistSlideShow.Disabled)">Skin.SetBool(ArtistSlideShow.Disabled)</onclick>
+			<enable>$EXP[Visualisation_ShowFanart]</enable>
+		</control>
+		<control type="radiobutton" id="106" description="Animate Artist slideshow">
+			<align>left</align>
+			<include>DefContextButtonGradient</include>
+			<label>31354</label>
+			<selected>$EXP[Visualisation_AnimateFanart]</selected>
+			<onclick>Skin.ToggleSetting(ArtistSlideshow.Animate)</onclick>
+			<enable>$EXP[Visualisation_ShowFanart]</enable>
+		</control>
+		<control type="button" id="107">
+			<description>Visualisation</description>
+			<include>DefContextButtonGradient</include>
+			<label>$LOCALIZE[250]:</label>
+			<label2 fallback="424">$VAR[LabelVisualisation]</label2>
+			<align>left</align>
+			<onclick>SendClick(500)</onclick>
+		</control>
+		<control type="button" id="108">
+			<description>Visualisation</description>
+			<include>DefContextButtonGradient</include>
+			<align>left</align>
+			<label>$LOCALIZE[31978]:</label>
+			<label2>$VAR[LabelVisualisationPresent]</label2>
+			<onclick>ActivateWindow(visualisationpresetlist)</onclick>
+			<visible>Visualisation.HasPresets</visible>
+		</control>
+		<control type="button" id="109">
+			<description>Visualisation</description>
+			<include>DefContextButtonGradient</include>
+			<label>$LOCALIZE[31977]</label>
+			<align>left</align>
+			<onclick>Addon.Default.OpenSettings(xbmc.player.musicviz)</onclick>
+			<enable>Visualisation.Enabled</enable>
+		</control>
+	</include>
+
+	<include name="DialogGameSettingsContent">
+		<control type="button" id="101">
+			<include>DefContextButtonGradient</include>
+			<align>left</align>
+			<label>$LOCALIZE[35225]</label>
+			<onclick>ActivateWindow(GameVideoFilter)</onclick>
+		</control>
+		<control type="button" id="102">
+			<include>DefContextButtonGradient</include>
+			<align>left</align>
+			<label>$LOCALIZE[35233]</label>
+			<onclick>ActivateWindow(GameStretchMode)</onclick>
+		</control>
+		<control type="button" id="103">
+			<include>DefContextButtonGradient</include>
+			<align>left</align>
+			<label>$LOCALIZE[35227]</label>
+			<onclick>ActivateWindow(GameVideoRotation)</onclick>
+		</control>
+		<control type="button" id="104">
+			<label>$LOCALIZE[13376]</label>
+			<align>left</align>
+			<include>DefContextButtonGradient</include>
+			<onclick>ActivateWindow(GameVolume)</onclick>
+		</control>
+		<control type="button" id="105">
+			<include>DefContextButtonGradient</include>
+			<align>left</align>
+			<label>$LOCALIZE[35234]</label>
+			<onclick>ActivateWindow(GameControllers)</onclick>
+		</control>
+		<control type="button" id="106">
+			<include>DefContextButtonGradient</include>
+			<align>left</align>
+			<label>$LOCALIZE[35110]</label>
+			<onclick>ActivateWindow(GamePorts)</onclick>
+		</control>
+		<control type="button" id="107">
+			<include>DefContextButtonGradient</include>
+			<align>left</align>
+			<label>$LOCALIZE[35226]</label>
+			<onclick>ActivateWindow(GameAdvancedSettings)</onclick>
+		</control>
+	</include>
+</includes>
