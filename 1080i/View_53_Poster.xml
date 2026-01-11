@@ -91,27 +91,15 @@
         </focusedlayout>
     </include>
 
-    <include name="53Wrap">
-        <include>ViewSlideForJumpBar</include>
-        <control type="wraplist" id="53">
-            <include>53Content</include>
-        </control>
-    </include>
-
-    <include name="53Fixed">
-        <include>ViewSlideForJumpBar</include>
-        <control type="fixedlist" id="53">
-            <include>53Content</include>
-        </control>
-    </include>
-
     <include name="View_53_Poster">
         <description>List View (id=53)</description>
         <control type="group">
             <include>Animation.Common</include>
             <visible>Control.IsVisible(53)</visible>
-            <include condition="!Skin.HasSetting(53poster.nowrap)">53Wrap</include>
-            <include condition="Skin.HasSetting(53poster.nowrap)">53Fixed</include>
+            <include>ViewSlideForJumpBar</include>
+	        <control type="fixedlist" id="53">
+	            <include>53Content</include>
+	        </control>
             <control type="scrollbar" id="1633">
                 <include content="scrollbar_hor">
                     <param name="scrollid" value="1633"/>

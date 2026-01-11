@@ -5,8 +5,8 @@
     <include name="522Content">
         <visible>$EXP[Exp_View_522]</visible>
         <top>546</top>
-        <left>-491</left>
-        <width>2810</width>
+        <left>0</left>
+        <right>0</right>
         <height>365</height>
         <onup condition="!Skin.HasSetting(global.kioskmode)">9000</onup>
         <ondown>1646</ondown>
@@ -15,34 +15,31 @@
         <orientation>horizontal</orientation>
         <preloaditems>2</preloaditems>
         <pagecontrol>1646</pagecontrol>
-        <focusposition>1</focusposition>
+        <focusposition>0</focusposition>
+        <movement>2</movement>
         <viewtype label="$LOCALIZE[31523]">list</viewtype>
         <include>ScrolltimeViewsList</include>
         <itemlayout height="365" width="562">
-            <include content="include.widget.landscape">
-                <param name="id" value="522"/>
-                <param name="reflections" value="Skin.HasSetting(show.reflections)"/>
-            </include>
+            <control type="group">
+                <width>562</width>
+                <left>70</left>
+	            <include content="include.widget.landscape">            
+	                <param name="id" value="522"/>
+	                <param name="reflections" value="Skin.HasSetting(show.reflections)"/>
+	            </include>
+            </control>
         </itemlayout>
         <focusedlayout height="365" width="562">
-            <include content="include.widget.landscape.focus">
-                <param name="id" value="522"/>
-                <param name="reflections" value="Skin.HasSetting(show.reflections)"/>
-            </include>
+            <control type="group">
+                <width>562</width>
+                <left>70</left>
+	            <include content="include.widget.landscape.focus">
+	                <param name="id" value="522"/>
+	                <param name="reflections" value="Skin.HasSetting(show.reflections)"/>
+	            </include>
+            </control>
             <include condition="Skin.HasSetting(home.netflix.autoplay.trailer)">SetAutoTrailerControl</include>
         </focusedlayout>
-    </include>
-
-    <include name="522Wrap">
-        <control type="wraplist" id="522">
-            <include>522Content</include>
-        </control>
-    </include>
-
-    <include name="522Fixed">
-        <control type="fixedlist" id="522">
-            <include>522Content</include>
-        </control>
     </include>
 
     <include name="View_522_Minimal_V2_Episodes">
@@ -59,8 +56,9 @@
                     <param name="bottom" value="200"/>
                 </include>
             </control>
-            <include condition="!Skin.HasSetting(53poster.nowrap)">522Wrap</include>
-            <include condition="Skin.HasSetting(53poster.nowrap)">522Fixed</include>
+	        <control type="fixedlist" id="522">
+	            <include>522Content</include>
+	        </control>
         </control>
     </include>
 </includes>
