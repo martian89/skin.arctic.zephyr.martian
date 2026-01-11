@@ -153,8 +153,9 @@
             <right>SidePad</right>
             <include>listdimensions</include>
             <ondown>9601</ondown>
-            <onup condition="Control.IsVisible(50)">SetProperty(content,1)</onup>
-            <onup condition="Control.IsVisible(50)">50</onup>
+            <onup condition="Integer.IsEqual(Container(50).NumItems,0)">9601</onup>
+            <onup condition="Integer.IsGreater(Container(50).NumItems,0)">SetProperty(content,1)</onup>
+            <onup condition="Integer.IsGreater(Container(50).NumItems,0)">50</onup>
             <orientation>horizontal</orientation>
             <control type="radiobutton" id="12">
                 <include content="DefInfoButtons">
