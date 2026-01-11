@@ -4,7 +4,7 @@
  
     <onload>AlarmClock(SplashTimeOut,noop,00:59,silent)</onload>
     <onload>RunScript(script.skinvariables,run_executebuiltin=special://skin/shortcuts/skinvariables-startup.json,use_rules=True)</onload>
- 	<onunload>Stop</onunload>
+ 	<onunload condition="!String.IsEmpty(Skin.String(StartupPlaylist))">Stop</onunload>
  	
     <controls>
         <control type="group">
