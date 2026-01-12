@@ -114,12 +114,6 @@
             "library": "50",
             "plugins": "50"
         },
-        "videoassets": {
-            "rule": "Container.Content(videoassets)",
-            "viewtypes": ["50", "56", "57", "521", "522", "514", "509", "508", "53", "55", "517", "555", "59", "54", "51", "58", "515", "504", "511", "512", "519", "513", "52", "500"],
-            "library": "50",
-            "plugins": "50"
-        },
         "videoversions": {
             "rule": "Container.Content(videoversions) + !String.IsEqual(Container.FolderPath,videodb://movies/videoversions/)",
             "viewtypes": ["50", "56", "57", "521", "522", "514", "509", "508", "53", "55", "517", "555", "59", "54", "51", "58", "515", "504", "511", "512", "519", "513", "52", "500"],
@@ -272,6 +266,12 @@
         },
         "none": {
             "rule": "Container.Content() + !Window.IsVisible(MyGames.xml) + !String.IsEqual(Container.Property(param.info),watch_providers) + ![String.IsEqual(Container.Property(param.info),dir_calendar_library) | String.IsEqual(Container.Property(param.info),dir_calendar_trakt)]",
+            "viewtypes": ["550", "555", "52", "500"],
+            "library": "550",
+            "plugins": "550"
+        },
+        "other": {
+            "rule": "!Container.Content() + !Container.Content(images) + !Container.Content(videos) + !Container.Content(movies) + !Container.Content(sets) + !Container.Content(tvshows) + !Container.Content(seasons) + !Container.Content(episodes) + !Container.Content(videoextras) + !Container.Content(videoversions) + !Container.Content(genres) + !Container.Content(years) + !Container.Content(studios) + !Container.Content(directors) + !Container.Content(countries) + !Container.Content(tags) + !Container.Content(roles) + !Container.Content(actors) + !Container.Content(playlists) + !Container.Content(musicvideos) + !Container.Content(artists) + !Container.Content(albums) + !Container.Content(songs) + !Container.Content(files) + !Container.Content(sources) + !Container.Content(addons) + !Container.Content(recordings) + !Container.Content(favourites) + !Container.Content(games)",
             "viewtypes": ["550", "555", "52", "500"],
             "library": "550",
             "plugins": "550"
