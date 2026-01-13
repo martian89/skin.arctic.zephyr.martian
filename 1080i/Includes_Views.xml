@@ -113,7 +113,7 @@
 			<selected>!Skin.HasSetting(No50ListInfo)</selected>
 			<onclick>Skin.ToggleSetting(No50ListInfo)</onclick>
 			<onclick condition="Control.IsVisible(50) + Skin.HasSetting(50list.low)">ReloadSkin()</onclick>
-			<visible>Control.IsVisible(50) + $EXP[HasEnableExtendedListInfo]</visible>
+			<visible>Control.IsVisible(50) + [Skin.HasSetting(50list.low) | $EXP[HasEnableExtendedListInfo]]</visible>
 		</control>
 
         <control type="radiobutton" id="90041" description="Extended List (56)">
@@ -123,7 +123,7 @@
             <selected>Skin.HasSetting(56ListInfo)</selected>
             <onclick>Skin.ToggleSetting(56ListInfo)</onclick>
             <onclick condition="Control.IsVisible(56) + Skin.HasSetting(56media.low)">ReloadSkin()</onclick>
-            <visible>Control.IsVisible(56) + $EXP[HasEnableExtendedListInfo]</visible>
+            <visible>Control.IsVisible(56) + [Skin.HasSetting(56media.low) | $EXP[HasEnableExtendedListInfo]]</visible>
         </control>
 
         <control type="radiobutton" id="90042" description="Extended List (57)">
@@ -133,7 +133,7 @@
             <selected>Skin.HasSetting(57ListInfo)</selected>
             <onclick>Skin.ToggleSetting(57ListInfo)</onclick>
             <onclick condition="Control.IsVisible(57) + Skin.HasSetting(57list.low)">ReloadSkin()</onclick>
-            <visible>Control.IsVisible(57) + $EXP[HasEnableExtendedListInfo]</visible>
+            <visible>Control.IsVisible(57) + [Skin.HasSetting(57list.low) | $EXP[HasEnableExtendedListInfo]]</visible>
         </control>
 
 		<control type="radiobutton" id="9005" description="Disable Poster (50)">
@@ -336,8 +336,8 @@
 			<label>31989</label>
 			<selected>!Skin.HasSetting(list.hide.mediainfo)</selected>
 			<onclick>Skin.ToggleSetting(list.hide.mediainfo)</onclick>
-			<visible>$EXP[ShowListInfo] + [!Control.IsVisible(56) | !Skin.HasSetting(56media.showinfo) + !Skin.HasSetting(56media.low)] + $EXP[IsVideoAssets]</visible>
-			<visible>Control.IsVisible(50) | Control.IsVisible(57) | Control.IsVisible(56)</visible>
+			<visible>Control.IsVisible(50) + $EXP[ShowListInfo50] | Control.IsVisible(57) + $EXP[ShowListInfo57] | Control.IsVisible(56) + !Skin.HasSetting(56media.showinfo) + !Skin.HasSetting(56media.low) + $EXP[ShowListInfo56]</visible>
+            <visible>$EXP[IsVideoAssets]</visible>
 		</control>
 
 		<control type="radiobutton" id="9027" description="Discart (504,508)">
