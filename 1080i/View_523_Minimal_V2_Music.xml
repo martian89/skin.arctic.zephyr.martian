@@ -5,45 +5,42 @@
     <include name="523Content">
        <visible>$EXP[Exp_View_523]</visible>
         <top>546</top>
-        <left>-255</left>
-        <width>2275</width>
+        <left>0</left>
+        <right>0</right>
         <height>365</height>
         <onup condition="!Skin.HasSetting(global.kioskmode)">9000</onup>
         <ondown>1644</ondown>
         <orientation>horizontal</orientation>
         <preloaditems>2</preloaditems>
         <pagecontrol>1644</pagecontrol>
-        <focusposition>1</focusposition>
+        <focusposition>0</focusposition>
+        <movement>4</movement>
         <viewtype label="$LOCALIZE[31072]">list</viewtype>
         <include>ScrolltimeViewsList</include>
         <itemlayout height="325" width="325">
-            <include content="include.widget.square">
-                <param name="id" value="523"/>
-                <param name="distance" value="10"/>
-                <param name="reflections" value="Skin.HasSetting(show.reflections)"/>
-                <param name="aspectratio" value="scale"/>
-            </include>
+            <control type="group">
+                <width>325</width>
+                <left>70</left>
+	            <include content="include.widget.square">
+	                <param name="id" value="523"/>
+	                <param name="distance" value="10"/>
+	                <param name="reflections" value="Skin.HasSetting(show.reflections)"/>
+	                <param name="aspectratio" value="scale"/>
+	            </include>
+            </control>
         </itemlayout>
         <focusedlayout height="325" width="325">
-            <include content="include.widget.square.focus">
-                <param name="id" value="523"/>
-                <param name="distance" value="10"/>
-                <param name="reflections" value="Skin.HasSetting(show.reflections)"/>
-                <param name="aspectratio" value="scale"/>
-            </include>
+            <control type="group">
+                <width>325</width>
+                <left>70</left>
+	            <include content="include.widget.square.focus">
+	                <param name="id" value="523"/>
+	                <param name="distance" value="10"/>
+	                <param name="reflections" value="Skin.HasSetting(show.reflections)"/>
+	                <param name="aspectratio" value="scale"/>
+	            </include>
+            </control>
         </focusedlayout>
-    </include>
-
-    <include name="523Wrap">
-        <control type="wraplist" id="523">
-            <include>523Content</include>
-        </control>
-    </include>
-
-    <include name="523Fixed">
-        <control type="fixedlist" id="523">
-            <include>523Content</include>
-        </control>
     </include>
 
     <include name="View_523_Minimal_V2_Music">
@@ -64,8 +61,9 @@
                 <include>HiddenListControl</include>
                 <content>$INFO[Container(523).ListItem.DBID,musicdb://artists/,/]</content>
             </control>
-            <include condition="!Skin.HasSetting(523poster.nowrap)">523Wrap</include>
-            <include condition="Skin.HasSetting(523poster.nowrap)">523Fixed</include>
+	        <control type="fixedlist" id="523">
+	            <include>523Content</include>
+	        </control>
         </control>
     </include>
 

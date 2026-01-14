@@ -49,13 +49,13 @@
             "plugins": "550"
         },
         "movies": {
-            "rule": "Container.Content(movies) + [!String.IsEmpty(Container.PluginName) | String.StartsWith(Container.FolderPath,videodb://)]",
+            "rule": "Container.Content(movies) + [!String.IsEmpty(Container.PluginName) | String.StartsWith(Container.FolderPath,videodb://) | String.StartsWith(Container.FolderPath,special://)]",
             "viewtypes": ["50", "56", "57", "521", "522", "514", "509", "508", "53", "55", "517", "555", "59", "54", "51", "58", "515", "504", "511", "512", "519", "513", "52", "500"],
             "library": "50",
             "plugins": "50"
         },
         "movies-files": {
-            "rule": "Container.Content(movies) + [String.IsEmpty(Container.PluginName) + !String.StartsWith(Container.FolderPath,videodb://)]",
+            "rule": "Container.Content(movies) + [String.IsEmpty(Container.PluginName) + !String.StartsWith(Container.FolderPath,videodb://) + !String.StartsWith(Container.FolderPath,special://)]",
             "viewtypes": ["50", "56", "57", "521", "522", "514", "509", "508", "53", "55", "517", "555", "59", "54", "51", "58", "515", "504", "511", "512", "519", "513", "52", "500"],
             "library": "50",
             "plugins": "50"
@@ -67,13 +67,13 @@
             "plugins": "50"
         },
         "tvshows": {
-            "rule": "!String.IsEqual(Container.Property(param.info),episode_groups) + Container.Content(tvshows) + [!String.IsEmpty(Container.PluginName) | String.StartsWith(Container.FolderPath,videodb://)]",
+            "rule": "!String.IsEqual(Container.Property(param.info),episode_groups) + Container.Content(tvshows) + [!String.IsEmpty(Container.PluginName) | String.StartsWith(Container.FolderPath,videodb://) | String.StartsWith(Container.FolderPath,special://)]",
             "viewtypes": ["50", "56", "57", "521", "522", "514", "509", "508", "53", "55", "517", "555", "59", "54", "51", "58", "515", "504", "511", "512", "519", "513", "52", "500"],
             "library": "50",
             "plugins": "50"
         },
         "tvshows-files": {
-            "rule": "!String.IsEqual(Container.Property(param.info),episode_groups) + Container.Content(tvshows) + [String.IsEmpty(Container.PluginName) + !String.StartsWith(Container.FolderPath,videodb://)]",
+            "rule": "!String.IsEqual(Container.Property(param.info),episode_groups) + Container.Content(tvshows) + [String.IsEmpty(Container.PluginName) + !String.StartsWith(Container.FolderPath,videodb://) + !String.StartsWith(Container.FolderPath,special://)]",
             "viewtypes": ["50", "56", "57", "521", "522", "514", "509", "508", "53", "55", "517", "555", "59", "54", "51", "58", "515", "504", "511", "512", "519", "513", "52", "500"],
             "library": "50",
             "plugins": "50"
@@ -97,25 +97,19 @@
             "plugins": "50"
         },
         "episodes": {
-            "rule": "Container.Content(episodes) + [!String.IsEmpty(Container.PluginName) | String.StartsWith(Container.FolderPath,videodb://)]",
+            "rule": "Container.Content(episodes) + [!String.IsEmpty(Container.PluginName) | String.StartsWith(Container.FolderPath,videodb://) | String.StartsWith(Container.FolderPath,special://)]",
             "viewtypes": ["50", "56", "57", "521", "522", "514", "508", "555", "54", "51", "58", "515", "504", "513", "52", "500"],
             "library": "50",
             "plugins": "50"
         },
         "episodes-files": {
-            "rule": "Container.Content(episodes) + [String.IsEmpty(Container.PluginName) + !String.StartsWith(Container.FolderPath,videodb://)]",
+            "rule": "Container.Content(episodes) + [String.IsEmpty(Container.PluginName) + !String.StartsWith(Container.FolderPath,videodb://) + !String.StartsWith(Container.FolderPath,special://)]",
             "viewtypes": ["50", "56", "57", "521", "522", "514", "508", "555", "54", "51", "58", "515", "504", "513", "52", "500"],
             "library": "50",
             "plugins": "50"
         },
         "videoextras": {
             "rule": "Container.Content(videoextras)",
-            "viewtypes": ["50", "56", "57", "521", "522", "514", "509", "508", "53", "55", "517", "555", "59", "54", "51", "58", "515", "504", "511", "512", "519", "513", "52", "500"],
-            "library": "50",
-            "plugins": "50"
-        },
-        "videoassets": {
-            "rule": "Container.Content(videoassets)",
             "viewtypes": ["50", "56", "57", "521", "522", "514", "509", "508", "53", "55", "517", "555", "59", "54", "51", "58", "515", "504", "511", "512", "519", "513", "52", "500"],
             "library": "50",
             "plugins": "50"
@@ -187,13 +181,13 @@
             "plugins": "550"
         },
         "musicvideos": {
-            "rule": "Container.Content(musicvideos) + [!String.IsEmpty(Container.PluginName) | String.StartsWith(Container.FolderPath,videodb://)]",
+            "rule": "Container.Content(musicvideos) + [!String.IsEmpty(Container.PluginName) | String.StartsWith(Container.FolderPath,videodb://) | String.StartsWith(Container.FolderPath,special://)]",
             "viewtypes": ["550", "56", "57", "523", "522", "503", "505", "506", "507", "55", "517", "514", "509", "508", "555", "59", "54", "51", "58", "515", "504", "511", "512", "519", "513", "52", "500"],
             "library": "550",
             "plugins": "550"
         },
         "musicvideos-files": {
-            "rule": "Container.Content(musicvideos) + [String.IsEmpty(Container.PluginName) + !String.StartsWith(Container.FolderPath,videodb://)]",
+            "rule": "Container.Content(musicvideos) + [String.IsEmpty(Container.PluginName) + !String.StartsWith(Container.FolderPath,videodb://) + !String.StartsWith(Container.FolderPath,special://)]",
             "viewtypes": ["550", "56", "57", "523", "522", "503", "505", "506", "507", "55", "517", "514", "509", "508", "555", "59", "54", "51", "58", "515", "504", "511", "512", "519", "513", "52", "500"],
             "library": "550",
             "plugins": "550"
@@ -234,6 +228,12 @@
             "library": "550",
             "plugins": "550"
         },
+        "recordings": {
+            "rule": "Container.Content(recordings)",
+            "viewtypes": ["550", "57", "555", "513", "52", "500"],
+            "library": "550",
+            "plugins": "550"
+        },
         "favourites": {
             "rule": "Container.Content(favourites)",
             "viewtypes": ["550", "55", "517", "555", "52", "500"],
@@ -266,6 +266,12 @@
         },
         "none": {
             "rule": "Container.Content() + !Window.IsVisible(MyGames.xml) + !String.IsEqual(Container.Property(param.info),watch_providers) + ![String.IsEqual(Container.Property(param.info),dir_calendar_library) | String.IsEqual(Container.Property(param.info),dir_calendar_trakt)]",
+            "viewtypes": ["550", "555", "52", "500"],
+            "library": "550",
+            "plugins": "550"
+        },
+        "other": {
+            "rule": "!Container.Content() + !Container.Content(images) + !Container.Content(videos) + !Container.Content(movies) + !Container.Content(sets) + !Container.Content(tvshows) + !Container.Content(seasons) + !Container.Content(episodes) + !Container.Content(videoextras) + !Container.Content(videoversions) + !Container.Content(genres) + !Container.Content(years) + !Container.Content(studios) + !Container.Content(directors) + !Container.Content(countries) + !Container.Content(tags) + !Container.Content(roles) + !Container.Content(actors) + !Container.Content(playlists) + !Container.Content(musicvideos) + !Container.Content(artists) + !Container.Content(albums) + !Container.Content(songs) + !Container.Content(files) + !Container.Content(sources) + !Container.Content(addons) + !Container.Content(recordings) + !Container.Content(favourites) + !Container.Content(games)",
             "viewtypes": ["550", "555", "52", "500"],
             "library": "550",
             "plugins": "550"

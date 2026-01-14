@@ -141,12 +141,12 @@
 
     <expression name="IsVideo3D">
         ListItem.IsStereoscopic | String.Contains(ListItem.FilenameAndPath,.3D) | String.Contains(ListItem.FilenameAndPath,-3D)
-        | String.Contains(ListItem.FilenameAndPath,_3D) | String.Contains(ListItem.FilenameAndPath, 3D)
+        | String.Contains(ListItem.FilenameAndPath,_3D)
     </expression>
 
     <expression name="IsVideo3DHub">
         Container(9500).ListItem.IsStereoscopic | String.Contains(Container(9500).ListItem.FilenameAndPath,.3D) | String.Contains(Container(9500).ListItem.FilenameAndPath,-3D)
-        | String.Contains(Container(9500).ListItem.FilenameAndPath,_3D) | String.Contains(Container(9500).ListItem.FilenameAndPath, 3D)
+        | String.Contains(Container(9500).ListItem.FilenameAndPath,_3D)
     </expression>
 
     <expression name="IsVideoSourceUHDBluray">
@@ -437,7 +437,15 @@
         [!Skin.HasSetting(hide.markers.inprogress) + $EXP[IsInProgress301]] | [!Skin.HasSetting(hide.markers.watched) + $EXP[IsWatched301]] | [!Skin.HasSetting(hide.markers.newcontent) | $EXP[IsNewContent301]]
     </expression>
 
-    <expression name="InGameMode">Window.IsVisible(MyGames.xml) | Container.Content(games)</expression>
+    <expression name="InGameMode">
+     [ String.Contains(Container.FolderPath,plugin://plugin.program.ael) 
+        | String.Contains(Container.FolderPath,plugin://plugin.program.advanced.emulator.launcher) 
+        | String.Contains(Container.FolderPath,plugin://plugin.program.akl) 
+        | String.Contains(Container.FolderPath,plugin://plugin.program.AML) 
+        | String.Contains(Container.FolderPath,plugin://plugin.program.iagl) 
+        | Window.IsActive(games) 
+        | Container.Content(games) ]
+    </expression>
     
     <expression name="IsVideoAssets">
         Container.Content(videoversions) + !String.IsEqual(Container.FolderPath,videodb://movies/videoversions/) | Container.Content(videoassets) | Container.Content(videoextras)
@@ -456,17 +464,14 @@
     <expression name="HasEnableRatingInfo">
         Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(episodes) | $EXP[InGameMode] | $EXP[IsVideoAssets]
     </expression>
- 
-    <expression name="ShowListInfo">
-        [   
-          Control.IsVisible(50) + !Skin.HasSetting(No50ListInfo)
-          | Control.IsVisible(550) + !Skin.HasSetting(No550ListInfo)
-          | Control.IsVisible(56) + Skin.HasSetting(56ListInfo)
-          | Control.IsVisible(57) + Skin.HasSetting(57ListInfo)
-          | Control.IsVisible(516) + Skin.HasSetting(516ListInfo)
-          | [Control.IsVisible(511) | Control.IsVisible(512)] + Skin.HasSetting(511ListInfo)
-        ] + $EXP[HasEnableExtendedListInfo]</expression>
 
+    <expression name="ShowListInfo50">!Skin.HasSetting(No50ListInfo) + [Skin.HasSetting(50list.low) | $EXP[HasEnableExtendedListInfo]]</expression>
+    <expression name="ShowListInfo56">Skin.HasSetting(56ListInfo) + [Skin.HasSetting(56media.low) | $EXP[HasEnableExtendedListInfo]]</expression>
+    <expression name="ShowListInfo57">Skin.HasSetting(57ListInfo) + [Skin.HasSetting(57list.low) | $EXP[HasEnableExtendedListInfo]]</expression>
+    <expression name="ShowListInfo511">Skin.HasSetting(511ListInfo) + $EXP[HasEnableExtendedListInfo]</expression>
+    <expression name="ShowListInfo516">Skin.HasSetting(516ListInfo) + $EXP[HasEnableExtendedListInfo]</expression>
+    <expression name="ShowListInfo550">!Skin.HasSetting(No550ListInfo) + $EXP[HasEnableExtendedListInfo]</expression>
+ 
     <expression name="ShowProgressInfo">Skin.HasSetting(furniture.overlayinfobalken) + $EXP[HasEnableProgressInfo]</expression>
     <expression name="ShowRatingInfo">!Skin.HasSetting(hide.ratings) + $EXP[HasEnableRatingInfo]</expression>
 

@@ -51,16 +51,17 @@
 	</include>
 
 	<variable name="View_ModeSwitch">
-        <value condition="Container.Content(movies) + String.IsEmpty(Container.PluginName) + !String.StartsWith(Container.FolderPath,videodb://)">movies-files</value>
-        <value condition="Container.Content(tvshows) + String.IsEmpty(Container.PluginName) + !String.StartsWith(Container.FolderPath,videodb://)">tvshows-files</value>
-        <value condition="Container.Content(episodes) + String.IsEmpty(Container.PluginName) + !String.StartsWith(Container.FolderPath,videodb://)">episodes-files</value>
-        <value condition="Container.Content(musicvideos) + String.IsEmpty(Container.PluginName) + !String.StartsWith(Container.FolderPath,videodb://)">musicvideos-files</value>
+        <value condition="Container.Content(movies) + String.IsEmpty(Container.PluginName) + !String.StartsWith(Container.FolderPath,videodb://) + !String.StartsWith(Container.FolderPath,special://)">movies-files</value>
+        <value condition="Container.Content(tvshows) + String.IsEmpty(Container.PluginName) + !String.StartsWith(Container.FolderPath,videodb://) + !String.StartsWith(Container.FolderPath,special://)">tvshows-files</value>
+        <value condition="Container.Content(episodes) + String.IsEmpty(Container.PluginName) + !String.StartsWith(Container.FolderPath,videodb://) + !String.StartsWith(Container.FolderPath,special://)">episodes-files</value>
+        <value condition="Container.Content(musicvideos) + String.IsEmpty(Container.PluginName) + !String.StartsWith(Container.FolderPath,videodb://) + !String.StartsWith(Container.FolderPath,special://)">musicvideos-files</value>
 		<value condition="Container.Content(tvshows) + String.IsEqual(Container.Property(param.info),episode_groups)">episode-groups-tvshows</value>
 		<value condition="Container.Content(seasons) + String.IsEqual(Container.Property(param.info),episode_group_seasons)">episode-groups-seasons</value>
         <value condition="Container.Content(videoversions) + String.IsEqual(Container.FolderPath,videodb://movies/videoversions/)">videoversions-versions</value>
 		<value condition="Container.Content() + String.IsEqual(Container.Property(param.info),watch_providers)">none-providers</value>
 		<value condition="Container.Content() + String.IsEqual(Container.Property(param.info),dir_calendar_library)">none-calendar</value>
 		<value condition="Container.Content() + String.IsEqual(Container.Property(param.info),dir_calendar_trakt)">none-calendar</value>
+		<value condition="!Container.Content() + !Container.Content(images) + !Container.Content(videos) + !Container.Content(movies) + !Container.Content(sets) + !Container.Content(tvshows) + !Container.Content(seasons) + !Container.Content(episodes) + !Container.Content(videoextras) + !Container.Content(videoversions) + !Container.Content(genres) + !Container.Content(years) + !Container.Content(studios) + !Container.Content(directors) + !Container.Content(countries) + !Container.Content(tags) + !Container.Content(roles) + !Container.Content(actors) + !Container.Content(playlists) + !Container.Content(musicvideos) + !Container.Content(artists) + !Container.Content(albums) + !Container.Content(songs) + !Container.Content(files) + !Container.Content(sources) + !Container.Content(addons) + !Container.Content(recordings) + !Container.Content(favourites) + !Container.Content(games)">other</value>
 		<value condition="!String.IsEmpty(Container.Content)">$INFO[Container.Content]</value>
 		<value condition="Window.IsVisible(MyGames.xml)">none-games</value>
 		<value>none</value>
@@ -93,7 +94,7 @@
 		<!-- View Options -->
 		<control type="button" id="9001">
             <visible>
-                Control.IsVisible(50) | Control.IsVisible(51) | Control.IsVisible(52) | Control.IsVisible(53)
+                Control.IsVisible(50) | Control.IsVisible(51) | Control.IsVisible(52)
 				| Control.IsVisible(54) + !Container.Content(episodes) + !Container.Content(albums) + !Container.Content(songs)
 				| Control.IsVisible(55) | Control.IsVisible(56) | Control.IsVisible(57) | Control.IsVisible(504) | Control.IsVisible(508)
 				| Control.IsVisible(509) | Control.IsVisible(511) | Control.IsVisible(512) | Control.IsVisible(514)
@@ -112,7 +113,7 @@
 			<selected>!Skin.HasSetting(No50ListInfo)</selected>
 			<onclick>Skin.ToggleSetting(No50ListInfo)</onclick>
 			<onclick condition="Control.IsVisible(50) + Skin.HasSetting(50list.low)">ReloadSkin()</onclick>
-			<visible>Control.IsVisible(50) + $EXP[HasEnableExtendedListInfo]</visible>
+			<visible>Control.IsVisible(50) + [Skin.HasSetting(50list.low) | $EXP[HasEnableExtendedListInfo]]</visible>
 		</control>
 
         <control type="radiobutton" id="90041" description="Extended List (56)">
@@ -122,7 +123,7 @@
             <selected>Skin.HasSetting(56ListInfo)</selected>
             <onclick>Skin.ToggleSetting(56ListInfo)</onclick>
             <onclick condition="Control.IsVisible(56) + Skin.HasSetting(56media.low)">ReloadSkin()</onclick>
-            <visible>Control.IsVisible(56) + $EXP[HasEnableExtendedListInfo]</visible>
+            <visible>Control.IsVisible(56) + [Skin.HasSetting(56media.low) | $EXP[HasEnableExtendedListInfo]]</visible>
         </control>
 
         <control type="radiobutton" id="90042" description="Extended List (57)">
@@ -132,7 +133,7 @@
             <selected>Skin.HasSetting(57ListInfo)</selected>
             <onclick>Skin.ToggleSetting(57ListInfo)</onclick>
             <onclick condition="Control.IsVisible(57) + Skin.HasSetting(57list.low)">ReloadSkin()</onclick>
-            <visible>Control.IsVisible(57) + $EXP[HasEnableExtendedListInfo]</visible>
+            <visible>Control.IsVisible(57) + [Skin.HasSetting(57list.low) | $EXP[HasEnableExtendedListInfo]]</visible>
         </control>
 
 		<control type="radiobutton" id="9005" description="Disable Poster (50)">
@@ -335,8 +336,8 @@
 			<label>31989</label>
 			<selected>!Skin.HasSetting(list.hide.mediainfo)</selected>
 			<onclick>Skin.ToggleSetting(list.hide.mediainfo)</onclick>
-			<visible>$EXP[ShowListInfo] + [!Control.IsVisible(56) | !Skin.HasSetting(56media.showinfo) + !Skin.HasSetting(56media.low)] + $EXP[IsVideoAssets]</visible>
-			<visible>Control.IsVisible(50) | Control.IsVisible(57) | Control.IsVisible(56)</visible>
+			<visible>Control.IsVisible(50) + $EXP[ShowListInfo50] | Control.IsVisible(57) + $EXP[ShowListInfo57] | Control.IsVisible(56) + !Skin.HasSetting(56media.showinfo) + !Skin.HasSetting(56media.low) + $EXP[ShowListInfo56]</visible>
+            <visible>$EXP[IsVideoAssets]</visible>
 		</control>
 
 		<control type="radiobutton" id="9027" description="Discart (504,508)">
@@ -538,25 +539,6 @@
 			<visible>Control.IsVisible(521) | Control.IsVisible(522) | Control.IsVisible(524)</visible>
 		</control>
 
-		<control type="radiobutton" id="9045" description="Posterflix Alternative (521)">
-			<include>DefContextButtonGradient</include>
-			<align>left</align>
-			<label>31432</label>
-			<selected>Skin.HasSetting(521.alternative)</selected>
-			<onclick>Skin.ToggleSetting(521.alternative)</onclick>
-			<onclick>ReloadSkin()</onclick>
-			<visible>Control.IsVisible(521)</visible>
-		</control>
-
-		<control type="radiobutton" id="9046" description="Posterflix Discart (521)">
-			<include>DefContextButtonGradient</include>
-			<align>left</align>
-			<label>31459</label>
-			<selected>!Skin.HasSetting(disable.view.521.discart)</selected>
-			<onclick>Skin.ToggleSetting(disable.view.521.discart)</onclick>
-			<visible>Control.IsVisible(521)</visible>
-		</control>
-
 		<control type="radiobutton" id="9047" description="Netflix Preview Window (521,522,523,524)">
 			<include>DefContextButtonGradient</include>
 			<align>left</align>
@@ -578,17 +560,6 @@
 			<visible>!Skin.HasSetting(TMDbHelper.EnableBlur)</visible>
 			<enable>!Skin.HasSetting(hide.views.netflix.preview)</enable>
 			<onclick>ReloadSkin()</onclick>
-		</control>
-
-		<control type="radiobutton" id="9050" description="No Wrap (53,521,522,523,524)">
-			<include>DefContextButtonGradient</include>
-			<align>left</align>
-			<label>31148</label>
-			<selected>!Skin.HasSetting(53poster.nowrap)</selected>
-			<onclick>Skin.ToggleSetting(53poster.nowrap)</onclick>
-			<onclick>ReloadSkin()</onclick>
-			<visible>Control.IsVisible(53) | Control.IsVisible(521) | Control.IsVisible(522) | Control.IsVisible(523) | Control.IsVisible(524)
-			</visible>
 		</control>
 
 		<control type="radiobutton" id="9051" description="Show Poster (526)">
