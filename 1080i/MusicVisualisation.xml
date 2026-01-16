@@ -210,14 +210,38 @@
                 <bottom>20</bottom>
                 <left>SidePad</left>
                 <right>SidePad</right>
-                <control type="label" description="Finishes Time">
+                <control type="group">
                     <left>0</left>
                     <right>250</right>
                     <bottom>30</bottom>
                     <height>40</height>
-                    <font>Tiny</font>
-                    <textcolor>$VAR[OSDPanelWhite70]</textcolor>
-                    <label>$VAR[PlayerStatus]</label>
+	                <control type="label">
+                        <visible>Player.Playing + [Player.ShowInfo | Window.IsVisible(script-cu-lrclyrics-main.xml) | !String.IsEmpty(Window(home).Property(osdshowinfo))]</visible>	                         
+                        <width>100%</width>
+                        <height>100%</height>
+	                    <font>Tiny</font>
+	                    <textcolor>$VAR[OSDPanelWhite70]</textcolor>
+	                    <label>$VAR[PlayerTrackInfo]</label>
+	                </control>
+                    <control type="label">
+                        <visible>!Player.Playing + !Player.Paused | ![Player.ShowInfo | Window.IsVisible(script-cu-lrclyrics-main.xml) | !String.IsEmpty(Window(home).Property(osdshowinfo))]</visible>                            
+                        <width>100%</width>
+                        <height>100%</height>
+                        <font>Tiny</font>
+                        <textcolor>$VAR[OSDPanelWhite70]</textcolor>
+                        <label>$VAR[PlayerStatus]</label>
+                    </control>
+                    <control type="fadelabel">
+                        <visible>!Player.Playing + Player.Paused + [Player.ShowInfo | Window.IsVisible(script-cu-lrclyrics-main.xml) | !String.IsEmpty(Window(home).Property(osdshowinfo))]</visible>                            
+                        <width>100%</width>
+                        <height>100%</height>
+                        <font>Tiny</font>
+		                <pauseatend>6000</pauseatend>
+		                <scroll>false</scroll>
+                        <textcolor>$VAR[OSDPanelWhite70]</textcolor>
+                        <label>$VAR[PlayerStatus]</label>
+                        <label>$VAR[PlayerTrackInfo]</label>
+                    </control>
                 </control>
                 <control type="progress" description="cache">
                     <description>Progress Bar</description>
@@ -369,14 +393,36 @@
 			                <height>64</height>
 			                <align>left</align>
 			                <bottom>7</bottom>
+                            <control type="label">
+                                <visible>Player.Playing + [Player.ShowInfo | Window.IsVisible(script-cu-lrclyrics-main.xml) | !String.IsEmpty(Window(home).Property(osdshowinfo))]</visible>
+                                <width>auto</width>
+                                <align>left</align>
+                                <height>40</height>
+                                <font>Tiny</font>
+                                <textcolor>$VAR[OSDPanelWhite70]</textcolor>
+                                <label>$VAR[PlayerTrackInfo]</label>
+                            </control>
 			                <control type="label">
+                                <visible>!Player.Playing + !Player.Paused | ![Player.ShowInfo | Window.IsVisible(script-cu-lrclyrics-main.xml) | !String.IsEmpty(Window(home).Property(osdshowinfo))]</visible>
 			                    <width>auto</width>
 			                    <align>left</align>
-			                    <height>40</height>
+                                <height>40</height>
 			                    <font>Tiny</font>
 			                    <textcolor>$VAR[OSDPanelWhite70]</textcolor>
 			                    <label>$VAR[PlayerStatus]</label>
 			                </control>
+                            <control type="fadelabel">
+                                <visible>!Player.Playing + Player.Paused + [Player.ShowInfo | Window.IsVisible(script-cu-lrclyrics-main.xml) | !String.IsEmpty(Window(home).Property(osdshowinfo))]</visible>
+                                <width>auto</width>
+                                <align>left</align>
+                                <height>40</height>
+                                <font>Tiny</font>
+		                        <pauseatend>6000</pauseatend>
+		                        <scroll>false</scroll>
+                                <textcolor>$VAR[OSDPanelWhite70]</textcolor>
+                                <label>$VAR[PlayerStatus]</label>
+                                <label>$VAR[PlayerTrackInfo]</label>
+                            </control>
 			            </control>
 			            <control type="progress" description="cache">
 			                <description>Progress Bar</description>

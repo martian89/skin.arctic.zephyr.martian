@@ -328,7 +328,7 @@
 
             <!-- PLAYER STATUS -->
             <control type="fadelabel">
-                <visible>VideoPlayer.Content(episodes)</visible>
+                <visible>Player.Playing + VideoPlayer.Content(episodes)</visible>
                 <animation effect="fade" start="100" end="0" time="200" condition="Window.IsVisible(videoosd)">Conditional</animation>
                 <left>0</left>
                 <width>100%</width>
@@ -338,12 +338,39 @@
                 <pauseatend>6000</pauseatend>
                 <scroll>false</scroll>
                 <textcolor>$VAR[OSDPanelWhite70]</textcolor>
-                <label>$VAR[PlayerStatus]</label>
-                <label>$INFO[VideoPlayer.Season,S,]$INFO[VideoPlayer.Episode,E,]$INFO[VideoPlayer.Premiered,  •  ,]</label>
+                <label>$VAR[PlayerGenreInfo]</label>
                 <label>$INFO[Player.FinishTime,$LOCALIZE[31013] ]</label>
             </control>
             <control type="fadelabel">
-                <visible>!VideoPlayer.Content(LiveTV) + !VideoPlayer.Content(episodes)</visible>
+                <visible>!Player.Playing + VideoPlayer.Content(episodes)</visible>
+                <animation effect="fade" start="100" end="0" time="200" condition="Window.IsVisible(videoosd)">Conditional</animation>
+                <left>0</left>
+                <width>100%</width>
+                <bottom>30</bottom>
+                <height>40</height>
+                <font>Tiny</font>
+                <pauseatend>6000</pauseatend>
+                <scroll>false</scroll>
+                <textcolor>$VAR[OSDPanelWhite70]</textcolor>
+                <label>$VAR[PlayerStatus]</label>
+                <label>$VAR[PlayerGenreInfo]</label>
+                <label>$INFO[Player.FinishTime,$LOCALIZE[31013] ]</label>
+            </control>
+            <control type="fadelabel">
+                <visible>Player.Playing + !VideoPlayer.Content(LiveTV) + !VideoPlayer.Content(episodes)</visible>
+                <animation effect="fade" start="100" end="0" time="200" condition="Window.IsVisible(videoosd)">Conditional</animation>
+                <left>0</left>
+                <width>100%</width>
+                <bottom>30</bottom>
+                <height>40</height>
+                <font>Tiny</font>
+                <pauseatend>6000</pauseatend>
+                <scroll>false</scroll>
+                <textcolor>$VAR[OSDPanelWhite70]</textcolor>
+                <label>$INFO[Player.FinishTime,$LOCALIZE[31013] ]</label>
+            </control>
+            <control type="fadelabel">
+                <visible>!Player.Playing + !VideoPlayer.Content(LiveTV) + !VideoPlayer.Content(episodes)</visible>
                 <animation effect="fade" start="100" end="0" time="200" condition="Window.IsVisible(videoosd)">Conditional</animation>
                 <left>0</left>
                 <width>100%</width>
@@ -357,7 +384,21 @@
                 <label>$INFO[Player.FinishTime,$LOCALIZE[31013] ]</label>
             </control>
             <control type="fadelabel">
-                <visible>VideoPlayer.Content(LiveTV) + !VideoPlayer.Content(episodes)</visible>
+                <visible>Player.Playing + VideoPlayer.Content(LiveTV)</visible>
+                <animation effect="fade" start="100" end="0" time="200" condition="Window.IsVisible(videoosd)">Conditional</animation>
+                <left>0</left>
+                <width>100%</width>
+                <bottom>30</bottom>
+                <height>40</height>
+                <font>Tiny</font>
+                <pauseatend>6000</pauseatend>
+                <scroll>false</scroll>
+                <textcolor>$VAR[OSDPanelWhite70]</textcolor>
+                <label>$VAR[PlayerGenreInfo]</label>
+                <label>$INFO[PVR.EpgEventFinishTime,$LOCALIZE[31013] ]</label>
+            </control>
+            <control type="fadelabel">
+                <visible>!Player.Playing + VideoPlayer.Content(LiveTV)</visible>
                 <animation effect="fade" start="100" end="0" time="200" condition="Window.IsVisible(videoosd)">Conditional</animation>
                 <left>0</left>
                 <width>100%</width>
@@ -368,8 +409,7 @@
                 <scroll>false</scroll>
                 <textcolor>$VAR[OSDPanelWhite70]</textcolor>
                 <label>$VAR[PlayerStatus]</label>
-                <label>$INFO[VideoPlayer.ChannelNumberLabel,,. ]$INFO[VideoPlayer.ChannelName]</label>
-                <label>$INFO[VideoPlayer.Season,S,]$INFO[VideoPlayer.Episode,E,  •  ,]$INFO[VideoPlayer.Premiered]</label>
+                <label>$VAR[PlayerGenreInfo]</label>
                 <label>$INFO[PVR.EpgEventFinishTime,$LOCALIZE[31013] ]</label>
             </control>
             <control type="grouplist">
@@ -818,90 +858,82 @@
 
             <!-- WENN PVR NIIIICHT läuft-->
             <visible>!VideoPlayer.Content(LiveTV)</visible>
-            <control type="fadelabel">
-                <visible>!VideoPlayer.Content(episodes)</visible>
-                <left>0</left>
-                <include content="def_width" condition="Skin.HasSetting(ClockOSD) + Skin.HasSetting(osd.usetheme)">
-                    <param name="width" value="1080" />
-                </include>
-                <include content="def_width" condition="Skin.HasSetting(ClockOSD) + !Skin.HasSetting(osd.usetheme)">
-                    <param name="width" value="970" />
-                </include>
-                <include content="def_width" condition="Skin.HasSetting(osd.usetheme)">
-                    <param name="width" value="880" />
-                </include>
-                <include content="def_width" condition="!Skin.HasSetting(osd.usetheme)">
-                    <param name="width" value="770" />
-                </include>
-                <width>940</width>
-                <bottom>30</bottom>
-                <height>40</height>
+            <include content="def_width" condition="Skin.HasSetting(ClockOSD) + Skin.HasSetting(osd.usetheme)">
+                <param name="width" value="1080" />
+            </include>
+            <include content="def_width" condition="Skin.HasSetting(ClockOSD) + !Skin.HasSetting(osd.usetheme)">
+                <param name="width" value="970" />
+            </include>
+            <include content="def_width" condition="Skin.HasSetting(osd.usetheme)">
+                <param name="width" value="880" />
+            </include>
+            <include content="def_width" condition="!Skin.HasSetting(osd.usetheme)">
+                <param name="width" value="770" />
+            </include>
+            <width>940</width>
+            <bottom>30</bottom>
+            <height>40</height>
+            <control type="label">
+                <visible>Player.Playing</visible>
+                <width>100%</width>
+                <height>100%</height>
                 <font>Tiny</font>
-                <pauseatend>6000</pauseatend>
-                <scroll>false</scroll>
+                <textcolor>$VAR[OSDPanelWhite70]</textcolor>
+                <label>$VAR[PlayerGenreInfo]</label>
+            </control>
+            <control type="label">
+                <visible>!Player.Playing + !Player.Paused</visible>
+                <width>100%</width>
+                <height>100%</height>
+                <font>Tiny</font>
                 <textcolor>$VAR[OSDPanelWhite70]</textcolor>
                 <label>$VAR[PlayerStatus]</label>
-                <label>$INFO[VideoPlayer.Tagline]</label>
-                <label>$INFO[VideoPlayer.Genre]</label>
-                <label>$INFO[VideoPlayer.Writer]</label>
-                <label>$INFO[Player.FinishTime,$LOCALIZE[31013] ]</label>
             </control>
             <control type="fadelabel">
-                <visible>VideoPlayer.Content(episodes)</visible>
-                <left>0</left>
-                <include content="def_width" condition="Skin.HasSetting(ClockOSD) + Skin.HasSetting(osd.usetheme)">
-                    <param name="width" value="1080" />
-                </include>
-                <include content="def_width" condition="Skin.HasSetting(ClockOSD) + !Skin.HasSetting(osd.usetheme)">
-                    <param name="width" value="970" />
-                </include>
-                <include content="def_width" condition="Skin.HasSetting(osd.usetheme)">
-                    <param name="width" value="880" />
-                </include>
-                <include content="def_width" condition="!Skin.HasSetting(osd.usetheme)">
-                    <param name="width" value="770" />
-                </include>
-                <width>940</width>
-                <bottom>30</bottom>
-                <height>40</height>
+                <visible>!Player.Playing + Player.Paused</visible>
+                <width>100%</width>
+                <height>100%</height>
                 <font>Tiny</font>
                 <pauseatend>6000</pauseatend>
                 <scroll>false</scroll>
                 <textcolor>$VAR[OSDPanelWhite70]</textcolor>
                 <label>$VAR[PlayerStatus]</label>
-                <label>$INFO[VideoPlayer.Season,$LOCALIZE[20373] ,]$INFO[VideoPlayer.Episode,  •  $LOCALIZE[20359] ,]$INFO[VideoPlayer.Premiered,  •  ,]</label>
-                <label>$INFO[Player.FinishTime,$LOCALIZE[31013] ]</label>
+                <label>$VAR[PlayerGenreInfo]</label>
             </control>
         </control>
         <control type="group">
 
             <!-- WENN PVR läuft-->
             <visible>VideoPlayer.Content(LiveTV)</visible>
+            <width>1050</width>
+            <bottom>30</bottom>
+            <height>40</height>
+            <control type="label">
+                <visible>Player.Playing</visible>
+                <width>100%</width>
+                <height>100%</height>
+                <font>Tiny</font>
+                <textcolor>$VAR[OSDPanelWhite70]</textcolor>
+                <label>$VAR[PlayerGenreInfo]</label>
+            </control>
+            <control type="label">
+                <visible>!Player.Playing + !Player.Paused</visible>
+                <width>100%</width>
+                <height>100%</height>
+                <font>Tiny</font>
+                <textcolor>$VAR[OSDPanelWhite70]</textcolor>
+                <label>$VAR[PlayerStatus]</label>
+            </control>
             <control type="fadelabel">
-                <visible>!String.IsEmpty(VideoPlayer.NextTitle)</visible>
-                <left>0</left>
-                <width>1050</width>
-                <bottom>30</bottom>
-                <height>40</height>
+                <visible>!Player.Playing + Player.Paused</visible>
+                <width>100%</width>
+                <height>100%</height>
                 <font>Tiny</font>
                 <pauseatend>6000</pauseatend>
                 <scroll>false</scroll>
                 <textcolor>$VAR[OSDPanelWhite70]</textcolor>
                 <label>$VAR[PlayerStatus]</label>
-                <label>$INFO[VideoPlayer.ChannelNumberLabel,,. ]$INFO[VideoPlayer.ChannelName]</label>
-                <label>$INFO[VideoPlayer.Season,$LOCALIZE[20373] ,]$INFO[VideoPlayer.Episode,  •  $LOCALIZE[20359] ,  •  ]$INFO[VideoPlayer.Premiered]</label>
-                <label>$INFO[VideoPlayer.NextTitle,$LOCALIZE[19031]: ]$INFO[VideoPlayer.NextStartTime, (,]$INFO[VideoPlayer.NextEndTime, - ,)]</label>
-            </control>
-            <control type="label">
-                <visible>String.IsEmpty(VideoPlayer.NextTitle)</visible>
-                <left>0</left>
-                <width>1050</width>
-                <bottom>30</bottom>
-                <height>40</height>
-                <font>Tiny</font>
-                <scroll>false</scroll>
-                <textcolor>$VAR[OSDPanelWhite70]</textcolor>
-                <label>$VAR[PlayerStatus]</label>
+                <label>$VAR[PlayerGenreInfo]</label>
             </control>
         </control>
         <control type="textbox" description="Plot">
