@@ -770,6 +770,14 @@
         <value>$INFO[VideoPlayer.Plot]</value>
     </variable>
 
+    <variable name="PlayerGenreInfo">
+        <value condition="VideoPlayer.Content(LiveTV)">$INFO[VideoPlayer.ChannelNumberLabel,,. ]$INFO[VideoPlayer.ChannelName]</value>
+        <value condition="VideoPlayer.Content(episodes) + !String.IsEmpty(VideoPlayer.Episode) + !Skin.HasSetting(videoosd.side)">$INFO[VideoPlayer.Season,$LOCALIZE[20373] ,  •  ]$INFO[VideoPlayer.Episode,$LOCALIZE[20359] ,]$INFO[VideoPlayer.Premiered,  •  ,]</value>
+        <value condition="VideoPlayer.Content(episodes) + !String.IsEmpty(VideoPlayer.Episode) + Skin.HasSetting(videoosd.side)">$INFO[VideoPlayer.Season,S,]$INFO[VideoPlayer.Episode,E,]$INFO[VideoPlayer.Premiered,  •  ,]</value>
+        <value condition="!String.IsEmpty(VideoPlayer.Genre)">$INFO[VideoPlayer.Genre]</value>
+        <value>$LOCALIZE[19055]</value>
+    </variable>
+    
     <variable name="PlayerArtistInfo">
         <value condition="!String.IsEmpty(Window(Visualisation).Property(ArtistSlideshow.ArtistBiography))">$INFO[Window(Visualisation).Property(ArtistSlideshow.ArtistBiography)]</value>
         <value>$INFO[MusicPlayer.Property(Artist_Description)]</value>
