@@ -708,7 +708,6 @@
         <value condition="Player.Seeking + String.IsEmpty(Player.SeekOffset)">$LOCALIZE[773]$INFO[Player.SeekStepSize, ,]</value>
         <value condition="Player.Paused">$LOCALIZE[112]</value>
         <value condition="Player.IsTempo">$LOCALIZE[31281]: $INFO[Player.PlaySpeed]</value>
-        <value condition="!Player.HasVideo + [Player.ShowInfo | [Window.IsVisible(home) + Skin.HasSetting(extended.nowplaying)] | Window.IsVisible(script-cu-lrclyrics-main.xml) | !String.IsEmpty(Window(home).Property(osdshowinfo))]">$INFO[MusicPlayer.Artist]$INFO[MusicPlayer.Album,  •  ,]$INFO[MusicPlayer.Year,  •  ,]$INFO[MusicPlayer.TrackNumber,  •  $LOCALIZE[554] ,]</value>
         <value condition="Player.Playing">$LOCALIZE[31663]</value>
         <value>$INFO[Player.FinishTime,$LOCALIZE[31106] ,]</value>
     </variable>
@@ -776,6 +775,10 @@
         <value condition="VideoPlayer.Content(episodes) + !String.IsEmpty(VideoPlayer.Episode) + Skin.HasSetting(videoosd.side)">$INFO[VideoPlayer.Season,S,]$INFO[VideoPlayer.Episode,E,]$INFO[VideoPlayer.Premiered,  •  ,]</value>
         <value condition="!String.IsEmpty(VideoPlayer.Genre)">$INFO[VideoPlayer.Genre]</value>
         <value>$LOCALIZE[19055]</value>
+    </variable>
+    
+    <variable name="PlayerTrackInfo">
+        <value>$INFO[MusicPlayer.Artist]$INFO[MusicPlayer.Album,  •  ,]$INFO[MusicPlayer.Year,  •  ,]$INFO[MusicPlayer.TrackNumber,  •  $LOCALIZE[554] ,]</value>
     </variable>
     
     <variable name="PlayerArtistInfo">
@@ -1722,7 +1725,8 @@
     </variable>
     
     <variable name="Label_NowPlaying_Time_MusicSubInfo">
-        <value condition="!String.IsEmpty(MusicPlayer.Album)">$VAR[PlayerStatus]</value>
+        <value condition="!Player.Playing">$VAR[PlayerStatus]</value>
+        <value condition="!String.IsEmpty(MusicPlayer.Album)">$VAR[PlayerTrackInfo]</value>
         <value>$VAR[AudioCodecLabelMusicPlayer]$INFO[MusicPlayer.BitRate,  •  ,kbps]$INFO[MusicPlayer.Samplerate, •  ,kHz]$INFO[MusicPlayer.BPM,  •  ,bpm]$INFO[MusicPlayer.BitsPerSample,  •  ,bit]</value>
     </variable>
     
