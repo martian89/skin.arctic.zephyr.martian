@@ -673,6 +673,11 @@
         <value condition="String.StartsWith(Container(301).ListItem.FolderPath,pvr://) + Skin.HasSetting(NewTime) + !Integer.IsGreater(Container(301).ListItem.Duration(h),0)">$INFO[Container(301).ListItem.Label]$INFO[Container(301).ListItem.StartTime,  •  ,]$INFO[Container(301).ListItem.EndTime, - ]$INFO[Container(301).ListItem.Duration(mins),  •  ,$LOCALIZE[31089]]$VAR[Label_TvShow_Ratings]</value>
     </variable>
 
+    <variable name="PVRInfoLabel">
+        <value condition="!String.IsEmpty(ListItem.Title)">$INFO[ListItem.Title]</value>
+        <value condition="Window.IsVisible(MyPVRProviders.xml) + !String.IsEqual(ListItem.Label,..)">$INFO[ListItem.Label]</value>
+    </variable>
+
     <variable name="PVREpisodeLabel">
         <value condition="!String.IsEqual(ListItem.Title,ListItem.EpisodeName) + !String.StartsWith(ListItem.Plot,ListItem.EpisodeName)">$INFO[ListItem.EpisodeName]</value>
     </variable>
@@ -770,14 +775,6 @@
         <value>$INFO[VideoPlayer.Plot]</value>
     </variable>
 
-    <variable name="PlayerGenreInfo">
-        <value condition="VideoPlayer.Content(LiveTV)">$INFO[VideoPlayer.ChannelNumberLabel,,. ]$INFO[VideoPlayer.ChannelName]</value>
-        <value condition="VideoPlayer.Content(episodes) + !String.IsEmpty(VideoPlayer.Episode) + !Skin.HasSetting(videoosd.side)">$INFO[VideoPlayer.Season,$LOCALIZE[20373] ,  •  ]$INFO[VideoPlayer.Episode,$LOCALIZE[20359] ,]$INFO[VideoPlayer.Premiered,  •  ,]</value>
-        <value condition="VideoPlayer.Content(episodes) + !String.IsEmpty(VideoPlayer.Episode) + Skin.HasSetting(videoosd.side)">$INFO[VideoPlayer.Season,S,]$INFO[VideoPlayer.Episode,E,]$INFO[VideoPlayer.Premiered,  •  ,]</value>
-        <value condition="!String.IsEmpty(VideoPlayer.Genre)">$INFO[VideoPlayer.Genre]</value>
-        <value>$LOCALIZE[19055]</value>
-    </variable>
-    
     <variable name="PlayerArtistInfo">
         <value condition="!String.IsEmpty(Window(Visualisation).Property(ArtistSlideshow.ArtistBiography))">$INFO[Window(Visualisation).Property(ArtistSlideshow.ArtistBiography)]</value>
         <value>$INFO[MusicPlayer.Property(Artist_Description)]</value>
