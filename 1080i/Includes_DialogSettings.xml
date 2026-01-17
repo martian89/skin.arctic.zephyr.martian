@@ -4,6 +4,8 @@
 
 	<include name="DialogSettingsLayout">
 		<param name="header_label" default="5" />
+		<param name="width" default="466"/>
+		<param name="height" default="620"/>
 		<param name="content_include" />
 
 		<definition>
@@ -17,25 +19,27 @@
 	            <visible>!Window.IsActive(GameVideoFilter) + !Window.IsActive(GameStretchMode) + !Window.IsActive(GameVideoRotation) + !Window.IsActive(DialogSlider.xml)</visible>
 	            <include>Animation.ZoomIn</include>
 	            <include>Animation.FadeOut</include>
-				<height>620</height>
+				<width>$PARAM[width]</width>
+				<height>$PARAM[height]</height>
 				<include>Def9000Background</include>
 				<include content="Def9000Header">
 					<param name="header_label" value="$PARAM[header_label]" />
 				</include>
 				<include content="Def9000Arrows">
-					<param name="arrow_bottom" value="620" />
+					<param name="arrow_bottom" value="$PARAM[height]" />
 				</include>
 				<include content="Def_Gradient_Settings_Image">
 					<param name="controlid" value="9000" />
 					<param name="left" value="8" />
+					<param name="right" value="8" />
 					<param name="top" value="112" />
-					<param name="width" value="450" />
+					<param name="align_right" value="true" />
 				</include>
 				<control type="grouplist" id="9000">
-					<posx>8</posx>
-					<posy>112</posy>
-					<width>510</width>
-					<height>490</height>
+					<left>8</left>
+					<top>112</top>
+					<right>8</right>
+					<bottom>18</bottom>
 					<itemgap>0</itemgap>
 					<usecontrolcoords>true</usecontrolcoords>
 					<scrolltime>0</scrolltime>
@@ -45,11 +49,75 @@
 					<include condition="String.IsEqual(Window(home).Property(CustomDialogSettingsContent),videosettings)">DialogVideoSettingsContent</include>
 					<include condition="String.IsEqual(Window(home).Property(CustomDialogSettingsContent),musicsettings)">DialogMusicSettingsContent</include>
 					<include condition="String.IsEqual(Window(home).Property(CustomDialogSettingsContent),gamesettings)">DialogGameSettingsContent</include>
+					<include condition="String.IsEqual(Window(home).Property(CustomDialogSettingsContent),streamsettings)">DialogStreamSettingsContent</include>
 				</control>
 			</control>
 		</definition>
 	</include>
 
+	<include name="DialogStreamSettingsContent">
+		<control type="group" id="101">
+			<height>70</height>
+			<width>100%</width>
+			<control type="button" id="1001">
+				<onup>103</onup>
+				<ondown>1002</ondown>
+				<align>left</align>
+				<width>780</width>
+				<textwidth>550</textwidth>
+				<include>DefContextButtonGradient</include>
+				<label>24012</label>
+				<label2>$VAR[Label_Player_SubtitlesLanguage]          </label2>
+				<onclick>DialogSelectSubtitle</onclick>
+				<enable>VideoPlayer.HasSubtitles</enable>
+			</control>
+			<control type="image">
+				<height>100%</height>
+				<width>32</width>
+				<right>30</right>
+				<texture>$INFO[VideoPlayer.SubtitlesLanguage,flags/color/lang/,.png]</texture>
+				<aspectratio align="right">keep</aspectratio>
+				<align>center</align>
+				<visible>!String.IsEmpty(VideoPlayer.SubtitlesLanguage) + VideoPlayer.SubtitlesEnabled</visible>
+			</control>
+		</control>
+		<control type="group" id="102">
+			<height>70</height>
+			<width>100%</width>
+			<control type="button" id="1002">
+				<onup>1001</onup>
+				<ondown>103</ondown>
+				<align>left</align>
+				<width>780</width>
+				<textwidth>550</textwidth>
+				<include>DefContextButtonGradient</include>
+				<label>292</label>
+				<label2>$VAR[MediaInfoListAudioCodecLabel]$VAR[LabelAudioChannels, ,  •  ]$VAR[Label_Player_AudioLanguage]          </label2>
+				<onclick>DialogSelectAudio</onclick>
+				<enable>Integer.IsGreater(VideoPlayer.AudioStreamCount,1)</enable>
+			</control>
+			<control type="image">
+				<height>100%</height>
+				<width>32</width>
+				<right>30</right>
+				<texture>$INFO[VideoPlayer.AudioLanguage,flags/color/lang/,.png]</texture>
+				<aspectratio align="right">keep</aspectratio>
+				<align>center</align>
+				<visible>!String.IsEmpty(VideoPlayer.AudioLanguage)</visible>
+			</control>
+		</control>
+		<control type="button" id="103">
+			<align>left</align>
+			<width>780</width>
+			<textwidth>550</textwidth>
+			<include>DefContextButtonGradient</include>
+			<label>291</label>
+			<label2>$INFO[VideoPlayer.VideoResolution,, ]$VAR[HDSD]$VAR[VideoCodecLabel,  •  ,]$VAR[VideoAspectLabel,  •  ,]$VAR[Video3DLabel,  •  ,]$VAR[VideoHdrTypeLabel,  •  ,]          </label2>
+			<onclick>DialogSelectVideo</onclick>
+			<enable>Integer.IsGreater(VideoPlayer.VideoStreamCount,1)</enable>
+		</control>
+	</include>
+	
 	<include name="DialogVideoSettingsContent">
 		<control type="button" id="101">
 			<align>left</align>

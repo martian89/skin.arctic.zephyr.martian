@@ -1049,7 +1049,7 @@
         <textcolor>$VAR[OSDPanelWhite70]</textcolor>
         <focusedcolor>$VAR[ColorHighlight]</focusedcolor>
         <texturefocus />
-        <width>216</width>
+        <width>266</width>
     </include>
 
     <include name="DefOSDButtonsNewOSD">
@@ -1083,17 +1083,20 @@
         <ondown>ClearProperty(controlsvisible,home)</ondown>
     </include>
 
-    <include name="OSDVideosRight">
-        <control type="button" id="5">
+    <include name="OSDVideosLeft">
+        <control type="button" id="1">
             <description>3D Mode</description>
-            <align>right</align>
+            <align>left</align>
             <label>31117</label>
             <onclick>StereoMode</onclick>
             <include>DefOSDButtons</include>
             <enable>VideoPlayer.IsStereoscopic</enable>
             <disabledcolor>PanelWhite12</disabledcolor>
         </control>
-        <control type="button" id="6">
+    </include>
+
+    <include name="OSDVideosRight">
+        <control type="button" id="5">
             <description>BookMarks</description>
             <align>right</align>
             <include>DefOSDButtons</include>
@@ -1102,22 +1105,25 @@
         </control>
     </include>
 
-    <include name="OSDPVRRight">
-        <control type="button" id="4">
+    <include name="OSDPVRLeft">
+        <control type="button" id="1">
             <description>CHANNELS</description>
-            <align>right</align>
+            <align>left</align>
             <label>19019</label>
             <include>DefOSDButtons</include>
             <onclick>ActivateWindow(pvrosdchannels)</onclick>
         </control>
-        <control type="button" id="5">
+    </include>
+
+    <include name="OSDPVRRight">
+        <control type="button" id="4">
             <description>EPG</description>
             <align>right</align>
             <label>$LOCALIZE[19030] / $LOCALIZE[19031]</label>
             <onclick>ActivateWindow(pvrchannelguide)</onclick>
             <include>DefOSDButtons</include>
         </control>
-        <control type="button" id="6">
+        <control type="button" id="5">
             <description>TIMELINE</description>
             <align>right</align>
             <include>DefOSDButtons</include>
@@ -1154,7 +1160,7 @@
         <control type="button" id="4">
             <description>Info</description>
             <label>31147</label>
-            <align>right</align>
+            <align>left</align>
             <include>DefOSDButtons</include>
             <disabledcolor>White12</disabledcolor>
             <include>OSDExtendedInfo_Click_Action</include>
@@ -2327,25 +2333,6 @@
                     <param name="controlid" value="9950"/>
                 </include>
             </control>
-            <control type="group">
-                <visible allowhiddenfocus="true">ControlGroup(9300).HasFocus() | Control.HasFocus(3)</visible>
-                <include>Animation.SlideUp</include>
-                <include>Animation.FadeOut</include>
-                <bottom>72</bottom>
-                <centerleft>572</centerleft>
-                <width>316</width>
-                <height>272</height>
-                <control type="image">
-                    <description>background image</description>
-                    <width>100%</width>
-                    <height>100%</height>
-                    <colordiffuse>$VAR[OSDPanel]</colordiffuse>
-                    <texture border="16">common/rounded-shadow8.png</texture>
-                </control>
-                <include content="Def_Context_Subtitles_Gradient">
-                    <param name="controlid" value="9300"/>
-                </include>
-            </control>
             <control type="grouplist" id="100">
                 <top>13</top>
                 <left>50</left>
@@ -2353,32 +2340,18 @@
                 <itemgap>0</itemgap>
                 <orientation>horizontal</orientation>
                 <align>left</align>
-                <onleft>6</onleft>
+                <onleft>5</onleft>
                 <onright condition="!PVR.CanRecordPlayingChannel | !VideoPlayer.Content(LiveTV)">12</onright>
                 <onright condition="PVR.CanRecordPlayingChannel + VideoPlayer.Content(LiveTV)">9003</onright>
                 <include>DefOSDUpDown</include>
                 <usecontrolcoords>true</usecontrolcoords>
-                <control type="button" id="1">
-                    <description>Audio</description>
-                    <label>292</label>
-                    <align>left</align>
-                    <onclick>ActivateWindow(124)</onclick>
-                    <include>DefOSDButtons</include>
-                </control>
+                <include condition="!VideoPlayer.Content(livetv)">OSDVideosLeft</include>
+                <include condition="VideoPlayer.Content(livetv)">OSDPVRLeft</include>
                 <control type="button" id="2">
-                    <description>Video Settings</description>
-                    <label>291</label>
-                    <align>left</align>
-                    <onclick>ActivateWindow(123)</onclick>
-                    <include>DefOSDButtons</include>
-                </control>
-                <control type="button" id="3">
-                    <onup>9303</onup>
-                    <ondown>9301</ondown>
-                    <description>Subs</description>
-                    <align>left</align>
-                    <label>$LOCALIZE[287]</label>
-                    <onclick>Action(ShowSubtitles)</onclick>
+                    <align>right</align>
+                    <label>$LOCALIZE[13392]</label>
+                    <onclick>SetProperty(CustomDialogSettingsContent,streamsettings,home)</onclick>
+                    <onclick>ActivateWindow(1101)</onclick>
                     <include>DefOSDButtons</include>
                 </control>
             </control>
@@ -2389,7 +2362,7 @@
                 <itemgap>16</itemgap>
                 <orientation>horizontal</orientation>
                 <align>center</align>
-                <onleft>3</onleft>
+                <onleft>2</onleft>
                 <onright>4</onright>
                 <ondown>noop</ondown>
                 <include>OSDVideoControlsFlip</include>

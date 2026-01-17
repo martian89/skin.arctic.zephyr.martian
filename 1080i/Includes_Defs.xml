@@ -642,11 +642,12 @@
         <definition>
             <control type="group">
                 <left>22</left>
+                <right>22</right>
                 <top>22</top>
                 <control type="label">
                     <description>Header Label</description>
                     <left>70</left>
-                    <width>1000</width>
+                    <right>0</right>
                     <posy>0</posy>
                     <include>FontTop</include>
                     <textcolor>Black70</textcolor>
@@ -658,7 +659,7 @@
                 <control type="image">
                     <top>70</top>
                     <left>17</left>
-                    <width>388</width>
+                    <right>17</right>
                     <height>1</height>
                     <bottom>10</bottom>
                     <colordiffuse>Black12</colordiffuse>
@@ -717,8 +718,8 @@
     </include>
 
     <include name="Def9000Background">
-        <visible allowhiddenfocus="true">ControlGroup(9000).HasFocus()</visible>
-        <animation effect="slide" start="0,0" end="-3000,-3000" time="0" condition="!ControlGroup(9000).HasFocus()">Conditional</animation>
+        <visible allowhiddenfocus="true">ControlGroup(9000).HasFocus() | !String.IsEmpty(Window(home).Property(CustomDialogSettingsContent))</visible>
+        <animation effect="slide" start="0,0" end="-3000,-3000" time="0" condition="!ControlGroup(9000).HasFocus() + String.IsEmpty(Window(home).Property(CustomDialogSettingsContent))">Conditional</animation>
         <include>Animation.ZoomIn</include>
         <include>Animation.FadeOut</include>
         <top>184</top>
@@ -729,7 +730,7 @@
             <description>background image</description>
             <posx>0</posx>
             <posy>0</posy>
-            <width>466</width>
+            <width>100%</width>
             <height>100%</height>
             <texture border="16" colordiffuse="White100">common/rounded-shadow8.png</texture>
         </control>
@@ -1877,12 +1878,18 @@
         <param name="image" value="$PARAM[image]" default="common/white.png"/>
         <param name="overlayfix" value="$PARAM[overlayfix]" default="false"/>
         <param name="colordiffuse" value="$PARAM[colordiffuse]" default="$VAR[ColorHighlight]"/>
+        <param name="align_right" default="false" />
         <definition>
             <control type="image">
                 <top>$PARAM[top]</top>
                 <left>$PARAM[left]</left>
                 <height>$PARAM[height]</height>
-                <width>$PARAM[width]</width>
+                <include content="def_width" condition="!$PARAM[align_right]">
+                	<param name="width" value="$PARAM[width]"/>
+                </include>
+                <include content="def_right" condition="$PARAM[align_right]">
+                	<param name="right" value="$PARAM[right]"/>
+                </include>
                 <texture colordiffuse="$PARAM[colordiffuse]" border="$PARAM[border]">$PARAM[image]</texture>
                 <visible>ControlGroup($PARAM[controlid]).HasFocus() + $PARAM[visible]</visible>
                 <include condition="$PARAM[overlayfix]" content="Animation.FadeIn.Gradient"><param name="delay" value="$PARAM[delay]" /></include>
