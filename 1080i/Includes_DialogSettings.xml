@@ -4,6 +4,7 @@
 
 	<include name="DialogSettingsLayout">
 		<param name="header_label" default="5" />
+		<param name="top" default="184"/>
 		<param name="width" default="466"/>
 		<param name="height" default="620"/>
 		<param name="content_include" />
@@ -19,6 +20,7 @@
 	            <visible>!Window.IsActive(GameVideoFilter) + !Window.IsActive(GameStretchMode) + !Window.IsActive(GameVideoRotation) + !Window.IsActive(DialogSlider.xml)</visible>
 	            <include>Animation.ZoomIn</include>
 	            <include>Animation.FadeOut</include>
+	            <top>$PARAM[top]</top>
 				<width>$PARAM[width]</width>
 				<height>$PARAM[height]</height>
 				<include>Def9000Background</include>
@@ -60,6 +62,8 @@
 			<height>70</height>
 			<width>100%</width>
 			<control type="button" id="1001">
+				<onright>Dialog.Close(1101)</onright>
+				<onleft>Dialog.Close(1101)</onleft>
 				<onup>103</onup>
 				<ondown>1002</ondown>
 				<align>left</align>
@@ -85,6 +89,8 @@
 			<height>70</height>
 			<width>100%</width>
 			<control type="button" id="1002">
+				<onright>Dialog.Close(1101)</onright>
+				<onleft>Dialog.Close(1101)</onleft>
 				<onup>1001</onup>
 				<ondown>103</ondown>
 				<align>left</align>

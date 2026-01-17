@@ -2601,25 +2601,6 @@
                     <param name="controlid" value="9960"/>
                 </include>
             </control>
-            <control type="group">
-                <visible allowhiddenfocus="true">ControlGroup(9400).HasFocus() | Control.HasFocus(3)</visible>
-                <include>Animation.SlideUp</include>
-                <include>Animation.FadeOut</include>
-                <bottom>102</bottom>
-                <centerleft>180</centerleft>
-                <width>316</width>
-                <height>272</height>
-                <control type="image">
-                    <description>background image</description>
-                    <width>100%</width>
-                    <height>100%</height>
-                    <colordiffuse>$VAR[OSDPanel]</colordiffuse>
-                    <texture border="16">common/rounded-shadow8.png</texture>
-                </control>
-                <include content="Def_Context_Subtitles_Gradient">
-                    <param name="controlid" value="9400"/>
-                </include>
-            </control>
             <control type="grouplist" id="101">
                 <top>-15</top>
                 <left>32</left>
@@ -2632,38 +2613,15 @@
                 <onright>101</onright>
                 <ondown>noop</ondown>
                 <control type="button" id="1">
-                    <description>Audio</description>
                     <width>48</width>
                     <height>48</height>
                     <label/>
                     <font />
-                    <onclick>ActivateWindow(124)</onclick>
+                    <onclick>SetProperty(CustomDialogSettingsContent,streamsettings,home)</onclick>
+                    <onclick>ActivateWindow(1101)</onclick>
                     <include>DefOSDUpDown</include>
-                    <texturefocus colordiffuse="$VAR[ColorHighlight]">osd/audio.png</texturefocus>
-                    <texturenofocus colordiffuse="$VAR[OSDPanelWhite70]">osd/audio.png</texturenofocus>
-                </control>
-                <control type="button" id="2">
-                    <description>Video Settings</description>
-                    <width>48</width>
-                    <height>48</height>
-                    <label/>
-                    <font />
-                    <onclick>ActivateWindow(123)</onclick>
-                    <include>DefOSDUpDown</include>
-                    <texturefocus colordiffuse="$VAR[ColorHighlight]">osd/videosett.png</texturefocus>
-                    <texturenofocus colordiffuse="$VAR[OSDPanelWhite70]">osd/videosett.png</texturenofocus>
-                </control>
-                <control type="button" id="3">
-                    <onup>9303</onup>
-                    <ondown>9301</ondown>
-                    <width>48</width>
-                    <height>48</height>
-                    <label/>
-                    <font />
-                    <onclick>Action(ShowSubtitles)</onclick>
-                    <include>DefOSDUpDown</include>
-                    <texturefocus colordiffuse="$VAR[ColorHighlight]">osd/lyrics.png</texturefocus>
-                    <texturenofocus colordiffuse="$VAR[OSDPanelWhite70]">osd/lyrics.png</texturenofocus>
+                    <texturefocus colordiffuse="$VAR[ColorHighlight]">osd/streams.png</texturefocus>
+                    <texturenofocus colordiffuse="$VAR[OSDPanelWhite70]">osd/streams.png</texturenofocus>
                 </control>
                 <include>OSDVideoControlsFlipNewOSD</include>
                 <include condition="!VideoPlayer.Content(livetv) + [VideoPlayer.HasMenu | [!VideoPlayer.Content(movies) + !VideoPlayer.Content(episodes)]]">OSDDVDMenuNewOSDSide</include>
