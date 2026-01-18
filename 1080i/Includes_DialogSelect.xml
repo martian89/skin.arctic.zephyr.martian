@@ -102,6 +102,131 @@
         </include>
     </include>
 
+    <include name="DialogSelectStream">
+        <include content="DefDialog">
+	        <param name="header_id" value="1"/>
+
+			<control type="group" id="100">
+	           	<control type="list" id="3">
+	                <left>8</left>
+	                <width>1064</width>
+	                <posy>115</posy>
+	                <height>696</height>
+	                <onleft>101</onleft>
+	                <onright>1723</onright>
+	                <pagecontrol>1723</pagecontrol>
+	                <include content="Def_SimpleListLayout">
+	                    <param name="focused" value="Control.HasFocus(3)" />
+	                </include>
+	            </control>
+
+	            <control type="list" id="6">
+	                <posx>8</posx>
+	                <posy>115</posy>
+	                <width>700</width>
+	                <height>690</height>
+	                <onleft>101</onleft>
+	                <onright>1723</onright>
+	                <pagecontrol>1723</pagecontrol>
+		            <itemlayout height="138">
+		            	<control type="label">
+		                    <left>30</left>
+		                    <right>84</right>
+		                    <posy>-18</posy>
+		                	<width>auto</width>
+		                    <font>SmallBold</font>
+		                    <textcolor>Black70</textcolor>
+		                    <selectedcolor>Black70</selectedcolor>
+		                    <height>135</height>
+		                    <label>$VAR[Label_StreamList_Title]</label>
+		                </control>
+		                <control type="label">
+		                    <left>30</left>
+		                    <right>84</right>
+		                    <font>Mini</font>
+		                    <textcolor>Black70</textcolor>
+		                    <selectedcolor>Black70</selectedcolor>
+		                    <height>135</height>
+		                    <posy>18</posy>
+		                    <label fallback="19055">$VAR[Label_StreamList_Label2]</label>
+		                </control>
+		                <include content="Def_IndicatorImage">
+		                    <param name="selected" value="ListItem.IsSelected" />
+		                </include>
+		            </itemlayout>
+		            <focusedlayout height="138">
+		                <control type="group">
+		                    <visible>!Control.HasFocus(6)</visible> 
+		                    <control type="label">
+		                        <left>30</left>
+		                        <right>84</right>
+		                        <height>135</height>
+		                        <font>SmallBold</font>
+		                        <posy>-18</posy>
+		                        <textcolor>Black70</textcolor>
+		                        <selectedcolor>Black70</selectedcolor>
+		                        <label>$VAR[Label_StreamList_Title]</label>
+		                    </control>
+		                    <control type="label">
+		                        <left>30</left>
+		                        <right>84</right>
+		                        <height>135</height>
+		                        <font>Mini</font>
+		                        <posy>18</posy>
+		                        <textcolor>Black70</textcolor>
+		                        <selectedcolor>Black70</selectedcolor>
+		                        <label fallback="19055">$VAR[Label_StreamList_Label2]</label>
+		                    </control>
+		                    <include content="Def_IndicatorImage">
+		                        <param name="selected" value="ListItem.IsSelected" />
+		                    </include>
+		                </control>
+		                <control type="group">
+		                    <visible>Control.HasFocus(6)</visible> 
+		                    <control type="image">
+		                        <left>0</left>
+		                        <right>0</right>
+		                        <height>135</height>
+		                        <texture border="5" colordiffuse="$VAR[ColorHighlight]">common/white.png</texture>
+		                    </control>
+		                    <control type="image">
+		                        <left>0</left>
+		                        <right>0</right>
+		                        <height>135</height>
+		                        <texture border="8" colordiffuse="$VAR[ColorGradient]">common/gradient-box-wide.png</texture>
+		                    </control>
+		                    <control type="label">
+		                        <left>30</left>
+		                        <right>84</right>
+		                        <height>135</height>
+		                        <font>SmallBold</font>
+		                        <posy>-18</posy>
+		                        <textcolor>Selected</textcolor>
+		                        <selectedcolor>Selected</selectedcolor>
+		                        <label>$VAR[Label_StreamList_Title]</label>
+		                    </control>
+		                    <control type="label">
+		                        <left>30</left>
+		                        <right>84</right>
+		                        <height>135</height>
+		                        <font>Mini</font>
+		                        <posy>18</posy>
+		                        <textcolor>Selected</textcolor>
+		                        <selectedcolor>Selected</selectedcolor>
+		                        <label fallback="19055">$VAR[Label_StreamList_Label2]</label>
+		                    </control>
+		                    <include content="Def_IndicatorImage">
+		                        <param name="selected" value="ListItem.IsSelected" />
+		                        <param name="color" value="Selected" />
+		                    </include>
+		                </control>
+		            </focusedlayout>
+	            </control>
+			</control>			
+			<include>DialogSelectCommonLayout</include>            
+        </include>
+    </include>
+
 	<variable name="DialogSelectGameLabelLeft">
 		<value condition="!String.IsEmpty(ListItem.Label2)">$INFO[ListItem.Label2]</value>	
 		<value>$INFO[ListItem.Label]</value>	
