@@ -1653,6 +1653,11 @@
         <value>$INFO[ListItem.FileNameAndPath]</value>
     </variable>
 
+    <variable name="Label_VideoManager_FileNameAndPath">
+        <value condition="Control.HasFocus(50) + !String.IsEmpty(Container(50).ListItem.DecodedFileNameAndPath)">$INFO[Container(50).ListItem.DecodedFileNameAndPath]</value>
+        <value condition="Control.HasFocus(50)">$INFO[Container(50).ListItem.FileNameAndPath]</value>
+    </variable>
+
     <variable name="LabelGenreHomeSmallWidget">
         <value condition="String.IsEqual(ListItem.DBType,episode) + !String.IsEmpty(ListItem.TvShowTitle) + Window.IsVisible(Home.xml)">$INFO[ListItem.TvShowTitle]</value>
         <value condition="String.IsEqual(ListItem.DBType,episode)">$VAR[LabelDurationTimeCheck]</value>
@@ -2529,13 +2534,12 @@
     </variable>
 
     <variable name="MediaInfoListLabel">
-        <value condition="Window.IsVisible(selectvideoversion)">$INFO[ListItem.VideoVersionName]$VAR[LabelDurationTimeCheck, (,)]</value>
         <value>$INFO[ListItem.Label]$VAR[LabelDurationTimeCheck, (,)]</value>
     </variable>
  
     <variable name="MediaInfoListLabel2">
         <value condition="[!String.IsEmpty(ListItem.VideoCodec) | !String.IsEmpty(ListItem.AudioCodec)]">$INFO[ListItem.VideoResolution,, ]$VAR[HDSD]$VAR[VideoCodecLabel,  •  ,]$VAR[VideoAspectLabel,  •  ,]$VAR[Video3DLabel,  •  ,]$VAR[VideoHdrTypeLabel,  •  ,]$VAR[MediaInfoListAudioCodecLabel,  •  ,]$VAR[LabelAudioChannels, ,]</value>
-    </variable>
+    </variable>    
 
     <variable name="VideoScanLabel">
         <value condition="Library.IsScanningVideo">$LOCALIZE[13353]</value>
