@@ -1077,7 +1077,15 @@
                             <label2>$VAR[MusicOSDPositionLabel]</label2>
                             <onclick>Skin.ToggleSetting(musicosd.side)</onclick>
                         </control>
-                        <control type="radiobutton" id="92311" description="Lyrics">
+                        <control type="radiobutton" id="92311" description="Always show osd info/seekbar in music visualisation">
+                            <width>1360</width>
+                            <include>DefSettingsButtonGradientSkinSettings</include>
+                            <visible>String.IsEqual(Window.Property(content),5)</visible>
+                            <label>$LOCALIZE[31253]</label>
+                            <selected>Skin.HasSetting(musicosd.alwaysshowinfo)</selected>
+                            <onclick>Skin.ToggleSetting(musicosd.alwaysshowinfo)</onclick>
+                        </control>
+                        <control type="radiobutton" id="92312" description="Lyrics">
                             <width>1360</width>
                             <visible>String.IsEqual(Window.Property(content),5)</visible>
                             <include>DefSettingsButtonGradientSkinSettings</include>
