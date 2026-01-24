@@ -1061,7 +1061,7 @@
         <textcolor>$VAR[OSDPanelWhite70]</textcolor>
         <focusedcolor>$VAR[ColorHighlight]</focusedcolor>
         <texturefocus />
-        <width>140</width>
+        <width>220</width>
     </include>
 
     <include name="DefOSDUpDown">
@@ -1107,29 +1107,29 @@
 
     <include name="OSDPVRLeft">
         <control type="button" id="1">
+            <description>TIMELINE</description>
+            <align>left</align>
+            <include>DefOSDButtons</include>
+            <label>19032</label>
+            <onclick>Close</onclick>
+            <onclick>ActivateWindow(tvguide,,return)</onclick>
+        </control>
+    </include>
+
+    <include name="OSDPVRRight">
+        <control type="button" id="4">
             <description>CHANNELS</description>
             <align>left</align>
             <label>19019</label>
             <include>DefOSDButtons</include>
             <onclick>ActivateWindow(pvrosdchannels)</onclick>
         </control>
-    </include>
-
-    <include name="OSDPVRRight">
-        <control type="button" id="4">
+        <control type="button" id="5">
             <description>EPG</description>
             <align>right</align>
             <label>$LOCALIZE[19030] / $LOCALIZE[19031]</label>
             <onclick>ActivateWindow(pvrchannelguide)</onclick>
             <include>DefOSDButtons</include>
-        </control>
-        <control type="button" id="5">
-            <description>TIMELINE</description>
-            <align>right</align>
-            <include>DefOSDButtons</include>
-            <label>19032</label>
-            <onclick>Close</onclick>
-            <onclick>ActivateWindow(tvguide,,return)</onclick>
         </control>
     </include>
 
@@ -1167,10 +1167,10 @@
         </control>
     </include>
 
-    <include name="OSDVideosRightNewOSD">
-        <control type="button" id="5">
+    <include name="OSDVideosLeftNewOSD">
+        <control type="button" id="1">
             <description>3D Mode</description>
-            <align>right</align>
+            <align>left</align>
             <label>31117</label>
             <onclick>StereoMode</onclick>
             <include>DefOSDButtonsNewOSD</include>
@@ -1179,18 +1179,9 @@
             <visible>$EXP[VideoOSDShort]</visible>
             <include>Animation.OSD.Wide.Short</include>
         </control>
-        <control type="button" id="6">
-            <description>BookMarks</description>
-            <align>right</align>
-            <include>DefOSDButtonsNewOSD</include>
-            <label>298</label>
-            <onclick>ActivateWindow(125)</onclick>
-            <visible>$EXP[VideoOSDShort]</visible>
-            <include>Animation.OSD.Wide.Short</include>
-        </control>
-        <control type="button" id="250">
+        <control type="button" id="210">
             <description>3D Mode</description>
-            <align>right</align>
+            <align>left</align>
             <label>31117</label>
             <onclick>StereoMode</onclick>
             <width>OSDLabelsWidthWide</width>
@@ -1198,6 +1189,18 @@
             <enable>VideoPlayer.IsStereoscopic</enable>
             <disabledcolor>PanelWhite12</disabledcolor>
             <visible>$EXP[VideoOSDWide]</visible>
+            <include>Animation.OSD.Wide.Short</include>
+        </control>
+    </include>
+
+    <include name="OSDVideosRightNewOSD">
+        <control type="button" id="6">
+            <description>BookMarks</description>
+            <align>right</align>
+            <include>DefOSDButtonsNewOSD</include>
+            <label>298</label>
+            <onclick>ActivateWindow(125)</onclick>
+            <visible>$EXP[VideoOSDShort]</visible>
             <include>Animation.OSD.Wide.Short</include>
         </control>
         <control type="button" id="260">
@@ -1212,11 +1215,37 @@
         </control>
     </include>
 
+    <include name="OSDPVRLeftNewOSD">
+        <control type="button" id="1">
+            <description>TIMELINE</description>
+            <align>left</align>
+            <width>160</width>
+            <include>DefOSDButtonsNewOSD</include>
+            <label>19032</label>
+            <onclick>Close</onclick>
+            <onclick>ActivateWindow(tvguide,,return)</onclick>
+            <visible>$EXP[VideoOSDShort]</visible>
+            <include>Animation.OSD.Wide.Short</include>
+        </control>
+        <control type="button" id="210">
+            <description>TIMELINE</description>
+            <align>left</align>
+            <width>210</width>
+            <include>DefOSDButtonsNewOSD</include>
+            <label>19032</label>
+            <onclick>Close</onclick>
+            <onclick>ActivateWindow(tvguide,,return)</onclick>
+            <visible>$EXP[VideoOSDWide]</visible>
+            <include>Animation.OSD.Wide.Short</include>
+        </control>
+    </include>
+
     <include name="OSDPVRRightNewOSD">
         <control type="button" id="4">
             <description>CHANNELS</description>
-            <align>right</align>
+            <align>left</align>
             <label>19019</label>
+            <width>160</width>
             <include>DefOSDButtonsNewOSD</include>
             <onclick>ActivateWindow(pvrosdchannels)</onclick>
             <visible>$EXP[VideoOSDShort]</visible>
@@ -1231,20 +1260,10 @@
             <visible>$EXP[VideoOSDShort]</visible>
             <include>Animation.OSD.Wide.Short</include>
         </control>
-        <control type="button" id="6">
-            <description>TIMELINE</description>
-            <align>right</align>
-            <include>DefOSDButtonsNewOSD</include>
-            <label>19032</label>
-            <onclick>Close</onclick>
-            <onclick>ActivateWindow(tvguide,,return)</onclick>
-            <visible>$EXP[VideoOSDShort]</visible>
-            <include>Animation.OSD.Wide.Short</include>
-        </control>
         <control type="button" id="240">
             <description>CHANNELS</description>
-            <align>right</align>
-            <width>OSDLabelsWidthWide</width>
+            <align>left</align>
+            <width>210</width>
             <label>19019</label>
             <include>DefOSDButtonsNewOSD</include>
             <onclick>ActivateWindow(pvrosdchannels)</onclick>
@@ -1258,17 +1277,6 @@
             <label>$LOCALIZE[19030] / $LOCALIZE[19031]</label>
             <onclick>ActivateWindow(pvrchannelguide)</onclick>
             <include>DefOSDButtonsNewOSD</include>
-            <visible>$EXP[VideoOSDWide]</visible>
-            <include>Animation.OSD.Wide.Short</include>
-        </control>
-        <control type="button" id="260">
-            <description>TIMELINE</description>
-            <align>right</align>
-            <width>OSDLabelsWidthWide</width>
-            <include>DefOSDButtonsNewOSD</include>
-            <label>19032</label>
-            <onclick>Close</onclick>
-            <onclick>ActivateWindow(tvguide,,return)</onclick>
             <visible>$EXP[VideoOSDWide]</visible>
             <include>Animation.OSD.Wide.Short</include>
         </control>
@@ -1278,7 +1286,7 @@
         <control type="button" id="4">
             <description>DVD Menu</description>
             <label>$LOCALIZE[31116]</label>
-            <align>right</align>
+            <align>left</align>
             <include>DefOSDButtonsNewOSD</include>
             <onclick>PlayerControl(ShowVideoMenu)</onclick>
             <enable>VideoPlayer.HasMenu</enable>
@@ -1289,7 +1297,7 @@
         <control type="button" id="240">
             <description>DVD Menu</description>
             <label>$LOCALIZE[31116]</label>
-            <align>right</align>
+            <align>left</align>
             <width>OSDLabelsWidthWide</width>
             <include>DefOSDButtonsNewOSD</include>
             <onclick>PlayerControl(ShowVideoMenu)</onclick>
@@ -1304,7 +1312,7 @@
         <control type="button" id="4">
             <description>Info</description>
             <label>31147</label>
-            <align>right</align>
+            <align>left</align>
             <include>DefOSDButtonsNewOSD</include>
             <disabledcolor>White12</disabledcolor>
             <visible>$EXP[VideoOSDShort]</visible>
@@ -1314,7 +1322,7 @@
         <control type="button" id="240">
             <description>Info</description>
             <label>31147</label>
-            <align>right</align>
+            <align>left</align>
             <width>OSDLabelsWidthWide</width>
             <include>DefOSDButtonsNewOSD</include>
             <disabledcolor>White12</disabledcolor>
@@ -1328,7 +1336,7 @@
         <control type="button" id="4">
             <description>Info</description>
             <label>31147</label>
-            <align>right</align>
+            <align>left</align>
             <include>DefOSDButtonsNewOSD</include>
             <disabledcolor>White12</disabledcolor>
             <visible>$EXP[VideoOSDShort]</visible>
@@ -1338,7 +1346,7 @@
         <control type="button" id="240">
             <description>Info</description>
             <label>31147</label>
-            <align>right</align>
+            <align>left</align>
             <width>OSDLabelsWidthWide</width>
             <include>DefOSDButtonsNewOSD</include>
             <disabledcolor>White12</disabledcolor>
@@ -1374,6 +1382,20 @@
         </control>
     </include>
 
+    <include name="OSDPVRLeftNewOSDSide">
+        <control type="button" id="1">
+            <width>48</width>
+            <height>48</height>
+            <label/>
+            <font />
+            <include>DefOSDUpDown</include>
+            <texturefocus colordiffuse="$VAR[ColorHighlight]">osd/guide.png</texturefocus>
+            <texturenofocus colordiffuse="$VAR[OSDPanelWhite70]">osd/guide.png</texturenofocus>
+            <onclick>Close</onclick>
+            <onclick>ActivateWindow(tvguide,,return)</onclick>
+        </control>
+	</include>
+	
     <include name="OSDPVRRightNewOSDSide">
         <control type="button" id="4">
             <width>48</width>
@@ -1407,17 +1429,6 @@
             <onclick>Dialog.Close(VideoOSD)</onclick>
             <onclick>ActivateWindow(Teletext)</onclick>
             <visible>VideoPlayer.HasTeletext</visible>
-        </control>
-        <control type="button" id="7">
-            <width>48</width>
-            <height>48</height>
-            <label/>
-            <font />
-            <include>DefOSDUpDown</include>
-            <texturefocus colordiffuse="$VAR[ColorHighlight]">osd/guide.png</texturefocus>
-            <texturenofocus colordiffuse="$VAR[OSDPanelWhite70]">osd/guide.png</texturenofocus>
-            <onclick>Close</onclick>
-            <onclick>ActivateWindow(tvguide,,return)</onclick>
         </control>
     </include>
 
@@ -2423,26 +2434,6 @@
                     <param name="controlid" value="9800"/>
                 </include>
             </control>
-            <control type="group">
-                <visible allowhiddenfocus="true">ControlGroup(9500).HasFocus() | Control.HasFocus(3) | Control.HasFocus(230)</visible>
-                <animation effect="slide" end="150,0" time="0" condition="$EXP[VideoOSDShort]">Conditional</animation>
-                <include>Animation.SlideUp</include>
-                <include>Animation.FadeOut</include>
-                <bottom>88</bottom>
-                <centerleft>615</centerleft>
-                <width>316</width>
-                <height>272</height>
-                <control type="image">
-                    <description>background image</description>
-                    <width>100%</width>
-                    <height>100%</height>
-                    <colordiffuse>$VAR[OSDPanel]</colordiffuse>
-                    <texture border="16">common/rounded-shadow8.png</texture>
-                </control>
-                <include content="Def_Context_Subtitles_Gradient">
-                    <param name="controlid" value="9500"/>
-                </include>
-            </control>
             <control type="grouplist" id="100">
                 <top>13</top>
                 <left>100</left>
@@ -2450,8 +2441,8 @@
                 <itemgap>0</itemgap>
                 <orientation>horizontal</orientation>
                 <align>left</align>
-                <onleft condition="$EXP[VideoOSDShort]">6</onleft>
-                <onleft condition="$EXP[VideoOSDWide]">260</onleft>
+                <onleft condition="$EXP[VideoOSDShort]">5</onleft>
+                <onleft condition="$EXP[VideoOSDWide]">250</onleft>
                 <onright condition="!PVR.CanRecordPlayingChannel | !VideoPlayer.Content(LiveTV)">12</onright>
                 <onright condition="PVR.CanRecordPlayingChannel + VideoPlayer.Content(LiveTV)">9003</onright>
                 <include>DefOSDUpDown</include>
@@ -2463,63 +2454,29 @@
                 <animation effect="slide" start="0,0" end="0,0" time="150" condition="Skin.HasSetting(osd.disableposter) + [Window.IsVisible(fullscreeninfo) | Player.ShowInfo | !String.IsEmpty(Window(home).Property(osdshowinfo)) | !String.IsEmpty(Window(home).Property(osdinfo)) | $EXP[ShowInfoOnPause]] + !String.IsEmpty(Player.Art(thumb)) + VideoPlayer.Content(LiveTV)">Conditional</animation>
 
                 <usecontrolcoords>true</usecontrolcoords>
-                <control type="button" id="1">
-                    <description>Audio</description>
-                    <label>292</label>
-                    <align>left</align>
-                    <onclick>ActivateWindow(124)</onclick>
-                    <include>DefOSDButtonsNewOSD</include>
-                    <visible>$EXP[VideoOSDShort]</visible>
-                    <include>Animation.OSD.Wide.Short</include>
-                </control>
+                <include condition="!VideoPlayer.Content(livetv)">OSDVideosLeftNewOSD</include>
+                <include condition="VideoPlayer.Content(livetv)">OSDPVRLeftNewOSD</include>
                 <control type="button" id="2">
-                    <description>Video Settings</description>
-                    <label>291</label>
-                    <align>left</align>
-                    <onclick>ActivateWindow(123)</onclick>
-                    <include>DefOSDButtonsNewOSD</include>
-                    <visible>$EXP[VideoOSDShort]</visible>
-                    <include>Animation.OSD.Wide.Short</include>
-                </control>
-                <control type="button" id="3">
                     <onup>9303</onup>
                     <ondown>9301</ondown>
                     <description>Subs</description>
-                    <align>left</align>
-                    <label>$LOCALIZE[287]</label>
-                    <onclick>Action(ShowSubtitles)</onclick>
+                    <align>right</align>
+                    <label>$LOCALIZE[13392]</label>
+                    <onclick>SetProperty(CustomDialogSettingsContent,streamsettings,home)</onclick>
+                    <onclick>ActivateWindow(1101)</onclick>
                     <include>DefOSDButtonsNewOSD</include>
                     <visible>$EXP[VideoOSDShort]</visible>
-                    <include>Animation.OSD.Wide.Short</include>
-                </control>
-                <control type="button" id="210">
-                    <description>Audio</description>
-                    <label>292</label>
-                    <width>OSDLabelsWidthWide</width>
-                    <align>left</align>
-                    <onclick>ActivateWindow(124)</onclick>
-                    <include>DefOSDButtonsNewOSD</include>
-                    <visible>$EXP[VideoOSDWide]</visible>
                     <include>Animation.OSD.Wide.Short</include>
                 </control>
                 <control type="button" id="220">
-                    <description>Video Settings</description>
-                    <label>291</label>
-                    <width>OSDLabelsWidthWide</width>
-                    <align>left</align>
-                    <onclick>ActivateWindow(123)</onclick>
-                    <include>DefOSDButtonsNewOSD</include>
-                    <visible>$EXP[VideoOSDWide]</visible>
-                    <include>Animation.OSD.Wide.Short</include>
-                </control>
-                <control type="button" id="230">
                     <onup>9303</onup>
                     <ondown>9301</ondown>
                     <description>Subs</description>
-                    <align>left</align>
-                    <label>$LOCALIZE[287]</label>
+                    <align>right</align>
+                    <label>$LOCALIZE[13392]</label>
                     <width>OSDLabelsWidthWide</width>
-                    <onclick>Action(ShowSubtitles)</onclick>
+                    <onclick>SetProperty(CustomDialogSettingsContent,streamsettings,home)</onclick>
+                    <onclick>ActivateWindow(1101)</onclick>
                     <include>DefOSDButtonsNewOSD</include>
                     <visible>$EXP[VideoOSDWide]</visible>
                     <include>Animation.OSD.Wide.Short</include>
@@ -2539,8 +2496,8 @@
                 <itemgap>16</itemgap>
                 <orientation>horizontal</orientation>
                 <align>center</align>
-                <onleft condition="$EXP[VideoOSDShort]">3</onleft>
-                <onleft condition="$EXP[VideoOSDWide]">230</onleft>
+                <onleft condition="$EXP[VideoOSDShort]">2</onleft>
+                <onleft condition="$EXP[VideoOSDWide]">220</onleft>
                 <onright condition="$EXP[VideoOSDShort]">4</onright>
                 <onright condition="$EXP[VideoOSDWide]">240</onright>
                 <ondown>noop</ondown>
@@ -2612,7 +2569,8 @@
                 <onleft>101</onleft>
                 <onright>101</onright>
                 <ondown>noop</ondown>
-                <control type="button" id="1">
+                <include condition="VideoPlayer.Content(livetv)">OSDPVRLeftNewOSDSide</include>
+                <control type="button" id="2">
                     <width>48</width>
                     <height>48</height>
                     <label/>
