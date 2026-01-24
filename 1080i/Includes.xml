@@ -91,7 +91,7 @@
     <expression name="IsPVRAudio">Player.HasAudio + VideoPlayer.Content(livetv)</expression>
     <expression name="IsAudio">Player.HasAudio + !VideoPlayer.Content(livetv)</expression>
     <expression name="IsVideo">Player.HasVideo + !VideoPlayer.Content(livetv)</expression>
-    <expression name="MusicSeekbarIsVisible">Window.IsVisible(musicosd) + !Skin.HasSetting(musicosd.side) | !Window.IsVisible(musicosd) + [Window.IsVisible(script-cu-lrclyrics-main.xml) | Player.ShowInfo | Player.Seeking | Player.HasPerformedSeek(3) | Player.Paused | Player.Forwarding | Player.Rewinding]</expression>
+    <expression name="MusicSeekbarIsVisible">Window.IsVisible(musicosd) + !Skin.HasSetting(musicosd.side) | !Window.IsVisible(musicosd) + [Window.IsVisible(script-cu-lrclyrics-main.xml) | Skin.HasSetting(musicosd.alwaysshowinfo) | Player.ShowInfo | Player.Seeking | Player.HasPerformedSeek(3) | Player.Paused | Player.Forwarding | Player.Rewinding]</expression>
     <expression name="ShowInfoOnPause">Player.Paused + Skin.HasSetting(osd.showinfoonpause) + String.IsEmpty(Window(Home).Property(OSDExtendedInfo))</expression>
     <expression name="VideoOSDShort">!String.IsEmpty(Window(home).Property(osdshowinfo)) | !String.IsEmpty(Window(home).Property(osdinfo)) | Player.ShowInfo | $EXP[ShowInfoOnPause] | [Window.IsVisible(videoosd) + Window.IsVisible(DialogFullScreenInfo.xml)]</expression>
     <expression name="VideoOSDWide">String.IsEmpty(Window(home).Property(osdshowinfo)) + String.IsEmpty(Window(home).Property(osdinfo)) + !Player.ShowInfo + !$EXP[ShowInfoOnPause] + ![Window.IsVisible(videoosd) + Window.IsVisible(DialogFullScreenInfo.xml)]</expression>
