@@ -148,10 +148,10 @@
             <include>GlobalOverlay</include>
         </control>
         <control type="group">
-            <height>693</height>
+            <height>550</height>
             <include>Def9000Background</include>
             <include>Def9000Header</include>
-            <include content="Def9000Arrows"><param name="arrow_bottom" value="620" /></include>
+            <include content="Def9000Arrows"><param name="arrow_bottom" value="550" /></include>
             <include content="Def_Gradient_Settings_Image">
                 <param name="controlid" value="9000"/>
                 <param name="left" value="8"/>
@@ -159,15 +159,11 @@
                 <param name="width" value="450"/>
             </include>
             <control type="grouplist" id="9000">
-                <onright>9100</onright>
-                <onleft>9100</onleft>
-                <onback>9100</onback>
-                <scrolltime>0</scrolltime>
-                <usecontrolcoords>true</usecontrolcoords>
-                <height>620</height>
                 <top>112</top>
-                <include>Def9000GroupList</include>
-
+                <usecontrolcoords>true</usecontrolcoords>
+                <include content="Def9000GroupList"><param name="height" value="420" /></include>
+                <scrolltime>0</scrolltime>
+ 
                 <!-- Weather Options -->
                 <control type="button" id="9001" description="Weather Location">
                     <include>DefContextButtonGradient</include>
@@ -176,49 +172,33 @@
                     <label2>$INFO[Weather.Location]</label2>
                     <onclick>Weather.LocationNext</onclick>
                 </control>
+                <control type="radiobutton" id="9002" description="Show weather overlay">
+                    <include>DefContextButtonGradient</include>
+                    <align>left</align>
+                    <label>31234</label>
+                    <enable>$EXP[HasWeatherFanartSingle] | $EXP[HasWeatherFanartMulti]</enable>
+                    <selected>!Skin.HasSetting(weather.hidefanart) + [$EXP[HasWeatherFanartSingle] | $EXP[HasWeatherFanartMulti]]</selected>
+                    <onclick>Skin.ToggleSetting(weather.hidefanart)</onclick>
+                </control>
                 <control type="button" id="9003" description="Set Icons">
                     <include>DefContextButtonGradient</include>
                     <align>left</align>
                     <label>31260</label>
                     <onclick>RunScript(script.image.resource.select,property=weather.icons&amp;type=resource.images.weathericons)</onclick>
                 </control>
-                <control type="radiobutton" id="9004">
-                    <include>DefContextButtonGradient</include>
-                    <align>left</align>
-                    <label>$LOCALIZE[31386]</label>
-                    <selected>Skin.HasSetting(weather.icons.override)</selected>
-                    <onclick>Skin.ToggleSetting(weather.icons.override)</onclick>
-                    <enable>!String.IsEmpty(Skin.String(weather.icons.path)) | $EXP[WeatherAddon_IsOpenMeteo]</enable>
-                </control>
-                <control type="button" id="9005" description="Set Weather Fanart">
+                <control type="button" id="9004" description="Set Weather Fanart">
                     <include>DefContextButtonGradient</include>
                     <align>left</align>
                     <label>31143</label>
                     <onclick>RunScript(script.image.resource.select,property=weather.fanart&amp;type=resource.images.weatherfanart)</onclick>
                 </control>
-                <control type="radiobutton" id="9006" description="Show weather overlay">
-                    <include>DefContextButtonGradient</include>
-                    <align>left</align>
-                    <label>31234</label>
-                    <enable>$EXP[HasWeatherFanartSingle] | $EXP[HasWeatherFanartMulti]</enable>
-                    <selected>!Skin.HasSetting(weather.hidefanart)</selected>
-                    <onclick>Skin.ToggleSetting(weather.hidefanart)</onclick>
-                </control>
-                <control type="radiobutton" id="9007" description="Show weather overlay">
-                    <include>DefContextButtonGradient</include>
-                    <align>left</align>
-                    <label>$LOCALIZE[31385]</label>
-                    <enable>[$EXP[HasWeatherFanartSingle] | $EXP[HasWeatherFanartMulti]] + !Skin.HasSetting(weather.hidefanart)</enable>
-                    <selected>!Skin.HasSetting(weather.fanart.widgets)</selected>
-                    <onclick>Skin.ToggleSetting(weather.fanart.widgets)</onclick>
-                </control>
-                <control type="button" id="9008">
+                <control type="button" id="9006">
                     <include>DefContextButtonGradient</include>
                     <align>left</align>
                     <label>$LOCALIZE[10140]</label>
                     <onclick>Addon.OpenSettings($INFO[Weather.Plugin])</onclick>
                 </control>
-                <control type="button" id="9009">
+                <control type="button" id="9007">
                     <include>DefContextButtonGradient</include>
                     <align>left</align>
                     <label>$LOCALIZE[5]</label>

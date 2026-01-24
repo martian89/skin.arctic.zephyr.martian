@@ -1397,7 +1397,15 @@
                                 <label>31020</label>
                             </control>
                         </control>
-                        <control type="button" id="9583" description="Movie Genre">
+                        <control type="button" id="9583" description="Weather Icons">
+                            <width>1360</width>
+                            <visible>String.IsEqual(Window.Property(content),7)</visible>
+                            <include>DefSettingsButtonGradientSkinSettings</include>
+                            <label>Wetter-Symbole</label>
+                            <label2>$VAR[Label_WeatherIcons]</label2>
+                            <onclick>RunScript(script.image.resource.select,property=weather.icons&amp;type=resource.images.weathericons)</onclick>
+                        </control>
+                        <control type="button" id="9584" description="Movie Genre">
                             <width>1360</width>
                             <visible>String.IsEqual(Window.Property(content),7)</visible>
                             <include>DefSettingsButtonGradientSkinSettings</include>
@@ -1405,7 +1413,7 @@
                             <label2>$VAR[Label_GenreIcons]</label2>
                             <onclick>RunScript(script.image.resource.select,property=genre.icons&amp;type=resource.images.moviegenreicons)</onclick>
                         </control>
-                        <control type="button" id="9584" description="Studios">
+                        <control type="button" id="9585" description="Studios">
                             <width>1360</width>
                             <visible>String.IsEqual(Window.Property(content),7)</visible>
                             <include>DefSettingsButtonGradientSkinSettings</include>
@@ -1413,7 +1421,7 @@
                             <label2>$VAR[Label_StudioIcons]</label2>
                             <onclick>RunScript(script.image.resource.select,property=studio.logos&amp;type=resource.images.studios)</onclick>
                         </control>
-                        <control type="button" id="9585" description="Record Labels">
+                        <control type="button" id="9586" description="Record Labels">
                             <width>1360</width>
                             <visible>String.IsEqual(Window.Property(content),7)</visible>
                             <include>DefSettingsButtonGradientSkinSettings</include>
@@ -1421,7 +1429,7 @@
                             <label2>$VAR[Label_RecordLabelIcons]</label2>
                             <onclick>RunScript(script.image.resource.select,property=recordlabel.logos&amp;type=resource.images.recordlabels)</onclick>
                         </control>
-                        <control type="button" id="95851" description="GameIcons">
+                        <control type="button" id="9587" description="GameIcons">
                             <width>1360</width>
                             <visible>String.IsEqual(Window.Property(content),7)</visible>
                             <include>DefSettingsButtonGradientSkinSettings</include>
@@ -2180,7 +2188,7 @@
                             <selected>Skin.HasSetting(NewTime)</selected>
                             <onclick>Skin.ToggleSetting(NewTime)</onclick>
                         </control>
-                        <control type="radiobutton" id="12041">
+                        <control type="radiobutton" id="12005">
                             <width>1360</width>
                             <visible>String.IsEqual(Window.Property(content),6)</visible>
                             <include>DefSettingsButtonGradientSkinSettings</include>
@@ -2190,6 +2198,15 @@
                             <onclick condition="!System.AddonIsEnabled(script.embuary.helper)">EnableAddon(script.embuary.helper)</onclick>
                             <onclick condition="!$EXP[UseNewJumpbar]">Skin.SetBool(use.new.jumpbar)</onclick>
                             <onclick condition="$EXP[UseNewJumpbar]">Skin.Reset(use.new.jumpbar)</onclick>
+                        </control>
+                        <control type="radiobutton" id="12006">
+                            <width>1360</width>
+                            <visible>String.IsEqual(Window.Property(content),6)</visible>
+                            <include>DefSettingsButtonGradientSkinSettings</include>
+                            <label>$LOCALIZE[31386]</label>
+                            <selected>Skin.HasSetting(weather.icons.override)</selected>
+                            <onclick>Skin.ToggleSetting(weather.icons.override)</onclick>
+                            <visible>!String.IsEmpty(Skin.String(weather.icons.path)) | $EXP[WeatherAddon_IsOpenMeteo]</visible>
                         </control>
                         <control type="grouplist" id="12009">
                             <visible>String.IsEqual(Window.Property(content),6)</visible>
