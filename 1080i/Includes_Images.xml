@@ -144,16 +144,20 @@
     </variable>
 
     <variable name="ThumbImageOverride">
-        <value condition="Window.IsVisible(MyVideoNav.xml) + String.IsEqual(ListItem.DBType,country) | Window.IsVisible(home) + Container.Content(countries)">$INFO[Skin.String(moviecountry.icons.path)]$INFO[ListItem.Label]$INFO[Skin.String(moviecountry.icons.ext)]</value>
-        <value condition="Window.IsVisible(MyVideoNav.xml) + String.IsEqual(ListItem.DBType,genre) | Window.IsVisible(home) + Container.Content(genres)">$INFO[Skin.String(genre.icons.path)]$INFO[ListItem.Label]$INFO[Skin.String(genre.icons.ext)]</value>
-        <value condition="Window.IsVisible(MyMusicNav.xml) + String.IsEqual(ListItem.DBType,genre)">$INFO[Skin.String(genre.music.path)]$INFO[ListItem.Label]$INFO[Skin.String(genre.music.ext)]</value>
-        <value condition="Window.IsVisible(MyVideoNav.xml) + String.IsEqual(ListItem.DBType,studio) | Window.IsVisible(home) + Container.Content(studios)">$INFO[Skin.String(studio.logos.path)]$INFO[ListItem.Label]$INFO[Skin.String(studio.logos.ext)]</value>
-        <value condition="Window.IsVisible(MyMusicNav.xml) + String.IsEqual(ListItem.DBType,studio)">$INFO[Skin.String(recordlabel.logos.path)]$INFO[ListItem.Label]$INFO[Skin.String(recordlabel.logos.ext)]</value>
+        <value condition="[Window.IsVisible(MyVideoNav.xml) + String.IsEqual(ListItem.DBType,country) | Window.IsVisible(home) + Container.Content(countries)] + !String.IsEmpty(Skin.String(moviecountry.icons.path))">$INFO[Skin.String(moviecountry.icons.path)]$INFO[ListItem.Label]$INFO[Skin.String(moviecountry.icons.ext)]</value>
+        <value condition="[Window.IsVisible(MyVideoNav.xml) + String.IsEqual(ListItem.DBType,country) | Window.IsVisible(home) + Container.Content(countries)] + System.AddonIsEnabled(resource.images.moviecountryicons.maps)">$INFO[ListItem.Label,resource://resource.images.moviecountryicons.maps/,.png]</value>
+        <value condition="[Window.IsVisible(MyVideoNav.xml) + String.IsEqual(ListItem.DBType,studio) | Window.IsVisible(home) + Container.Content(studios)] + !String.IsEmpty(Skin.String(studio.logos.path))">$INFO[Skin.String(studio.logos.path)]$INFO[ListItem.Label]$INFO[Skin.String(studio.logos.ext)]</value>
+        <value condition="[Window.IsVisible(MyVideoNav.xml) + String.IsEqual(ListItem.DBType,studio) | Window.IsVisible(home) + Container.Content(studios)] + System.AddonIsEnabled(resource.images.studios.white)">$INFO[ListItem.Label,resource://resource.images.studios.white/,.png]</value>
+        <value condition="[Window.IsVisible(MyMusicNav.xml) + String.IsEqual(ListItem.DBType,studio)] + !String.IsEmpty(Skin.String(recordlabel.logos.path))">$INFO[Skin.String(recordlabel.logos.path)]$INFO[ListItem.Label]$INFO[Skin.String(recordlabel.logos.ext)]</value>
+        <value condition="[Window.IsVisible(MyMusicNav.xml) + String.IsEqual(ListItem.DBType,studio)] + System.AddonIsEnabled(resource.images.recordlabels.white)">$INFO[ListItem.Label,resource://resource.images.recordlabels.white/,.png]</value>
+        <value condition="[Window.IsVisible(MyVideoNav.xml) + String.IsEqual(ListItem.DBType,genre) | Window.IsVisible(home) + Container.Content(genres)] + !String.IsEmpty(Skin.String(genre.icons.path))">$INFO[Skin.String(genre.icons.path)]$INFO[ListItem.Label]$INFO[Skin.String(genre.icons.ext)]</value>
+        <value condition="[Window.IsVisible(MyVideoNav.xml) + String.IsEqual(ListItem.DBType,genre) | Window.IsVisible(home) + Container.Content(genres)] + System.AddonIsEnabled(resource.images.moviegenreicons.transparent)">$INFO[ListItem.Label,resource://resource.images.moviegenreicons.transparent/,.png]</value>
+        <value condition="Window.IsVisible(MyMusicNav.xml) + String.IsEqual(ListItem.DBType,genre) + !String.IsEmpty(Skin.String(genre.music.path))">$INFO[Skin.String(genre.music.path)]$INFO[ListItem.Label]$INFO[Skin.String(genre.music.ext)]</value>
     </variable>
 
     <variable name="ThumbImageFallback">
         <value condition="Window.IsVisible(MyVideoNav.xml) + String.IsEqual(ListItem.DBType,country) | Window.IsVisible(home) + Container.Content(countries)">DefaultCountry.png</value>
-        <value condition="Window.IsVisible(MyVideoNav.xml) + String.IsEqual(ListItem.DBType,genre) | Window.IsVisible(home) + Container.Content(genres)">DefaultGenre.png</value>
+        <value condition="[Window.IsVisible(MyVideoNav.xml) + String.IsEqual(ListItem.DBType,genre) | Window.IsVisible(home) + Container.Content(genres)] + [String.IsEmpty(Skin.String(genre.icons.path)) | String.IsEqual(Skin.String(genre.icons.path),resource://resource.images.moviegenreicons.transparent/)]">resource://resource.images.moviegenreicons.transparent/Drama.png</value>
         <value condition="Window.IsVisible(MyMusicNav.xml) + String.IsEqual(ListItem.DBType,genre)">DefaultGenre.png</value>
         <value condition="Window.IsVisible(MyVideoNav.xml) + String.IsEqual(ListItem.DBType,studio) | Window.IsVisible(home) + Container.Content(studios)">DefaultStudios.png</value>
         <value condition="Window.IsVisible(MyMusicNav.xml) + String.IsEqual(ListItem.DBType,studio)">DefaultStudios.png</value>
@@ -161,12 +165,16 @@
     
     <variable name="ThumbImageStudiosDialogInfo">
         <value condition="!String.IsEmpty(Skin.String(studio.logos.path)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Network.1.Name))">$INFO[Skin.String(studio.logos.path)]$INFO[Window(Home).Property(TMDbHelper.ListItem.Network.1.Name)]$INFO[Skin.String(studio.logos.ext)]</value>
+        <value condition="System.AddonIsEnabled(resource.images.studios.white) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Network.1.Name))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Network.1.Name),resource://resource.images.studios.white/,.png]</value>
         <value condition="!String.IsEmpty(Skin.String(studio.logos.path)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Studio.1.Name))">$INFO[Skin.String(studio.logos.path)]$INFO[Window(Home).Property(TMDbHelper.ListItem.Studio.1.Name)]$INFO[Skin.String(studio.logos.ext)]</value>
+        <value condition="System.AddonIsEnabled(resource.images.studios.white) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Studio.1.Name))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Studio.1.Name),resource://resource.images.studios.white/,.png]</value>
         <value condition="!String.IsEmpty(Skin.String(studio.logos.path)) + !String.IsEmpty(ListItem.Studio)">$INFO[Skin.String(studio.logos.path)]$INFO[ListItem.Studio]$INFO[Skin.String(studio.logos.ext)]</value>
+        <value condition="System.AddonIsEnabled(resource.images.studios.white) + !String.IsEmpty(ListItem.Studio)">$INFO[ListItem.Studio,resource://resource.images.studios.white/,.png]</value>
     </variable>
     
     <variable name="ThumbImageRecordLabelDialogInfo">
         <value condition="!String.IsEmpty(Skin.String(recordlabel.logos.path))">$INFO[Skin.String(recordlabel.logos.path)]$INFO[ListItem.Property(Album_Label)]$INFO[Skin.String(recordlabel.logos.ext)]</value>
+        <value condition="System.AddonIsEnabled(resource.images.recordlabels.white)">$INFO[ListItem.Property(Album_Label),resource://resource.images.recordlabels.white/,.png]</value>
     </variable>
 
     <variable name="PlayerPoster">

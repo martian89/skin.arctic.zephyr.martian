@@ -1413,7 +1413,15 @@
                             <label2>$VAR[Label_GenreIcons]</label2>
                             <onclick>RunScript(script.image.resource.select,property=genre.icons&amp;type=resource.images.moviegenreicons)</onclick>
                         </control>
-                        <control type="button" id="9585" description="Studios">
+                        <control type="button" id="9585" description="Country Icons">
+                            <width>1360</width>
+                            <visible>String.IsEqual(Window.Property(content),7)</visible>
+                            <include>DefSettingsButtonGradientSkinSettings</include>
+                            <label>31351</label>
+                            <label2>$VAR[Label_MoviecountryIcons]</label2>
+                            <onclick>RunScript(script.image.resource.select,property=moviecountry.icons&amp;type=resource.images.moviecountryicons)</onclick>
+                        </control>
+                        <control type="button" id="9586" description="Studios">
                             <width>1360</width>
                             <visible>String.IsEqual(Window.Property(content),7)</visible>
                             <include>DefSettingsButtonGradientSkinSettings</include>
@@ -1421,7 +1429,7 @@
                             <label2>$VAR[Label_StudioIcons]</label2>
                             <onclick>RunScript(script.image.resource.select,property=studio.logos&amp;type=resource.images.studios)</onclick>
                         </control>
-                        <control type="button" id="9586" description="Record Labels">
+                        <control type="button" id="9587" description="Record Labels">
                             <width>1360</width>
                             <visible>String.IsEqual(Window.Property(content),7)</visible>
                             <include>DefSettingsButtonGradientSkinSettings</include>
@@ -1429,21 +1437,13 @@
                             <label2>$VAR[Label_RecordLabelIcons]</label2>
                             <onclick>RunScript(script.image.resource.select,property=recordlabel.logos&amp;type=resource.images.recordlabels)</onclick>
                         </control>
-                        <control type="button" id="9587" description="GameIcons">
+                        <control type="button" id="9588" description="GameIcons">
                             <width>1360</width>
                             <visible>String.IsEqual(Window.Property(content),7)</visible>
                             <include>DefSettingsButtonGradientSkinSettings</include>
                             <label>31694</label>
                             <label2>$VAR[Label_GameIcons]</label2>
                             <onclick>RunScript(script.image.resource.select,property=game.logos&amp;type=resource.images.gamestudios)</onclick>
-                        </control>
-                        <control type="button" id="9588" description="Country Icons">
-                            <width>1360</width>
-                            <visible>String.IsEqual(Window.Property(content),7)</visible>
-                            <include>DefSettingsButtonGradientSkinSettings</include>
-                            <label>31351</label>
-                            <label2>$VAR[Label_MoviecountryIcons]</label2>
-                            <onclick>RunScript(script.image.resource.select,property=moviecountry.icons&amp;type=resource.images.moviecountryicons)</onclick>
                         </control>
                     </control>
 
@@ -1603,59 +1603,79 @@
                             <param name="addonname" value="weather.openmeteo"/>
                         </include>
                         <include content="DefSkinAddons">
-                            <param name="id" value="110201"/>
+                            <param name="id" value="11021"/>
                             <param name="visible" value="String.IsEqual(Window.Property(content),8)"/>
                             <param name="addonname" value="resource.images.weatherfanart.multi"/>
                         </include>
                         <include content="DefSkinAddons">
-                            <param name="id" value="11021"/>
-                            <param name="visible" value="String.IsEqual(Window.Property(content),8)"/>
-                            <param name="addonname" value="service.upnext"/>
-                        </include>
-                        <include content="DefSkinAddons">
                             <param name="id" value="11022"/>
                             <param name="visible" value="String.IsEqual(Window.Property(content),8)"/>
-                            <param name="addonname" value="plugin.video.imdb.trailers"/>
+                            <param name="addonname" value="resource.images.moviegenreicons.transparent"/>
                         </include>
                         <include content="DefSkinAddons">
                             <param name="id" value="11023"/>
                             <param name="visible" value="String.IsEqual(Window.Property(content),8)"/>
+                            <param name="addonname" value="resource.images.moviecountryicons.maps"/>
+                        </include>
+                        <include content="DefSkinAddons">
+                            <param name="id" value="11024"/>
+                            <param name="visible" value="String.IsEqual(Window.Property(content),8)"/>
+                            <param name="addonname" value="resource.images.studios.white"/>
+                        </include>
+                        <include content="DefSkinAddons">
+                            <param name="id" value="11025"/>
+                            <param name="visible" value="String.IsEqual(Window.Property(content),8)"/>
+                            <param name="addonname" value="resource.images.recordlabels.white"/>
+                        </include>
+                        <include content="DefSkinAddons">
+                            <param name="id" value="11026"/>
+                            <param name="visible" value="String.IsEqual(Window.Property(content),8)"/>
+                            <param name="addonname" value="service.upnext"/>
+                        </include>
+                        <include content="DefSkinAddons">
+                            <param name="id" value="11027"/>
+                            <param name="visible" value="String.IsEqual(Window.Property(content),8)"/>
+                            <param name="addonname" value="plugin.video.imdb.trailers"/>
+                        </include>
+                        <include content="DefSkinAddons">
+                            <param name="id" value="11028"/>
+                            <param name="visible" value="String.IsEqual(Window.Property(content),8)"/>
                             <param name="addonname" value="plugin.program.autocompletion"/>
                         </include>
                         <include content="DefSkinAddons">
-                            <param name="id" value="110231"/>
+                            <param name="id" value="11029"/>
                             <param name="visible" value="String.IsEqual(Window.Property(content),8)"/>
                             <param name="addonname" value="screensaver.arctic.mirage"/>
                             <param name="installable" value="System.AddonIsEnabled(repository.martian) | System.AddonIsEnabled(repository.jurialmunkey)" />
                         </include>
                         <include content="DefSkinAddons">
-                            <param name="id" value="110232"/>
+                            <param name="id" value="11030"/>
                             <param name="visible" value="String.IsEqual(Window.Property(content),8)"/>
                             <param name="addonname" value="script.arctic.zephyr.martian.autocolors"/>
                             <param name="installable" value="System.AddonIsEnabled(repository.martian)" />
                         </include>
                         <include content="DefSkinAddons">
-                            <param name="id" value="11024"/>
+                            <param name="id" value="11031"/>
                             <param name="visible" value="String.IsEqual(Window.Property(content),8)"/>
                             <param name="addonname" value="script.globalsearch"/>
                         </include>
                         <include content="DefSkinAddons">
-                            <param name="id" value="11025"/>
+                            <param name="id" value="11032"/>
                             <param name="visible" value="String.IsEqual(Window.Property(content),8)"/>
                             <param name="addonname" value="script.cu.lrclyrics"/>
                         </include>
                         <include content="DefSkinAddons">
-                            <param name="id" value="11026"/>
+                            <param name="id" value="11033"/>
                             <param name="visible" value="String.IsEqual(Window.Property(content),8)"/>
                             <param name="addonname" value="script.artistslideshow"/>
                         </include>
                         <include content="DefSkinAddons">
-                            <param name="id" value="11027"/>
+                            <param name="id" value="11034"/>
                             <param name="visible" value="String.IsEqual(Window.Property(content),8)"/>
                             <param name="addonname" value="script.wikipedia"/>
                         </include>
                         <include content="DefSkinAddons">
-                            <param name="id" value="11028"/>
+                            <param name="id" value="11035"/>
                             <param name="visible" value="String.IsEqual(Window.Property(content),8)"/>
                             <param name="addonname" value="script.favourites"/>
                         </include>
