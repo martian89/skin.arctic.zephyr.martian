@@ -108,6 +108,14 @@
 	<expression name="IsVideoInfo">Window.IsVisible(DialogVideoInfo.xml) + ![String.IsEqual(ListItem.Property(item.type),person) | String.IsEqual(ListItem.Property(dbtype),person) | String.IsEqual(ListItem.Property(Param.Info),person)]</expression>
 	<expression name="IsPersonInfo">Window.IsVisible(DialogVideoInfo.xml) + [String.IsEqual(ListItem.Property(item.type),person) | String.IsEqual(ListItem.Property(dbtype),person) | String.IsEqual(ListItem.Property(Param.Info),person)]</expression>
 
+    <expression name="HasThumbImageOverride">
+        [ Window.IsVisible(MyVideoNav.xml) + String.IsEqual(ListItem.DBType,country) | Window.IsVisible(home) + Container.Content(countries)] + !String.IsEmpty(Skin.String(moviecountry.icons.path))
+        | [Window.IsVisible(MyVideoNav.xml) + String.IsEqual(ListItem.DBType,genre) | Window.IsVisible(home) + Container.Content(genres)] + !String.IsEmpty(Skin.String(genre.icons.path))
+        | [Window.IsVisible(MyMusicNav.xml) + String.IsEqual(ListItem.DBType,genre)] + !String.IsEmpty(Skin.String(genre.music.path))
+        | [Window.IsVisible(MyVideoNav.xml) + String.IsEqual(ListItem.DBType,studio) | Window.IsVisible(home) + Container.Content(studios)] + !String.IsEmpty(Skin.String(studio.logos.path))
+        | [Window.IsVisible(MyMusicNav.xml) + String.IsEqual(ListItem.DBType,studio)] + !String.IsEmpty(Skin.String(recordlabel.logos.path))
+    </expression>
+
     <expression name="HideViewContent">
         $EXP[InfoDialogsActive] | Control.HasFocus(9601) | !String.IsEmpty(Window(Home).Property(TMDbHelper.HideView))
     </expression>

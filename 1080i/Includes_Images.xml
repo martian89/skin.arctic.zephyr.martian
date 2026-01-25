@@ -143,24 +143,22 @@
         <value>$INFO[ListItem.Icon]</value>
     </variable>
 
-    <variable name="ThumbImageMoviecountries">
-        <value condition="[Window.IsVisible(home) | Window.IsVisible(MyVideoNav.xml)] + !String.IsEmpty(Skin.String(moviecountry.icons.path))">$INFO[Skin.String(moviecountry.icons.path)]$INFO[ListItem.Label]$INFO[Skin.String(moviecountry.icons.ext)]</value>
-        <value>DefaultCountry.png</value>
+    <variable name="ThumbImageOverride">
+        <value condition="Window.IsVisible(MyVideoNav.xml) + String.IsEqual(ListItem.DBType,country) | Window.IsVisible(home) + Container.Content(countries)">$INFO[Skin.String(moviecountry.icons.path)]$INFO[ListItem.Label]$INFO[Skin.String(moviecountry.icons.ext)]</value>
+        <value condition="Window.IsVisible(MyVideoNav.xml) + String.IsEqual(ListItem.DBType,genre) | Window.IsVisible(home) + Container.Content(genres)">$INFO[Skin.String(genre.icons.path)]$INFO[ListItem.Label]$INFO[Skin.String(genre.icons.ext)]</value>
+        <value condition="Window.IsVisible(MyMusicNav.xml) + String.IsEqual(ListItem.DBType,genre)">$INFO[Skin.String(genre.music.path)]$INFO[ListItem.Label]$INFO[Skin.String(genre.music.ext)]</value>
+        <value condition="Window.IsVisible(MyVideoNav.xml) + String.IsEqual(ListItem.DBType,studio) | Window.IsVisible(home) + Container.Content(studios)">$INFO[Skin.String(studio.logos.path)]$INFO[ListItem.Label]$INFO[Skin.String(studio.logos.ext)]</value>
+        <value condition="Window.IsVisible(MyMusicNav.xml) + String.IsEqual(ListItem.DBType,studio)">$INFO[Skin.String(recordlabel.logos.path)]$INFO[ListItem.Label]$INFO[Skin.String(recordlabel.logos.ext)]</value>
     </variable>
 
-    <variable name="ThumbImageGenres">
-        <value condition="[Window.IsVisible(home) | Window.IsVisible(MyVideoNav.xml)] + !String.IsEmpty(Skin.String(genre.icons.path))">$INFO[Skin.String(genre.icons.path)]$INFO[ListItem.Label]$INFO[Skin.String(genre.icons.ext)]</value>
-        <value condition="Container.Content(genres) + Window.IsVisible(MyMusicNav.xml) + !String.IsEmpty(Skin.String(genre.music.path))">$INFO[Skin.String(genre.music.path)]$INFO[ListItem.Label]$INFO[Skin.String(genre.music.ext)]</value>
-        <value>DefaultGenre.png</value>
+    <variable name="ThumbImageFallback">
+        <value condition="Window.IsVisible(MyVideoNav.xml) + String.IsEqual(ListItem.DBType,country) | Window.IsVisible(home) + Container.Content(countries)">DefaultCountry.png</value>
+        <value condition="Window.IsVisible(MyVideoNav.xml) + String.IsEqual(ListItem.DBType,genre) | Window.IsVisible(home) + Container.Content(genres)">DefaultGenre.png</value>
+        <value condition="Window.IsVisible(MyMusicNav.xml) + String.IsEqual(ListItem.DBType,genre)">DefaultGenre.png</value>
+        <value condition="Window.IsVisible(MyVideoNav.xml) + String.IsEqual(ListItem.DBType,studio) | Window.IsVisible(home) + Container.Content(studios)">DefaultStudios.png</value>
+        <value condition="Window.IsVisible(MyMusicNav.xml) + String.IsEqual(ListItem.DBType,studio)">DefaultStudios.png</value>
     </variable>
-
-    <variable name="ThumbImageStudios">
-        <value condition="Window.IsVisible(home) + [String.IsEqual(ListItem.DBTYPE,studio) | Container.Content(studios)] + !String.IsEmpty(Skin.String(studio.logos.path))">$INFO[Skin.String(studio.logos.path)]$INFO[ListItem.Label]$INFO[Skin.String(studio.logos.ext)]</value>
-        <value condition="Container.Content(studios) + Window.IsVisible(MyVideoNav.xml) + !String.IsEmpty(Skin.String(studio.logos.path))">$INFO[Skin.String(studio.logos.path)]$INFO[ListItem.Label]$INFO[Skin.String(studio.logos.ext)]</value>
-        <value condition="Container.Content(studios) + Window.IsVisible(MyMusicNav.xml) + !String.IsEmpty(Skin.String(recordlabel.logos.path))">$INFO[Skin.String(recordlabel.logos.path)]$INFO[ListItem.Label]$INFO[Skin.String(recordlabel.logos.ext)]</value>
-        <value>DefaultStudios.png</value>
-    </variable>
-
+    
     <variable name="ThumbImageStudiosDialogInfo">
         <value condition="!String.IsEmpty(Skin.String(studio.logos.path)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Network.1.Name))">$INFO[Skin.String(studio.logos.path)]$INFO[Window(Home).Property(TMDbHelper.ListItem.Network.1.Name)]$INFO[Skin.String(studio.logos.ext)]</value>
         <value condition="!String.IsEmpty(Skin.String(studio.logos.path)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Studio.1.Name))">$INFO[Skin.String(studio.logos.path)]$INFO[Window(Home).Property(TMDbHelper.ListItem.Studio.1.Name)]$INFO[Skin.String(studio.logos.ext)]</value>

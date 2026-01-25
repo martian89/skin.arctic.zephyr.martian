@@ -227,7 +227,7 @@
     
     <include name="View_52_Thumbnail_Image">
 		<control type="group">
-			<visible>!String.IsEqual(ListItem.DBType,country) + !String.IsEqual(ListItem.DBType,studio) + !String.IsEqual(ListItem.DBType,genre)</visible>
+			<visible>!$EXP[HasThumbImageOverride]</visible>
 	        <control type="image">
 	            <left>10</left>
 	            <top>10</top>
@@ -248,14 +248,14 @@
 	        </control>
         </control>
         <control type="group">
-            <visible>String.IsEqual(ListItem.DBType,country)</visible>
+            <visible>$EXP[HasThumbImageOverride]</visible>
             <control type="image">
                 <left>10</left>
                 <top>10</top>
                 <width>100</width>
                 <height>100</height>
                 <aspectratio scalediffuse="false">keep</aspectratio>
-                <texture diffuse="common/circle.png" background="true" fallback="DefaultCountry.png">$VAR[ThumbImageMoviecountries]</texture>
+                <texture diffuse="common/circle.png" background="true" fallback="$VAR[ThumbImageFallback]">$VAR[ThumbImageOverride]</texture>
                 <visible>!Skin.HasSetting(global.hidecirles)</visible>
             </control>
             <control type="image">
@@ -264,51 +264,9 @@
                 <width>100</width>
                 <height>100</height>
                 <aspectratio scalediffuse="false">keep</aspectratio>
-                <texture background="true" fallback="DefaultCountry.png">$VAR[ThumbImageMoviecountries]</texture>
+                <texture background="true" fallback="$VAR[ThumbImageFallback]">$VAR[ThumbImageOverride]</texture>
                 <visible>Skin.HasSetting(global.hidecirles)</visible>
             </control>
-        </control>
-		<control type="group">
-			<visible>String.IsEqual(ListItem.DBType,studio)</visible>
-	        <control type="image">
-	            <left>10</left>
-	            <top>10</top>
-	            <width>100</width>
-	            <height>100</height>
-	            <aspectratio scalediffuse="false">keep</aspectratio>
-	            <texture diffuse="common/circle.png" background="true" fallback="DefaultStudios.png">$VAR[ThumbImageStudios]</texture>
-	            <visible>!Skin.HasSetting(global.hidecirles)</visible>
-	        </control>
-	        <control type="image">
-	            <left>10</left>
-	            <top>10</top>
-	            <width>100</width>
-	            <height>100</height>
-	            <aspectratio scalediffuse="false">keep</aspectratio>
-	            <texture background="true" fallback="DefaultStudios.png">$VAR[ThumbImageStudios]</texture>
-	            <visible>Skin.HasSetting(global.hidecirles)</visible>
-	        </control>
-        </control>
-		<control type="group">
-			<visible>String.IsEqual(ListItem.DBType,genre)</visible>
-	        <control type="image">
-	            <left>10</left>
-	            <top>10</top>
-	            <width>100</width>
-	            <height>100</height>
-	            <aspectratio scalediffuse="false">keep</aspectratio>
-	            <texture diffuse="common/circle.png" background="true" fallback="DefaultGenre.png">$VAR[ThumbImageGenres]</texture>
-	            <visible>!Skin.HasSetting(global.hidecirles)</visible>
-	        </control>
-	        <control type="image">
-	            <left>10</left>
-	            <top>10</top>
-	            <width>100</width>
-	            <height>100</height>
-	            <aspectratio scalediffuse="false">keep</aspectratio>
-	            <texture background="true" fallback="DefaultGenre.png">$VAR[ThumbImageGenres]</texture>
-	            <visible>Skin.HasSetting(global.hidecirles)</visible>
-	        </control>
         </control>
     </include>
 
