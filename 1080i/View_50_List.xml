@@ -198,7 +198,19 @@
                 <fadetime>PosterFanartFadetime</fadetime>
                 <aspectratio align="center" aligny="center" scalediffuse="false">keep</aspectratio>
                 <texture flipy="true" diffuse="diffuse/listposter-ref-widgets.png" background="true" fallback="$VAR[ThumbImageFallback]">$VAR[ThumbImageOverride]</texture>
-                <visible>Skin.HasSetting(show.reflections) + $EXP[HasThumbImageOverride]</visible>
+                <visible>Skin.HasSetting(show.reflections) + $EXP[HasThumbImageOverride] + !$EXP[IsDefaultGenreImage]</visible>
+            </control>
+            <control type="image">
+                <top>PosterH</top>
+                <width>PosterH</width>
+                <height>PosterH</height>
+                <fadetime>PosterFanartFadetime</fadetime>
+                <include content="def_genre_thumbnail">
+                    <param name="diffuse" value="diffuse/listposter-ref-widgets.png" />
+                    <param name="flipy" value="true" />
+                    <param name="bordersize" value="160" />
+                </include>
+                <visible>Skin.HasSetting(show.reflections) + $EXP[HasThumbImageOverride] + $EXP[IsDefaultGenreImage]</visible>
             </control>
             <control type="image">
                 <centertop>PosterH</centertop>
@@ -233,7 +245,17 @@
                 <fadetime>PosterFanartFadetime</fadetime>
                 <aspectratio align="center" aligny="center" scalediffuse="false">keep</aspectratio>
                 <texture diffuse="diffuse/listposter.png" background="true" fallback="$VAR[ThumbImageFallback]">$VAR[ThumbImageOverride]</texture>
-                <visible>$EXP[HasThumbImageOverride]</visible>
+                <visible>$EXP[HasThumbImageOverride] + !$EXP[IsDefaultGenreImage]</visible>
+            </control>
+            <control type="image">
+                <width>PosterH</width>
+                <height>PosterH</height>
+                <fadetime>PosterFanartFadetime</fadetime>
+                <include content="def_genre_thumbnail">
+                    <param name="diffuse" value="diffuse/listposter.png" />
+                    <param name="bordersize" value="160" />
+                </include>
+                <visible>$EXP[HasThumbImageOverride] + $EXP[IsDefaultGenreImage]</visible>
             </control>
             <control type="image">
                 <width>PosterH</width>

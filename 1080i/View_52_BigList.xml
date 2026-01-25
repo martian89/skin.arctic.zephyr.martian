@@ -248,7 +248,31 @@
 	        </control>
         </control>
         <control type="group">
-            <visible>$EXP[HasThumbImageOverride]</visible>
+            <visible>$EXP[HasThumbImageOverride] + $EXP[IsDefaultGenreImage]</visible>
+            <control type="image">
+                <left>10</left>
+                <top>10</top>
+                <width>100</width>
+                <height>100</height>
+                <include content="def_genre_thumbnail">
+                    <param name="diffuse" value="common/circle.png" />
+                    <param name="bordersize" value="26" />
+                </include>
+                <visible>!Skin.HasSetting(global.hidecirles)</visible>
+            </control>
+            <control type="image">
+                <left>10</left>
+                <top>10</top>
+                <width>100</width>
+                <height>100</height>
+                <include content="def_genre_thumbnail">
+                    <param name="bordersize" value="26" />
+                </include>
+                <visible>Skin.HasSetting(global.hidecirles)</visible>
+            </control>
+        </control>
+        <control type="group">
+            <visible>$EXP[HasThumbImageOverride] + !$EXP[IsDefaultGenreImage]</visible>
             <control type="image">
                 <left>10</left>
                 <top>10</top>
