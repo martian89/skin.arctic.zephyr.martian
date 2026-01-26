@@ -3028,10 +3028,20 @@
             </control>
             
             <!-- PVR -->
-            <control type="label">
+            <control type="label" description="Duration">
                 <include>MultiWidgetsSubLabelDefinition</include>
+                <visible>String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://) + !Skin.HasSetting(NewTime)</visible>
                 <label>$INFO[Container($PARAM[id]).ListItem.Label]$INFO[Container($PARAM[id]).ListItem.StartTime,  •  ,]$INFO[Container($PARAM[id]).ListItem.EndTime, - ]$INFO[Container($PARAM[id]).ListItem.Duration(mins),  •  , $LOCALIZE[31102]]$VAR[Label_TvShow_Ratings]</label>
-                <visible>String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://)</visible>
+            </control>
+            <control type="label" description="Duration">
+                <include>MultiWidgetsSubLabelDefinition</include>
+                <visible>String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://) + Skin.HasSetting(NewTime) + Integer.IsGreater(Container($PARAM[id]).ListItem.Duration(h),0)</visible>
+                <label>$INFO[Container($PARAM[id]).ListItem.Label]$INFO[Container($PARAM[id]).ListItem.StartTime,  •  ,]$INFO[Container($PARAM[id]).ListItem.EndTime, - ]$INFO[Container($PARAM[id]).ListItem.Duration(h),  •  ,$LOCALIZE[31088]] $INFO[Container($PARAM[id]).ListItem.Duration(mm),,$LOCALIZE[31089]]$VAR[Label_TvShow_Ratings]</label>
+            </control>
+            <control type="label" description="Duration">
+                <include>MultiWidgetsSubLabelDefinition</include>
+                <visible>String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://) + Skin.HasSetting(NewTime) + !Integer.IsGreater(Container($PARAM[id]).ListItem.Duration(h),0)</visible>
+                <label>$INFO[Container($PARAM[id]).ListItem.Label]$INFO[Container($PARAM[id]).ListItem.StartTime,  •  ,]$INFO[Container($PARAM[id]).ListItem.EndTime, - ]$INFO[Container($PARAM[id]).ListItem.Duration(mm),  •  ,$LOCALIZE[31089]]$VAR[Label_TvShow_Ratings]</label>
             </control>
         </control>
     </include>
