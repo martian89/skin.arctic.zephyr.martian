@@ -108,15 +108,11 @@
 	<expression name="IsVideoInfo">Window.IsVisible(DialogVideoInfo.xml) + ![String.IsEqual(ListItem.Property(item.type),person) | String.IsEqual(ListItem.Property(dbtype),person) | String.IsEqual(ListItem.Property(Param.Info),person)]</expression>
 	<expression name="IsPersonInfo">Window.IsVisible(DialogVideoInfo.xml) + [String.IsEqual(ListItem.Property(item.type),person) | String.IsEqual(ListItem.Property(dbtype),person) | String.IsEqual(ListItem.Property(Param.Info),person)]</expression>
 
-    <expression name="HasThumbImageOverride">
+    <expression name="HasThumbImageResource">
         [ Window.IsVisible(MyVideoNav.xml) | Window.IsVisible(home)] + String.IsEqual(ListItem.DBType,country) + [!String.IsEmpty(Skin.String(moviecountry.icons.path)) | System.AddonIsEnabled(resource.images.moviecountryicons.maps)]
         | [Window.IsVisible(MyVideoNav.xml) | Window.IsVisible(home)] + String.IsEqual(ListItem.DBType,genre) + [!String.IsEmpty(Skin.String(genre.icons.path)) | System.AddonIsEnabled(resource.images.moviegenreicons.transparent)]
         | [Window.IsVisible(MyVideoNav.xml) | Window.IsVisible(home)] + String.IsEqual(ListItem.DBType,studio) + [!String.IsEmpty(Skin.String(studio.logos.path)) | System.AddonIsEnabled(resource.images.studios.white)]
         | Window.IsVisible(MyMusicNav.xml) + String.IsEqual(ListItem.DBType,studio) + [!String.IsEmpty(Skin.String(recordlabel.logos.path)) | System.AddonIsEnabled(resource.images.recordlabels.white)]
-    </expression>
-
-    <expression name="IsDefaultGenreImage">
-        [Window.IsVisible(MyVideoNav.xml) | Window.IsVisible(home)] + String.IsEqual(ListItem.DBType,genre) + [String.IsEmpty(Skin.String(genre.icons.path)) | String.IsEqual(Skin.String(genre.icons.path),resource://resource.images.moviegenreicons.transparent/)]
     </expression>
 
     <expression name="HideViewContent">

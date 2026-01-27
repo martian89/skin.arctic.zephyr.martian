@@ -3588,20 +3588,138 @@
             <visible>Skin.HasSetting(global.showborders)</visible>
         </control>
     </include>
-    
-    <include name="def_genre_thumbnail">
-        <param name="fade" default="true"/>
+
+    <include name="def_widget_image">
+        <param name="image" default="$VAR[PosterImage]" />
+        <param name="top" default="10" />
+        <param name="left" default="10" />
+        <param name="right" default="10" />
+        <param name="bottom" default="10" />
+        <param name="aspectratio" default="scale" />
+        <param name="genre_bordersize" default="82" />
         <param name="flipy" default="false"/>        
-        <param name="aspectratio" default="keep" />
-        <param name="bordersize" default="82" />
-        <param name="diffuse" />
+        <param name="border" default="false"/>        
+        <param name="visible" default="true" />    
+        <param name="selected" default="false"/>    
+        <param name="icon_diffuse" default="$PARAM[diffuse]"/>    
+        <param name="diffuse" />    
         <definition>
-            <animation effect="fade" end="85" start="100" time="0" condition="$PARAM[fade]">Conditional</animation>
-            <bordersize>$PARAM[bordersize]</bordersize>
-            <aspectratio align="center" aligny="center" scalediffuse="false">$PARAM[aspectratio]</aspectratio>
-            <texture flipy="$PARAM[flipy]" diffuse="$PARAM[diffuse]" background="true" fallback="resource://resource.images.moviegenreicons.transparent/Drama.png">$VAR[ThumbImageOverride]</texture>        
+            <control type="image">
+	            <left>$PARAM[left]</left>
+	            <top>$PARAM[top]</top>
+	            <right>$PARAM[right]</right>
+	            <bottom>$PARAM[bottom]</bottom>
+	            <include condition="$PARAM[is_square]" content="def_width">
+	               <param name="width" value="$PARAM[width]" />
+	            </include>
+                <include condition="$PARAM[is_square]" content="def_height">
+                   <param name="height" value="$PARAM[width]" />
+                </include>
+                <fadetime>$PARAM[fadetime]</fadetime>
+	            <aspectratio scalediffuse="false">$PARAM[aspectratio]</aspectratio>
+	            <texture flipy="$PARAM[flipy]" diffuse="$PARAM[diffuse]" background="true" fallback="DefaultMovies.png">$PARAM[image]</texture>
+	            <include condition="$PARAM[border]">border_texture</include>
+	            <visible>!$EXP[HasThumbImageResource]</visible>
+                <visible>$PARAM[visible]</visible>
+            </control>
+            <control type="image">
+                <left>$PARAM[left]</left>
+                <top>$PARAM[top]</top>
+                <right>$PARAM[right]</right>
+                <bottom>$PARAM[bottom]</bottom>
+                <include condition="$PARAM[is_square]" content="def_width">
+                   <param name="width" value="$PARAM[width]" />
+                </include>
+                <include condition="$PARAM[is_square]" content="def_height">
+                   <param name="height" value="$PARAM[width]" />
+                </include>
+                <fadetime>$PARAM[fadetime]</fadetime>
+                <aspectratio scalediffuse="false">$PARAM[aspectratio]</aspectratio>
+                <texture flipy="$PARAM[flipy]" diffuse="$PARAM[diffuse]" background="true" fallback="DefaultFolder.png">$VAR[ThumbImageResource]</texture>
+                <visible>
+                 ![
+                    !Window.IsVisible(MyMusicNav.xml) + String.IsEqual(ListItem.DBType,studio) + [String.IsEmpty(Skin.String(studio.logos.path)) | String.IsEqual(Skin.String(studio.logos.path),resource://resource.images.studios.white/)]
+                    | Window.IsVisible(MyMusicNav.xml) + String.IsEqual(ListItem.DBType,studio) + [String.IsEmpty(Skin.String(recordlabel.logos.path)) | String.IsEqual(Skin.String(recordlabel.logos.path),resource://resource.images.recordlabels.white/)]
+                    | String.IsEqual(ListItem.DBType,genre) + [String.IsEmpty(Skin.String(genre.icons.path)) | String.IsEqual(Skin.String(genre.icons.path),resource://resource.images.moviegenreicons.transparent/)]
+                    | String.IsEqual(ListItem.DBType,country) + [String.IsEmpty(Skin.String(moviecountry.icons.path)) | String.IsEqual(Skin.String(moviecountry.icons.path),resource://resource.images.moviecountryicons.maps/)]
+                  ] + $EXP[HasThumbImageResource]</visible>
+                <visible>$PARAM[visible]</visible>
+            </control>
+            <control type="image">
+                <left>$PARAM[left]</left>
+                <top>$PARAM[top]</top>
+                <right>$PARAM[right]</right>
+                <bottom>$PARAM[bottom]</bottom>
+                <include condition="$PARAM[is_square]" content="def_width">
+                   <param name="width" value="$PARAM[width]" />
+                </include>
+                <include condition="$PARAM[is_square]" content="def_height">
+                   <param name="height" value="$PARAM[width]" />
+                </include>
+                <fadetime>$PARAM[fadetime]</fadetime>
+                <aspectratio scalediffuse="false">keep</aspectratio>
+                <texture flipy="$PARAM[flipy]" diffuse="$PARAM[diffuse]" background="true" fallback="DefaultFolder.png">$VAR[ThumbImageResource]</texture>
+                <visible>
+                  [
+                    !Window.IsVisible(MyMusicNav.xml) + String.IsEqual(ListItem.DBType,studio) + [String.IsEmpty(Skin.String(studio.logos.path)) | String.IsEqual(Skin.String(studio.logos.path),resource://resource.images.studios.white/)]
+                    | Window.IsVisible(MyMusicNav.xml) + String.IsEqual(ListItem.DBType,studio) + [String.IsEmpty(Skin.String(recordlabel.logos.path)) | String.IsEqual(Skin.String(recordlabel.logos.path),resource://resource.images.recordlabels.white/)]
+                  ] + $EXP[HasThumbImageResource]</visible>
+                <visible>$PARAM[visible]</visible>
+            </control>
+            <control type="image">
+                <left>$PARAM[left]</left>
+                <top>$PARAM[top]</top>
+                <right>$PARAM[right]</right>
+                <bottom>$PARAM[bottom]</bottom>
+                <include condition="$PARAM[is_square]" content="def_width">
+                   <param name="width" value="$PARAM[width]" />
+                </include>
+                <include condition="$PARAM[is_square]" content="def_height">
+                   <param name="height" value="$PARAM[width]" />
+                </include>
+                <fadetime>$PARAM[fadetime]</fadetime>
+                <animation effect="fade" end="80" start="100" time="0" condition="true">Conditional</animation>                
+                <aspectratio scalediffuse="false">keep</aspectratio>
+                <texture flipy="$PARAM[flipy]" diffuse="$PARAM[diffuse]" background="true" fallback="DefaultFolder.png">$VAR[ThumbImageResource]</texture>
+                <visible>String.IsEqual(ListItem.DBType,country) + [String.IsEmpty(Skin.String(moviecountry.icons.path)) | String.IsEqual(Skin.String(moviecountry.icons.path),resource://resource.images.moviecountryicons.maps/)] + $EXP[HasThumbImageResource]</visible>
+                <visible>$PARAM[visible]</visible>
+            </control>
+            <control type="image">
+                <left>$PARAM[left]</left>
+                <top>$PARAM[top]</top>
+                <right>$PARAM[right]</right>
+                <bottom>$PARAM[bottom]</bottom>
+                <include condition="$PARAM[is_square]" content="def_width">
+                   <param name="width" value="$PARAM[width]" />
+                </include>
+                <include condition="$PARAM[is_square]" content="def_height">
+                   <param name="height" value="$PARAM[width]" />
+                </include>
+                <fadetime>$PARAM[fadetime]</fadetime>
+	            <bordersize>$PARAM[genre_bordersize]</bordersize>
+                <animation effect="fade" end="80" start="100" time="0" condition="true">Conditional</animation>                
+                <aspectratio scalediffuse="false">keep</aspectratio>
+                <texture diffuse="$PARAM[icon_diffuse]" background="true" fallback="resource://resource.images.moviegenreicons.transparent/Drama.png">$VAR[ThumbImageResource]</texture>
+                <visible>String.IsEqual(ListItem.DBType,genre) + [String.IsEmpty(Skin.String(genre.icons.path)) | String.IsEqual(Skin.String(genre.icons.path),resource://resource.images.moviegenreicons.transparent/)] + $EXP[HasThumbImageResource]</visible>
+                <visible>!$PARAM[flipy] + $PARAM[visible]</visible>
+            </control>
+	        <control type="image">
+                <left>$PARAM[left]</left>
+                <top>$PARAM[top]</top>
+                <right>$PARAM[right]</right>
+                <bottom>$PARAM[bottom]</bottom>
+                <include condition="$PARAM[is_square]" content="def_width">
+                   <param name="width" value="$PARAM[width]" />
+                </include>
+                <include condition="$PARAM[is_square]" content="def_height">
+                   <param name="height" value="$PARAM[width]" />
+                </include>
+	            <texture colordiffuse="BoxWidget" border="4" background="true" infill="false">common/box21.png</texture>
+	            <visible>$EXP[HasThumbImageResource]</visible>
+                <visible>$PARAM[border] + $PARAM[visible]</visible>
+	        </control>
         </definition>
-    </include>
+    </include>    
     
     <!-- Includes Widget layouts -->
     <include name="def_widgetposter">
@@ -3618,44 +3736,11 @@
             <bottom>10</bottom>
             <texture colordiffuse="Fallback" border="4" background="true">common/diffuse_box.png</texture>
         </control>
-        <control type="image">
-            <left>10</left>
-            <top>10</top>
-            <right>10</right>
-            <bottom>10</bottom>
-            <aspectratio scalediffuse="false">scale</aspectratio>
-            <texture diffuse="diffuse/widgetposter_new.png" background="true" fallback="DefaultMovies.png">$VAR[PosterImage]</texture>
-            <include condition="Skin.HasSetting(global.showborders)">border_texture</include>
-            <visible>!$EXP[HasThumbImageOverride]</visible>
-        </control>
-        <control type="image">
-            <left>10</left>
-            <top>10</top>
-            <right>10</right>
-            <bottom>10</bottom>
-            <aspectratio scalediffuse="false">keep</aspectratio>
-            <texture diffuse="diffuse/widgetposter_new.png" background="true" fallback="$VAR[ThumbImageFallback]">$VAR[ThumbImageOverride]</texture>
-            <visible>$EXP[HasThumbImageOverride] + !$EXP[IsDefaultGenreImage]</visible>
-        </control>
-        <control type="image">
-            <left>10</left>
-            <top>10</top>
-            <right>10</right>
-            <bottom>10</bottom>
-            <include content="def_genre_thumbnail">
-                <param name="diffuse" value="diffuse/widgetposter_new.png" />
-                <param name="bordersize" value="54" />
-            </include>
-            <visible>$EXP[HasThumbImageOverride] + $EXP[IsDefaultGenreImage]</visible>
-        </control>
-        <control type="image">
-            <left>10</left>
-            <top>10</top>
-            <right>10</right>
-            <bottom>10</bottom>
-            <texture colordiffuse="BoxWidget" border="4" background="true" infill="false">common/box21.png</texture>
-            <visible>Skin.HasSetting(global.showborders) + $EXP[HasThumbImageOverride]</visible>
-        </control>
+        <include content="def_widget_image">
+            <param name="diffuse" value="diffuse/widgetposter_new.png" />
+            <param name="border" value="Skin.HasSetting(global.showborders)" />
+            <param name="genre_bordersize" value="54" />
+        </include>        
         <include condition="$PARAM[visible_title_overlay]">Alternative_Title_Overlay</include>
         <include content="IndicatorPoster" condition="!Skin.HasSetting(hide.markers)">
             <param name="indicatorbackground" value="$PARAM[indicatorbackground]" />
@@ -3719,35 +3804,14 @@
             <bottom>10</bottom>
             <texture colordiffuse="Fallback" border="4" background="true">common/diffuse_box.png</texture>
         </control>
-        <control type="image">
-            <left>$PARAM[distance]</left>
-            <top>$PARAM[distance]</top>
-            <right>$PARAM[distance]</right>
-            <bottom>$PARAM[distance]</bottom>
-            <aspectratio scalediffuse="false">$PARAM[aspectratio]</aspectratio>
-            <texture diffuse="diffuse/widgetsquare_new.png" background="true" fallback="DefaultMovies.png">$VAR[PosterImage]</texture>
-            <visible>!$EXP[HasThumbImageOverride]</visible>
-        </control>
-        <control type="image">
-            <left>$PARAM[distance]</left>
-            <top>$PARAM[distance]</top>
-            <right>$PARAM[distance]</right>
-            <bottom>$PARAM[distance]</bottom>
-            <aspectratio scalediffuse="false">$PARAM[aspectratio]</aspectratio>
-            <texture diffuse="diffuse/widgetsquare_new.png" background="true" fallback="$VAR[ThumbImageFallback]">$VAR[ThumbImageOverride]</texture>
-            <visible>$EXP[HasThumbImageOverride] + !$EXP[IsDefaultGenreImage]</visible>
-        </control>
-        <control type="image">
-            <left>$PARAM[distance]</left>
-            <top>$PARAM[distance]</top>
-            <right>$PARAM[distance]</right>
-            <bottom>$PARAM[distance]</bottom>
-            <include content="def_genre_thumbnail">
-                <param name="diffuse" value="diffuse/widgetsquare_new.png" />
-                <param name="aspectratio" value="$PARAM[aspectratio]" />
-            </include>
-            <visible>$EXP[HasThumbImageOverride] + $EXP[IsDefaultGenreImage]</visible>
-        </control>
+        <include content="def_widget_image">
+            <param name="top" value="$PARAM[distance]" /> 
+            <param name="left" value="$PARAM[distance]" />
+            <param name="right" value="$PARAM[distance]" /> 
+            <param name="bottom" value="$PARAM[distance]" />
+            <param name="diffuse" value="diffuse/widgetsquare_new.png" />
+            <param name="aspectratio" value="$PARAM[aspectratio]" />
+        </include>        
         <control type="image">
             <left>10</left>
             <top>10</top>
@@ -3885,53 +3949,16 @@
             <bottom>10</bottom>
             <texture colordiffuse="Fallback" border="4" background="true">common/diffuse_box.png</texture>
         </control>
-        <control type="image">
-            <left>10</left>
-            <top>10</top>
-            <right>10</right>
-            <bottom>10</bottom>
-            <aspectratio scalediffuse="false">scale</aspectratio>
-            <texture diffuse="diffuse/widgetfanart_new.png" background="true" fallback="DefaultMovies.png">$VAR[WidgetFanartImage]</texture>
-            <visible>!$PARAM[small] + !$EXP[HasThumbImageOverride]</visible>
-        </control>
-        <control type="image">
-            <left>10</left>
-            <top>10</top>
-            <right>10</right>
-            <bottom>101</bottom>
-            <aspectratio scalediffuse="false">scale</aspectratio>
-            <texture diffuse="diffuse/widgetfanart_top.png" background="true" fallback="DefaultMovies.png">$VAR[WidgetFanartImage]</texture>
-            <visible>$PARAM[small] + !$EXP[HasThumbImageOverride]</visible>
-        </control>
-        <control type="image">
-            <left>10</left>
-            <top>10</top>
-            <right>10</right>
-            <include content="def_bottom" condition="$PARAM[small]">
-                <param name="bottom" value="101" />
-            </include>
-            <bottom>10</bottom>
-            <aspectratio scalediffuse="false">keep</aspectratio>
-            <texture diffuse="diffuse/widgetsquare_new.png" background="true" fallback="$VAR[ThumbImageFallback]">$VAR[ThumbImageOverride]</texture>
-            <visible>$EXP[HasThumbImageOverride] + !$EXP[IsDefaultGenreImage]</visible>
-        </control>
-        <control type="image">
-            <left>10</left>
-            <top>10</top>
-            <right>10</right>
-            <include content="def_bottom" condition="$PARAM[small]">
-                <param name="bottom" value="101" />
-            </include>
-            <bottom>10</bottom>
-            <include content="def_genre_thumbnail" condition="!$PARAM[small]">
-                <param name="diffuse" value="diffuse/widgetsquare_new.png" />
-            </include>
-            <include content="def_genre_thumbnail" condition="$PARAM[small]">
-                <param name="diffuse" value="diffuse/widgetsquare_new.png" />
-                <param name="bordersize" value="54" />
-            </include>
-            <visible>$EXP[HasThumbImageOverride] + $EXP[IsDefaultGenreImage]</visible>
-        </control>
+        <include content="def_widget_image" condition="!$PARAM[small]">
+            <param name="image" value="$VAR[WidgetFanartImage]" />
+            <param name="diffuse" value="diffuse/widgetfanart_new.png" />
+        </include>        
+        <include content="def_widget_image" condition="$PARAM[small]">
+            <param name="image" value="$VAR[WidgetFanartImage]" />
+            <param name="bottom" value="101" />
+            <param name="diffuse" value="diffuse/widgetfanart_new.png" />
+            <param name="genre_bordersize" value="54" />
+        </include>        
         <control type="label">
             <bottom>40</bottom>
             <left>35</left>
@@ -3982,34 +4009,10 @@
             <bottom>10</bottom>
             <texture colordiffuse="Fallback" border="4" background="true">common/diffuse_box.png</texture>
         </control>
-        <control type="image">
-            <left>10</left>
-            <top>10</top>
-            <right>10</right>
-            <bottom>10</bottom>
-            <aspectratio scalediffuse="false">scale</aspectratio>
-            <texture diffuse="diffuse/widgetfanart_new.png" background="true" fallback="DefaultMovies.png">$VAR[FanartImage]</texture>
-            <visible>!$EXP[HasThumbImageOverride]</visible>
-        </control>
-        <control type="image">
-            <left>10</left>
-            <top>10</top>
-            <right>10</right>
-            <bottom>10</bottom>
-            <aspectratio scalediffuse="false">keep</aspectratio>
-            <texture diffuse="diffuse/widgetsquare_new.png" background="true" fallback="$VAR[ThumbImageFallback]">$VAR[ThumbImageOverride]</texture>
-            <visible>$EXP[HasThumbImageOverride] + !$EXP[IsDefaultGenreImage]</visible>
-        </control>
-        <control type="image">
-            <left>10</left>
-            <top>10</top>
-            <right>10</right>
-            <bottom>10</bottom>
-            <include content="def_genre_thumbnail">
-                <param name="diffuse" value="diffuse/widgetsquare_new.png" />
-            </include>
-            <visible>$EXP[HasThumbImageOverride] + $EXP[IsDefaultGenreImage]</visible>
-        </control>
+        <include content="def_widget_image">
+            <param name="image" value="$VAR[FanartImage]" />
+            <param name="diffuse" value="diffuse/widgetfanart_new.png" />
+        </include>        
         <include content="ClearLogoImage" condition="$PARAM[clearlogo]">
             <param name="width" value="250"/>
             <param name="right" value="30"/>
@@ -4118,7 +4121,7 @@
             <bottom>10</bottom>
             <aspectratio scalediffuse="false">scale</aspectratio>
             <texture diffuse="diffuse/widgetfanart_new.png" background="true" fallback="DefaultMovies.png">$VAR[WidgetThumbnailImage]</texture>
-            <visible>!$PARAM[small] + !$EXP[HasThumbImageOverride]</visible>
+            <visible>!$PARAM[small] + !$EXP[HasThumbImageResource]</visible>
         </control>
         <control type="image">
             <left>10</left>
@@ -4127,7 +4130,7 @@
             <bottom>101</bottom>
             <aspectratio scalediffuse="false">scale</aspectratio>
             <texture diffuse="diffuse/widgetfanart_top.png" background="true" fallback="DefaultMovies.png">$VAR[WidgetThumbnailImage]</texture>
-            <visible>$PARAM[small] + !$PARAM[poster] + !$EXP[HasThumbImageOverride]</visible>
+            <visible>$PARAM[small] + !$PARAM[poster] + !$EXP[HasThumbImageResource]</visible>
         </control>
         <control type="image">
             <left>154</left>
@@ -4136,37 +4139,18 @@
             <bottom>101</bottom>
             <aspectratio scalediffuse="false">scale</aspectratio>
             <texture diffuse="diffuse/widgetfanart_topright.png" border="1" background="true" fallback="DefaultMovies.png">$VAR[WidgetThumbnailImage]</texture>
-            <visible>$PARAM[small] + $PARAM[poster] + !$EXP[HasThumbImageOverride]</visible>
+            <visible>$PARAM[small] + $PARAM[poster] + !$EXP[HasThumbImageResource]</visible>
         </control>
-        <control type="image">
-            <left>10</left>
-            <top>10</top>
-            <right>10</right>
-            <include content="def_bottom" condition="$PARAM[small]">
-                <param name="bottom" value="101" />
-            </include>
-            <bottom>10</bottom>
-            <aspectratio scalediffuse="false">keep</aspectratio>
-            <texture diffuse="diffuse/widgetsquare_new.png" background="true" fallback="$VAR[ThumbImageFallback]">$VAR[ThumbImageOverride]</texture>
-            <visible>$EXP[HasThumbImageOverride] + !$EXP[IsDefaultGenreImage]</visible>
-        </control>
-        <control type="image">
-            <left>10</left>
-            <top>10</top>
-            <right>10</right>
-            <include content="def_bottom" condition="$PARAM[small]">
-                <param name="bottom" value="101" />
-            </include>
-            <bottom>10</bottom>
-            <include content="def_genre_thumbnail" condition="!$PARAM[small]">
-                <param name="diffuse" value="diffuse/widgetsquare_new.png" />
-            </include>
-            <include content="def_genre_thumbnail" condition="$PARAM[small]">
-                <param name="diffuse" value="diffuse/widgetsquare_new.png" />
-                <param name="bordersize" value="54" />
-            </include>
-            <visible>$EXP[HasThumbImageOverride] + $EXP[IsDefaultGenreImage]</visible>
-        </control>
+        <include content="def_widget_image" condition="!$PARAM[small]">
+            <param name="diffuse" value="diffuse/widgetsquare_new.png" />
+            <param name="visible" value="$EXP[HasThumbImageResource]" />
+        </include>        
+        <include content="def_widget_image" condition="$PARAM[small]">
+            <param name="bottom" value="101" />
+            <param name="genre_bordersize" value="54" />
+            <param name="diffuse" value="diffuse/widgetsquare_new.png" />
+            <param name="visible" value="$EXP[HasThumbImageResource]" />
+        </include>        
         <control type="image">
             <width>200</width>
             <right>30</right>
@@ -4177,7 +4161,7 @@
             <aspectratio align="right" aligny="bottom">keep</aspectratio>
             <texture background="true">$VAR[ClearLogoHome]</texture>
             <visible>$PARAM[clearlogo]</visible>
-            <visible>!$EXP[HasThumbImageOverride]</visible>
+            <visible>!$EXP[HasThumbImageResource]</visible>
         </control>
         <control type="label">
             <bottom>40</bottom>

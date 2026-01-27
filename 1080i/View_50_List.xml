@@ -182,36 +182,18 @@
             <left>SidePad</left>
             <top>PosterPad</top>
             <animation effect="fade" end="5" start="100" time="250" condition="[Window.IsVisible(script-wikipedia.xml) + !Skin.HasSetting(hidebutton.music.wiki)]">Conditional</animation>
-            <control type="image">
-                <top>PosterH</top>
-                <width>PosterH</width>
-                <height>PosterH</height>
-                <fadetime>PosterFanartFadetime</fadetime>
-                <aspectratio align="center" aligny="center" scalediffuse="false">keep</aspectratio>
-                <texture flipy="true" diffuse="diffuse/listposter-ref-widgets.png" background="true">$VAR[PosterImageSquare]</texture>
-                <visible>Skin.HasSetting(show.reflections) + !$EXP[HasThumbImageOverride]</visible>
-            </control>
-            <control type="image">
-                <top>PosterH</top>
-                <width>PosterH</width>
-                <height>PosterH</height>
-                <fadetime>PosterFanartFadetime</fadetime>
-                <aspectratio align="center" aligny="center" scalediffuse="false">keep</aspectratio>
-                <texture flipy="true" diffuse="diffuse/listposter-ref-widgets.png" background="true" fallback="$VAR[ThumbImageFallback]">$VAR[ThumbImageOverride]</texture>
-                <visible>Skin.HasSetting(show.reflections) + $EXP[HasThumbImageOverride] + !$EXP[IsDefaultGenreImage]</visible>
-            </control>
-            <control type="image">
-                <top>PosterH</top>
-                <width>PosterH</width>
-                <height>PosterH</height>
-                <fadetime>PosterFanartFadetime</fadetime>
-                <include content="def_genre_thumbnail">
-                    <param name="diffuse" value="diffuse/listposter-ref-widgets.png" />
-                    <param name="flipy" value="true" />
-                    <param name="bordersize" value="160" />
-                </include>
-                <visible>Skin.HasSetting(show.reflections) + $EXP[HasThumbImageOverride] + $EXP[IsDefaultGenreImage]</visible>
-            </control>
+            <include content="def_widget_image" condition="Skin.HasSetting(show.reflections)">
+                <param name="image" value="$VAR[PosterImageSquare]" />
+                <param name="aspectratio" value="keep" />
+                <param name="top" value="PosterH" /> 
+                <param name="left" value="0" /> 
+                <param name="is_square" value="true" /> 
+                <param name="width" value="PosterH" /> 
+                <param name="fadetime" value="PosterFanartFadetime" />
+                <param name="diffuse" value="diffuse/listposter-ref-widgets.png" />
+                <param name="flipy" value="true" />
+                <param name="genre_bordersize" value="160" />
+            </include>
             <control type="image">
                 <centertop>PosterH</centertop>
                 <width>PosterH</width>
@@ -231,32 +213,17 @@
                 <height>PosterH</height>
                 <texture border="5" colordiffuse="Fallback">common/box.png</texture>
             </control>
-            <control type="image">
-                <width>PosterH</width>
-                <height>PosterH</height>
-                <fadetime>PosterFanartFadetime</fadetime>
-                <aspectratio align="center" aligny="center" scalediffuse="false">keep</aspectratio>
-                <texture diffuse="diffuse/listposter.png" background="true">$VAR[PosterImageSquare]</texture>
-                <visible>!$EXP[HasThumbImageOverride]</visible>
-            </control>
-            <control type="image">
-                <width>PosterH</width>
-                <height>PosterH</height>
-                <fadetime>PosterFanartFadetime</fadetime>
-                <aspectratio align="center" aligny="center" scalediffuse="false">keep</aspectratio>
-                <texture diffuse="diffuse/listposter.png" background="true" fallback="$VAR[ThumbImageFallback]">$VAR[ThumbImageOverride]</texture>
-                <visible>$EXP[HasThumbImageOverride] + !$EXP[IsDefaultGenreImage]</visible>
-            </control>
-            <control type="image">
-                <width>PosterH</width>
-                <height>PosterH</height>
-                <fadetime>PosterFanartFadetime</fadetime>
-                <include content="def_genre_thumbnail">
-                    <param name="diffuse" value="diffuse/listposter.png" />
-                    <param name="bordersize" value="160" />
-                </include>
-                <visible>$EXP[HasThumbImageOverride] + $EXP[IsDefaultGenreImage]</visible>
-            </control>
+            <include content="def_widget_image">
+                <param name="image" value="$VAR[PosterImageSquare]" />
+                <param name="aspectratio" value="keep" />
+                <param name="top" value="0" /> 
+                <param name="left" value="0" /> 
+                <param name="width" value="PosterH" /> 
+                <param name="is_square" value="true" /> 
+                <param name="fadetime" value="PosterFanartFadetime" />
+                <param name="diffuse" value="diffuse/listposter-widgets.png" />
+                <param name="genre_bordersize" value="160" />
+            </include>
             <control type="image">
                 <width>PosterH</width>
                 <height>PosterH</height>
