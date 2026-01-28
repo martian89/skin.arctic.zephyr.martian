@@ -112,9 +112,30 @@
         [ Window.IsVisible(MyVideoNav.xml) | Window.IsVisible(home)] + String.IsEqual(ListItem.DBType,country) + [!String.IsEmpty(Skin.String(moviecountry.icons.path)) | System.AddonIsEnabled(resource.images.moviecountryicons.maps)]
         | [Window.IsVisible(MyVideoNav.xml) | Window.IsVisible(home)] + String.IsEqual(ListItem.DBType,genre) + [!String.IsEmpty(Skin.String(genre.icons.path)) | System.AddonIsEnabled(resource.images.moviegenreicons.transparent)]
         | [Window.IsVisible(MyVideoNav.xml) | Window.IsVisible(home)] + String.IsEqual(ListItem.DBType,studio) + [!String.IsEmpty(Skin.String(studio.logos.path)) | System.AddonIsEnabled(resource.images.studios.white)]
-        | Window.IsVisible(MyMusicNav.xml) + String.IsEqual(ListItem.DBType,studio) + [!String.IsEmpty(Skin.String(recordlabel.logos.path)) | System.AddonIsEnabled(resource.images.recordlabels.white)]
     </expression>
 
+    <expression name="IsDefaultStudioIcon">
+        String.IsEqual(ListItem.DBType,studio) + [String.IsEmpty(Skin.String(studio.logos.path)) | String.IsEqual(Skin.String(studio.logos.path),resource://resource.images.studios.white/)]    
+    </expression>
+    
+    <expression name="IsDefaultGenreIcon">
+        !Window.IsVisible(MyMusicNav.xml) + String.IsEqual(ListItem.DBType,genre) + [String.IsEmpty(Skin.String(genre.icons.path)) | String.IsEqual(Skin.String(genre.icons.path),resource://resource.images.moviegenreicons.transparent/)]
+    </expression>
+    
+    <expression name="IsDefaultCountryIcon">
+        String.IsEqual(ListItem.DBType,country) + [String.IsEmpty(Skin.String(moviecountry.icons.path)) | String.IsEqual(Skin.String(moviecountry.icons.path),resource://resource.images.moviecountryicons.maps/)]
+    </expression>
+    
+    <expression name="IsDefaultIcon">
+        [String.IsEmpty(ListItem.Art(animatedposter)) | !Skin.HasSetting(furniture.animatedposters)]
+        + [String.IsEmpty(ListItem.Art(season.poster)) | Window.IsVisible(Home)]
+        + String.IsEmpty(ListItem.Art(poster)
+        + String.IsEmpty(ListItem.Art(tvshow.poster)
+        + [String.IsEmpty(ListItem.EpgEventIcon) | !String.StartsWith(ListItem.FolderPath,pvr://timers)]
+        + [!$EXP[HasThumbImageResource] + String.StartsWith(ListItem.Icon,Default)
+        | $EXP[HasThumbImageResource] + [$EXP[IsDefaultStudioIcon] | $EXP[IsDefaultGenreIcon] | $EXP[IsDefaultCountryIcon]]]
+    </expression>
+    
     <expression name="HideViewContent">
         $EXP[InfoDialogsActive] | Control.HasFocus(9601) | !String.IsEmpty(Window(Home).Property(TMDbHelper.HideView))
     </expression>

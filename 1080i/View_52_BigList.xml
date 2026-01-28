@@ -111,7 +111,9 @@
     </include>
 
     <include name="View_52_BigList_ItemLayout">
-    	<include>View_52_Thumbnail_Image</include>
+    	<include content="View_52_Thumbnail_Image">
+    	   <param name="icon_color" value="Dark1"/>
+    	</include>
         <control type="label">
             <left>130</left>
             <top>10</top>
@@ -172,7 +174,9 @@
             <height>119</height>
             <texture border="5" colordiffuse="Dark1">common/box.png</texture>
         </control>
-    	<include>View_52_Thumbnail_Image</include>
+        <include content="View_52_Thumbnail_Image">
+           <param name="icon_color" value="Light1"/>
+        </include>
         <control type="label">
             <left>130</left>
             <top>10</top>
@@ -226,20 +230,36 @@
     </include>
     
     <include name="View_52_Thumbnail_Image">
-        <include content="def_widget_image" condition="!Skin.HasSetting(global.hidecirles)">
-            <param name="image" value="$VAR[PosterImage]" />
+        <include content="def_widget_image">
             <param name="is_square" value="true" /> 
             <param name="width" value="100" /> 
             <param name="aspectratio" value="scale" /> 
             <param name="diffuse" value="common/circle.png" />
-            <param name="genre_bordersize" value="26" />
+            <param name="genre_bordersize" value="24" />
+            <param name="visible">!Skin.HasSetting(global.hidecirles) + !String.IsEqual(ListItem.DBType(),studio) + !$EXP[IsDefaultIcon]</param>
         </include>        
-        <include content="def_widget_image" condition="Skin.HasSetting(global.hidecirles)">
-            <param name="image" value="$VAR[PosterImage]" />
+        <include content="def_widget_image">
             <param name="is_square" value="true" /> 
             <param name="width" value="100" /> 
             <param name="aspectratio" value="keep" /> 
-            <param name="genre_bordersize" value="26" />
+            <param name="genre_bordersize" value="24" />
+            <param name="colordiffuse" value="$PARAM[icon_color]" />
+            <param name="visible">!Skin.HasSetting(global.hidecirles) + $EXP[IsDefaultIcon]</param>
+        </include>        
+        <include content="def_widget_image">
+            <param name="is_square" value="true" /> 
+            <param name="width" value="100" /> 
+            <param name="aspectratio" value="keep" /> 
+            <param name="genre_bordersize" value="24" />
+            <param name="colordiffuse" value="$PARAM[icon_color]" />
+            <param name="visible">Skin.HasSetting(global.hidecirles) + $EXP[IsDefaultIcon]</param>
+        </include>
+        <include content="def_widget_image">
+            <param name="is_square" value="true" /> 
+            <param name="width" value="100" /> 
+            <param name="aspectratio" value="keep" /> 
+            <param name="genre_bordersize" value="24" />
+            <param name="visible">[Skin.HasSetting(global.hidecirles) | String.IsEqual(ListItem.DBType(),studio)] + !$EXP[IsDefaultIcon]</param>
         </include>
     </include>
 
