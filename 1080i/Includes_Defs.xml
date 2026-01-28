@@ -3636,10 +3636,9 @@
                        <param name="height" value="$PARAM[width]" />
                     </include>
                     <fadetime>$PARAM[fadetime]</fadetime>
-                    <animation effect="fade" end="90" start="100" time="0" condition="$EXP[IsDefaultCountryIcon]">Conditional</animation>                
                     <aspectratio scalediffuse="false">$PARAM[aspectratio]</aspectratio>
                     <texture flipy="$PARAM[flipy]" colordiffuse="$PARAM[colordiffuse]" diffuse="$PARAM[diffuse]" background="true" fallback="DefaultFolder.png">$VAR[ThumbImageResource]</texture>
-                    <visible>!$EXP[IsDefaultGenreIcon] + !String.IsEqual(ListItem.DBType(),studio)</visible>
+                    <visible>!$EXP[IsDefaultIcon] + !String.IsEqual(ListItem.DBType(),studio)</visible>
                 </control>
 	            <control type="image">
 	                <left>$PARAM[left]</left>
@@ -3653,9 +3652,10 @@
 	                   <param name="height" value="$PARAM[width]" />
 	                </include>
 	                <fadetime>$PARAM[fadetime]</fadetime>
+                    <animation effect="fade" end="90" start="100" time="0" condition="$EXP[IsDefaultCountryIcon]">Conditional</animation>                
 	                <aspectratio scalediffuse="false">keep</aspectratio>
 	                <texture flipy="$PARAM[flipy]" colordiffuse="$PARAM[colordiffuse]" diffuse="$PARAM[diffuse]" background="true" fallback="DefaultFolder.png">$VAR[ThumbImageResource]</texture>
-	                <visible>String.IsEqual(ListItem.DBType(),studio)</visible>
+	                <visible>$EXP[IsDefaultIcon] + !$EXP[IsDefaultGenreIcon] | String.IsEqual(ListItem.DBType(),studio)</visible>
 	            </control>
 	            <control type="image">
 	                <left>$PARAM[left]</left>
