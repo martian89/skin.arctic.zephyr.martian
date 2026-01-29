@@ -108,14 +108,34 @@
 	<expression name="IsVideoInfo">Window.IsVisible(DialogVideoInfo.xml) + ![String.IsEqual(ListItem.Property(item.type),person) | String.IsEqual(ListItem.Property(dbtype),person) | String.IsEqual(ListItem.Property(Param.Info),person)]</expression>
 	<expression name="IsPersonInfo">Window.IsVisible(DialogVideoInfo.xml) + [String.IsEqual(ListItem.Property(item.type),person) | String.IsEqual(ListItem.Property(dbtype),person) | String.IsEqual(ListItem.Property(Param.Info),person)]</expression>
 
-    <expression name="HasThumbImageOverride">
-        [ Window.IsVisible(MyVideoNav.xml) + String.IsEqual(ListItem.DBType,country) | Window.IsVisible(home) + Container.Content(countries)] + !String.IsEmpty(Skin.String(moviecountry.icons.path))
-        | [Window.IsVisible(MyVideoNav.xml) + String.IsEqual(ListItem.DBType,genre) | Window.IsVisible(home) + Container.Content(genres)] + !String.IsEmpty(Skin.String(genre.icons.path))
-        | [Window.IsVisible(MyMusicNav.xml) + String.IsEqual(ListItem.DBType,genre)] + !String.IsEmpty(Skin.String(genre.music.path))
-        | [Window.IsVisible(MyVideoNav.xml) + String.IsEqual(ListItem.DBType,studio) | Window.IsVisible(home) + Container.Content(studios)] + !String.IsEmpty(Skin.String(studio.logos.path))
-        | [Window.IsVisible(MyMusicNav.xml) + String.IsEqual(ListItem.DBType,studio)] + !String.IsEmpty(Skin.String(recordlabel.logos.path))
+    <expression name="HasThumbImageResource">
+        [ Window.IsVisible(MyVideoNav.xml) | Window.IsVisible(home)] + String.IsEqual(ListItem.DBType,country) + [!String.IsEmpty(Skin.String(moviecountry.icons.path)) | System.AddonIsEnabled(resource.images.moviecountryicons.maps)]
+        | [Window.IsVisible(MyVideoNav.xml) | Window.IsVisible(home)] + String.IsEqual(ListItem.DBType,genre) + [!String.IsEmpty(Skin.String(genre.icons.path)) | System.AddonIsEnabled(resource.images.moviegenreicons.transparent)]
+        | [Window.IsVisible(MyVideoNav.xml) | Window.IsVisible(home)] + String.IsEqual(ListItem.DBType,studio) + [!String.IsEmpty(Skin.String(studio.logos.path)) | System.AddonIsEnabled(resource.images.studios.white)]
     </expression>
 
+    <expression name="IsDefaultStudioIcon">
+        String.IsEqual(ListItem.DBType,studio) + [String.IsEmpty(Skin.String(studio.logos.path)) | String.IsEqual(Skin.String(studio.logos.path),resource://resource.images.studios.white/)]    
+    </expression>
+    
+    <expression name="IsDefaultGenreIcon">
+        !Window.IsVisible(MyMusicNav.xml) + String.IsEqual(ListItem.DBType,genre) + [String.IsEmpty(Skin.String(genre.icons.path)) | String.IsEqual(Skin.String(genre.icons.path),resource://resource.images.moviegenreicons.transparent/)]
+    </expression>
+    
+    <expression name="IsDefaultCountryIcon">
+        String.IsEqual(ListItem.DBType,country) + [String.IsEmpty(Skin.String(moviecountry.icons.path)) | String.IsEqual(Skin.String(moviecountry.icons.path),resource://resource.images.moviecountryicons.maps/)]
+    </expression>
+    
+    <expression name="IsDefaultIcon">
+        [String.IsEmpty(ListItem.Art(animatedposter)) | !Skin.HasSetting(furniture.animatedposters)]
+        + [String.IsEmpty(ListItem.Art(season.poster)) | Window.IsVisible(Home)]
+        + String.IsEmpty(ListItem.Art(poster))
+        + String.IsEmpty(ListItem.Art(tvshow.poster))
+        + [String.IsEmpty(ListItem.EpgEventIcon) | !String.StartsWith(ListItem.FolderPath,pvr://timers)]
+        + [!$EXP[HasThumbImageResource] + String.StartsWith(ListItem.Icon,Default)
+        | $EXP[HasThumbImageResource] + [$EXP[IsDefaultStudioIcon] | $EXP[IsDefaultGenreIcon] | $EXP[IsDefaultCountryIcon]]]
+    </expression>
+    
     <expression name="HideViewContent">
         $EXP[InfoDialogsActive] | Control.HasFocus(9601) | !String.IsEmpty(Window(Home).Property(TMDbHelper.HideView))
     </expression>
@@ -790,9 +810,9 @@
         <value condition="Skin.HasSetting(extended.nowplaying) + !ControlGroup(301).HasFocus() + Player.HasMedia">$VAR[GlobalFanart_NowPlaying]</value>
 
 		<!-- Multi Widget Weather -->
-        <value condition="!String.IsEmpty(ListItem.Property(FanartCode)) + $EXP[HasWeatherFanartSingle]">$VAR[WeatherFanartPath]$INFO[ListItem.Property(FanartCode),,.jpg]</value>
         <value condition="!String.IsEmpty(ListItem.Property(FanartCode)) + $EXP[HasWeatherFanartMulti]">$VAR[WeatherFanartPath]$INFO[ListItem.Property(FanartCode)]/</value>
-	
+        <value condition="!String.IsEmpty(ListItem.Property(FanartCode)) + $EXP[HasWeatherFanartSingle]">$VAR[WeatherFanartPath]$INFO[ListItem.Property(FanartCode),,.jpg]</value>
+ 	
 		<!-- Multi Widget -->
         <value condition="!String.IsEmpty(ListItem.Art(fanart)) + [!Skin.HasSetting(disable.background.addons.fanart) | [Skin.HasSetting(disable.background.addons.fanart) + !String.Contains(ListItem.Art(fanart),addons) + ![String.Contains(ListItem.Art(fanart),plugin) | String.Contains(ListItem.Art(fanart),script) | String.Contains(ListItem.Art(fanart),service)]]]">$INFO[ListItem.Art(fanart)]</value>
         <value condition="!String.IsEmpty(ListItem.Property(fanart))">$INFO[ListItem.Property(fanart)]</value>
