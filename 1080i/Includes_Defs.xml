@@ -3618,7 +3618,7 @@
                 <fadetime>$PARAM[fadetime]</fadetime>
 	            <aspectratio scalediffuse="false">$PARAM[aspectratio]</aspectratio>
 	            <texture flipy="$PARAM[flipy]" colordiffuse="$PARAM[colordiffuse]" diffuse="$PARAM[diffuse]" background="true" fallback="DefaultMovies.png">$PARAM[image]</texture>
-	            <include condition="$PARAM[border]">border_texture</include>
+	            <include condition="$PARAM[border]">def_widget_image_border_texture</include>
 	            <visible>!$EXP[HasThumbImageResource]</visible>
                 <visible>$PARAM[visible]</visible>
             </control>
@@ -3637,27 +3637,11 @@
                        <param name="height" value="$PARAM[width]" />
                     </include>
                     <fadetime>$PARAM[fadetime]</fadetime>
+                    <animation effect="fade" end="90" start="100" time="0" condition="$EXP[IsDefaultCountryIcon]">Conditional</animation>                
                     <aspectratio scalediffuse="false">$PARAM[icon_aspectratio]</aspectratio>
                     <texture flipy="$PARAM[flipy]" colordiffuse="$PARAM[colordiffuse]" diffuse="$PARAM[diffuse]" background="true" fallback="DefaultFolder.png">$VAR[ThumbImageResource]</texture>
-                    <visible>!$EXP[IsDefaultIcon] + !String.IsEqual(ListItem.DBType(),studio)</visible>
+                    <visible>!$EXP[IsDefaultGenreIcon]</visible>
                 </control>
-	            <control type="image">
-	                <left>$PARAM[left]</left>
-	                <top>$PARAM[top]</top>
-	                <right>$PARAM[right]</right>
-	                <bottom>$PARAM[bottom]</bottom>
-	                <include condition="$PARAM[is_square]" content="def_width">
-	                   <param name="width" value="$PARAM[width]" />
-	                </include>
-	                <include condition="$PARAM[is_square]" content="def_height">
-	                   <param name="height" value="$PARAM[width]" />
-	                </include>
-	                <fadetime>$PARAM[fadetime]</fadetime>
-                    <animation effect="fade" end="90" start="100" time="0" condition="$EXP[IsDefaultCountryIcon]">Conditional</animation>                
-	                <aspectratio scalediffuse="false">keep</aspectratio>
-	                <texture flipy="$PARAM[flipy]" colordiffuse="$PARAM[colordiffuse]" diffuse="$PARAM[diffuse]" background="true" fallback="DefaultFolder.png">$VAR[ThumbImageResource]</texture>
-	                <visible>$EXP[IsDefaultIcon] + !$EXP[IsDefaultGenreIcon] | String.IsEqual(ListItem.DBType(),studio)</visible>
-	            </control>
 	            <control type="image">
 	                <left>$PARAM[left]</left>
 	                <top>$PARAM[top]</top>
@@ -3677,23 +3661,32 @@
 	                <visible>$EXP[IsDefaultGenreIcon]</visible>
 	                <visible>!$PARAM[flipy]</visible>
 	            </control>
-		        <control type="image">
-	                <left>$PARAM[left]</left>
-	                <top>$PARAM[top]</top>
-	                <right>$PARAM[right]</right>
-	                <bottom>$PARAM[bottom]</bottom>
-	                <include condition="$PARAM[is_square]" content="def_width">
-	                   <param name="width" value="$PARAM[width]" />
-	                </include>
-	                <include condition="$PARAM[is_square]" content="def_height">
-	                   <param name="height" value="$PARAM[width]" />
-	                </include>
-		            <texture colordiffuse="BoxWidget" border="4" background="true" infill="false">common/box21.png</texture>
-	                <visible>$PARAM[border]</visible>
-		        </control>
+                <include content="def_widget_image_border" condition="$PARAM[border]">
+                    <param name="top" value="$PARAM[top]" />
+                    <param name="left" value="$PARAM[left]" />
+                    <param name="right" value="$PARAM[right]" />
+                    <param name="bottom" value="$PARAM[bottom]" />
+                </include>
 	        </control>
         </definition>
     </include>    
+
+    <include name="def_widget_image_border_texture">
+        <definition>
+        <bordersize>1</bordersize>
+        <bordertexture border="4" colordiffuse="BoxWidget" infill="false">common/box21.png</bordertexture>
+        </definition>
+    </include>
+        
+    <include name="def_widget_image_border">
+	    <control type="image">
+	        <left>$PARAM[left]</left>
+	        <top>$PARAM[top]</top>
+	        <right>$PARAM[right]</right>
+	        <bottom>$PARAM[bottom]</bottom>
+	        <texture colordiffuse="BoxWidget" border="4" background="true" infill="false">common/box21.png</texture>
+	    </control>    
+    </include>
     
     <!-- Includes Widget layouts -->
     <include name="def_widgetposter">
