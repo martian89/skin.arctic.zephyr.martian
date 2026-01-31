@@ -20,10 +20,11 @@
     <timer>
         <name>osdinfotimer</name>
         <description>Show OSD info on start of video</description>
-        <start reset="true">Window.IsActive(fullscreenvideo) + !String.IsEmpty(Window(home).Property(osdinfo)) + Skin.HasSetting(osd.info.fullscreen)</start>
+        <start reset="true">Window.IsActive(fullscreenvideo) + Skin.HasSetting(osd.info.fullscreen) + [!String.IsEmpty(Window(home).Property(osdinfo)) | String.IsEmpty(Window(home).Property(osdinfo)) + String.IsEqual(Player.Time(hh:mm:ss),00:00:01)]</start>
         <reset>Window.IsActive(fullscreenvideo) + !String.IsEmpty(Window(home).Property(osdinfo)) + !System.IdleTime(1) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(osdinfotimer), 1)</reset>
-        <stop>!Window.IsActive(fullscreenvideo) | [[Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(osdinfotimer),Skin.String(OSD_Info)) + !Window.IsVisible(VideoOSD.xml) + !Player.Paused] + Integer.IsGreater(Player.Time(ss),3)]</stop>
-        <onstop condition="Window.IsVisible(seekbar)">Dialog.Close(seekbar)</onstop>
+        <stop>!Window.IsActive(fullscreenvideo) | [[Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(osdinfotimer),Skin.String(OSD_Info)) + !Window.IsActive(VideoOSD.xml) + !Player.Paused] + Integer.IsGreater(Player.Time(ss),3)]</stop>
+        <onstart condition="String.IsEmpty(Window(home).Property(osdinfo))">SetProperty(osdinfo,1,home)</onstart>
+        <onstop condition="Window.IsVisible(seekbar)">Dialog.Close(seekbar)</onstop>        
         <onstop>ClearProperty(osdinfo,home)</onstop>   
     </timer>
 
@@ -32,7 +33,7 @@
         <description>Close OSD after delay</description>
         <start reset="true">[Window.IsVisible(videoosd) | Window.IsVisible(musicosd)] + Skin.String(OSD_Timeout)</start>
         <reset>[Window.IsVisible(videoosd) | Window.IsVisible(musicosd)] + Skin.String(OSD_Timeout) + !System.IdleTime(1) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(autocloseosdtimer), 1)</reset>
-        <stop>![Window.IsVisible(videoosd) | Window.IsVisible(musicosd)] | [Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(autocloseosdtimer),Skin.String(OSD_Timeout)) + String.IsEmpty(Window(home).Property(dontautoclose)) + !Window.IsVisible(teletext) + !Window.IsVisible(DialogSelect.xml) + !Window.IsVisible(DialogSettings.xml) + !Window.IsVisible(DialogSubtitles.xml) + !Window.IsVisible(DialogSlider.xml) + !Window.IsVisible(VideoOSDBookmarks.xml) + !Window.IsVisible(1101) + !Window.IsVisible(DialogPlayerProcessInfo.xml) + !Window.IsVisible(DialogPVRChannelsOSD.xml) + !Window.IsVisible(pvrchannelguide)]</stop>
+        <stop>![Window.IsVisible(videoosd) | Window.IsVisible(musicosd)] | [Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(autocloseosdtimer),Skin.String(OSD_Timeout)) + ![Player.Forwarding | Player.Rewinding | Player.Seeking | Player.DisplayAfterSeek] + String.IsEmpty(Window(home).Property(dontautoclose)) + !Window.IsVisible(teletext) + !Window.IsVisible(DialogSelect.xml) + !Window.IsVisible(DialogSettings.xml) + !Window.IsVisible(DialogSubtitles.xml) + !Window.IsVisible(DialogSlider.xml) + !Window.IsVisible(VideoOSDBookmarks.xml) + !Window.IsVisible(1101) + !Window.IsVisible(DialogPlayerProcessInfo.xml) + !Window.IsVisible(DialogPVRChannelsOSD.xml) + !Window.IsVisible(pvrchannelguide)]</stop>
         <onstop condition="Window.IsVisible(videoosd)">Dialog.Close(videoosd)</onstop>
         <onstop condition="Window.IsVisible(musicosd)">Dialog.Close(musicosd)</onstop>
     </timer>
