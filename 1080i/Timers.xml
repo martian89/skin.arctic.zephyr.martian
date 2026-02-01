@@ -22,7 +22,7 @@
         <description>Show OSD info on start of video</description>
         <start reset="true">Window.IsActive(fullscreenvideo) + Skin.HasSetting(osd.info.fullscreen) + [!String.IsEmpty(Window(home).Property(osdinfo)) | String.IsEmpty(Window(home).Property(osdinfo)) + String.IsEqual(Player.Time(hh:mm:ss),00:00:01)]</start>
         <reset>Window.IsActive(fullscreenvideo) + !String.IsEmpty(Window(home).Property(osdinfo)) + !System.IdleTime(1) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(osdinfotimer), 1)</reset>
-        <stop>!Window.IsActive(fullscreenvideo) | [[Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(osdinfotimer),Skin.String(OSD_Info)) + !Window.IsActive(VideoOSD.xml) + ![Player.Paused | Player.HasPerformedSeek(3)]] + Integer.IsGreater(Player.Time(ss),3)]</stop>
+        <stop>!Window.IsActive(fullscreenvideo) | [[Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(osdinfotimer),Skin.String(OSD_Info)) + !Window.IsActive(VideoOSD.xml) + !Window.IsActive(fullscreeninfo) + ![Player.Paused | Player.HasPerformedSeek(3)]] + Integer.IsGreater(Player.Time(ss),3)]</stop>
         <onstart condition="String.IsEmpty(Window(home).Property(osdinfo))">SetProperty(osdinfo,1,home)</onstart>
         <onstop condition="Window.IsVisible(seekbar)">Dialog.Close(seekbar)</onstop>        
         <onstop>ClearProperty(osdinfo,home)</onstop>   
