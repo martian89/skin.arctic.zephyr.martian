@@ -216,7 +216,7 @@
                     <bottom>30</bottom>
                     <height>40</height>
 	                <control type="label">
-                        <visible>Player.Playing + [Player.ShowInfo | Skin.HasSetting(musicosd.alwaysshowinfo) | Skin.HasSetting(musicosd.alwaysshowinfo) | Window.IsVisible(script-cu-lrclyrics-main.xml) | !String.IsEmpty(Window(home).Property(osdshowinfo))]</visible>	                         
+                        <visible>Player.Playing + !Player.Seeking + !Player.Caching + [Player.ShowInfo | Skin.HasSetting(musicosd.alwaysshowinfo) | Skin.HasSetting(musicosd.alwaysshowinfo) | Window.IsVisible(script-cu-lrclyrics-main.xml) | !String.IsEmpty(Window(home).Property(osdshowinfo))]</visible>	                         
                         <width>100%</width>
                         <height>100%</height>
 	                    <font>Tiny</font>
@@ -224,7 +224,7 @@
 	                    <label>$VAR[PlayerTrackInfo]</label>
 	                </control>
                     <control type="label">
-                        <visible>!Player.Playing + !Player.Paused | ![Player.ShowInfo | Skin.HasSetting(musicosd.alwaysshowinfo) | Skin.HasSetting(musicosd.alwaysshowinfo) | Window.IsVisible(script-cu-lrclyrics-main.xml) | !String.IsEmpty(Window(home).Property(osdshowinfo))]</visible>                            
+                        <visible>!Player.Playing + !Player.Paused | Player.Seeking | Player.Caching | ![Player.ShowInfo | Skin.HasSetting(musicosd.alwaysshowinfo) | Skin.HasSetting(musicosd.alwaysshowinfo) | Window.IsVisible(script-cu-lrclyrics-main.xml) | !String.IsEmpty(Window(home).Property(osdshowinfo))]</visible>                            
                         <width>100%</width>
                         <height>100%</height>
                         <font>Tiny</font>
@@ -232,7 +232,7 @@
                         <label>$VAR[PlayerStatus]</label>
                     </control>
                     <control type="fadelabel">
-                        <visible>!Player.Playing + Player.Paused + [Player.ShowInfo | Skin.HasSetting(musicosd.alwaysshowinfo) | Window.IsVisible(script-cu-lrclyrics-main.xml) | !String.IsEmpty(Window(home).Property(osdshowinfo))]</visible>                            
+                        <visible>Player.Paused + [Player.ShowInfo | Skin.HasSetting(musicosd.alwaysshowinfo) | Window.IsVisible(script-cu-lrclyrics-main.xml) | !String.IsEmpty(Window(home).Property(osdshowinfo))]</visible>                            
                         <width>100%</width>
                         <height>100%</height>
                         <font>Tiny</font>
@@ -394,7 +394,7 @@
 			                <align>left</align>
 			                <bottom>7</bottom>
                             <control type="label">
-                                <visible>Player.Playing + [Player.ShowInfo | Skin.HasSetting(musicosd.alwaysshowinfo) | Skin.HasSetting(musicosd.alwaysshowinfo) | Window.IsVisible(script-cu-lrclyrics-main.xml) | !String.IsEmpty(Window(home).Property(osdshowinfo))]</visible>
+                                <visible>Player.Playing + !Player.Seeking + !Player.Caching + [Player.ShowInfo | Skin.HasSetting(musicosd.alwaysshowinfo) | Skin.HasSetting(musicosd.alwaysshowinfo) | Window.IsVisible(script-cu-lrclyrics-main.xml) | !String.IsEmpty(Window(home).Property(osdshowinfo))]</visible>
                                 <width>auto</width>
                                 <align>left</align>
                                 <height>40</height>
@@ -403,7 +403,7 @@
                                 <label>$VAR[PlayerTrackInfo]</label>
                             </control>
 			                <control type="label">
-                                <visible>!Player.Playing + !Player.Paused | ![Player.ShowInfo | Skin.HasSetting(musicosd.alwaysshowinfo) | Skin.HasSetting(musicosd.alwaysshowinfo) | Window.IsVisible(script-cu-lrclyrics-main.xml) | !String.IsEmpty(Window(home).Property(osdshowinfo))]</visible>
+                                <visible>!Player.Playing + !Player.Paused | Player.Seeking | Player.Caching | ![Player.ShowInfo | Skin.HasSetting(musicosd.alwaysshowinfo) | Skin.HasSetting(musicosd.alwaysshowinfo) | Window.IsVisible(script-cu-lrclyrics-main.xml) | !String.IsEmpty(Window(home).Property(osdshowinfo))]</visible>
 			                    <width>auto</width>
 			                    <align>left</align>
                                 <height>40</height>
@@ -412,7 +412,7 @@
 			                    <label>$VAR[PlayerStatus]</label>
 			                </control>
                             <control type="fadelabel">
-                                <visible>!Player.Playing + Player.Paused + [Player.ShowInfo | Skin.HasSetting(musicosd.alwaysshowinfo) | Window.IsVisible(script-cu-lrclyrics-main.xml) | !String.IsEmpty(Window(home).Property(osdshowinfo))]</visible>
+                                <visible>Player.Paused + [Player.ShowInfo | Skin.HasSetting(musicosd.alwaysshowinfo) | Window.IsVisible(script-cu-lrclyrics-main.xml) | !String.IsEmpty(Window(home).Property(osdshowinfo))]</visible>
                                 <width>auto</width>
                                 <align>left</align>
                                 <height>40</height>
