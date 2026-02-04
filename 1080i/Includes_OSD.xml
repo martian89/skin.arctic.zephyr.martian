@@ -1111,9 +1111,6 @@
                 <visible>VideoPlayer.Content(LiveTV)</visible>
             </control>
         </control>
-        <control type="group">
-            <left>0</left>
-        </control>
     </include>
 
     <include name="DefOSDButtons">
@@ -3092,8 +3089,11 @@
 	            <control type="group">
 	                <animation effect="fade" start="0" end="100" delay="200" time="200">Visible</animation>
 	                <animation effect="fade" start="100" end="0" delay="0" time="200">Hidden</animation>
-                    <animation effect="zoom" end="380,0,1460,90" time="50" delay="100" tween="sine" easing="inout" reversible="false" condition="[Window.IsVisible(fullscreeninfo) | !String.IsEmpty(Window(home).Property(osdinfo)) | Player.ShowInfo | !String.IsEmpty(Window(home).Property(osdshowinfo)) | $EXP[ShowInfoOnPause]] + ![String.IsEmpty(Player.Art(tvshow.poster)) + String.IsEmpty(Player.Art(poster)) + [!VideoPlayer.Content(LiveTV) | String.IsEmpty(Player.Art(thumb))]]">Conditional</animation>
-                    <animation effect="zoom" start="380,0,1460,90" time="50" delay="100" tween="sine" easing="inout"  reversible="false" condition="![[Window.IsVisible(fullscreeninfo) | !String.IsEmpty(Window(home).Property(osdinfo)) | Player.ShowInfo | !String.IsEmpty(Window(home).Property(osdshowinfo)) | $EXP[ShowInfoOnPause]] + ![String.IsEmpty(Player.Art(tvshow.poster)) + String.IsEmpty(Player.Art(poster)) + [!VideoPlayer.Content(LiveTV) | String.IsEmpty(Player.Art(thumb))]]]">Conditional</animation>
+                    <animation effect="slide" start="0,0" end="0,-39" time="100" reversible="false" condition="VideoPlayer.Content(LiveTV) + Skin.HasSetting(pvr.showtechnicalinfo) + [Window.IsVisible(fullscreeninfo) | !String.IsEmpty(Window(home).Property(osdinfo)) | Player.ShowInfo | !String.IsEmpty(Window(home).Property(osdshowinfo)) | $EXP[ShowInfoOnPause]] + ![String.IsEmpty(Player.Art(tvshow.poster)) + String.IsEmpty(Player.Art(poster)) + [!VideoPlayer.Content(LiveTV) | String.IsEmpty(Player.Art(thumb))]]">Conditional</animation>
+                    <animation effect="slide" start="0,-39" end="0,0" time="100" reversible="false" condition="VideoPlayer.Content(LiveTV) + Skin.HasSetting(pvr.showtechnicalinfo) + ![[Window.IsVisible(fullscreeninfo) | !String.IsEmpty(Window(home).Property(osdinfo)) | Player.ShowInfo | !String.IsEmpty(Window(home).Property(osdshowinfo)) | $EXP[ShowInfoOnPause]] + ![String.IsEmpty(Player.Art(tvshow.poster)) + String.IsEmpty(Player.Art(poster)) + [!VideoPlayer.Content(LiveTV) | String.IsEmpty(Player.Art(thumb))]]]">Conditional</animation>
+                    <animation effect="zoom" end="380,0,1460,90" reversible="false" condition="VideoPlayer.Content(LiveTV) + Skin.HasSetting(pvr.showtechnicalinfo) + [Window.IsVisible(fullscreeninfo) | !String.IsEmpty(Window(home).Property(osdinfo)) | Player.ShowInfo | !String.IsEmpty(Window(home).Property(osdshowinfo)) | $EXP[ShowInfoOnPause]] + ![String.IsEmpty(Player.Art(tvshow.poster)) + String.IsEmpty(Player.Art(poster)) + [!VideoPlayer.Content(LiveTV) | String.IsEmpty(Player.Art(thumb))]]">Conditional</animation>
+                    <animation effect="zoom" end="380,0,1460,90" time="50" delay="100" reversible="false" condition="![VideoPlayer.Content(LiveTV) + Skin.HasSetting(pvr.showtechnicalinfo)] + [Window.IsVisible(fullscreeninfo) | !String.IsEmpty(Window(home).Property(osdinfo)) | Player.ShowInfo | !String.IsEmpty(Window(home).Property(osdshowinfo)) | $EXP[ShowInfoOnPause]] + ![String.IsEmpty(Player.Art(tvshow.poster)) + String.IsEmpty(Player.Art(poster)) + [!VideoPlayer.Content(LiveTV) | String.IsEmpty(Player.Art(thumb))]]">Conditional</animation>
+                    <animation effect="zoom" start="380,0,1460,90" time="5" delay="100" reversible="false" condition="![[Window.IsVisible(fullscreeninfo) | !String.IsEmpty(Window(home).Property(osdinfo)) | Player.ShowInfo | !String.IsEmpty(Window(home).Property(osdshowinfo)) | $EXP[ShowInfoOnPause]] + ![String.IsEmpty(Player.Art(tvshow.poster)) + String.IsEmpty(Player.Art(poster)) + [!VideoPlayer.Content(LiveTV) | String.IsEmpty(Player.Art(thumb))]]]">Conditional</animation>
 	                <left>SidePad</left>
 	                <right>SidePad</right>
                     <bottom>20</bottom>
@@ -3292,18 +3292,17 @@
             
             <!-- Seekbar -->
             <control type="group">
-                <animation effect="fade" start="0" end="100" delay="150" time="250">WindowOpen</animation>
-                <animation effect="fade" end="0" start="100" time="200">WindowClose</animation>
-                <top>110r</top>
+                <top>120r</top>
                 <bottom>0</bottom>
                 <width>100%</width>
-                <animation effect="slide" start="0,0" end="0,-10" time="0" condition="true">Conditional</animation>
                 <control type="group">
 	                <visible>!Window.IsVisible(fullscreeninfo)  + String.IsEmpty(Window(home).Property(osdinfo)) + !Player.ShowInfo + !$EXP[ShowInfoOnPause] + String.IsEmpty(Window(home).Property(osdshowinfo))</visible>
 	                <visible>Player.Seeking | Player.HasPerformedSeek(3) | Player.Paused | Player.Forwarding | Player.Rewinding | !String.IsEmpty(Player.SeekNumeric) | !String.IsEmpty(PVR.ChannelNumberInput) | Window.IsVisible(videoosd)</visible>
+	                <animation effect="fade" start="0" end="100" delay="150" time="250">WindowOpen</animation>
+	                <animation effect="fade" end="0" start="100" time="200">WindowClose</animation>
 	                <animation effect="fade" start="0" end="100" delay="150" time="250">Visible</animation>
                     <animation effect="fade" end="0" start="100" time="200">Hidden</animation>
-                    <left>130</left>
+                    <left>SidePadNewOSD</left>
                     <right>SidePadNewOSD</right>
                     <top>20</top>
                     <bottom>20</bottom>
@@ -3405,10 +3404,14 @@
                     </control>
                 </control>
                 <control type="group">
-                    <animation effect="fade" start="0" end="100" delay="150" time="250">Visible</animation>
-                    <animation effect="fade" end="0" start="100" time="200">Hidden</animation>
-                    <animation effect="zoom" end="448,20,1342,70" time="100" tween="sine" easing="inout" reversible="false" condition="!Skin.hasSetting(osd.disableposter) + [Window.IsVisible(fullscreeninfo) | !String.IsEmpty(Window(home).Property(osdinfo)) | Player.ShowInfo | !String.IsEmpty(Window(home).Property(osdshowinfo)) | $EXP[ShowInfoOnPause]] + ![String.IsEmpty(Player.Art(tvshow.poster)) + String.IsEmpty(Player.Art(poster)) + [!VideoPlayer.Content(LiveTV) | String.IsEmpty(Player.Art(thumb))]]">Conditional</animation>
-                    <animation effect="zoom" start="448,20,1342,70" time="200" delay="0" tween="sine" easing="inout" reversible="false" condition="![!Skin.hasSetting(osd.disableposter) + [Window.IsVisible(fullscreeninfo) | !String.IsEmpty(Window(home).Property(osdinfo)) | Player.ShowInfo | !String.IsEmpty(Window(home).Property(osdshowinfo)) | $EXP[ShowInfoOnPause]] + ![String.IsEmpty(Player.Art(tvshow.poster)) + String.IsEmpty(Player.Art(poster)) + [!VideoPlayer.Content(LiveTV) | String.IsEmpty(Player.Art(thumb))]]]">Conditional</animation>
+                    <animation effect="fade" start="0" end="100" time="250">WindowOpen</animation>
+                    <animation effect="fade" start="0" end="100" time="250">Visible</animation>
+                    <animation effect="fade" end="0" start="100" time="0">WindowClose</animation>
+                    <animation effect="fade" end="0" start="100" time="100">Hidden</animation>
+                    <animation effect="slide" end="0,-49" time="50" reversible="false" condition="VideoPlayer.Content(LiveTV) + Skin.HasSetting(pvr.showtechnicalinfo) + !Skin.hasSetting(osd.disableposter) + [Window.IsVisible(fullscreeninfo) | !String.IsEmpty(Window(home).Property(osdinfo)) | Player.ShowInfo | !String.IsEmpty(Window(home).Property(osdshowinfo)) | $EXP[ShowInfoOnPause]] + ![String.IsEmpty(Player.Art(tvshow.poster)) + String.IsEmpty(Player.Art(poster)) + [!VideoPlayer.Content(LiveTV) | String.IsEmpty(Player.Art(thumb))]]">Conditional</animation>
+                    <animation effect="slide" start="0,-49" time="50" reversible="false" condition="VideoPlayer.Content(LiveTV) + Skin.HasSetting(pvr.showtechnicalinfo) + ![!Skin.hasSetting(osd.disableposter) + [Window.IsVisible(fullscreeninfo) | !String.IsEmpty(Window(home).Property(osdinfo)) | Player.ShowInfo | !String.IsEmpty(Window(home).Property(osdshowinfo)) | $EXP[ShowInfoOnPause]] + ![String.IsEmpty(Player.Art(tvshow.poster)) + String.IsEmpty(Player.Art(poster)) + [!VideoPlayer.Content(LiveTV) | String.IsEmpty(Player.Art(thumb))]]]">Conditional</animation>
+                    <animation effect="zoom" end="448,0,1342,80" delay="100" reversible="false" condition="!Skin.hasSetting(osd.disableposter) + [Window.IsVisible(fullscreeninfo) | !String.IsEmpty(Window(home).Property(osdinfo)) | Player.ShowInfo | !String.IsEmpty(Window(home).Property(osdshowinfo)) | $EXP[ShowInfoOnPause]] + ![String.IsEmpty(Player.Art(tvshow.poster)) + String.IsEmpty(Player.Art(poster)) + [!VideoPlayer.Content(LiveTV) | String.IsEmpty(Player.Art(thumb))]]">Conditional</animation>
+                    <animation effect="zoom" start="448,0,1342,80" delay="100" reversible="false" condition="![!Skin.hasSetting(osd.disableposter) + [Window.IsVisible(fullscreeninfo) | !String.IsEmpty(Window(home).Property(osdinfo)) | Player.ShowInfo | !String.IsEmpty(Window(home).Property(osdshowinfo)) | $EXP[ShowInfoOnPause]] + ![String.IsEmpty(Player.Art(tvshow.poster)) + String.IsEmpty(Player.Art(poster)) + [!VideoPlayer.Content(LiveTV) | String.IsEmpty(Player.Art(thumb))]]]">Conditional</animation>
                     <left>SidePadNewOSD</left>
                     <right>SidePadNewOSD</right>
                     <top>20</top>
