@@ -3755,7 +3755,7 @@
                 <height>64</height>
                 <align>left</align>
                 <aligny>center</aligny>
-                <label>$VAR[Label_Audio_Codec_Furniture,,  ]</label>
+                <label>$VAR[Label_Audio_Codec_Furniture]$VAR[LabelAudioChannels, ,  ]</label>
                 <font>Flag</font>
                 <textcolor>$VAR[OSDPanelWhite70]</textcolor>
                 <visible>!Skin.HasSetting(furniture.flagicons) + !Skin.HasSetting(musicosd.hideflags)</visible>
@@ -3814,6 +3814,20 @@
                 <texture fallback="flags/fallback.png">$VAR[AudioCodecImage]</texture>
                 <aspectratio align="center">keep</aspectratio>
                 <visible>Skin.HasSetting(furniture.flagicons) + !String.IsEmpty(MusicPlayer.Codec) + !Skin.HasSetting(musicosd.hideflags)</visible>
+            </control>
+            <control type="image">
+                <width min="20" max="85">auto</width>
+                <include content="def_height" condition="Skin.HasSetting(furniture.coloredicons)">
+                    <param name="height" value="36" />
+                </include>
+                <height>47</height>
+                <centertop>50%</centertop>
+                <include content="def_colordiffuse" condition="!Skin.HasSetting(furniture.coloredicons)">
+                    <param name="colordiffuse" value="$VAR[OSDPanelWhite70]"/>
+                </include>
+                <texture fallback="flags/fallback.png">$VAR[MediaFlagsPath]/channels/$INFO[MusicPlayer.Channels].png</texture>
+                <aspectratio align="center">keep</aspectratio>
+                <visible>Skin.HasSetting(furniture.flagicons) + !String.IsEmpty(MusicPlayer.Channels) + !Skin.HasSetting(musicosd.hideflags)</visible>
             </control>
             <control type="grouplist">
                 <width min="20" max="70">auto</width>
@@ -3934,7 +3948,7 @@
         	<param name="visible" value="Skin.HasSetting(musicosd.hideflags) + Skin.HasSetting(osd.usetheme)" />
         </include>    
         <include content="DefOSDPlayerTitle">
-        	<param name="width" value="1360" />
+        	<param name="width" value="1270" />
         	<param name="visible" value="!Skin.HasSetting(musicosd.hideflags) + Skin.HasSetting(osd.usetheme) + Skin.HasSetting(furniture.flagicons)" />
         </include>    
         <include content="DefOSDPlayerTitle">
@@ -3947,7 +3961,7 @@
         	<param name="visible" value="Skin.HasSetting(musicosd.hideflags) + Skin.HasSetting(ShowMusicCd) + !Skin.HasSetting(osd.usetheme)" />
         </include>    
         <include content="DefOSDPlayerTitle">
-        	<param name="width" value="830" />
+        	<param name="width" value="740" />
         	<param name="visible" value="!Skin.HasSetting(musicosd.hideflags) + Skin.HasSetting(ShowMusicCd) + !Skin.HasSetting(osd.usetheme) + Skin.HasSetting(furniture.flagicons)" />
         </include>    
         <include content="DefOSDPlayerTitle">
@@ -3960,7 +3974,7 @@
             <param name="visible" value="Skin.HasSetting(musicosd.hideflags) + !Skin.HasSetting(ShowMusicCd) + !Skin.HasSetting(osd.usetheme)" />
         </include>    
         <include content="DefOSDPlayerTitle">
-            <param name="width" value="1230" />
+            <param name="width" value="1140" />
             <param name="visible" value="!Skin.HasSetting(musicosd.hideflags) + !Skin.HasSetting(ShowMusicCd) + !Skin.HasSetting(osd.usetheme) + Skin.HasSetting(furniture.flagicons)" />
         </include>    
         <include content="DefOSDPlayerTitle">
