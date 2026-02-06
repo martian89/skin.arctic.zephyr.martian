@@ -827,7 +827,7 @@
 	                <left>5</left>
 	                <align>left</align>
 	                <aligny>center</aligny>
-	                <label>$VAR[VideoInfoLabel]</label>
+	                <label>$VAR[Label_Furniture_VideoInfo]</label>
 	                <font>Flag</font>
 	                <textcolor>Dark1</textcolor>
 	                <visible>!Skin.HasSetting(furniture.flagicons) + !String.IsEmpty(ListItem.VideoCodec)</visible>
@@ -847,7 +847,7 @@
 	                <left>5</left>
 	                <align>left</align>
 	                <aligny>center</aligny>
-	                <label>$VAR[AudioInfoLabel,, ]</label>
+	                <label>$VAR[Label_Furniture_AudioInfo,, ]</label>
 	                <font>Flag</font>
 	                <textcolor>Dark1</textcolor>
 	                <visible>!Skin.HasSetting(furniture.flagicons) + !String.IsEmpty(ListItem.AudioCodec)</visible>
@@ -1461,7 +1461,7 @@
 	                <left>5</left>
 	                <align>left</align>
 	                <aligny>center</aligny>
-	                <label>$VAR[VideoInfoLabelHub]</label>
+	                <label>$VAR[Label_Furniture_VideoInfo_Hub]</label>
 	                <font>Flag</font>
 	                <textcolor>Dark1</textcolor>
 	                <visible>!Skin.HasSetting(furniture.flagicons) + !String.IsEmpty(Container(9500).ListItem.VideoCodec)</visible>
@@ -1481,7 +1481,7 @@
 	                <left>5</left>
 	                <align>left</align>
 	                <aligny>center</aligny>
-	                <label>$VAR[AudioInfoLabelHub,, ]</label>
+	                <label>$VAR[Label_Furniture_AudioInfo_Hub,, ]</label>
 	                <font>Flag</font>
 	                <textcolor>Dark1</textcolor>
 	                <visible>!Skin.HasSetting(furniture.flagicons) + !String.IsEmpty(Container(9500).ListItem.AudioCodec)</visible>
@@ -2570,7 +2570,7 @@
                 <height>64</height>
                 <align>left</align>
                 <aligny>center</aligny>
-                <label>$INFO[ListItem.FileExtension,,  ]</label>
+                <label>$INFO[ListItem.FileExtension]$VAR[LabelAudioChannels, ,  ]</label>
                 <font>Flag</font>
                 <textcolor>Dark1</textcolor>
                 <visible>!Skin.HasSetting(furniture.flagicons)</visible>
@@ -2615,6 +2615,14 @@
                 <texture colordiffuse="Dark1" fallback="flags/fallback.png">$INFO[ListItem.FileExtension,flags/monochrome/audio/,.png]</texture>
                 <aspectratio align="center">keep</aspectratio>
                 <visible>Skin.HasSetting(furniture.flagicons) + !String.IsEmpty(ListItem.FileExtension) + !Skin.HasSetting(furniture.hide.fileextension)</visible>
+            </control>
+            <control type="image">
+                <width min="20" max="100">auto</width>
+                <height>45</height>
+                <centertop>48%</centertop>
+                <texture colordiffuse="Dark1" fallback="flags/fallback.png">$INFO[ListItem.MusicChannels,flags/monochrome/channels/,.png]</texture>
+                <aspectratio align="center">keep</aspectratio>
+                <visible>Skin.HasSetting(furniture.flagicons) + !String.IsEmpty(ListItem.MusicChannels) + !Skin.HasSetting(furniture.hide.channels)</visible>
             </control>
             <control type="grouplist">
                 <width min="20" max="100">auto</width>
@@ -2770,6 +2778,14 @@
                 <texture fallback="flags/fallback.png">$INFO[ListItem.FileExtension,flags/color/audio/,.png]</texture>
                 <aspectratio align="center">keep</aspectratio>
                 <visible>!String.IsEmpty(ListItem.FileExtension) + !Skin.HasSetting(furniture.hide.fileextension)</visible>
+            </control>
+            <control type="image">
+                <width min="20" max="100">auto</width>
+                <height>36</height>
+                <centertop>50%</centertop>
+                <texture colordiffuse="Dark1" fallback="flags/fallback.png">$INFO[ListItem.MusicChannels,flags/color/channels/,.png]</texture>
+                <aspectratio align="center">keep</aspectratio>
+                <visible>Skin.HasSetting(furniture.flagicons) + !String.IsEmpty(ListItem.MusicChannels) + !Skin.HasSetting(furniture.hide.channels)</visible>
             </control>
             <control type="grouplist">
                 <width min="20" max="100">auto</width>
