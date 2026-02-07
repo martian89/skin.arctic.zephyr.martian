@@ -1006,62 +1006,40 @@
                     </control>
                 </itemlayout>
                 <focusedlayout width="222" height="96">
-                    <control type="group">
-                        <visible>!Skin.HasSetting(homemenu.items.underlined)</visible>
-                        <control type="label">
-                            <align>center</align>
-                            <width>90%</width>
-                            <centertop>50%</centertop>
-                            <centerleft>45.7%</centerleft>
-                            <textcolor>Dark1</textcolor>
-                            <font>HomeIcon</font>
-                            <label>$INFO[ListItem.Label]</label>
-                        </control>
-                        <control type="image">
-                            <top>12</top>
-                            <centerleft>45.7%</centerleft>
-                            <include>arrowdimensions</include>
-                            <texture colordiffuse="Dark1" flipy="true">common/arrow-small.png</texture>
-                            <animation effect="fade" end="100" start="0" delay="300" time="400" reversible="false">Focus</animation>
-                        </control>
+                    <control type="label">
+                        <align>center</align>
+                        <width>90%</width>
+                        <centertop>50%</centertop>
+                        <centerleft>45.7%</centerleft>
+                        <textcolor>Dark1</textcolor>
+                        <font>HomeIcon</font>
+                        <label>$INFO[ListItem.Label]</label>
                     </control>
                     <control type="group">
-                        <visible>Skin.HasSetting(homemenu.items.underlined)</visible>
-                        <control type="label">
-                            <align>center</align>
-                            <width>90%</width>
-                            <centertop>50%</centertop>
+                        <visible>Control.HasFocus(302)</visible>
+                        <include>Animation.FadeIn</include>
+                        <include>Animation.FadeOut</include>
+                        <control type="image">
+                            <top>76</top>
                             <centerleft>45.7%</centerleft>
-                            <textcolor>Dark1</textcolor>
-                            <font>HomeIcon</font>
-                            <label>$INFO[ListItem.Label]</label>
-                        </control>
-                        <control type="group">
-                            <visible>Control.HasFocus(302)</visible>
-                            <include>Animation.FadeIn</include>
-                            <include>Animation.FadeOut</include>
-                            <control type="image">
-                                <top>76</top>
-                                <centerleft>45.7%</centerleft>
-                                <width>90%</width>
-                                <height>4</height>
-                                <texture colordiffuse="$VAR[ColorHighlight]">common/box.png</texture>
-                            </control>
-                            <control type="image">
-                                <top>76</top>
-                                <centerleft>45.7%</centerleft>
-                                <width>90%</width>
-                                <height>4</height>
-                                <texture colordiffuse="$VAR[ColorGradient]">common/gradient-box.png</texture>
-                            </control>
+                            <width>90%</width>
+                            <height>4</height>
+                            <texture colordiffuse="$VAR[ColorHighlight]">common/box.png</texture>
                         </control>
                         <control type="image">
-                            <top>12</top>
+                            <top>76</top>
                             <centerleft>45.7%</centerleft>
-                            <include>arrowdimensions</include>
-                            <texture colordiffuse="Dark3" flipy="true">common/arrow-small.png</texture>
-                            <animation effect="fade" end="100" start="0" delay="300" time="400" reversible="false">Focus</animation>
+                            <width>90%</width>
+                            <height>4</height>
+                            <texture colordiffuse="$VAR[ColorGradient]">common/gradient-box.png</texture>
                         </control>
+                    </control>
+                    <control type="image">
+                        <top>12</top>
+                        <centerleft>45.7%</centerleft>
+                        <include>arrowdimensions</include>
+                        <texture colordiffuse="Dark3" flipy="true">common/arrow-small.png</texture>
+                        <animation effect="fade" end="100" start="0" delay="300" time="400" reversible="false">Focus</animation>
                     </control>
                 </focusedlayout>
                 <content>
@@ -1466,65 +1444,40 @@
             </control>
         </itemlayout>
         <focusedlayout width="222" height="116">
-            <control type="group">
-                <visible>!Skin.HasSetting(homemenu.items.underlined)</visible>
-                <control type="label">
-                    <align>center</align>
-                    <width>90%</width>
-                    <centertop>50%</centertop>
-                    <centerleft>45.7%</centerleft>
-                    <textcolor>Dark1</textcolor>
-                    <font>HomeLarge</font>
-                    <label>$INFO[ListItem.Label]</label>
-                    <animation effect="fade" start="100" end="50" delay="0" time="150" condition="!Control.HasFocus(300) + !Control.HasFocus(302) + !Skin.HasSetting(home.vertical)">Conditional</animation>
-                </control>
-                <control type="image">
-                    <top>83</top>
-                    <centerleft>45.7%</centerleft>
-                    <include>arrowdimensions</include>
-                    <texture colordiffuse="Dark1">common/arrow-small.png</texture>
-                    <visible>Control.HasFocus(300)</visible>
-                    <visible>Integer.IsGreater(Container(302).NumItems,0)</visible>
-                    <animation effect="fade" end="100" start="0" delay="300" time="400" reversible="false">Focus</animation>
-                </control>
+            <control type="label">
+                <align>center</align>
+                <centertop>50%</centertop>
+                <width>90%</width>
+                <centerleft>45.7%</centerleft>
+                <textcolor>Dark1</textcolor>
+                <font>HomeLarge</font>
+                <label>$INFO[ListItem.Label]</label>
+                <animation effect="fade" start="100" end="50" delay="0" time="150" condition="!Control.HasFocus(300) + !Control.HasFocus(302) + !Skin.HasSetting(home.vertical)">Conditional</animation>
+            </control>
+            <control type="image">
+                <top>102</top>
+                <centerleft>45.7%</centerleft>
+                <include>arrowdimensions</include>
+                <texture colordiffuse="Dark3">common/arrow-small.png</texture>
+                <visible>Control.HasFocus(300)</visible>
+                <visible>Integer.IsGreater(Container(302).NumItems,0)</visible>
+                <animation effect="fade" end="100" start="0" delay="300" time="400" reversible="false">Focus</animation>
             </control>
             <control type="group">
-                <visible>Skin.HasSetting(homemenu.items.underlined)</visible>
-                <control type="label">
-                    <align>center</align>
-                    <centertop>50%</centertop>
-                    <width>90%</width>
+                <animation effect="fade" start="100" end="50" delay="0" time="150" condition="!Control.HasFocus(300) + !Control.HasFocus(302) + !Skin.HasSetting(home.vertical)">Conditional</animation>
+                <control type="image">
+                    <top>88</top>
                     <centerleft>45.7%</centerleft>
-                    <textcolor>Dark1</textcolor>
-                    <font>HomeLarge</font>
-                    <label>$INFO[ListItem.Label]</label>
-                    <animation effect="fade" start="100" end="50" delay="0" time="150" condition="!Control.HasFocus(300) + !Control.HasFocus(302) + !Skin.HasSetting(home.vertical)">Conditional</animation>
+                    <width>90%</width>
+                    <height>4</height>
+                    <texture colordiffuse="$VAR[ColorHighlight]">common/box.png</texture>
                 </control>
                 <control type="image">
-                    <top>102</top>
+                    <top>88</top>
                     <centerleft>45.7%</centerleft>
-                    <include>arrowdimensions</include>
-                    <texture colordiffuse="Dark3">common/arrow-small.png</texture>
-                    <visible>Control.HasFocus(300)</visible>
-                    <visible>Integer.IsGreater(Container(302).NumItems,0)</visible>
-                    <animation effect="fade" end="100" start="0" delay="300" time="400" reversible="false">Focus</animation>
-                </control>
-                <control type="group">
-                    <animation effect="fade" start="100" end="50" delay="0" time="150" condition="!Control.HasFocus(300) + !Control.HasFocus(302) + !Skin.HasSetting(home.vertical)">Conditional</animation>
-                    <control type="image">
-                        <top>88</top>
-                        <centerleft>45.7%</centerleft>
-                        <width>90%</width>
-                        <height>4</height>
-                        <texture colordiffuse="$VAR[ColorHighlight]">common/box.png</texture>
-                    </control>
-                    <control type="image">
-                        <top>88</top>
-                        <centerleft>45.7%</centerleft>
-                        <width>90%</width>
-                        <height>4</height>
-                        <texture colordiffuse="$VAR[ColorGradient]">common/gradient-box.png</texture>
-                    </control>
+                    <width>90%</width>
+                    <height>4</height>
+                    <texture colordiffuse="$VAR[ColorGradient]">common/gradient-box.png</texture>
                 </control>
             </control>
 
