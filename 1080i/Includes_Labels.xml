@@ -1987,6 +1987,12 @@
         <value>$LOCALIZE[2050]: $VAR[LabelDurationTimeCheck]</value>
     </variable>
 
+    <variable name="Label_View_509_Genre">
+        <value condition="ListItem.IsCollection">$INFO[Window(Home).Property(TMDbHelper.ListItem.Set.Years)]</value>
+        <value condition="$EXP[InGameMode]">$VAR[GameGenre]</value>
+        <value>$INFO[ListItem.Genre]</value>
+    </variable>
+       
     <variable name="Label_View_513_Genre">
         <value condition="$EXP[InGameMode]">$VAR[GameGenre]</value>
         <value condition="!String.IsEmpty(ListItem.Genre)">$INFO[ListItem.Genre]</value>
@@ -2024,19 +2030,6 @@
         <value>$INFO[ListItem.Year]$VAR[LabelDurationTimeCheck,  •  ,]$VAR[RatingLabel,  •  ,]</value>
     </variable>
 
-    <variable name="Label_View_519_Studio">
-        <value condition="Container.Content(tvshows) | Container.Content(seasons)">$INFO[ListItem.Studio]</value>
-        <value condition="ListItem.IsCollection">$INFO[Window(Home).Property(TMDbHelper.ListItem.Set.Rating)]$INFO[Window(Home).Property(TMDbHelper.ListItem.Set.Votes), (, $LOCALIZE[205])]</value>
-        <value condition="$EXP[InGameMode]">$VAR[GameStudio]</value>
-        <value>$INFO[ListItem.Studio]</value>
-    </variable>
-
-    <variable name="Label_View_519_Genre">
-        <value condition="ListItem.IsCollection">$INFO[Window(Home).Property(TMDbHelper.ListItem.Set.Years)]</value>
-        <value condition="$EXP[InGameMode]">$VAR[GameGenre]</value>
-        <value>$INFO[ListItem.Genre]</value>
-    </variable>
-       
     <variable name="Label_ColorSetting">
         <value condition="$EXP[IsColorSchemeDefault]">$LOCALIZE[31961]</value>
         <value condition="$EXP[IsColorSchemeTropical]">$LOCALIZE[31962]</value>
