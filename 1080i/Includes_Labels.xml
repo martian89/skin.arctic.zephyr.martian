@@ -534,6 +534,11 @@
         <value condition="[String.IsEqual(Container.SortMethod,$LOCALIZE[180]) | String.IsEqual(Container.SortMethod,$LOCALIZE[551]) | String.IsEqual(Container.SortMethod,$LOCALIZE[554]) | String.IsEqual(Container.SortMethod,$LOCALIZE[556]) | String.IsEqual(Container.SortMethod,$LOCALIZE[557]) | String.IsEqual(Container.SortMethod,$LOCALIZE[558]) | String.IsEqual(Container.SortMethod,$LOCALIZE[563]) | String.IsEqual(Container.SortMethod,$LOCALIZE[578]) | String.IsEqual(Container.SortMethod,$LOCALIZE[562]) | String.IsEqual(Container.SortMethod,$LOCALIZE[38018])] + !String.IsEmpty(ListItem.Duration)">$INFO[ListItem.Duration]</value>
         <value>$INFO[ListItem.Label2]</value>
     </variable>
+
+    <variable name="LabelDurationMusicFurniture">
+        <value condition="String.IsEqual(ListItem.DBType,album) + !String.IsEmpty(ListItem.Duration(mins))">$VAR[LabelDurationTimeCheck]</value>
+        <value>$INFO[ListItem.Duration(mins:ss),, $LOCALIZE[31102]]</value>
+    </variable>
     
     <variable name="LabelPlotBox">
         <value condition="!String.IsEmpty(ListItem.Property(Artist_Description))">$INFO[ListItem.Property(Artist_Description)]</value>
