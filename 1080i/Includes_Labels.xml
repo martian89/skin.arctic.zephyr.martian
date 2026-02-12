@@ -489,7 +489,7 @@
     <variable name="LabelMusicSubline">
         <value condition="Container.Content(artists) + Integer.IsEqual(Container(5231).NumItems,1)">$INFO[Container(5231).NumItems,, $LOCALIZE[558]]</value>
         <value condition="Container.Content(artists)">$INFO[Container(5231).NumItems,, $LOCALIZE[132]]</value>
-        <value condition="Container.Content(songs) + !String.IsEmpty(ListItem.Album)">$INFO[ListItem.Album]$INFO[ListItem.Year,  •  ]</value>
+        <value condition="Container.Content(songs) + !String.IsEmpty(ListItem.Album)">$INFO[ListItem.Album]$INFO[ListItem.Year,  •  ]$INFO[ListItem.Duration(mm:ss),  •  , $LOCALIZE[31102]]</value>
         <value condition="!String.IsEmpty(ListItem.Year)">$INFO[ListItem.Year]$VAR[LabelDurationTimeCheck,  •  ,]$VAR[RatingLabel,  •  ,]</value>
         <value>$VAR[LabelDurationTimeCheck]$VAR[RatingLabel,  •  ,]</value>
     </variable>
@@ -533,6 +533,11 @@
         <value condition="Container.Content(albums) + [String.IsEqual(Container.SortMethod,$LOCALIZE[551]) | String.IsEqual(Container.SortMethod,$LOCALIZE[554]) | String.IsEqual(Container.SortMethod,$LOCALIZE[556]) | String.IsEqual(Container.SortMethod,$LOCALIZE[557]) | String.IsEqual(Container.SortMethod,$LOCALIZE[558]) | String.IsEqual(Container.SortMethod,$LOCALIZE[563]) | String.IsEqual(Container.SortMethod,$LOCALIZE[578]) | String.IsEqual(Container.SortMethod,$LOCALIZE[562]) | String.IsEqual(Container.SortMethod,$LOCALIZE[38018])] + !String.IsEmpty(ListItem.Duration(mins))">$VAR[LabelDurationTimeCheck]</value>
         <value condition="[String.IsEqual(Container.SortMethod,$LOCALIZE[180]) | String.IsEqual(Container.SortMethod,$LOCALIZE[551]) | String.IsEqual(Container.SortMethod,$LOCALIZE[554]) | String.IsEqual(Container.SortMethod,$LOCALIZE[556]) | String.IsEqual(Container.SortMethod,$LOCALIZE[557]) | String.IsEqual(Container.SortMethod,$LOCALIZE[558]) | String.IsEqual(Container.SortMethod,$LOCALIZE[563]) | String.IsEqual(Container.SortMethod,$LOCALIZE[578]) | String.IsEqual(Container.SortMethod,$LOCALIZE[562]) | String.IsEqual(Container.SortMethod,$LOCALIZE[38018])] + !String.IsEmpty(ListItem.Duration)">$INFO[ListItem.Duration]</value>
         <value>$INFO[ListItem.Label2]</value>
+    </variable>
+
+    <variable name="LabelDurationMusicFurniture">
+        <value condition="String.IsEqual(ListItem.DBType,album) + !String.IsEmpty(ListItem.Duration(mins))">$VAR[LabelDurationTimeCheck]</value>
+        <value>$INFO[ListItem.Duration(mins:ss),, $LOCALIZE[31102]]</value>
     </variable>
     
     <variable name="LabelPlotBox">
@@ -1983,6 +1988,7 @@
     </variable>
 
     <variable name="Label_View_513_Genre">
+        <value condition="ListItem.IsCollection">$LOCALIZE[31476]</value>
         <value condition="$EXP[InGameMode]">$VAR[GameGenre]</value>
         <value condition="!String.IsEmpty(ListItem.Genre)">$INFO[ListItem.Genre]</value>
         <value>$LOCALIZE[19055]</value>
@@ -1994,6 +2000,7 @@
     </variable>
 
     <variable name="Label_View_514_GenreAlbum">
+        <value condition="ListItem.IsCollection">$LOCALIZE[31476]</value>
         <value condition="Container.Content(albums) + !String.IsEmpty(ListItem.Album)">$INFO[ListItem.Album]</value>
         <value condition="[Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)] + !String.IsEmpty(ListItem.Genre)">$INFO[ListItem.Genre]</value>
         <value condition="$EXP[InGameMode]">$VAR[GameGenre]</value>
@@ -2019,19 +2026,6 @@
         <value>$INFO[ListItem.Year]$VAR[LabelDurationTimeCheck,  •  ,]$VAR[RatingLabel,  •  ,]</value>
     </variable>
 
-    <variable name="Label_View_519_Studio">
-        <value condition="Container.Content(tvshows) | Container.Content(seasons)">$INFO[ListItem.Studio]</value>
-        <value condition="ListItem.IsCollection">$INFO[Window(Home).Property(TMDbHelper.ListItem.Set.Rating)]$INFO[Window(Home).Property(TMDbHelper.ListItem.Set.Votes), (, $LOCALIZE[205])]</value>
-        <value condition="$EXP[InGameMode]">$VAR[GameStudio]</value>
-        <value>$INFO[ListItem.Studio]</value>
-    </variable>
-
-    <variable name="Label_View_519_Genre">
-        <value condition="ListItem.IsCollection">$INFO[Window(Home).Property(TMDbHelper.ListItem.Set.Years)]</value>
-        <value condition="$EXP[InGameMode]">$VAR[GameGenre]</value>
-        <value>$INFO[ListItem.Genre]</value>
-    </variable>
-       
     <variable name="Label_ColorSetting">
         <value condition="$EXP[IsColorSchemeDefault]">$LOCALIZE[31961]</value>
         <value condition="$EXP[IsColorSchemeTropical]">$LOCALIZE[31962]</value>

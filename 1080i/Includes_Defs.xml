@@ -1380,7 +1380,7 @@
             </control>
             <control type="group">
                 <right>20</right>
-                <include content="IndicatorPoster" condition="!Skin.HasSetting(hide.markers)">IndicatorPoster</include>
+                <include condition="!Skin.HasSetting(hide.markers)">IndicatorPoster</include>
             </control>
         </definition>
     </include>
@@ -1437,7 +1437,7 @@
                 </control>
 	            <control type="group">
 	                <right>20</right>
-	                <include content="IndicatorPoster" condition="!Skin.HasSetting(hide.markers)">IndicatorPoster</include>
+	                <include condition="!Skin.HasSetting(hide.markers)">IndicatorPoster</include>
 	            </control>
             </control>
             <control type="label">
@@ -1505,7 +1505,7 @@
             </control>
             <control type="group">
                 <right>20</right>
-                <include content="IndicatorPoster" condition="!Skin.HasSetting(hide.markers)">IndicatorPoster</include>
+                <include condition="!Skin.HasSetting(hide.markers)">IndicatorPoster</include>
             </control>
         </definition>
     </include>
@@ -1549,7 +1549,7 @@
                 </control>
 	            <control type="group">
 	                <right>20</right>
-	                <include content="IndicatorPoster" condition="!Skin.HasSetting(hide.markers)">IndicatorPoster</include>
+	                <include condition="!Skin.HasSetting(hide.markers)">IndicatorPoster</include>
 	            </control>
             </control>
             <control type="label">
@@ -2926,6 +2926,7 @@
     <include name="IndicatorPoster">
         <param name="right" value="$PARAM[right]" default="1"/>
         <param name="top" value="$PARAM[top]" default="1"/>
+        <param name="icon_center" default="32"/>
         <param name="indicatorbackground" value="$PARAM[indicatorbackground]" default="false"/>
         <definition>
         <control type="group">
@@ -2933,16 +2934,16 @@
             <right>$PARAM[right]</right>
             <top>$PARAM[top]</top>
 	        <control type="image">
-	            <centerright>32</centerright>
-	            <centertop>32</centertop>
+	            <centerright>$PARAM[icon_center]</centerright>
+	            <centertop>$PARAM[icon_center]</centertop>
 	            <width>32</width>
 	            <height>32</height>
 	            <aspectratio aligny="top">keep</aspectratio>
 	            <texture colordiffuse="$VAR[ColorHighlight]">$VAR[PosterPercentWatchedBacking]</texture>
 	        </control>
 	        <control type="image">
-                <centerright>32</centerright>
-	            <centertop>32</centertop>
+                <centerright>$PARAM[icon_center]</centerright>
+	            <centertop>$PARAM[icon_center]</centertop>
 	            <width>32</width>
 	            <height>32</height>
 	            <aspectratio aligny="top">keep</aspectratio>
@@ -3039,22 +3040,23 @@
     <include name="IndicatorPoster301">
         <param name="right" value="$PARAM[right]" default="1"/>
         <param name="top" value="$PARAM[top]" default="1"/>
+        <param name="icon_center" default="32"/>
         <definition>
         <control type="group">
             <visible>!Skin.HasSetting(furniture.markers.alternative)</visible>
             <right>$PARAM[right]</right>
             <top>$PARAM[top]</top>
             <control type="image">
-                <centerright>32</centerright>
-                <centertop>32</centertop>
+                <centerright>$PARAM[icon_center]</centerright>
+                <centertop>$PARAM[icon_center]</centertop>
                 <width>32</width>
                 <height>32</height>
                 <aspectratio aligny="top">keep</aspectratio>
                 <texture colordiffuse="$VAR[ColorHighlight]">$VAR[PosterPercentWatchedBacking301]</texture>
             </control>
             <control type="image">
-                <centerright>32</centerright>
-                <centertop>32</centertop>
+                <centerright>$PARAM[icon_center]</centerright>
+                <centertop>$PARAM[icon_center]</centertop>
                 <width>32</width>
                 <height>32</height>
                 <aspectratio aligny="top">keep</aspectratio>

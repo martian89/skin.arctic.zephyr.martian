@@ -4,7 +4,7 @@
     <defaultcontrol always="true">901</defaultcontrol>
     <visible>Window.IsActive(fullscreenvideo) + !Window.IsActive(script.pseudotv.TVOverlay.xml) + !Window.IsActive(script.pseudotv.live.TVOverlay.xml)</visible>
     <allowoverlay>no</allowoverlay>
-    <visible>[[VideoPlayer.IsFullscreen] + [Window.IsVisible(videoosd) | Window.IsVisible(fullscreeninfo) | Player.Seeking | Player.HasPerformedSeek(3) | Player.Paused | !String.IsEmpty(Player.SeekNumeric) | !String.IsEmpty(PVR.ChannelNumberInput) | Player.Forwarding | Player.Rewinding | !String.IsEmpty(Window(home).Property(osdshowinfo))]] | !String.IsEmpty(Window(home).Property(osdinfo))</visible>
+    <visible>[[VideoPlayer.IsFullscreen] + [Window.IsVisible(videoosd) | Window.IsVisible(fullscreeninfo) | Player.Seeking | Player.HasPerformedSeek(3) | [Player.Paused + [!System.IdleTime(3) | !Skin.HasSetting(osd.autohideonpause)]] | !String.IsEmpty(Player.SeekNumeric) | !String.IsEmpty(PVR.ChannelNumberInput) | Player.Forwarding | Player.Rewinding | !String.IsEmpty(Window(home).Property(osdshowinfo))]] | !String.IsEmpty(Window(home).Property(osdinfo))</visible>
     <zorder>0</zorder>
 
     <onload condition="Player.Paused + !String.IsEmpty(Window(Home).Property(OSDExtendedInfo))">PlayerControl(Play)</onload>
