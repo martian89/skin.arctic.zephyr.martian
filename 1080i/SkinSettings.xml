@@ -1074,13 +1074,32 @@
                             <selected>Skin.HasSetting(ShowClearArtMusicOSD)</selected>
                             <onclick>Skin.ToggleSetting(ShowClearArtMusicOSD)</onclick>
                         </control>
+                        <control type="radiobutton" id="92371" description="Show poster">
+                            <width>1360</width>
+                            <visible>String.IsEqual(Window.Property(content),5)</visible>
+                            <include>DefSettingsButtonGradientSkinSettings</include>
+                            <label>$LOCALIZE[31972]</label>
+                            <selected>!Skin.HasSetting(musicosd.disableposter)</selected>
+                            <onclick>Skin.ToggleSetting(musicosd.disableposter)</onclick>
+                            <visible>!Skin.HasSetting(osd.usetheme)</visible>
+                        </control>
+                        <control type="radiobutton" id="92372" description="Show discartosd">
+                            <width>1360</width>
+                            <visible>String.IsEqual(Window.Property(content),5)</visible>
+                            <include>DefSettingsButtonGradientSkinSettings</include>
+                            <label>$LOCALIZE[31297]$LOCALIZE[31079]</label>
+                            <selected>!Skin.HasSetting(musicosd.hidedisc)</selected>
+                            <onclick>Skin.ToggleSetting(musicosd.hidedisc)</onclick>
+                            <visible>!Skin.HasSetting(osd.usetheme) + !Skin.HasSetting(musicosd.disableposter)</visible>
+                        </control>
                         <control type="radiobutton" id="9238" description="Show discartosd">
                             <width>1360</width>
                             <visible>String.IsEqual(Window.Property(content),5)</visible>
                             <include>DefSettingsButtonGradientSkinSettings</include>
                             <label>31079</label>
-                            <selected>Skin.HasSetting(ShowMusicCD)</selected>
-                            <onclick>Skin.ToggleSetting(ShowMusicCD)</onclick>
+                            <selected>!Skin.HasSetting(musicosd.hidedisc)</selected>
+                            <onclick>Skin.ToggleSetting(musicosd.hidedisc)</onclick>
+                            <visible>Skin.HasSetting(osd.usetheme)</visible>
                         </control>
                         <control type="radiobutton" id="9239">
                             <width>1360</width>
