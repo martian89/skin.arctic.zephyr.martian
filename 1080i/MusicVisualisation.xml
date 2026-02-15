@@ -352,9 +352,12 @@
                     <top>110r</top>
                     <bottom>0</bottom>
 			        <control type="group">
-			            <include content="def_left" condition="Skin.HasSetting(ShowMusicCd)">
+			            <include content="def_left" condition="!Skin.HasSetting(musicosd.disableposter) + !Skin.HasSetting(musicosd.hidedisc)">
 			                <param name="left" value="560" />
 			            </include>
+                        <include content="def_left" condition="!Skin.HasSetting(musicosd.disableposter) + Skin.HasSetting(musicosd.hidedisc)">
+                            <param name="left" value="440" />
+                        </include>
 			            <left>SidePadNewOSD</left>
 			            <right>SidePadNewOSD</right>
 			            <top>20</top>
@@ -462,7 +465,7 @@
 
         <!-- Disc -->
         <control type="group">
-            <visible>Skin.HasSetting(ShowMusicCd)</visible>
+            <visible>!Skin.HasSetting(musicosd.disableposter) | Skin.HasSetting(osd.usetheme)</visible>
             <visible>$EXP[MusicSeekbarIsVisible]</visible>
             <animation effect="slide" start="0" end="0,-74" time="150" condition="Window.IsVisible(musicosd) + !Skin.HasSetting(musicosd.side) + Skin.HasSetting(osd.usetheme)">Conditional</animation>
             <animation effect="slide" start="0" end="0,-44" time="150" condition="Window.IsVisible(musicosd) + !Skin.HasSetting(musicosd.side) + !Skin.HasSetting(osd.usetheme)">Conditional</animation>
@@ -477,6 +480,7 @@
             <top>105</top>
             <left>50</left>            
             <control type="group">
+                <visible>!Skin.HasSetting(musicosd.hidedisc)</visible>
                 <animation type="WindowClose" reversible="false">
                     <effect type="slide" start="115,0" end="0,0" tween="sine" easing="out" time="400" delay="0"/>
                     <effect type="fade" start="100" end="0" time="5" delay="0"/>
@@ -533,7 +537,7 @@
 
         <!-- Artist Information -->
         <control type="group">
-            <visible>Skin.HasSetting(osd.artistinfos) + Skin.HasSetting(ShowMusicCd) + Skin.HasSetting(osd.usetheme)</visible>
+            <visible>Skin.HasSetting(osd.artistinfos) + !Skin.HasSetting(musicosd.hidedisc) + Skin.HasSetting(osd.usetheme)</visible>
             <visible>Player.ShowInfo | Skin.HasSetting(musicosd.alwaysshowinfo) | Window.IsVisible(script-cu-lrclyrics-main.xml) | !String.IsEmpty(Window(home).Property(osdshowinfo))</visible>
             <visible>!Window.IsVisible(musicosd) | !Skin.HasSetting(musicosd.side)</visible>
             <visible>!Window.IsVisible(script-cu-lrclyrics-main.xml)</visible>
@@ -597,24 +601,24 @@
             </control>
         </control>
         <control type="group">
-            <visible>Skin.HasSetting(osd.artistinfos) + !Skin.HasSetting(ShowMusicCd) + Skin.HasSetting(osd.usetheme)</visible>
+            <visible>Skin.HasSetting(osd.artistinfos) + Skin.HasSetting(musicosd.hidedisc) + Skin.HasSetting(osd.usetheme)</visible>
             <visible>Player.ShowInfo | Skin.HasSetting(musicosd.alwaysshowinfo) | Window.IsVisible(script-cu-lrclyrics-main.xml) | !String.IsEmpty(Window(home).Property(osdshowinfo))</visible>
             <visible>!Window.IsVisible(musicosd) | !Skin.HasSetting(musicosd.side)</visible>
             <visible>!Window.IsVisible(script-cu-lrclyrics-main.xml)</visible>
             <animation type="Hidden" reversible="false">
-                <effect type="slide" start="0,0" end="1850,0" tween="sine" easing="out" time="300"/>
+                <effect type="slide" start="0,0" end="1500,0" tween="sine" easing="out" time="300" delay="0"/>
                 <effect type="fade" start="100" end="0" time="200"/>
             </animation>
             <animation type="Visible" reversible="false">
-                <effect type="slide" start="1480,0" end="0,0" tween="sine" easing="out" time="300"/>
+                <effect type="slide" start="1500,0" end="0,0" tween="sine" easing="out" time="300" delay="0"/>
                 <effect type="fade" start="50" end="100" time="300"/>
             </animation>
             <animation type="WindowClose" reversible="false">
-                <effect type="slide" start="0,0" end="1850,0" tween="sine" easing="out" time="300" delay="0"/>
+                <effect type="slide" start="0,0" end="1500,0" tween="sine" easing="out" time="300" delay="0"/>
                 <effect type="fade" start="100" end="0" time="200"/>
             </animation>
             <animation type="WindowOpen" reversible="false">
-                <effect type="slide" start="1480,0" end="0,0" tween="sine" easing="out" time="300" delay="0"/>
+                <effect type="slide" start="1500,0" end="0,0" tween="sine" easing="out" time="300" delay="0"/>
                 <effect type="fade" start="50" end="100" time="300"/>
             </animation>
             <animation type="Conditional" condition="Window.Next(musicplaylist)">
@@ -622,24 +626,24 @@
             </animation>
             <animation effect="slide" start="0" end="0,-60" time="0" condition="true">Conditional</animation>
             <animation effect="slide" start="0" end="0,-74" time="150" condition="Window.IsVisible(musicosd) + !Skin.HasSetting(musicosd.side)">Conditional</animation>
-            <control type="group">
-                <left>SidePad</left>
+            <control type="group">            
+                <left>422</left>
                 <top>666</top>
                 <control type="image">
                     <top>-8</top>
                     <height>276</height>
-                    <width>1776</width>
+                    <width>1432</width>
                     <left>-8</left>
-	              	<texture border="16" colordiffuse="$VAR[OSDPanel]">common/rounded-shadow8.png</texture>
+                    <texture border="16" colordiffuse="$VAR[OSDPanel]">common/rounded-shadow8.png</texture>
                     <animation effect="fade" start="100" end="80" condition="true">Conditional</animation>
                 </control>
                 <control type="image">
-                	<top>-1</top>
-                	<left>-1</left>
+                    <top>-1</top>
+                    <left>-1</left>
                     <height>262</height>
-                    <width>1762</width>
+                    <width>1418</width>
                     <texture colordiffuse="BoxWidget" border="4" infill="false">common/box21.png</texture>
-	                <visible>Skin.HasSetting(global.showborders)</visible>            
+                    <visible>Skin.HasSetting(global.showborders)</visible>            
                 </control>
                 <control type="label">
                     <left>35</left>
