@@ -1544,13 +1544,7 @@
     </variable>
 
     <variable name="LabelRating">
-        <value condition="[!String.IsEmpty(ListItem.RatingAndVotes) | [!String.IsEmpty(ListItem.UserRating) + Skin.HasSetting(userrating.override.rating)]] + Control.IsVisible(504)">$VAR[RatingAndVotesLabel]</value>
-        <value condition="[!String.IsEmpty(ListItem.Rating) | [!String.IsEmpty(ListItem.UserRating) + Skin.HasSetting(userrating.override.rating)]] + !Control.IsVisible(504)">$VAR[RatingLabel]</value>
-    </variable>
-
-    <variable name="NetflixIconSize">
-        <value condition="String.IsEqual(Skin.String(NetflixIconSize),1)">$LOCALIZE[13507]</value>
-        <value>$LOCALIZE[1438]</value>
+        <value condition="[!String.IsEmpty(ListItem.Rating) | [!String.IsEmpty(ListItem.UserRating) + Skin.HasSetting(userrating.override.rating)]]">$VAR[RatingLabel]</value>
     </variable>
 
     <variable name="509Align">
@@ -1966,27 +1960,6 @@
         <value>$VAR[LabelDurationTimeCheck]</value>
     </variable>
     
-    <variable name="Label_View_504_Row1">
-        <value condition="Container.Content(tvshows) | Container.Content(seasons)">$LOCALIZE[29909]: $INFO[ListItem.Studio]</value>
-        <value condition="ListItem.IsCollection">$INFO[Window(Home).Property(TMDbHelper.ListItem.Set.Years),$LOCALIZE[652]: ,]</value>
-        <value condition="$EXP[InGameMode]">$LOCALIZE[515]: $VAR[GameGenre]</value>
-        <value>$LOCALIZE[515]: $INFO[ListItem.Genre]</value>
-    </variable>
-
-    <variable name="Label_View_504_Row2">
-        <value condition="Container.Content(tvshows) | Container.Content(seasons)">$LOCALIZE[20352]: $INFO[ListItem.Property(TotalEpisodes),, $LOCALIZE[20360]] $INFO[ListItem.Property(UnWatchedEpisodes),  •  , $LOCALIZE[16101]]</value>
-        <value condition="ListItem.IsCollection">$INFO[Window(Home).Property(TMDbHelper.ListItem.Set.Rating),$LOCALIZE[563]: ,]$INFO[Window(Home).Property(TMDbHelper.ListItem.Set.Votes), (, $LOCALIZE[205])]</value>
-        <value condition="$EXP[InGameMode]">$LOCALIZE[29909]: $VAR[GameStudio]</value>
-        <value>$LOCALIZE[20339]: $INFO[ListItem.Director]</value>
-    </variable>
-
-    <variable name="Label_View_504_Row3">
-        <value condition="Container.Content(tvshows) | Container.Content(seasons)">$LOCALIZE[20074]: $INFO[ListItem.MPAA]</value>
-        <value condition="ListItem.IsCollection + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Set.NumItems))">$INFO[Container(44023).NumItems]$INFO[Window(Home).Property(TMDbHelper.ListItem.Set.NumItems),/, $LOCALIZE[31030]]</value>
-        <value condition="$EXP[InGameMode]">$LOCALIZE[563]: $VAR[GameESRB]</value>
-        <value>$LOCALIZE[2050]: $VAR[LabelDurationTimeCheck]</value>
-    </variable>
-
     <variable name="Label_View_513_Genre">
         <value condition="ListItem.IsCollection">$LOCALIZE[31476]</value>
         <value condition="$EXP[InGameMode]">$VAR[GameGenre]</value>
