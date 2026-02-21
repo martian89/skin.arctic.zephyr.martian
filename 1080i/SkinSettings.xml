@@ -321,7 +321,18 @@
                             <label>$LOCALIZE[31297]$LOCALIZE[31393]</label>
                             <selected>Skin.HasSetting(homemenu.only.icons)</selected>
                             <onclick>Skin.ToggleSetting(homemenu.only.icons)</onclick>
-                            <visible>!$EXP[HomeIsVertical] + Skin.HasSetting(home.showicons)</visible>
+                            <visible>!$EXP[HomeIsVertical]</visible>
+                            <enable>Skin.HasSetting(home.showicons)</enable>
+                        </control>
+                        <control type="radiobutton" id="9817">
+                            <width>1360</width>
+                            <visible>String.IsEqual(Window.Property(content),1)</visible>
+                            <include>DefSettingsButtonGradientSkinSettings</include>
+                            <label>$LOCALIZE[31489]</label>
+                            <selected>!Skin.HasSetting(homemenu.hide.underline)</selected>
+                            <onclick>Skin.ToggleSetting(homemenu.hide.underline)</onclick>
+                            <visible>!$EXP[HomeIsVerticalAll]</visible>
+                            <enable>!Skin.HasSetting(home.showicons)</enable>
                         </control>
                         <control type="radiobutton" id="9898" description="Horz Sub">
                             <width>1360</width>

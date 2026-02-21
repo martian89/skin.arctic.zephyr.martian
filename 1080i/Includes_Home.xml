@@ -841,70 +841,70 @@
             <animation effect="slide" start="0" end="0,250" time="150">WindowClose</animation>
             <animation effect="slide" end="0" start="0,250" time="150">WindowOpen</animation>
             <posy>251</posy>
-            <centerleft>180</centerleft>
-            <width>316</width>
+            <centerleft>185</centerleft>
+            <width>346</width>
             <height>662</height>
             <control type="image">
                 <description>9 Option Menu</description>
                 <width>100%</width>
                 <height>662</height>
-                <texture border="16" colordiffuse="Background">common/rounded-shadow8.png</texture>
+                <texture border="16" colordiffuse="Light1">common/rounded-shadow8.png</texture>
                 <visible>Integer.IsGreater(Container(302).NumItems,8)</visible>
             </control>
             <control type="image">
                 <description>8 Option Menu</description>
                 <width>100%</width>
                 <height>592</height>
-                <texture border="16" colordiffuse="Background">common/rounded-shadow8.png</texture>
+                <texture border="16" colordiffuse="Light1">common/rounded-shadow8.png</texture>
                 <visible>Integer.IsGreater(Container(302).NumItems,7) + !Integer.IsGreater(Container(302).NumItems,8)</visible>
             </control>
             <control type="image">
                 <description>7 Option Menu</description>
                 <width>100%</width>
                 <height>522</height>
-                <texture border="16" colordiffuse="Background">common/rounded-shadow8.png</texture>
+                <texture border="16" colordiffuse="Light1">common/rounded-shadow8.png</texture>
                 <visible>Integer.IsGreater(Container(302).NumItems,6) + !Integer.IsGreater(Container(302).NumItems,7)</visible>
             </control>
             <control type="image">
                 <description>6 Option Menu</description>
                 <width>100%</width>
                 <height>452</height>
-                <texture border="16" colordiffuse="Background">common/rounded-shadow8.png</texture>
+                <texture border="16" colordiffuse="Light1">common/rounded-shadow8.png</texture>
                 <visible>Integer.IsGreater(Container(302).NumItems,5) + !Integer.IsGreater(Container(302).NumItems,6)</visible>
             </control>
             <control type="image">
                 <description>5 Option Menu</description>
                 <width>100%</width>
                 <height>382</height>
-                <texture border="16" colordiffuse="Background">common/rounded-shadow8.png</texture>
+                <texture border="16" colordiffuse="Light1">common/rounded-shadow8.png</texture>
                 <visible>Integer.IsGreater(Container(302).NumItems,4) + !Integer.IsGreater(Container(302).NumItems,5)</visible>
             </control>
             <control type="image">
                 <description>4 Option Menu</description>
                 <width>100%</width>
                 <height>312</height>
-                <texture border="16" colordiffuse="Background">common/rounded-shadow8.png</texture>
+                <texture border="16" colordiffuse="Light1">common/rounded-shadow8.png</texture>
                 <visible>Integer.IsGreater(Container(302).NumItems,3) + !Integer.IsGreater(Container(302).NumItems,4)</visible>
             </control>
             <control type="image">
                 <description>3 Option Menu</description>
                 <width>100%</width>
                 <height>242</height>
-                <texture border="16" colordiffuse="Background">common/rounded-shadow8.png</texture>
+                <texture border="16" colordiffuse="Light1">common/rounded-shadow8.png</texture>
                 <visible>Integer.IsGreater(Container(302).NumItems,2) + !Integer.IsGreater(Container(302).NumItems,3)</visible>
             </control>
             <control type="image">
                 <description>2 Option Menu</description>
                 <width>100%</width>
                 <height>172</height>
-                <texture border="16" colordiffuse="Background">common/rounded-shadow8.png</texture>
+                <texture border="16" colordiffuse="Light1">common/rounded-shadow8.png</texture>
                 <visible>Integer.IsGreater(Container(302).NumItems,1) + !Integer.IsGreater(Container(302).NumItems,2)</visible>
             </control>
             <control type="image">
                 <description>1 Option Menu</description>
                 <width>100%</width>
                 <height>102</height>
-                <texture border="16" colordiffuse="Background">common/rounded-shadow8.png</texture>
+                <texture border="16" colordiffuse="Light1">common/rounded-shadow8.png</texture>
                 <visible>!Integer.IsGreater(Container(302).NumItems,1)</visible>
             </control>
             <control type="list" id="302">
@@ -922,11 +922,20 @@
                 <onunfocus>SetFocus(300)</onunfocus>
                 <orientation>vertical</orientation>
                 <scrolltime>200</scrolltime>
-                <itemlayout width="302" height="70">
-                    <control type="label">
-                        <align>center</align>
+                <itemlayout height="70">
+                    <control type="image">
                         <aligny>center</aligny>
-                        <width>100%</width>
+                        <left>12</left>
+                        <width>64</width>
+                        <height>64</height>
+                        <centertop>50%</centertop>
+                        <texture colordiffuse="Dark2">$INFO[ListItem.Icon]</texture>
+                    </control>
+                    <control type="label">
+                        <aligny>center</aligny>
+                        <align>left</align>
+                        <left>86</left>
+                        <width>212</width>
                         <centertop>50%</centertop>
                         <height>100%</height>
                         <textcolor>Dark2</textcolor>
@@ -934,7 +943,7 @@
                         <label>$INFO[ListItem.Label]</label>
                     </control>
                 </itemlayout>
-                <focusedlayout width="302" height="70">
+                <focusedlayout height="70">
                     <control type="image">
                         <width>100%</width>
                         <height>100%</height>
@@ -945,10 +954,19 @@
                         <height>100%</height>
                         <texture border="8" colordiffuse="$VAR[ColorGradient]">common/gradient-box-wide.png</texture>
                     </control>
-                    <control type="label">
-                        <align>center</align>
+                    <control type="image">
                         <aligny>center</aligny>
-                        <width>100%</width>
+                        <left>12</left>
+                        <width>64</width>
+                        <height>64</height>
+                        <centertop>50%</centertop>
+                        <texture colordiffuse="Selected">$INFO[ListItem.Icon]</texture>
+                    </control>
+                    <control type="label">
+                        <aligny>center</aligny>
+                        <align>left</align>
+                        <left>86</left>
+                        <width>212</width>
                         <centertop>50%</centertop>
                         <height>100%</height>
                         <textcolor>Selected</textcolor>
@@ -1009,40 +1027,62 @@
                     </control>
                 </itemlayout>
                 <focusedlayout width="222" height="96">
-                    <control type="label">
-                        <align>center</align>
-                        <width>90%</width>
-                        <centertop>50%</centertop>
-                        <centerleft>45.7%</centerleft>
-                        <textcolor>Dark1</textcolor>
-                        <font>HomeIcon</font>
-                        <label>$INFO[ListItem.Label]</label>
+                    <control type="group">
+                        <visible>Skin.HasSetting(homemenu.hide.underline)</visible>
+                        <control type="label">
+                            <align>center</align>
+                            <width>90%</width>
+                            <centertop>50%</centertop>
+                            <centerleft>45.7%</centerleft>
+                            <textcolor>Dark1</textcolor>
+                            <font>HomeIcon</font>
+                            <label>$INFO[ListItem.Label]</label>
+                        </control>
+                        <control type="image">
+                            <top>12</top>
+                            <centerleft>45.7%</centerleft>
+                            <include>arrowdimensions</include>
+                            <texture colordiffuse="Dark1" flipy="true">common/arrow-small.png</texture>
+                            <animation effect="fade" end="100" start="0" delay="300" time="400" reversible="false">Focus</animation>
+                        </control>
                     </control>
                     <control type="group">
-                        <visible>Control.HasFocus(302)</visible>
-                        <include>Animation.FadeIn</include>
-                        <include>Animation.FadeOut</include>
-                        <control type="image">
-                            <top>76</top>
-                            <centerleft>45.7%</centerleft>
+                        <visible>!Skin.HasSetting(homemenu.hide.underline)</visible>
+                        <control type="label">
+                            <align>center</align>
                             <width>90%</width>
-                            <height>4</height>
-                            <texture colordiffuse="$VAR[ColorHighlight]">common/box.png</texture>
+                            <centertop>50%</centertop>
+                            <centerleft>45.7%</centerleft>
+                            <textcolor>Dark1</textcolor>
+                            <font>HomeIcon</font>
+                            <label>$INFO[ListItem.Label]</label>
+                        </control>
+                        <control type="group">
+                            <visible>Control.HasFocus(302)</visible>
+                            <include>Animation.FadeIn</include>
+                            <include>Animation.FadeOut</include>
+                            <control type="image">
+                                <top>76</top>
+                                <centerleft>45.7%</centerleft>
+                                <width>90%</width>
+                                <height>4</height>
+                                <texture colordiffuse="$VAR[ColorHighlight]">common/box.png</texture>
+                            </control>
+                            <control type="image">
+                                <top>76</top>
+                                <centerleft>45.7%</centerleft>
+                                <width>90%</width>
+                                <height>4</height>
+                                <texture colordiffuse="$VAR[ColorGradient]">common/gradient-box.png</texture>
+                            </control>
                         </control>
                         <control type="image">
-                            <top>76</top>
+                            <top>12</top>
                             <centerleft>45.7%</centerleft>
-                            <width>90%</width>
-                            <height>4</height>
-                            <texture colordiffuse="$VAR[ColorGradient]">common/gradient-box.png</texture>
+                            <include>arrowdimensions</include>
+                            <texture colordiffuse="Dark3" flipy="true">common/arrow-small.png</texture>
+                            <animation effect="fade" end="100" start="0" delay="300" time="400" reversible="false">Focus</animation>
                         </control>
-                    </control>
-                    <control type="image">
-                        <top>12</top>
-                        <centerleft>45.7%</centerleft>
-                        <include>arrowdimensions</include>
-                        <texture colordiffuse="Dark3" flipy="true">common/arrow-small.png</texture>
-                        <animation effect="fade" end="100" start="0" delay="300" time="400" reversible="false">Focus</animation>
                     </control>
                 </focusedlayout>
                 <content>
@@ -1447,40 +1487,65 @@
             </control>
         </itemlayout>
         <focusedlayout width="222" height="116">
-            <control type="label">
-                <align>center</align>
-                <centertop>50%</centertop>
-                <width>90%</width>
-                <centerleft>45.7%</centerleft>
-                <textcolor>Dark1</textcolor>
-                <font>HomeLarge</font>
-                <label>$INFO[ListItem.Label]</label>
-                <animation effect="fade" start="100" end="50" delay="0" time="150" condition="!Control.HasFocus(300) + !Control.HasFocus(302) + !Skin.HasSetting(home.vertical)">Conditional</animation>
-            </control>
-            <control type="image">
-                <top>102</top>
-                <centerleft>45.7%</centerleft>
-                <include>arrowdimensions</include>
-                <texture colordiffuse="Dark3">common/arrow-small.png</texture>
-                <visible>Control.HasFocus(300)</visible>
-                <visible>Integer.IsGreater(Container(302).NumItems,0)</visible>
-                <animation effect="fade" end="100" start="0" delay="300" time="400" reversible="false">Focus</animation>
-            </control>
             <control type="group">
-                <animation effect="fade" start="100" end="50" delay="0" time="150" condition="!Control.HasFocus(300) + !Control.HasFocus(302) + !Skin.HasSetting(home.vertical)">Conditional</animation>
-                <control type="image">
-                    <top>88</top>
-                    <centerleft>45.7%</centerleft>
+                <visible>Skin.HasSetting(homemenu.hide.underline)</visible>
+                <control type="label">
+                    <align>center</align>
                     <width>90%</width>
-                    <height>4</height>
-                    <texture colordiffuse="$VAR[ColorHighlight]">common/box.png</texture>
+                    <centertop>50%</centertop>
+                    <centerleft>45.7%</centerleft>
+                    <textcolor>Dark1</textcolor>
+                    <font>HomeLarge</font>
+                    <label>$INFO[ListItem.Label]</label>
+                    <animation effect="fade" start="100" end="50" delay="0" time="150" condition="!Control.HasFocus(300) + !Control.HasFocus(302) + !Skin.HasSetting(home.vertical)">Conditional</animation>
                 </control>
                 <control type="image">
-                    <top>88</top>
+                    <top>83</top>
                     <centerleft>45.7%</centerleft>
+                    <include>arrowdimensions</include>
+                    <texture colordiffuse="Dark1">common/arrow-small.png</texture>
+                    <visible>Control.HasFocus(300)</visible>
+                    <visible>Integer.IsGreater(Container(302).NumItems,0)</visible>
+                    <animation effect="fade" end="100" start="0" delay="300" time="400" reversible="false">Focus</animation>
+                </control>
+            </control>
+            <control type="group">
+                <visible>!Skin.HasSetting(homemenu.hide.underline)</visible>
+                <control type="label">
+                    <align>center</align>
+                    <centertop>50%</centertop>
                     <width>90%</width>
-                    <height>4</height>
-                    <texture colordiffuse="$VAR[ColorGradient]">common/gradient-box.png</texture>
+                    <centerleft>45.7%</centerleft>
+                    <textcolor>Dark1</textcolor>
+                    <font>HomeLarge</font>
+                    <label>$INFO[ListItem.Label]</label>
+                    <animation effect="fade" start="100" end="50" delay="0" time="150" condition="!Control.HasFocus(300) + !Control.HasFocus(302) + !Skin.HasSetting(home.vertical)">Conditional</animation>
+                </control>
+                <control type="image">
+                    <top>102</top>
+                    <centerleft>45.7%</centerleft>
+                    <include>arrowdimensions</include>
+                    <texture colordiffuse="Dark3">common/arrow-small.png</texture>
+                    <visible>Control.HasFocus(300)</visible>
+                    <visible>Integer.IsGreater(Container(302).NumItems,0)</visible>
+                    <animation effect="fade" end="100" start="0" delay="300" time="400" reversible="false">Focus</animation>
+                </control>
+                <control type="group">
+                    <animation effect="fade" start="100" end="50" delay="0" time="150" condition="!Control.HasFocus(300) + !Control.HasFocus(302) + !Skin.HasSetting(home.vertical)">Conditional</animation>
+                    <control type="image">
+                        <top>88</top>
+                        <centerleft>45.7%</centerleft>
+                        <width>90%</width>
+                        <height>4</height>
+                        <texture colordiffuse="$VAR[ColorHighlight]">common/box.png</texture>
+                    </control>
+                    <control type="image">
+                        <top>88</top>
+                        <centerleft>45.7%</centerleft>
+                        <width>90%</width>
+                        <height>4</height>
+                        <texture colordiffuse="$VAR[ColorGradient]">common/gradient-box.png</texture>
+                    </control>
                 </control>
             </control>
 
