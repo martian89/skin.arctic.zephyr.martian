@@ -197,8 +197,6 @@
         <param name="height" default="900"/>
 
 		<definition>
-	        <include>Animation.ZoomIn</include>
-	        <include>Animation.FadeOut</include>
 	        <centerleft>50%</centerleft>
 	        <centertop>50%</centertop>
 	        <height>$PARAM[height]</height>
@@ -471,15 +469,6 @@
         <textcolor>Black70</textcolor>
         <height>70</height>
         <texturefocus colordiffuse="$VAR[ColorGradient]" border="5">common/gradient-box-wide.png</texturefocus>
-    </include>
-
-    <include name="DefWidgetSelectorInfo">
-        <width>100%</width>
-        <height>66</height>
-        <align>left</align>
-        <textoffsetx>20</textoffsetx>
-        <disabledcolor>Black70</disabledcolor>
-        <font>Button</font>
     </include>
 
     <include name="DefContextButtonBlur">
@@ -1306,32 +1295,6 @@
         <value>videos</value>
     </variable>
 
-    <include name="Defs_Shortcuts_SetHub">
-        <control type="button" id="$PARAM[buttonid2]" description="Set HUB WIDGET">
-            <width>100%</width>
-            <label>31273</label>
-            <height>66</height>
-            <texturenofocus colordiffuse="Black12" border="5">common/box.png</texturenofocus>
-            <align>left</align>
-            <include>DefDialogButtonsGradient</include>
-            <label2>$INFO[Skin.String(Widget.$PARAM[hubid])]</label2>
-            <visible>String.IsEqual(Container(211).ListItem.Label2,Hub $PARAM[hubid]) | String.IsEqual(Container(211).ListItem.Property(Path),ActivateWindow($PARAM[hubid]))</visible>
-            <visible>String.IsEmpty(Window(Home).Property(skinshortcuts-Widget))</visible>
-            <onclick>RunScript(script.skinshortcuts,type=widgets&amp;grouping=widget&amp;skinWidgetPath=Widget.$PARAM[hubid]&amp;skinWidgetName=Widget.$PARAM[hubid].Label&amp;skinWidgetType=Widget.$PARAM[hubid].Type;&amp;skinWidgetTarget=Widget.$PARAM[hubid].Target)</onclick>
-        </control>
-        <control type="button" id="$PARAM[buttonid1]" description="Set HUB">
-            <width>100%</width>
-            <label>31178</label>
-            <height>66</height>
-            <texturenofocus colordiffuse="Black12" border="5">common/box.png</texturenofocus>
-            <align>left</align>
-            <include>DefDialogButtonsGradient</include>
-            <visible>String.IsEqual(Container(211).ListItem.Label2,Hub $PARAM[hubid]) | String.IsEqual(Container(211).ListItem.Property(Path),ActivateWindow($PARAM[hubid]))</visible>
-            <visible>String.IsEmpty(Window(Home).Property(skinshortcuts-Widget))</visible>
-            <onclick>RunScript(script.skinshortcuts,type=manage&amp;group=x$PARAM[hubid])</onclick>
-        </control>
-    </include>
-
     <include name="DefExtendedInfoItemContentWIP">
         <param name="aspect" value="$PARAM[aspect]" default="scale"/>
         <param name="fallbackpicture" value="$PARAM[fallbackpicture]" default="DefaultPicture.png"/>
@@ -1914,31 +1877,6 @@
                 <texture colordiffuse="$PARAM[colordiffuse]" border="$PARAM[border]">$PARAM[image]</texture>
                 <visible>ControlGroup($PARAM[controlid]).HasFocus() + $PARAM[visible]</visible>
                 <include condition="$PARAM[overlayfix]" content="Animation.FadeIn.Gradient"><param name="delay" value="$PARAM[delay]" /></include>
-                <include content="Def_Gradient_Settings_Image_Animation_Container">
-                    <param name="controlid" value="$PARAM[controlid]" />
-                    <param name="slide" value="$PARAM[slide]" />
-                </include>
-            </control>
-        </definition>
-    </include>
-
-    <include name="Def_Gradient_Settings_Image_Shortcuts">
-        <param name="top" value="$PARAM[top]" default="116"/>
-        <param name="left" value="$PARAM[left]" default="655"/>
-        <param name="width" value="$PARAM[width]" default="905"/>
-        <param name="height" value="$PARAM[height]" default="66"/>
-        <param name="slide" value="$PARAM[slide]" default="69"/>
-        <param name="border" value="$PARAM[border]" default="5"/>
-        <param name="image" value="$PARAM[image]" default="common/box.png"/>
-        <definition>
-            <control type="image">
-                <top>$PARAM[top]</top>
-                <left>$PARAM[left]</left>
-                <height>$PARAM[height]</height>
-                <width>$PARAM[width]</width>
-                <texture colordiffuse="$VAR[ColorHighlight]" border="$PARAM[border]">$PARAM[image]</texture>
-                <visible>ControlGroup($PARAM[controlid]).HasFocus()</visible>
-                <include>Animation.FadeIn.Gradient</include>
                 <include content="Def_Gradient_Settings_Image_Animation_Container">
                     <param name="controlid" value="$PARAM[controlid]" />
                     <param name="slide" value="$PARAM[slide]" />
@@ -3158,16 +3096,6 @@
             <texture diffuse="common/box.png">$INFO[Window(Home).Property(TMDbHelper.ListItem.Provider.$PARAM[icon].Icon)]</texture>
             <visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Provider.$PARAM[icon].Icon))</visible>
             <aspectratio align="center">keep</aspectratio>
-        </control>
-    </include>
-
-    <include name="SkinShortcutsBackButton">
-        <control type="button" id="$PARAM[controlid]">
-            <width>1</width>
-            <height>1</height>
-            <visible allowhiddenfocus="true">false</visible>
-            <onfocus>ClearProperty(skinshortcuts-Widget,Home)</onfocus>
-            <onfocus>SetFocus($PARAM[setfocus])</onfocus>
         </control>
     </include>
 
@@ -4900,4 +4828,161 @@
         </control>
     </include>
 
+    <include name="Def_Skinshortcuts_Gradient_Settings_Image">
+        <param name="top" value="$PARAM[top]" default="116"/>
+        <param name="left" value="$PARAM[left]" default="655"/>
+        <param name="width" value="$PARAM[width]" default="905"/>
+        <param name="height" value="$PARAM[height]" default="66"/>
+        <param name="slide" value="$PARAM[slide]" default="69"/>
+        <param name="border" value="$PARAM[border]" default="5"/>
+        <param name="image" value="$PARAM[image]" default="common/box.png"/>
+        <definition>
+            <control type="image">
+                <top>$PARAM[top]</top>
+                <left>$PARAM[left]</left>
+                <height>$PARAM[height]</height>
+                <width>$PARAM[width]</width>
+                <texture colordiffuse="$VAR[ColorHighlight]" border="$PARAM[border]">$PARAM[image]</texture>
+                <visible>ControlGroup($PARAM[controlid]).HasFocus()</visible>
+                <include>Animation.FadeIn.Gradient</include>
+                <include content="Def_Gradient_Settings_Image_Animation_Container">
+                    <param name="controlid" value="$PARAM[controlid]" />
+                    <param name="slide" value="$PARAM[slide]" />
+                </include>
+            </control>
+        </definition>
+    </include>
+
+    <include name="Def_Skinshortcuts_Buttons">
+        <width>100%</width>
+        <height>66</height>
+        <align>left</align>
+        <font>Small</font>
+        <textcolor>Black70</textcolor>
+        <texturenofocus colordiffuse="Black12" border="5">common/box.png</texturenofocus>
+        <texturefocus colordiffuse="$VAR[ColorGradient]" border="5">common/gradient-box-wide.png</texturefocus>
+        <radioposx>845</radioposx>
+    </include>
+
+    <include name="Defs_Skinshortcuts_SetHub">
+        <control type="button" id="$PARAM[buttonid2]" description="Set HUB WIDGET">
+            <label>31273</label>
+            <include>Def_Skinshortcuts_Buttons</include>
+            <label2>$INFO[Skin.String(Widget.$PARAM[hubid])]</label2>
+            <visible>String.IsEqual(Container(211).ListItem.Label2,Hub $PARAM[hubid]) | String.IsEqual(Container(211).ListItem.Property(Path),ActivateWindow($PARAM[hubid]))</visible>
+            <visible>String.IsEmpty(Window(Home).Property(skinshortcuts-Widget))</visible>
+            <onclick>RunScript(script.skinshortcuts,type=widgets&amp;grouping=widget&amp;skinWidgetPath=Widget.$PARAM[hubid]&amp;skinWidgetName=Widget.$PARAM[hubid].Label&amp;skinWidgetType=Widget.$PARAM[hubid].Type;&amp;skinWidgetTarget=Widget.$PARAM[hubid].Target)</onclick>
+        </control>
+        <control type="button" id="$PARAM[buttonid1]" description="Set HUB">
+            <label>31178</label>
+            <include>Def_Skinshortcuts_Buttons</include>
+            <visible>String.IsEqual(Container(211).ListItem.Label2,Hub $PARAM[hubid]) | String.IsEqual(Container(211).ListItem.Property(Path),ActivateWindow($PARAM[hubid]))</visible>
+            <visible>String.IsEmpty(Window(Home).Property(skinshortcuts-Widget))</visible>
+            <onclick>RunScript(script.skinshortcuts,type=manage&amp;group=x$PARAM[hubid])</onclick>
+        </control>
+    </include>
+
+    <include name="Def_Skinshortcuts_WidgetSettings">
+        <param name="visible" default="true" />
+        <param name="baseid" />
+        <definition>
+		    <control type="radiobutton" id="$PARAM[baseid]10" description="Widget Fullscreen">
+ 		        <selected>String.IsEqual(Container(211).ListItem.Property(widgetFullscreen),yes) | Skin.HasSetting(homemenu.netflix)</selected>
+		        <label>$LOCALIZE[31411]</label>
+		        <include>Def_Skinshortcuts_Buttons</include>
+		        <onclick>SetProperty(customProperty,widgetFullscreen)</onclick>
+		        <onclick condition="!String.IsEqual(Container(211).ListItem.Property(widgetFullscreen),yes)">SetProperty(customValue,yes)</onclick>
+		        <onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetFullscreen),yes)">SetProperty(customValue,)</onclick>
+		        <onclick>SendClick(404)</onclick>
+		        <enable>!String.IsEqual(Container(211).ListItem.Property(widget),mysubmenu)</enable>
+		        <visible>Skin.HasSetting(home.vertical.widgets) + !Skin.HasSetting(homemenu.netflix)</visible>
+                <visible>$PARAM[visible]</visible>
+		    </control>
+		    <control type="button" id="$PARAM[baseid]11" description="Widget Aspect">
+		        <label>31261</label>
+		        <label2>$VAR[Label_Widget_Aspect]</label2>
+		        <include>Def_Skinshortcuts_Buttons</include>
+		        <enable>!String.IsEqual(Container(211).ListItem.Property(widgettarget),system) + !String.IsEqual(Container(211).ListItem.Property(widget),epg) + !Skin.HasSetting(homemenu.clean.flix)</enable>
+                <visible>$PARAM[visible]</visible>
+		    </control>
+		    <control type="radiobutton" id="$PARAM[baseid]12" description="Widget ClearLogo">
+		        <selected>!String.IsEqual(Container(211).ListItem.Property(widgetClearLogoThumb),no)</selected>
+		        <label>$LOCALIZE[31297]$LOCALIZE[31330]</label>
+		        <include>Def_Skinshortcuts_Buttons</include>
+		        <onclick>SetProperty(customProperty,widgetClearLogoThumb)</onclick>
+		        <onclick condition="!String.IsEqual(Container(211).ListItem.Property(widgetClearLogoThumb),no)">SetProperty(customValue,no)</onclick>
+		        <onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetClearLogoThumb),no)">SetProperty(customValue,)</onclick>
+		        <onclick>SendClick(404)</onclick>
+                <visible>String.IsEqual(Container(211).ListItem.Property(widgetaspect),Thumbnail) | String.IsEqual(Container(211).ListItem.Property(widgetaspect),ThumbnailSmall)</visible>
+		        <visible>!String.IsEqual(Container(211).ListItem.Property(widget),epg)</visible>
+                <visible>$PARAM[visible]</visible>
+		    </control>
+		    <control type="button" id="$PARAM[baseid]13" description="Widget Aspect Ratio">
+		        <label>$LOCALIZE[31297]$LOCALIZE[31401]</label>
+		        <label2>$VAR[Label_Widget_AspectRatio]</label2>
+		        <include>Def_Skinshortcuts_Buttons</include>
+		        <enable>Skin.HasSetting(home.vertical.widgets) | $EXP[HomeIsVertical]</enable>
+                <visible>String.IsEqual(Container(211).ListItem.Property(widgetaspect),Square) | String.IsEqual(Container(211).ListItem.Property(widgetaspect),SquareMedium)</visible>
+		        <visible>!String.IsEqual(Container(211).ListItem.Property(widget),epg) + !Skin.HasSetting(homemenu.clean.flix)</visible>
+                <visible>$PARAM[visible]</visible>
+		    </control>
+		    <control type="button" id="$PARAM[baseid]14" description="Widget Edge Distance">
+		        <label>$LOCALIZE[31297]$LOCALIZE[31453]</label>
+		        <label2>$VAR[Label_Widget_EdgeDistance]</label2>
+		        <include>Def_Skinshortcuts_Buttons</include>
+                <enable>Skin.HasSetting(home.vertical.widgets) | $EXP[HomeIsVertical]</enable>
+		        <visible>String.IsEqual(Container(211).ListItem.Property(widgetaspect),Square) | String.IsEqual(Container(211).ListItem.Property(widgetaspect),SquareSmall) | String.IsEqual(Container(211).ListItem.Property(widgetaspect),SquareMedium)</visible>
+		        <visible>!String.Contains(Container(211).ListItem.Property(widget),weather) + !String.IsEqual(Container(211).ListItem.Property(widget),system)</visible>
+		        <visible>!String.IsEqual(Container(211).ListItem.Property(widget),epg) + !Skin.HasSetting(homemenu.clean.flix)</visible>
+                <visible>$PARAM[visible]</visible>
+		    </control>
+		    <control type="button" id="$PARAM[baseid]15" description="Widget SortBy">
+		        <label>581</label>
+		        <label2>$VAR[Label_Widget_SortBy]</label2>
+		        <include>Def_Skinshortcuts_Buttons</include>
+                <visible>$PARAM[visible]</visible>
+		    </control>
+		    <control type="button" id="$PARAM[baseid]16">
+		        <description>Change widget sort order</description>
+		        <include>Def_Skinshortcuts_Buttons</include>
+		        <label>580</label>
+		        <label2>$VAR[Label_Widget_Sort]</label2>
+                <visible>$PARAM[visible]</visible>
+		    </control>
+		    <control type="button" id="$PARAM[baseid]17">
+		        <description>Enable</description>
+		        <include>Def_Skinshortcuts_Buttons</include>
+		        <label>$LOCALIZE[31340]</label>
+		        <label2>$VAR[Label_Widget_Auto]</label2>
+		        <visible>!$EXP[HomeIsSpotlight]</visible>
+                <visible>$PARAM[visible]</visible>
+		    </control>
+		    <control type="radiobutton" id="$PARAM[baseid]18">
+		        <description>Show Banner?</description>
+		        <selected>String.IsEqual(Container(211).ListItem.Property(widgetBanner),yes)</selected>
+		        <include>Def_Skinshortcuts_Buttons</include>
+		        <label>31235</label>
+                <visible>Skin.HasSetting(home.vertical) + !Skin.HasSetting(home.vertical.widgets)</visible>
+                <visible>$PARAM[visible]</visible>
+		    </control>
+		    <control type="button" id="$PARAM[baseid]19" description="ListType">
+		        <label>$LOCALIZE[31341]</label>
+		        <label2>$VAR[Label_Widget_ListType]</label2>
+		        <include>Def_Skinshortcuts_Buttons</include>
+		        <visible>!$EXP[HomeIsVertical] + !$EXP[HomeIsCleanMinimal] + !$EXP[HomeIsSpotlight]</visible>
+                <visible>$PARAM[visible]</visible>
+		    </control>
+		    <control type="radiobutton" id="$PARAM[baseid]20" description="Prevent reload">
+		        <selected>String.IsEqual(Container(211).ListItem.Property(widgetSortby),userpreference)</selected>
+		        <label>31820</label>
+		        <include>Def_Skinshortcuts_Buttons</include>
+		        <onclick>SetProperty(customProperty,widgetSortBy)</onclick>
+		        <onclick condition="!String.IsEqual(Container(211).ListItem.Property(widgetSortBy),userpreference)">SetProperty(customValue,userpreference)</onclick>
+		        <onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetSortBy),userpreference)">ClearProperty(customValue)</onclick>
+		        <onclick>SendClick(404)</onclick>
+                <enable>String.IsEmpty(Container(211).ListItem.Property(widgetSortby)) | String.IsEqual(Container(211).ListItem.Property(widgetSortby),userpreference)</enable>
+                <visible>$PARAM[visible]</visible>
+		    </control>    
+        </definition>
+    </include>
 </includes>

@@ -21,8 +21,33 @@
         <action>System.LogOff</action>
     </override>
 
-    <!-- Widget 1 Sort by -->
-    <propertySettings property="widgetSortby" buttonID="9402" templateonly="True" title="$LOCALIZE[581]"/>
+    <!-- Widget Aspect -->
+    <propertySettings property="widgetaspect" buttonID="9111" title="$LOCALIZE[31261]"/>
+    <propertySettings property="widgetaspect" buttonID="9311" title="$LOCALIZE[31261]"/>
+    <property property="widgetaspect" label="$LOCALIZE[31262]" condition="!String.IsEqual(Container(211).ListItem.Property(widget),mysubmenu)">Poster</property>
+    <property property="widgetaspect" label="$LOCALIZE[31263]">Square</property>
+    <property property="widgetaspect" label="$LOCALIZE[31462]" condition="!String.IsEqual(Container(211).ListItem.Property(widget),mysubmenu)">Fanart</property>
+    <property property="widgetaspect" label="$LOCALIZE[31265]" condition="!String.IsEqual(Container(211).ListItem.Property(widget),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget),weather)">Thumbnail</property>
+    <property property="widgetaspect" label="$LOCALIZE[31703]" condition="!String.IsEqual(Container(211).ListItem.Property(widget),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget),weather) + !String.IsEqual(Container(211).ListItem.Property(widget),custom)">FanartSmall</property>
+    <property property="widgetaspect" label="$LOCALIZE[31704]" condition="!String.IsEqual(Container(211).ListItem.Property(widget),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget),weather) + !String.IsEqual(Container(211).ListItem.Property(widget),custom)">ThumbnailSmall</property>
+    <property property="widgetaspect" label="$LOCALIZE[31705]" condition="!String.IsEqual(Container(211).ListItem.Property(widget),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget),weather) + !String.IsEqual(Container(211).ListItem.Property(widget),custom) + !String.Contains(Container(211).ListItem.Property(widgetPath),studios) + !String.Contains(Container(211).ListItem.Property(widgetPath),genres)">ThumbnailPosterSmall</property>
+    <property property="widgetaspect" label="$LOCALIZE[20020]" condition="!String.IsEqual(Container(211).ListItem.Property(widget),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget),weather) + !String.Contains(Container(211).ListItem.Property(widgetPath),studios) + !String.Contains(Container(211).ListItem.Property(widgetPath),genres)">Banner</property>
+    <property property="widgetaspect" label="$LOCALIZE[31406]" condition="String.IsEqual(Container(211).ListItem.Property(widget),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget),weather) + !String.IsEqual(Container(211).ListItem.Property(widget),custom)">SquareSmall</property>
+    <property property="widgetaspect" label="$LOCALIZE[31407]" condition="String.IsEqual(Container(211).ListItem.Property(widget),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget),weather) + !String.IsEqual(Container(211).ListItem.Property(widget),custom)">SquareMedium</property>
+
+    <!-- Widget Square Aspect Ratio -->
+    <propertySettings property="widgetAspectRatio" buttonID="9113" title="$LOCALIZE[31402]"/>
+    <propertySettings property="widgetAspectRatio" buttonID="9313" title="$LOCALIZE[31402]"/>
+    <property property="widgetAspectRatio" label="$LOCALIZE[31403]">scale</property>
+
+    <!-- Widget Square Distance -->
+    <propertySettings property="widgetEdgeDistance" buttonID="9114" title="$LOCALIZE[31453]"/>
+    <propertySettings property="widgetEdgeDistance" buttonID="9314" title="$LOCALIZE[31453]"/>
+    <property property="widgetEdgeDistance" label="$LOCALIZE[31454]">yes</property>
+
+    <!-- Widget Sort by -->
+    <propertySettings property="widgetSortby" buttonID="9115" templateonly="True" title="$LOCALIZE[581]"/>
+    <propertySettings property="widgetSortby" buttonID="9315" templateonly="True" title="$LOCALIZE[581]"/>
     <property property="widgetSortby" label="$LOCALIZE[369]">title</property>
     <property property="widgetSortby" label="$LOCALIZE[345]">year</property>
     <property property="widgetSortby" label="$LOCALIZE[558]">album</property>
@@ -41,328 +66,32 @@
     <property property="widgetSortby" label="$LOCALIZE[515]">genre</property>
     <property property="widgetSortby" label="$LOCALIZE[19349]">userpreference</property>
 
-    <!-- Widget 2 Sort by -->
-    <propertySettings property="widgetSortby.2" buttonID="9792" templateonly="True" title="$LOCALIZE[581]"/>
-    <property property="widgetSortby.2" label="$LOCALIZE[369]">title</property>
-    <property property="widgetSortby.2" label="$LOCALIZE[345]">year</property>
-    <property property="widgetSortby.2" label="$LOCALIZE[558]">album</property>
-    <property property="widgetSortby.2" label="$LOCALIZE[554]" condition="String.IsEqual(Container(211).ListItem.Property(widgetType.2),songs)">tracknumber</property>
-    <property property="widgetSortby.2" label="$LOCALIZE[19029]">channelnumber</property>
-    <property property="widgetSortby.2" label="$LOCALIZE[570]" condition="!String.IsEqual(Container(211).ListItem.Property(widgetType.2),pvr)">dateadded</property>
-    <property property="widgetSortby.2" label="$LOCALIZE[590]">random</property>
-    <property property="widgetSortby.2" label="$LOCALIZE[36902]">tvshowtitle</property>
-    <property property="widgetSortby.2" label="$LOCALIZE[552]" condition="String.IsEqual(Container(211).ListItem.Property(widgetType.2),episodes)">date</property>
-    <property property="widgetSortby.2" label="$LOCALIZE[557]">artist</property>
-    <property property="widgetSortby.2" label="$LOCALIZE[563]">rating</property>
-    <property property="widgetSortby.2" label="$LOCALIZE[38018]">userrating</property>
-    <property property="widgetSortby.2" label="$LOCALIZE[568]">lastplayed</property>
-    <property property="widgetSortby.2" label="$LOCALIZE[12012]">lastused</property>
-    <property property="widgetSortby.2" label="$LOCALIZE[561]">file</property>
-    <property property="widgetSortby.2" label="$LOCALIZE[515]">genre</property>
-    <property property="widgetSortby.2" label="$LOCALIZE[19349]">userpreference</property>
-
-    <!-- Widget 3 Sort by -->
-    <propertySettings property="widgetSortby.3" buttonID="9602" templateonly="True" title="$LOCALIZE[581]"/>
-    <property property="widgetSortby.3" label="$LOCALIZE[369]">title</property>
-    <property property="widgetSortby.3" label="$LOCALIZE[345]">year</property>
-    <property property="widgetSortby.3" label="$LOCALIZE[558]">album</property>
-    <property property="widgetSortby.3" label="$LOCALIZE[554]" condition="String.IsEqual(Container(211).ListItem.Property(widgetType.3),songs)">tracknumber</property>
-    <property property="widgetSortby.3" label="$LOCALIZE[19029]">channelnumber</property>
-    <property property="widgetSortby.3" label="$LOCALIZE[570]" condition="!String.IsEqual(Container(211).ListItem.Property(widgetType.3),pvr)">dateadded</property>
-    <property property="widgetSortby.3" label="$LOCALIZE[590]">random</property>
-    <property property="widgetSortby.3" label="$LOCALIZE[36902]">tvshowtitle</property>
-    <property property="widgetSortby.3" label="$LOCALIZE[552]" condition="String.IsEqual(Container(211).ListItem.Property(widgetType.3),episodes)">date</property>
-    <property property="widgetSortby.3" label="$LOCALIZE[557]">artist</property>
-    <property property="widgetSortby.3" label="$LOCALIZE[563]">rating</property>
-    <property property="widgetSortby.3" label="$LOCALIZE[38018]">userrating</property>
-    <property property="widgetSortby.3" label="$LOCALIZE[568]">lastplayed</property>
-    <property property="widgetSortby.3" label="$LOCALIZE[12012]">lastused</property>
-    <property property="widgetSortby.3" label="$LOCALIZE[561]">file</property>
-    <property property="widgetSortby.3" label="$LOCALIZE[515]">genre</property>
-    <property property="widgetSortby.3" label="$LOCALIZE[19349]">userpreference</property>
-
-    <!-- Widget 4 Sort by -->
-    <propertySettings property="widgetSortby.4" buttonID="9702" templateonly="True" title="$LOCALIZE[581]"/>
-    <property property="widgetSortby.4" label="$LOCALIZE[369]">title</property>
-    <property property="widgetSortby.4" label="$LOCALIZE[345]">year</property>
-    <property property="widgetSortby.4" label="$LOCALIZE[558]">album</property>
-    <property property="widgetSortby.4" label="$LOCALIZE[554]" condition="String.IsEqual(Container(211).ListItem.Property(widgetType.4),songs)">tracknumber</property>
-    <property property="widgetSortby.4" label="$LOCALIZE[19029]">channelnumber</property>
-    <property property="widgetSortby.4" label="$LOCALIZE[570]" condition="!String.IsEqual(Container(211).ListItem.Property(widgetType.4),pvr)">dateadded</property>
-    <property property="widgetSortby.4" label="$LOCALIZE[590]">random</property>
-    <property property="widgetSortby.4" label="$LOCALIZE[36902]">tvshowtitle</property>
-    <property property="widgetSortby.4" label="$LOCALIZE[552]" condition="String.IsEqual(Container(211).ListItem.Property(widgetType.4),episodes)">date</property>
-    <property property="widgetSortby.4" label="$LOCALIZE[557]">artist</property>
-    <property property="widgetSortby.4" label="$LOCALIZE[563]">rating</property>
-    <property property="widgetSortby.4" label="$LOCALIZE[38018]">userrating</property>
-    <property property="widgetSortby.4" label="$LOCALIZE[568]">lastplayed</property>
-    <property property="widgetSortby.4" label="$LOCALIZE[12012]">lastused</property>
-    <property property="widgetSortby.4" label="$LOCALIZE[561]">file</property>
-    <property property="widgetSortby.4" label="$LOCALIZE[515]">genre</property>
-    <property property="widgetSortby.4" label="$LOCALIZE[19349]">userpreference</property>
-
-    <!-- Widget 5 Sort by -->
-    <propertySettings property="widgetSortby.5" buttonID="9802" templateonly="True" title="$LOCALIZE[581]"/>
-    <property property="widgetSortby.5" label="$LOCALIZE[369]">title</property>
-    <property property="widgetSortby.5" label="$LOCALIZE[345]">year</property>
-    <property property="widgetSortby.5" label="$LOCALIZE[558]">album</property>
-    <property property="widgetSortby.5" label="$LOCALIZE[554]" condition="String.IsEqual(Container(211).ListItem.Property(widgetType.5),songs)">tracknumber</property>
-    <property property="widgetSortby.5" label="$LOCALIZE[19029]">channelnumber</property>
-    <property property="widgetSortby.5" label="$LOCALIZE[570]" condition="!String.IsEqual(Container(211).ListItem.Property(widgetType.5),pvr)">dateadded</property>
-    <property property="widgetSortby.5" label="$LOCALIZE[590]">random</property>
-    <property property="widgetSortby.5" label="$LOCALIZE[36902]">tvshowtitle</property>
-    <property property="widgetSortby.5" label="$LOCALIZE[552]" condition="String.IsEqual(Container(211).ListItem.Property(widgetType.5),episodes)">date</property>
-    <property property="widgetSortby.5" label="$LOCALIZE[557]">artist</property>
-    <property property="widgetSortby.5" label="$LOCALIZE[563]">rating</property>
-    <property property="widgetSortby.5" label="$LOCALIZE[38018]">userrating</property>
-    <property property="widgetSortby.5" label="$LOCALIZE[568]">lastplayed</property>
-    <property property="widgetSortby.5" label="$LOCALIZE[12012]">lastused</property>
-    <property property="widgetSortby.5" label="$LOCALIZE[561]">file</property>
-    <property property="widgetSortby.5" label="$LOCALIZE[515]">genre</property>
-    <property property="widgetSortby.5" label="$LOCALIZE[19349]">userpreference</property>
-
-    <!-- Widget 6 Sort by -->
-    <propertySettings property="widgetSortby.6" buttonID="11009" templateonly="True" title="$LOCALIZE[581]"/>
-    <property property="widgetSortby.6" label="$LOCALIZE[369]">title</property>
-    <property property="widgetSortby.6" label="$LOCALIZE[345]">year</property>
-    <property property="widgetSortby.6" label="$LOCALIZE[558]">album</property>
-    <property property="widgetSortby.6" label="$LOCALIZE[554]" condition="String.IsEqual(Container(211).ListItem.Property(widgetType.6),songs)">tracknumber</property>
-    <property property="widgetSortby.6" label="$LOCALIZE[19029]">channelnumber</property>
-    <property property="widgetSortby.6" label="$LOCALIZE[570]" condition="!String.IsEqual(Container(211).ListItem.Property(widgetType.6),pvr)">dateadded</property>
-    <property property="widgetSortby.6" label="$LOCALIZE[590]">random</property>
-    <property property="widgetSortby.6" label="$LOCALIZE[36902]">tvshowtitle</property>
-    <property property="widgetSortby.6" label="$LOCALIZE[552]" condition="String.IsEqual(Container(211).ListItem.Property(widgetType.6),episodes)">date</property>
-    <property property="widgetSortby.6" label="$LOCALIZE[557]">artist</property>
-    <property property="widgetSortby.6" label="$LOCALIZE[563]">rating</property>
-    <property property="widgetSortby.6" label="$LOCALIZE[38018]">userrating</property>
-    <property property="widgetSortby.6" label="$LOCALIZE[568]">lastplayed</property>
-    <property property="widgetSortby.6" label="$LOCALIZE[12012]">lastused</property>
-    <property property="widgetSortby.6" label="$LOCALIZE[561]">file</property>
-    <property property="widgetSortby.6" label="$LOCALIZE[515]">genre</property>
-    <property property="widgetSortby.6" label="$LOCALIZE[19349]">userpreference</property>
-
-
-    <!-- Widget 1 Aspect -->
-    <propertySettings property="widgetaspect" buttonID="9401" title="$LOCALIZE[31261]"/>
-    <property property="widgetaspect" label="$LOCALIZE[31262]" condition="!String.IsEqual(Container(211).ListItem.Property(widget),mysubmenu)">Poster</property>
-    <property property="widgetaspect" label="$LOCALIZE[31263]">Square</property>
-    <property property="widgetaspect" label="$LOCALIZE[31462]" condition="!String.IsEqual(Container(211).ListItem.Property(widget),mysubmenu)">Fanart</property>
-    <property property="widgetaspect" label="$LOCALIZE[31265]" condition="!String.IsEqual(Container(211).ListItem.Property(widget),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget),weather)">Thumbnail</property>
-    <property property="widgetaspect" label="$LOCALIZE[31703]" condition="!String.IsEqual(Container(211).ListItem.Property(widget),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget),weather) + !String.IsEqual(Container(211).ListItem.Property(widget),custom)">FanartSmall</property>
-    <property property="widgetaspect" label="$LOCALIZE[31704]" condition="!String.IsEqual(Container(211).ListItem.Property(widget),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget),weather) + !String.IsEqual(Container(211).ListItem.Property(widget),custom)">ThumbnailSmall</property>
-    <property property="widgetaspect" label="$LOCALIZE[31705]" condition="!String.IsEqual(Container(211).ListItem.Property(widget),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget),weather) + !String.IsEqual(Container(211).ListItem.Property(widget),custom) + !String.Contains(Container(211).ListItem.Property(widgetPath),studios) + !String.Contains(Container(211).ListItem.Property(widgetPath),genres)">ThumbnailPosterSmall</property>
-    <property property="widgetaspect" label="$LOCALIZE[20020]" condition="!String.IsEqual(Container(211).ListItem.Property(widget),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget),weather) + !String.Contains(Container(211).ListItem.Property(widgetPath),studios) + !String.Contains(Container(211).ListItem.Property(widgetPath),genres)">Banner</property>
-    <property property="widgetaspect" label="$LOCALIZE[31406]" condition="String.IsEqual(Container(211).ListItem.Property(widget),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget),weather) + !String.IsEqual(Container(211).ListItem.Property(widget),custom)">SquareSmall</property>
-    <property property="widgetaspect" label="$LOCALIZE[31407]" condition="String.IsEqual(Container(211).ListItem.Property(widget),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget),weather) + !String.IsEqual(Container(211).ListItem.Property(widget),custom)">SquareMedium</property>
-
-    <!-- Widget 2 Aspect -->
-    <propertySettings property="widgetaspect.2" buttonID="9521" title="$LOCALIZE[31261]"/>
-    <property property="widgetaspect.2" label="$LOCALIZE[31262]" condition="!String.IsEqual(Container(211).ListItem.Property(widget.2),mysubmenu)">Poster</property>
-    <property property="widgetaspect.2" label="$LOCALIZE[31263]">Square</property>
-    <property property="widgetaspect.2" label="$LOCALIZE[31462]" condition="!String.IsEqual(Container(211).ListItem.Property(widget.2),mysubmenu)">Fanart</property>
-    <property property="widgetaspect.2" label="$LOCALIZE[31265]" condition="!String.IsEqual(Container(211).ListItem.Property(widget.2),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget.2),weather)">Thumbnail</property>
-    <property property="widgetaspect.2" label="$LOCALIZE[31703]" condition="!String.IsEqual(Container(211).ListItem.Property(widget.2),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget.2),weather) + !String.IsEqual(Container(211).ListItem.Property(widget.2),custom)">FanartSmall</property>
-    <property property="widgetaspect.2" label="$LOCALIZE[31704]" condition="!String.IsEqual(Container(211).ListItem.Property(widget.2),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget.2),weather) + !String.IsEqual(Container(211).ListItem.Property(widget.2),custom)">ThumbnailSmall</property>
-    <property property="widgetaspect.2" label="$LOCALIZE[31705]" condition="!String.IsEqual(Container(211).ListItem.Property(widget.2),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget.2),weather) + !String.IsEqual(Container(211).ListItem.Property(widget.2),custom) + !String.Contains(Container(211).ListItem.Property(widgetPath.2),studios) + !String.Contains(Container(211).ListItem.Property(widgetPath.2),genres)">ThumbnailPosterSmall</property>
-    <property property="widgetaspect.2" label="$LOCALIZE[20020]" condition="!String.IsEqual(Container(211).ListItem.Property(widget.2),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget.2),weather) + !String.Contains(Container(211).ListItem.Property(widgetPath.2),studios) + !String.Contains(Container(211).ListItem.Property(widgetPath.2),genres)">Banner</property>
-    <property property="widgetaspect.2" label="$LOCALIZE[31406]" condition="String.IsEqual(Container(211).ListItem.Property(widget.2),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget.2),weather) + !String.IsEqual(Container(211).ListItem.Property(widget.2),custom)">SquareSmall</property>
-    <property property="widgetaspect.2" label="$LOCALIZE[31407]" condition="String.IsEqual(Container(211).ListItem.Property(widget.2),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget.2),weather) + !String.IsEqual(Container(211).ListItem.Property(widget.2),custom)">SquareMedium</property>
-
-    <!-- Widget 3 Aspect -->
-    <propertySettings property="widgetaspect.3" buttonID="9621" title="$LOCALIZE[31261]"/>
-    <property property="widgetaspect.3" label="$LOCALIZE[31262]" condition="!String.IsEqual(Container(211).ListItem.Property(widget.3),mysubmenu)">Poster</property>
-    <property property="widgetaspect.3" label="$LOCALIZE[31263]">Square</property>
-    <property property="widgetaspect.3" label="$LOCALIZE[31462]" condition="!String.IsEqual(Container(211).ListItem.Property(widget.3),mysubmenu)">Fanart</property>
-    <property property="widgetaspect.3" label="$LOCALIZE[31265]" condition="!String.IsEqual(Container(211).ListItem.Property(widget.3),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget.3),weather)">Thumbnail</property>
-    <property property="widgetaspect.3" label="$LOCALIZE[31703]" condition="!String.IsEqual(Container(211).ListItem.Property(widget.3),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget.3),weather) + !String.IsEqual(Container(211).ListItem.Property(widget.3),custom)">FanartSmall</property>
-    <property property="widgetaspect.3" label="$LOCALIZE[31704]" condition="!String.IsEqual(Container(211).ListItem.Property(widget.3),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget.3),weather) + !String.IsEqual(Container(211).ListItem.Property(widget.3),custom)">ThumbnailSmall</property>
-    <property property="widgetaspect.3" label="$LOCALIZE[31705]" condition="!String.IsEqual(Container(211).ListItem.Property(widget.3),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget.3),weather) + !String.IsEqual(Container(211).ListItem.Property(widget.3),custom) + !String.Contains(Container(211).ListItem.Property(widgetPath.3),studios) + !String.Contains(Container(211).ListItem.Property(widgetPath.3),genres)">ThumbnailPosterSmall</property>
-    <property property="widgetaspect.3" label="$LOCALIZE[20020]" condition="!String.IsEqual(Container(211).ListItem.Property(widget.3),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget.3),weather) + !String.Contains(Container(211).ListItem.Property(widgetPath.3),studios) + !String.Contains(Container(211).ListItem.Property(widgetPath.3),genres)">Banner</property>
-    <property property="widgetaspect.3" label="$LOCALIZE[31406]" condition="String.IsEqual(Container(211).ListItem.Property(widget.3),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget.3),weather) + !String.IsEqual(Container(211).ListItem.Property(widget.3),custom)">SquareSmall</property>
-    <property property="widgetaspect.3" label="$LOCALIZE[31407]" condition="String.IsEqual(Container(211).ListItem.Property(widget.3),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget.3),weather) + !String.IsEqual(Container(211).ListItem.Property(widget.3),custom)">SquareMedium</property>
-
-    <!-- Widget 4 Aspect -->
-    <propertySettings property="widgetaspect.4" buttonID="9721" title="$LOCALIZE[31261]"/>
-    <property property="widgetaspect.4" label="$LOCALIZE[31262]" condition="!String.IsEqual(Container(211).ListItem.Property(widget.4),mysubmenu)">Poster</property>
-    <property property="widgetaspect.4" label="$LOCALIZE[31263]">Square</property>
-    <property property="widgetaspect.4" label="$LOCALIZE[31462]" condition="!String.IsEqual(Container(211).ListItem.Property(widget.4),mysubmenu)">Fanart</property>
-    <property property="widgetaspect.4" label="$LOCALIZE[31265]" condition="!String.IsEqual(Container(211).ListItem.Property(widget.4),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget.4),weather)">Thumbnail</property>
-    <property property="widgetaspect.4" label="$LOCALIZE[31703]" condition="!String.IsEqual(Container(211).ListItem.Property(widget.4),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget.4),weather) + !String.IsEqual(Container(211).ListItem.Property(widget.4),custom)">FanartSmall</property>
-    <property property="widgetaspect.4" label="$LOCALIZE[31704]" condition="!String.IsEqual(Container(211).ListItem.Property(widget.4),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget.4),weather) + !String.IsEqual(Container(211).ListItem.Property(widget.4),custom)">ThumbnailSmall</property>
-    <property property="widgetaspect.4" label="$LOCALIZE[31705]" condition="!String.IsEqual(Container(211).ListItem.Property(widget.4),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget.4),weather) + !String.IsEqual(Container(211).ListItem.Property(widget.4),custom) + !String.Contains(Container(211).ListItem.Property(widgetPath.4),studios) + !String.Contains(Container(211).ListItem.Property(widgetPath.4),genres)">ThumbnailPosterSmall</property>
-    <property property="widgetaspect.4" label="$LOCALIZE[20020]" condition="!String.IsEqual(Container(211).ListItem.Property(widget.4),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget.4),weather) + !String.Contains(Container(211).ListItem.Property(widgetPath.4),studios) + !String.Contains(Container(211).ListItem.Property(widgetPath.4),genres)">Banner</property>
-    <property property="widgetaspect.4" label="$LOCALIZE[31406]" condition="String.IsEqual(Container(211).ListItem.Property(widget.4),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget.4),weather) + !String.IsEqual(Container(211).ListItem.Property(widget.4),custom)">SquareSmall</property>
-    <property property="widgetaspect.4" label="$LOCALIZE[31407]" condition="String.IsEqual(Container(211).ListItem.Property(widget.4),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget.4),weather) + !String.IsEqual(Container(211).ListItem.Property(widget.4),custom)">SquareMedium</property>
-
-        <!-- Widget 5 Aspect -->
-    <propertySettings property="widgetaspect.5" buttonID="9821" title="$LOCALIZE[31261]"/>
-    <property property="widgetaspect.5" label="$LOCALIZE[31262]" condition="!String.IsEqual(Container(211).ListItem.Property(widget.5),mysubmenu)">Poster</property>
-    <property property="widgetaspect.5" label="$LOCALIZE[31263]">Square</property>
-    <property property="widgetaspect.5" label="$LOCALIZE[31462]" condition="!String.IsEqual(Container(211).ListItem.Property(widget.5),mysubmenu)">Fanart</property>
-    <property property="widgetaspect.5" label="$LOCALIZE[31265]" condition="!String.IsEqual(Container(211).ListItem.Property(widget.5),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget.5),weather)">Thumbnail</property>
-    <property property="widgetaspect.5" label="$LOCALIZE[31703]" condition="!String.IsEqual(Container(211).ListItem.Property(widget.5),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget.5),weather) + !String.IsEqual(Container(211).ListItem.Property(widget.5),custom)">FanartSmall</property>
-    <property property="widgetaspect.5" label="$LOCALIZE[31704]" condition="!String.IsEqual(Container(211).ListItem.Property(widget.5),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget.5),weather) + !String.IsEqual(Container(211).ListItem.Property(widget.5),custom)">ThumbnailSmall</property>
-    <property property="widgetaspect.5" label="$LOCALIZE[31705]" condition="!String.IsEqual(Container(211).ListItem.Property(widget.5),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget.5),weather) + !String.IsEqual(Container(211).ListItem.Property(widget.5),custom) + !String.Contains(Container(211).ListItem.Property(widgetPath.5),studios) + !String.Contains(Container(211).ListItem.Property(widgetPath.5),genres)">ThumbnailPosterSmall</property>
-    <property property="widgetaspect.5" label="$LOCALIZE[20020]" condition="!String.IsEqual(Container(211).ListItem.Property(widget.5),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget.5),weather) + !String.Contains(Container(211).ListItem.Property(widgetPath.5),studios) + !String.Contains(Container(211).ListItem.Property(widgetPath.5),genres)">Banner</property>
-    <property property="widgetaspect.5" label="$LOCALIZE[31406]" condition="String.IsEqual(Container(211).ListItem.Property(widget.5),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget.5),weather) + !String.IsEqual(Container(211).ListItem.Property(widget.5),custom)">SquareSmall</property>
-    <property property="widgetaspect.5" label="$LOCALIZE[31407]" condition="String.IsEqual(Container(211).ListItem.Property(widget.5),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget.5),weather) + !String.IsEqual(Container(211).ListItem.Property(widget.5),custom)">SquareMedium</property>
-
-    <!-- Widget 6 Aspect -->
-    <propertySettings property="widgetaspect.6" buttonID="11005" title="$LOCALIZE[31261]"/>
-    <property property="widgetaspect.6" label="$LOCALIZE[31262]" condition="!String.IsEqual(Container(211).ListItem.Property(widget.6),mysubmenu)">Poster</property>
-    <property property="widgetaspect.6" label="$LOCALIZE[31263]">Square</property>
-    <property property="widgetaspect.6" label="$LOCALIZE[31462]" condition="!String.IsEqual(Container(211).ListItem.Property(widget.6),mysubmenu)">Fanart</property>
-    <property property="widgetaspect.6" label="$LOCALIZE[31265]" condition="!String.IsEqual(Container(211).ListItem.Property(widget.6),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget.6),weather)">Thumbnail</property>
-    <property property="widgetaspect.6" label="$LOCALIZE[31703]" condition="!String.IsEqual(Container(211).ListItem.Property(widget.6),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget.6),weather) + !String.IsEqual(Container(211).ListItem.Property(widget.6),custom)">FanartSmall</property>
-    <property property="widgetaspect.6" label="$LOCALIZE[31704]" condition="!String.IsEqual(Container(211).ListItem.Property(widget.6),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget.6),weather) + !String.IsEqual(Container(211).ListItem.Property(widget.6),custom)">ThumbnailSmall</property>
-    <property property="widgetaspect.6" label="$LOCALIZE[31705]" condition="!String.IsEqual(Container(211).ListItem.Property(widget.6),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget.6),weather) + !String.IsEqual(Container(211).ListItem.Property(widget.6),custom) + !String.Contains(Container(211).ListItem.Property(widgetPath.6),studios) + !String.Contains(Container(211).ListItem.Property(widgetPath.6),genres)">ThumbnailPosterSmall</property>
-    <property property="widgetaspect.6" label="$LOCALIZE[20020]" condition="!String.IsEqual(Container(211).ListItem.Property(widget.6),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget.6),weather) + !String.Contains(Container(211).ListItem.Property(widgetPath.6),studios) + !String.Contains(Container(211).ListItem.Property(widgetPath.6),genres)">Banner</property>
-    <property property="widgetaspect.6" label="$LOCALIZE[31406]" condition="String.IsEqual(Container(211).ListItem.Property(widget.6),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget.6),weather) + !String.IsEqual(Container(211).ListItem.Property(widget.6),custom)">SquareSmall</property>
-    <property property="widgetaspect.6" label="$LOCALIZE[31407]" condition="String.IsEqual(Container(211).ListItem.Property(widget.6),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget.6),weather) + !String.IsEqual(Container(211).ListItem.Property(widget.6),custom)">SquareMedium</property>
-
-
-    <!-- Widget 1 Sorting -->
-    <propertySettings property="widgetSort" buttonID="9403" templateonly="True" title="$LOCALIZE[580]"/>
+    <!-- Widget Sorting -->
+    <propertySettings property="widgetSort" buttonID="9116" templateonly="True" title="$LOCALIZE[580]"/>
+    <propertySettings property="widgetSort" buttonID="9316" templateonly="True" title="$LOCALIZE[580]"/>
     <property property="widgetSort" label="$LOCALIZE[585]">descending</property>
     <property property="widgetSort" label="$LOCALIZE[584]">ascending</property>
 
-    <!-- Widget 2 Sorting -->
-    <propertySettings property="widgetSort.2" buttonID="9793" templateonly="True" title="$LOCALIZE[580]"/>
-    <property property="widgetSort.2" label="$LOCALIZE[585]">descending</property>
-    <property property="widgetSort.2" label="$LOCALIZE[584]">ascending</property>
-
-    <!-- Widget 3 Sorting -->
-    <propertySettings property="widgetSort.3" buttonID="9603" templateonly="True" title="$LOCALIZE[580]"/>
-    <property property="widgetSort.3" label="$LOCALIZE[585]">descending</property>
-    <property property="widgetSort.3" label="$LOCALIZE[584]">ascending</property>
-
-    <!-- Widget 4 Sorting -->
-    <propertySettings property="widgetSort.4" buttonID="9703" templateonly="True" title="$LOCALIZE[580]"/>
-    <property property="widgetSort.4" label="$LOCALIZE[585]">descending</property>
-    <property property="widgetSort.4" label="$LOCALIZE[584]">ascending</property>
-
-    <!-- Widget 5 Sorting -->
-    <propertySettings property="widgetSort.5" buttonID="9803" templateonly="True" title="$LOCALIZE[580]"/>
-    <property property="widgetSort.5" label="$LOCALIZE[585]">descending</property>
-    <property property="widgetSort.5" label="$LOCALIZE[584]">ascending</property>
-
-    <!-- Widget 6 Sorting -->
-    <propertySettings property="widgetSort.6" buttonID="11010" templateonly="True" title="$LOCALIZE[580]"/>
-    <property property="widgetSort.6" label="$LOCALIZE[585]">descending</property>
-    <property property="widgetSort.6" label="$LOCALIZE[584]">ascending</property>
-
-    <!-- Widget Banner -->
-    <propertySettings property="widgetBanner" buttonID="9404" title="$LOCALIZE[31235]"/>
-    <property property="widgetBanner" label="$LOCALIZE[107]">yes</property>
-    <property property="widgetBanner" label="$LOCALIZE[106]">no</property>
-
-    <!-- Widget Square Distance -->
-    <propertySettings property="widgetEdgeDistance" buttonID="10301" title="$LOCALIZE[31453]"/>
-    <property property="widgetEdgeDistance" label="$LOCALIZE[31454]">yes</property>
-    <propertySettings property="widgetEdgeDistance.2" buttonID="10302" title="$LOCALIZE[31453]"/>
-    <property property="widgetEdgeDistance.2" label="$LOCALIZE[31454]">yes</property>
-    <propertySettings property="widgetEdgeDistance.3" buttonID="10303" title="$LOCALIZE[31453]"/>
-    <property property="widgetEdgeDistance.3" label="$LOCALIZE[31454]">yes</property>
-    <propertySettings property="widgetEdgeDistance.4" buttonID="10304" title="$LOCALIZE[31453]"/>
-    <property property="widgetEdgeDistance.4" label="$LOCALIZE[31454]">yes</property>
-    <propertySettings property="widgetEdgeDistance.5" buttonID="10305" title="$LOCALIZE[31453]"/>
-    <property property="widgetEdgeDistance.5" label="$LOCALIZE[31454]">yes</property>
-    <propertySettings property="widgetEdgeDistance.6" buttonID="11008" title="$LOCALIZE[31453]"/>
-    <property property="widgetEdgeDistance.6" label="$LOCALIZE[31454]">yes</property>
-
-    <!-- Widget Square Aspect Ratio -->
-    <propertySettings property="widgetAspectRatio" buttonID="10001" title="$LOCALIZE[31402]"/>
-    <property property="widgetAspectRatio" label="$LOCALIZE[31403]">scale</property>
-    <propertySettings property="widgetAspectRatio.2" buttonID="10002" title="$LOCALIZE[31402]"/>
-    <property property="widgetAspectRatio.2" label="$LOCALIZE[31403]">scale</property>
-    <propertySettings property="widgetAspectRatio.3" buttonID="10003" title="$LOCALIZE[31402]"/>
-    <property property="widgetAspectRatio.3" label="$LOCALIZE[31403]">scale</property>
-    <propertySettings property="widgetAspectRatio.4" buttonID="10004" title="$LOCALIZE[31402]"/>
-    <property property="widgetAspectRatio.4" label="$LOCALIZE[31403]">scale</property>
-    <propertySettings property="widgetAspectRatio.5" buttonID="10005" title="$LOCALIZE[31402]"/>
-    <property property="widgetAspectRatio.5" label="$LOCALIZE[31403]">scale</property>
-    <propertySettings property="widgetAspectRatio.6" buttonID="11007" title="$LOCALIZE[31402]"/>
-    <property property="widgetAspectRatio.6" label="$LOCALIZE[31403]">scale</property>
-
     <!-- Widget AutoScroll in Seconds -->
-    <propertySettings property="widgetAuto.2" buttonID="4195" title="$LOCALIZE[31339]"/>
-    <property property="widgetAuto.2" label=" 5">$NUMBER[5000]</property>
-    <property property="widgetAuto.2" label=" 7">$NUMBER[7000]</property>
-    <property property="widgetAuto.2" label=" 10">$NUMBER[10000]</property>
-    <property property="widgetAuto.2" label=" 15">$NUMBER[15000]</property>
-    <property property="widgetAuto.2" label=" 20">$NUMBER[20000]</property>
-    <property property="widgetAuto.2" label=" 25">$NUMBER[25000]</property>
-
-    <propertySettings property="widgetAuto.3" buttonID="4194" title="$LOCALIZE[31339]"/>
-    <property property="widgetAuto.3" label=" 5">$NUMBER[5000]</property>
-    <property property="widgetAuto.3" label=" 7">$NUMBER[7000]</property>
-    <property property="widgetAuto.3" label=" 10">$NUMBER[10000]</property>
-    <property property="widgetAuto.3" label=" 15">$NUMBER[15000]</property>
-    <property property="widgetAuto.3" label=" 20">$NUMBER[20000]</property>
-    <property property="widgetAuto.3" label=" 25">$NUMBER[25000]</property>
-
-    <propertySettings property="widgetAuto.4" buttonID="4193" title="$LOCALIZE[31339]"/>
-    <property property="widgetAuto.4" label=" 5">$NUMBER[5000]</property>
-    <property property="widgetAuto.4" label=" 7">$NUMBER[7000]</property>
-    <property property="widgetAuto.4" label=" 10">$NUMBER[10000]</property>
-    <property property="widgetAuto.4" label=" 15">$NUMBER[15000]</property>
-    <property property="widgetAuto.4" label=" 20">$NUMBER[20000]</property>
-    <property property="widgetAuto.4" label=" 25">$NUMBER[25000]</property>
-
-    <propertySettings property="widgetAuto.5" buttonID="4593" title="$LOCALIZE[31339]"/>
-    <property property="widgetAuto.5" label=" 5">$NUMBER[5000]</property>
-    <property property="widgetAuto.5" label=" 7">$NUMBER[7000]</property>
-    <property property="widgetAuto.5" label=" 10">$NUMBER[10000]</property>
-    <property property="widgetAuto.5" label=" 15">$NUMBER[15000]</property>
-    <property property="widgetAuto.5" label=" 20">$NUMBER[20000]</property>
-    <property property="widgetAuto.5" label=" 25">$NUMBER[25000]</property>
-
-    <propertySettings property="widgetAuto.6" buttonID="11011" title="$LOCALIZE[31339]"/>
-    <property property="widgetAuto.6" label=" 5">$NUMBER[5000]</property>
-    <property property="widgetAuto.6" label=" 7">$NUMBER[7000]</property>
-    <property property="widgetAuto.6" label=" 10">$NUMBER[10000]</property>
-    <property property="widgetAuto.6" label=" 15">$NUMBER[15000]</property>
-    <property property="widgetAuto.6" label=" 20">$NUMBER[20000]</property>
-    <property property="widgetAuto.6" label=" 25">$NUMBER[25000]</property>
-
-    <propertySettings property="widgetAuto" buttonID="4196" title="$LOCALIZE[31339]"/>
+    <propertySettings property="widgetAuto" buttonID="9117" title="$LOCALIZE[31339]"/>
+    <propertySettings property="widgetAuto" buttonID="9317" title="$LOCALIZE[31339]"/>
     <property property="widgetAuto" label=" 5">$NUMBER[5000]</property>
-    <property property="widgetAuto" label=" 7">$NUMBER[7000]</property>
     <property property="widgetAuto" label=" 10">$NUMBER[10000]</property>
     <property property="widgetAuto" label=" 15">$NUMBER[15000]</property>
     <property property="widgetAuto" label=" 20">$NUMBER[20000]</property>
     <property property="widgetAuto" label=" 25">$NUMBER[25000]</property>
 
+    <!-- Widget Banner -->
+    <propertySettings property="widgetBanner" buttonID="9318" title="$LOCALIZE[31235]"/>
+    <property property="widgetBanner" label="$LOCALIZE[107]">yes</property>
+    <property property="widgetBanner" label="$LOCALIZE[106]">no</property>
+
     <!-- Widget List Type? -->
-    <propertySettings property="widgetListType" buttonID="41911" title="$LOCALIZE[31341]"/>
+    <propertySettings property="widgetListType" buttonID="9119" title="$LOCALIZE[31341]"/>
+    <propertySettings property="widgetListType" buttonID="9319" title="$LOCALIZE[31341]"/>
     <property property="widgetListType" label="$LOCALIZE[31148]">wraplist</property>
     <property property="widgetListType" label="$LOCALIZE[31342]">list</property>
     <property property="widgetListType" label="$LOCALIZE[31343]">fixedlist</property>
-
-    <propertySettings property="widgetListType.2" buttonID="41912" title="$LOCALIZE[31341]"/>
-    <property property="widgetListType.2" label="$LOCALIZE[31148]">wraplist</property>
-    <property property="widgetListType.2" label="$LOCALIZE[31342]">list</property>
-    <property property="widgetListType.2" label="$LOCALIZE[31343]">fixedlist</property>
-
-    <propertySettings property="widgetListType.3" buttonID="41913" title="$LOCALIZE[31341]"/>
-    <property property="widgetListType.3" label="$LOCALIZE[31148]">wraplist</property>
-    <property property="widgetListType.3" label="$LOCALIZE[31342]">list</property>
-    <property property="widgetListType.3" label="$LOCALIZE[31343]">fixedlist</property>
-
-    <propertySettings property="widgetListType.4" buttonID="41914" title="$LOCALIZE[31341]"/>
-    <property property="widgetListType.4" label="$LOCALIZE[31148]">wraplist</property>
-    <property property="widgetListType.4" label="$LOCALIZE[31342]">list</property>
-    <property property="widgetListType.4" label="$LOCALIZE[31343]">fixedlist</property>
-
-    <propertySettings property="widgetListType.5" buttonID="41915" title="$LOCALIZE[31341]"/>
-    <property property="widgetListType.5" label="$LOCALIZE[31148]">wraplist</property>
-    <property property="widgetListType.5" label="$LOCALIZE[31342]">list</property>
-    <property property="widgetListType.5" label="$LOCALIZE[31343]">fixedlist</property>
-
-    <propertySettings property="widgetListType.6" buttonID="41916" title="$LOCALIZE[31341]"/>
-    <property property="widgetListType.6" label="$LOCALIZE[31148]">wraplist</property>
-    <property property="widgetListType.6" label="$LOCALIZE[31342]">list</property>
-    <property property="widgetListType.6" label="$LOCALIZE[31343]">fixedlist</property>
 
     <override action="ActivateWindow(1111)">
         <action>SetProperty(WindowTitle,$VAR[HubWindowTitle],Home)</action>
@@ -946,72 +675,17 @@
     </widget-groupings>
 
     <!-- OnBack Action Override -->
-    <onback to="9101">9451</onback>
-    <onback to="9101">9401</onback>
-    <onback to="9101">9402</onback>
-    <onback to="9101">9403</onback>
-    <onback to="9101">9404</onback>
-    <onback to="9101">4196</onback>
-    <onback to="9101">10030</onback>
-    <onback to="9101">10301</onback>
-    <onback to="9101">10001</onback>
-    <onback to="9102">4197</onback>
-    <onback to="9102">9345</onback>
-    <onback to="9102">9521</onback>
-    <onback to="9102">9572</onback>
-    <onback to="9102">9573</onback>
-    <onback to="9102">4195</onback>
-    <onback to="9102">9792</onback>
-    <onback to="9102">9793</onback>
-    <onback to="9102">10031</onback>
-    <onback to="9102">10302</onback>
-    <onback to="9102">10002</onback>
-    <onback to="9103">4198</onback>
-    <onback to="9103">9346</onback>
-    <onback to="9103">9621</onback>
-    <onback to="9103">9602</onback>
-    <onback to="9103">9603</onback>
-    <onback to="9103">4194</onback>
-    <onback to="9103">10032</onback>
-    <onback to="9103">10303</onback>
-    <onback to="9103">10003</onback>
-    <onback to="9104">4199</onback>
-    <onback to="9104">9358</onback>
-    <onback to="9104">9721</onback>
-    <onback to="9104">9702</onback>
-    <onback to="9104">9703</onback>
-    <onback to="9104">4193</onback>
-    <onback to="9104">10033</onback>
-    <onback to="9104">10304</onback>
-    <onback to="9104">10004</onback>
-    <onback to="9105">4590</onback>
-    <onback to="9105">4591</onback>
-    <onback to="9105">9821</onback>
-    <onback to="9105">9802</onback>
-    <onback to="9105">9803</onback>
-    <onback to="9105">4593</onback>
-    <onback to="9105">10034</onback>
-    <onback to="9105">10305</onback>
-    <onback to="9105">10005</onback>
-    <onback to="9101">406</onback>
-    <onback to="9102">407</onback>
-    <onback to="9103">408</onback>
-    <onback to="9104">409</onback>
-    <onback to="9105">410</onback>
-    <onback to="9106">11001</onback>
-    <onback to="9106">11002</onback>
-    <onback to="9106">11003</onback>
-    <onback to="9106">11004</onback>
-    <onback to="9106">11005</onback>
-    <onback to="9106">11006</onback>
-    <onback to="9106">11007</onback>
-    <onback to="9106">11008</onback>
-    <onback to="9106">11009</onback>
-    <onback to="9106">11011</onback>
-    <onback to="9101">41911</onback>
-    <onback to="9102">41912</onback>
-    <onback to="9103">41913</onback>
-    <onback to="9104">41914</onback>
-    <onback to="9105">41915</onback>
-    <onback to="9106">41916</onback>
+    <onback to="9101">9301</onback>
+    <onback to="9101">9310</onback>
+    <onback to="9101">9311</onback>
+    <onback to="9101">9312</onback>
+    <onback to="9101">9313</onback>
+    <onback to="9101">9314</onback>
+    <onback to="9101">9315</onback>
+    <onback to="9101">9316</onback>
+    <onback to="9101">9317</onback>
+    <onback to="9101">9318</onback>
+    <onback to="9101">9319</onback>
+    <onback to="9101">9320</onback>
+
 </overrides>
