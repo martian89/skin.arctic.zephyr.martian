@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <window>
-    <defaultcontrol>9100</defaultcontrol>
+    <defaultcontrol always="true">9100</defaultcontrol>
     <onunload>ClearProperty(Backg,Home)</onunload>
     <onunload>ClearProperty(skinshortcuts-Widget,Home)</onunload>
     <controls>
@@ -161,28 +161,14 @@
                     <label2>$VAR[ItemStatus]</label2>
                 </control>
                 <control type="button" id="401" description="Alt chooser">
-                    <visible>$EXP[SkinshortcutsMainmenuActive] | !String.EndsWith(Window.Property(groupname),.1)</visible>
+                    <label>$VAR[Label_Widget_Chooser]</label>
+                    <onclick condition="$EXP[SkinshortcutsWidgetsActive]">SetProperty(custom-grouping,widget)</onclick>
                     <include>Def_Skinshortcuts_Buttons</include>
                 </control>
                 <control type="button" id="307" description="Custom">
                     <label>31267</label>                    
                     <label2>$INFO[Container(211).ListItem.Property(Path)]</label2>
-                    <visible>$EXP[SkinshortcutsMainmenuActive] | !String.EndsWith(Window.Property(groupname),.1)</visible>
-                    <include>Def_Skinshortcuts_Buttons</include>
-                </control>
-                <control type="button" id="4001" description="Alt chooser">
-                    <label>$ADDON[script.skinshortcuts 32044]</label>
-                    <visible>String.EndsWith(Window.Property(groupname),.1)</visible>
-                    <onclick>SetProperty(custom-grouping,widget)</onclick>
-                    <onclick>SendClick(401)</onclick>
-                    <include>Def_Skinshortcuts_Buttons</include>
-                </control>
-                <control type="button" id="3007" description="Custom">
-                    <label>31267</label>                    
-                    <label2>$INFO[Container(211).ListItem.Property(Path)]</label2>
-                    <visible>String.EndsWith(Window.Property(groupname),.1)</visible>
-                    <onclick>SetProperty(custom-grouping,widget)</onclick>
-                    <onclick>SendClick(307)</onclick>
+                    <onclick condition="$EXP[SkinshortcutsWidgetsActive]">SetProperty(custom-grouping,widget)</onclick>
                     <include>Def_Skinshortcuts_Buttons</include>
                 </control>
                 <control type="button" id="305" description="Set Label">
@@ -193,7 +179,7 @@
                 <control type="button" id="311" description="Select Icon">
                     <label>31477</label>
                     <include>Def_Skinshortcuts_Buttons</include>
-                    <visible>$EXP[SkinshortcutsMainmenuActive] | !String.EndsWith(Window.Property(groupname),.1)</visible>
+                    <visible>!$EXP[SkinshortcutsWidgetsActive]</visible>
                 </control>
 		        <control type="button" id="9101" description="Widget">
 		            <label>31266</label>
@@ -270,7 +256,7 @@
                 </include>
 
                 <include content="Def_Skinshortcuts_WidgetSettings">
-                    <param name="visible" value="String.EndsWith(Window.Property(groupname),.1)"/>
+                    <param name="visible" value="$EXP[SkinshortcutsWidgetsActive]"/>
                     <param name="baseid" value="91" />
                 </include>
                 <control type="button" id="308" description="Reset">

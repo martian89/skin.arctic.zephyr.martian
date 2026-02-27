@@ -4870,14 +4870,14 @@
             <include>Def_Skinshortcuts_Buttons</include>
             <label2>$INFO[Skin.String(Widget.$PARAM[hubid])]</label2>
             <visible>String.IsEqual(Container(211).ListItem.Label2,Hub $PARAM[hubid]) | String.IsEqual(Container(211).ListItem.Property(Path),ActivateWindow($PARAM[hubid]))</visible>
-            <visible>!String.EndsWith(Window.Property(groupname),.1)</visible>
+            <visible>!$EXP[SkinshortcutsWidgetsActive]</visible>
             <onclick>RunScript(script.skinshortcuts,type=widgets&amp;grouping=widget&amp;skinWidgetPath=Widget.$PARAM[hubid]&amp;skinWidgetName=Widget.$PARAM[hubid].Label&amp;skinWidgetType=Widget.$PARAM[hubid].Type;&amp;skinWidgetTarget=Widget.$PARAM[hubid].Target)</onclick>
         </control>
         <control type="button" id="$PARAM[buttonid1]" description="Set HUB">
             <label>31178</label>
             <include>Def_Skinshortcuts_Buttons</include>
             <visible>String.IsEqual(Container(211).ListItem.Label2,Hub $PARAM[hubid]) | String.IsEqual(Container(211).ListItem.Property(Path),ActivateWindow($PARAM[hubid]))</visible>
-            <visible>!String.EndsWith(Window.Property(groupname),.1)</visible>
+            <visible>!$EXP[SkinshortcutsWidgetsActive]</visible>
             <onclick>RunScript(script.skinshortcuts,type=manage&amp;group=x$PARAM[hubid])</onclick>
         </control>
     </include>
