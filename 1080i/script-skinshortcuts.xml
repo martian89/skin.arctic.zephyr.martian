@@ -162,14 +162,30 @@
                 </control>
                 <control type="button" id="401" description="Alt chooser">
                     <label>$VAR[Label_Widget_Chooser]</label>
-                    <onclick condition="$EXP[SkinshortcutsWidgetsActive]">SetProperty(custom-grouping,widget)</onclick>
                     <include>Def_Skinshortcuts_Buttons</include>
+                    <visible>!$EXP[Skinshortcuts_Widgets_Active]</visible>
                 </control>
                 <control type="button" id="307" description="Custom">
                     <label>31267</label>                    
                     <label2>$INFO[Container(211).ListItem.Property(Path)]</label2>
-                    <onclick condition="$EXP[SkinshortcutsWidgetsActive]">SetProperty(custom-grouping,widget)</onclick>
                     <include>Def_Skinshortcuts_Buttons</include>
+                    <visible>!$EXP[Skinshortcuts_Widgets_Active]</visible>
+                </control>
+                <control type="button" id="4001" description="Alt chooser">
+                    <label>$ADDON[script.skinshortcuts 32044]</label>
+                    <onclick>SetProperty(custom-grouping,widget)</onclick>
+                    <onclick>SendClick(401)</onclick>
+                    <include>Def_Skinshortcuts_Buttons</include>
+                    <include>Skinshortcuts_ContentType_AutoSetOnUnFocus</include>
+                    <visible>$EXP[Skinshortcuts_Widgets_Active]</visible>
+                </control>
+                <control type="button" id="3007" description="Custom">
+                    <label>31267</label>                    
+                    <label2>$INFO[Container(211).ListItem.Property(Path)]</label2>
+                    <onclick>SetProperty(custom-grouping,widget)</onclick>
+                    <onclick>SendClick(307)</onclick>
+                    <include>Def_Skinshortcuts_Buttons</include>
+                    <visible>$EXP[Skinshortcuts_Widgets_Active]</visible>
                 </control>
                 <control type="button" id="305" description="Set Label">
                     <label>31268</label>
@@ -179,7 +195,7 @@
                 <control type="button" id="311" description="Select Icon">
                     <label>31477</label>
                     <include>Def_Skinshortcuts_Buttons</include>
-                    <visible>!$EXP[SkinshortcutsWidgetsActive]</visible>
+                    <visible>!$EXP[Skinshortcuts_Widgets_Active]</visible>
                 </control>
 		        <control type="button" id="9101" description="Widget">
 		            <label>31266</label>
@@ -187,24 +203,24 @@
 		            <include>Def_Skinshortcuts_Buttons</include>
 		            <onclick>SetProperty(skinshortcuts-Widget,1,Home)</onclick>
                     <onclick>SetFocus(9301)</onclick>
-                    <visible>$EXP[SkinshortcutsMainmenuActive]</visible>
+                    <visible>$EXP[Skinshortcuts_Mainmenu_Active]</visible>
                     <visible>!Skin.HasSetting(home.vertical.widgets)</visible>
 		        </control>
                 <control type="button" id="406" description="Widget">
                     <label>31144</label>
                     <include>Def_Skinshortcuts_Buttons</include>
-                    <visible>$EXP[SkinshortcutsMainmenuActive]</visible>
+                    <visible>$EXP[Skinshortcuts_Mainmenu_Active]</visible>
                     <visible>Skin.HasSetting(home.vertical.widgets)</visible>
                 </control>
                 <control type="button" id="310" description="Background">
                     <label>31110</label>
                     <label2>$INFO[Container(211).ListItem.Property(background)]</label2>
                     <include>Def_Skinshortcuts_Buttons</include>
-                    <visible>$EXP[SkinshortcutsMainmenuActive] | String.IsEqual(Window(Home).Property(Backg),yes)</visible>
+                    <visible>$EXP[Skinshortcuts_Mainmenu_Active] | String.IsEqual(Window(Home).Property(Backg),yes)</visible>
                 </control>
                 <control type="button" id="405" description="Set Submenu">
                     <label>31112</label>
-                    <visible>$EXP[SkinshortcutsMainmenuActive]</visible>
+                    <visible>$EXP[Skinshortcuts_Mainmenu_Active]</visible>
                     <include>Def_Skinshortcuts_Buttons</include>
                     <visible>[!String.IsEqual(Container(211).ListItem.Label2,MovieHub) + !String.IsEqual(Container(211).ListItem.Label2,TVHub) + !String.IsEqual(Container(211).ListItem.Label2,Custom Hub)]</visible>
                 </control>
@@ -255,7 +271,7 @@
                 </include>
 
                 <include content="Def_Skinshortcuts_WidgetSettings">
-                    <param name="visible" value="$EXP[SkinshortcutsWidgetsActive]"/>
+                    <param name="visible" value="$EXP[Skinshortcuts_Widgets_Active]"/>
                     <param name="baseid" value="91" />
                 </include>
                 <control type="button" id="308" description="Reset">
@@ -286,6 +302,7 @@
                     <include>Def_Skinshortcuts_Buttons</include>
                     <visible allowhiddenfocus="true">!String.IsEmpty(Window(Home).Property(skinshortcuts-Widget))</visible>
                     <onclick>SendClick(312)</onclick>
+                    <include>Skinshortcuts_ContentType_AutoSetOnUnFocus</include>
                 </control>
                 <include content="Def_Skinshortcuts_WidgetSettings">
                     <param name="baseid" value="93" />

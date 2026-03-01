@@ -4870,14 +4870,14 @@
             <include>Def_Skinshortcuts_Buttons</include>
             <label2>$INFO[Skin.String(Widget.$PARAM[hubid])]</label2>
             <visible>String.IsEqual(Container(211).ListItem.Label2,Hub $PARAM[hubid]) | String.IsEqual(Container(211).ListItem.Property(Path),ActivateWindow($PARAM[hubid]))</visible>
-            <visible>!$EXP[SkinshortcutsWidgetsActive]</visible>
+            <visible>!$EXP[Skinshortcuts_Widgets_Active]</visible>
             <onclick>RunScript(script.skinshortcuts,type=widgets&amp;grouping=widget&amp;skinWidgetPath=Widget.$PARAM[hubid]&amp;skinWidgetName=Widget.$PARAM[hubid].Label&amp;skinWidgetType=Widget.$PARAM[hubid].Type;&amp;skinWidgetTarget=Widget.$PARAM[hubid].Target)</onclick>
         </control>
         <control type="button" id="$PARAM[buttonid1]" description="Set HUB">
             <label>31178</label>
             <include>Def_Skinshortcuts_Buttons</include>
             <visible>String.IsEqual(Container(211).ListItem.Label2,Hub $PARAM[hubid]) | String.IsEqual(Container(211).ListItem.Property(Path),ActivateWindow($PARAM[hubid]))</visible>
-            <visible>!$EXP[SkinshortcutsWidgetsActive]</visible>
+            <visible>!$EXP[Skinshortcuts_Widgets_Active]</visible>
             <onclick>RunScript(script.skinshortcuts,type=manage&amp;group=x$PARAM[hubid])</onclick>
         </control>
     </include>
@@ -4936,20 +4936,27 @@
 		        <visible>!String.IsEqual(Container(211).ListItem.Property(widget),epg) + !Skin.HasSetting(homemenu.clean.flix)</visible>
                 <visible>$PARAM[visible]</visible>
 		    </control>
-		    <control type="button" id="$PARAM[baseid]15" description="Widget SortBy">
+            <control type="button" id="$PARAM[baseid]15" description="Widget Content">
+                <label>31479</label>
+                <label2>$VAR[Label_Widget_Content]</label2>
+                <include>Def_Skinshortcuts_Buttons</include>
+                <include>Skinshortcuts_ContentType_AutoSetOnFocus</include>
+                <visible>$PARAM[visible]</visible>
+            </control>
+		    <control type="button" id="$PARAM[baseid]16" description="Widget SortBy">
 		        <label>581</label>
 		        <label2>$VAR[Label_Widget_SortBy]</label2>
 		        <include>Def_Skinshortcuts_Buttons</include>
                 <visible>$PARAM[visible]</visible>
 		    </control>
-		    <control type="button" id="$PARAM[baseid]16">
+		    <control type="button" id="$PARAM[baseid]17">
 		        <description>Change widget sort order</description>
 		        <include>Def_Skinshortcuts_Buttons</include>
 		        <label>580</label>
 		        <label2>$VAR[Label_Widget_Sort]</label2>
                 <visible>$PARAM[visible]</visible>
 		    </control>
-		    <control type="button" id="$PARAM[baseid]17">
+		    <control type="button" id="$PARAM[baseid]18">
 		        <description>Enable</description>
 		        <include>Def_Skinshortcuts_Buttons</include>
 		        <label>$LOCALIZE[31340]</label>
@@ -4957,7 +4964,7 @@
 		        <visible>!$EXP[HomeIsSpotlight]</visible>
                 <visible>$PARAM[visible]</visible>
 		    </control>
-		    <control type="radiobutton" id="$PARAM[baseid]18">
+		    <control type="radiobutton" id="$PARAM[baseid]19">
 		        <description>Show Banner?</description>
 		        <selected>String.IsEqual(Container(211).ListItem.Property(widgetBanner),yes)</selected>
 		        <include>Def_Skinshortcuts_Buttons</include>
@@ -4965,14 +4972,14 @@
                 <visible>Skin.HasSetting(home.vertical) + !Skin.HasSetting(home.vertical.widgets)</visible>
                 <visible>$PARAM[visible]</visible>
 		    </control>
-		    <control type="button" id="$PARAM[baseid]19" description="ListType">
+		    <control type="button" id="$PARAM[baseid]20" description="ListType">
 		        <label>$LOCALIZE[31341]</label>
 		        <label2>$VAR[Label_Widget_ListType]</label2>
 		        <include>Def_Skinshortcuts_Buttons</include>
 		        <visible>!$EXP[HomeIsVertical] + !$EXP[HomeIsCleanMinimal] + !$EXP[HomeIsSpotlight]</visible>
                 <visible>$PARAM[visible]</visible>
 		    </control>
-		    <control type="radiobutton" id="$PARAM[baseid]20" description="Prevent reload">
+		    <control type="radiobutton" id="$PARAM[baseid]21" description="Prevent reload">
 		        <selected>String.IsEqual(Container(211).ListItem.Property(widgetSortby),userpreference)</selected>
 		        <label>31820</label>
 		        <include>Def_Skinshortcuts_Buttons</include>

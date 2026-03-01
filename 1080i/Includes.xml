@@ -107,9 +107,6 @@
 	<expression name="IsVideoInfo">Window.IsVisible(DialogVideoInfo.xml) + ![String.IsEqual(ListItem.Property(item.type),person) | String.IsEqual(ListItem.Property(dbtype),person) | String.IsEqual(ListItem.Property(Param.Info),person)]</expression>
 	<expression name="IsPersonInfo">Window.IsVisible(DialogVideoInfo.xml) + [String.IsEqual(ListItem.Property(item.type),person) | String.IsEqual(ListItem.Property(dbtype),person) | String.IsEqual(ListItem.Property(Param.Info),person)]</expression>
 
-    <expression name="SkinshortcutsMainmenuActive">String.IsEqual(Window.Property(groupname),mainmenu) | String.IsEmpty(Window.Property(groupname))</expression>
-    <expression name="SkinshortcutsWidgetsActive">String.EndsWith(Window.Property(groupname),.1)</expression>
-
     <expression name="HasThumbImageResource">
         [ Window.IsVisible(MyVideoNav.xml) | Window.IsVisible(home)] + String.IsEqual(ListItem.DBType,country) + [!String.IsEmpty(Skin.String(moviecountry.icons.path)) | System.AddonIsEnabled(resource.images.moviecountryicons.maps)]
         | [Window.IsVisible(MyVideoNav.xml) | Window.IsVisible(home)] + String.IsEqual(ListItem.DBType,genre) + [!String.IsEmpty(Skin.String(genre.icons.path)) | System.AddonIsEnabled(resource.images.moviegenreicons.transparent)]
@@ -1908,27 +1905,6 @@
         </control>
     </include>
 
-    <include name="Widgets">
-
-        <!-- Widget 1 -->
-        <include>skinshortcuts-template-widget-vertical.1</include>
-
-        <!-- Widget 2 -->
-        <include>skinshortcuts-template-widget-vertical.2</include>
-
-        <!-- Widget 3 -->
-        <include>skinshortcuts-template-widget-vertical.3</include>
-
-        <!-- Widget 4 -->
-        <include>skinshortcuts-template-widget-vertical.4</include>
-
-        <!-- Widget 5 -->
-        <include>skinshortcuts-template-widget-vertical.5</include>
-
-        <!-- Widget 6 -->
-        <include>skinshortcuts-template-widget-vertical.6</include>
-    </include>
-
     <include name="ResetViewtypes">
         <onclick>Skin.Reset(home.classicwidgets)</onclick>
         <onclick>Skin.Reset(home.vertical)</onclick>
@@ -3026,4 +3002,37 @@
             <visible>Window.IsVisible(managevideoversions)</visible>
         </control>      
     </include>    
+    
+    <expression name="Skinshortcuts_Mainmenu_Active">String.IsEqual(Window.Property(groupname),mainmenu) | String.IsEmpty(Window.Property(groupname))</expression>
+    <expression name="Skinshortcuts_Widgets_Active">String.EndsWith(Window.Property(groupname),.1)</expression>
+
+    <include name="Skinshortcuts_ContentType_AutoSetOnFocus">
+        <onfocus condition="String.IsEmpty(Container(211).ListItem.Property(widgetTarget))">SetProperty(customProperty,widgetTarget)</onfocus>
+        <onfocus condition="String.IsEmpty(Container(211).ListItem.Property(widgetTarget))">SetProperty(customValue,$VAR[Skinshortcuts_ContentType])</onfocus>
+        <onfocus condition="String.IsEmpty(Container(211).ListItem.Property(widgetTarget))">SendClick(404)</onfocus>
+    </include>
+    
+    <include name="Skinshortcuts_ContentType_AutoSetOnUnFocus">
+        <onunfocus condition="String.IsEmpty(Container(211).ListItem.Property(widgetTarget))">SetProperty(customProperty,widgetTarget)</onunfocus>
+        <onunfocus condition="String.IsEmpty(Container(211).ListItem.Property(widgetTarget))">SetProperty(customValue,$VAR[Skinshortcuts_ContentType])</onunfocus>
+        <onunfocus condition="String.IsEmpty(Container(211).ListItem.Property(widgetTarget))">SendClick(404)</onunfocus>
+    </include>
+
+    <variable name="Skinshortcuts_ContentType">
+        <value condition="String.StartsWith(Container(211).ListItem.Label2,Video)">videos</value>
+        <value condition="String.StartsWith(Container(211).ListItem.Label2,Music)">music</value>
+        <value condition="String.StartsWith(Container(211).ListItem.Label2,Program)">programs</value>
+        <value condition="String.StartsWith(Container(211).ListItem.Label2,Picture)">pictures</value>
+        <value condition="String.StartsWith(Container(211).ListItem.Label2,PVR)">tvguide</value>
+        <value condition="String.Contains(Container(211).ListItem.Property(path),Videos)">videos</value>
+        <value condition="String.Contains(Container(211).ListItem.Property(path),Music)">music</value>
+        <value condition="String.Contains(Container(211).ListItem.Property(path),Programs)">programs</value>
+        <value condition="String.Contains(Container(211).ListItem.Property(path),Pictures)">pictures</value>
+        <value condition="String.Contains(Container(211).ListItem.Property(path),pvr://)">tvguide</value>
+        <value condition="String.Contains(Container(211).ListItem.Property(path),Weather)">weather</value>
+        <value condition="String.Contains(Container(211).ListItem.Property(path),SystemInfoContent)">system</value>
+        <value condition="String.Contains(Container(211).ListItem.Property(path),SettingsInfoContent)">settings</value>
+        <value condition="String.Contains(Container(211).ListItem.Property(path),favourites)">favouritesbrowser</value>
+    </variable>
+    
 </includes>
