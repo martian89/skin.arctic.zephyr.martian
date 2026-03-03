@@ -313,7 +313,41 @@
 	        <property name="id" tag="mainmenuid"/>
 
             <!--- Widget Content -->
+            <property name="content" tag="property" attribute="name|list" value="Submenu">$INCLUDE[skinshortcuts-submenu]</property>
+            <property name="content" tag="property" attribute="name|list" value="Settings">$INCLUDE[skinshortcuts-template-SystemInfoContent]</property>
+            <property name="content" tag="property" attribute="name|list" value="Systeminfo">$INCLUDE[skinshortcuts-template-SystemInfoContent]</property>
+            <property name="content" tag="property" attribute="name|list" value="WeatherDaily">$INCLUDE[skinshortcuts-template-WeatherDailyInfoContent]</property>
+            <property name="content" tag="property" attribute="name|list" value="WeatherHourly">$INCLUDE[skinshortcuts-template-WeatherHourlyInfoContent]</property>
 	        <property name="content" tag="property" attribute="name|list"/>
+
+            <property name="widgetinclude" tag="property" attribute="name|widget" value="epg">Widget_PVRGuide</property>
+            <property name="widgetinclude" tag="property" attribute="name|list" value="Submenu">Widget_Submenu</property>
+            <property name="widgetinclude" tag="property" attribute="name|list" value="Settings">Widget_Settings</property>
+            <property name="widgetinclude" tag="property" attribute="name|list" value="Systeminfo">Widget_Settings</property>
+            <property name="widgetinclude" tag="property" attribute="name|list" value="WeatherDaily">Widget_Weather</property>
+            <property name="widgetinclude" tag="property" attribute="name|list" value="WeatherHourly">Widget_Weather</property>
+            <property name="widgetinclude">Widget_Poster</property>
+
+            <property name="infosubinclude" tag="property" attribute="name|list" value="Settings">InfoSubWidgetSystem</property>
+            <property name="infosubinclude" tag="property" attribute="name|list" value="Systeminfo">InfoSubWidgetSystem</property>
+            <property name="infosubinclude" tag="property" attribute="name|list" value="WeatherDaily">InfoSubWidgetWeather</property>
+            <property name="infosubinclude" tag="property" attribute="name|list" value="WeatherHourly">InfoSubWidgetWeather</property>
+            <property name="infosubinclude">FullScreenInfoSub</property>
+
+            <property name="isSubmenu" tag="property" attribute="name|list" value="Submenu">true</property>
+            <property name="isSubmenu">false</property>
+            <property name="isSettings" tag="property" attribute="name|list" value="Settings">true</property>
+            <property name="isSettings">false</property>
+ 
+            <property name="isnormallayout" propertyValue="false">
+                <rule tag="property" attribute="name|list" value="Submenu" />                
+                <rule tag="property" attribute="name|list" value="Settings" />                
+                <rule tag="property" attribute="name|list" value="Systeminfo" />                
+                <rule tag="property" attribute="name|list" value="WeatherDaily" />                
+                <rule tag="property" attribute="name|list" value="WeatherHourly" />                
+            </property>
+            <property name="isnormallayout">true</property>
+
 	        <property name="target" tag="property" attribute="name|widgetTarget"/>
 	        <property name="target">$VAR[DefWidgetTarget]</property>
 	        <property name="browse">$VAR[DefBrowse]</property>
@@ -328,30 +362,6 @@
 
 	        <property name="widgetlimit" tag="property" attribute="name|widget" value="epg">5</property>
 	        <property name="widgetlimit">$VAR[DefWidgetLimit]</property>
-
-            <property name="widgetinclude" tag="property" attribute="name|widget" value="epg">Widget_PVRGuide</property>
-            <property name="widgetinclude" tag="property" attribute="name|widget" value="mysubmenu">Widget_Submenu</property>
-            <property name="widgetinclude" tag="property" attribute="name|widget" value="settings">Widget_Settings</property>
-            <property name="widgetinclude" tag="property" attribute="name|widgetTarget" value="system">Widget_Settings</property>
-            <property name="widgetinclude" tag="property" attribute="name|widgetTarget" value="weather">Widget_Weather</property>
-            <property name="widgetinclude">Widget_Poster</property>
-
-            <property name="infosubinclude" tag="property" attribute="name|widget" value="settings">InfoSubWidgetSystem</property>
-            <property name="infosubinclude" tag="property" attribute="name|widgetTarget" value="system">InfoSubWidgetSystem</property>
-            <property name="infosubinclude" tag="property" attribute="name|widgetTarget" value="weather">InfoSubWidgetWeather</property>
-            <property name="infosubinclude">FullScreenInfoSub</property>
-
-            <property name="hasinfosub" tag="property" attribute="name|widget" value="mysubmenu">false</property>
-            <property name="hasinfosub">true</property>
-
-            <property name="hasclearart" tag="property" attribute="name|widget" value="epg">false</property>
-            <property name="hasclearart" tag="property" attribute="name|widgetTarget" value="weather">false</property>
-            <property name="hasclearart" tag="property" attribute="name|widgetTarget" value="system">false</property>
-            <property name="hasclearart" tag="property" attribute="name|widget" value="mysubmenu">false</property>
-            <property name="hasclearart">true</property>
-
-            <property name="issettingslayout" tag="property" attribute="name|widget" value="settings">true</property>
-            <property name="issettingslayout">false</property>
 
 	        <property name="layoutheight" tag="property" attribute="name|widgetaspect" value="SquareMedium">175</property>
 	        <property name="layoutheight" tag="property" attribute="name|widgetaspect" value="SquareSmall">125</property>
@@ -384,7 +394,7 @@
 	        <property name="orientation" tag="property" attribute="name|widget" value="epg">vertical</property>
 	        <property name="orientation">horizontal</property>
 
-            <property name="widgetmovement" tag="property" attribute="name|widget" value="settings">4</property>
+            <property name="widgetmovement" tag="property" attribute="name|widgetTarget" value="settings">4</property>
             <property name="widgetmovement" tag="property" attribute="name|widgetTarget" value="system">4</property>
             <property name="widgetmovement" tag="property" attribute="name|widgetaspect" value="Square">4</property>
             <property name="widgetmovement" tag="property" attribute="name|widgetaspect" value="SquareMiddle">6</property>
@@ -395,7 +405,7 @@
             <property name="widgetmovement" tag="property" attribute="name|widgetaspect" value="FanartSmall">3</property>
             <property name="widgetmovement">7</property>
 
-	        <property name="widgetaspectcheck" tag="property" attribute="name|widget" value="settings">Square</property>
+	        <property name="widgetaspectcheck" tag="property" attribute="name|widgetTarget" value="settings">Square</property>
 	        <property name="widgetaspectcheck" tag="property" attribute="name|widgetTarget" value="system">Square</property>
 	        <property name="widgetaspectcheck" tag="property" attribute="name|widgetaspect" value="ThumbnailPosterSmall">ThumbPoSmall</property>
 	        <property name="widgetaspectcheck" tag="property" attribute="name|widgetaspect" value="ThumbnailSmall">ThumbSmall</property>
@@ -413,14 +423,14 @@
                     <visible>$SKINSHORTCUTS[isfullscreenwidget] | Skin.HasSetting(homemenu.netflix) | Integer.IsEqual(Container(9989).NumItems,1)</visible>
                     <visible>[Integer.IsGreater(Container($PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]).NumItems,0) | Container($PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]).IsUpdating]</visible>
                     <control type="grouplist">
-                        <include content="$SKINSHORTCUTS[infosubinclude]" condition="$SKINSHORTCUTS[hasinfosub]">
+                        <include content="$SKINSHORTCUTS[infosubinclude]" condition="!$SKINSHORTCUTS[isSubmenu]">
                             <param name="id" value="$PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]"/>
                             <param name="labelisvisible" value="$SKINSHORTCUTS[labelisvisible]"/>
-                            <param name="issettingslayout" value="$SKINSHORTCUTS[issettingslayout]"/>
+                            <param name="issettingslayout" value="$SKINSHORTCUTS[isSettings]"/>
                         </include>
                     </control>
                     <control type="grouplist">
-                        <include content="ClearArtInfoSub" condition="$SKINSHORTCUTS[hasclearart]">
+                        <include content="ClearArtInfoSub" condition="$SKINSHORTCUTS[isnormallayout]">
                             <param name="id" value="$PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]"/>
                         </include>
                     </control>
