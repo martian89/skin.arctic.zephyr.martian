@@ -827,6 +827,17 @@
         <value condition="Skin.HasSetting(home.classicwidgets)">$LOCALIZE[31249]</value>
     </variable>
 
+    <variable name="LabelOSDPlayerTime">
+        <value condition="VideoPlayer.Content(LiveTV)">$INFO[PVR.EpgEventElapsedTime]$INFO[PVR.EpgEventDuration,  /  ]</value>
+        <value condition="String.IsEmpty(Player.SeekNumeric)">$INFO[Player.Time]$INFO[Player.Duration,  /  ]</value>
+        <value condition="!String.IsEmpty(Player.SeekNumeric)">$INFO[Player.SeekNumeric(hh:mm:ss)]$INFO[Player.Duration,  /  ]</value>
+    </variable>
+
+    <variable name="LabelOSDPlayerEndTime">
+        <value condition="VideoPlayer.Content(LiveTV)">$INFO[PVR.EpgEventFinishTime]</value>
+        <value>$INFO[Player.FinishTime]</value>
+    </variable> 
+
     <variable name="Label_GenreIcons">
         <value condition="!String.IsEmpty(Skin.String(genre.icons.name))">$INFO[Skin.String(genre.icons.name)]</value>
         <value condition="System.AddonIsEnabled(resource.images.moviegenreicons.transparent)">$LOCALIZE[15109]</value>
