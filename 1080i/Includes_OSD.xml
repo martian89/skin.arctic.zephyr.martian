@@ -1088,6 +1088,8 @@
     </include>
 
     <include name="DefOSDUpDown">
+        <oninfo condition="String.IsEmpty(Window(home).Property(osdshowinfo)) + ![Window.IsVisible(MusicOSD.xml) + Skin.HasSetting(musicosd.side)]">SetProperty(osdshowinfo,1,home)</oninfo>
+        <oninfo condition="!String.IsEmpty(Window(home).Property(osdshowinfo)) + ![Window.IsVisible(MusicOSD.xml) + Skin.HasSetting(musicosd.side)]">ClearProperty(osdshowinfo,home)</oninfo>
         <onup condition="String.IsEmpty(Window(home).Property(osdshowinfo)) + ![Window.IsVisible(MusicOSD.xml) + Skin.HasSetting(musicosd.side)]">SetProperty(osdshowinfo,1,home)</onup>
         <onup condition="!String.IsEmpty(Window(home).Property(osdshowinfo)) + ![Window.IsVisible(MusicOSD.xml) + Skin.HasSetting(musicosd.side)]">ClearProperty(osdshowinfo,home)</onup>
         <ondown condition="String.IsEmpty(Window(home).Property(osdshowinfo)) + ![Window.IsVisible(MusicOSD.xml) + Skin.HasSetting(musicosd.side)]">SetProperty(osdshowinfo,1,home)</ondown>
@@ -1985,6 +1987,7 @@
             <height>48</height>
             <label/>
             <font />
+            <oninfo>noop</oninfo>
             <onclick condition="!Skin.HasSetting(videoosd.side)">SetFocus(9950)</onclick>
             <onup condition="!Skin.HasSetting(videoosd.side)">SetFocus(9950)</onup>
             <onclick condition="Skin.HasSetting(videoosd.side)">SetFocus(9960)</onclick>
@@ -2143,6 +2146,7 @@
             <height>48</height>
             <label/>
             <font />
+            <oninfo>noop</oninfo>
             <onclick>SetFocus(9800)</onclick>
             <onup>SetFocus(9800)</onup>
             <visible>Player.TempoEnabled</visible>
@@ -2373,6 +2377,7 @@
                     <include>DefOSDButtons</include>
                 </control>
                 <control type="button" id="3">
+                    <oninfo>noop</oninfo>
                     <onup>9303</onup>
                     <ondown>9301</ondown>
                     <description>Subs</description>
@@ -2511,6 +2516,7 @@
                     <include>Animation.OSD.Wide.Short</include>
                 </control>
                 <control type="button" id="3">
+                    <oninfo>noop</oninfo>
                     <onup>9303</onup>
                     <ondown>9301</ondown>
                     <description>Subs</description>
@@ -2542,6 +2548,7 @@
                     <include>Animation.OSD.Wide.Short</include>
                 </control>
                 <control type="button" id="230">
+                    <oninfo>noop</oninfo>
                     <onup>9303</onup>
                     <ondown>9301</ondown>
                     <description>Subs</description>
@@ -2685,6 +2692,7 @@
                     <texturenofocus colordiffuse="$VAR[OSDPanelWhite70]">osd/videosett.png</texturenofocus>
                 </control>
                 <control type="button" id="3">
+                    <oninfo>noop</oninfo>
                     <onup>9303</onup>
                     <ondown>9301</ondown>
                     <width>48</width>
