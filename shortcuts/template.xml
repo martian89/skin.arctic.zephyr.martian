@@ -435,20 +435,29 @@
                         </include>
                     </control>
                 </control>
+                <control type="group" id="$PYTHON[int(mainmenuid) * 1000 + 800 + int(id)]">
+                    <visible>String.IsEqual(Container(300).ListItem.Property(submenuVisibility),$SKINSHORTCUTS[submenuVisibility])</visible>
+                    <visible>Integer.IsGreater(Container($PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]).NumItems,0) | Container($PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]).IsUpdating</visible>
+                    <control type="grouplist">
+                        <include content="widget.title.label">
+                            <param name="focusid" value="$PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]"/>
+                            <param name="label" value="$SKINSHORTCUTS[widgetname]"/>
+                        </include>
+                    </control>
+                </control>
                 <control type="$SKINSHORTCUTS[widgetlisttype]" id="$PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]">
                     <visible>String.IsEqual(Container(300).ListItem.Property(submenuVisibility),$SKINSHORTCUTS[submenuVisibility])</visible>
                     <visible>Integer.IsGreater(Container($PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]).NumItems,0) | Container($PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]).IsUpdating | String.IsEqual(Container(300).ListItem.Property(widget),mysubmenu) | String.IsEqual(Container(300).ListItem.Property(widget),custom) | String.Contains(Container(300).ListItem.Property(widget),weather)</visible>
                     <include content="DefMultiWidgetContainer">
                         <param name="id" value="$PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]"/>
+                        <param name="baseid" value="$PYTHON[int(mainmenuid) * 10 + 6]"/>
+                        <param name="backid" value="$PYTHON[int(mainmenuid) * 1000 + 600 + 1]"/>
 	                    <param name="height" value="$SKINSHORTCUTS[layoutheight]"/>
 	                    <param name="height2" value="$SKINSHORTCUTS[layoutheight2]"/>
-	                    <param name="idshort" value="$SKINSHORTCUTS[id]"/>
-	                    <param name="backid" value="$PYTHON[int(mainmenuid) * 1000 + 600 + 1]"/>
 	                    <param name="AutoTime" value="$SKINSHORTCUTS[widgetauto]"/>
 	                    <param name="orientation" value="$SKINSHORTCUTS[orientation]"/>
                         <param name="movement" value="$SKINSHORTCUTS[widgetmovement]"/>
 	                    <param name="AutoScrollCondition" value="!Control.HasFocus($PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]) + !String.IsEmpty(Container(300).ListItem.Property(widgetAuto)) + !String.IsEqual(Container(300).ListItem.Property(widgetListType),list) + System.IdleTime(1)"/>
-	                    <param name="animation_condition" value="!Control.HasFocus($PYTHON[int(mainmenuid) * 1000 + 600 + int(id)])" />
                     </include>
                     <!-- ItemLayout -->
 	                <include content="$SKINSHORTCUTS[widgetinclude]">
@@ -467,18 +476,6 @@
                         <param name="SquareSmall" value="$PYTHON['true' if widgetaspectsubcheck in 'SqSmall' else 'false']"/>
 	                </include>
                     <content limit="$SKINSHORTCUTS[widgetlimit]" target="$SKINSHORTCUTS[target]" sortby="$SKINSHORTCUTS[sortby]" sortorder="$SKINSHORTCUTS[sort]" browse="$SKINSHORTCUTS[browse]">$SKINSHORTCUTS[content]</content>
-                </control>
-                <control type="group" id="$PYTHON[int(mainmenuid) * 1000 + 500 + int(id)]">
-                    <visible>String.IsEqual(Container(300).ListItem.Property(submenuVisibility),$SKINSHORTCUTS[submenuVisibility])</visible>
-                    <visible>Integer.IsGreater(Container($PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]).NumItems,0) | Container($PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]).IsUpdating</visible>
-                    <control type="grouplist">
-                        <include content="widget.title.label">
-                            <param name="focusid" value="$PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]"/>
-                            <param name="idshort" value="$SKINSHORTCUTS[id]"/>
-                            <param name="label" value="$SKINSHORTCUTS[widgetname]"/>
-                            <param name="animation_condition" value="!Control.HasFocus($PYTHON[int(mainmenuid) * 1000 + 600 + int(id)])" />
-                        </include>
-                    </control>
                 </control>
 	        </controls>
 	    </items>	    
