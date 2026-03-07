@@ -314,7 +314,7 @@
 
             <!--- Widget Content -->
             <property name="content" tag="property" attribute="name|list" value="Submenu">$INCLUDE[skinshortcuts-submenu]</property>
-            <property name="content" tag="property" attribute="name|list" value="Settings">$INCLUDE[skinshortcuts-template-SystemInfoContent]</property>
+            <property name="content" tag="property" attribute="name|list" value="Settings">$INCLUDE[skinshortcuts-template-SettingsInfoContent]</property>
             <property name="content" tag="property" attribute="name|list" value="Systeminfo">$INCLUDE[skinshortcuts-template-SystemInfoContent]</property>
             <property name="content" tag="property" attribute="name|list" value="WeatherDaily">$INCLUDE[skinshortcuts-template-WeatherDailyInfoContent]</property>
             <property name="content" tag="property" attribute="name|list" value="WeatherHourly">$INCLUDE[skinshortcuts-template-WeatherHourlyInfoContent]</property>
@@ -435,16 +435,6 @@
                         </include>
                     </control>
                 </control>
-                <control type="group" id="$PYTHON[int(mainmenuid) * 1000 + 800 + int(id)]">
-                    <visible>String.IsEqual(Container(300).ListItem.Property(submenuVisibility),$SKINSHORTCUTS[submenuVisibility])</visible>
-                    <visible>Integer.IsGreater(Container($PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]).NumItems,0) | Container($PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]).IsUpdating</visible>
-                    <control type="grouplist">
-                        <include content="widget.title.label">
-                            <param name="focusid" value="$PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]"/>
-                            <param name="label" value="$SKINSHORTCUTS[widgetname]"/>
-                        </include>
-                    </control>
-                </control>
                 <control type="$SKINSHORTCUTS[widgetlisttype]" id="$PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]">
                     <visible>String.IsEqual(Container(300).ListItem.Property(submenuVisibility),$SKINSHORTCUTS[submenuVisibility])</visible>
                     <visible>Integer.IsGreater(Container($PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]).NumItems,0) | Container($PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]).IsUpdating | String.IsEqual(Container(300).ListItem.Property(widget),mysubmenu) | String.IsEqual(Container(300).ListItem.Property(widget),custom) | String.Contains(Container(300).ListItem.Property(widget),weather)</visible>
@@ -476,6 +466,16 @@
                         <param name="SquareSmall" value="$PYTHON['true' if widgetaspectsubcheck in 'SqSmall' else 'false']"/>
 	                </include>
                     <content limit="$SKINSHORTCUTS[widgetlimit]" target="$SKINSHORTCUTS[target]" sortby="$SKINSHORTCUTS[sortby]" sortorder="$SKINSHORTCUTS[sort]" browse="$SKINSHORTCUTS[browse]">$SKINSHORTCUTS[content]</content>
+                </control>
+                <control type="group" id="$PYTHON[int(mainmenuid) * 1000 + 800 + int(id)]">
+                    <visible>String.IsEqual(Container(300).ListItem.Property(submenuVisibility),$SKINSHORTCUTS[submenuVisibility])</visible>
+                    <visible>Integer.IsGreater(Container($PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]).NumItems,0) | Container($PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]).IsUpdating</visible>
+                    <control type="grouplist">
+                        <include content="widget.title.label">
+                            <param name="focusid" value="$PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]"/>
+                            <param name="label" value="$SKINSHORTCUTS[widgetname]"/>
+                        </include>
+                    </control>
                 </control>
 	        </controls>
 	    </items>	    
