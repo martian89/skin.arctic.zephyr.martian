@@ -834,7 +834,6 @@
 	
 	<variable name="GlobalFanart_Fallback">
 		<!-- Weather -->
-       	<value condition="!String.IsEmpty(Weather.Plugin) + [$EXP[HasWeatherFanartSingle] | $EXP[HasWeatherFanartMulti]] + [String.IsEqual(Container(300).ListItem.Property(widget),weatherdaily) | String.IsEqual(Container(300).ListItem.Property(widget),weatherhourly)] + [!Skin.HasSetting(home.dontshowfanart) | Control.HasFocus(301) | ControlGroup(301).HasFocus]">$VAR[Image_WeatherCurrent]</value>
         
 		<!-- Playlist Background -->
 	    <value condition="String.IsEqual(Container(300).ListItem.Property(background),playlistBackground)">$INFO[Container(9988).ListItem.Art(fanart)]</value>
@@ -871,6 +870,9 @@
 
 		<!-- TMDbHelper PVR Artwork -->
         <value condition="Window.IsVisible(home) + String.StartsWith(Container(301).ListItem.FolderPath,pvr://) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Fanart)) + [!Skin.HasSetting(home.dontshowfanart) | Control.HasFocus(301)] + Control.IsVisible(301)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Fanart)]</value>
+
+        <!-- Weather -->
+        <value condition="!String.IsEmpty(Weather.Plugin) + [$EXP[HasWeatherFanartSingle] | $EXP[HasWeatherFanartMulti]] + [String.IsEqual(Container(300).ListItem.Property(widget),weatherdaily) | String.IsEqual(Container(300).ListItem.Property(widget),weatherhourly)] + [!Skin.HasSetting(home.dontshowfanart) | Control.HasFocus(301)]">$VAR[Image_WeatherCurrent]</value>
 		
         <!-- Fallback -->
 		<value condition="Window.IsVisible(home)">$VAR[GlobalFanart_Fallback]</value>

@@ -300,7 +300,64 @@
             </control>
         </controls>
     </other>
-    
+
+    <other include="spotlight">
+		<!--- Widget Content -->
+        <property name="content">$VAR[DefWidgetContent]</property>
+        <property name="target">$VAR[DefWidgetTarget]</property>
+        <property name="browse">$VAR[DefBrowse]</property>
+        <property name="widgetLimit">$VAR[DefWidgetLimit]</property>
+
+	    <controls>
+	        <!-- InfoSub -->
+            <control type="group" id="997500">
+                <visible>Integer.IsEqual(Container(9989).NumItems,0)</visible>
+                <visible>Integer.IsGreater(Container(993100).NumItems,0) | Container(993100).IsUpdating</visible>
+                <control type="grouplist">
+                    <include content="widget.title.label">
+                        <param name="focusid" value="993100"/>
+                        <param name="label" value="$LOCALIZE[31105]"/>
+                    </include>
+                </control>
+            </control>
+	        <control type="fixedlist" id="993100">
+                <visible>Integer.IsEqual(Container(9989).NumItems,0)</visible>
+	            <visible>Integer.IsGreater(Container(993100).NumItems,0) | Container(993100).IsUpdating</visible>
+	            <include content="DefMultiWidgetContainer">
+	                <param name="id" value="993100"/>
+	                <param name="baseid" value="9931"/>
+	                <param name="height" value="325"/>
+	                <param name="height2" value="365"/>
+	                <param name="AutoTime" value="0"/>
+	                <param name="movement" value="7"/>
+	                <param name="AutoScrollCondition" value="false"/>
+	            </include>
+	            <!-- ItemLayout -->
+	            <include content="Widget_Poster">
+	                <param name="shortcutsid" value="993100"/>
+	                <param name="shortcutsclearlogo" value="true"/>
+	                <param name="aspectratio" value="keep"/>
+	                <param name="distance" value="10"/>
+	            </include>
+	            <content limit="$SKINSHORTCUTS[widgetLimit]" target="$SKINSHORTCUTS[target]" browse="$SKINSHORTCUTS[browse]">$SKINSHORTCUTS[content]</content>
+	        </control>
+            <control type="group" id="995600">
+                <visible>Integer.IsEqual(Container(9989).NumItems,0)</visible>
+                <visible>Integer.IsGreater(Container(993100).NumItems,0) | Container(993100).IsUpdating</visible>
+                <control type="grouplist">
+                    <include content="FullScreenInfoSub">
+                        <param name="id" value="993100"/>
+                    </include>
+                </control>
+                <control type="grouplist">
+                    <include content="ClearArtInfoSub">
+                        <param name="id" value="993100"/>
+                    </include>
+                </control>
+            </control>
+	    </controls>
+    </other>
+               
     <submenu include="widgets" level="1">
         <property name="mainmenuid" tag="mainmenuid" />
         <property name="submenuVisibility" tag="property" attribute="name|submenuVisibility" />
@@ -320,19 +377,19 @@
             <property name="content" tag="property" attribute="name|list" value="WeatherHourly">$INCLUDE[skinshortcuts-template-WeatherHourlyInfoContent]</property>
 	        <property name="content" tag="property" attribute="name|list"/>
 
-            <property name="widgetinclude" tag="property" attribute="name|widget" value="epg">Widget_PVRGuide</property>
-            <property name="widgetinclude" tag="property" attribute="name|list" value="Submenu">Widget_Submenu</property>
-            <property name="widgetinclude" tag="property" attribute="name|list" value="Settings">Widget_Settings</property>
-            <property name="widgetinclude" tag="property" attribute="name|list" value="Systeminfo">Widget_Settings</property>
-            <property name="widgetinclude" tag="property" attribute="name|list" value="WeatherDaily">Widget_Weather</property>
-            <property name="widgetinclude" tag="property" attribute="name|list" value="WeatherHourly">Widget_Weather</property>
-            <property name="widgetinclude">Widget_Poster</property>
+            <property name="widgetInclude" tag="property" attribute="name|widget" value="epg">Widget_PVRGuide</property>
+            <property name="widgetInclude" tag="property" attribute="name|list" value="Submenu">Widget_Submenu</property>
+            <property name="widgetInclude" tag="property" attribute="name|list" value="Settings">Widget_Settings</property>
+            <property name="widgetInclude" tag="property" attribute="name|list" value="Systeminfo">Widget_Settings</property>
+            <property name="widgetInclude" tag="property" attribute="name|list" value="WeatherDaily">Widget_Weather</property>
+            <property name="widgetInclude" tag="property" attribute="name|list" value="WeatherHourly">Widget_Weather</property>
+            <property name="widgetInclude">Widget_Poster</property>
 
-            <property name="infosubinclude" tag="property" attribute="name|list" value="Settings">InfoSubWidgetSystem</property>
-            <property name="infosubinclude" tag="property" attribute="name|list" value="Systeminfo">InfoSubWidgetSystem</property>
-            <property name="infosubinclude" tag="property" attribute="name|list" value="WeatherDaily">InfoSubWidgetWeather</property>
-            <property name="infosubinclude" tag="property" attribute="name|list" value="WeatherHourly">InfoSubWidgetWeather</property>
-            <property name="infosubinclude">FullScreenInfoSub</property>
+            <property name="infosubInclude" tag="property" attribute="name|list" value="Settings">InfoSubWidgetSystem</property>
+            <property name="infosubInclude" tag="property" attribute="name|list" value="Systeminfo">InfoSubWidgetSystem</property>
+            <property name="infosubInclude" tag="property" attribute="name|list" value="WeatherDaily">InfoSubWidgetWeather</property>
+            <property name="infosubInclude" tag="property" attribute="name|list" value="WeatherHourly">InfoSubWidgetWeather</property>
+            <property name="infosubInclude">FullScreenInfoSub</property>
 
             <property name="isSubmenu" tag="property" attribute="name|list" value="Submenu">true</property>
             <property name="isSubmenu">false</property>
@@ -365,20 +422,16 @@
 
 	        <property name="layoutheight" tag="property" attribute="name|widgetaspect" value="SquareMedium">175</property>
 	        <property name="layoutheight" tag="property" attribute="name|widgetaspect" value="SquareSmall">125</property>
-	        <property name="layoutheight" tag="property" attribute="name|widget" value="mysubmenu">325</property>
+	        <property name="layoutheight" tag="property" attribute="name|list" value="Submenu">325</property>
 	        <property name="layoutheight" tag="property" attribute="name|widgetFullscreen" value="yes">710</property>
 	        <property name="layoutheight">325</property>
 	        <property name="layoutheight2" tag="property" attribute="name|widgetaspect" value="SquareMedium">185</property>
 	        <property name="layoutheight2" tag="property" attribute="name|widgetaspect" value="SquareSmall">135</property>
-	        <property name="layoutheight2" tag="property" attribute="name|widget" value="mysubmenu">365</property>
+	        <property name="layoutheight2" tag="property" attribute="name|list" value="Submenu">365</property>
 	        <property name="layoutheight2" tag="property" attribute="name|widgetFullscreen" value="yes">750</property>
 	        <property name="layoutheight2">365</property>
 	        <property name="isfullscreenwidget" tag="property" attribute="name|widgetFullscreen" value="yes">true</property>
 	        <property name="isfullscreenwidget">false</property>
-	        <property name="labelisvisible" tag="property" attribute="name|widget" value="mysubmenu">false</property>
-	        <property name="labelisvisible" tag="property" attribute="name|widgetTarget" value="weather">false</property>
-	        <property name="labelisvisible" tag="property" attribute="name|widgetTarget" value="system">false</property>
-	        <property name="labelisvisible">true</property>
 	        <property name="widgetauto" tag="property" attribute="name|widgetAuto" value="$NUMBER[5000]">5000</property>
 	        <property name="widgetauto" tag="property" attribute="name|widgetAuto" value="$NUMBER[7000]">7000</property>
 	        <property name="widgetauto" tag="property" attribute="name|widgetAuto" value="$NUMBER[10000]">10000</property>
@@ -394,8 +447,8 @@
 	        <property name="orientation" tag="property" attribute="name|widget" value="epg">vertical</property>
 	        <property name="orientation">horizontal</property>
 
-            <property name="widgetmovement" tag="property" attribute="name|widgetTarget" value="settings">4</property>
-            <property name="widgetmovement" tag="property" attribute="name|widgetTarget" value="system">4</property>
+            <property name="widgetmovement" tag="property" attribute="name|list" value="Settings">4</property>
+            <property name="widgetmovement" tag="property" attribute="name|list" value="Systeminfo">4</property>
             <property name="widgetmovement" tag="property" attribute="name|widgetaspect" value="Square">4</property>
             <property name="widgetmovement" tag="property" attribute="name|widgetaspect" value="SquareMiddle">6</property>
             <property name="widgetmovement" tag="property" attribute="name|widgetaspect" value="SquareSmall">7</property>
@@ -405,8 +458,6 @@
             <property name="widgetmovement" tag="property" attribute="name|widgetaspect" value="FanartSmall">3</property>
             <property name="widgetmovement">7</property>
 
-	        <property name="widgetaspectcheck" tag="property" attribute="name|widgetTarget" value="settings">Square</property>
-	        <property name="widgetaspectcheck" tag="property" attribute="name|widgetTarget" value="system">Square</property>
 	        <property name="widgetaspectcheck" tag="property" attribute="name|widgetaspect" value="ThumbnailPosterSmall">ThumbPoSmall</property>
 	        <property name="widgetaspectcheck" tag="property" attribute="name|widgetaspect" value="ThumbnailSmall">ThumbSmall</property>
 	        <property name="widgetaspectcheck" tag="property" attribute="name|widgetaspect" value="FanartSmall">FanSmall</property>
@@ -418,39 +469,38 @@
 
 	        <controls>
                 <!-- InfoSub -->
-                <control type="group" id="$PYTHON[int(mainmenuid) * 1000 + 700 + int(id)]">
+                <control type="group" id="$PYTHON[int(mainmenuid) * 10000 + 5600 + int(id)]">
                     <visible>String.IsEqual(Container(300).ListItem.Property(submenuVisibility),$SKINSHORTCUTS[submenuVisibility])</visible>
                     <visible>$SKINSHORTCUTS[isfullscreenwidget] | Skin.HasSetting(homemenu.netflix) | Integer.IsEqual(Container(9989).NumItems,1)</visible>
-                    <visible>[Integer.IsGreater(Container($PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]).NumItems,0) | Container($PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]).IsUpdating]</visible>
+                    <visible>[Integer.IsGreater(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]).NumItems,0) | Container($PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]).IsUpdating]</visible>
                     <control type="grouplist">
-                        <include content="$SKINSHORTCUTS[infosubinclude]" condition="!$SKINSHORTCUTS[isSubmenu]">
-                            <param name="id" value="$PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]"/>
-                            <param name="labelisvisible" value="$SKINSHORTCUTS[labelisvisible]"/>
+                        <include content="$SKINSHORTCUTS[infosubInclude]" condition="!$SKINSHORTCUTS[isSubmenu]">
+                            <param name="id" value="$PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]"/>
                             <param name="issettingslayout" value="$SKINSHORTCUTS[isSettings]"/>
                         </include>
                     </control>
                     <control type="grouplist">
                         <include content="ClearArtInfoSub" condition="$SKINSHORTCUTS[isnormallayout]">
-                            <param name="id" value="$PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]"/>
+                            <param name="id" value="$PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]"/>
                         </include>
                     </control>
                 </control>
-                <control type="$SKINSHORTCUTS[widgetlisttype]" id="$PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]">
+                <control type="$SKINSHORTCUTS[widgetlisttype]" id="$PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]">
                     <visible>String.IsEqual(Container(300).ListItem.Property(submenuVisibility),$SKINSHORTCUTS[submenuVisibility])</visible>
-                    <visible>Integer.IsGreater(Container($PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]).NumItems,0) | Container($PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]).IsUpdating | String.IsEqual(Container(300).ListItem.Property(widget),mysubmenu) | String.IsEqual(Container(300).ListItem.Property(widget),custom) | String.Contains(Container(300).ListItem.Property(widget),weather)</visible>
+                    <visible>Integer.IsGreater(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]).NumItems,0) | Container($PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]).IsUpdating | $SKINSORTCUTS[isSubmenu]</visible>
                     <include content="DefMultiWidgetContainer">
-                        <param name="id" value="$PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]"/>
-                        <param name="baseid" value="$PYTHON[int(mainmenuid) * 10 + 6]"/>
+                        <param name="id" value="$PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]"/>
+                        <param name="baseid" value="$PYTHON[int(mainmenuid) * 100 + 31]"/>
 	                    <param name="height" value="$SKINSHORTCUTS[layoutheight]"/>
 	                    <param name="height2" value="$SKINSHORTCUTS[layoutheight2]"/>
 	                    <param name="AutoTime" value="$SKINSHORTCUTS[widgetauto]"/>
 	                    <param name="orientation" value="$SKINSHORTCUTS[orientation]"/>
                         <param name="movement" value="$SKINSHORTCUTS[widgetmovement]"/>
-	                    <param name="AutoScrollCondition" value="!Control.HasFocus($PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]) + !String.IsEmpty(Container(300).ListItem.Property(widgetAuto)) + !String.IsEqual(Container(300).ListItem.Property(widgetListType),list) + System.IdleTime(1)"/>
+	                    <param name="AutoScrollCondition" value="!Control.HasFocus($PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]) + !String.IsEmpty(Container(300).ListItem.Property(widgetAuto)) + !String.IsEqual(Container(300).ListItem.Property(widgetListType),list) + System.IdleTime(1)"/>
                     </include>
                     <!-- ItemLayout -->
-	                <include content="$SKINSHORTCUTS[widgetinclude]">
-                        <param name="shortcutsid" value="$PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]"/>
+	                <include content="$SKINSHORTCUTS[widgetInclude]">
+                        <param name="shortcutsid" value="$PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]"/>
 	                    <param name="shortcutsclearlogo" value="$SKINSHORTCUTS[widgetclearlogothumb]"/>
 	                    <param name="aspectratio" value="$SKINSHORTCUTS[aspectratio]"/>
 	                    <param name="distance" value="$SKINSHORTCUTS[distance]"/>
@@ -466,12 +516,12 @@
 	                </include>
                     <content limit="$SKINSHORTCUTS[widgetlimit]" target="$SKINSHORTCUTS[target]" sortby="$SKINSHORTCUTS[sortby]" sortorder="$SKINSHORTCUTS[sort]" browse="$SKINSHORTCUTS[browse]">$SKINSHORTCUTS[content]</content>
                 </control>
-                <control type="group" id="$PYTHON[int(mainmenuid) * 1000 + 800 + int(id)]">
+                <control type="group" id="$PYTHON[int(mainmenuid) * 10000 + 7500 + int(id)]">
                     <visible>String.IsEqual(Container(300).ListItem.Property(submenuVisibility),$SKINSHORTCUTS[submenuVisibility])</visible>
-                    <visible>Integer.IsGreater(Container($PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]).NumItems,0) | Container($PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]).IsUpdating</visible>
+                    <visible>Integer.IsGreater(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]).NumItems,0) | Container($PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]).IsUpdating</visible>
                     <control type="grouplist">
                         <include content="widget.title.label">
-                            <param name="focusid" value="$PYTHON[int(mainmenuid) * 1000 + 600 + int(id)]"/>
+                            <param name="focusid" value="$PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]"/>
                             <param name="label" value="$SKINSHORTCUTS[widgetname]"/>
                         </include>
                     </control>
