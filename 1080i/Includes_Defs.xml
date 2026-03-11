@@ -822,19 +822,19 @@
     </variable>
 
     <variable name="Def_VideoList_Item">
-        <value condition="String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(ListItem.IMDBNumber) + String.StartsWith(ListItem.IMDBNumber,tt)">RunScript(plugin.video.themoviedb.helper,add_path=plugin://plugin.video.themoviedb.helper/?info=details&amp;tmdb_type=movie$INFO[ListItem.IMDBNumber,&amp;imdb_id=,],call_auto=1190)</value>
-        <value condition="String.IsEqual(ListItem.DBType,movie)">RunScript(plugin.video.themoviedb.helper,add_path=plugin://plugin.video.themoviedb.helper/?info=details&amp;tmdb_type=movie$INFO[ListItem.Property(tmdb_id),&amp;tmdb_id=,]$INFO[ListItem.Title,&amp;query=,]$INFO[ListItem.Year,&amp;year=,],call_auto=1190)</value>
-        <value condition="String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)">RunScript(plugin.video.themoviedb.helper,add_path=plugin://plugin.video.themoviedb.helper/?info=details&amp;tmdb_type=tv$INFO[ListItem.Property(tmdb_id),&amp;tmdb_id=,]$INFO[ListItem.TVShowTitle,&amp;query=,]$INFO[ListItem.Year,&amp;year=,],call_auto=1190)</value>
+        <value condition="String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(ListItem.IMDBNumber) + String.StartsWith(ListItem.IMDBNumber,tt)">RunScript(plugin.video.themoviedb.helper,add_path=plugin://plugin.video.themoviedb.helper/?info=details&amp;tmdb_type=movie$INFO[ListItem.IMDBNumber,&amp;imdb_id=,],origin_tmdb_type=$INFO[Window.Property(origin_tmdb_type)],origin_dbid=$INFO[Window.Property(origin_dbid)],call_auto=1190)</value>
+        <value condition="String.IsEqual(ListItem.DBType,movie)">RunScript(plugin.video.themoviedb.helper,add_path=plugin://plugin.video.themoviedb.helper/?info=details&amp;tmdb_type=movie$INFO[ListItem.Property(tmdb_id),&amp;tmdb_id=,]$INFO[ListItem.Title,&amp;query=,]$INFO[ListItem.Year,&amp;year=,],origin_tmdb_type=$INFO[Window.Property(origin_tmdb_type)],origin_dbid=$INFO[Window.Property(origin_dbid)],call_auto=1190)</value>
+        <value condition="String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)">RunScript(plugin.video.themoviedb.helper,add_path=plugin://plugin.video.themoviedb.helper/?info=details&amp;tmdb_type=tv$INFO[ListItem.Property(tmdb_id),&amp;tmdb_id=,]$INFO[ListItem.TVShowTitle,&amp;query=,]$INFO[ListItem.Year,&amp;year=,],origin_tmdb_type=$INFO[Window.Property(origin_tmdb_type)],origin_dbid=$INFO[Window.Property(origin_dbid)],call_auto=1190)</value>
     </variable>
 
     <variable name="Def_CastList_Item">
-        <value condition="Control.HasFocus(50) + !String.IsEqual(ListItem.DBType,set)">RunScript(plugin.video.themoviedb.helper,add_query=$INFO[Container(50).ListItem.Label],type=person,call_auto=1190)</value>    
-        <value condition="Control.HasFocus(52) + !String.IsEmpty(Container(52).ListItem.Property(tmdb_id))">RunScript(plugin.video.themoviedb.helper,add_path=$INFO[Container(52).ListItem.Property(tmdb_id),plugin://plugin.video.themoviedb.helper/?info=details&amp;tmdb_type=person&amp;tmdb_id=,],call_auto=1190)</value>    
-        <value condition="Control.HasFocus(52)">RunScript(plugin.video.themoviedb.helper,add_query=$INFO[Container(52).ListItem.Label],type=person,call_auto=1190)</value>    
-        <value condition="Control.HasFocus(56) + !String.IsEmpty(Container(56).ListItem.Property(tmdb_id))">RunScript(plugin.video.themoviedb.helper,add_path=$INFO[Container(56).ListItem.Property(tmdb_id),plugin://plugin.video.themoviedb.helper/?info=details&amp;tmdb_type=person&amp;tmdb_id=,],call_auto=1190)</value>    
-        <value condition="Control.HasFocus(56)">RunScript(plugin.video.themoviedb.helper,add_query=$INFO[Container(56).ListItem.Label],type=person,call_auto=1190)</value>    
+        <value condition="Control.HasFocus(50) + !String.IsEqual(ListItem.DBType,movie)">RunScript(plugin.video.themoviedb.helper,add_query=$INFO[ListItem.Label],tmdb_type=person,origin_tmdb_type=$INFO[Window.Property(origin_tmdb_type)],origin_dbid=$INFO[Window.Property(origin_dbid)],call_auto=1190)</value>    
+        <value condition="Control.HasFocus(52) + !String.IsEmpty(ListItem.Property(tmdb_id))">RunScript(plugin.video.themoviedb.helper,add_path=$INFO[ListItem.Property(tmdb_id),plugin://plugin.video.themoviedb.helper/?info=details&amp;tmdb_type=person&amp;tmdb_id=,],origin_tmdb_type=$INFO[Window.Property(origin_tmdb_type)],origin_dbid=$INFO[Window.Property(origin_dbid)],call_auto=1190)</value>    
+        <value condition="Control.HasFocus(52)">RunScript(plugin.video.themoviedb.helper,add_query=$INFO[ListItem.Label],tmdb_type=person,origin_tmdb_type=$INFO[Window.Property(origin_tmdb_type)],origin_dbid=$INFO[Window.Property(origin_dbid)],call_auto=1190)</value>    
+        <value condition="Control.HasFocus(56) + !String.IsEmpty(ListItem.Property(tmdb_id))">RunScript(plugin.video.themoviedb.helper,add_path=$INFO[ListItem.Property(tmdb_id),plugin://plugin.video.themoviedb.helper/?info=details&amp;tmdb_type=person&amp;tmdb_id=,],origin_tmdb_type=$INFO[Window.Property(origin_tmdb_type)],origin_dbid=$INFO[Window.Property(origin_dbid)],call_auto=1190)</value>    
+        <value condition="Control.HasFocus(56)">RunScript(plugin.video.themoviedb.helper,add_query=$INFO[ListItem.Label],tmdb_type=person,origin_tmdb_type=$INFO[Window.Property(origin_tmdb_type)],origin_dbid=$INFO[Window.Property(origin_dbid)],call_auto=1190)</value>    
     </variable>
-    
+
     <include name="DefHubWindow">
         <include>GlobalBackground</include>
         <include>Furniture_Header</include>
@@ -4824,6 +4824,15 @@
         </definition>
     </include>
 
+    <include name="Defs_CustomOverlay_Label">
+        <width>780</width>
+        <height>21</height>
+        <textcolor>FF00FFFF</textcolor>
+        <font>Mini</font>
+        <shadowcolor>ff000000</shadowcolor>
+        <align>left</align>
+    </include>
+    
     <include name="Def_GlobalSearch_Actions">
         <param name="query" />
         <definition>
