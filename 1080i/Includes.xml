@@ -1372,6 +1372,11 @@
         <onclick condition="!Skin.HasSetting(PlayTrailerWindowed) + Window.IsVisible(1190) + Skin.HasSetting(Use.IMDB.Trailer)">RunScript(plugin.video.themoviedb.helper,close_dialog=1190,"playmedia=$VAR[ContentIMDbTrailer]")</onclick>                
 	</include>
 
+    <include name="DialogVideoInfo_List_Click_Action">
+        <onclick condition="!String.IsEqual(ListItem.DBType,set)">SetProperty(origin_tmdb_type,$VAR[Tmdb_Type])</onclick>    
+        <onclick condition="!String.IsEqual(ListItem.DBType,set)">SetProperty(origin_dbid,$INFO[ListItem.DBID])</onclick>    
+    </include>
+    
     <include name="ExtendedImage">
         <control type="button" id="$PARAM[buttonid]">
             <include>HiddenButton</include>
