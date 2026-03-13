@@ -818,6 +818,8 @@
         <value condition="!String.IsEmpty(ListItem.Property(FanartCode)) + $EXP[HasWeatherFanartSingle]">$VAR[WeatherFanartPath]$INFO[ListItem.Property(FanartCode),,.jpg]</value>
  	
 		<!-- Multi Widget -->
+        <value condition="String.IsEqual(ListItem.DBtype,episode) + !String.IsEmpty(ListItem.Art(thumb)) + Skin.HasSetting(background.episodes.use.thumbnail)">$INFO[ListItem.Art(thumb)]</value>
+        <value condition="String.IsEqual(ListItem.DBtype,episode) + !String.IsEmpty(ListItem.Art(season.fanart))">$INFO[ListItem.Art(season.fanart)]</value>
         <value condition="!String.IsEmpty(ListItem.Art(fanart)) + [!Skin.HasSetting(disable.background.addons.fanart) | [Skin.HasSetting(disable.background.addons.fanart) + !String.Contains(ListItem.Art(fanart),addons) + ![String.Contains(ListItem.Art(fanart),plugin) | String.Contains(ListItem.Art(fanart),script) | String.Contains(ListItem.Art(fanart),service)]]]">$INFO[ListItem.Art(fanart)]</value>
         <value condition="!String.IsEmpty(ListItem.Property(fanart))">$INFO[ListItem.Property(fanart)]</value>
         <value condition="String.StartsWith(ListItem.FolderPath,pvr://) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Fanart))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Fanart)]</value>
@@ -861,6 +863,8 @@
 		<value condition="Window.IsVisible(home) + Skin.HasSetting(home.vertical.widgets)">$VAR[GlobalFanart_MultiWidgets]</value>
 
         <!-- Standard Widget -->
+        <value condition="Window.IsVisible(home) + String.IsEqual(Container(301).ListItem.DBtype,episode) + !String.IsEmpty(Container(301).ListItem.Art(thumb)) + Skin.HasSetting(background.episodes.use.thumbnail) + [!Skin.HasSetting(home.dontshowfanart) | Control.HasFocus(301)] + Control.IsVisible(301)">$INFO[Container(301).ListItem.Art(thumb)]</value>
+        <value condition="Window.IsVisible(home) + String.IsEqual(Container(301).ListItem.DBtype,episode) + !String.IsEmpty(Container(301).ListItem.Art(season.fanart)) + [!Skin.HasSetting(home.dontshowfanart) | Control.HasFocus(301)] + Control.IsVisible(301)">$INFO[Container(301).ListItem.Art(season.fanart)]</value>
         <value condition="Window.IsVisible(home) + !String.IsEmpty(Container(301).ListItem.Art(fanart)) + [!Skin.HasSetting(home.dontshowfanart) | Control.HasFocus(301)] + Control.IsVisible(301)">$INFO[Container(301).ListItem.Art(fanart)]</value>
         <value condition="Window.IsVisible(home) + !String.IsEmpty(Container(301).ListItem.Property(fanart)) + [!Skin.HasSetting(home.dontshowfanart) | Control.HasFocus(301)] + Control.IsVisible(301)">$INFO[Container(301).ListItem.Property(fanart)]</value>
 
@@ -880,7 +884,11 @@
         <!-- Other -->
         <value condition="Window.IsVisible(tvchannels) + !String.IsEmpty(ListItem.EpgEventIcon)">$INFO[ListItem.EpgEventIcon]</value>
         <value condition="Window.IsVisible(tvguide) + !String.IsEmpty(ListItem.EpgEventIcon)">$INFO[ListItem.EpgEventIcon]</value>
+        <value condition="String.IsEqual(ListItem.DBtype,episode) + !String.IsEmpty(ListItem.Art(thumb)) + Skin.HasSetting(background.episodes.use.thumbnail)">$INFO[ListItem.Art(thumb)]</value>
+        <value condition="String.IsEqual(ListItem.DBtype,episode) + !String.IsEmpty(ListItem.Art(season.fanart))">$INFO[ListItem.Art(season.fanart)]</value>
         <value condition="!String.IsEmpty(ListItem.Art(fanart))">$INFO[ListItem.Art(fanart)]</value>
+        <value condition="String.IsEqual(Container(9500).ListItem.DBtype,episode) + !String.IsEmpty(Container(9500).ListItem.Art(thumb)) + Skin.HasSetting(background.episodes.use.thumbnail)">$INFO[Container(9500).ListItem.Art(thumb)]</value>
+        <value condition="String.IsEqual(Container(9500).ListItem.DBtype,episode) + !String.IsEmpty(Container(9500).ListItem.Art(season.fanart))">$INFO[Container(9500).ListItem.Art(season.fanart)]</value>
         <value condition="!String.IsEmpty(Container(9500).ListItem.Art(fanart))">$INFO[Container(9500).ListItem.Art(fanart)]</value>
         <value condition="!String.IsEmpty(ListItem.Property(Fanart_Image))">$INFO[ListItem.Property(Fanart_Image)]</value>
         <value condition="!String.IsEmpty(ListItem.Property(Fanart))">$INFO[ListItem.Property(Fanart)]</value>
