@@ -1,31 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <template>
     <other include="widget-classic">
-        <property name="content" tag="property" attribute="name|widgetPath"/>
-        <property name="content">$VAR[DefWidgetContent]</property>
-        <property name="target" tag="property" attribute="name|widgetTarget"/>
-        <property name="target">$VAR[DefWidgetTarget]</property>
-        <property name="browse">$VAR[DefBrowse]</property>
-        <property name="sortby" tag="property" attribute="name|widgetSortby"/>
-        <property name="sort" tag="property" attribute="name|widgetSort"/>
+        <property name="widgetPath" tag="property" attribute="name|widgetPath"/>
+        <property name="widgetPath">$VAR[DefWidgetContent]</property>
+        <property name="widgetTarget" tag="property" attribute="name|widgetTarget"/>
+        <property name="widgetTarget">$VAR[DefWidgetTarget]</property>
+        <property name="widgetBrowse">$VAR[DefWidgetBrowse]</property>
+        <property name="widgetSortby" tag="property" attribute="name|widgetSortby"/>
+        <property name="widgetSort" tag="property" attribute="name|widgetSort"/>
+        <property name="widgetListType" tag="property" attribute="name|widgetListType"/>
+        <property name="widgetListType">list</property>
+        <property name="widgetAutoScroll" tag="property" attribute="name|widgetAutoScroll" value="$NUMBER[5000]">5000</property>
+        <property name="widgetAutoScroll" tag="property" attribute="name|widgetAutoScroll" value="$NUMBER[7000]">7000</property>
+        <property name="widgetAutoScroll" tag="property" attribute="name|widgetAutoScroll" value="$NUMBER[10000]">10000</property>
+        <property name="widgetAutoScroll" tag="property" attribute="name|widgetAutoScroll" value="$NUMBER[15000]">15000</property>
+        <property name="widgetAutoScroll" tag="property" attribute="name|widgetAutoScroll" value="$NUMBER[20000]">20000</property>
+        <property name="widgetAutoScroll" tag="property" attribute="name|widgetAutoScroll" value="$NUMBER[25000]">25000</property>
+        <property name="widgetClearlogoThumb" tag="property" attribute="name|widgetClearlogoThumb" value="no">false</property>
+        <property name="widgetClearlogoThumb">true</property>
         <property name="aspectratio" tag="property" attribute="name|widgetAspectRatio"/>
         <property name="aspectratio">keep</property>
-        <property name="widgetauto" tag="property" attribute="name|widgetAuto" value="$NUMBER[5000]">5000</property>
-        <property name="widgetauto" tag="property" attribute="name|widgetAuto" value="$NUMBER[7000]">7000</property>
-        <property name="widgetauto" tag="property" attribute="name|widgetAuto" value="$NUMBER[10000]">10000</property>
-        <property name="widgetauto" tag="property" attribute="name|widgetAuto" value="$NUMBER[15000]">15000</property>
-        <property name="widgetauto" tag="property" attribute="name|widgetAuto" value="$NUMBER[20000]">20000</property>
-        <property name="widgetauto" tag="property" attribute="name|widgetAuto" value="$NUMBER[25000]">25000</property>
-        <property name="aspectratio" tag="property" attribute="name|widgetAspectRatio"/>
-        <property name="aspectratio">keep</property>
-        <property name="widgetclearlogothumb" tag="property" attribute="name|widgetClearLogoThumb" value="no">false</property>
-        <property name="widgetclearlogothumb">true</property>
         <property name="distance" tag="property" attribute="name|widgetEdgeDistance" value="yes">30</property>
         <property name="distance">10</property>
-        <property name="widgetlisttype" tag="property" attribute="name|widgetListType"/>
-        <property name="widgetlisttype">list</property>
         <controls>
-            <control type="$SKINSHORTCUTS[widgetlisttype]" id="301">
+            <control type="$SKINSHORTCUTS[widgetListType]" id="301">
                 <skinshortcuts>visibility</skinshortcuts>
                 <description>Plugin Content Widget</description>
                 <left>70</left>
@@ -38,7 +36,7 @@
                 <onright>301</onright>
                 <preloaditems>2</preloaditems>
                 <orientation>horizontal</orientation>
-                <autoscroll time="$SKINSHORTCUTS[widgetauto]">!Control.HasFocus(301) + !String.IsEmpty(Container(300).ListItem.Property(widgetAuto)) + System.IdleTime(1)</autoscroll>
+                <autoscroll time="$SKINSHORTCUTS[widgetAutoScroll]">!Control.HasFocus(301) + !String.IsEmpty(Container(300).ListItem.Property(widgetAutoScroll)) + System.IdleTime(1)</autoscroll>
                 <include>ScrolltimeWidgetsList</include>
                 <itemlayout width="178" height="257" condition="!String.IsEqual(Container(300).ListItem.Property(widgetaspect),Square) + ![String.IsEqual(Container(300).ListItem.Property(widgetaspect),Fanart) | String.IsEqual(Container(300).ListItem.Property(widgetaspect),Thumbnail)] + !String.IsEqual(Container(300).ListItem.Property(widget),system)">
                     <include content="include.widget.poster">
@@ -101,7 +99,7 @@
                         <param name="height_reflection" value="257"/>
                         <param name="top" value="238"/>
                         <param name="reflections" value="Skin.HasSetting(show.reflections)"/>
-                        <param name="clearlogo" value="$SKINSHORTCUTS[widgetclearlogothumb]"/>
+                        <param name="clearlogo" value="$SKINSHORTCUTS[widgetClearlogoThumb]"/>
                     </include>
                 </itemlayout>
                 <focusedlayout width="445" height="257" condition="String.IsEqual(Container(300).ListItem.Property(widgetaspect),Thumbnail) + !String.IsEqual(Container(300).ListItem.Property(widget),system)">
@@ -111,22 +109,22 @@
                         <param name="height_reflection" value="257"/>
                         <param name="top" value="238"/>
                         <param name="reflections" value="Skin.HasSetting(show.reflections)"/>
-                        <param name="clearlogo" value="$SKINSHORTCUTS[widgetclearlogothumb]"/>
+                        <param name="clearlogo" value="$SKINSHORTCUTS[widgetClearlogoThumb]"/>
                     </include>
                 </focusedlayout>
-                <content limit="$VAR[DefWidgetLimit]" target="$SKINSHORTCUTS[target]" sortby="$SKINSHORTCUTS[sortby]" sortorder="$SKINSHORTCUTS[sort]" browse="$SKINSHORTCUTS[browse]">$SKINSHORTCUTS[content]</content>
+                <content limit="$VAR[DefWidgetLimit]" target="$SKINSHORTCUTS[widgetTarget]" sortby="$SKINSHORTCUTS[widgetSortby]]" sortorder="$SKINSHORTCUTS[widgetSort]" browse="$SKINSHORTCUTS[widgetBrowse]">$SKINSHORTCUTS[widgetPath]</content>
             </control>
         </controls>
     </other>
 
     <other include="widget-featured">
-        <property name="content" tag="property" attribute="name|widgetPath"/>
-        <property name="content">$VAR[DefWidgetContent]</property>
-        <property name="target" tag="property" attribute="name|widgetTarget"/>
-        <property name="target">$VAR[DefWidgetTarget]</property>
-        <property name="browse">$VAR[DefBrowse]</property>
-        <property name="sortby" tag="property" attribute="name|widgetSortby"/>
-        <property name="sort" tag="property" attribute="name|widgetSort"/>
+        <property name="widgetPath" tag="property" attribute="name|widgetPath"/>
+        <property name="widgetPath">$VAR[DefWidgetContent]</property>
+        <property name="widgetTarget" tag="property" attribute="name|widgetTarget"/>
+        <property name="widgetTarget">$VAR[DefWidgetTarget]</property>
+        <property name="widgetBrowse">$VAR[DefWidgetBrowse]</property>
+        <property name="widgetSortby" tag="property" attribute="name|widgetSortby"/>
+        <property name="widgetSort" tag="property" attribute="name|widgetSort"/>
         <controls>
             <control type="wraplist" id="301">
                 <skinshortcuts>visibility</skinshortcuts>
@@ -148,7 +146,7 @@
                 </itemlayout>
                 <focusedlayout width="1" height="1">
                 </focusedlayout>
-                <content limit="$VAR[DefWidgetLimit]" target="$SKINSHORTCUTS[target]" sortby="$SKINSHORTCUTS[sortby]" sortorder="$SKINSHORTCUTS[sort]" browse="$SKINSHORTCUTS[browse]">$SKINSHORTCUTS[content]</content>
+                <content limit="$VAR[DefWidgetLimit]" target="$SKINSHORTCUTS[widgetTarget]" sortby="$SKINSHORTCUTS[widgetSortby]]" sortorder="$SKINSHORTCUTS[widgetSort]" browse="$SKINSHORTCUTS[widgetBrowse]">$SKINSHORTCUTS[widgetPath]</content>
             </control>
         </controls>
     </other>
@@ -182,38 +180,37 @@
     </other>
 
     <other include="widget-vertical">
-        <property name="content" tag="property" attribute="name|widgetPath"/>
-        <property name="content">$VAR[DefWidgetContent]</property>
-        <property name="target" tag="property" attribute="name|widgetTarget"/>
-        <property name="target">$VAR[DefWidgetTarget]</property>
-        <property name="browse">$VAR[DefBrowse]</property>
-        <property name="sortby" tag="property" attribute="name|widgetSortby"/>
-        <property name="sort" tag="property" attribute="name|widgetSort"/>
-        <property name="banner" tag="property" attribute="name|widgetBanner"/>
+        <property name="widgetPath" tag="property" attribute="name|widgetPath"/>
+        <property name="widgetPath">$VAR[DefWidgetContent]</property>
+        <property name="widgetTarget" tag="property" attribute="name|widgetTarget"/>
+        <property name="widgetTarget">$VAR[DefWidgetTarget]</property>
+        <property name="widgetBrowse">$VAR[DefWidgetBrowse]</property>
+        <property name="widgetSortby" tag="property" attribute="name|widgetSortby"/>
+        <property name="widgetSort" tag="property" attribute="name|widgetSort"/>
+        <property name="widgetClearlogoThumb" tag="property" attribute="name|widgetClearlogoThumb" value="no">false</property>
+        <property name="widgetClearlogoThumb">true</property>
+        <property name="widgetAutoScroll" tag="property" attribute="name|widgetAutoScroll" value="$NUMBER[5000]">5000</property>
+        <property name="widgetAutoScroll" tag="property" attribute="name|widgetAutoScroll" value="$NUMBER[7000]">7000</property>
+        <property name="widgetAutoScroll" tag="property" attribute="name|widgetAutoScroll" value="$NUMBER[10000]">10000</property>
+        <property name="widgetAutoScroll" tag="property" attribute="name|widgetAutoScroll" value="$NUMBER[15000]">15000</property>
+        <property name="widgetAutoScroll" tag="property" attribute="name|widgetAutoScroll" value="$NUMBER[20000]">20000</property>
+        <property name="widgetAutoScroll" tag="property" attribute="name|widgetAutoScroll" value="$NUMBER[25000]">25000</property>
+        <property name="widgetAspectCheck" tag="property" attribute="name|widget" value="settings">Square</property>
+        <property name="widgetAspectCheck" tag="property" attribute="name|widgetTarget" value="system">Square</property>
+        <property name="widgetAspectCheck" tag="property" attribute="name|widgetAspect" />
+        <property name="widgetAspectCheck">Poster</property>
         <property name="aspectratio" tag="property" attribute="name|widgetAspectRatio"/>
         <property name="aspectratio">keep</property>
         <property name="aspectratio" tag="property" attribute="name|widgetAspectRatio"/>
         <property name="aspectratio">keep</property>
-        <property name="widgetclearlogothumb" tag="property" attribute="name|widgetClearLogoThumb" value="no">false</property>
-        <property name="widgetclearlogothumb">true</property>
         <property name="distance" tag="property" attribute="name|widgetEdgeDistance" value="yes">30</property>
         <property name="distance">10</property>
-        <property name="widgetauto" tag="property" attribute="name|widgetAuto" value="$NUMBER[5000]">5000</property>
-        <property name="widgetauto" tag="property" attribute="name|widgetAuto" value="$NUMBER[7000]">7000</property>
-        <property name="widgetauto" tag="property" attribute="name|widgetAuto" value="$NUMBER[10000]">10000</property>
-        <property name="widgetauto" tag="property" attribute="name|widgetAuto" value="$NUMBER[15000]">15000</property>
-        <property name="widgetauto" tag="property" attribute="name|widgetAuto" value="$NUMBER[20000]">20000</property>
-        <property name="widgetauto" tag="property" attribute="name|widgetAuto" value="$NUMBER[25000]">25000</property>
-        <property name="widgetaspectcheck" tag="property" attribute="name|widget" value="settings">Square</property>
-        <property name="widgetaspectcheck" tag="property" attribute="name|widgetTarget" value="system">Square</property>
-        <property name="widgetaspectcheck" tag="property" attribute="name|widgetaspect" />
-        <property name="widgetaspectcheck">Poster</property>
         <controls>
             <control type="fixedlist" id="301">
                 <skinshortcuts>visibility</skinshortcuts>
                 <visible>!String.Contains(Container(300).ListItem.Property(widget),weather)</visible>
                 <animation effect="fade" start="100" end="66" time="400" condition="!Control.HasFocus(301) + !Skin.HasSetting(widgets.fade)">Conditional</animation>
-                <autoscroll time="$SKINSHORTCUTS[widgetauto]">!Control.HasFocus(301) + !String.IsEmpty(Container(300).ListItem.Property(widgetAuto)) + System.IdleTime(1)</autoscroll>
+                <autoscroll time="$SKINSHORTCUTS[widgetAutoScroll]">!Control.HasFocus(301) + !String.IsEmpty(Container(300).ListItem.Property(widgetAutoScroll)) + System.IdleTime(1)</autoscroll>
                 <top>330</top>
                 <left>518</left>
                 <width>1876</width>
@@ -233,10 +230,10 @@
                 <viewtype label="536">list</viewtype>
                 <include>ScrolltimeWidgetsList</include>
                 <include content="Def_Movement_Widgets" condition="!Skin.HasSetting(LockFocusPosition)">
-                    <param name="Banner" value="$PYTHON['true' if widgetaspectcheck in 'Banner' else 'false']"/>
-                    <param name="Thumbnail" value="$PYTHON['true' if widgetaspectcheck in 'Thumbnail' else 'false']"/>
-                    <param name="Fanart" value="$PYTHON['true' if widgetaspectcheck in 'Fanart' else 'false']"/>
-                    <param name="Square" value="$PYTHON['true' if widgetaspectcheck in 'Square' else 'false']"/>                   
+                    <param name="Banner" value="$PYTHON['true' if widgetAspectCheck in 'Banner' else 'false']"/>
+                    <param name="Thumbnail" value="$PYTHON['true' if widgetAspectCheck in 'Thumbnail' else 'false']"/>
+                    <param name="Fanart" value="$PYTHON['true' if widgetAspectCheck in 'Fanart' else 'false']"/>
+                    <param name="Square" value="$PYTHON['true' if widgetAspectCheck in 'Square' else 'false']"/>                   
                 </include>
                 <itemlayout height="325" width="222" condition="!String.IsEqual(Container(300).ListItem.Property(widgetaspect),Square) + ![String.IsEqual(Container(300).ListItem.Property(widgetaspect),Fanart) | String.IsEqual(Container(300).ListItem.Property(widgetaspect),Thumbnail)] + !String.IsEqual(Container(300).ListItem.Property(widget),system)">
                     <include content="include.widget.poster">
@@ -261,7 +258,7 @@
                 <itemlayout height="325" width="562" condition="String.IsEqual(Container(300).ListItem.Property(widgetaspect),Thumbnail) + !String.IsEqual(Container(300).ListItem.Property(widget),system)">
                     <include content="include.widget.thumb">
                         <param name="reflections" value="Skin.HasSetting(show.reflections)"/>
-                        <param name="clearlogo" value="$SKINSHORTCUTS[widgetclearlogothumb]"/>
+                        <param name="clearlogo" value="$SKINSHORTCUTS[widgetClearlogoThumb]"/>
                         <param name="height" value="325"/>
                     </include>
                 </itemlayout>
@@ -292,20 +289,20 @@
                     <include content="include.widget.thumb.focus">
                         <param name="id" value="301"/>
                         <param name="reflections" value="Skin.HasSetting(show.reflections)"/>
-                        <param name="clearlogo" value="$SKINSHORTCUTS[widgetclearlogothumb]"/>
+                        <param name="clearlogo" value="$SKINSHORTCUTS[widgetClearlogoThumb]"/>
                         <param name="height" value="325"/>
                     </include>
                 </focusedlayout>
-                <content limit="$VAR[DefWidgetLimit]" target="$SKINSHORTCUTS[target]" sortby="$SKINSHORTCUTS[sortby]" sortorder="$SKINSHORTCUTS[sort]" browse="$SKINSHORTCUTS[browse]">$SKINSHORTCUTS[content]</content>
+                <content limit="$VAR[DefWidgetLimit]" target="$SKINSHORTCUTS[widgetTarget]" sortby="$SKINSHORTCUTS[widgetSortby]]" sortorder="$SKINSHORTCUTS[widgetSort]" browse="$SKINSHORTCUTS[widgetBrowse]">$SKINSHORTCUTS[widgetPath]</content>
             </control>
         </controls>
     </other>
 
     <other include="spotlight">
 		<!--- Widget Content -->
-        <property name="content">$VAR[DefWidgetContent]</property>
-        <property name="target">$VAR[DefWidgetTarget]</property>
-        <property name="browse">$VAR[DefBrowse]</property>
+        <property name="widgetPath">$VAR[DefWidgetContent]</property>
+        <property name="widgetTarget">$VAR[DefWidgetTarget]</property>
+        <property name="widgetBrowse">$VAR[DefWidgetBrowse]</property>
         <property name="widgetLimit">$VAR[DefWidgetLimit]</property>
 
 	    <controls>
@@ -339,7 +336,7 @@
 	                <param name="aspectratio" value="keep"/>
 	                <param name="distance" value="10"/>
 	            </include>
-	            <content limit="$SKINSHORTCUTS[widgetLimit]" target="$SKINSHORTCUTS[target]" browse="$SKINSHORTCUTS[browse]">$SKINSHORTCUTS[content]</content>
+	            <content limit="$SKINSHORTCUTS[widgetLimit]" target="$SKINSHORTCUTS[widgetTarget]" browse="$SKINSHORTCUTS[widgetBrowse]">$SKINSHORTCUTS[widgetPath]</content>
 	        </control>
             <control type="group" id="995600">
                 <visible>Integer.IsEqual(Container(9989).NumItems,0)</visible>
@@ -370,12 +367,45 @@
 	        <property name="id" tag="mainmenuid"/>
 
             <!--- Widget Content -->
-            <property name="content" tag="property" attribute="name|list" value="Submenu">$INCLUDE[skinshortcuts-submenu]</property>
-            <property name="content" tag="property" attribute="name|list" value="Settings">$INCLUDE[skinshortcuts-template-SettingsInfoContent]</property>
-            <property name="content" tag="property" attribute="name|list" value="Systeminfo">$INCLUDE[skinshortcuts-template-SystemInfoContent]</property>
-            <property name="content" tag="property" attribute="name|list" value="WeatherDaily">$INCLUDE[skinshortcuts-template-WeatherDailyInfoContent]</property>
-            <property name="content" tag="property" attribute="name|list" value="WeatherHourly">$INCLUDE[skinshortcuts-template-WeatherHourlyInfoContent]</property>
-	        <property name="content" tag="property" attribute="name|list"/>
+            <property name="widgetPath" tag="property" attribute="name|list" value="Submenu">$INCLUDE[skinshortcuts-submenu]</property>
+            <property name="widgetPath" tag="property" attribute="name|list" value="Settings">$INCLUDE[skinshortcuts-template-SettingsInfoContent]</property>
+            <property name="widgetPath" tag="property" attribute="name|list" value="Systeminfo">$INCLUDE[skinshortcuts-template-SystemInfoContent]</property>
+            <property name="widgetPath" tag="property" attribute="name|list" value="WeatherDaily">$INCLUDE[skinshortcuts-template-WeatherDailyInfoContent]</property>
+            <property name="widgetPath" tag="property" attribute="name|list" value="WeatherHourly">$INCLUDE[skinshortcuts-template-WeatherHourlyInfoContent]</property>
+	        <property name="widgetPath" tag="property" attribute="name|list"/>
+	        
+	        <property name="widgetTarget" tag="property" attribute="name|widgetTarget"/>
+	        <property name="widgetTarget">$VAR[DefWidgetTarget]</property>
+	        <property name="widgetBrowse">$VAR[DefWidgetBrowse]</property>
+	        <property name="widgetSortby" tag="property" attribute="name|widgetSortby"/>
+	        <property name="widgetSort" tag="property" attribute="name|widgetSort"/>
+
+	        <property name="widgetListType" tag="property" attribute="name|widgetListType"/>
+	        <property name="widgetListType">fixedlist</property>
+
+            <property name="widgetName" tag="label" />
+            <property name="widgetName">$LOCALIZE[31105]</property>
+
+	        <property name="widgetLimit" tag="property" attribute="name|widget" value="epg">5</property>
+	        <property name="widgetLimit">$VAR[DefWidgetLimit]</property>
+
+            <property name="widgetMovement" tag="property" attribute="name|list" value="Settings">4</property>
+            <property name="widgetMovement" tag="property" attribute="name|list" value="Systeminfo">4</property>
+            <property name="widgetMovement" tag="property" attribute="name|widgetaspect" value="Square">4</property>
+            <property name="widgetMovement" tag="property" attribute="name|widgetaspect" value="SquareMiddle">6</property>
+            <property name="widgetMovement" tag="property" attribute="name|widgetaspect" value="SquareSmall">7</property>
+            <property name="widgetMovement" tag="property" attribute="name|widgetaspect" value="Thumbnail">2</property>
+            <property name="widgetMovement" tag="property" attribute="name|widgetaspect" value="Fanart">2</property>
+            <property name="widgetMovement" tag="property" attribute="name|widgetaspect" value="ThumbnailSmall">3</property>
+            <property name="widgetMovement" tag="property" attribute="name|widgetaspect" value="FanartSmall">3</property>
+            <property name="widgetMovement">7</property>
+
+            <property name="widgetAutoScroll" tag="property" attribute="name|widgetAutoScroll" value="$NUMBER[5000]">5000</property>
+            <property name="widgetAutoScroll" tag="property" attribute="name|widgetAutoScroll" value="$NUMBER[7000]">7000</property>
+            <property name="widgetAutoScroll" tag="property" attribute="name|widgetAutoScroll" value="$NUMBER[10000]">10000</property>
+            <property name="widgetAutoScroll" tag="property" attribute="name|widgetAutoScroll" value="$NUMBER[15000]">15000</property>
+            <property name="widgetAutoScroll" tag="property" attribute="name|widgetAutoScroll" value="$NUMBER[20000]">20000</property>
+            <property name="widgetAutoScroll" tag="property" attribute="name|widgetAutoScroll" value="$NUMBER[25000]">25000</property>
 
             <property name="widgetInclude" tag="property" attribute="name|widget" value="epg">Widget_PVRGuide</property>
             <property name="widgetInclude" tag="property" attribute="name|list" value="Submenu">Widget_Submenu</property>
@@ -396,50 +426,29 @@
             <property name="isSettings" tag="property" attribute="name|list" value="Settings">true</property>
             <property name="isSettings">false</property>
  
-            <property name="isnormallayout" propertyValue="false">
+            <property name="isNormalLayout" propertyValue="false">
                 <rule tag="property" attribute="name|list" value="Submenu" />                
                 <rule tag="property" attribute="name|list" value="Settings" />                
                 <rule tag="property" attribute="name|list" value="Systeminfo" />                
                 <rule tag="property" attribute="name|list" value="WeatherDaily" />                
                 <rule tag="property" attribute="name|list" value="WeatherHourly" />                
             </property>
-            <property name="isnormallayout">true</property>
+            <property name="isNormalLayout">true</property>
 
-	        <property name="target" tag="property" attribute="name|widgetTarget"/>
-	        <property name="target">$VAR[DefWidgetTarget]</property>
-	        <property name="browse">$VAR[DefBrowse]</property>
-	        <property name="sortby" tag="property" attribute="name|widgetSortby"/>
-	        <property name="sort" tag="property" attribute="name|widgetSort"/>
-
-	        <property name="widgetlisttype" tag="property" attribute="name|widgetListType"/>
-	        <property name="widgetlisttype">fixedlist</property>
-
-            <property name="widgetname" tag="label" />
-            <property name="widgetname">$LOCALIZE[31105]</property>
-
-	        <property name="widgetlimit" tag="property" attribute="name|widget" value="epg">5</property>
-	        <property name="widgetlimit">$VAR[DefWidgetLimit]</property>
-
-	        <property name="layoutheight" tag="property" attribute="name|widgetaspect" value="SquareMedium">175</property>
-	        <property name="layoutheight" tag="property" attribute="name|widgetaspect" value="SquareSmall">125</property>
-	        <property name="layoutheight" tag="property" attribute="name|list" value="Submenu">325</property>
-	        <property name="layoutheight" tag="property" attribute="name|widgetFullscreen" value="yes">710</property>
-	        <property name="layoutheight">325</property>
-	        <property name="layoutheight2" tag="property" attribute="name|widgetaspect" value="SquareMedium">185</property>
-	        <property name="layoutheight2" tag="property" attribute="name|widgetaspect" value="SquareSmall">135</property>
-	        <property name="layoutheight2" tag="property" attribute="name|list" value="Submenu">365</property>
-	        <property name="layoutheight2" tag="property" attribute="name|widgetFullscreen" value="yes">750</property>
-	        <property name="layoutheight2">365</property>
-	        <property name="isfullscreenwidget" tag="property" attribute="name|widgetFullscreen" value="yes">true</property>
-	        <property name="isfullscreenwidget">false</property>
-	        <property name="widgetauto" tag="property" attribute="name|widgetAuto" value="$NUMBER[5000]">5000</property>
-	        <property name="widgetauto" tag="property" attribute="name|widgetAuto" value="$NUMBER[7000]">7000</property>
-	        <property name="widgetauto" tag="property" attribute="name|widgetAuto" value="$NUMBER[10000]">10000</property>
-	        <property name="widgetauto" tag="property" attribute="name|widgetAuto" value="$NUMBER[15000]">15000</property>
-	        <property name="widgetauto" tag="property" attribute="name|widgetAuto" value="$NUMBER[20000]">20000</property>
-	        <property name="widgetauto" tag="property" attribute="name|widgetAuto" value="$NUMBER[25000]">25000</property>
-	        <property name="widgetclearlogothumb" tag="property" attribute="name|widgetClearLogoThumb" value="no">false</property>
-	        <property name="widgetclearlogothumb">true</property>
+	        <property name="layoutHeight" tag="property" attribute="name|widgetaspect" value="SquareMedium">175</property>
+	        <property name="layoutHeight" tag="property" attribute="name|widgetaspect" value="SquareSmall">125</property>
+	        <property name="layoutHeight" tag="property" attribute="name|list" value="Submenu">325</property>
+	        <property name="layoutHeight" tag="property" attribute="name|widgetFullscreen" value="yes">710</property>
+	        <property name="layoutHeight">325</property>
+	        <property name="layoutHeight2" tag="property" attribute="name|widgetaspect" value="SquareMedium">185</property>
+	        <property name="layoutHeight2" tag="property" attribute="name|widgetaspect" value="SquareSmall">135</property>
+	        <property name="layoutHeight2" tag="property" attribute="name|list" value="Submenu">365</property>
+	        <property name="layoutHeight2" tag="property" attribute="name|widgetFullscreen" value="yes">750</property>
+	        <property name="layoutHeight2">365</property>
+	        <property name="isFullscreenWidget" tag="property" attribute="name|widgetFullscreen" value="yes">true</property>
+	        <property name="isFullscreenWidget">false</property>
+	        <property name="widgetClearlogoThumb" tag="property" attribute="name|widgetClearlogoThumb" value="no">false</property>
+	        <property name="widgetClearlogoThumb">true</property>
 	        <property name="aspectratio" tag="property" attribute="name|widgetAspectRatio"/>
 	        <property name="aspectratio">keep</property>
 	        <property name="distance" tag="property" attribute="name|widgetEdgeDistance" value="yes">30</property>
@@ -447,31 +456,20 @@
 	        <property name="orientation" tag="property" attribute="name|widget" value="epg">vertical</property>
 	        <property name="orientation">horizontal</property>
 
-            <property name="widgetmovement" tag="property" attribute="name|list" value="Settings">4</property>
-            <property name="widgetmovement" tag="property" attribute="name|list" value="Systeminfo">4</property>
-            <property name="widgetmovement" tag="property" attribute="name|widgetaspect" value="Square">4</property>
-            <property name="widgetmovement" tag="property" attribute="name|widgetaspect" value="SquareMiddle">6</property>
-            <property name="widgetmovement" tag="property" attribute="name|widgetaspect" value="SquareSmall">7</property>
-            <property name="widgetmovement" tag="property" attribute="name|widgetaspect" value="Thumbnail">2</property>
-            <property name="widgetmovement" tag="property" attribute="name|widgetaspect" value="Fanart">2</property>
-            <property name="widgetmovement" tag="property" attribute="name|widgetaspect" value="ThumbnailSmall">3</property>
-            <property name="widgetmovement" tag="property" attribute="name|widgetaspect" value="FanartSmall">3</property>
-            <property name="widgetmovement">7</property>
-
-	        <property name="widgetaspectcheck" tag="property" attribute="name|widgetaspect" value="ThumbnailPosterSmall">ThumbPoSmall</property>
-	        <property name="widgetaspectcheck" tag="property" attribute="name|widgetaspect" value="ThumbnailSmall">ThumbSmall</property>
-	        <property name="widgetaspectcheck" tag="property" attribute="name|widgetaspect" value="FanartSmall">FanSmall</property>
-	        <property name="widgetaspectcheck" tag="property" attribute="name|widgetaspect" />
-	        <property name="widgetaspectcheck">Poster</property>
-	        <property name="widgetaspectsubcheck" tag="property" attribute="name|widgetaspect" value="SquareSmall">SqSmall</property>
-	        <property name="widgetaspectsubcheck" tag="property" attribute="name|widgetaspect" value="SquareMedium">SqMedium</property>
-	        <property name="widgetaspectsubcheck">Square</property> 
+	        <property name="widgetAspectCheck" tag="property" attribute="name|widgetaspect" value="ThumbnailPosterSmall">ThumbPoSmall</property>
+	        <property name="widgetAspectCheck" tag="property" attribute="name|widgetaspect" value="ThumbnailSmall">ThumbSmall</property>
+	        <property name="widgetAspectCheck" tag="property" attribute="name|widgetaspect" value="FanartSmall">FanSmall</property>
+	        <property name="widgetAspectCheck" tag="property" attribute="name|widgetaspect" />
+	        <property name="widgetAspectCheck">Poster</property>
+	        <property name="widgetAspectSubcheck" tag="property" attribute="name|widgetaspect" value="SquareSmall">SqSmall</property>
+	        <property name="widgetAspectSubcheck" tag="property" attribute="name|widgetaspect" value="SquareMedium">SqMedium</property>
+	        <property name="widgetAspectSubcheck">Square</property> 
 
 	        <controls>
                 <!-- InfoSub -->
                 <control type="group" id="$PYTHON[int(mainmenuid) * 10000 + 5600 + int(id)]">
                     <visible>String.IsEqual(Container(300).ListItem.Property(submenuVisibility),$SKINSHORTCUTS[submenuVisibility])</visible>
-                    <visible>$SKINSHORTCUTS[isfullscreenwidget] | Skin.HasSetting(homemenu.netflix) | Integer.IsEqual(Container(9989).NumItems,1)</visible>
+                    <visible>$SKINSHORTCUTS[isFullscreenWidget] | Skin.HasSetting(homemenu.netflix) | Integer.IsEqual(Container(9989).NumItems,1)</visible>
                     <visible>[Integer.IsGreater(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]).NumItems,0) | Container($PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]).IsUpdating]</visible>
                     <control type="grouplist">
                         <include content="$SKINSHORTCUTS[infosubInclude]" condition="!$SKINSHORTCUTS[isSubmenu]">
@@ -480,41 +478,41 @@
                         </include>
                     </control>
                     <control type="grouplist">
-                        <include content="ClearArtInfoSub" condition="$SKINSHORTCUTS[isnormallayout]">
+                        <include content="ClearArtInfoSub" condition="$SKINSHORTCUTS[isNormalLayout]">
                             <param name="id" value="$PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]"/>
                         </include>
                     </control>
                 </control>
-                <control type="$SKINSHORTCUTS[widgetlisttype]" id="$PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]">
+                <control type="$SKINSHORTCUTS[widgetListType]" id="$PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]">
                     <visible>String.IsEqual(Container(300).ListItem.Property(submenuVisibility),$SKINSHORTCUTS[submenuVisibility])</visible>
-                    <visible>Integer.IsGreater(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]).NumItems,0) | Container($PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]).IsUpdating | $SKINSORTCUTS[isSubmenu]</visible>
+                    <visible>Integer.IsGreater(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]).NumItems,0) | Container($PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]).IsUpdating</visible>
                     <include content="DefMultiWidgetContainer">
                         <param name="id" value="$PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]"/>
                         <param name="baseid" value="$PYTHON[int(mainmenuid) * 100 + 31]"/>
-	                    <param name="height" value="$SKINSHORTCUTS[layoutheight]"/>
-	                    <param name="height2" value="$SKINSHORTCUTS[layoutheight2]"/>
-	                    <param name="AutoTime" value="$SKINSHORTCUTS[widgetauto]"/>
+	                    <param name="height" value="$SKINSHORTCUTS[layoutHeight]"/>
+	                    <param name="height2" value="$SKINSHORTCUTS[layoutHeight2]"/>
+	                    <param name="AutoTime" value="$SKINSHORTCUTS[widgetAutoScroll]"/>
 	                    <param name="orientation" value="$SKINSHORTCUTS[orientation]"/>
-                        <param name="movement" value="$SKINSHORTCUTS[widgetmovement]"/>
-	                    <param name="AutoScrollCondition" value="!Control.HasFocus($PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]) + !String.IsEmpty(Container(300).ListItem.Property(widgetAuto)) + !String.IsEqual(Container(300).ListItem.Property(widgetListType),list) + System.IdleTime(1)"/>
+                        <param name="movement" value="$SKINSHORTCUTS[widgetMovement]"/>
+	                    <param name="AutoScrollCondition" value="!Control.HasFocus($PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]) + !String.IsEmpty(Container(300).ListItem.Property(widgetAutoScroll)) + !String.IsEqual(Container(300).ListItem.Property(widgetListType),list) + System.IdleTime(1)"/>
                     </include>
                     <!-- ItemLayout -->
 	                <include content="$SKINSHORTCUTS[widgetInclude]">
                         <param name="shortcutsid" value="$PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]"/>
-	                    <param name="shortcutsclearlogo" value="$SKINSHORTCUTS[widgetclearlogothumb]"/>
+	                    <param name="shortcutsclearlogo" value="$SKINSHORTCUTS[widgetClearlogoThumb]"/>
 	                    <param name="aspectratio" value="$SKINSHORTCUTS[aspectratio]"/>
 	                    <param name="distance" value="$SKINSHORTCUTS[distance]"/>
-	                    <param name="Banner" value="$PYTHON['true' if widgetaspectcheck in 'Banner' else 'false']"/>
-	                    <param name="Thumbnail" value="$PYTHON['true' if widgetaspectcheck in 'Thumbnail' else 'false']"/>
-	                    <param name="Fanart" value="$PYTHON['true' if widgetaspectcheck in 'Fanart' else 'false']"/>
-	                    <param name="FanartSmall" value="$PYTHON['true' if widgetaspectcheck in 'FanSmall' else 'false']"/>
-	                    <param name="ThumbnailSmall" value="$PYTHON['true' if widgetaspectcheck in 'ThumbSmall' else 'false']"/>
-	                    <param name="ThumbnailPosterSmall" value="$PYTHON['true' if widgetaspectcheck in 'ThumbPoSmall' else 'false']"/>
-	                    <param name="Square" value="$PYTHON['true' if widgetaspectcheck in 'Square' else 'false']"/>  
-                        <param name="SquareMedium" value="$PYTHON['true' if widgetaspectsubcheck in 'SqMedium' else 'false']"/>
-                        <param name="SquareSmall" value="$PYTHON['true' if widgetaspectsubcheck in 'SqSmall' else 'false']"/>
+	                    <param name="Banner" value="$PYTHON['true' if widgetAspectCheck in 'Banner' else 'false']"/>
+	                    <param name="Thumbnail" value="$PYTHON['true' if widgetAspectCheck in 'Thumbnail' else 'false']"/>
+	                    <param name="Fanart" value="$PYTHON['true' if widgetAspectCheck in 'Fanart' else 'false']"/>
+	                    <param name="FanartSmall" value="$PYTHON['true' if widgetAspectCheck in 'FanSmall' else 'false']"/>
+	                    <param name="ThumbnailSmall" value="$PYTHON['true' if widgetAspectCheck in 'ThumbSmall' else 'false']"/>
+	                    <param name="ThumbnailPosterSmall" value="$PYTHON['true' if widgetAspectCheck in 'ThumbPoSmall' else 'false']"/>
+	                    <param name="Square" value="$PYTHON['true' if widgetAspectCheck in 'Square' else 'false']"/>  
+                        <param name="SquareMedium" value="$PYTHON['true' if widgetAspectSubcheck in 'SqMedium' else 'false']"/>
+                        <param name="SquareSmall" value="$PYTHON['true' if widgetAspectSubcheck in 'SqSmall' else 'false']"/>
 	                </include>
-                    <content limit="$SKINSHORTCUTS[widgetlimit]" target="$SKINSHORTCUTS[target]" sortby="$SKINSHORTCUTS[sortby]" sortorder="$SKINSHORTCUTS[sort]" browse="$SKINSHORTCUTS[browse]">$SKINSHORTCUTS[content]</content>
+                    <content limit="$SKINSHORTCUTS[widgetLimit]" target="$SKINSHORTCUTS[widgetTarget]" sortby="$SKINSHORTCUTS[widgetSortby]]" sortorder="$SKINSHORTCUTS[widgetSort]" browse="$SKINSHORTCUTS[widgetBrowse]">$SKINSHORTCUTS[widgetPath]</content>
                 </control>
                 <control type="group" id="$PYTHON[int(mainmenuid) * 10000 + 7500 + int(id)]">
                     <visible>String.IsEqual(Container(300).ListItem.Property(submenuVisibility),$SKINSHORTCUTS[submenuVisibility])</visible>
@@ -522,7 +520,7 @@
                     <control type="grouplist">
                         <include content="widget.title.label">
                             <param name="focusid" value="$PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]"/>
-                            <param name="label" value="$SKINSHORTCUTS[widgetname]"/>
+                            <param name="label" value="$SKINSHORTCUTS[widgetName]"/>
                         </include>
                     </control>
                 </control>
