@@ -138,7 +138,7 @@
                 <param name="controlid" value="9100"/>
             </include>
             <include content="Def_Skinshortcuts_Gradient_Settings_Image">
-                <param name="controlid" value="9300"/>
+                <param name="controlid" value="9400"/>
             </include>
             <control type="grouplist" id="9100">
                 <scrolltime>0</scrolltime>
@@ -205,7 +205,7 @@
                     <label2>$VAR[LabelWidgetShortcutsName]</label2>
 		            <include>Def_Skinshortcuts_Buttons</include>
 		            <onclick>SetProperty(skinshortcuts-Widget,1,Home)</onclick>
-                    <onclick>SetFocus(9301)</onclick>
+                    <onclick>SetFocus(9401)</onclick>
                     <visible>$EXP[Skinshortcuts_Mainmenu_Active]</visible>
                     <visible>!Skin.HasSetting(home.vertical.widgets)</visible>
 		        </control>
@@ -229,47 +229,47 @@
                 </control>
                 <include content="Def_Skinshortcuts_SetHub">
                     <param name="hubid" value="1111"/>
-                    <param name="buttonid1" value="9401"/>
+                    <param name="buttonid1" value="9301"/>
                     <param name="buttonid2" value="9501"/>
                 </include>
                 <include content="Def_Skinshortcuts_SetHub">
                     <param name="hubid" value="1112"/>
-                    <param name="buttonid1" value="9402"/>
+                    <param name="buttonid1" value="9302"/>
                     <param name="buttonid2" value="9502"/>
                 </include>
                 <include content="Def_Skinshortcuts_SetHub">
                     <param name="hubid" value="1113"/>
-                    <param name="buttonid1" value="9403"/>
+                    <param name="buttonid1" value="9303"/>
                     <param name="buttonid2" value="9503"/>
                 </include>
                 <include content="Def_Skinshortcuts_SetHub">
                     <param name="hubid" value="1114"/>
-                    <param name="buttonid1" value="9404"/>
+                    <param name="buttonid1" value="9304"/>
                     <param name="buttonid2" value="9504"/>
                 </include>
                 <include content="Def_Skinshortcuts_SetHub">
                     <param name="hubid" value="1115"/>
-                    <param name="buttonid1" value="9405"/>
+                    <param name="buttonid1" value="9305"/>
                     <param name="buttonid2" value="9505"/>
                 </include>
                 <include content="Def_Skinshortcuts_SetHub">
                     <param name="hubid" value="1116"/>
-                    <param name="buttonid1" value="9406"/>
+                    <param name="buttonid1" value="9306"/>
                     <param name="buttonid2" value="9506"/>
                 </include>
                 <include content="Def_Skinshortcuts_SetHub">
                     <param name="hubid" value="1117"/>
-                    <param name="buttonid1" value="9407"/>
+                    <param name="buttonid1" value="9307"/>
                     <param name="buttonid2" value="9507"/>
                 </include>
                 <include content="Def_Skinshortcuts_SetHub">
                     <param name="hubid" value="1118"/>
-                    <param name="buttonid1" value="9408"/>
+                    <param name="buttonid1" value="9308"/>
                     <param name="buttonid2" value="9508"/>
                 </include>
                 <include content="Def_Skinshortcuts_SetHub">
                     <param name="hubid" value="1119"/>
-                    <param name="buttonid1" value="9409"/>
+                    <param name="buttonid1" value="9309"/>
                     <param name="buttonid2" value="9509"/>
                 </include>
 
@@ -282,15 +282,15 @@
                 </control>
             </control>
 
-            <control type="grouplist" id="9300">
+            <control type="grouplist" id="9400">
                 <onleft>ClearProperty(skinshortcuts-Widget,Home)</onleft>
                 <onright>ClearProperty(skinshortcuts-Widget,Home)</onright>
                 <onback>ClearProperty(skinshortcuts-Widget,home)</onback>
                 <scrolltime>0</scrolltime>
                 <onleft>304</onleft>
                 <onright>303</onright>
-                <onup>9300</onup>
-                <ondown>9300</ondown>
+                <onup>9400</onup>
+                <ondown>9400</ondown>
                 <right>40</right>
                 <bottom>97</bottom>
                 <width>905</width>
@@ -299,7 +299,7 @@
                 <itemgap>3</itemgap>
                 <animation effect="fade" start="100" end="50" time="0" condition="String.IsEqual(Container(211).ListItem.Property(skinshortcuts-disabled),True)">Conditional</animation>
                 <visible>!String.IsEmpty(Window(Home).Property(skinshortcuts-Widget))</visible>
-                <control type="button" id="9301" description="Widget">
+                <control type="button" id="9401" description="Widget">
                     <label>$LOCALIZE[31266]</label>
                     <label2>$VAR[LabelWidgetShortcutsName]</label2>
                     <include>Def_Skinshortcuts_Buttons</include>
@@ -308,70 +308,9 @@
                     <include>Skinshortcuts_ContentType_AutoSetOnUnFocus</include>
                 </control>
                 <include content="Def_Skinshortcuts_WidgetSettings">
-                    <param name="baseid" value="93" />
+                    <param name="baseid" value="94" />
                 </include>
             </control>
-            <!-- Custom Widget Configuration -->
-            <!-- 
-            <control type="grouplist" id="9900">
-                <scrolltime>0</scrolltime>
-                <onleft>4000</onleft>
-                <onright>303</onright>
-                <onup>9100</onup>
-                <ondown>9100</ondown>
-                <right>40</right>
-                <bottom>97</bottom>
-                <width>905</width>
-                <height>697</height>
-                <orientation>vertical</orientation>
-                <itemgap>3</itemgap>
-                <visible>false</visible>
-                <visible>!String.IsEmpty(Window(Home).Property(custommenu))</visible>
-                <animation effect="fade" start="0" end="100" time="1000" delay="1000" reversible="false">Visible</animation>
-                <control type="button" id="401" description="Alt chooser">
-                    <width>100%</width>
-                    <height>66</height>
-                    <texturenofocus colordiffuse="Black12" border="5">common/box.png</texturenofocus>
-                    <align>left</align>
-                    <include>Def_Skinshortcuts_Buttons</include>
-                </control>
-                <control type="button" id="307" description="Custom">
-                    <width>100%</width>
-                    <height>66</height>
-                    <label>31267</label>
-                    <label2>$INFO[Container(211).ListItem.Property(Path)]</label2>
-                    <texturenofocus colordiffuse="Black12" border="5">common/box.png</texturenofocus>
-                    <align>left</align>
-                    <include>Def_Skinshortcuts_Buttons</include>
-                </control>
-                <control type="button" id="305" description="Set Label">
-                    <width>100%</width>
-                    <height>66</height>
-                    <label>31268</label>
-                    <label2>$INFO[Container(211).ListItem.Label]</label2>
-                    <texturenofocus colordiffuse="Black12" border="5">common/box.png</texturenofocus>
-                    <align>left</align>
-                    <include>Def_Skinshortcuts_Buttons</include>
-                </control>
-                <control type="button" id="310" description="Background">
-                    <width>100%</width>
-                    <height>66</height>
-                    <label>31110</label>
-                    <label2>$INFO[Container(211).ListItem.Property(background)]</label2>
-                    <texturenofocus colordiffuse="Black12" border="5">common/box.png</texturenofocus>
-                    <align>left</align>
-                    <include>Def_Skinshortcuts_Buttons</include>
-                </control>
-                <control type="button" id="308" description="Reset">
-                    <width>100%</width>
-                    <height>66</height>
-                    <texturenofocus colordiffuse="Black12" border="5">common/box.png</texturenofocus>
-                    <align>left</align>
-                    <include>Def_Skinshortcuts_Buttons</include>
-                </control>
-            </control>
-            -->
-
             <include>DialogSelectlabelInclude</include>
         </include>
 
