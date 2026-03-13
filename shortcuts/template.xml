@@ -151,34 +151,6 @@
         </controls>
     </other>
 
-    <!-- Widget items for daily weather -->
-    <other include="WeatherDailyInfoContent">
-        <controls>
-            <include>WeatherDailyItems</include>
-        </controls>
-    </other>
-    
-    <!-- Widget items for hourly weather -->
-    <other include="WeatherHourlyInfoContent">
-        <controls>
-            <include>WeatherHourlyItems</include>
-        </controls>
-    </other>
-
-    <!-- Widget items for systeminfo -->
-    <other include="SystemInfoContent">
-        <controls>
-            <include>SystemInfoItems</include>
-        </controls>
-    </other>
-    
-    <!-- Widget items for settings -->
-    <other include="SettingsInfoContent">
-        <controls>
-            <include>SettingsInfoItems</include>
-        </controls>
-    </other>
-
     <other include="widget-vertical">
         <property name="widgetPath" tag="property" attribute="name|widgetPath"/>
         <property name="widgetPath">$VAR[DefWidgetContent]</property>
@@ -368,10 +340,10 @@
 
             <!--- Widget Content -->
             <property name="widgetPath" tag="property" attribute="name|list" value="Submenu">$INCLUDE[skinshortcuts-submenu]</property>
-            <property name="widgetPath" tag="property" attribute="name|list" value="Settings">$INCLUDE[skinshortcuts-template-SettingsInfoContent]</property>
-            <property name="widgetPath" tag="property" attribute="name|list" value="Systeminfo">$INCLUDE[skinshortcuts-template-SystemInfoContent]</property>
-            <property name="widgetPath" tag="property" attribute="name|list" value="WeatherDaily">$INCLUDE[skinshortcuts-template-WeatherDailyInfoContent]</property>
-            <property name="widgetPath" tag="property" attribute="name|list" value="WeatherHourly">$INCLUDE[skinshortcuts-template-WeatherHourlyInfoContent]</property>
+            <property name="widgetPath" tag="property" attribute="name|list" value="Settings">$INCLUDE[SettingsInfoItems]</property>
+            <property name="widgetPath" tag="property" attribute="name|list" value="Systeminfo">$INCLUDE[SystemInfoItems]</property>
+            <property name="widgetPath" tag="property" attribute="name|list" value="WeatherDaily">$INCLUDE[WeatherDailyItems]</property>
+            <property name="widgetPath" tag="property" attribute="name|list" value="WeatherHourly">$INCLUDE[WeatherHourlyItems]</property>
 	        <property name="widgetPath" tag="property" attribute="name|list"/>
 	        
 	        <property name="widgetTarget" tag="property" attribute="name|widgetTarget"/>
@@ -485,7 +457,7 @@
                 </control>
                 <control type="$SKINSHORTCUTS[widgetListType]" id="$PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]">
                     <visible>String.IsEqual(Container(300).ListItem.Property(submenuVisibility),$SKINSHORTCUTS[submenuVisibility])</visible>
-                    <visible>Integer.IsGreater(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]).NumItems,0) | Container($PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]).IsUpdating</visible>
+                    <visible>Integer.IsGreater(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]).NumItems,0) | Container($PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]).IsUpdating | $SKINSHORTCUTS[isSubmenu]</visible>
                     <include content="DefMultiWidgetContainer">
                         <param name="id" value="$PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]"/>
                         <param name="baseid" value="$PYTHON[int(mainmenuid) * 100 + 31]"/>
