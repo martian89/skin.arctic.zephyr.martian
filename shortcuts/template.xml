@@ -390,12 +390,7 @@
             <property name="widgetMovement" tag="property" attribute="name|widgetaspect" value="FanartSmall">3</property>
             <property name="widgetMovement">7</property>
 
-            <property name="widgetAutoScroll" tag="property" attribute="name|widgetAutoScroll" value="$NUMBER[5000]">5000</property>
-            <property name="widgetAutoScroll" tag="property" attribute="name|widgetAutoScroll" value="$NUMBER[7000]">7000</property>
-            <property name="widgetAutoScroll" tag="property" attribute="name|widgetAutoScroll" value="$NUMBER[10000]">10000</property>
-            <property name="widgetAutoScroll" tag="property" attribute="name|widgetAutoScroll" value="$NUMBER[15000]">15000</property>
-            <property name="widgetAutoScroll" tag="property" attribute="name|widgetAutoScroll" value="$NUMBER[20000]">20000</property>
-            <property name="widgetAutoScroll" tag="property" attribute="name|widgetAutoScroll" value="$NUMBER[25000]">25000</property>
+            <property name="widgetAutoScroll">Skin.String(AutoScrollTime)</property>
 
             <property name="widgetInclude" tag="property" attribute="name|widget" value="epg">Widget_PVRGuide</property>
             <property name="widgetInclude" tag="property" attribute="name|list" value="Submenu">Widget_Submenu</property>
@@ -473,7 +468,7 @@
                         </include>
                     </control>
                 </control>
-                <control type="$SKINSHORTCUTS[widgetListType]" id="$PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]">
+                <control type="fixedlist" id="$PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]">
                     <visible>String.IsEqual(Container(300).ListItem.Property(submenuVisibility),$SKINSHORTCUTS[submenuVisibility])</visible>
                     <visible>Integer.IsGreater(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]).NumItems,0) | Container($PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]).IsUpdating | $SKINSHORTCUTS[isSubmenu]</visible>
                     <include content="DefMultiWidgetContainer">
