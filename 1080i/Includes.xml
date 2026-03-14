@@ -1716,7 +1716,10 @@
     </include>
 
     <include name="includecontent">
-        <content target="$PARAM[target]" sortby="$PARAM[sortby]" sortorder="$PARAM[sortorder]" limit="$PARAM[limit]" browse="never">$PARAM[ContentToLoad]</content>
+        <param name="browse" default="never" />
+        <definition>
+            <content target="$PARAM[target]" sortby="$PARAM[sortby]" sortorder="$PARAM[sortorder]" limit="$PARAM[limit]" browse="$PARAM[browse]">$PARAM[ContentToLoad]</content>
+        </definition>
     </include>
 
     <include name="IntentButton">

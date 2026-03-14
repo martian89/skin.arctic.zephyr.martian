@@ -982,6 +982,28 @@
             <include>ScrolltimeWidgetsList</include>
         </definition>
     </include>
+
+    <include name="Widget_Content">
+        <param name="is_autolimit" default="false"/>
+        <definition>
+	        <include content="includecontent" condition="!$PARAM[is_autolimit]">
+	            <param name="target" value="$PARAM[target]" />
+	            <param name="sortby" value="$PARAM[sortby]" />
+	            <param name="sortorder" value="$PARAM[sortorder]" />
+	            <param name="limit" value="$PARAM[limit]" />
+	            <param name="browse" value="$PARAM[browse]" />
+	            <param name="ContentToLoad" value="$PARAM[content]"/>
+	        </include>
+	        <include content="includecontent" condition="$PARAM[is_autolimit]">
+	            <param name="target" value="$PARAM[target]" />
+	            <param name="sortby" value="$PARAM[sortby]" />
+	            <param name="sortorder" value="$PARAM[sortorder]" />
+	            <param name="limit" value="$PARAM[autolimit]" />
+	            <param name="browse" value="$PARAM[browse]" />
+	            <param name="ContentToLoad" value="$PARAM[content]"/>
+	        </include>
+        </definition>
+    </include>
     
     <include name="MultiWidgetsPlotLabelDefinition">
         <param name="maxheight" />

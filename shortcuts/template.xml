@@ -112,7 +112,7 @@
                         <param name="clearlogo" value="$SKINSHORTCUTS[widgetClearlogoThumb]"/>
                     </include>
                 </focusedlayout>
-                <content limit="$VAR[DefWidgetLimit]" target="$SKINSHORTCUTS[widgetTarget]" sortby="$SKINSHORTCUTS[widgetSortby]]" sortorder="$SKINSHORTCUTS[widgetSort]" browse="$SKINSHORTCUTS[widgetBrowse]">$SKINSHORTCUTS[widgetPath]</content>
+                <content limit="$VAR[DefWidgetLimit]" target="$SKINSHORTCUTS[widgetTarget]" sortby="$SKINSHORTCUTS[widgetSortby]" sortorder="$SKINSHORTCUTS[widgetSort]" browse="$SKINSHORTCUTS[widgetBrowse]">$SKINSHORTCUTS[widgetPath]</content>
             </control>
         </controls>
     </other>
@@ -146,7 +146,7 @@
                 </itemlayout>
                 <focusedlayout width="1" height="1">
                 </focusedlayout>
-                <content limit="$VAR[DefWidgetLimit]" target="$SKINSHORTCUTS[widgetTarget]" sortby="$SKINSHORTCUTS[widgetSortby]]" sortorder="$SKINSHORTCUTS[widgetSort]" browse="$SKINSHORTCUTS[widgetBrowse]">$SKINSHORTCUTS[widgetPath]</content>
+                <content limit="$VAR[DefWidgetLimit]" target="$SKINSHORTCUTS[widgetTarget]" sortby="$SKINSHORTCUTS[widgetSortby]" sortorder="$SKINSHORTCUTS[widgetSort]" browse="$SKINSHORTCUTS[widgetBrowse]">$SKINSHORTCUTS[widgetPath]</content>
             </control>
         </controls>
     </other>
@@ -265,7 +265,7 @@
                         <param name="height" value="325"/>
                     </include>
                 </focusedlayout>
-                <content limit="$VAR[DefWidgetLimit]" target="$SKINSHORTCUTS[widgetTarget]" sortby="$SKINSHORTCUTS[widgetSortby]]" sortorder="$SKINSHORTCUTS[widgetSort]" browse="$SKINSHORTCUTS[widgetBrowse]">$SKINSHORTCUTS[widgetPath]</content>
+                <content limit="$VAR[DefWidgetLimit]" target="$SKINSHORTCUTS[widgetTarget]" sortby="$SKINSHORTCUTS[widgetSortby]" sortorder="$SKINSHORTCUTS[widgetSort]" browse="$SKINSHORTCUTS[widgetBrowse]">$SKINSHORTCUTS[widgetPath]</content>
             </control>
         </controls>
     </other>
@@ -275,7 +275,6 @@
         <property name="widgetPath">$VAR[DefWidgetContent]</property>
         <property name="widgetTarget">$VAR[DefWidgetTarget]</property>
         <property name="widgetBrowse">$VAR[DefWidgetBrowse]</property>
-        <property name="widgetLimit">$VAR[DefWidgetLimit]</property>
 
 	    <controls>
 	        <!-- InfoSub -->
@@ -308,7 +307,11 @@
 	                <param name="aspectratio" value="keep"/>
 	                <param name="distance" value="10"/>
 	            </include>
-	            <content limit="$SKINSHORTCUTS[widgetLimit]" target="$SKINSHORTCUTS[widgetTarget]" browse="$SKINSHORTCUTS[widgetBrowse]">$SKINSHORTCUTS[widgetPath]</content>
+                <include content="Widget_Content">
+                   <param name="target" value="$SKINSHORTCUTS[widgetTarget]" />
+                   <param name="browse" value="$SKINSHORTCUTS[widgetBrowse]" />
+                   <param name="content" value="$SKINSHORTCUTS[widgetPath]" />
+                </include>
 	        </control>
             <control type="group" id="995600">
                 <visible>Integer.IsEqual(Container(9989).NumItems,0)</visible>
@@ -348,6 +351,7 @@
 	        
 	        <property name="widgetTarget" tag="property" attribute="name|widgetTarget"/>
 	        <property name="widgetTarget">$VAR[DefWidgetTarget]</property>
+            <property name="widgetBrowse" tag="property" attribute="name|widgetLimit" value="Auto">never</property>
 	        <property name="widgetBrowse">$VAR[DefWidgetBrowse]</property>
 	        <property name="widgetSortby" tag="property" attribute="name|widgetSortby"/>
 	        <property name="widgetSort" tag="property" attribute="name|widgetSort"/>
@@ -359,7 +363,21 @@
             <property name="widgetName">$LOCALIZE[31105]</property>
 
 	        <property name="widgetLimit" tag="property" attribute="name|widget" value="epg">5</property>
-	        <property name="widgetLimit">$VAR[DefWidgetLimit]</property>
+	        <property name="widgetLimit" tag="property" attribute="name|widgetLimit"/>
+
+            <property name="isAutoLimit" tag="property" attribute="name|widgetLimit" value="Auto">true</property>
+            <property name="isAutoLimit">false</property>
+
+            <property name="widgetAutoLimit" tag="property" attribute="name|list" value="Settings">5</property>
+            <property name="widgetAutoLimit" tag="property" attribute="name|list" value="Systeminfo">5</property>
+            <property name="widgetAutoLimit" tag="property" attribute="name|widgetaspect" value="Square">5</property>
+            <property name="widgetAutoLimit" tag="property" attribute="name|widgetaspect" value="SquareMiddle">7</property>
+            <property name="widgetAutoLimit" tag="property" attribute="name|widgetaspect" value="SquareSmall">8</property>
+            <property name="widgetAutoLimit" tag="property" attribute="name|widgetaspect" value="Thumbnail">3</property>
+            <property name="widgetAutoLimit" tag="property" attribute="name|widgetaspect" value="Fanart">3</property>
+            <property name="widgetAutoLimit" tag="property" attribute="name|widgetaspect" value="ThumbnailSmall">4</property>
+            <property name="widgetAutoLimit" tag="property" attribute="name|widgetaspect" value="FanartSmall">4</property>
+            <property name="widgetAutoLimit">8</property>
 
             <property name="widgetMovement" tag="property" attribute="name|list" value="Settings">4</property>
             <property name="widgetMovement" tag="property" attribute="name|list" value="Systeminfo">4</property>
@@ -484,7 +502,15 @@
                         <param name="SquareMedium" value="$PYTHON['true' if widgetAspectSubcheck in 'SqMedium' else 'false']"/>
                         <param name="SquareSmall" value="$PYTHON['true' if widgetAspectSubcheck in 'SqSmall' else 'false']"/>
 	                </include>
-                    <content limit="$SKINSHORTCUTS[widgetLimit]" target="$SKINSHORTCUTS[widgetTarget]" sortby="$SKINSHORTCUTS[widgetSortby]]" sortorder="$SKINSHORTCUTS[widgetSort]" browse="$SKINSHORTCUTS[widgetBrowse]">$SKINSHORTCUTS[widgetPath]</content>
+	                <include content="Widget_Content">
+	                   <param name="target" value="$SKINSHORTCUTS[widgetTarget]" />
+	                   <param name="sortby" value="$SKINSHORTCUTS[widgetSortby]" />
+                       <param name="sortorder" value="$SKINSHORTCUTS[widgetSortorder]" />
+                       <param name="browse" value="$SKINSHORTCUTS[widgetBrowse]" />
+                       <param name="content" value="$SKINSHORTCUTS[widgetPath]" />
+                       <param name="is_autolimit" value="$SKINSHORTCUTS[isAutoLimit]" />
+                       <param name="autolimit" value="$SKINSHORTCUTS[widgetAutoLimit]" />
+	                </include>
                 </control>
                 <control type="group" id="$PYTHON[int(mainmenuid) * 10000 + 7500 + int(id)]">
                     <visible>String.IsEqual(Container(300).ListItem.Property(submenuVisibility),$SKINSHORTCUTS[submenuVisibility])</visible>
