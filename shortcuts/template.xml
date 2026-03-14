@@ -307,7 +307,7 @@
 	                <param name="aspectratio" value="keep"/>
 	                <param name="distance" value="10"/>
 	            </include>
-                <include content="Widget_Content">
+                <include content="Widget_ContentDynamic">
                    <param name="target" value="$SKINSHORTCUTS[widgetTarget]" />
                    <param name="browse" value="$SKINSHORTCUTS[widgetBrowse]" />
                    <param name="content" value="$SKINSHORTCUTS[widgetPath]" />
@@ -342,11 +342,11 @@
 	        <property name="id" tag="mainmenuid"/>
 
             <!--- Widget Content -->
-            <property name="widgetPath" tag="property" attribute="name|list" value="Submenu">$INCLUDE[skinshortcuts-submenu]</property>
-            <property name="widgetPath" tag="property" attribute="name|list" value="Settings">$INCLUDE[SettingsInfoItems]</property>
-            <property name="widgetPath" tag="property" attribute="name|list" value="Systeminfo">$INCLUDE[SystemInfoItems]</property>
-            <property name="widgetPath" tag="property" attribute="name|list" value="WeatherDaily">$INCLUDE[WeatherDailyItems]</property>
-            <property name="widgetPath" tag="property" attribute="name|list" value="WeatherHourly">$INCLUDE[WeatherHourlyItems]</property>
+            <property name="widgetPath" tag="property" attribute="name|list" value="Submenu">skinshortcuts-submenu</property>
+            <property name="widgetPath" tag="property" attribute="name|list" value="Settings">SettingsInfoItems</property>
+            <property name="widgetPath" tag="property" attribute="name|list" value="Systeminfo">SystemInfoItems</property>
+            <property name="widgetPath" tag="property" attribute="name|list" value="WeatherDaily">WeatherDailyItems</property>
+            <property name="widgetPath" tag="property" attribute="name|list" value="WeatherHourly">WeatherHourlyItems</property>
 	        <property name="widgetPath" tag="property" attribute="name|list"/>
 	        
 	        <property name="widgetTarget" tag="property" attribute="name|widgetTarget"/>
@@ -502,8 +502,9 @@
                         <param name="SquareMedium" value="$PYTHON['true' if widgetAspectSubcheck in 'SqMedium' else 'false']"/>
                         <param name="SquareSmall" value="$PYTHON['true' if widgetAspectSubcheck in 'SqSmall' else 'false']"/>
 	                </include>
-	                <include content="Widget_Content">
+	                <include content="Widget_ContentDynamic" condition="$SKINSHORTCUTS[isNormalLayout]">
 	                   <param name="target" value="$SKINSHORTCUTS[widgetTarget]" />
+                       <param name="limit" value="$SKINSHORTCUTS[widgetLimit]" />
 	                   <param name="sortby" value="$SKINSHORTCUTS[widgetSortby]" />
                        <param name="sortorder" value="$SKINSHORTCUTS[widgetSortorder]" />
                        <param name="browse" value="$SKINSHORTCUTS[widgetBrowse]" />
@@ -511,6 +512,16 @@
                        <param name="is_autolimit" value="$SKINSHORTCUTS[isAutoLimit]" />
                        <param name="autolimit" value="$SKINSHORTCUTS[widgetAutoLimit]" />
 	                </include>
+                    <include content="Widget_ContentInclude" condition="!$SKINSHORTCUTS[isNormalLayout]">
+                       <param name="target" value="$SKINSHORTCUTS[widgetTarget]" />
+                       <param name="limit" value="$SKINSHORTCUTS[widgetLimit]" />
+                       <param name="sortby" value="$SKINSHORTCUTS[widgetSortby]" />
+                       <param name="sortorder" value="$SKINSHORTCUTS[widgetSortorder]" />
+                       <param name="browse" value="$SKINSHORTCUTS[widgetBrowse]" />
+                       <param name="include" value="$SKINSHORTCUTS[widgetPath]" />
+                       <param name="is_autolimit" value="$SKINSHORTCUTS[isAutoLimit]" />
+                       <param name="autolimit" value="$SKINSHORTCUTS[widgetAutoLimit]" />
+                    </include>
                 </control>
                 <control type="group" id="$PYTHON[int(mainmenuid) * 10000 + 7500 + int(id)]">
                     <visible>String.IsEqual(Container(300).ListItem.Property(submenuVisibility),$SKINSHORTCUTS[submenuVisibility])</visible>
