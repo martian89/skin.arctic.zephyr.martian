@@ -939,8 +939,11 @@
             <include content="def_left" condition="![$EXP[HomeIsModernMultiWidgets] + !Skin.HasSetting(homemenu.clean.flix)]"><param name="left" value="70" /></include>
             <left>0</left>
             <right>0</right>
+            <include content="Widget_AutoScroll">
+                <param name="time" value="Skin.String(AutoScrollTime)" />
+                <param name="condition" value="$PARAM[AutoScrollCondition]" />
+            </include>
             <include condition="!Skin.HasSetting(widgets.fade)">Animation.Vertical.Widgets.Container</include>
-            <autoscroll time="$PARAM[AutoTime]" delay="1000">$PARAM[AutoScrollCondition]</autoscroll>
             <onfocus>SetProperty(TMDbHelper.WidgetContainer,$PARAM[id],Home)</onfocus>
             <onfocus condition="Skin.HasSetting(extended.nowplaying) + Window.IsVisible(Home) + Skin.HasSetting(home.nowplaying.info.auto.show)">SetProperty(nowplayingautoshowtimer,1,home)</onfocus>
             <onunfocus>ClearProperty(nowplayingautoshowtimer,home)</onunfocus>
@@ -1023,6 +1026,47 @@
                 <param name="limit" value="$PARAM[autolimit]" />
                 <param name="browse" value="$PARAM[browse]" />
                 <param name="include" value="$PARAM[include]"/>
+            </include>
+        </definition>
+    </include>
+
+    <include name="Widget_AutoScroll">
+        <definition>
+            <include content="def_autoscroll" condition="String.IsEqual(Skin.String(AutoScrollTime),5s)">
+                <param name="time" value="5000" />
+                <param name="condition" value="$PARAM[condition]" />
+            </include>
+            <include content="def_autoscroll" condition="String.IsEqual(Skin.String(AutoScrollTime),8s)">
+                <param name="time" value="8000" />
+                <param name="condition" value="$PARAM[condition]" />
+            </include>
+            <include content="def_autoscroll" condition="String.IsEqual(Skin.String(AutoScrollTime),10s)">
+                <param name="time" value="10000" />
+                <param name="condition" value="$PARAM[condition]" />
+            </include>
+            <include content="def_autoscroll" condition="String.IsEqual(Skin.String(AutoScrollTime),12s)">
+                <param name="time" value="12000" />
+                <param name="condition" value="$PARAM[condition]" />
+            </include>
+            <include content="def_autoscroll" condition="String.IsEqual(Skin.String(AutoScrollTime),15s)">
+                <param name="time" value="15000" />
+                <param name="condition" value="$PARAM[condition]" />
+            </include>
+            <include content="def_autoscroll" condition="String.IsEqual(Skin.String(AutoScrollTime),20s)">
+                <param name="time" value="20000" />
+                <param name="condition" value="$PARAM[condition]" />
+            </include>
+            <include content="def_autoscroll" condition="String.IsEqual(Skin.String(AutoScrollTime),30s)">
+                <param name="time" value="30000" />
+                <param name="condition" value="$PARAM[condition]" />
+            </include>
+            <include content="def_autoscroll" condition="String.IsEqual(Skin.String(AutoScrollTime),60s)">
+                <param name="time" value="60000" />
+                <param name="condition" value="$PARAM[condition]" />
+            </include>
+            <include content="def_autoscroll" condition="String.IsEqual(Skin.String(AutoScrollTime),10m)">
+                <param name="time" value="600000" />
+                <param name="condition" value="$PARAM[condition]" />
             </include>
         </definition>
     </include>
