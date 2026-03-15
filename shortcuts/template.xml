@@ -286,11 +286,10 @@
                 
                 <include>Widget_Navigation_Actions</include>
                 
-		        <!-- InfoSub -->
 	            <control type="group" id="997500">
 	                <visible>Integer.IsGreater(Container(993100).NumItems,0) | Container(993100).IsUpdating</visible>
 	                <control type="grouplist">
-	                    <include content="widget.title.label">
+	                    <include content="Widget_Title_Label">
 	                        <param name="focusid" value="993100"/>
 	                        <param name="label" value="$LOCALIZE[31105]"/>
 	                    </include>
@@ -307,7 +306,7 @@
 	                    <param name="AutoScrollCondition" value="!Control.HasFocus(993100) + !System.ScreenSaverActive + System.IdleTime(1)"/>
 		            </include>
 		            <!-- ItemLayout -->
-		            <include content="Widget_Poster">
+		            <include content="Widget_Layout_Normal">
 		                <param name="shortcutsid" value="993100"/>
 		                <param name="shortcutsclearlogo" value="true"/>
 		                <param name="aspectratio" value="keep"/>
@@ -319,16 +318,19 @@
 	                   <param name="content" value="$SKINSHORTCUTS[widgetPath]" />
 	                </include>
 		        </control>
+                <!-- InfoSub -->
 	            <control type="group" id="995600">
 	                <visible>Integer.IsGreater(Container(993100).NumItems,0) | Container(993100).IsUpdating</visible>
 	                <control type="grouplist">
-	                    <include content="FullScreenInfoSub">
+	                    <include content="HomeWidgetsFullscreenInfo">
 	                        <param name="id" value="993100"/>
-	                    </include>
+                            <param name="isfullscreenlayout" value="!Skin.HasSetting(homemenu.netflix)" />
+ 	                    </include>
 	                </control>
 	                <control type="grouplist">
-	                    <include content="ClearArtInfoSub">
+	                    <include content="ClearArtInfoSub" condition="!Skin.HasSetting(homemenu.netflix) + !Skin.HasSetting(home.multiwidgets.hideclearart)">
 	                        <param name="id" value="993100"/>
+                            <param name="isfullscreenlayout" value="true" />
 	                    </include>
 	                </control>
 	            </control>
@@ -395,19 +397,19 @@
             <property name="widgetMovement" tag="property" attribute="name|widgetaspect" value="FanartSmall">3</property>
             <property name="widgetMovement">7</property>
 
-            <property name="widgetInclude" tag="property" attribute="name|widget" value="epg">Widget_PVRGuide</property>
-            <property name="widgetInclude" tag="property" attribute="name|list" value="Submenu">Widget_Submenu</property>
-            <property name="widgetInclude" tag="property" attribute="name|list" value="Settings">Widget_Settings</property>
-            <property name="widgetInclude" tag="property" attribute="name|list" value="Systeminfo">Widget_Settings</property>
-            <property name="widgetInclude" tag="property" attribute="name|list" value="WeatherDaily">Widget_Weather</property>
-            <property name="widgetInclude" tag="property" attribute="name|list" value="WeatherHourly">Widget_Weather</property>
-            <property name="widgetInclude">Widget_Poster</property>
+            <property name="widgetInclude" tag="property" attribute="name|widget" value="epg">Widget_Layout_PVRGuide</property>
+            <property name="widgetInclude" tag="property" attribute="name|list" value="Submenu">Widget_Layout_Submenu</property>
+            <property name="widgetInclude" tag="property" attribute="name|list" value="Settings">Widget_Layout_System</property>
+            <property name="widgetInclude" tag="property" attribute="name|list" value="Systeminfo">Widget_Layout_System</property>
+            <property name="widgetInclude" tag="property" attribute="name|list" value="WeatherDaily">Widget_Layout_Weather</property>
+            <property name="widgetInclude" tag="property" attribute="name|list" value="WeatherHourly">Widget_Layout_Weather</property>
+            <property name="widgetInclude">Widget_Layout_Normal</property>
 
-            <property name="infosubInclude" tag="property" attribute="name|list" value="Settings">InfoSubWidgetSystem</property>
-            <property name="infosubInclude" tag="property" attribute="name|list" value="Systeminfo">InfoSubWidgetSystem</property>
-            <property name="infosubInclude" tag="property" attribute="name|list" value="WeatherDaily">InfoSubWidgetWeather</property>
-            <property name="infosubInclude" tag="property" attribute="name|list" value="WeatherHourly">InfoSubWidgetWeather</property>
-            <property name="infosubInclude">FullScreenInfoSub</property>
+            <property name="widgetInfoInclude" tag="property" attribute="name|list" value="Settings">HomeWidgetsSysteminfo</property>
+            <property name="widgetInfoInclude" tag="property" attribute="name|list" value="Systeminfo">HomeWidgetsSysteminfo</property>
+            <property name="widgetInfoInclude" tag="property" attribute="name|list" value="WeatherDaily">HomeWidgetsWeatherInfo</property>
+            <property name="widgetInfoInclude" tag="property" attribute="name|list" value="WeatherHourly">HomeWidgetsWeatherInfo</property>
+            <property name="widgetInfoInclude">HomeWidgetsFullscreenInfo</property>
 
             <property name="isSubmenu" tag="property" attribute="name|list" value="Submenu">true</property>
             <property name="isSubmenu">false</property>
@@ -460,14 +462,16 @@
                     <visible>$SKINSHORTCUTS[isFullscreenWidget] | Skin.HasSetting(homemenu.netflix) | Integer.IsEqual(Container(9989).NumItems,1)</visible>
                     <visible>[Integer.IsGreater(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]).NumItems,0) | Container($PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]).IsUpdating]</visible>
                     <control type="grouplist">
-                        <include content="$SKINSHORTCUTS[infosubInclude]" condition="!$SKINSHORTCUTS[isSubmenu]">
+                        <include content="$SKINSHORTCUTS[widgetInfoInclude]" condition="!$SKINSHORTCUTS[isSubmenu]">
                             <param name="id" value="$PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]"/>
                             <param name="issettingslayout" value="$SKINSHORTCUTS[isSettings]"/>
-                        </include>
+                            <param name="isfullscreenlayout" value="!$SKINSHORTCUTS[isFullscreenWidget] + !Skin.HasSetting(homemenu.netflix) + Integer.IsEqual(Container($PYTHON[int(mainmenuid) * 1000 + 301]).NumItems,1)" />
+                         </include>
                     </control>
                     <control type="grouplist">
-                        <include content="ClearArtInfoSub" condition="$SKINSHORTCUTS[isNormalLayout]">
+                        <include content="ClearArtInfoSub" condition="$SKINSHORTCUTS[isNormalLayout] + !Skin.HasSetting(homemenu.netflix) + !Skin.HasSetting(home.multiwidgets.hideclearart)">
                             <param name="id" value="$PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]"/>
+                            <param name="isfullscreenlayout" value="!$SKINSHORTCUTS[isFullscreenWidget] + !Skin.HasSetting(homemenu.netflix) + Integer.IsEqual(Container($PYTHON[int(mainmenuid) * 1000 + 301]).NumItems,1)" />
                         </include>
                     </control>
                 </control>
@@ -524,7 +528,7 @@
                     <visible>String.IsEqual(Container(300).ListItem.Property(submenuVisibility),$SKINSHORTCUTS[submenuVisibility])</visible>
                     <visible>Integer.IsGreater(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]).NumItems,0) | Container($PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]).IsUpdating</visible>
                     <control type="grouplist">
-                        <include content="widget.title.label">
+                        <include content="Widget_Title_Label">
                             <param name="focusid" value="$PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]"/>
                             <param name="label" value="$SKINSHORTCUTS[widgetName]"/>
                         </include>

@@ -1,126 +1,299 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
 
-    <!-- Systeminfo Layout -->
-    <include name="Widget_Settings">
-        <itemlayout height="325" width="325">
-            <control type="group">
-                <width>325</width>
-                <include content="def_left" condition="$EXP[HomeIsModernMultiWidgets] + !Skin.HasSetting(homemenu.clean.flix)"><param name="left" value="70" /></include>
-                <include>include.widget.square.system</include>
-            </control>
-        </itemlayout>
-        <focusedlayout height="325" width="325">
-            <control type="group">
-                <width>325</width>
-                <include content="def_left" condition="$EXP[HomeIsModernMultiWidgets] + !Skin.HasSetting(homemenu.clean.flix)"><param name="left" value="70" /></include>
-                <include content="include.widget.square.system.focus">
-                    <param name="id" value="$PARAM[shortcutsid]"/>
-                </include>
-            </control>
-            <include content="SetWidgetContainerPosition" condition="$EXP[HomeIsCleanMinimal]">
-                <param name="id" value="$PARAM[shortcutsid]" />
-            </include>
-        </focusedlayout>
-    </include>
-
-    <include name="Widget_Submenu">
-        <param name="SquareMedium" default="false"/>
-        <param name="SquareSmall" default="false"/>
-        <param name="Square" default="false"/>
+    <include name="DefMultiWidgetContainer">
+        <param name="height" value="$PARAM[height]" default="325"/>
+        <param name="orientation" value="$PARAM[orientation]" default="horizontal"/>
+        <param name="movement" default="0" />
         <definition>
-        <itemlayout height="125" width="125" condition="$PARAM[SquareSmall]">
-            <control type="group">
-                <width>125</width>
-                <include content="def_left" condition="$EXP[HomeIsModernMultiWidgets] + !Skin.HasSetting(homemenu.clean.flix)"><param name="left" value="70" /></include>
-                <include content="include.widget.square">
-                    <param name="id" value="$PARAM[shortcutsid]"/>
-                    <param name="height" value="125"/>
-                    <param name="distance" value="$PARAM[distance]"/>
-                </include>
-            </control>
-        </itemlayout>
-        <itemlayout height="175" width="222" condition="$PARAM[SquareMedium]">
-            <control type="group">
-                <width>222</width>
-                <include content="def_left" condition="$EXP[HomeIsModernMultiWidgets] + !Skin.HasSetting(homemenu.clean.flix)"><param name="left" value="70" /></include>
-                <include content="include.widget.square">
-                    <param name="id" value="$PARAM[shortcutsid]"/>
-                    <param name="aspectratio" value="$PARAM[aspectratio]"/>
-                    <param name="height" value="175"/>
-                    <param name="distance" value="$PARAM[distance]"/>
-                </include>
-            </control>
-        </itemlayout>
-        <itemlayout height="325" width="325" condition="![$PARAM[SquareSmall] | $PARAM[SquareMedium]]">
-            <control type="group">
-                <width>325</width>
-                <include content="def_left" condition="$EXP[HomeIsModernMultiWidgets] + !Skin.HasSetting(homemenu.clean.flix)"><param name="left" value="70" /></include>
-                <include content="include.widget.square">
-                    <param name="id" value="$PARAM[shortcutsid]"/>
-                    <param name="aspectratio" value="$PARAM[aspectratio]"/>
-                    <param name="distance" value="$PARAM[distance]"/>
-                </include>
-            </control>
-        </itemlayout>
-        <focusedlayout height="125" width="125" condition="$PARAM[SquareSmall]">
-            <control type="group">
-                <width>125</width>
-                <include content="def_left" condition="$EXP[HomeIsModernMultiWidgets] + !Skin.HasSetting(homemenu.clean.flix)"><param name="left" value="70" /></include>
-                <include content="include.widget.square.focus">
-                    <param name="id" value="$PARAM[shortcutsid]"/>
-                    <param name="height" value="125"/>
-                    <param name="distance" value="$PARAM[distance]"/>
-                </include>
-            </control>
-        </focusedlayout>
-        <focusedlayout height="175" width="222" condition="$PARAM[SquareMedium]">
-            <control type="group">
-                <width>222</width>
-                <include content="def_left" condition="$EXP[HomeIsModernMultiWidgets] + !Skin.HasSetting(homemenu.clean.flix)"><param name="left" value="70" /></include>
-                <include content="include.widget.square.focus">
-                    <param name="id" value="$PARAM[shortcutsid]"/>
-                    <param name="aspectratio" value="$PARAM[aspectratio]"/>
-                    <param name="height" value="175"/>
-                    <param name="distance" value="$PARAM[distance]"/>
-                </include>
-            </control>
-        </focusedlayout>
-        <focusedlayout height="325" width="325" condition="![$PARAM[SquareSmall] | $PARAM[SquareMedium]]">
-            <control type="group">
-                <width>325</width>
-                <include content="def_left" condition="$EXP[HomeIsModernMultiWidgets] + !Skin.HasSetting(homemenu.clean.flix)"><param name="left" value="70" /></include>
-                <include content="include.widget.square.focus">
-                    <param name="id" value="$PARAM[shortcutsid]"/>
-                    <param name="aspectratio" value="$PARAM[aspectratio]"/>
-                    <param name="distance" value="$PARAM[distance]"/>
-                </include>
-            </control>
-        </focusedlayout>
+            <include content="def_top" condition="Skin.HasSetting(homemenu.clean.flix)">
+                <param name="top" value="200" />
+            </include>
+            <include content="def_top" condition="Skin.HasSetting(homemenu.netflix) + !Skin.HasSetting(show.reflections)">
+                <param name="top" value="445" />
+            </include>
+            <include content="def_top" condition="Skin.HasSetting(homemenu.netflix) + Skin.HasSetting(show.reflections)">
+                <param name="top" value="405" />
+            </include>
+            <include content="def_top" condition="!Skin.HasSetting(homemenu.netflix) + !Skin.HasSetting(show.reflections)">
+                <param name="top" value="60" />
+            </include>         
+            <include content="def_top" condition="!Skin.HasSetting(homemenu.netflix) + Skin.HasSetting(show.reflections)">
+                <param name="top" value="20" />
+            </include>         
+            <include content="def_width" condition="Skin.HasSetting(homemenu.clean.flix)">
+                <param name="width" value="225" />
+            </include>
+            <animation effect="fade" start="0" end="0" time="0" condition="Skin.HasSetting(homemenu.clean.flix)">Conditional</animation>
+            <include content="def_height" condition="Skin.HasSetting(homemenu.clean.flix)">
+                <param name="height" value="565" />
+            </include>
+            <include content="def_height" condition="Skin.HasSetting(homemenu.netflix) + !Skin.HasSetting(show.reflections)">
+                <param name="height" value="325" />
+            </include>
+            <include content="def_height" condition="Skin.HasSetting(homemenu.netflix) + Skin.HasSetting(show.reflections)">
+                <param name="height" value="365" />
+            </include>
+            <include content="def_height" condition="!Skin.HasSetting(homemenu.netflix) + !Skin.HasSetting(show.reflections)">
+                <param name="height" value="$PARAM[height]" />
+            </include>
+            <include content="def_height" condition="!Skin.HasSetting(homemenu.netflix) + Skin.HasSetting(show.reflections)">
+                <param name="height" value="$PARAM[height2]" />
+            </include>
+            <height>$PARAM[height]</height>
+            <include content="def_left" condition="![$EXP[HomeIsModernMultiWidgets] + !Skin.HasSetting(homemenu.clean.flix)]"><param name="left" value="70" /></include>
+            <left>0</left>
+            <right>0</right>
+            <include content="Widget_AutoScroll">
+                <param name="time" value="Skin.String(AutoScrollTime)" />
+                <param name="condition" value="$PARAM[AutoScrollCondition]" />
+            </include>
+            <include condition="!Skin.HasSetting(widgets.fade)">Animation.Vertical.Widgets.Container</include>
+            <onfocus>SetProperty(TMDbHelper.WidgetContainer,$PARAM[id],Home)</onfocus>
+            <onfocus condition="Skin.HasSetting(extended.nowplaying) + Window.IsVisible(Home) + Skin.HasSetting(home.nowplaying.info.auto.show)">SetProperty(nowplayingautoshowtimer,1,home)</onfocus>
+            <onunfocus>ClearProperty(nowplayingautoshowtimer,home)</onunfocus>
+            <onfocus condition="Integer.IsGreater(Container($PARAM[baseid]09).NumItems,0) + Control.IsVisible($PARAM[baseid]09)">SetProperty(BackToId,$PARAM[baseid]09,Home)</onfocus>
+            <onfocus condition="Integer.IsGreater(Container($PARAM[baseid]08).NumItems,0) + Control.IsVisible($PARAM[baseid]08)">SetProperty(BackToId,$PARAM[baseid]08,Home)</onfocus>
+            <onfocus condition="Integer.IsGreater(Container($PARAM[baseid]07).NumItems,0) + Control.IsVisible($PARAM[baseid]07)">SetProperty(BackToId,$PARAM[baseid]07,Home)</onfocus>
+            <onfocus condition="Integer.IsGreater(Container($PARAM[baseid]06).NumItems,0) + Control.IsVisible($PARAM[baseid]06)">SetProperty(BackToId,$PARAM[baseid]06,Home)</onfocus>
+            <onfocus condition="Integer.IsGreater(Container($PARAM[baseid]05).NumItems,0) + Control.IsVisible($PARAM[baseid]05)">SetProperty(BackToId,$PARAM[baseid]05,Home)</onfocus>
+            <onfocus condition="Integer.IsGreater(Container($PARAM[baseid]04).NumItems,0) + Control.IsVisible($PARAM[baseid]04)">SetProperty(BackToId,$PARAM[baseid]04,Home)</onfocus>
+            <onfocus condition="Integer.IsGreater(Container($PARAM[baseid]03).NumItems,0) + Control.IsVisible($PARAM[baseid]03)">SetProperty(BackToId,$PARAM[baseid]03,Home)</onfocus>
+            <onfocus condition="Integer.IsGreater(Container($PARAM[baseid]02).NumItems,0) + Control.IsVisible($PARAM[baseid]02)">SetProperty(BackToId,$PARAM[baseid]02,Home)</onfocus>
+            <onfocus condition="Integer.IsGreater(Container($PARAM[baseid]01).NumItems,0) + Control.IsVisible($PARAM[baseid]01)">SetProperty(BackToId,$PARAM[baseid]01,Home)</onfocus>
+       
+            <onfocus condition="Integer.IsGreater(Container($PARAM[baseid]01).NumItems,0) + Control.IsVisible($PARAM[baseid]01)">SetProperty(LastId,$PARAM[baseid]01,Home)</onfocus>
+            <onfocus condition="Integer.IsGreater(Container($PARAM[baseid]02).NumItems,0) + Control.IsVisible($PARAM[baseid]02)">SetProperty(LastId,$PARAM[baseid]02,Home)</onfocus>
+            <onfocus condition="Integer.IsGreater(Container($PARAM[baseid]03).NumItems,0) + Control.IsVisible($PARAM[baseid]03)">SetProperty(LastId,$PARAM[baseid]03,Home)</onfocus>
+            <onfocus condition="Integer.IsGreater(Container($PARAM[baseid]04).NumItems,0) + Control.IsVisible($PARAM[baseid]04)">SetProperty(LastId,$PARAM[baseid]04,Home)</onfocus>
+            <onfocus condition="Integer.IsGreater(Container($PARAM[baseid]05).NumItems,0) + Control.IsVisible($PARAM[baseid]05)">SetProperty(LastId,$PARAM[baseid]05,Home)</onfocus>
+            <onfocus condition="Integer.IsGreater(Container($PARAM[baseid]06).NumItems,0) + Control.IsVisible($PARAM[baseid]06)">SetProperty(LastId,$PARAM[baseid]06,Home)</onfocus>
+            <onfocus condition="Integer.IsGreater(Container($PARAM[baseid]07).NumItems,0) + Control.IsVisible($PARAM[baseid]07)">SetProperty(LastId,$PARAM[baseid]07,Home)</onfocus>
+            <onfocus condition="Integer.IsGreater(Container($PARAM[baseid]08).NumItems,0) + Control.IsVisible($PARAM[baseid]08)">SetProperty(LastId,$PARAM[baseid]08,Home)</onfocus>
+            <onfocus condition="Integer.IsGreater(Container($PARAM[baseid]09).NumItems,0) + Control.IsVisible($PARAM[baseid]09)">SetProperty(LastId,$PARAM[baseid]09,Home)</onfocus>
+
+            <onback condition="[!Integer.IsEqual(Container($PARAM[id]).Position,0) | Container($PARAM[id]).HasPrevious] + !Skin.HasSetting(widget.items.onback.go.back.to.position.0)">PageUp</onback>
+            <onback condition="[!Integer.IsEqual(Container($PARAM[id]).Position,0) | Container($PARAM[id]).HasPrevious] + !Skin.HasSetting(widget.items.onback.go.back.to.position.0)">PageUp</onback>
+            <onback condition="[!Integer.IsEqual(Container($PARAM[id]).Position,0) | Container($PARAM[id]).HasPrevious] + !Skin.HasSetting(widget.items.onback.go.back.to.position.0)">PageUp</onback>            
+            <onback condition="[!Integer.IsEqual(Container($PARAM[id]).Position,0) | Container($PARAM[id]).HasPrevious] + Skin.HasSetting(widget.items.onback.go.back.to.position.0)">SetFocus($PARAM[id],0,absolute)</onback>
+            <onback condition="[!Integer.IsEqual(Container($PARAM[id]).Position,0) | Container($PARAM[id]).HasPrevious] + Skin.HasSetting(widget.items.onback.go.back.to.position.0) + Skin.HasSetting(widget.items.onback.go.back.to.position.0.setfocus.home)">SetFocus(300)</onback>            
+            <onback condition="Integer.IsEqual(Container($PARAM[id]).Position,0) + !Container($PARAM[id]).HasPrevious + !Skin.HasSetting(disable.widgets.onback.go.back.to.position.0)">SetFocus($INFO[Window(home).Property(BackToId)])</onback>
+            <onback condition="Integer.IsEqual(Container($PARAM[id]).Position,0) + !Container($PARAM[id]).HasPrevious + !Skin.HasSetting(disable.widgets.onback.go.back.to.position.0)">SetFocus(4567)</onback>
+            <onback condition="Integer.IsEqual(Container($PARAM[id]).Position,0) + !Container($PARAM[id]).HasPrevious + Skin.HasSetting(disable.widgets.onback.go.back.to.position.0)">SetFocus(300)</onback>
+            <onleft condition="$EXP[HomeIsVerticalMultiWidgets]">300</onleft>
+            <preloaditems>2</preloaditems>
+            <focusposition>0</focusposition>
+            <include content="def_movement" condition="!Skin.HasSetting(LockFocusPosition)">
+                <param name="movement" value="$PARAM[movement]" />
+            </include>
+            <orientation>$PARAM[orientation]</orientation>
+            <include>ScrolltimeWidgetsList</include>
         </definition>
     </include>
 
-    <include name="Widget_PVRGuide">
-        <itemlayout height="61.9" width="1756">
-            <control type="group">
-                <width>1756</width>
-                <include content="def_left" condition="$EXP[HomeIsModernMultiWidgets] + !Skin.HasSetting(homemenu.clean.flix)"><param name="left" value="70" /></include>
-                <include>include.widget.pvr</include>
-            </control>
-        </itemlayout>
-        <focusedlayout height="61.9" width="1756">
-            <control type="group">
-                <width>1756</width>
-                <include content="def_left" condition="$EXP[HomeIsModernMultiWidgets] + !Skin.HasSetting(homemenu.clean.flix)"><param name="left" value="70" /></include>
-                <include content="include.widget.pvr.focus">
-                    <param name="shortcutsid" value="$PARAM[shortcutsid]"/>
-                </include>
-            </control>
-        </focusedlayout>
+    <include name="Widget_Navigation_Actions">
+        <!-- Modern Home Menu -->
+        <onup condition="!$EXP[HomeIsVerticalAll] + !Skin.HasSetting(disable.widgets.onup.go.back.to.last.item)">SetFocus(8888)</onup>
+        <onup condition="!$EXP[HomeIsVerticalAll] + Skin.HasSetting(disable.widgets.onup.go.back.to.last.item)">300</onup>
+        <ondown condition="!$EXP[HomeIsVerticalAll] + Skin.HasSetting(disable.widgets.ondown.go.back.to.position.0)">300</ondown>
+        <ondown condition="!$EXP[HomeIsVerticalAll] + !Skin.HasSetting(disable.widgets.ondown.go.back.to.position.0)">4567</ondown>
+    
+        <!-- Vertical Home Menu -->
+        <onup condition="$EXP[HomeIsVerticalAll] + Skin.HasSetting(enable.widgets.onup.go.back.to.last.widget)">301</onup>
+        <onup condition="$EXP[HomeIsVerticalAll] + !Skin.HasSetting(enable.widgets.onup.go.back.to.last.widget)">300</onup>
+        <ondown condition="$EXP[HomeIsVerticalAll] + Skin.HasSetting(enable.widgets.onup.go.back.to.last.widget)">301</ondown>
+        <ondown condition="$EXP[HomeIsVerticalAll] + !Skin.HasSetting(enable.widgets.onup.go.back.to.last.widget)">300</ondown>
+    </include>
+    
+    <include name="Widget_ContentDynamic">
+        <param name="is_autolimit" default="false"/>
+        <definition>
+            <include content="Def_ContentDynamic" condition="!$PARAM[is_autolimit]">
+                <param name="target" value="$PARAM[target]" />
+                <param name="sortby" value="$PARAM[sortby]" />
+                <param name="sortorder" value="$PARAM[sortorder]" />
+                <param name="limit" value="$PARAM[limit]" />
+                <param name="browse" value="$PARAM[browse]" />
+                <param name="content" value="$PARAM[content]"/>
+            </include>
+            <include content="Def_ContentDynamic" condition="$PARAM[is_autolimit]">
+                <param name="target" value="$PARAM[target]" />
+                <param name="sortby" value="$PARAM[sortby]" />
+                <param name="sortorder" value="$PARAM[sortorder]" />
+                <param name="limit" value="$PARAM[autolimit]" />
+                <param name="browse" value="$PARAM[browse]" />
+                <param name="content" value="$PARAM[content]"/>
+            </include>
+        </definition>
+    </include>
+    
+    <include name="Widget_ContentInclude">
+        <param name="is_autolimit" default="false"/>
+        <definition>
+            <include content="Def_ContentInclude" condition="!$PARAM[is_autolimit]">
+                <param name="target" value="$PARAM[target]" />
+                <param name="sortby" value="$PARAM[sortby]" />
+                <param name="sortorder" value="$PARAM[sortorder]" />
+                <param name="limit" value="$PARAM[limit]" />
+                <param name="browse" value="$PARAM[browse]" />
+                <param name="include" value="$PARAM[include]"/>
+            </include>
+            <include content="Def_ContentInclude" condition="$PARAM[is_autolimit]">
+                <param name="target" value="$PARAM[target]" />
+                <param name="sortby" value="$PARAM[sortby]" />
+                <param name="sortorder" value="$PARAM[sortorder]" />
+                <param name="limit" value="$PARAM[autolimit]" />
+                <param name="browse" value="$PARAM[browse]" />
+                <param name="include" value="$PARAM[include]"/>
+            </include>
+        </definition>
+    </include>
+
+    <include name="Widget_AutoScroll">
+        <definition>
+            <include content="def_autoscroll" condition="String.IsEqual(Skin.String(AutoScrollTime),5s)">
+                <param name="time" value="5000" />
+                <param name="condition" value="$PARAM[condition]" />
+            </include>
+            <include content="def_autoscroll" condition="String.IsEqual(Skin.String(AutoScrollTime),8s)">
+                <param name="time" value="8000" />
+                <param name="condition" value="$PARAM[condition]" />
+            </include>
+            <include content="def_autoscroll" condition="String.IsEqual(Skin.String(AutoScrollTime),10s)">
+                <param name="time" value="10000" />
+                <param name="condition" value="$PARAM[condition]" />
+            </include>
+            <include content="def_autoscroll" condition="String.IsEqual(Skin.String(AutoScrollTime),12s)">
+                <param name="time" value="12000" />
+                <param name="condition" value="$PARAM[condition]" />
+            </include>
+            <include content="def_autoscroll" condition="String.IsEqual(Skin.String(AutoScrollTime),15s)">
+                <param name="time" value="15000" />
+                <param name="condition" value="$PARAM[condition]" />
+            </include>
+            <include content="def_autoscroll" condition="String.IsEqual(Skin.String(AutoScrollTime),20s)">
+                <param name="time" value="20000" />
+                <param name="condition" value="$PARAM[condition]" />
+            </include>
+            <include content="def_autoscroll" condition="String.IsEqual(Skin.String(AutoScrollTime),30s)">
+                <param name="time" value="30000" />
+                <param name="condition" value="$PARAM[condition]" />
+            </include>
+            <include content="def_autoscroll" condition="String.IsEqual(Skin.String(AutoScrollTime),60s)">
+                <param name="time" value="60000" />
+                <param name="condition" value="$PARAM[condition]" />
+            </include>
+            <include content="def_autoscroll" condition="String.IsEqual(Skin.String(AutoScrollTime),10m)">
+                <param name="time" value="600000" />
+                <param name="condition" value="$PARAM[condition]" />
+            </include>
+        </definition>
+    </include>
+
+    <include name="Widget_Title_Label">
+        <usecontrolcoords>true</usecontrolcoords>
+        <height>40</height>
+        <left>SidePad</left>
+        <visible>![!Skin.HasSetting(hide.home.nowplaying.controls) + !String.IsEmpty(Window(home).Property(controlsvisible))]</visible>
+        <include content="def_top" condition="Skin.HasSetting(homemenu.clean.flix)">
+            <param name="top" value="705" />
+        </include>
+        <include content="def_top" condition="Skin.HasSetting(homemenu.netflix)">
+            <param name="top" value="355" />
+        </include>
+        <animation effect="slide" start="0" end="0,40" time="0" condition="!Skin.HasSetting(homemenu.clean.flix) + !Skin.HasSetting(show.reflections)">Conditional</animation>
+        <animation effect="slide" start="0" end="0,-30" time="0" condition="!Skin.HasSetting(homemenu.netflix)">Conditional</animation>
+        <orientation>horizontal</orientation>
+        <itemgap>10</itemgap>
+        <include condition="!Skin.HasSetting(widgets.fade)">Animation.Vertical.Widgets.Label</include>
+        <include>Animation.Vertical.Widgets.Title</include>
+        <include content="Kodi_Logo_Home">
+            <param name="dimensions" value="30"/>
+            <param name="top" value="5"/>
+            <param name="left" value="0"/>
+            <param name="left-gradient" value="-40"/>
+        </include>
+        <control type="label">
+            <height>38</height>
+            <font>SmallBold</font>
+            <width>auto</width>
+            <textcolor>$VAR[WidgetColorSwitch]</textcolor>
+            <label>$PARAM[label]</label>
+        </control>
+        <control type="label">
+            <align>left</align>
+            <height>38</height>
+            <font>Small</font>
+            <width>auto</width>
+            <textcolor>Dark1</textcolor>
+            <label>$INFO[Container($PARAM[focusid]).ListItem.TvShowTitle, •  ,  •  ]$INFO[Container($PARAM[focusid]).ListItem.Label]</label>
+            <include>Animation.Vertical.Widgets.Title</include>
+            <visible>Control.HasFocus($PARAM[focusid])</visible>
+            <visible>!String.StartsWith(ListItem.FolderPath,pvr://)</visible>
+            <visible>String.IsEqual(Container($PARAM[focusid]).ListItem.DBType,episode)</visible>
+            <visible>!Skin.HasSetting(homemenu.netflix)</visible>
+        </control>
+        <control type="label">
+            <align>left</align>
+            <height>38</height>
+            <font>Small</font>
+            <width>auto</width>
+            <textcolor>Dark1</textcolor>
+            <label>$INFO[Container($PARAM[focusid]).ListItem.Label, •  ]</label>
+            <include>Animation.Vertical.Widgets.Title</include>
+            <visible>Control.HasFocus($PARAM[focusid])</visible>
+            <visible>!String.IsEqual(Container($PARAM[focusid]).ListItem.DBType,episode)</visible>
+            <visible>!Skin.HasSetting(homemenu.netflix)</visible>
+        </control>
+        <control type="label">
+            <align>left</align>
+            <height>38</height>
+            <font>Small</font>
+            <width>auto</width>
+            <textcolor>Dark1</textcolor>
+            <label>$INFO[ListItem.Artist, •  ,]</label>
+            <include>Animation.Vertical.Widgets.Title</include>
+            <visible>Control.HasFocus($PARAM[focusid]) + [String.IsEqual(Container($PARAM[focusid]).ListItem.DBType,album) | String.IsEqual(Container($PARAM[focusid]).ListItem.DBType,song)] + !String.IsEmpty(Container($PARAM[focusid]).ListItem.Artist)</visible>
+            <visible>!Skin.HasSetting(homemenu.netflix)</visible>
+        </control>
+        <control type="label" id="9966">
+            <align>left</align>
+            <height>38</height>
+            <font>Small</font>
+            <width>auto</width>
+            <textcolor>Dark1</textcolor>
+            <label>$INFO[Container(44023).NumItems, •  , $LOCALIZE[342]]</label>
+            <include>Animation.Vertical.Widgets.Title</include>
+            <visible>Control.HasFocus($PARAM[focusid])</visible>
+            <visible>ListItem.IsCollection + Integer.IsGreater(Container(9989).NumItems,1)</visible>
+            <visible>!Skin.HasSetting(homemenu.netflix)</visible>
+        </control>
+        <control type="label" id="9967">
+            <align>left</align>
+            <height>38</height>
+            <font>Small</font>
+            <width>auto</width>
+            <textcolor>Dark1</textcolor>
+            <label>$INFO[Container(44022).NumItems, •  , $LOCALIZE[134]]</label>
+            <include>Animation.Vertical.Widgets.Title</include>
+            <visible>Control.HasFocus($PARAM[focusid])</visible>
+            <visible>String.IsEqual(ListItem.DBType,album) + Integer.IsGreater(Container(9989).NumItems,1)</visible>
+            <visible>!Skin.HasSetting(homemenu.netflix)</visible>
+        </control>
+        <control type="image">
+            <description>Busy animation</description>
+            <width>45</width>
+            <height>45</height>
+            <animation effect="rotate" condition="true" start="360" end="0" loop="true" time="1000" center="auto">Conditional</animation>
+            <texture colordiffuse="$VAR[ColorHighlight]">dialog/loading-spinner.png</texture>
+            <aspectratio>keep</aspectratio>
+            <include>Animation.Vertical.Widgets.Title.Loading</include>
+            <visible>Container($PARAM[focusid]).IsUpdating</visible>
+        </control>
     </include>
 
     <!-- Normal Layout -->
-    <include name="Widget_Poster">
+    <include name="Widget_Layout_Normal">
         <param name="Banner" default="false"/>
         <param name="Thumbnail" default="false"/>
         <param name="Fanart" default="false"/>
@@ -315,8 +488,126 @@
         </definition>
     </include>
 
+    <!-- Systeminfo Layout -->
+    <include name="Widget_Layout_System">
+        <itemlayout height="325" width="325">
+            <control type="group">
+                <width>325</width>
+                <include content="def_left" condition="$EXP[HomeIsModernMultiWidgets] + !Skin.HasSetting(homemenu.clean.flix)"><param name="left" value="70" /></include>
+                <include>include.widget.square.system</include>
+            </control>
+        </itemlayout>
+        <focusedlayout height="325" width="325">
+            <control type="group">
+                <width>325</width>
+                <include content="def_left" condition="$EXP[HomeIsModernMultiWidgets] + !Skin.HasSetting(homemenu.clean.flix)"><param name="left" value="70" /></include>
+                <include content="include.widget.square.system.focus">
+                    <param name="id" value="$PARAM[shortcutsid]"/>
+                </include>
+            </control>
+            <include content="SetWidgetContainerPosition" condition="$EXP[HomeIsCleanMinimal]">
+                <param name="id" value="$PARAM[shortcutsid]" />
+            </include>
+        </focusedlayout>
+    </include>
+
+    <include name="Widget_Layout_Submenu">
+        <param name="SquareMedium" default="false"/>
+        <param name="SquareSmall" default="false"/>
+        <param name="Square" default="false"/>
+        <definition>
+        <itemlayout height="125" width="125" condition="$PARAM[SquareSmall]">
+            <control type="group">
+                <width>125</width>
+                <include content="def_left" condition="$EXP[HomeIsModernMultiWidgets] + !Skin.HasSetting(homemenu.clean.flix)"><param name="left" value="70" /></include>
+                <include content="include.widget.square">
+                    <param name="id" value="$PARAM[shortcutsid]"/>
+                    <param name="height" value="125"/>
+                    <param name="distance" value="$PARAM[distance]"/>
+                </include>
+            </control>
+        </itemlayout>
+        <itemlayout height="175" width="222" condition="$PARAM[SquareMedium]">
+            <control type="group">
+                <width>222</width>
+                <include content="def_left" condition="$EXP[HomeIsModernMultiWidgets] + !Skin.HasSetting(homemenu.clean.flix)"><param name="left" value="70" /></include>
+                <include content="include.widget.square">
+                    <param name="id" value="$PARAM[shortcutsid]"/>
+                    <param name="aspectratio" value="$PARAM[aspectratio]"/>
+                    <param name="height" value="175"/>
+                    <param name="distance" value="$PARAM[distance]"/>
+                </include>
+            </control>
+        </itemlayout>
+        <itemlayout height="325" width="325" condition="![$PARAM[SquareSmall] | $PARAM[SquareMedium]]">
+            <control type="group">
+                <width>325</width>
+                <include content="def_left" condition="$EXP[HomeIsModernMultiWidgets] + !Skin.HasSetting(homemenu.clean.flix)"><param name="left" value="70" /></include>
+                <include content="include.widget.square">
+                    <param name="id" value="$PARAM[shortcutsid]"/>
+                    <param name="aspectratio" value="$PARAM[aspectratio]"/>
+                    <param name="distance" value="$PARAM[distance]"/>
+                </include>
+            </control>
+        </itemlayout>
+        <focusedlayout height="125" width="125" condition="$PARAM[SquareSmall]">
+            <control type="group">
+                <width>125</width>
+                <include content="def_left" condition="$EXP[HomeIsModernMultiWidgets] + !Skin.HasSetting(homemenu.clean.flix)"><param name="left" value="70" /></include>
+                <include content="include.widget.square.focus">
+                    <param name="id" value="$PARAM[shortcutsid]"/>
+                    <param name="height" value="125"/>
+                    <param name="distance" value="$PARAM[distance]"/>
+                </include>
+            </control>
+        </focusedlayout>
+        <focusedlayout height="175" width="222" condition="$PARAM[SquareMedium]">
+            <control type="group">
+                <width>222</width>
+                <include content="def_left" condition="$EXP[HomeIsModernMultiWidgets] + !Skin.HasSetting(homemenu.clean.flix)"><param name="left" value="70" /></include>
+                <include content="include.widget.square.focus">
+                    <param name="id" value="$PARAM[shortcutsid]"/>
+                    <param name="aspectratio" value="$PARAM[aspectratio]"/>
+                    <param name="height" value="175"/>
+                    <param name="distance" value="$PARAM[distance]"/>
+                </include>
+            </control>
+        </focusedlayout>
+        <focusedlayout height="325" width="325" condition="![$PARAM[SquareSmall] | $PARAM[SquareMedium]]">
+            <control type="group">
+                <width>325</width>
+                <include content="def_left" condition="$EXP[HomeIsModernMultiWidgets] + !Skin.HasSetting(homemenu.clean.flix)"><param name="left" value="70" /></include>
+                <include content="include.widget.square.focus">
+                    <param name="id" value="$PARAM[shortcutsid]"/>
+                    <param name="aspectratio" value="$PARAM[aspectratio]"/>
+                    <param name="distance" value="$PARAM[distance]"/>
+                </include>
+            </control>
+        </focusedlayout>
+        </definition>
+    </include>
+
+    <include name="Widget_Layout_PVRGuide">
+        <itemlayout height="61.9" width="1756">
+            <control type="group">
+                <width>1756</width>
+                <include content="def_left" condition="$EXP[HomeIsModernMultiWidgets] + !Skin.HasSetting(homemenu.clean.flix)"><param name="left" value="70" /></include>
+                <include>include.widget.pvr</include>
+            </control>
+        </itemlayout>
+        <focusedlayout height="61.9" width="1756">
+            <control type="group">
+                <width>1756</width>
+                <include content="def_left" condition="$EXP[HomeIsModernMultiWidgets] + !Skin.HasSetting(homemenu.clean.flix)"><param name="left" value="70" /></include>
+                <include content="include.widget.pvr.focus">
+                    <param name="shortcutsid" value="$PARAM[shortcutsid]"/>
+                </include>
+            </control>
+        </focusedlayout>
+    </include>
+
     <!-- Weather Layout -->
-    <include name="Widget_Weather">
+    <include name="Widget_Layout_Weather">
         <param name="Fanart" default="false"/>
         <param name="Square" default="false"/>
         <definition>
@@ -372,6 +663,496 @@
             </control>
         </focusedlayout>
         </definition>
+    </include>
+
+    <include name="Widget_Weather_Info">
+        <control type="group">
+            <animation effect="slide" start="0" end="0,385" time="0" condition="$PARAM[isfullscreenlayout]">Conditional</animation>
+            <animation effect="slide" start="0" end="0,-40" time="0" condition="!Skin.HasSetting(homemenu.clean.flix) + Skin.HasSetting(show.reflections)">Conditional</animation>
+            <include condition="!Skin.HasSetting(widgets.fade)">Animation.Vertical.Widgets.Label</include>
+            <width>1920</width>
+            <height>400</height>
+            <control type="group">
+                <left>0</left>
+                <include content="MultiWidgetsHeaderLabel">
+                    <param name="label" value="$VAR[LabelWeatherLocation]" />
+                    <param name="visible" value="true" />
+                </include>
+                <control type="group">
+                    <visible>!String.IsEmpty(Window(weather).Property(Current.IsFetched))</visible>
+                    <include content="def_top" condition="Skin.HasSetting(homemenu.netflix) + !Skin.HasSetting(home.netflix.clearlogo) | Skin.HasSetting(homemenu.clean.flix)">
+                        <param name="top" value="92" />
+                    </include>
+                    <top>75</top>
+                    <orientation>horizontal</orientation>
+                    <control type="group">
+                        <include>Animation.Weather.FadeInOut</include>
+                        <visible>[[Integer.IsGreater(System.Time(ss),0) | String.IsEqual(System.Time(ss),00)] + !Integer.IsGreater(System.Time(ss),10)] | [Integer.IsGreater(System.Time(ss),20) + !Integer.IsGreater(System.Time(ss),30)] | [Integer.IsGreater(System.Time(ss),40) + !Integer.IsGreater(System.Time(ss),50)]</visible>
+                        <control type="grouplist">
+                            <itemgap>0</itemgap>
+                            <width>300</width>
+                            <usecontrolcoords>true</usecontrolcoords>
+                            <orientation>vertical</orientation>
+                            <control type="grouplist">
+                                <orientation>horizontal</orientation>
+                                <align>left</align>
+                                <height>48</height>
+                                <control type="button">
+                                    <height>48</height>
+                                    <font>Tiny</font>
+                                    <align>left</align>
+                                    <textoffsetx>0</textoffsetx>
+                                    <width>auto</width>
+                                    <texturenofocus border="8" colordiffuse="Dark3">common/underline.png</texturenofocus>
+                                    <textcolor>Dark2</textcolor>
+                                    <disabledcolor>Dark2</disabledcolor>
+                                    <label>$LOCALIZE[19030]: $VAR[Weather_Temperature]</label>
+                                    <enable>false</enable>
+                                </control>
+                            </control>
+                            <control type="label">
+                                <height>32</height>
+                                <aligny>top</aligny>
+                                <align>left</align>
+                                <font>Tiny</font>
+                                <textcolor>Dark2</textcolor>
+                                <label>$INFO[Window(Weather).Property(Current.Condition)]</label>
+                            </control>
+                            <control type="grouplist">
+                                <top>24</top>
+                                <orientation>horizontal</orientation>
+                                <align>left</align>
+                                <height>48</height>
+                                <control type="button">
+                                    <height>48</height>
+                                    <font>Tiny</font>
+                                    <align>left</align>
+                                    <textoffsetx>0</textoffsetx>
+                                    <width>auto</width>
+                                    <texturenofocus border="8" colordiffuse="Dark3">common/underline.png</texturenofocus>
+                                    <textcolor>Dark2</textcolor>
+                                    <disabledcolor>Dark2</disabledcolor>
+                                    <label>$INFO[Window(Weather).Property(Current.Humidity),, $LOCALIZE[406]]</label>
+                                    <enable>false</enable>
+                                </control>
+                            </control>
+                            <control type="label">
+                                <height>32</height>
+                                <aligny>top</aligny>
+                                <align>left</align>
+                                <font>Tiny</font>
+                                <textcolor>Dark2</textcolor>
+                                <label>$VAR[Weather_DewPoint,$LOCALIZE[405] ,]</label>
+                            </control>
+                        </control>
+                        <control type="grouplist">
+                            <itemgap>0</itemgap>
+                            <left>325</left>
+                            <usecontrolcoords>true</usecontrolcoords>
+                            <orientation>vertical</orientation>
+                            <control type="grouplist">
+                                <orientation>horizontal</orientation>
+                                <align>left</align>
+                                <height>48</height>
+                                <control type="button">
+                                    <height>48</height>
+                                    <font>Tiny</font>
+                                    <align>left</align>
+                                    <textoffsetx>0</textoffsetx>
+                                    <width>auto</width>
+                                    <texturenofocus border="8" colordiffuse="Dark3">common/underline.png</texturenofocus>
+                                    <textcolor>Dark2</textcolor>
+                                    <disabledcolor>Dark2</disabledcolor>
+                                    <label>$VAR[Weather_Sunrise]</label>
+                                    <enable>false</enable>
+                                </control>
+                            </control>
+                            <control type="label">
+                                <height>32</height>
+                                <aligny>top</aligny>
+                                <align>left</align>
+                                <font>Tiny</font>
+                                <textcolor>Dark2</textcolor>
+                                <label>$LOCALIZE[402]$VAR[Weather_FeelsLike, ,]</label>
+                            </control>
+                            <control type="grouplist">
+                                <top>24</top>
+                                <orientation>horizontal</orientation>
+                                <align>left</align>
+                                <height>48</height>
+                                <control type="button">
+                                    <height>48</height>
+                                    <font>Tiny</font>
+                                    <align>left</align>
+                                    <textoffsetx>0</textoffsetx>
+                                    <width>auto</width>
+                                    <texturenofocus border="8" colordiffuse="Dark3">common/underline.png</texturenofocus>
+                                    <textcolor>Dark2</textcolor>
+                                    <disabledcolor>Dark2</disabledcolor>
+                                    <label>$VAR[Weather_Sunset]</label>
+                                    <enable>false</enable>
+                                </control>
+                            </control>
+                            <control type="label">
+                                <height>32</height>
+                                <aligny>top</aligny>
+                                <align>left</align>
+                                <font>Tiny</font>
+                                <textcolor>Dark2</textcolor>
+                                <label>$VAR[Weather_LowTemp,$LOCALIZE[391] ,]$VAR[Weather_HighTemp,  -  $LOCALIZE[393] ,]</label>
+                            </control>
+                        </control>
+                    </control>
+                    <control type="group">
+                        <include>Animation.Weather.FadeInOut</include>
+                        <visible>![[[Integer.IsGreater(System.Time(ss),0) | String.IsEqual(System.Time(ss),00)] + !Integer.IsGreater(System.Time(ss),10)] | [Integer.IsGreater(System.Time(ss),20) + !Integer.IsGreater(System.Time(ss),30)] | [Integer.IsGreater(System.Time(ss),40) + !Integer.IsGreater(System.Time(ss),50)]] + $EXP[WeatherAddon_IsOpenMeteo]</visible>
+                        <control type="grouplist">
+                            <left>0</left>
+                            <itemgap>0</itemgap>
+                            <width>300</width>
+                            <usecontrolcoords>true</usecontrolcoords>
+                            <orientation>vertical</orientation>
+                            <control type="grouplist">
+                                <orientation>horizontal</orientation>
+                                <align>left</align>
+                                <height>48</height>
+                                <control type="button">
+                                    <height>48</height>
+                                    <font>Tiny</font>
+                                    <align>left</align>
+                                    <textoffsetx>0</textoffsetx>
+                                    <width>auto</width>
+                                    <texturenofocus border="8" colordiffuse="Dark3">common/underline.png</texturenofocus>
+                                    <textcolor>Dark2</textcolor>
+                                    <disabledcolor>Dark2</disabledcolor>
+                                    <label>$LOCALIZE[383]</label>
+                                    <enable>false</enable>
+                                </control>
+                            </control>
+                            <control type="label">
+                                <height>32</height>
+                                <aligny>top</aligny>
+                                <align>left</align>
+                                <font>Tiny</font>
+                                <textcolor>Dark2</textcolor>
+                                <label>$INFO[Window(Weather).Property(Current.Wind)]</label>
+                            </control>
+                            <control type="grouplist">
+                                <top>24</top>
+                                <orientation>horizontal</orientation>
+                                <align>left</align>
+                                <height>48</height>
+                                <control type="button">
+                                    <height>48</height>
+                                    <font>Tiny</font>
+                                    <align>left</align>
+                                    <textoffsetx>0</textoffsetx>
+                                    <width>auto</width>
+                                    <texturenofocus border="8" colordiffuse="Dark3">common/underline.png</texturenofocus>
+                                    <textcolor>Dark2</textcolor>
+                                    <disabledcolor>Dark2</disabledcolor>
+                                    <label>$INFO[Window(weather).Property(current.windgust),$ADDON[weather.openmeteo 32324] , ]$INFO[Window(weather).Property(unit.speed)]</label>
+                                    <enable>false</enable>
+                                </control>
+                            </control>
+                            <control type="label">
+                                <height>32</height>
+                                <aligny>top</aligny>
+                                <align>left</align>
+                                <font>Tiny</font>
+                                <textcolor>Dark2</textcolor>
+                                <label>$INFO[Window(weather).Property(current.pressure),$ADDON[weather.openmeteo 32347] , ]$INFO[Window(weather).Property(unit.pressure)]</label>
+                            </control>
+                        </control>
+                        <control type="grouplist">
+                            <left>325</left>
+                            <itemgap>0</itemgap>
+                            <usecontrolcoords>true</usecontrolcoords>
+                            <orientation>vertical</orientation>
+                            <control type="grouplist">
+                                <orientation>horizontal</orientation>
+                                <align>left</align>
+                                <height>48</height>
+                                <control type="button">
+                                    <height>48</height>
+                                    <font>Tiny</font>
+                                    <align>left</align>
+                                    <textoffsetx>0</textoffsetx>
+                                    <width>auto</width>
+                                    <texturenofocus border="8" colordiffuse="Dark3">common/underline.png</texturenofocus>
+                                    <textcolor>Dark2</textcolor>
+                                    <disabledcolor>Dark2</disabledcolor>
+                                    <label>$INFO[Window(weather).Property(current.precipitation),$ADDON[weather.openmeteo 32321] ,]</label>
+                                    <enable>false</enable>
+                                </control>
+                            </control>
+                            <control type="label">
+                                <height>32</height>
+                                <aligny>top</aligny>
+                                <align>left</align>
+                                <font>Tiny</font>
+                                <textcolor>Dark2</textcolor>
+                                <label>$INFO[Window(weather).Property(current.cloudiness),$ADDON[weather.openmeteo 32334] ,]</label>
+                            </control>
+                            <control type="grouplist">
+                                <top>24</top>
+                                <orientation>horizontal</orientation>
+                                <align>left</align>
+                                <height>48</height>
+                                <control type="button">
+                                    <height>48</height>
+                                    <font>Tiny</font>
+                                    <align>left</align>
+                                    <textoffsetx>0</textoffsetx>
+                                    <width>auto</width>
+                                    <texturenofocus border="8" colordiffuse="Dark3">common/underline.png</texturenofocus>
+                                    <textcolor>Dark2</textcolor>
+                                    <disabledcolor>Dark2</disabledcolor>
+                                    <label>AQI$INFO[Window(weather).Property(current.aqieu), , (EU)]$INFO[Window(weather).Property(current.aqius), / , (US)]</label>
+                                    <enable>false</enable>
+                                </control>
+                            </control>
+                            <control type="label">
+                                <height>32</height>
+                                <aligny>top</aligny>
+                                <align>left</align>
+                                <font>Tiny</font>
+                                <textcolor>Dark2</textcolor>
+                                <label>$INFO[Window(weather).Property(current.uvindex),$ADDON[weather.openmeteo 32329] ,]</label>
+                            </control>
+                        </control>
+                    </control>
+                    <control type="group">
+                        <include>Animation.Weather.FadeInOut</include>
+                        <visible>![[[Integer.IsGreater(System.Time(ss),0) | String.IsEqual(System.Time(ss),00)] + !Integer.IsGreater(System.Time(ss),10)] | [Integer.IsGreater(System.Time(ss),20) + !Integer.IsGreater(System.Time(ss),30)] | [Integer.IsGreater(System.Time(ss),40) + !Integer.IsGreater(System.Time(ss),50)]] + !$EXP[WeatherAddon_IsOpenMeteo]</visible>
+                        <control type="grouplist">
+                            <left>0</left>
+                            <itemgap>0</itemgap>
+                            <width>300</width>
+                            <usecontrolcoords>true</usecontrolcoords>
+                            <orientation>vertical</orientation>
+                            <control type="grouplist">
+                                <orientation>horizontal</orientation>
+                                <align>left</align>
+                                <height>48</height>
+                                <control type="button">
+                                    <height>48</height>
+                                    <font>Tiny</font>
+                                    <align>left</align>
+                                    <textoffsetx>0</textoffsetx>
+                                    <width>auto</width>
+                                    <texturenofocus border="8" colordiffuse="Dark3">common/underline.png</texturenofocus>
+                                    <textcolor>Dark2</textcolor>
+                                    <disabledcolor>Dark2</disabledcolor>
+                                    <label>$LOCALIZE[383]</label>
+                                    <enable>false</enable>
+                                </control>
+                            </control>
+                            <control type="label">
+                                <height>32</height>
+                                <aligny>top</aligny>
+                                <align>left</align>
+                                <font>Tiny</font>
+                                <textcolor>Dark2</textcolor>
+                                <label>$INFO[Window(Weather).Property(Current.Wind)]</label>
+                            </control>
+                            <control type="grouplist">
+                                <top>24</top>
+                                <orientation>horizontal</orientation>
+                                <align>left</align>
+                                <height>48</height>
+                                <control type="button">
+                                    <height>48</height>
+                                    <font>Tiny</font>
+                                    <align>left</align>
+                                    <textoffsetx>0</textoffsetx>
+                                    <width>auto</width>
+                                    <texturenofocus border="8" colordiffuse="Dark3">common/underline.png</texturenofocus>
+                                    <textcolor>Dark2</textcolor>
+                                    <disabledcolor>Dark2</disabledcolor>
+                                    <label>$VAR[Weather_UVIndex_Label]</label>
+                                    <enable>false</enable>
+                                </control>
+                            </control>
+                            <control type="label">
+                                <height>32</height>
+                                <aligny>top</aligny>
+                                <align>left</align>
+                                <font>Tiny</font>
+                                <textcolor>Dark2</textcolor>
+                                <label>$VAR[Weather_UVIndex_Info]</label>
+                            </control>
+                        </control>
+                        <control type="grouplist">
+                            <left>325</left>
+                            <itemgap>0</itemgap>
+                            <usecontrolcoords>true</usecontrolcoords>
+                            <orientation>vertical</orientation>
+                            <control type="grouplist">
+                                <orientation>horizontal</orientation>
+                                <align>left</align>
+                                <height>48</height>
+                                <control type="button">
+                                    <height>48</height>
+                                    <font>Tiny</font>
+                                    <align>left</align>
+                                    <textoffsetx>0</textoffsetx>
+                                    <width>auto</width>
+                                    <texturenofocus border="8" colordiffuse="Dark3">common/underline.png</texturenofocus>
+                                    <textcolor>Dark2</textcolor>
+                                    <disabledcolor>Dark2</disabledcolor>
+                                    <label>$LOCALIZE[31413]</label>
+                                    <enable>false</enable>
+                                </control>
+                            </control>
+                            <control type="label">
+                                <height>32</height>
+                                <aligny>top</aligny>
+                                <align>left</align>
+                                <font>Tiny</font>
+                                <textcolor>Dark2</textcolor>
+                                <label>$INFO[Weather.location]</label>
+                            </control>
+                        </control>
+                    </control>
+                    <control type="grouplist">
+                        <width>422</width>
+                        <right>SidePad</right>
+                        <orientation>vertical</orientation>
+                        <usecontrolcoords>true</usecontrolcoords>
+                        <animation effect="fade" start="100" end="0" time="400" condition="!ControlGroup(301).HasFocus() + $EXP[HomeIsVerticalMultiWidgets]">Conditional</animation>
+                        <itemgap>15</itemgap>
+                        <include content="def_weathericon">
+                            <param name="top" value="0" />
+                            <param name="left" value="20" />
+                            <param name="size" value="300" />
+                            <param name="FanartCode" value="$INFO[Window(weather).Property(Current.FanartCode)]" />
+                            <param name="OutlookIconWMO" value="$INFO[Window(weather).Property(Current.OutlookIconWMO)]" />
+                        </include>
+                    </control>
+                </control>
+            </control>
+            <control type="label">
+                <centertop>305</centertop>
+                <height>36</height>
+                <align>left</align>
+                <font>Tiny</font>
+                <textcolor>Dark3</textcolor>
+                <visible>Skin.HasSetting(homemenu.netflix)</visible>
+                <label>$INFO[System.AddonTitle(Weather.plugin)]  •  $VAR[WeatherUpdatedLabel,$LOCALIZE[12014]: ,]</label>
+                <animation effect="slide" start="0" end="0,10" time="0" condition="!Skin.HasSetting(homemenu.clean.flix) + !Skin.HasSetting(home.netflix.clearlogo)">Conditional</animation>
+            </control>
+            <control type="textbox">
+                <height>82</height>
+                <bottom>43</bottom>
+                <aligny>bottom</aligny>
+                <align>left</align>
+                <font>Tiny</font>
+                <textcolor>Dark3</textcolor>
+                <visible>!Skin.HasSetting(homemenu.netflix)</visible>
+                <label>$INFO[System.AddonTitle(Weather.plugin)][CR]$VAR[WeatherUpdatedLabel,$LOCALIZE[12014]: ,]</label>
+            </control>
+        </control>
+    </include>
+
+    <include name="Widget_System_Info">
+        <control type="group">
+            <animation effect="slide" start="0" end="0,385" time="0" condition="$PARAM[isfullscreenlayout]">Conditional</animation>
+            <animation effect="slide" start="0" end="0,-40" time="0" condition="!Skin.HasSetting(homemenu.clean.flix) + Skin.HasSetting(show.reflections)">Conditional</animation>
+            <include condition="!Skin.HasSetting(widgets.fade)">Animation.Vertical.Widgets.Label</include>
+            <control type="grouplist">
+                <left>0</left>
+                <orientation>vertical</orientation>
+                <itemgap>17</itemgap>
+                <usecontrolcoords>true</usecontrolcoords>
+                <include content="MultiWidgetsHeaderLabel">
+                    <param name="label" value="$LOCALIZE[130]" />
+                    <param name="visible" value="true" />
+                </include>
+                <include condition="Skin.HasSetting(homemenu.netflix) + !Skin.HasSetting(home.netflix.clearlogo) | Skin.HasSetting(homemenu.clean.flix)">IntentButton</include>
+                <control type="grouplist">
+                    <width>1500</width>
+                    <orientation>vertical</orientation>
+                    <usecontrolcoords>true</usecontrolcoords>
+                    <itemgap>-4</itemgap>
+                    <control type="textbox">
+                        <font>Tiny</font>
+                        <width>100%</width>
+                        <height>40</height>
+                        <align>left</align>
+                        <textcolor>Dark2</textcolor>
+                        <label>$INFO[System.ScreenResolution,$LOCALIZE[13287] ,]</label>
+                        <visible>!String.IsEmpty(System.ScreenResolution)</visible>
+                    </control>
+                    <control type="textbox">
+                        <font>Tiny</font>
+                        <width>100%</width>
+                        <height>40</height>
+                        <align>left</align>
+                        <textcolor>Dark2</textcolor>
+                        <label>$INFO[System.VideoEncoderInfo,$LOCALIZE[13286] ,]</label>
+                        <visible>!String.IsEmpty(System.VideoEncoderInfo)</visible>
+                    </control>
+                    <control type="textbox">
+                        <font>Tiny</font>
+                        <width>100%</width>
+                        <height>40</height>
+                        <align>left</align>
+                        <textcolor>Dark2</textcolor>
+                        <label>$INFO[System.OSVersionInfo,$LOCALIZE[24051] ,]</label>
+                        <visible>!String.IsEmpty(System.OSVersionInfo)</visible>
+                    </control>
+                    <control type="textbox">
+                        <top>36</top>
+                        <font>Tiny</font>
+                        <width>100%</width>
+                        <height>40</height>
+                        <align>left</align>
+                        <textcolor>Dark2</textcolor>
+                        <label>$INFO[System.Uptime,$LOCALIZE[12390]: ,]</label>
+                        <visible>!String.IsEmpty(System.Uptime)</visible>
+                    </control>
+                    <control type="textbox">
+                        <font>Tiny</font>
+                        <width>100%</width>
+                        <height>40</height>
+                        <align>left</align>
+                        <textcolor>Dark2</textcolor>
+                        <label>$INFO[System.TotalUptime,$LOCALIZE[12394]: ,]</label>
+                        <visible>!String.IsEmpty(System.TotalUptime)</visible>
+                    </control>
+                </control>
+            </control>
+        </control>
+    </include>
+    
+    <include name="Widget_Settings_Info">
+        <control type="group">
+            <animation effect="slide" start="0" end="0,385" time="0" condition="$PARAM[isfullscreenlayout]">Conditional</animation>
+            <animation effect="slide" start="0" end="0,-40" time="0" condition="!Skin.HasSetting(homemenu.clean.flix) + Skin.HasSetting(show.reflections)">Conditional</animation>
+            <include condition="!Skin.HasSetting(widgets.fade)">Animation.Vertical.Widgets.Label</include>
+            <control type="grouplist">
+                <left>0</left>
+                <orientation>vertical</orientation>
+                <usecontrolcoords>true</usecontrolcoords>
+                <itemgap>17</itemgap>
+                <include content="MultiWidgetsHeaderLabel">
+                    <param name="label" value="$INFO[Container($PARAM[id]).ListItem.Label]" />
+                    <param name="visible" value="true" />
+                </include>
+                <include condition="Skin.HasSetting(homemenu.netflix) + !Skin.HasSetting(home.netflix.clearlogo) | Skin.HasSetting(homemenu.clean.flix)">IntentButton</include>
+                <control type="textbox">
+                    <include content="def_height" condition="Skin.HasSetting(homemenu.clean.flix)">
+                        <param name="height" value="220" />
+                    </include>
+                    <height min="36" max="220">auto</height>
+                    <align>left</align>
+                    <font>TinyPlot</font>
+                    <textcolor>Dark2</textcolor>
+                    <label>$INFO[Container($PARAM[id]).ListItem.Label2]</label>
+                </control>
+            </control>
+        </control>
     </include>
 
     <include name="weatherlayoutwidgetsvertical.poster">
@@ -896,195 +1677,6 @@
         </control>
     </include>
 
-    <include name="DefMultiWidgetContainer">
-        <param name="height" value="$PARAM[height]" default="325"/>
-        <param name="orientation" value="$PARAM[orientation]" default="horizontal"/>
-        <param name="movement" default="0" />
-        <definition>
-            <include content="def_top" condition="Skin.HasSetting(homemenu.clean.flix)">
-                <param name="top" value="200" />
-            </include>
-            <include content="def_top" condition="Skin.HasSetting(homemenu.netflix) + !Skin.HasSetting(show.reflections)">
-                <param name="top" value="445" />
-            </include>
-            <include content="def_top" condition="Skin.HasSetting(homemenu.netflix) + Skin.HasSetting(show.reflections)">
-                <param name="top" value="405" />
-            </include>
-            <include content="def_top" condition="!Skin.HasSetting(homemenu.netflix) + !Skin.HasSetting(show.reflections)">
-                <param name="top" value="60" />
-            </include>         
-            <include content="def_top" condition="!Skin.HasSetting(homemenu.netflix) + Skin.HasSetting(show.reflections)">
-                <param name="top" value="20" />
-            </include>         
-            <include content="def_width" condition="Skin.HasSetting(homemenu.clean.flix)">
-                <param name="width" value="225" />
-            </include>
-            <animation effect="fade" start="0" end="0" time="0" condition="Skin.HasSetting(homemenu.clean.flix)">Conditional</animation>
-            <include content="def_height" condition="Skin.HasSetting(homemenu.clean.flix)">
-                <param name="height" value="565" />
-            </include>
-            <include content="def_height" condition="Skin.HasSetting(homemenu.netflix) + !Skin.HasSetting(show.reflections)">
-                <param name="height" value="325" />
-            </include>
-            <include content="def_height" condition="Skin.HasSetting(homemenu.netflix) + Skin.HasSetting(show.reflections)">
-                <param name="height" value="365" />
-            </include>
-            <include content="def_height" condition="!Skin.HasSetting(homemenu.netflix) + !Skin.HasSetting(show.reflections)">
-                <param name="height" value="$PARAM[height]" />
-            </include>
-            <include content="def_height" condition="!Skin.HasSetting(homemenu.netflix) + Skin.HasSetting(show.reflections)">
-                <param name="height" value="$PARAM[height2]" />
-            </include>
-            <height>$PARAM[height]</height>
-            <include content="def_left" condition="![$EXP[HomeIsModernMultiWidgets] + !Skin.HasSetting(homemenu.clean.flix)]"><param name="left" value="70" /></include>
-            <left>0</left>
-            <right>0</right>
-            <include content="Widget_AutoScroll">
-                <param name="time" value="Skin.String(AutoScrollTime)" />
-                <param name="condition" value="$PARAM[AutoScrollCondition]" />
-            </include>
-            <include condition="!Skin.HasSetting(widgets.fade)">Animation.Vertical.Widgets.Container</include>
-            <onfocus>SetProperty(TMDbHelper.WidgetContainer,$PARAM[id],Home)</onfocus>
-            <onfocus condition="Skin.HasSetting(extended.nowplaying) + Window.IsVisible(Home) + Skin.HasSetting(home.nowplaying.info.auto.show)">SetProperty(nowplayingautoshowtimer,1,home)</onfocus>
-            <onunfocus>ClearProperty(nowplayingautoshowtimer,home)</onunfocus>
-            <onfocus condition="Integer.IsGreater(Container($PARAM[baseid]09).NumItems,0) + Control.IsVisible($PARAM[baseid]09)">SetProperty(BackToId,$PARAM[baseid]09,Home)</onfocus>
-            <onfocus condition="Integer.IsGreater(Container($PARAM[baseid]08).NumItems,0) + Control.IsVisible($PARAM[baseid]08)">SetProperty(BackToId,$PARAM[baseid]08,Home)</onfocus>
-            <onfocus condition="Integer.IsGreater(Container($PARAM[baseid]07).NumItems,0) + Control.IsVisible($PARAM[baseid]07)">SetProperty(BackToId,$PARAM[baseid]07,Home)</onfocus>
-            <onfocus condition="Integer.IsGreater(Container($PARAM[baseid]06).NumItems,0) + Control.IsVisible($PARAM[baseid]06)">SetProperty(BackToId,$PARAM[baseid]06,Home)</onfocus>
-            <onfocus condition="Integer.IsGreater(Container($PARAM[baseid]05).NumItems,0) + Control.IsVisible($PARAM[baseid]05)">SetProperty(BackToId,$PARAM[baseid]05,Home)</onfocus>
-            <onfocus condition="Integer.IsGreater(Container($PARAM[baseid]04).NumItems,0) + Control.IsVisible($PARAM[baseid]04)">SetProperty(BackToId,$PARAM[baseid]04,Home)</onfocus>
-            <onfocus condition="Integer.IsGreater(Container($PARAM[baseid]03).NumItems,0) + Control.IsVisible($PARAM[baseid]03)">SetProperty(BackToId,$PARAM[baseid]03,Home)</onfocus>
-            <onfocus condition="Integer.IsGreater(Container($PARAM[baseid]02).NumItems,0) + Control.IsVisible($PARAM[baseid]02)">SetProperty(BackToId,$PARAM[baseid]02,Home)</onfocus>
-            <onfocus condition="Integer.IsGreater(Container($PARAM[baseid]01).NumItems,0) + Control.IsVisible($PARAM[baseid]01)">SetProperty(BackToId,$PARAM[baseid]01,Home)</onfocus>
-       
-            <onfocus condition="Integer.IsGreater(Container($PARAM[baseid]01).NumItems,0) + Control.IsVisible($PARAM[baseid]01)">SetProperty(LastId,$PARAM[baseid]01,Home)</onfocus>
-            <onfocus condition="Integer.IsGreater(Container($PARAM[baseid]02).NumItems,0) + Control.IsVisible($PARAM[baseid]02)">SetProperty(LastId,$PARAM[baseid]02,Home)</onfocus>
-            <onfocus condition="Integer.IsGreater(Container($PARAM[baseid]03).NumItems,0) + Control.IsVisible($PARAM[baseid]03)">SetProperty(LastId,$PARAM[baseid]03,Home)</onfocus>
-            <onfocus condition="Integer.IsGreater(Container($PARAM[baseid]04).NumItems,0) + Control.IsVisible($PARAM[baseid]04)">SetProperty(LastId,$PARAM[baseid]04,Home)</onfocus>
-            <onfocus condition="Integer.IsGreater(Container($PARAM[baseid]05).NumItems,0) + Control.IsVisible($PARAM[baseid]05)">SetProperty(LastId,$PARAM[baseid]05,Home)</onfocus>
-            <onfocus condition="Integer.IsGreater(Container($PARAM[baseid]06).NumItems,0) + Control.IsVisible($PARAM[baseid]06)">SetProperty(LastId,$PARAM[baseid]06,Home)</onfocus>
-            <onfocus condition="Integer.IsGreater(Container($PARAM[baseid]07).NumItems,0) + Control.IsVisible($PARAM[baseid]07)">SetProperty(LastId,$PARAM[baseid]07,Home)</onfocus>
-            <onfocus condition="Integer.IsGreater(Container($PARAM[baseid]08).NumItems,0) + Control.IsVisible($PARAM[baseid]08)">SetProperty(LastId,$PARAM[baseid]08,Home)</onfocus>
-            <onfocus condition="Integer.IsGreater(Container($PARAM[baseid]09).NumItems,0) + Control.IsVisible($PARAM[baseid]09)">SetProperty(LastId,$PARAM[baseid]09,Home)</onfocus>
-
-            <onback condition="[!Integer.IsEqual(Container($PARAM[id]).Position,0) | Container($PARAM[id]).HasPrevious] + !Skin.HasSetting(widget.items.onback.go.back.to.position.0)">PageUp</onback>
-            <onback condition="[!Integer.IsEqual(Container($PARAM[id]).Position,0) | Container($PARAM[id]).HasPrevious] + !Skin.HasSetting(widget.items.onback.go.back.to.position.0)">PageUp</onback>
-            <onback condition="[!Integer.IsEqual(Container($PARAM[id]).Position,0) | Container($PARAM[id]).HasPrevious] + !Skin.HasSetting(widget.items.onback.go.back.to.position.0)">PageUp</onback>            
-            <onback condition="[!Integer.IsEqual(Container($PARAM[id]).Position,0) | Container($PARAM[id]).HasPrevious] + Skin.HasSetting(widget.items.onback.go.back.to.position.0)">SetFocus($PARAM[id],0,absolute)</onback>
-            <onback condition="[!Integer.IsEqual(Container($PARAM[id]).Position,0) | Container($PARAM[id]).HasPrevious] + Skin.HasSetting(widget.items.onback.go.back.to.position.0) + Skin.HasSetting(widget.items.onback.go.back.to.position.0.setfocus.home)">SetFocus(300)</onback>            
-            <onback condition="Integer.IsEqual(Container($PARAM[id]).Position,0) + !Container($PARAM[id]).HasPrevious + !Skin.HasSetting(disable.widgets.onback.go.back.to.position.0)">SetFocus($INFO[Window(home).Property(BackToId)])</onback>
-            <onback condition="Integer.IsEqual(Container($PARAM[id]).Position,0) + !Container($PARAM[id]).HasPrevious + !Skin.HasSetting(disable.widgets.onback.go.back.to.position.0)">SetFocus(4567)</onback>
-            <onback condition="Integer.IsEqual(Container($PARAM[id]).Position,0) + !Container($PARAM[id]).HasPrevious + Skin.HasSetting(disable.widgets.onback.go.back.to.position.0)">SetFocus(300)</onback>
-            <onleft condition="$EXP[HomeIsVerticalMultiWidgets]">300</onleft>
-            <preloaditems>2</preloaditems>
-            <focusposition>0</focusposition>
-            <include content="def_movement" condition="!Skin.HasSetting(LockFocusPosition)">
-                <param name="movement" value="$PARAM[movement]" />
-            </include>
-            <orientation>$PARAM[orientation]</orientation>
-            <include>ScrolltimeWidgetsList</include>
-        </definition>
-    </include>
-
-    <include name="Widget_Navigation_Actions">
-	    <!-- Modern Home Menu -->
-	    <onup condition="!$EXP[HomeIsVerticalAll] + !Skin.HasSetting(disable.widgets.onup.go.back.to.last.item)">SetFocus(8888)</onup>
-	    <onup condition="!$EXP[HomeIsVerticalAll] + Skin.HasSetting(disable.widgets.onup.go.back.to.last.item)">300</onup>
-	    <ondown condition="!$EXP[HomeIsVerticalAll] + Skin.HasSetting(disable.widgets.ondown.go.back.to.position.0)">300</ondown>
-	    <ondown condition="!$EXP[HomeIsVerticalAll] + !Skin.HasSetting(disable.widgets.ondown.go.back.to.position.0)">4567</ondown>
-	
-	    <!-- Vertical Home Menu -->
-	    <onup condition="$EXP[HomeIsVerticalAll] + Skin.HasSetting(enable.widgets.onup.go.back.to.last.widget)">301</onup>
-	    <onup condition="$EXP[HomeIsVerticalAll] + !Skin.HasSetting(enable.widgets.onup.go.back.to.last.widget)">300</onup>
-	    <ondown condition="$EXP[HomeIsVerticalAll] + Skin.HasSetting(enable.widgets.onup.go.back.to.last.widget)">301</ondown>
-	    <ondown condition="$EXP[HomeIsVerticalAll] + !Skin.HasSetting(enable.widgets.onup.go.back.to.last.widget)">300</ondown>
-    </include>
-    
-    <include name="Widget_ContentDynamic">
-        <param name="is_autolimit" default="false"/>
-        <definition>
-	        <include content="Def_ContentDynamic" condition="!$PARAM[is_autolimit]">
-	            <param name="target" value="$PARAM[target]" />
-	            <param name="sortby" value="$PARAM[sortby]" />
-	            <param name="sortorder" value="$PARAM[sortorder]" />
-	            <param name="limit" value="$PARAM[limit]" />
-	            <param name="browse" value="$PARAM[browse]" />
-	            <param name="content" value="$PARAM[content]"/>
-	        </include>
-	        <include content="Def_ContentDynamic" condition="$PARAM[is_autolimit]">
-	            <param name="target" value="$PARAM[target]" />
-	            <param name="sortby" value="$PARAM[sortby]" />
-	            <param name="sortorder" value="$PARAM[sortorder]" />
-	            <param name="limit" value="$PARAM[autolimit]" />
-	            <param name="browse" value="$PARAM[browse]" />
-	            <param name="content" value="$PARAM[content]"/>
-	        </include>
-        </definition>
-    </include>
-    
-    <include name="Widget_ContentInclude">
-        <param name="is_autolimit" default="false"/>
-        <definition>
-            <include content="Def_ContentInclude" condition="!$PARAM[is_autolimit]">
-                <param name="target" value="$PARAM[target]" />
-                <param name="sortby" value="$PARAM[sortby]" />
-                <param name="sortorder" value="$PARAM[sortorder]" />
-                <param name="limit" value="$PARAM[limit]" />
-                <param name="browse" value="$PARAM[browse]" />
-                <param name="include" value="$PARAM[include]"/>
-            </include>
-            <include content="Def_ContentInclude" condition="$PARAM[is_autolimit]">
-                <param name="target" value="$PARAM[target]" />
-                <param name="sortby" value="$PARAM[sortby]" />
-                <param name="sortorder" value="$PARAM[sortorder]" />
-                <param name="limit" value="$PARAM[autolimit]" />
-                <param name="browse" value="$PARAM[browse]" />
-                <param name="include" value="$PARAM[include]"/>
-            </include>
-        </definition>
-    </include>
-
-    <include name="Widget_AutoScroll">
-        <definition>
-            <include content="def_autoscroll" condition="String.IsEqual(Skin.String(AutoScrollTime),5s)">
-                <param name="time" value="5000" />
-                <param name="condition" value="$PARAM[condition]" />
-            </include>
-            <include content="def_autoscroll" condition="String.IsEqual(Skin.String(AutoScrollTime),8s)">
-                <param name="time" value="8000" />
-                <param name="condition" value="$PARAM[condition]" />
-            </include>
-            <include content="def_autoscroll" condition="String.IsEqual(Skin.String(AutoScrollTime),10s)">
-                <param name="time" value="10000" />
-                <param name="condition" value="$PARAM[condition]" />
-            </include>
-            <include content="def_autoscroll" condition="String.IsEqual(Skin.String(AutoScrollTime),12s)">
-                <param name="time" value="12000" />
-                <param name="condition" value="$PARAM[condition]" />
-            </include>
-            <include content="def_autoscroll" condition="String.IsEqual(Skin.String(AutoScrollTime),15s)">
-                <param name="time" value="15000" />
-                <param name="condition" value="$PARAM[condition]" />
-            </include>
-            <include content="def_autoscroll" condition="String.IsEqual(Skin.String(AutoScrollTime),20s)">
-                <param name="time" value="20000" />
-                <param name="condition" value="$PARAM[condition]" />
-            </include>
-            <include content="def_autoscroll" condition="String.IsEqual(Skin.String(AutoScrollTime),30s)">
-                <param name="time" value="30000" />
-                <param name="condition" value="$PARAM[condition]" />
-            </include>
-            <include content="def_autoscroll" condition="String.IsEqual(Skin.String(AutoScrollTime),60s)">
-                <param name="time" value="60000" />
-                <param name="condition" value="$PARAM[condition]" />
-            </include>
-            <include content="def_autoscroll" condition="String.IsEqual(Skin.String(AutoScrollTime),10m)">
-                <param name="time" value="600000" />
-                <param name="condition" value="$PARAM[condition]" />
-            </include>
-        </definition>
-    </include>
-
     <include name="MultiWidgetsPlotLabelDefinition">
         <param name="maxheight" />
         <definition>
@@ -1102,6 +1694,477 @@
         <height>36</height>
         <align>left</align>
         <textcolor>Dark2</textcolor>
+    </include>
+
+    <include name="MultiWidgetsHeaderLabel">
+        <definition>
+        <param name="left" value="$PARAM[left]" default="0"/>
+        <param name="visible" value="$PARAM[visible]" default="true"/>
+        <control type="image" description="clearlogo" id="$PARAM[id]37">
+            <top>0</top>
+            <height>ClearLogoMaxHeight</height>
+            <width>ClearLogoMaxWidth</width>
+            <aspectratio scalediffuse="true" align="left">keep</aspectratio>
+            <texture background="true">$INFO[Container($PARAM[id]).ListItem.Art(clearlogo)]</texture>
+            <visible>$PARAM[visible] + Skin.HasSetting(home.netflix.clearlogo) + Skin.HasSetting(homemenu.netflix) + !String.IsEmpty(Container($PARAM[id]).ListItem.Art(clearlogo)) + !Skin.HasSetting(homemenu.clean.flix)</visible>
+        </control>
+        <control type="image" description="PVR clearlogo" id="$PARAM[id]37">
+            <top>0</top>
+            <height>ClearLogoMaxHeight</height>
+            <width>ClearLogoMaxWidth</width>
+            <aspectratio scalediffuse="true" align="left">keep</aspectratio>
+            <texture background="true">$INFO[Window(Home).Property(TMDbHelper.ListItem.clearlogo)]</texture>
+            <visible>$PARAM[visible] + Skin.HasSetting(home.netflix.clearlogo) + Skin.HasSetting(homemenu.netflix) + String.IsEmpty(Container($PARAM[id]).ListItem.Art(clearlogo)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.clearlogo)) + String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://) + !Skin.HasSetting(homemenu.clean.flix)</visible>
+        </control>
+        <control type="label">
+            <include content="def_font" condition="Skin.HasSetting(homemenu.netflix)">
+                <param name="font" value="LargeNetflix" />
+            </include>
+            <include content="def_font" condition="!Skin.HasSetting(homemenu.netflix)">
+                <param name="font" value="LargeNew" />
+            </include>
+            <width>100%</width>
+            <left>$PARAM[left]</left>
+            <align>left</align>
+            <textcolor>Dark1</textcolor>
+            <label>$PARAM[label]</label>
+            <include condition="Skin.HasSetting(labels.autoscroll)">LabelScroll</include>
+            <visible>$PARAM[visible] + [[[!Skin.HasSetting(home.netflix.clearlogo) | Skin.HasSetting(homemenu.clean.flix)] | [Skin.HasSetting(home.netflix.clearlogo) + Skin.HasSetting(homemenu.netflix) + String.IsEmpty(Container($PARAM[id]).ListItem.Art(clearlogo)) + [String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.clearlogo)) | !String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://)]]] | !Skin.HasSetting(homemenu.netflix)]</visible>
+        </control>
+        </definition>
+    </include>
+    
+    <include name="NowPlayingHeaderLabel">
+        <definition>
+        <param name="left" value="$PARAM[left]" default="0"/>
+        <param name="visible" value="$PARAM[visible]" default="true"/>
+        <control type="label">
+            <include content="def_font" condition="Skin.HasSetting(homemenu.netflix)">
+                <param name="font" value="LargeNetflix" />
+            </include>
+            <include content="def_font" condition="!Skin.HasSetting(homemenu.netflix)">
+                <param name="font" value="LargeNew" />
+            </include>
+            <width>100%</width>
+            <left>$PARAM[left]</left>
+            <align>left</align>
+            <textcolor>Dark1</textcolor>
+            <label>$PARAM[label]</label>
+            <include condition="Skin.HasSetting(labels.autoscroll)">LabelScroll</include>
+            <visible>$PARAM[visible]</visible>
+        </control>
+        </definition>
+    </include>
+
+    <include name="MultiWidgetsHeader">
+
+        <!-- Episodes -->
+        <include content="MultiWidgetsHeaderLabel">
+            <param name="label" value="$INFO[Container($PARAM[id]).ListItem.Title]" />
+            <param name="visible" value="!String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://) + String.IsEqual(Container($PARAM[id]).ListItem.DBType,episode) + [$EXP[HomeIsModernMultiWidgets] | $EXP[HomeIsVerticalMultiWidgets]] + !Skin.HasSetting(homemenu.netflix) + !Skin.HasSetting(homemenu.clean.flix)" />
+            <param name="id" value="$PARAM[id]" />
+        </include>
+        
+        <include content="MultiWidgetsHeaderLabel">
+            <param name="label" value="$INFO[Container($PARAM[id]).ListItem.TvShowTitle,, - ]$INFO[Container($PARAM[id]).ListItem.Title]" />
+            <param name="visible" value="!String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://) + String.IsEqual(Container($PARAM[id]).ListItem.DBType,episode) + [[$EXP[HomeIsModernMultiWidgets] | $EXP[HomeIsVerticalMultiWidgets]] + [Skin.HasSetting(homemenu.netflix) | Skin.HasSetting(homemenu.clean.flix)]]" />
+            <param name="id" value="$PARAM[id]" />
+        </include>
+
+        <!-- All Other -->
+        <include content="MultiWidgetsHeaderLabel">
+            <param name="label" value="$INFO[Container($PARAM[id]).ListItem.Label]" />
+            <param name="visible" value="!String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://) + !String.IsEqual(Container($PARAM[id]).ListItem.DBType,episode) + String.IsEmpty(Container($PARAM[id]).ListItem.Property(Item))" />
+            <param name="id" value="$PARAM[id]" />
+        </include>
+
+        <!-- PVR -->
+        <include content="MultiWidgetsHeaderLabel">
+            <param name="label" value="$INFO[Container($PARAM[id]).ListItem.Title]" />
+            <param name="visible" value="String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://) + !String.IsEmpty(Container($PARAM[id]).ListItem.Title)" />
+            <param name="id" value="$PARAM[id]" />
+        </include>
+
+        <include content="MultiWidgetsHeaderLabel">
+            <param name="label" value="$INFO[Container($PARAM[id]).ListItem.Label]" />
+            <param name="visible" value="String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://) + String.IsEmpty(Container($PARAM[id]).ListItem.Title)" />
+            <param name="id" value="$PARAM[id]" />
+        </include>
+
+    </include>
+
+    <include name="MultiWidgetsPlotLabel">
+        <control type="grouplist">
+            <height>$PARAM[plotmaxheight]</height>
+            <visible>!String.IsEmpty(Container($PARAM[id]).ListItem.Property(Album_Description)) | !String.IsEmpty(Container($PARAM[id]).ListItem.Plot) | !String.IsEmpty(Container($PARAM[id]).ListItem.Property(Artist_Description)) | !String.IsEmpty(Container($PARAM[id]).ListItem.AddonDescription) | String.IsEqual(Container($PARAM[id]).ListItem.DBType,actor) | String.IsEqual(Container($PARAM[id]).ListItem.DBType,file)</visible>
+            <include content="def_width" condition="Skin.HasSetting(homemenu.netflix)">
+                <param name="width" value="100%" />
+            </include>
+            <include content="def_width" condition="$EXP[HomeIsVerticalMultiWidgets] + Skin.HasSetting(homemenu.only.icons) + Skin.HasSetting(home.showicons)">
+                <param name="width" value="1242" />
+            </include>
+            <orientation>vertical</orientation>
+            <itemgap>0</itemgap>
+
+            <!-- Sets Movie Episode PVR No Netflix Or No ClearLogo Or Empty -->
+            <control type="textbox">
+                <include content="MultiWidgetsPlotLabelDefinition">
+                    <param name="maxheight" value="$PARAM[plotmaxheight]" />
+                </include>
+                <label>$INFO[Container($PARAM[id]).ListItem.Plot]</label>
+                <visible>[[String.IsEqual(Container($PARAM[id]).ListItem.DBType,set) | String.IsEqual(Container($PARAM[id]).ListItem.DBType,movie) | String.IsEqual(Container($PARAM[id]).ListItem.DBType,episode) | String.IsEqual(Container($PARAM[id]).ListItem.DBType,tvshow) | String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://)] + !String.IsEmpty(Container($PARAM[id]).ListItem.Plot)] + [!Skin.HasSetting(homemenu.netflix) | Skin.HasSetting(homemenu.clean.flix) | !Skin.HasSetting(home.netflix.clearlogo) | [String.IsEmpty(Container($PARAM[id]).ListItem.Art(clearlogo)) + [String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.clearlogo)) | !String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://)]]]</visible>
+            </control>
+
+            <!-- Sets Movies Episodes PVR Netflix ClearLogo -->
+            <control type="textbox">
+                <include content="MultiWidgetsPlotLabelDefinition">
+                    <param name="maxheight" value="136" />
+                </include>
+                <label>$INFO[Container($PARAM[id]).ListItem.Plot]</label>
+                <visible>[[String.IsEqual(Container($PARAM[id]).ListItem.DBType,set) | String.IsEqual(Container($PARAM[id]).ListItem.DBType,movie) | String.IsEqual(Container($PARAM[id]).ListItem.DBType,episode) | String.IsEqual(Container($PARAM[id]).ListItem.DBType,tvshow) | String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://)] + !String.IsEmpty(Container($PARAM[id]).ListItem.Plot)] + Skin.HasSetting(homemenu.netflix) + !Skin.HasSetting(homemenu.clean.flix) + Skin.HasSetting(home.netflix.clearlogo) + ![String.IsEmpty(Container($PARAM[id]).ListItem.Art(clearlogo)) + [String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.clearlogo)) | !String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://)]]</visible>
+            </control>
+
+            <!-- Albums -->
+            <control type="textbox">
+                <include content="MultiWidgetsPlotLabelDefinition">
+                    <param name="maxheight" value="$PARAM[plotmaxheight]" />
+                </include>
+                <label>$INFO[Container($PARAM[id]).ListItem.Property(Album_Description)]</label>
+                <visible>String.IsEqual(Container($PARAM[id]).ListItem.DBType,album) + !String.IsEmpty(Container($PARAM[id]).ListItem.Property(Album_Description))</visible>
+            </control>
+
+            <!-- Artists No ClearLogo -->
+            <control type="textbox">
+                <include content="MultiWidgetsPlotLabelDefinition">
+                    <param name="maxheight" value="$PARAM[plotmaxheight]" />
+                </include>
+                <label>$INFO[Container($PARAM[id]).ListItem.Property(Artist_Description)]</label>
+                <visible>String.IsEqual(Container($PARAM[id]).ListItem.DBType,artist) + !String.IsEmpty(Container($PARAM[id]).ListItem.Property(Artist_Description)) + [!Skin.HasSetting(homemenu.netflix) | Skin.HasSetting(homemenu.clean.flix) | !Skin.HasSetting(home.netflix.clearlogo) | String.IsEmpty(Container($PARAM[id]).ListItem.Art(clearlogo))]</visible>
+            </control>
+
+            <!-- Artists ClearLogo -->
+            <control type="textbox">
+                <include content="MultiWidgetsPlotLabelDefinition">
+                    <param name="maxheight" value="136" />
+                </include>
+                <label>$INFO[Container($PARAM[id]).ListItem.Property(Artist_Description)]</label>
+                <visible>String.IsEqual(Container($PARAM[id]).ListItem.DBType,artist) + !String.IsEmpty(Container($PARAM[id]).ListItem.Property(Artist_Description)) + Skin.HasSetting(homemenu.netflix) + !Skin.HasSetting(homemenu.clean.flix) + Skin.HasSetting(home.netflix.clearlogo) + !String.IsEmpty(Container($PARAM[id]).ListItem.Art(clearlogo))</visible>
+            </control>
+
+            <!-- Songs -->
+            <control type="textbox">
+                <include content="MultiWidgetsPlotLabelDefinition">
+                    <param name="maxheight" value="$PARAM[plotmaxheight]" />
+                </include>
+                <label fallback="19055">$INFO[Container($PARAM[id]).ListItem.Property(Artist_Description)]</label>
+                <visible>String.IsEqual(Container($PARAM[id]).ListItem.DBType,song) + !ControlGroup(301).HasFocus() + !String.IsEmpty(Container($PARAM[id]).ListItem.Property(Artist_Description))</visible>
+            </control>
+
+            <!-- Addons -->
+            <control type="textbox">
+                <include content="MultiWidgetsPlotLabelDefinition">
+                    <param name="maxheight" value="$PARAM[plotmaxheight]" />
+                </include>
+                <label>$INFO[Container($PARAM[id]).ListItem.AddonDescription]</label>
+                <visible>!String.IsEmpty(Container($PARAM[id]).ListItem.AddonDescription) + !String.IsEmpty(Container($PARAM[id]).ListItem.AddonDescription)</visible>
+            </control>
+
+            <!-- Actor -->
+            <control type="textbox">
+                <include content="MultiWidgetsPlotLabelDefinition">
+                    <param name="maxheight" value="$PARAM[plotmaxheight]" />
+                </include>
+                <label fallback="19055">$INFO[Container(44422).ListItemAbsolute(0).Label,$LOCALIZE[31817]: ]$INFO[Container(44422).ListItemAbsolute(1).Label,$COMMA ]$INFO[Container(44422).ListItemAbsolute(2).Label,$COMMA ]$INFO[Container(44422).ListItemAbsolute(3).Label,$COMMA ]$INFO[Container(44422).ListItemAbsolute(4).Label,$COMMA ]$INFO[Container(44422).ListItemAbsolute(5).Label,$COMMA ]</label>
+                <visible>String.IsEqual(Container($PARAM[id]).ListItem.DBType,actor)</visible>
+            </control>
+            
+            <!-- Files -->
+            <control type="textbox">
+                <include content="MultiWidgetsPlotLabelDefinition">
+                    <param name="maxheight" value="$PARAM[plotmaxheight]" />
+                </include>
+                <label>19055</label>
+                <visible>String.IsEqual(Container($PARAM[id]).ListItem.DBType,file)</visible>
+            </control>
+
+            <!-- Misc -->
+            <control type="textbox">
+                <include content="MultiWidgetsPlotLabelDefinition">
+                    <param name="maxheight" value="$PARAM[plotmaxheight]" />
+                </include>
+                <label>$INFO[Container($PARAM[id]).ListItem.Plot]</label>
+                <visible>![[String.IsEqual(Container($PARAM[id]).ListItem.DBType,set) | String.IsEqual(Container($PARAM[id]).ListItem.DBType,movie) | String.IsEqual(Container($PARAM[id]).ListItem.DBType,episode) | String.IsEqual(Container($PARAM[id]).ListItem.DBType,tvshow)] + !String.IsEmpty(Container($PARAM[id]).ListItem.Plot)] + ![String.IsEqual(Container($PARAM[id]).ListItem.DBType,album) + !String.IsEmpty(Container($PARAM[id]).ListItem.Property(Album_Description))] + ![String.IsEqual(Container($PARAM[id]).ListItem.DBType,artist) + !String.IsEmpty(Container($PARAM[id]).ListItem.Property(Artist_Description))] + ![String.IsEqual(Container($PARAM[id]).ListItem.DBType,song) + ControlGroup(301).HasFocus()] + ![String.IsEqual(Container($PARAM[id]).ListItem.DBType,song) + !ControlGroup(301).HasFocus() + !String.IsEmpty(Container($PARAM[id]).ListItem.Property(Artist_Description))]+ ![!String.IsEmpty(Container($PARAM[id]).ListItem.AddonDescription) + !String.IsEmpty(Container($PARAM[id]).ListItem.AddonDescription)] + ![String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://)]</visible>
+            </control>
+        </control>
+    </include>
+
+    <include name="MultiWidgetsSubLabel">
+        <control type="grouplist">
+            <orientation>vertical</orientation>
+            <itemgap>0</itemgap>
+            
+            <!-- Tv Shows -->
+            <control type="grouplist">
+                <itemgap>0</itemgap>
+                <visible>String.IsEqual(Container($PARAM[id]).ListItem.DBType,tvshow)</visible>
+                <orientation>horizontal</orientation>
+                <height>36</height>
+                <usecontrolcoords>true</usecontrolcoords>
+                <control type="label">
+                    <include>MultiWidgetsSubLabelDefinition</include>
+                    <label>$INFO[Container($PARAM[id]).ListItem.Year]</label>
+                    <visible>!String.IsEmpty(Container($PARAM[id]).ListItem.Year)</visible>
+                </control>
+                <control type="label">
+                    <include>MultiWidgetsSubLabelDefinition</include>
+                    <label>  •  </label>
+                    <visible>!String.IsEmpty(Container($PARAM[id]).ListItem.Year) + [!String.IsEmpty(Container($PARAM[id]).ListItem.Property(TotalEpisodes)) | !String.IsEmpty(Window(home).Property(TMDbHelper.ListItem.TotalEpisodes)) | !String.IsEmpty(Container($PARAM[id]).ListItem.Episode) | !String.IsEmpty(Window(home).Property(TMDbHelper.ListItem.Episode))]</visible>
+                </control>
+                <control type="label">
+                    <include>MultiWidgetsSubLabelDefinition</include>
+                    <label>$INFO[Container($PARAM[id]).ListItem.Property(TotalEpisodes),, $LOCALIZE[20360]]</label>
+                    <visible>!String.IsEmpty(Container($PARAM[id]).ListItem.Property(TotalEpisodes))</visible>
+                </control>
+                <control type="label">
+                    <include>MultiWidgetsSubLabelDefinition</include>
+                    <label>$INFO[Window(home).Property(TMDbHelper.ListItem.TotalEpisodes),, $LOCALIZE[20360]]</label>
+                    <visible>String.IsEmpty(Container($PARAM[id]).ListItem.Property(TotalEpisodes)) + !String.IsEmpty(Window(home).Property(TMDbHelper.ListItem.TotalEpisodes))</visible>
+                </control>
+                <control type="label">
+                    <include>MultiWidgetsSubLabelDefinition</include>
+                    <label>$INFO[Container($PARAM[id]).ListItem.Episode,, $LOCALIZE[20360]]</label>
+                    <visible>String.IsEmpty(Container($PARAM[id]).ListItem.Property(TotalEpisodes)) + String.IsEmpty(Window(home).Property(TMDbHelper.ListItem.TotalEpisodes)) + !String.IsEmpty(Container($PARAM[id]).ListItem.Episode)</visible>
+                </control>
+                <control type="label">
+                    <include>MultiWidgetsSubLabelDefinition</include>
+                    <label>$INFO[Window(home).Property(TMDbHelper.ListItem.Episode),, $LOCALIZE[20360]]</label>
+                    <visible>String.IsEmpty(Container($PARAM[id]).ListItem.Property(TotalEpisodes)) + String.IsEmpty(Window(home).Property(TMDbHelper.ListItem.TotalEpisodes)) + String.IsEmpty(Container($PARAM[id]).ListItem.Episode) + !String.IsEmpty(Window(home).Property(TMDbHelper.ListItem.Episode))</visible>
+                </control>
+                <control type="label">
+                    <include>MultiWidgetsSubLabelDefinition</include>
+                    <label>$INFO[Container($PARAM[id]).ListItem.Property(UnWatchedEpisodes),  •  , $LOCALIZE[16101]]</label>
+                    <visible>!String.IsEmpty(Container($PARAM[id]).ListItem.Property(UnWatchedEpisodes))</visible>
+                </control>
+                <control type="label">
+                    <include>MultiWidgetsSubLabelDefinition</include>
+                    <label>$INFO[Window(home).Property(TMDbHelper.ListItem.UnWatchedEpisodes),  •  , $LOCALIZE[16101]]</label>
+                    <visible>String.IsEmpty(Container($PARAM[id]).ListItem.Property(UnWatchedEpisodes)) + !String.IsEmpty(Window(home).Property(TMDbHelper.ListItem.UnWatchedEpisodes))</visible>
+                </control>
+                <control type="label">
+                    <include>MultiWidgetsSubLabelDefinition</include>
+                    <label>$INFO[Container($PARAM[id]).ListItem.UserRating,  •  ,.0]$VAR[Label_TvShow_Ratings]</label>
+                    <visible>Integer.IsGreater(Container($PARAM[id]).ListItem.UserRating,0) + Skin.HasSetting(userrating.override.rating)</visible>
+                </control>
+                <control type="label">
+                    <include>MultiWidgetsSubLabelDefinition</include>
+                    <label>$INFO[Container($PARAM[id]).ListItem.Rating,  •  ]$VAR[Label_TvShow_Ratings]</label>
+                    <visible>!Integer.IsGreater(Container($PARAM[id]).ListItem.UserRating,0) | !Skin.HasSetting(userrating.override.rating)</visible>
+                </control>
+                <include content="IndicatorCleanHome" condition="!Skin.HasSetting(hide.markers) + Skin.HasSetting(homemenu.clean.flix)">
+                    <param name="id" value="$PARAM[id]" />
+                </include>
+            </control>
+            
+            <!-- Movies -->
+            <control type="grouplist">
+                <itemgap>0</itemgap>
+                <visible>String.IsEqual(Container($PARAM[id]).ListItem.DBType,movie)</visible>
+                <orientation>horizontal</orientation>
+                <control type="label">
+                    <include>MultiWidgetsSubLabelDefinition</include>
+                    <label>$INFO[Container($PARAM[id]).ListItem.Year]</label>
+                    <visible>!String.IsEmpty(Container($PARAM[id]).ListItem.Year)</visible>
+                </control>
+                <control type="label" description="Duration">
+                    <include>MultiWidgetsSubLabelDefinition</include>
+                    <visible>!String.IsEmpty(Container($PARAM[id]).ListItem.Duration(mins)) + !Skin.HasSetting(NewTime)</visible>
+                    <label>$INFO[Container($PARAM[id]).ListItem.Duration(mins),  •  , $LOCALIZE[31102]]</label>
+                </control>
+                <control type="label" description="Duration">
+                    <include>MultiWidgetsSubLabelDefinition</include>
+                    <visible>String.IsEmpty(Container($PARAM[id]).ListItem.Duration(mins)) + !String.IsEmpty(Window(home).Property(TMDbHelper.ListItem.Duration.mins)) + !Skin.HasSetting(NewTime)</visible>
+                    <label>$INFO[Window(home).Property(TMDbHelper.ListItem.Duration.mins),  •  , $LOCALIZE[31102]]</label>
+                </control>
+                <control type="label" description="Duration">
+                    <include>MultiWidgetsSubLabelDefinition</include>
+                    <visible>!String.IsEmpty(Container($PARAM[id]).ListItem.Duration(mins)) + Skin.HasSetting(NewTime) + Integer.IsGreater(Container($PARAM[id]).ListItem.Duration(h),0)</visible>
+                    <label>$INFO[Container($PARAM[id]).ListItem.Duration(h),  •  ,$LOCALIZE[31088]] $INFO[Container($PARAM[id]).ListItem.Duration(mm),,$LOCALIZE[31089]]</label>
+                </control>
+                <control type="label" description="Duration">
+                    <include>MultiWidgetsSubLabelDefinition</include>
+                    <visible>String.IsEmpty(Container($PARAM[id]).ListItem.Duration(mins)) + !String.IsEmpty(Window(home).Property(TMDbHelper.ListItem.Duration.mins)) + Skin.HasSetting(NewTime) + Integer.IsGreater(Window(home).Property(TMDbHelper.ListItem.Duration.h),0)</visible>
+                    <label>$INFO[Window(home).Property(TMDbHelper.ListItem.Duration.h),  •  ,$LOCALIZE[31088]] $INFO[Window(home).Property(TMDbHelper.ListItem.Duration.mm),,$LOCALIZE[31089]]</label>
+                </control>
+                <control type="label" description="Duration">
+                    <include>MultiWidgetsSubLabelDefinition</include>
+                    <visible>!String.IsEmpty(Container($PARAM[id]).ListItem.Duration(mins)) + Skin.HasSetting(NewTime) + !Integer.IsGreater(Container($PARAM[id]).ListItem.Duration(h),0)</visible>
+                    <label>$INFO[Container($PARAM[id]).ListItem.Duration(m),  •  ,$LOCALIZE[31089]]</label>
+                </control>
+                <control type="label" description="Duration">
+                    <include>MultiWidgetsSubLabelDefinition</include>
+                    <visible>String.IsEmpty(Container($PARAM[id]).ListItem.Duration(mins)) + !String.IsEmpty(Window(home).Property(TMDbHelper.ListItem.Duration.mins)) + Skin.HasSetting(NewTime) + !Integer.IsGreater(Window(home).Property(TMDbHelper.ListItem.Duration.h),0)</visible>
+                    <label>$INFO[Window(home).Property(TMDbHelper.ListItem.Duration.m),  •  ,$LOCALIZE[31089]]</label>
+                </control>
+                <control type="label">
+                    <include>MultiWidgetsSubLabelDefinition</include>
+                    <label>$INFO[Container($PARAM[id]).ListItem.UserRating,  •  ,.0]$VAR[Label_Movie_Ratings]</label>
+                    <visible>Integer.IsGreater(Container($PARAM[id]).ListItem.UserRating,0) + Skin.HasSetting(userrating.override.rating)</visible>
+                </control>
+                <control type="label">
+                    <include>MultiWidgetsSubLabelDefinition</include>
+                    <label>$INFO[Container($PARAM[id]).ListItem.Rating,  •  ]$VAR[Label_Movie_Ratings]</label>
+                    <visible>!Integer.IsGreater(Container($PARAM[id]).ListItem.UserRating,0) | !Skin.HasSetting(userrating.override.rating)</visible>
+                </control>
+                <include content="IndicatorCleanHome" condition="!Skin.HasSetting(hide.markers) + Skin.HasSetting(homemenu.clean.flix)">
+                    <param name="id" value="$PARAM[id]" />
+                </include>
+            </control>
+            
+            <!-- Episodes -->
+            <control type="grouplist">
+                <itemgap>0</itemgap>
+                <visible>String.IsEqual(Container($PARAM[id]).ListItem.DBType,episode)</visible>
+                <orientation>horizontal</orientation>
+                <control type="label">
+                    <include>MultiWidgetsSubLabelDefinition</include>
+                    <label>$INFO[Container($PARAM[id]).ListItem.TvShowTitle,,  •  ]</label>
+                    <visible>!String.IsEmpty(Container($PARAM[id]).ListItem.TvShowTitle) + [$EXP[HomeIsModernMultiWidgets] | $EXP[HomeIsVerticalMultiWidgets]] + !Skin.HasSetting(homemenu.netflix) + !Skin.HasSetting(homemenu.clean.flix)</visible>
+                </control>
+                <control type="label">
+                    <include>MultiWidgetsSubLabelDefinition</include>
+                    <label>$INFO[Container($PARAM[id]).ListItem.Season,$LOCALIZE[20373] ,  •  ]</label>
+                    <visible>!String.IsEmpty(Container($PARAM[id]).ListItem.Season)</visible>
+                </control>
+                <control type="label">
+                    <include>MultiWidgetsSubLabelDefinition</include>
+                    <label>$INFO[Container($PARAM[id]).ListItem.Episode,$LOCALIZE[20359] ,  •  ]</label>
+                    <visible>!String.IsEmpty(Container($PARAM[id]).ListItem.Episode)</visible>
+                </control>
+                <control type="label">
+                    <include>MultiWidgetsSubLabelDefinition</include>
+                    <label>$INFO[Container($PARAM[id]).ListItem.Premiered,,  •  ]</label>
+                    <visible>!String.IsEmpty(Container($PARAM[id]).ListItem.Premiered)</visible>
+                </control>
+                <control type="label">
+                    <include>MultiWidgetsSubLabelDefinition</include>
+                    <label>$INFO[Container($PARAM[id]).ListItem.Year,,  •  ]</label>
+                    <visible>String.IsEmpty(Container($PARAM[id]).ListItem.Premiered) + !String.IsEmpty(Container($PARAM[id]).ListItem.Year)</visible>
+                </control>
+                <control type="label" description="Duration">
+                    <include>MultiWidgetsSubLabelDefinition</include>
+                    <visible>!String.IsEmpty(Container($PARAM[id]).ListItem.Duration(mins)) + !Skin.HasSetting(NewTime)</visible>
+                    <label>$INFO[Container($PARAM[id]).ListItem.Duration(mins),, $LOCALIZE[31102]]</label>
+                </control>
+                <control type="label" description="Duration">
+                    <include>MultiWidgetsSubLabelDefinition</include>
+                    <visible>!String.IsEmpty(Container($PARAM[id]).ListItem.Duration(mins)) + Skin.HasSetting(NewTime) + Integer.IsGreater(Container($PARAM[id]).ListItem.Duration(h),0)</visible>
+                    <label>$INFO[Container($PARAM[id]).ListItem.Duration(h),,$LOCALIZE[31088]] $INFO[Container($PARAM[id]).ListItem.Duration(mm),,$LOCALIZE[31089]]</label>
+                </control>
+                <control type="label" description="Duration">
+                    <include>MultiWidgetsSubLabelDefinition</include>
+                    <visible>!String.IsEmpty(Container($PARAM[id]).ListItem.Duration(mins)) + Skin.HasSetting(NewTime) + !Integer.IsGreater(Container($PARAM[id]).ListItem.Duration(h),0)</visible>
+                    <label>$INFO[Container($PARAM[id]).ListItem.Duration(m),,$LOCALIZE[31089]]</label>
+                </control>
+                <control type="label">
+                    <include>MultiWidgetsSubLabelDefinition</include>
+                    <label>$INFO[Container($PARAM[id]).ListItem.UserRating,  •  ,.0]$VAR[Label_TvShow_Ratings]</label>
+                    <visible>Integer.IsGreater(Container($PARAM[id]).ListItem.UserRating,0) + Skin.HasSetting(userrating.override.rating)</visible>
+                </control>
+                <control type="label">
+                    <include>MultiWidgetsSubLabelDefinition</include>
+                    <label>$INFO[Container($PARAM[id]).ListItem.Rating,  •  ]$VAR[Label_TvShow_Ratings]</label>
+                    <visible>!Integer.IsGreater(Container($PARAM[id]).ListItem.UserRating,0) | !Skin.HasSetting(userrating.override.rating)</visible>
+                </control>
+                <include content="IndicatorCleanHome" condition="!Skin.HasSetting(hide.markers) + Skin.HasSetting(homemenu.clean.flix)">
+                    <param name="id" value="$PARAM[id]" />
+                </include>
+            </control>
+                        
+            <!-- Sets -->
+            <control type="label">
+                <include>MultiWidgetsSubLabelDefinition</include>
+                <label>$INFO[Container($PARAM[id]).ListItem.Year]$INFO[Container($PARAM[id]).ListItem.Rating,  •  ] $INFO[Control.GetLabel(9966)]</label>
+                <visible>String.IsEqual(Container($PARAM[id]).ListItem.DBType,set)</visible>
+                <include content="IndicatorCleanHome" condition="!Skin.HasSetting(hide.markers) + Skin.HasSetting(homemenu.clean.flix)">
+                    <param name="id" value="$PARAM[id]" />
+                </include>
+            </control>
+
+            <!-- Musicvideos -->
+            <control type="label">
+                <include>MultiWidgetsSubLabelDefinition</include>
+                <label>$INFO[Container($PARAM[id]).ListItem.Artist]$INFO[Container($PARAM[id]).ListItem.Year,  •  ,]</label>
+                <visible>String.IsEqual(Container($PARAM[id]).ListItem.DBType,musicvideo)</visible>
+                <include content="IndicatorCleanHome" condition="!Skin.HasSetting(hide.markers) + Skin.HasSetting(homemenu.clean.flix)">
+                    <param name="id" value="$PARAM[id]" />
+                </include>
+            </control>
+                        
+            <!-- Albums -->
+            <control type="grouplist">
+                <itemgap>0</itemgap>
+                <visible>String.IsEqual(Container($PARAM[id]).ListItem.DBType,album)</visible>
+                <orientation>horizontal</orientation>
+                <height>36</height>
+                <usecontrolcoords>true</usecontrolcoords>
+                <control type="label">
+                    <include>MultiWidgetsSubLabelDefinition</include>
+                    <label>$INFO[Container($PARAM[id]).ListItem.Artist]</label>
+                </control>
+                <control type="label">
+                    <include>MultiWidgetsSubLabelDefinition</include>
+                    <label>  •  </label>
+                    <visible>!String.IsEmpty(Container($PARAM[id]).ListItem.Artist) + !String.IsEmpty(Container($PARAM[id]).ListItem.Year)</visible>
+                </control>
+                <control type="label">
+                    <include>MultiWidgetsSubLabelDefinition</include>
+                    <label>$INFO[Container($PARAM[id]).ListItem.Year]  $INFO[Control.GetLabel(9967)]</label>
+                </control>
+            </control>
+            
+            <!-- Artists -->
+            <control type="label">
+                <include>MultiWidgetsSubLabelDefinition</include>
+                <label>$INFO[Container($PARAM[id]).ListItem.Property(Artist_Style)]</label>
+                <visible>String.IsEqual(Container($PARAM[id]).ListItem.DBType,artist) + !String.IsEmpty(Container($PARAM[id]).ListItem.Property(Artist_Style))</visible>
+            </control>
+            <control type="label">
+                <include>MultiWidgetsSubLabelDefinition</include>
+                <label>$INFO[Container($PARAM[id]).ListItem.Genre]</label>
+                <visible>String.IsEqual(Container($PARAM[id]).ListItem.DBType,artist) + String.IsEmpty(Container($PARAM[id]).ListItem.Property(Artist_Style))</visible>
+            </control>
+            
+            <!-- Songs -->
+            <control type="label">
+                <include>MultiWidgetsSubLabelDefinition</include>
+                <label>$INFO[Container($PARAM[id]).ListItem.Artist]$INFO[Container($PARAM[id]).ListItem.Year,  •  ,]</label>
+                <visible>String.IsEqual(Container($PARAM[id]).ListItem.DBType,song)</visible>
+            </control>
+
+            <!-- Addons -->
+            <control type="label">
+                <include>MultiWidgetsSubLabelDefinition</include>
+                <label>$INFO[Container($PARAM[id]).ListItem.AddonVersion,v]</label>
+                <visible>!String.IsEmpty(Container($PARAM[id]).ListItem.AddonDescription)</visible>
+            </control>
+            
+            <!-- PVR -->
+            <control type="label" description="Duration">
+                <include>MultiWidgetsSubLabelDefinition</include>
+                <visible>String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://) + !Skin.HasSetting(NewTime)</visible>
+                <label>$INFO[Container($PARAM[id]).ListItem.Label]$INFO[Container($PARAM[id]).ListItem.StartTime,  •  ,]$INFO[Container($PARAM[id]).ListItem.EndTime, - ]$INFO[Container($PARAM[id]).ListItem.Duration(mins),  •  , $LOCALIZE[31102]]$VAR[Label_TvShow_Ratings]</label>
+            </control>
+            <control type="label" description="Duration">
+                <include>MultiWidgetsSubLabelDefinition</include>
+                <visible>String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://) + Skin.HasSetting(NewTime) + Integer.IsGreater(Container($PARAM[id]).ListItem.Duration(h),0)</visible>
+                <label>$INFO[Container($PARAM[id]).ListItem.Label]$INFO[Container($PARAM[id]).ListItem.StartTime,  •  ,]$INFO[Container($PARAM[id]).ListItem.EndTime, - ]$INFO[Container($PARAM[id]).ListItem.Duration(h),  •  ,$LOCALIZE[31088]] $INFO[Container($PARAM[id]).ListItem.Duration(mm),,$LOCALIZE[31089]]$VAR[Label_TvShow_Ratings]</label>
+            </control>
+            <control type="label" description="Duration">
+                <include>MultiWidgetsSubLabelDefinition</include>
+                <visible>String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://) + Skin.HasSetting(NewTime) + !Integer.IsGreater(Container($PARAM[id]).ListItem.Duration(h),0)</visible>
+                <label>$INFO[Container($PARAM[id]).ListItem.Label]$INFO[Container($PARAM[id]).ListItem.StartTime,  •  ,]$INFO[Container($PARAM[id]).ListItem.EndTime, - ]$INFO[Container($PARAM[id]).ListItem.Duration(mm),  •  ,$LOCALIZE[31089]]$VAR[Label_TvShow_Ratings]</label>
+            </control>
+        </control>
     </include>
 
 </includes>
