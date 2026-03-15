@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
 
-    <variable name="TMDBHelperWidgetContainer" containers="1...20" parent="Integer.IsEqual(Container(300).ListItem.Property(id),{id})">
+    <variable name="TMDBHelperWidgetContainer" containers="1...20" parent="Control.IsVisible({id}301)">
         <value condition="Control.IsVisible({id}3101)">$NUMBER[{id}3101]</value>
         <value condition="Control.IsVisible({id}3102)">$NUMBER[{id}3102]</value>
         <value condition="Control.IsVisible({id}3103)">$NUMBER[{id}3103]</value>
@@ -14,7 +14,7 @@
         <value condition="Control.IsVisible(993100)">$NUMBER[993100]</value>
     </variable>
 
-    <variable name="ActorPath_MultiWidgets" containers="1...20" parent="Integer.IsEqual(Container(300).ListItem.Property(id),{id})">
+    <variable name="ActorPath_MultiWidgets" containers="1...20" parent="Control.IsVisible({id}301)">
         <value condition="Control.IsVisible({id}3101) + Container({id}3101).ListItem.IsFolder + String.IsEqual(Container({id}3101).ListItem.DBType,actor)">$INFO[Container({id}3101).ListItem.FolderPath]</value>
         <value condition="Control.IsVisible({id}3102) + Container({id}3102).ListItem.IsFolder + String.IsEqual(Container({id}3102).ListItem.DBType,actor)">$INFO[Container({id}3102).ListItem.FolderPath]</value>
         <value condition="Control.IsVisible({id}3103) + Container({id}3103).ListItem.IsFolder + String.IsEqual(Container({id}3103).ListItem.DBType,actor)">$INFO[Container({id}3103).ListItem.FolderPath]</value>
@@ -27,7 +27,7 @@
         <value condition="Control.IsVisible(993100) + Container(993100).ListItem.IsFolder + String.IsEqual(Container(993100).ListItem.DBType,actor)">$INFO[Container(993100).ListItem.FolderPath]</value>
     </variable>
 
-    <variable name="AlbumPath_MultiWidgets" containers="1...20" parent="Integer.IsEqual(Container(300).ListItem.Property(id),{id})">
+    <variable name="AlbumPath_MultiWidgets" containers="1...20" parent="Control.IsVisible({id}301)">
         <value condition="Control.IsVisible({id}3101) + Container({id}3101).ListItem.IsFolder + String.IsEqual(Container({id}3101).ListItem.DBType,album)">$INFO[Container({id}3101).ListItem.FolderPath]</value>
         <value condition="Control.IsVisible({id}3102) + Container({id}3102).ListItem.IsFolder + String.IsEqual(Container({id}3102).ListItem.DBType,album)">$INFO[Container({id}3102).ListItem.FolderPath]</value>
         <value condition="Control.IsVisible({id}3103) + Container({id}3103).ListItem.IsFolder + String.IsEqual(Container({id}3103).ListItem.DBType,album)">$INFO[Container({id}3103).ListItem.FolderPath]</value>
@@ -40,7 +40,7 @@
         <value condition="Control.IsVisible(993100) + Container(993100).ListItem.IsFolder + String.IsEqual(Container(993100).ListItem.DBType,album)">$INFO[Container(993100).ListItem.FolderPath]</value>
     </variable>
 
-    <variable name="SetsPath_MultiWidgets" containers="1...20" parent="Integer.IsEqual(Container(300).ListItem.Property(id),{id})">
+    <variable name="SetsPath_MultiWidgets" containers="1...20" parent="Control.IsVisible({id}301)">
         <value condition="Control.IsVisible({id}3101) + Container({id}3101).ListItem.IsCollection + !String.IsEmpty(Container({id}3101).ListItem.DBID)">videodb://movies/sets/$INFO[Container({id}3101).ListItem.DBID]/?setid=$INFO[Container({id}3101).ListItem.DBID]</value>
         <value condition="Control.IsVisible({id}3102) + Container({id}3102).ListItem.IsCollection + !String.IsEmpty(Container({id}3102).ListItem.DBID)">videodb://movies/sets/$INFO[Container({id}3102).ListItem.DBID]/?setid=$INFO[Container({id}3102).ListItem.DBID]</value>
         <value condition="Control.IsVisible({id}3103) + Container({id}3103).ListItem.IsCollection + !String.IsEmpty(Container({id}3103).ListItem.DBID)">videodb://movies/sets/$INFO[Container({id}3103).ListItem.DBID]/?setid=$INFO[Container({id}3103).ListItem.DBID]</value>
@@ -53,7 +53,7 @@
         <value condition="Control.IsVisible(993100) + Container(993100).ListItem.IsCollection + !String.IsEmpty(Container(993100).ListItem.DBID)">videodb://movies/sets/$INFO[Container(993100).ListItem.DBID]/?setid=$INFO[Container(993100).ListItem.DBID]</value>
     </variable>
  
-    <variable name="GlobalFanart_MultiWidgets_NoFocus" containers="1...20" parent="Integer.IsEqual(Container(300).ListItem.Property(id),{id})">
+    <variable name="GlobalFanart_MultiWidgets_NoFocus" containers="1...20" parent="Control.IsVisible({id}301)">
         <!-- Widget 1 -->
         <value condition="Control.IsVisible({id}3101) + String.IsEqual(Container({id}3101).ListItem.DBtype,episode) + !String.IsEmpty(Container({id}3101).ListItem.Art(thumb)) + Skin.HasSetting(background.episodes.use.thumbnail)">$INFO[Container({id}3101).ListItem.Art(thumb)]</value>
         <value condition="Control.IsVisible({id}3101) + String.IsEqual(Container({id}3101).ListItem.DBtype,episode) + !String.IsEmpty(Container({id}3101).ListItem.Art(season.fanart)) + String.IsEqual(Container({id}3101).ListItem.Art(fanart),Container({id}3101)ListItem.Art(tvshow.fanart))">$INFO[Container({id}3101).ListItem.Art(season.fanart)]</value>

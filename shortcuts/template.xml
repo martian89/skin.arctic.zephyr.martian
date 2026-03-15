@@ -277,55 +277,62 @@
         <property name="widgetBrowse">$VAR[DefWidgetBrowse]</property>
 
 	    <controls>
-	        <!-- InfoSub -->
-            <control type="group" id="997500">
+            <control type="grouplist">
                 <visible>Integer.IsEqual(Container(9989).NumItems,0)</visible>
-                <visible>Integer.IsGreater(Container(993100).NumItems,0) | Container(993100).IsUpdating</visible>
-                <control type="grouplist">
-                    <include content="widget.title.label">
-                        <param name="focusid" value="993100"/>
-                        <param name="label" value="$LOCALIZE[31105]"/>
-                    </include>
-                </control>
-            </control>
-	        <control type="fixedlist" id="993100">
-                <visible>Integer.IsEqual(Container(9989).NumItems,0)</visible>
-	            <visible>Integer.IsGreater(Container(993100).NumItems,0) | Container(993100).IsUpdating</visible>
-	            <include content="DefMultiWidgetContainer">
-	                <param name="id" value="993100"/>
-	                <param name="baseid" value="9931"/>
-	                <param name="height" value="325"/>
-	                <param name="height2" value="365"/>
-	                <param name="movement" value="7"/>
-                    <param name="AutoScrollCondition" value="!Control.HasFocus(993100) + !System.ScreenSaverActive + System.IdleTime(1)"/>
-	            </include>
-	            <!-- ItemLayout -->
-	            <include content="Widget_Poster">
-	                <param name="shortcutsid" value="993100"/>
-	                <param name="shortcutsclearlogo" value="true"/>
-	                <param name="aspectratio" value="keep"/>
-	                <param name="distance" value="10"/>
-	            </include>
-                <include content="Widget_ContentDynamic">
-                   <param name="target" value="$SKINSHORTCUTS[widgetTarget]" />
-                   <param name="browse" value="$SKINSHORTCUTS[widgetBrowse]" />
-                   <param name="content" value="$SKINSHORTCUTS[widgetPath]" />
-                </include>
-	        </control>
-            <control type="group" id="995600">
-                <visible>Integer.IsEqual(Container(9989).NumItems,0)</visible>
-                <visible>Integer.IsGreater(Container(993100).NumItems,0) | Container(993100).IsUpdating</visible>
-                <control type="grouplist">
-                    <include content="FullScreenInfoSub">
-                        <param name="id" value="993100"/>
-                    </include>
-                </control>
-                <control type="grouplist">
-                    <include content="ClearArtInfoSub">
-                        <param name="id" value="993100"/>
-                    </include>
-                </control>
-            </control>
+                <usecontrolcoords>true</usecontrolcoords>
+                <itemgap>0</itemgap>
+                <orientation>vertical</orientation>
+                <include>ScrolltimeWidgetsContainer</include>
+                
+                <include>Widget_Navigation_Actions</include>
+                
+		        <!-- InfoSub -->
+	            <control type="group" id="997500">
+	                <visible>Integer.IsGreater(Container(993100).NumItems,0) | Container(993100).IsUpdating</visible>
+	                <control type="grouplist">
+	                    <include content="widget.title.label">
+	                        <param name="focusid" value="993100"/>
+	                        <param name="label" value="$LOCALIZE[31105]"/>
+	                    </include>
+	                </control>
+	            </control>
+		        <control type="fixedlist" id="993100">
+		            <visible>Integer.IsGreater(Container(993100).NumItems,0) | Container(993100).IsUpdating</visible>
+		            <include content="DefMultiWidgetContainer">
+		                <param name="id" value="993100"/>
+		                <param name="baseid" value="9931"/>
+		                <param name="height" value="325"/>
+		                <param name="height2" value="365"/>
+		                <param name="movement" value="7"/>
+	                    <param name="AutoScrollCondition" value="!Control.HasFocus(993100) + !System.ScreenSaverActive + System.IdleTime(1)"/>
+		            </include>
+		            <!-- ItemLayout -->
+		            <include content="Widget_Poster">
+		                <param name="shortcutsid" value="993100"/>
+		                <param name="shortcutsclearlogo" value="true"/>
+		                <param name="aspectratio" value="keep"/>
+		                <param name="distance" value="10"/>
+		            </include>
+	                <include content="Widget_ContentDynamic">
+	                   <param name="target" value="$SKINSHORTCUTS[widgetTarget]" />
+	                   <param name="browse" value="$SKINSHORTCUTS[widgetBrowse]" />
+	                   <param name="content" value="$SKINSHORTCUTS[widgetPath]" />
+	                </include>
+		        </control>
+	            <control type="group" id="995600">
+	                <visible>Integer.IsGreater(Container(993100).NumItems,0) | Container(993100).IsUpdating</visible>
+	                <control type="grouplist">
+	                    <include content="FullScreenInfoSub">
+	                        <param name="id" value="993100"/>
+	                    </include>
+	                </control>
+	                <control type="grouplist">
+	                    <include content="ClearArtInfoSub">
+	                        <param name="id" value="993100"/>
+	                    </include>
+	                </control>
+	            </control>
+	       </control>        
 	    </controls>
     </other>
                
@@ -334,7 +341,17 @@
         <property name="submenuVisibility" tag="property" attribute="name|submenuVisibility" />
 
         <controls>
-            <skinshortcuts insert="widgets">items</skinshortcuts>
+            <control type="grouplist" id="$PYTHON[int(mainmenuid) * 1000 + 301]">
+                <skinshortcuts>visibility</skinshortcuts>
+                <usecontrolcoords>true</usecontrolcoords>
+                <itemgap>0</itemgap>
+                <orientation>vertical</orientation>
+                <include>ScrolltimeWidgetsContainer</include>
+ 
+                <include>Widget_Navigation_Actions</include>
+                
+                <skinshortcuts insert="widgets">items</skinshortcuts>
+            </control>        
         </controls>
 
 	    <items insert="widgets">
