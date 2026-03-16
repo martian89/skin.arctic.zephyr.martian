@@ -93,10 +93,6 @@
         <value condition="Integer.IsGreater(Skin.String(WidgetLimit),0)">$INFO[Skin.String(WidgetLimit)]</value>
     </variable>
 
-    <variable name="DefHubLimit">
-        <value condition="Integer.IsGreater(Skin.String(HubLimit),0)">$INFO[Skin.String(HubLimit)]</value>
-    </variable>
-
     <include name="DefDialogButtons">
         <width>300</width>
         <font>Button</font>
@@ -881,7 +877,7 @@
                                 <texture background="true" diffuse="diffuse/bigwiderolodex.png" border="5">$VAR[FanartImage]</texture>
                             </control>
                         </focusedlayout>
-                        <content limit="$VAR[DefHubLimit]" target="$VAR[DefHubWidgetTarget]">$VAR[DefHubWidget]</content>
+                        <content limit="$VAR[DefHubLimit]" target="$VAR[DefHubWidgetTarget]" browse="never">$VAR[DefHubWidget]</content>
                     </control>
                     <control type="group">
                         <left>0</left>
@@ -1264,6 +1260,18 @@
             </control>
         </control>
     </include>
+
+    <variable name="DefHubLimit">
+        <value condition="Window.IsVisible(1111) + Integer.IsGreater(Skin.String(Widget.1111.Limit),0)">$INFO[Skin.String(Widget.1111.Limit)]</value>
+        <value condition="Window.IsVisible(1112) + Integer.IsGreater(Skin.String(Widget.1112.Limit),0)">$INFO[Skin.String(Widget.1112.Limit)]</value>
+        <value condition="Window.IsVisible(1113) + Integer.IsGreater(Skin.String(Widget.1113.Limit),0)">$INFO[Skin.String(Widget.1113.Limit)]</value>
+        <value condition="Window.IsVisible(1114) + Integer.IsGreater(Skin.String(Widget.1114.Limit),0)">$INFO[Skin.String(Widget.1114.Limit)]</value>
+        <value condition="Window.IsVisible(1115) + Integer.IsGreater(Skin.String(Widget.1115.Limit),0)">$INFO[Skin.String(Widget.1115.Limit)]</value>
+        <value condition="Window.IsVisible(1116) + Integer.IsGreater(Skin.String(Widget.1116.Limit),0)">$INFO[Skin.String(Widget.1116.Limit)]</value>
+        <value condition="Window.IsVisible(1117) + Integer.IsGreater(Skin.String(Widget.1117.Limit),0)">$INFO[Skin.String(Widget.1117.Limit)]</value>
+        <value condition="Window.IsVisible(1118) + Integer.IsGreater(Skin.String(Widget.1118.Limit),0)">$INFO[Skin.String(Widget.1118.Limit)]</value>
+        <value condition="Window.IsVisible(1119) + Integer.IsGreater(Skin.String(Widget.1119.Limit),0)">$INFO[Skin.String(Widget.1119.Limit)]</value>
+    </variable>
 
     <variable name="DefHubWidget">
         <value condition="Window.IsVisible(1111) + !String.IsEmpty(Skin.String(Widget.1111))">$INFO[Skin.String(Widget.1111)]</value>
@@ -4350,6 +4358,14 @@
             <visible>String.IsEqual(Container(211).ListItem.Label2,Hub $PARAM[hubid]) | String.IsEqual(Container(211).ListItem.Property(Path),ActivateWindow($PARAM[hubid]))</visible>
             <visible>!$EXP[Skinshortcuts_Widgets_Active]</visible>
             <onclick>RunScript(script.skinshortcuts,type=widgets&amp;grouping=widget&amp;skinWidgetPath=Widget.$PARAM[hubid]&amp;skinWidgetName=Widget.$PARAM[hubid].Label&amp;skinWidgetType=Widget.$PARAM[hubid].Type;&amp;skinWidgetTarget=Widget.$PARAM[hubid].Target)</onclick>
+        </control>
+        <control type="button" id="$PARAM[buttonid2]1" description="Set HUB LIMIT">
+            <label>31824</label>
+            <include>Def_Skinshortcuts_Buttons</include>
+            <label2>$VAR[HubLimitLabel]</label2>
+            <visible>String.IsEqual(Container(211).ListItem.Label2,Hub $PARAM[hubid]) | String.IsEqual(Container(211).ListItem.Property(Path),ActivateWindow($PARAM[hubid]))</visible>
+            <visible>!$EXP[Skinshortcuts_Widgets_Active]</visible>
+            <onclick>RunScript(script.skinvariables,run_dialog=select,heading=$LOCALIZE[31824],list=$ADDON[script.skinshortcuts 32053] / 10 / 25 / 50 / 100,"executebuiltin=Skin.SetString(Widget.$PARAM[hubid].Limit,{v})")</onclick>          
         </control>
         <control type="button" id="$PARAM[buttonid1]" description="Set HUB">
             <label>31178</label>
