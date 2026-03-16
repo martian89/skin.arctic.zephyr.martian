@@ -277,7 +277,18 @@
         <property name="widgetBrowse">$VAR[DefWidgetBrowse]</property>
 
 	    <controls>
-            <control type="grouplist">
+            <control type="group">
+                <visible>Integer.IsEqual(Container(9989).NumItems,0)</visible>
+                <include condition="!Skin.HasSetting(widgets.fade)">Animation.Vertical.Widgets.Label</include>
+                <animation effect="slide" start="0" end="0,342" time="0" condition="Skin.HasSetting(homemenu.clean.flix) + Skin.HasSetting(homemenu.clean.flix.no.slide)">Conditional</animation>
+                <animation effect="slide" start="0" end="0,335" time="0" condition="Skin.HasSetting(homemenu.clean.flix) + !Skin.HasSetting(homemenu.clean.flix.no.slide)">Conditional</animation>
+                <animation effect="slide" start="0" end="0,40" time="0" condition="!Skin.HasSetting(homemenu.clean.flix) + !Skin.HasSetting(show.reflections)">Conditional</animation>
+                <include content="Widget_Items_Count" condition="Skin.HasSetting(homemenu.clean.flix)">
+                    <param name="groupid" value="99310" />
+                </include>
+            </control>
+
+            <control type="grouplist" id="99310">
                 <visible>Integer.IsEqual(Container(9989).NumItems,0)</visible>
                 <usecontrolcoords>true</usecontrolcoords>
                 <itemgap>0</itemgap>
@@ -328,7 +339,7 @@
  	                    </include>
 	                </control>
 	                <control type="grouplist">
-	                    <include content="ClearArtInfoSub" condition="!Skin.HasSetting(homemenu.netflix) + !Skin.HasSetting(home.multiwidgets.hideclearart)">
+	                    <include content="HomeClearArt" condition="!Skin.HasSetting(homemenu.netflix) + !Skin.HasSetting(home.multiwidgets.hideclearart)">
 	                        <param name="id" value="993100"/>
                             <param name="isfullscreenlayout" value="true" />
 	                    </include>
@@ -343,6 +354,19 @@
         <property name="submenuVisibility" tag="property" attribute="name|submenuVisibility" />
 
         <controls>
+            <control type="group">
+                <skinshortcuts>visibility</skinshortcuts>
+	            <include condition="!Skin.HasSetting(widgets.fade)">Animation.Vertical.Widgets.Label</include>
+	            <animation effect="slide" start="0" end="0,342" time="0" condition="Skin.HasSetting(homemenu.clean.flix) + Skin.HasSetting(homemenu.clean.flix.no.slide)">Conditional</animation>
+	            <animation effect="slide" start="0" end="0,335" time="0" condition="Skin.HasSetting(homemenu.clean.flix) + !Skin.HasSetting(homemenu.clean.flix.no.slide)">Conditional</animation>
+	            <animation effect="slide" start="0" end="0,40" time="0" condition="!Skin.HasSetting(homemenu.clean.flix) + !Skin.HasSetting(show.reflections)">Conditional</animation>
+	            <include content="Widget_Navigation_Arrows">
+	                <param name="groupid" value="$PYTHON[int(mainmenuid) * 1000 + 301]" />
+	            </include>
+                <include content="Widget_Items_Count" condition="Skin.HasSetting(homemenu.clean.flix)">
+                    <param name="groupid" value="$PYTHON[int(mainmenuid) * 1000 + 301]" />
+                </include>
+            </control>
             <control type="grouplist" id="$PYTHON[int(mainmenuid) * 1000 + 301]">
                 <skinshortcuts>visibility</skinshortcuts>
                 <usecontrolcoords>true</usecontrolcoords>
@@ -469,7 +493,7 @@
                          </include>
                     </control>
                     <control type="grouplist">
-                        <include content="ClearArtInfoSub" condition="$SKINSHORTCUTS[isNormalLayout] + !Skin.HasSetting(homemenu.netflix) + !Skin.HasSetting(home.multiwidgets.hideclearart)">
+                        <include content="HomeClearArt" condition="$SKINSHORTCUTS[isNormalLayout] + !Skin.HasSetting(homemenu.netflix) + !Skin.HasSetting(home.multiwidgets.hideclearart)">
                             <param name="id" value="$PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]"/>
                             <param name="isfullscreenlayout" value="!$SKINSHORTCUTS[isFullscreenWidget] + !Skin.HasSetting(homemenu.netflix) + Integer.IsEqual(Container($PYTHON[int(mainmenuid) * 1000 + 301]).NumItems,1)" />
                         </include>

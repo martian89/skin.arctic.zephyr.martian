@@ -292,6 +292,81 @@
         </control>
     </include>
 
+    <include name="Widget_Navigation_Arrows">
+        <control type="group">
+            <include>Animation.DelayFadeIn600</include>
+            <include>Animation.FadeOut</include>
+            <visible>Integer.IsGreater(Container($PARAM[groupid]).NumItems,1) + ControlGroup(301).HasFocus()</visible>
+            <visible>!$EXP[InfoDialogsActive]</visible>
+            <right>SidePad</right>
+            <control type="group">
+                <top>388</top>
+                <visible>Container($PARAM[groupid]).HasNext</visible>
+                <include>Animation.DelayFadeIn300</include>
+                <include>Animation.FadeOut</include>
+                <control type="image">
+                    <right>4</right>
+                    <include>arrowdimensions</include>
+                    <texture colordiffuse="Dark2">common/arrow-small.png</texture>
+                </control>
+            </control>
+            <control type="group">
+                <top>388</top>
+                <visible>!Container($PARAM[groupid]).HasNext</visible>
+                <include>Animation.DelayFadeIn300</include>
+                <include>Animation.FadeOut</include>
+                <control type="image">
+                    <right>4</right>
+                    <include>arrowdimensions</include>
+                    <texture colordiffuse="Dark2" flipy="true">common/arrow-small.png</texture>
+                </control>
+            </control>
+            <control type="group">
+                <top>362</top>
+                <visible>Container($PARAM[groupid]).HasPrevious</visible>
+                <include>Animation.DelayFadeIn300</include>
+                <include>Animation.FadeOut</include>
+                <control type="image">
+                    <top>13</top>
+                    <right>4</right>
+                    <include>arrowdimensions</include>
+                    <texture colordiffuse="Dark2" flipy="true">common/arrow-small.png</texture>
+                </control>
+            </control>
+            <control type="group">
+                <top>362</top>
+                <visible>!Container($PARAM[groupid]).HasPrevious</visible>
+                <include>Animation.DelayFadeIn300</include>
+                <include>Animation.FadeOut</include>
+                <control type="image">
+                    <top>13</top>
+                    <right>4</right>
+                    <include>arrowdimensions</include>
+                    <texture colordiffuse="Dark2" flipy="false">common/arrow-small.png</texture>
+                </control>
+            </control>
+        </control>
+    </include>
+
+    <include name="Widget_Items_Count">
+        <control type="group">
+            <include>Animation.DelayFadeIn600</include>
+            <include>Animation.FadeOut</include>
+            <animation effect="slide" start="0" end="-35,0" time="0" condition="Integer.IsGreater(Container($PARAM[groupid]).NumItems,1)">Conditional</animation>
+            <visible>!$EXP[InfoDialogsActive] + ControlGroup(301).HasFocus</visible>
+            <control type="label">
+                <include>Animation.DelayFadeIn300</include>
+                <align>right</align>
+                <right>SidePad</right>
+                <top>356</top>
+                <font>TinyBold</font>
+                <width>250</width>
+                <textcolor>Dark2</textcolor>
+                <label>$INFO[Window(home).Property(ContainerPosition)]</label>
+            </control>
+        </control>
+    </include>
+
     <!-- Normal Layout -->
     <include name="Widget_Layout_Normal">
         <param name="Banner" default="false"/>

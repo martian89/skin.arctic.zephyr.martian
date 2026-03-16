@@ -2225,7 +2225,6 @@
         <!-- Furniture -->
         <include>Furniture_Clock</include>
         <include>Furniture_Home_Flags</include>
-        <include>WidgetsNavigationArrows</include>
         <control type="group">
             <animation effect="slide" start="0" end="-100" time="0" delay="0" condition="Skin.HasSetting(homemenu.only.icons) + Skin.HasSetting(home.showicons)">Conditional</animation>
             <animation effect="slide" start="0" end="-450" time="300" delay="0" center="auto" tween="sine" easing="out" condition="ControlGroup(301).HasFocus + ![Skin.HasSetting(homemenu.only.icons) + Skin.HasSetting(home.showicons)]">Conditional</animation>
@@ -2349,8 +2348,6 @@
     </include>
 
     <include name="HomeWidgetInfoWidgets">
-        <include>WidgetsNavigationArrows</include>
-        <include>WidgetsItemsCount</include>
         <control type="group">
             <include condition="Skin.HasSetting(homemenu.clean.flix) + !Skin.HasSetting(homemenu.clean.flix.no.slide)">Animation.Home.Clean</include>
             <!-- Widget -->
@@ -2367,7 +2364,7 @@
                 </include>
                 <height>770</height>
                 <bottom>170</bottom>
-                <width>1900</width>
+                <width>1920</width>
                 <include>skinshortcuts-template-widgets</include>
                 <include>skinshortcuts-template-spotlight</include>
             </control>
@@ -2479,6 +2476,49 @@
             <param name="isfullscreenlayout" value="$PARAM[isfullscreenlayout]"/>
         </include>
         </definition>
+    </include>
+
+    <include name="HomeClearArt">
+        <top>-232</top>
+        <width>400</width>
+        <right>SidePad</right>
+        <animation effect="slide" start="0" end="0,-40" time="0" condition="Skin.HasSetting(show.reflections)">Conditional</animation>
+
+        <!-- Artists -->
+        <control type="image" description="clearart">
+            <include content="ClearArtHomeImageContainer">
+                <param name="isfullscreenlayout" value="$PARAM[isfullscreenlayout]" />
+            </include>
+            <texture background="true">$INFO[Container($PARAM[id]).ListItem.Art(clearart)]</texture>
+            <visible>String.IsEqual(Container($PARAM[id]).ListItem.DBType,artist)</visible>
+        </control>
+
+        <!-- Albums and Songs -->
+        <control type="image" description="clearart">
+            <include content="ClearArtHomeImageContainer">
+                <param name="isfullscreenlayout" value="$PARAM[isfullscreenlayout]" />
+            </include>
+            <texture background="true">$INFO[Container($PARAM[id]).ListItem.Art(artist.clearart)]</texture>
+            <visible>String.IsEqual(Container($PARAM[id]).ListItem.DBType,album) | String.IsEqual(Container($PARAM[id]).ListItem.DBType,song)</visible>
+        </control>
+
+        <!-- PVR -->
+        <control type="image" description="clearart">
+            <include content="ClearArtHomeImageContainer">
+                <param name="isfullscreenlayout" value="$PARAM[isfullscreenlayout]" />
+            </include>
+            <texture background="true">$INFO[Window(Home).Property(TMDbHelper.ListItem.clearart)]</texture>
+            <visible>String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://)</visible>
+        </control>
+
+        <!-- All Other -->
+        <control type="image" description="clearart">
+            <include content="ClearArtHomeImageContainer">
+                <param name="isfullscreenlayout" value="$PARAM[isfullscreenlayout]" />
+            </include>
+            <texture background="true">$INFO[Container($PARAM[id]).ListItem.Art(clearart)]</texture>
+            <visible>!String.IsEqual(Container($PARAM[id]).ListItem.DBType,artist) + !String.IsEqual(Container($PARAM[id]).ListItem.DBType,album) + !String.IsEqual(Container($PARAM[id]).ListItem.DBType,song) + !String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://)</visible>
+        </control>
     </include>
 
     <include name="IndicatorCleanHome">
@@ -2919,130 +2959,4 @@
         </control>
     </include>
 
-    <include name="ClearArtInfoSub">
-        <top>-232</top>
-        <width>400</width>
-        <right>SidePad</right>
-        <visible>!Skin.HasSetting(homemenu.netflix) + !Skin.HasSetting(home.multiwidgets.hideclearart)</visible>
-        <animation effect="slide" start="0" end="0,-40" time="0" condition="Skin.HasSetting(show.reflections)">Conditional</animation>
-
-        <!-- Artists -->
-        <control type="image" description="clearart">
-            <include content="ClearArtHomeImageContainer">
-                <param name="isfullscreenlayout" value="$PARAM[isfullscreenlayout]" />
-            </include>
-            <texture background="true">$INFO[Container($PARAM[id]).ListItem.Art(clearart)]</texture>
-            <visible>String.IsEqual(Container($PARAM[id]).ListItem.DBType,artist)</visible>
-        </control>
-
-        <!-- Albums and Songs -->
-        <control type="image" description="clearart">
-            <include content="ClearArtHomeImageContainer">
-                <param name="isfullscreenlayout" value="$PARAM[isfullscreenlayout]" />
-            </include>
-            <texture background="true">$INFO[Container($PARAM[id]).ListItem.Art(artist.clearart)]</texture>
-            <visible>String.IsEqual(Container($PARAM[id]).ListItem.DBType,album) | String.IsEqual(Container($PARAM[id]).ListItem.DBType,song)</visible>
-        </control>
-
-        <!-- PVR -->
-        <control type="image" description="clearart">
-            <include content="ClearArtHomeImageContainer">
-                <param name="isfullscreenlayout" value="$PARAM[isfullscreenlayout]" />
-            </include>
-            <texture background="true">$INFO[Window(Home).Property(TMDbHelper.ListItem.clearart)]</texture>
-            <visible>String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://)</visible>
-        </control>
-
-        <!-- All Other -->
-        <control type="image" description="clearart">
-            <include content="ClearArtHomeImageContainer">
-                <param name="isfullscreenlayout" value="$PARAM[isfullscreenlayout]" />
-            </include>
-            <texture background="true">$INFO[Container($PARAM[id]).ListItem.Art(clearart)]</texture>
-            <visible>!String.IsEqual(Container($PARAM[id]).ListItem.DBType,artist) + !String.IsEqual(Container($PARAM[id]).ListItem.DBType,album) + !String.IsEqual(Container($PARAM[id]).ListItem.DBType,song) + !String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://)</visible>
-        </control>
-    </include>
-
-    <include name="WidgetsNavigationArrows">
-        <control type="group">
-            <include>Animation.DelayFadeIn600</include>
-            <include>Animation.FadeOut</include>
-            <include condition="!Skin.HasSetting(widgets.fade)">Animation.Vertical.Widgets.Label</include>
-            <animation effect="slide" start="0" end="0,248" time="0" condition="Skin.HasSetting(homemenu.clean.flix) + Skin.HasSetting(homemenu.clean.flix.no.slide)">Conditional</animation>
-            <animation effect="slide" start="0" end="0,460" time="0" condition="Skin.HasSetting(homemenu.clean.flix) + !Skin.HasSetting(homemenu.clean.flix.no.slide)">Conditional</animation>
-          	<animation effect="slide" start="0" end="0,-10" time="0" condition="Skin.HasSetting(home.vertical.widgets)">Conditional</animation>
-            <visible>Integer.IsGreater(Container(301).NumItems,1) + ControlGroup(301).HasFocus()</visible>
-            <visible>!$EXP[InfoDialogsActive]</visible>
-            <right>SidePad</right>
-            <control type="group">
-                <top>538</top>
-                <visible>Container(301).HasNext</visible>
-                <include>Animation.DelayFadeIn300</include>
-                <include>Animation.FadeOut</include>
-                <control type="image">
-                    <right>4</right>
-                    <include>arrowdimensions</include>
-                    <texture colordiffuse="Dark2">common/arrow-small.png</texture>
-                </control>
-            </control>
-            <control type="group">
-                <top>538</top>
-                <visible>!Container(301).HasNext</visible>
-                <include>Animation.DelayFadeIn300</include>
-                <include>Animation.FadeOut</include>
-                <control type="image">
-                    <right>4</right>
-                    <include>arrowdimensions</include>
-                    <texture colordiffuse="Dark2" flipy="true">common/arrow-small.png</texture>
-                </control>
-            </control>
-            <control type="group">
-                <top>512</top>
-                <visible>Container(301).HasPrevious</visible>
-                <include>Animation.DelayFadeIn300</include>
-                <include>Animation.FadeOut</include>
-                <control type="image">
-                    <top>13</top>
-                    <right>4</right>
-                    <include>arrowdimensions</include>
-                    <texture colordiffuse="Dark2" flipy="true">common/arrow-small.png</texture>
-                </control>
-            </control>
-            <control type="group">
-                <top>512</top>
-                <visible>!Container(301).HasPrevious</visible>
-                <include>Animation.DelayFadeIn300</include>
-                <include>Animation.FadeOut</include>
-                <control type="image">
-                    <top>13</top>
-                    <right>4</right>
-                    <include>arrowdimensions</include>
-                    <texture colordiffuse="Dark2" flipy="false">common/arrow-small.png</texture>
-                </control>
-            </control>
-        </control>
-    </include>
-
-    <include name="WidgetsItemsCount">
-        <control type="group">
-            <include>Animation.DelayFadeIn600</include>
-            <include>Animation.FadeOut</include>
-            <include condition="!Skin.HasSetting(widgets.fade)">Animation.Vertical.Widgets.Label</include>
-            <animation effect="slide" start="0" end="0,248" time="0" condition="Skin.HasSetting(homemenu.clean.flix.no.slide)">Conditional</animation>
-            <animation effect="slide" start="0" end="0,460" time="0" condition="!Skin.HasSetting(homemenu.clean.flix.no.slide)">Conditional</animation>
-            <animation effect="slide" start="0" end="30,0" time="0" condition="Integer.IsEqual(Container(301).NumItems,1)">Conditional</animation>
-            <visible>Skin.HasSetting(homemenu.clean.flix)</visible>
-            <visible>!$EXP[InfoDialogsActive] + ControlGroup(301).HasFocus</visible>
-            <control type="label">
-                <include>Animation.DelayFadeIn300</include>
-                <align>right</align>
-                <right>115</right>
-                <top>496</top>
-                <font>TinyBold</font>
-                <width>250</width>
-                <textcolor>Dark2</textcolor>
-                <label>$INFO[Window(home).Property(ContainerPosition)]</label>
-            </control>
-        </control>
-    </include>
 </includes>
