@@ -2202,6 +2202,20 @@
         </control>      
     </include>    
     
+    <expression name="Widget_HasStaticContent">
+        String.StartsWith(Container(211).ListItem.Property(Path),weather)
+        | String.IsEqual(Container(211).ListItem.Property(Path),submenu)
+        | String.IsEqual(Container(211).ListItem.Property(Path),syteminfo)
+        | String.IsEqual(Container(211).ListItem.Property(Path),settings)
+    </expression>
+    
+    <expression name="Widget_HasFixedAspect">
+        String.IsEqual(Container(211).ListItem.Label2,tvguide)
+        | String.IsEqual(Container(211).ListItem.Property(Path),submenu)
+        | String.IsEqual(Container(211).ListItem.Property(Path),syteminfo)
+        | String.IsEqual(Container(211).ListItem.Property(Path),settings)
+    </expression>
+
     <expression name="Skinshortcuts_Mainmenu_Active">String.IsEqual(Window.Property(groupname),mainmenu) | String.IsEmpty(Window.Property(groupname))</expression>
     <expression name="Skinshortcuts_Widgets_Active">String.EndsWith(Window.Property(groupname),.1)</expression>
 
@@ -2218,10 +2232,10 @@
     </include>
 
     <variable name="Skinshortcuts_ContentType">
-        <value condition="String.IsEqual(Container(211).ListItem.Label2,$LOCALIZE[32014])">videos</value>
-        <value condition="String.IsEqual(Container(211).ListItem.Label2,$LOCALIZE[32019])">music</value>
-        <value condition="String.IsEqual(Container(211).ListItem.Label2,$LOCALIZE[32021]))">programs</value>
-        <value condition="String.IsEqual(Container(211).ListItem.Label2,$LOCALIZE[32020]))">pictures</value>
+        <value condition="String.IsEqual(Container(211).ListItem.Label2,$LOCALIZE[3])">videos</value>
+        <value condition="String.IsEqual(Container(211).ListItem.Label2,$LOCALIZE[2])">music</value>
+        <value condition="String.IsEqual(Container(211).ListItem.Label2,$LOCALIZE[0])">programs</value>
+        <value condition="String.IsEqual(Container(211).ListItem.Label2,$LOCALIZE[1])">pictures</value>
         <value condition="String.Contains(Container(211).ListItem.Property(path),Videos)">videos</value>
         <value condition="String.Contains(Container(211).ListItem.Property(path),Music)">music</value>
         <value condition="String.Contains(Container(211).ListItem.Property(path),Programs)">programs</value>
