@@ -4388,7 +4388,7 @@
 		        <onclick condition="!String.IsEqual(Container(211).ListItem.Property(widgetFullscreen),yes)">SetProperty(customValue,yes)</onclick>
 		        <onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetFullscreen),yes)">SetProperty(customValue,)</onclick>
 		        <onclick>SendClick(404)</onclick>
-		        <enable>!String.IsEqual(Container(211).ListItem.Property(widgetPath),submenu)</enable>
+		        <enable>!String.IsEqual(Container(211).ListItem.Property(Path),submenu)</enable>
 		        <visible>Skin.HasSetting(home.vertical.widgets) + !Skin.HasSetting(homemenu.netflix)</visible>
                 <visible>$PARAM[visible]</visible>
 		    </control>
@@ -4396,7 +4396,7 @@
 		        <label>31261</label>
 		        <label2>$VAR[Label_Widget_Aspect]</label2>
 		        <include>Def_Skinshortcuts_Buttons</include>
-                <enable>!$EXP[Widget_HasFixedAspect]</enable>
+                <visible>!$EXP[Widget_HasFixedAspect]</visible>
                 <visible>!Skin.HasSetting(homemenu.clean.flix)</visible>
                 <visible>$PARAM[visible]</visible>
 		    </control>
@@ -4435,14 +4435,14 @@
                 <label2>$VAR[Label_Widget_Content]</label2>
                 <include>Def_Skinshortcuts_Buttons</include>
                 <include>Skinshortcuts_ContentType_AutoSetOnFocus</include>
-                <enable>!$EXP[Widget_HasStaticContent]</enable>
+                <visible>!$EXP[Widget_HasStaticContent]</visible>
                 <visible>$PARAM[visible]</visible>
             </control>
 		    <control type="button" id="$PARAM[baseid]16" description="Widget SortBy">
 		        <label>581</label>
 		        <label2>$VAR[Label_Widget_SortBy]</label2>
 		        <include>Def_Skinshortcuts_Buttons</include>
-                <enable>!$EXP[Widget_HasStaticContent]</enable>
+                <visible>!$EXP[Widget_HasStaticContent]</visible>
                 <visible>$PARAM[visible]</visible>
 		    </control>
 		    <control type="button" id="$PARAM[baseid]17">
@@ -4450,14 +4450,14 @@
 		        <include>Def_Skinshortcuts_Buttons</include>
 		        <label>580</label>
 		        <label2>$VAR[Label_Widget_Sort]</label2>
-                <enable>!$EXP[Widget_HasStaticContent]</enable>
+                <visible>!$EXP[Widget_HasStaticContent]</visible>
                 <visible>$PARAM[visible]</visible>
 		    </control>
             <control type="button" id="$PARAM[baseid]18">
                 <include>Def_Skinshortcuts_Buttons</include>
                 <label>$LOCALIZE[31822]</label>
                 <label2>$VAR[Label_Widget_Limit]</label2>
-                <enable>!$EXP[Widget_HasStaticContent]</enable>
+                <visible>!$EXP[Widget_HasStaticContent]</visible>
                 <visible>$PARAM[visible]</visible>
             </control>
 		    <control type="radiobutton" id="$PARAM[baseid]19">
@@ -4466,6 +4466,7 @@
 		        <include>Def_Skinshortcuts_Buttons</include>
 		        <label>31235</label>
                 <visible>Skin.HasSetting(home.vertical) + !Skin.HasSetting(home.vertical.widgets)</visible>
+                <visible>!$EXP[Widget_HasStaticContent]</visible>
                 <visible>$PARAM[visible]</visible>
 		    </control>
 		    <control type="radiobutton" id="$PARAM[baseid]20" description="Prevent reload">
@@ -4476,8 +4477,8 @@
 		        <onclick condition="!String.IsEqual(Container(211).ListItem.Property(widgetSortBy),userpreference)">SetProperty(customValue,userpreference)</onclick>
 		        <onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetSortBy),userpreference)">ClearProperty(customValue)</onclick>
 		        <onclick>SendClick(404)</onclick>
-                <enable>!$EXP[Widget_HasStaticContent]</enable>
                 <enable>String.IsEmpty(Container(211).ListItem.Property(widgetSortby)) | String.IsEqual(Container(211).ListItem.Property(widgetSortby),userpreference)</enable>
+                <visible>!$EXP[Widget_HasStaticContent]</visible>
                 <visible>$PARAM[visible]</visible>
 		    </control>    
         </definition>
