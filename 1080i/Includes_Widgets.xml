@@ -1871,7 +1871,7 @@
     <include name="MultiWidgetsPlotLabel">
         <control type="grouplist">
             <height>$PARAM[plotmaxheight]</height>
-            <visible>!String.IsEmpty(Container($PARAM[id]).ListItem.Property(Album_Description)) | !String.IsEmpty(Container($PARAM[id]).ListItem.Plot) | !String.IsEmpty(Container($PARAM[id]).ListItem.Property(Artist_Description)) | !String.IsEmpty(Container($PARAM[id]).ListItem.AddonDescription) | String.IsEqual(Container($PARAM[id]).ListItem.DBType,actor) | String.IsEqual(Container($PARAM[id]).ListItem.DBType,file)</visible>
+            <visible>!String.IsEmpty(Container($PARAM[id]).ListItem.Property(Album_Description)) | !String.IsEmpty(Container($PARAM[id]).ListItem.Plot) | !String.IsEmpty(Container($PARAM[id]).ListItem.Property(Artist_Description)) | !String.IsEmpty(Container($PARAM[id]).ListItem.AddonDescription) | !String.IsEmpty(Window(home).Property(TMDbHelper.ListItem.Biography)) | String.IsEqual(Container($PARAM[id]).ListItem.DBType,file)</visible>
             <include content="def_width" condition="Skin.HasSetting(homemenu.netflix)">
                 <param name="width" value="100%" />
             </include>
@@ -1949,7 +1949,7 @@
                 <include content="MultiWidgetsPlotLabelDefinition">
                     <param name="maxheight" value="$PARAM[plotmaxheight]" />
                 </include>
-                <label fallback="19055">$INFO[Container(44422).ListItemAbsolute(0).Label,$LOCALIZE[31817]: ]$INFO[Container(44422).ListItemAbsolute(1).Label,$COMMA ]$INFO[Container(44422).ListItemAbsolute(2).Label,$COMMA ]$INFO[Container(44422).ListItemAbsolute(3).Label,$COMMA ]$INFO[Container(44422).ListItemAbsolute(4).Label,$COMMA ]$INFO[Container(44422).ListItemAbsolute(5).Label,$COMMA ]</label>
+                <label>$INFO[Window(home).Property(TMDbHelper.ListItem.Biography)]</label>
                 <visible>String.IsEqual(Container($PARAM[id]).ListItem.DBType,actor)</visible>
             </control>
             
@@ -1968,7 +1968,7 @@
                     <param name="maxheight" value="$PARAM[plotmaxheight]" />
                 </include>
                 <label>$INFO[Container($PARAM[id]).ListItem.Plot]</label>
-                <visible>![[String.IsEqual(Container($PARAM[id]).ListItem.DBType,set) | String.IsEqual(Container($PARAM[id]).ListItem.DBType,movie) | String.IsEqual(Container($PARAM[id]).ListItem.DBType,episode) | String.IsEqual(Container($PARAM[id]).ListItem.DBType,tvshow)] + !String.IsEmpty(Container($PARAM[id]).ListItem.Plot)] + ![String.IsEqual(Container($PARAM[id]).ListItem.DBType,album) + !String.IsEmpty(Container($PARAM[id]).ListItem.Property(Album_Description))] + ![String.IsEqual(Container($PARAM[id]).ListItem.DBType,artist) + !String.IsEmpty(Container($PARAM[id]).ListItem.Property(Artist_Description))] + ![String.IsEqual(Container($PARAM[id]).ListItem.DBType,song) + ControlGroup(301).HasFocus()] + ![String.IsEqual(Container($PARAM[id]).ListItem.DBType,song) + !ControlGroup(301).HasFocus() + !String.IsEmpty(Container($PARAM[id]).ListItem.Property(Artist_Description))]+ ![!String.IsEmpty(Container($PARAM[id]).ListItem.AddonDescription) + !String.IsEmpty(Container($PARAM[id]).ListItem.AddonDescription)] + ![String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://)]</visible>
+                <visible>![[String.IsEqual(Container($PARAM[id]).ListItem.DBType,set) | String.IsEqual(Container($PARAM[id]).ListItem.DBType,movie) | String.IsEqual(Container($PARAM[id]).ListItem.DBType,episode) | String.IsEqual(Container($PARAM[id]).ListItem.DBType,tvshow)] + !String.IsEmpty(Container($PARAM[id]).ListItem.Plot)] + ![String.IsEqual(Container($PARAM[id]).ListItem.DBType,album) + !String.IsEmpty(Container($PARAM[id]).ListItem.Property(Album_Description))] + ![String.IsEqual(Container($PARAM[id]).ListItem.DBType,artist) + !String.IsEmpty(Container($PARAM[id]).ListItem.Property(Artist_Description))] + ![String.IsEqual(Container($PARAM[id]).ListItem.DBType,song) + ControlGroup(301).HasFocus()] + ![String.IsEqual(Container($PARAM[id]).ListItem.DBType,song) + !ControlGroup(301).HasFocus() + !String.IsEmpty(Container($PARAM[id]).ListItem.Property(Artist_Description))]+ ![!String.IsEmpty(Container($PARAM[id]).ListItem.AddonDescription) + !String.IsEmpty(Container($PARAM[id]).ListItem.AddonDescription)] + ![String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://)] + !String.IsEqual(Container($PARAM[id]).ListItem.DBType,actor)</visible>
             </control>
         </control>
     </include>
@@ -2154,7 +2154,7 @@
                     <param name="id" value="$PARAM[id]" />
                 </include>
             </control>
-                        
+
             <!-- Sets -->
             <control type="label">
                 <include>MultiWidgetsSubLabelDefinition</include>
@@ -2222,7 +2222,38 @@
                 <label>$INFO[Container($PARAM[id]).ListItem.AddonVersion,v]</label>
                 <visible>!String.IsEmpty(Container($PARAM[id]).ListItem.AddonDescription)</visible>
             </control>
-            
+
+            <!-- Actor -->
+            <control type="grouplist">
+                <itemgap>0</itemgap>
+                <visible>String.IsEqual(Container($PARAM[id]).ListItem.DBType,actor)</visible>
+                <orientation>horizontal</orientation>
+                <height>36</height>
+                <usecontrolcoords>true</usecontrolcoords>
+                <control type="label">
+                    <include>MultiWidgetsSubLabelDefinition</include>
+                    <label>$INFO[Window(home).Property(TMDbHelper.ListItem.Gender)]</label>
+                </control>
+                <control type="label">
+                    <include>MultiWidgetsSubLabelDefinition</include>
+                    <label>  •  </label>
+                    <visible>!String.IsEmpty(Window(home).Property(TMDbHelper.ListItem.Gender)) + !String.IsEmpty(Window(home).Property(TMDbHelper.ListItem.Age))</visible>
+                </control>
+                <control type="label">
+                    <include>MultiWidgetsSubLabelDefinition</include>
+                    <label>$INFO[Window(home).Property(TMDbHelper.ListItem.Age),, $LOCALIZE[652]]</label>
+                </control>
+                <control type="label">
+                    <include>MultiWidgetsSubLabelDefinition</include>
+                    <label>  •  </label>
+                    <visible>[!String.IsEmpty(Window(home).Property(TMDbHelper.ListItem.Gender)) | !String.IsEmpty(Window(home).Property(TMDbHelper.ListItem.Age))] + !String.IsEmpty(Window(home).Property(TMDbHelper.ListItem.Department))</visible>
+                </control>
+                <control type="label">
+                    <include>MultiWidgetsSubLabelDefinition</include>
+                    <label>$VAR[LabelDepartment]</label>
+                </control>
+            </control>
+                                    
             <!-- PVR -->
             <control type="label" description="Duration">
                 <include>MultiWidgetsSubLabelDefinition</include>

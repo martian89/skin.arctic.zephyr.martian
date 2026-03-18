@@ -421,7 +421,7 @@
         <value condition="!String.IsEmpty(ListItem.Plot)">$INFO[ListItem.Plot]</value>
         <value condition="!String.IsEmpty(Container(301).ListItem.Plot)">$INFO[Container(301).ListItem.Plot]</value>
         <value condition="!String.IsEmpty(Container(301).ListItem.AddonDescription)">$INFO[Container(301).ListItem.AddonDescription]</value>
-        <value condition="String.Contains(Container(300).ListItem.Property(widgetType),actors) + Control.IsVisible(44422) + !String.IsEmpty(Container(44422).ListItemAbsolute(0).Label)">$INFO[Container(44422).ListItemAbsolute(0).Label,$LOCALIZE[31817]: ]$INFO[Container(44422).ListItemAbsolute(1).Label,$COMMA ]$INFO[Container(44422).ListItemAbsolute(2).Label,$COMMA ]</value>
+        <value condition="String.Contains(Container(300).ListItem.Property(widgetType),actors) + !String.IsEmpty(Window(home).Property(TMDbHelper.ListItem.Biography))">$INFO[Window(home).Property(TMDbHelper.ListItem.Biography)]</value>
         <value>$LOCALIZE[19055]</value>
     </variable>
 
@@ -444,6 +444,7 @@
 
     <variable name="WidgetSubLabel">
         <value condition="String.IsEqual(Container(300).ListItem.Property(widget),NextAired)"/>
+        <value condition="String.Contains(Container(300).ListItem.Property(widgetType),actors)">$INFO[Window(home).Property(TMDbHelper.ListItem.Gender)]$INFO[Window(home).Property(TMDbHelper.ListItem.Age),  •  , $LOCALIZE[652]]$VAR[LabelDepartment,  •  ]</value>
         <value condition="String.Contains(Container(300).ListItem.Property(widgetType),artists) + !String.IsEmpty(Container(301).ListItem.Property(Artist_Style))">$INFO[Container(301).ListItem.Property(Artist_Style)]</value>
         <value condition="String.Contains(Container(300).ListItem.Property(widgetType),artists) + String.IsEmpty(Container(301).ListItem.Property(Artist_Style))">$INFO[Container(301).ListItem.Artist]</value>
         <value condition="String.Contains(Container(300).ListItem.Property(widgetType),albums) | String.IsEqual(Container(301).ListItem.DBType,album)">$INFO[Container(301).ListItem.Artist]$INFO[Container(301).ListItem.Year,  •  ,]$INFO[Container(44022).NumItems,  •  , $LOCALIZE[134]]</value>
@@ -943,14 +944,15 @@
 
     <!-- Person Info Department -->
     <variable name="LabelDepartment">
-        <value condition="String.IsEqual(ListItem.Property(Department),Acting)">$LOCALIZE[31947]</value>
-        <value condition="String.IsEqual(ListItem.Property(Department),Directing)">$LOCALIZE[31948]</value>
-        <value condition="String.IsEqual(ListItem.Property(Department),Writing)">$LOCALIZE[31949]</value>
-        <value condition="String.IsEqual(ListItem.Property(Department),Production)">$LOCALIZE[31950]</value>
-        <value condition="String.IsEqual(ListItem.Property(Department),Sound)">$LOCALIZE[31951]</value>
-        <value condition="String.IsEqual(ListItem.Property(Department),Crew)">$LOCALIZE[31227]</value>
-        <value condition="String.IsEqual(ListItem.Property(Department),Creator)">$LOCALIZE[31952]</value>
-        <value>ListItem.Property(Department)</value>
+        <value condition="String.IsEqual(ListItem.Property(Department),Acting) | String.IsEqual(Window(home).Property(TMDbHelper.ListItem.Department),Acting)">$LOCALIZE[31947]</value>
+        <value condition="String.IsEqual(ListItem.Property(Department),Directing) | String.IsEqual(Window(home).Property(TMDbHelper.ListItem.Department),Directing)">$LOCALIZE[31948]</value>
+        <value condition="String.IsEqual(ListItem.Property(Department),Writing) | String.IsEqual(Window(home).Property(TMDbHelper.ListItem.Department),Writing)">$LOCALIZE[31949]</value>
+        <value condition="String.IsEqual(ListItem.Property(Department),Production) | String.IsEqual(Window(home).Property(TMDbHelper.ListItem.Department),Production)">$LOCALIZE[31950]</value>
+        <value condition="String.IsEqual(ListItem.Property(Department),Sound) | String.IsEqual(Window(home).Property(TMDbHelper.ListItem.Department),Sound)">$LOCALIZE[31951]</value>
+        <value condition="String.IsEqual(ListItem.Property(Department),Crew) | String.IsEqual(Window(home).Property(TMDbHelper.ListItem.Department),Crew)">$LOCALIZE[31227]</value>
+        <value condition="String.IsEqual(ListItem.Property(Department),Creator) | String.IsEqual(Window(home).Property(TMDbHelper.ListItem.Department),Creator)">$LOCALIZE[31952]</value>
+        <value condition="!String.IsEmpty(ListItem.Property(Department))">$INFO[ListItem.Property(Department)]</value>
+        <value>$INFO[Window(home).Property(TMDbHelper.ListItem.Department)]</value>
     </variable>
 
     <variable name="LabelArtistAlbumDescription">
