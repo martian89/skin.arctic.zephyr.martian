@@ -1973,51 +1973,8 @@
                     <animation effect="fade" start="100" end="0" time="0" reversible="false" condition="[![String.IsEqual(Container(300).ListItem.Property(widget),weatherdaily) | String.IsEqual(Container(300).ListItem.Property(widget),weatherhourly)] + [!Integer.IsGreater(Container(301).NumItems,0) | Container(301).IsUpdating]] | [!Weather.IsFetched + [String.IsEqual(Container(300).ListItem.Property(widget),weatherdaily) | String.IsEqual(Container(300).ListItem.Property(widget),weatherhourly)]]">Conditional</animation>
                     <animation effect="fade" start="0" end="100" time="0" reversible="false" condition="![[![String.IsEqual(Container(300).ListItem.Property(widget),weatherdaily) | String.IsEqual(Container(300).ListItem.Property(widget),weatherhourly)] + [!Integer.IsGreater(Container(301).NumItems,0) | Container(301).IsUpdating]] | [!Weather.IsFetched + [String.IsEqual(Container(300).ListItem.Property(widget),weatherdaily) | String.IsEqual(Container(300).ListItem.Property(widget),weatherhourly)]]]">Conditional</animation>
 
-                <!-- Widget Banner -->
-                    <control type="group">
-                        <visible>String.IsEqual(Container(300).ListItem.Property(widgetBanner),yes) + ![String.IsEqual(Container(300).ListItem.Property(widget),weatherdaily) | String.IsEqual(Container(300).ListItem.Property(widget),weatherhourly)]</visible>
-                        <animation effect="fade" start="100" end="66" time="400" condition="!Control.HasFocus(301)">Conditional</animation>
-                        <top>238</top>
-                        <right>100</right>
-                        <control type="image">
-                            <width>1230</width>
-                            <right>71</right>
-                            <top>-9</top>
-                            <height>250</height>
-                            <texture border="10" background="true" infill="false">common/$VAR[nofocus-shadow10]</texture>
-                        </control>
-                        <control type="image">
-                            <right>SidePad</right>
-                            <top>1</top>
-                            <width>1212</width>
-                            <height>230</height>
-                            <aspectratio scalediffuse="false">scale</aspectratio>
-                            <fadetime>PosterFanartFadetime</fadetime>
-                            <texture diffuse="diffuse/poster-right.png" border="3" background="true" fallback="DefaultMovies.png">$VAR[BannerImage301]</texture>
-                        </control>
-                        <control type="image">
-                            <width>1214</width>
-                            <right>79</right>
-                            <height>232</height>
-                            <texture border="4" colordiffuse="Box2" infill="false">common/box21.png</texture>
-                            <visible>Skin.HasSetting(global.showborders)</visible>
-                        </control>
-
-                        <!-- ClearLogo Fallback -->
-                        <control type="image">
-                            <visible>String.IsEmpty(Container(301).ListItem.Art(banner)) + String.IsEmpty(Container(301).ListItem.Art(tvshow.banner))</visible>
-                            <right>100</right>
-                            <top>80</top>
-                            <height>120</height>
-                            <aspectratio scalediffuse="false" align="right" aligny="bottom">keep</aspectratio>
-                            <fadetime>PosterFanartFadetime</fadetime>
-                            <texture background="true">$VAR[ClearLogoHome]</texture>
-                        </control>
-                    </control>
-
                     <!-- Widget Text -->
                     <control type="label">
-                        <visible>!String.IsEqual(Container(300).ListItem.Property(widgetBanner),yes)</visible>
                         <font>SmallBold</font>
                         <right>70</right>
                         <width>1322</width>
@@ -2030,7 +1987,7 @@
                         <animation effect="fade" start="100" end="33" time="400" condition="!Control.HasFocus(301) + !Skin.HasSetting(widgets.fade)">Conditional</animation>
                     </control>
                     <control type="grouplist">
-                        <visible>!String.IsEqual(Container(300).ListItem.Property(widget),systeminfo) + ![String.IsEqual(Container(300).ListItem.Property(widget),weatherdaily) | String.IsEqual(Container(300).ListItem.Property(widget),weatherhourly)] + !String.IsEqual(Container(300).ListItem.Property(widgetBanner),yes)</visible>
+                        <visible>!String.IsEqual(Container(300).ListItem.Property(widget),systeminfo) + ![String.IsEqual(Container(300).ListItem.Property(widget),weatherdaily) | String.IsEqual(Container(300).ListItem.Property(widget),weatherhourly)]</visible>
                         <animation effect="fade" start="100" end="33" time="400" condition="!Control.HasFocus(301) + !Skin.HasSetting(widgets.fade)">Conditional</animation>
                         <animation effect="fade" start="0" end="100" time="350" tween="cubic" easing="inout">WindowOpen</animation>
                         <animation effect="fade" end="0" start="100" time="150">WindowClose</animation>
@@ -2063,7 +2020,7 @@
                         </control>
                     </control>
                     <control type="group">
-                        <visible>String.IsEqual(Container(300).ListItem.Property(widget),systeminfo) + !String.IsEqual(Container(300).ListItem.Property(widgetBanner),yes)</visible>
+                        <visible>String.IsEqual(Container(300).ListItem.Property(widget),systeminfo)</visible>
                         <animation effect="fade" start="100" end="33" time="400" condition="!Control.HasFocus(301) + !Skin.HasSetting(widgets.fade)">Conditional</animation>
                         <control type="grouplist">
                             <right>70</right>
@@ -2124,29 +2081,6 @@
                             </control>
                         </control>
                     </control>
-                    <control type="grouplist">
-                        <visible>String.IsEqual(Container(300).ListItem.Property(widgetBanner),yes) + ![String.IsEqual(Container(300).ListItem.Property(widget),weatherdaily) | String.IsEqual(Container(300).ListItem.Property(widget),weatherhourly)]</visible>
-                        <animation effect="fade" start="100" end="33" time="400" condition="!Control.HasFocus(301) + !Skin.HasSetting(widgets.fade)">Conditional</animation>
-                        <include>Animation.FadeIn</include>
-                        <include>Animation.FadeOut</include>
-                        <right>70</right>
-                        <width>1322</width>
-                        <orientation>vertical</orientation>
-                        <top>822</top>
-                        <itemgap>-20</itemgap>
-                        <control type="label">
-                            <font>MediumBold</font>
-                            <textcolor>Dark1</textcolor>
-                            <label>$VAR[WidgetTitle]</label>
-                        </control>
-                        <control type="label">
-                            <font>Tiny</font>
-                            <width>100%</width>
-                            <align>left</align>
-                            <textcolor>Dark2</textcolor>
-                            <label>$VAR[WidgetSubLabel]</label>
-                        </control>
-                    </control>
 
                     <!-- Weather Widget -->
                     <control type="group">
@@ -2188,7 +2122,6 @@
 
                 <!-- Widget -->
                     <control type="group">
-                        <animation effect="slide" start="0,0" end="0,148" time="0" condition="String.IsEqual(Container(300).ListItem.Property(widgetBanner),yes)">Conditional</animation>
                         <include>skinshortcuts-template-widget-vertical</include>
                     </control>
                 </control>
