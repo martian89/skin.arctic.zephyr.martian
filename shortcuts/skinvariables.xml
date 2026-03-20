@@ -2,14 +2,17 @@
 <includes>
 
     <variable name="LabelPercentWatched" containers="9500" start="-3" end="3">
-        <value condition="ListItem.IsPlaying">&#62811;</value>
-        <value condition="$EXP[IsInProgress{cid}{lid}]">$VAR[LabelInProgressPercentage{cid}{lid}]</value>
-        <value condition="$EXP[IsWatched{cid}{lid}]">[COLOR=WatchedProgress]&#62078;[/COLOR]</value>
-        <value condition="$EXP[IsNewContent{cid}{lid}]">[COLOR=$VAR[ColorHighlight]]&#62079;[/COLOR]</value>
-        <value condition="ListItem.HasVideoVersions + ![Container({id}).Content(videoversions) + !String.IsEqual(Container({id}).FolderPath,videodb://movies/videoversions/) | Container({id}).Content(videoassets) | Container({id}).Content(videoextras)]">&#63341;</value>
-        <value condition="ListItem.HasVideoExtras + ![Container({id}).Content(videoversions) + !String.IsEqual(Container({id}).FolderPath,videodb://movies/videoversions/) | Container({id}).Content(videoassets) | Container({id}).Content(videoextras)]">&#61754;</value>
-        <value condition="ListItem.IsCollection">&#59649;</value>
-        <value condition="$EXP[IsUnwatched{cid}{lid}]">&#61833;</value>
+        <value condition="ListItem.IsPlaying + !Skin.HasSetting(hide.markers.isplaying)">&#62811;</value>
+        <value condition="$EXP[IsInProgress{cid}{lid}] + !Skin.HasSetting(hide.markers.inprogress)">$VAR[LabelInProgressPercentage{cid}{lid}]</value>
+        <value condition="$EXP[IsWatched{cid}{lid}] + !Skin.HasSetting(hide.markers.watched)">[COLOR=WatchedProgress]&#62078;[/COLOR]</value>
+        <value condition="$EXP[IsNewContent{cid}{lid}] + !Skin.HasSetting(hide.markers.newcontent)">[COLOR=$VAR[ColorHighlight]]&#62079;[/COLOR]</value>
+        <value condition="$EXP[IsUnwatched{cid}{lid}] + !String.IsEmpty({listitem}.DBID) + Skin.HasSetting(markers.unwatched)">&#61833;</value>
+        <value condition="{listitem}.HasVideoVersions + ![Container({id}).Content(videoversions) + !String.IsEqual(Container({id}).FolderPath,videodb://movies/videoversions/) | Container({id}).Content(videoassets) | Container({id}).Content(videoextras)] + !Skin.HasSetting(hide.markers.versions)">&#63341;</value>
+        <value condition="{listitem}.HasVideoExtras + ![Container({id}).Content(videoversions) + !String.IsEqual(Container({id}).FolderPath,videodb://movies/videoversions/) | Container({id}).Content(videoassets) | Container({id}).Content(videoextras)] + !Skin.HasSetting(hide.markers.extras)">&#61754;</value>
+        <value condition="!String.IsEmpty({listitem}.Property(Item.Info)) + !String.IsEmpty({listitem}.DBID) + !Skin.HasSetting(hide.markers.library)">&#62698;</value>
+        <value condition="{listitem}.IsCollection + !Skin.HasSetting(hide.markers.collection)">&#59649;</value>
+        <value condition="{listitem}.IsFolder">&#59650;</value>
+        <value>&#62698;</value>
     </variable>
 
     <variable name="LabelInProgressPercentage" containers="9500" start="-3" end="3">
