@@ -340,12 +340,9 @@
                 <control type="radiobutton" id="162">
                     <include>DefContextButtonGradientSelect</include>
                     <label>31365</label>
-                    <selected>System.AddonIsEnabled(plugin.video.imdb.trailers) + Skin.HasSetting(Use.IMDB.Trailer)</selected>
-                    <onclick condition="!System.HasAddon(plugin.video.imdb.trailers)">InstallAddon(plugin.video.imdb.trailers)</onclick>
-                    <onclick condition="System.HasAddon(plugin.video.imdb.trailers) + !System.AddonIsEnabled(plugin.video.imdb.trailers)">EnableAddon(plugin.video.imdb.trailers)</onclick>
-                    <onclick condition="System.AddonIsEnabled(plugin.video.imdb.trailers)">Skin.Reset(Use.IMDB.Trailer)</onclick>                            
-                    <onclick condition="System.AddonIsEnabled(plugin.video.imdb.trailers) + !Skin.HasSetting(Use.IMDB.Trailer)">Skin.SetBool(Use.IMDB.Trailer)</onclick>
-                    <visible>Window.IsVisible(DialogVideoInfo.xml) + String.IsEmpty(Window(movieinformation).Property(personinformation))</visible>
+                    <selected>Skin.HasSetting(Use.IMDB.Trailer)</selected>
+                    <onclick>Skin.ToggleSetting(Use.IMDB.Trailer)</onclick>
+                    <visible>Window.IsVisible(DialogVideoInfo.xml) + String.IsEmpty(Window(movieinformation).Property(personinformation)) + System.AddonIsEnabled(plugin.video.imdb.trailers)</visible>
                 </control>
                 <control type="radiobutton" id="163">
                     <include>DefContextButtonGradientSelect</include>
