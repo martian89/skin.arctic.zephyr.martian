@@ -226,8 +226,7 @@
     </variable>
 
     <variable name="WidgetTitle">
-        <value condition="[String.IsEqual(Container(300).ListItem.Property(widget),weatherdaily) | String.IsEqual(Container(300).ListItem.Property(widget),weatherhourly)]">$INFO[Weather.Temperature]</value>
-        <value condition="String.IsEqual(Container(300).ListItem.Property(widget),system)">$INFO[Container(301).ListItem.Label]</value>
+        <value condition="String.IsEqual(Container(300).ListItem.Property(widget),weather)">$INFO[Weather.Temperature]</value>
         <value condition="String.IsEqual(Container(300).ListItem.Property(widget),NextAired) | String.IsEqual(Container(300).ListItem.Property(widget),Favourites)">$INFO[Container(301).ListItem.Label]</value>
         <value condition="String.IsEqual(Container(301).ListItem.DBType,episode) + $EXP[HomeIsSpotlight]">$INFO[Container(301).ListItem.Label]</value>
         <value condition="String.IsEqual(Container(301).ListItem.DBType,episode)">$INFO[Container(301).ListItem.Title]</value>
@@ -239,7 +238,7 @@
         <value condition="String.IsEqual(Container(300).ListItem.Property(widget),NextAired)">$INFO[Container(301).ListItem.Label2,,[CR]]$INFO[Container(301).ListItem.Property(Plot)]</value>
         <value condition="[String.Contains(Container(300).ListItem.Property(widgetType),music) | String.Contains(Container(300).ListItem.Property(widgetType),albums) | String.Contains(Container(300).ListItem.Property(widgetType),artists) | String.Contains(Container(300).ListItem.Property(widgetType),songs)] + !String.IsEmpty(Container(301).ListItem.Property(Album_Description))">$INFO[Container(301).ListItem.Property(Album_Description)]</value>
         <value condition="[String.Contains(Container(300).ListItem.Property(widgetType),music) | String.Contains(Container(300).ListItem.Property(widgetType),albums) | String.Contains(Container(300).ListItem.Property(widgetType),artists) | String.Contains(Container(300).ListItem.Property(widgetType),songs)] + !String.IsEmpty(Container(301).ListItem.Property(Artist_Description))">$INFO[Container(301).ListItem.Property(Artist_Description)]</value>
-        <value condition="[String.IsEqual(Container(300).ListItem.Property(widget),weatherdaily) | String.IsEqual(Container(300).ListItem.Property(widget),weatherhourly)]">$INFO[Window(Weather).Property(Current.Condition),,[CR]]$VAR[Weather_FeelsLike,$LOCALIZE[402] ,[CR]]$INFO[Window(Weather).Property(Current.Humidity),, $LOCALIZE[406][CR]]$INFO[Window(Weather).Property(Current.Wind)]</value>
+        <value condition="String.IsEqual(Container(300).ListItem.Property(widget),weather)">$INFO[Window(Weather).Property(Current.Condition),,[CR]]$VAR[Weather_FeelsLike,$LOCALIZE[402] ,[CR]]$INFO[Window(Weather).Property(Current.Humidity),, $LOCALIZE[406][CR]]$INFO[Window(Weather).Property(Current.Wind)]</value>
         <value condition="!String.IsEmpty(ListItem.Plot)">$INFO[ListItem.Plot]</value>
         <value condition="!String.IsEmpty(Container(301).ListItem.Plot)">$INFO[Container(301).ListItem.Plot]</value>
         <value condition="!String.IsEmpty(Container(301).ListItem.AddonDescription)">$INFO[Container(301).ListItem.AddonDescription]</value>
@@ -521,7 +520,7 @@
     </variable>
 
     <variable name="Label_Widget_Aspect">
-        <value condition="[String.IsEmpty(Container(211).ListItem.Property(widgetaspect)) | String.IsEqual(Container(211).ListItem.Property(widgetaspect),Poster)] + !String.IsEqual(Container(211).ListItem.Property(widget),mysubmenu)">$LOCALIZE[31262]</value>
+        <value condition="[String.IsEmpty(Container(211).ListItem.Property(widgetaspect)) | String.IsEqual(Container(211).ListItem.Property(widgetaspect),Poster)] + !String.IsEqual(Container(211).ListItem.Property(widget),submenu)">$LOCALIZE[31262]</value>
         <value condition="String.IsEqual(Container(211).ListItem.Property(widgetaspect),FanartSmall)">$LOCALIZE[31703]</value>
         <value condition="String.IsEqual(Container(211).ListItem.Property(widgetaspect),ThumbnailSmall)">$LOCALIZE[31704]</value>
         <value condition="String.IsEqual(Container(211).ListItem.Property(widgetaspect),ThumbnailPosterSmall)">$LOCALIZE[31705]</value>
@@ -529,7 +528,7 @@
         <value condition="String.IsEqual(Container(211).ListItem.Property(widgetaspect),SquareSmall)">$LOCALIZE[31406]</value>
         <value condition="String.IsEqual(Container(211).ListItem.Property(widgetaspect),SquareMedium)">$LOCALIZE[31407]</value>
         <value condition="String.IsEqual(Container(211).ListItem.Property(widgetaspect),Fanart)">$LOCALIZE[31462]</value>
-        <value condition="String.IsEqual(Container(211).ListItem.Property(widgetaspect),Banner) + [$EXP[HomeIsModernMultiWidgets] | $EXP[HomeIsVerticalMultiWidgets]]">$LOCALIZE[20020]</value>
+        <value condition="String.IsEqual(Container(211).ListItem.Property(widgetaspect),Banner)">$LOCALIZE[20020]</value>
         <value condition="String.IsEqual(Container(211).ListItem.Property(widgetaspect),Thumbnail)">$LOCALIZE[31265]</value>
     </variable>
 

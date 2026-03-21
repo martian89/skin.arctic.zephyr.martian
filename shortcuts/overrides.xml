@@ -24,16 +24,16 @@
     <!-- Widget Aspect -->
     <propertySettings property="widgetAspect" buttonID="9111" title="$LOCALIZE[31261]"/>
     <propertySettings property="widgetAspect" buttonID="9411" title="$LOCALIZE[31261]"/>
-    <property property="widgetAspect" label="$LOCALIZE[31262]" condition="!String.IsEqual(Container(211).ListItem.Property(widget),mysubmenu) + !String.IsEqual(Container(211).ListItem.Property(Path),submenu)">Poster</property>
+    <property property="widgetAspect" label="$LOCALIZE[31262]" condition="!String.IsEqual(Container(211).ListItem.Property(Path),submenu)">Poster</property>
     <property property="widgetAspect" label="$LOCALIZE[31263]">Square</property>
-    <property property="widgetAspect" label="$LOCALIZE[31462]" condition="!String.IsEqual(Container(211).ListItem.Property(widget),mysubmenu) + !String.IsEqual(Container(211).ListItem.Property(Path),submenu)">Fanart</property>
-    <property property="widgetAspect" label="$LOCALIZE[31265]" condition="!String.IsEqual(Container(211).ListItem.Property(widget),mysubmenu) + !String.IsEqual(Container(211).ListItem.Property(Path),submenu) + !String.Contains(Container(211).ListItem.Property(widget),weather) + !String.Contains(Container(211).ListItem.Property(Path),weather)">Thumbnail</property>
-    <property property="widgetAspect" label="$LOCALIZE[31703]" condition="!String.IsEqual(Container(211).ListItem.Property(widget),mysubmenu) + !String.IsEqual(Container(211).ListItem.Property(Path),submenu) + !String.Contains(Container(211).ListItem.Property(widget),weather) + !String.Contains(Container(211).ListItem.Property(Path),weather)">FanartSmall</property>
-    <property property="widgetAspect" label="$LOCALIZE[31704]" condition="!String.IsEqual(Container(211).ListItem.Property(widget),mysubmenu) + !String.IsEqual(Container(211).ListItem.Property(Path),submenu) + !String.Contains(Container(211).ListItem.Property(widget),weather) + !String.Contains(Container(211).ListItem.Property(Path),weather)">ThumbnailSmall</property>
-    <property property="widgetAspect" label="$LOCALIZE[31705]" condition="!String.IsEqual(Container(211).ListItem.Property(widget),mysubmenu) + !String.IsEqual(Container(211).ListItem.Property(Path),submenu) + !String.Contains(Container(211).ListItem.Property(widget),weather) + !String.Contains(Container(211).ListItem.Property(Path),weather) + !String.Contains(Container(211).ListItem.Property(widgetPath),studios) + !String.Contains(Container(211).ListItem.Property(Path),studios) + !String.Contains(Container(211).ListItem.Property(widgetPath),genres) + !String.Contains(Container(211).ListItem.Property(Path),genres)">ThumbnailPosterSmall</property>
-    <property property="widgetAspect" label="$LOCALIZE[20020]" condition="!String.IsEqual(Container(211).ListItem.Property(widget),mysubmenu) + !String.IsEqual(Container(211).ListItem.Property(Path),submenu) + !String.Contains(Container(211).ListItem.Property(widget),weather) + !String.Contains(Container(211).ListItem.Property(Path),weather) + !String.Contains(Container(211).ListItem.Property(widgetPath),studios) + !String.Contains(Container(211).ListItem.Property(Path),studios) + !String.Contains(Container(211).ListItem.Property(widgetPath),genres) + !String.Contains(Container(211).ListItem.Property(Path),genres)">Banner</property>
-    <property property="widgetAspect" label="$LOCALIZE[31406]" condition="String.IsEqual(Container(211).ListItem.Property(widget),mysubmenu) | String.IsEqual(Container(211).ListItem.Property(Path),submenu)">SquareSmall</property>
-    <property property="widgetAspect" label="$LOCALIZE[31407]" condition="String.IsEqual(Container(211).ListItem.Property(widget),mysubmenu) | String.IsEqual(Container(211).ListItem.Property(Path),submenu)">SquareMedium</property>
+    <property property="widgetAspect" label="$LOCALIZE[31462]" condition="!String.IsEqual(Container(211).ListItem.Property(Path),submenu)">Fanart</property>
+    <property property="widgetAspect" label="$LOCALIZE[31265]" condition="!String.IsEqual(Container(211).ListItem.Property(Path),submenu) + !String.Contains(Container(211).ListItem.Property(Path),weather)">Thumbnail</property>
+    <property property="widgetAspect" label="$LOCALIZE[31703]" condition="Skin.HasSetting(home.vertical.widgets) + !String.IsEqual(Container(211).ListItem.Property(Path),submenu) + !String.Contains(Container(211).ListItem.Property(Path),weather)">FanartSmall</property>
+    <property property="widgetAspect" label="$LOCALIZE[31704]" condition="Skin.HasSetting(home.vertical.widgets) + !String.IsEqual(Container(211).ListItem.Property(Path),submenu) + !String.Contains(Container(211).ListItem.Property(Path),weather)">ThumbnailSmall</property>
+    <property property="widgetAspect" label="$LOCALIZE[31705]" condition="Skin.HasSetting(home.vertical.widgets) + !String.IsEqual(Container(211).ListItem.Property(Path),submenu) + !String.Contains(Container(211).ListItem.Property(Path),weather) + !String.Contains(Container(211).ListItem.Property(Path),studios) + !String.Contains(Container(211).ListItem.Property(Path),genres)">ThumbnailPosterSmall</property>
+    <property property="widgetAspect" label="$LOCALIZE[20020]" condition="Skin.HasSetting(home.vertical.widgets) + !String.IsEqual(Container(211).ListItem.Property(Path),submenu) + !String.Contains(Container(211).ListItem.Property(Path),weather) + !String.Contains(Container(211).ListItem.Property(Path),studios) + !String.Contains(Container(211).ListItem.Property(Path),genres)">Banner</property>
+    <property property="widgetAspect" label="$LOCALIZE[31406]" condition="String.IsEqual(Container(211).ListItem.Property(Path),submenu)">SquareSmall</property>
+    <property property="widgetAspect" label="$LOCALIZE[31407]" condition="String.IsEqual(Container(211).ListItem.Property(Path),submenu)">SquareMedium</property>
 
     <!-- Widget Square Aspect Ratio -->
     <propertySettings property="widgetAspectRatio" buttonID="9113" title="$LOCALIZE[31402]"/>
@@ -99,7 +99,7 @@
     <property property="widgetLimit" label="25 ">$NUMBER[25]</property>
     <property property="widgetLimit" label="50 ">$NUMBER[50]</property>
     <property property="widgetLimit" label="100 ">$NUMBER[100]</property>
-    <property property="widgetLimit" label="$LOCALIZE[31821] ">Auto</property>
+    <property property="widgetLimit" label="$LOCALIZE[31821]" condition="!$EXP[HomeIsSpotlight] + !$EXP[HomeIsCleanMinimal]">Auto</property>
 
     <override action="ActivateWindow(1111)">
         <action>SetProperty(WindowTitle,$VAR[HubWindowTitle],Home)</action>
@@ -592,36 +592,36 @@
             </node>
 	        <node label="$LOCALIZE[31103]">
 	            <node label="$LOCALIZE[31517]" condition="Skin.HasSetting(home.vertical.widgets)">
-	                <shortcut widget="LastPlayedChannels" type="tvguide" label="$LOCALIZE[31043]" icon="DefaultAddonPVRClient.png" widgetTarget="pvr">pvr://channels/tv/*?view=lastplayed</shortcut>
-	                <shortcut widget="AllChannels" type="tvguide" label="$LOCALIZE[31044]" icon="DefaultAddonPVRClient.png" widgetTarget="pvr">pvr://channels/tv/*</shortcut>
-	                <shortcut widget="Timers" type="tvguide" label="$LOCALIZE[19040]" icon="DefaultAddonPVRClient.png" widgetTarget="pvr">pvr://timers/tv/timers</shortcut>
+	                <shortcut widget="LastPlayedChannels" type="tvguide" label="$LOCALIZE[31043]" icon="DefaultAddonPVRClient.png" widgetType="pvr">pvr://channels/tv/*?view=lastplayed</shortcut>
+	                <shortcut widget="AllChannels" type="tvguide" label="$LOCALIZE[31044]" icon="DefaultAddonPVRClient.png" widgetType="pvr">pvr://channels/tv/*</shortcut>
+	                <shortcut widget="Timers" type="tvguide" label="$LOCALIZE[19040]" icon="DefaultAddonPVRClient.png" widgetType="pvr">pvr://timers/tv/timers</shortcut>
 	            </node>
-	            <shortcut widget="LastPlayedChannels" label="$LOCALIZE[31043]" icon="DefaultAddonPVRClient.png" widgetTarget="pvr">pvr://channels/tv/*?view=lastplayed</shortcut>
-	            <shortcut widget="AllChannels" label="$LOCALIZE[31044]" icon="DefaultAddonPVRClient.png" widgetTarget="pvr">pvr://channels/tv/*</shortcut>
-	            <shortcut widget="AllChannelGroups" label="$LOCALIZE[19173]" icon="DefaultAddonPVRClient.png" widgetTarget="pvr">pvr://channels/tv/</shortcut>
-	            <shortcut widget="ActiveRecordings" label="$LOCALIZE[31510]" icon="DefaultAddonPVRClient.png" widgetTarget="pvr">pvr://recordings/tv/active?view=flat</shortcut>
-	            <shortcut widget="GroupedActiveRecordings" label="$LOCALIZE[31511]" icon="DefaultAddonPVRClient.png" widgetTarget="pvr">pvr://recordings/tv/active?view=grouped</shortcut>
-	            <shortcut widget="DeletedRecordings" label="$LOCALIZE[19184]" icon="DefaultAddonPVRClient.png" widgetTarget="pvr">pvr://recordings/tv/deleted?view=flat</shortcut>
-	            <shortcut widget="GroupedDeletedRecordings" label="$LOCALIZE[31512]" icon="DefaultAddonPVRClient.png" widgetTarget="pvr">pvr://recordings/tv/deleted?view=grouped</shortcut>
-	            <shortcut widget="Timers" label="$LOCALIZE[19040]" icon="DefaultAddonPVRClient.png" widgetTarget="pvr">pvr://timers/tv/timers</shortcut>
+	            <shortcut widget="LastPlayedChannels" label="$LOCALIZE[31043]" icon="DefaultAddonPVRClient.png" widgetType="pvr">pvr://channels/tv/*?view=lastplayed</shortcut>
+	            <shortcut widget="AllChannels" label="$LOCALIZE[31044]" icon="DefaultAddonPVRClient.png" widgetType="pvr">pvr://channels/tv/*</shortcut>
+	            <shortcut widget="AllChannelGroups" label="$LOCALIZE[19173]" icon="DefaultAddonPVRClient.png" widgetType="pvr">pvr://channels/tv/</shortcut>
+	            <shortcut widget="ActiveRecordings" label="$LOCALIZE[31510]" icon="DefaultAddonPVRClient.png" widgetType="pvr">pvr://recordings/tv/active?view=flat</shortcut>
+	            <shortcut widget="GroupedActiveRecordings" label="$LOCALIZE[31511]" icon="DefaultAddonPVRClient.png" widgetType="pvr">pvr://recordings/tv/active?view=grouped</shortcut>
+	            <shortcut widget="DeletedRecordings" label="$LOCALIZE[19184]" icon="DefaultAddonPVRClient.png" widgetType="pvr">pvr://recordings/tv/deleted?view=flat</shortcut>
+	            <shortcut widget="GroupedDeletedRecordings" label="$LOCALIZE[31512]" icon="DefaultAddonPVRClient.png" widgetType="pvr">pvr://recordings/tv/deleted?view=grouped</shortcut>
+	            <shortcut widget="Timers" label="$LOCALIZE[19040]" icon="DefaultAddonPVRClient.png" widgetType="pvr">pvr://timers/tv/timers</shortcut>
 	        </node>
 	        <node label="$LOCALIZE[19021]">
-	            <shortcut widget="RadioAllChannels" label="$LOCALIZE[19216]" icon="DefaultAddonPVRClient.png" widgetTarget="pvr">pvr://channels/radio/*</shortcut>
-	            <shortcut widget="RadioLastPlayedChannels" label="$LOCALIZE[31516]" icon="DefaultAddonPVRClient.png" widgetTarget="pvr">pvr://channels/radio/*?view=lastplayed</shortcut>
-	            <shortcut widget="RadioActiveRecordings" label="$LOCALIZE[10706]" icon="DefaultAddonPVRClient.png" widgetTarget="pvr">pvr://recordings/radio/active?view=flat</shortcut>
-                <shortcut widget="RadioGroupedActiveRecordings" label="$LOCALIZE[31097]" icon="DefaultAddonPVRClient.png" widgetTarget="pvr">pvr://recordings/radio/active?view=grouped</shortcut>
-                <shortcut widget="RadioDeletedRecordings" label="$LOCALIZE[19184]" icon="DefaultAddonPVRClient.png" widgetTarget="pvr">pvr://recordings/radio/deleted?view=flat</shortcut>
-                <shortcut widget="RadioGroupedDeletedRecordings" label="$LOCALIZE[31098]" icon="DefaultAddonPVRClient.png" widgetTarget="pvr">pvr://recordings/radio/deleted?view=grouped</shortcut>
-	            <shortcut widget="RadioTimers" label="$LOCALIZE[10708]" icon="DefaultAddonPVRClient.png" widgetTarget="pvr">pvr://timers/radio/timers</shortcut>
+	            <shortcut widget="RadioAllChannels" label="$LOCALIZE[19216]" icon="DefaultAddonPVRClient.png" widgetType="pvr">pvr://channels/radio/*</shortcut>
+	            <shortcut widget="RadioLastPlayedChannels" label="$LOCALIZE[31516]" icon="DefaultAddonPVRClient.png" widgetType="pvr">pvr://channels/radio/*?view=lastplayed</shortcut>
+	            <shortcut widget="RadioActiveRecordings" label="$LOCALIZE[10706]" icon="DefaultAddonPVRClient.png" widgetType="pvr">pvr://recordings/radio/active?view=flat</shortcut>
+                <shortcut widget="RadioGroupedActiveRecordings" label="$LOCALIZE[31097]" icon="DefaultAddonPVRClient.png" widgetType="pvr">pvr://recordings/radio/active?view=grouped</shortcut>
+                <shortcut widget="RadioDeletedRecordings" label="$LOCALIZE[19184]" icon="DefaultAddonPVRClient.png" widgetType="pvr">pvr://recordings/radio/deleted?view=flat</shortcut>
+                <shortcut widget="RadioGroupedDeletedRecordings" label="$LOCALIZE[31098]" icon="DefaultAddonPVRClient.png" widgetType="pvr">pvr://recordings/radio/deleted?view=grouped</shortcut>
+	            <shortcut widget="RadioTimers" label="$LOCALIZE[10708]" icon="DefaultAddonPVRClient.png" widgetType="pvr">pvr://timers/radio/timers</shortcut>
 	        </node>
             <node label="$LOCALIZE[8]">
-                <shortcut label="$LOCALIZE[31288]" icon="special://skin/extras/icons/sun.png" widget="weatherdaily" condition="!String.IsEmpty(Window(Weather).Property(Daily.IsFetched))" widgetType="widget" widgetTarget="weather">WeatherDaily</shortcut>
-                <shortcut label="$LOCALIZE[31289]" icon="special://skin/extras/icons/sun.png" widget="weatherhourly" condition="!String.IsEmpty(Window(Weather).Property(Hourly.IsFetched))" widgetType="widget" widgetTarget="weather">WeatherHourly</shortcut>
+                <shortcut label="$LOCALIZE[31288]" icon="special://skin/extras/icons/sun.png" widget="weather" condition="!String.IsEmpty(Window(Weather).Property(Daily.IsFetched))" widgetType="weather" widgetTarget="weather">WeatherDaily</shortcut>
+                <shortcut label="$LOCALIZE[31289]" icon="special://skin/extras/icons/sun.png" widget="weather" condition="!String.IsEmpty(Window(Weather).Property(Hourly.IsFetched))" widgetType="weather" widgetTarget="weather">WeatherHourly</shortcut>
             </node>
             <shortcut widget="Favourites" label="$LOCALIZE[1036]" widgetTarget="">favourites://</shortcut>
             <shortcut widget="systeminfo" label="$LOCALIZE[130]" icon="special://skin/extras/icons/sysinfo.png" widgetType="system" widgetTarget="system">Systeminfo</shortcut>
             <shortcut widget="settings" label="$LOCALIZE[5]" icon="special://skin/extras/icons/settings.png" widgetType="system" widgetTarget="system">Settings</shortcut>
-            <shortcut widget="mysubmenu" label="$LOCALIZE[1034]" icon="DefaultAddon.png" widgetType="addons" widgetTarget="programs">Submenu</shortcut>
+            <shortcut widget="submenu" label="$LOCALIZE[1034]" icon="DefaultAddon.png" widgetType="addons" widgetTarget="programs">Submenu</shortcut>
         </node>    
         <node label="$LOCALIZE[32030]">
             <content>video</content>
@@ -663,8 +663,8 @@
             <node label="$LOCALIZE[32009]">
                 <content>addon-program-plugin</content>
             </node>
-            <shortcut label="$LOCALIZE[10001]" type="32021" icon="DefaultAddonProgram.png" widget="addon" widgetType="program" widgetTarget="programs">addons://sources/executable/</shortcut>
-            <shortcut label="$LOCALIZE[20244]" type="32021" icon="DefaultAddonProgram.png" widget="addon" widgetType="program" widgetTarget="programs" condition="System.Platform.Android">androidapp://sources/apps/</shortcut>
+            <shortcut label="$LOCALIZE[10001]" type="32021" icon="DefaultAddonProgram.png" widget="addon" widgetType="addon" widgetTarget="programs">addons://sources/executable/</shortcut>
+            <shortcut label="$LOCALIZE[20244]" type="32021" icon="DefaultAddonProgram.png" widget="addon" widgetType="addon" widgetTarget="programs" condition="System.Platform.Android">androidapp://sources/apps/</shortcut>
             <shortcut label="$LOCALIZE[1037]" type="32014" icon="DefaultAddonVideo.png" widget="addon" widgetType="video" widgetTarget="videos">addons://sources/video/</shortcut>
             <shortcut label="$LOCALIZE[1038]" type="32019" icon="DefaultAddonMusic.png" widget="addon" widgetType="music" widgetTarget="music">addons://sources/audio/</shortcut>
             <shortcut label="$LOCALIZE[1039]" type="32020" icon="DefaultAddonPicture.png" widget="addon" widgetType="picture" widgetTarget="pictures">addons://sources/image/</shortcut>

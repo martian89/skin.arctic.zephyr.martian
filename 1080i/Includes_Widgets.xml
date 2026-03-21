@@ -46,7 +46,7 @@
             <right>0</right>
             <include content="Widget_AutoScroll">
                 <param name="time" value="Skin.String(AutoScrollTime)" />
-                <param name="condition" value="$PARAM[AutoScrollCondition]" />
+                <param name="condition" value="!Control.HasFocus($PARAM[id]) + !System.ScreenSaverActive + System.IdleTime(1)" />
             </include>
             <include condition="!Skin.HasSetting(widgets.fade)">Animation.Vertical.Widgets.Container</include>
             <onfocus>SetProperty(TMDbHelper.WidgetContainer,$PARAM[id],Home)</onfocus>
