@@ -1593,13 +1593,13 @@
         <left>180</left>
     </include>
 
-    <include name="ClearLogoImage">
+    <include name="ClearlogoOverlay">
         <control type="image">
             <width>$PARAM[width]</width>
             <right>$PARAM[right]</right>
             <bottom>$PARAM[bottom]</bottom>
             <aspectratio align="right" aligny="bottom">keep</aspectratio>
-            <texture background="true">$VAR[FanartImageClearArt]</texture>
+            <texture background="true">$VAR[FanartImageClearlogo]</texture>
         </control>
     </include>
 
@@ -3382,7 +3382,7 @@
             <param name="image" value="$VAR[FanartImage]" />
             <param name="diffuse" value="diffuse/widgetfanart_new.png" />
         </include>        
-        <include content="ClearLogoImage" condition="$PARAM[clearlogo]">
+        <include content="ClearlogoOverlay" condition="$PARAM[clearlogo]">
             <param name="width" value="250"/>
             <param name="right" value="30"/>
             <param name="bottom" value="20"/>
@@ -3489,7 +3489,7 @@
             <right>10</right>
             <bottom>10</bottom>
             <aspectratio scalediffuse="false">scale</aspectratio>
-            <texture diffuse="diffuse/widgetfanart_new.png" background="true" fallback="DefaultMovies.png">$VAR[WidgetThumbnailImage]</texture>
+            <texture diffuse="diffuse/widgetfanart_new.png" background="true" fallback="DefaultMovies.png">$VAR[WidgetThumbImage]</texture>
             <visible>!$PARAM[small] + !$EXP[HasThumbImageResource]</visible>
         </control>
         <control type="image">
@@ -3498,7 +3498,7 @@
             <right>10</right>
             <bottom>101</bottom>
             <aspectratio scalediffuse="false">scale</aspectratio>
-            <texture diffuse="diffuse/widgetfanart_top.png" background="true" fallback="DefaultMovies.png">$VAR[WidgetThumbnailImage]</texture>
+            <texture diffuse="diffuse/widgetfanart_top.png" background="true" fallback="DefaultMovies.png">$VAR[WidgetThumbImage]</texture>
             <visible>$PARAM[small] + !$PARAM[poster] + !$EXP[HasThumbImageResource]</visible>
         </control>
         <control type="image">
@@ -3507,7 +3507,7 @@
             <right>10</right>
             <bottom>101</bottom>
             <aspectratio scalediffuse="false">scale</aspectratio>
-            <texture diffuse="diffuse/widgetfanart_topright.png" border="1" background="true" fallback="DefaultMovies.png">$VAR[WidgetThumbnailImage]</texture>
+            <texture diffuse="diffuse/widgetfanart_topright.png" border="1" background="true" fallback="DefaultMovies.png">$VAR[WidgetThumbImage]</texture>
             <visible>$PARAM[small] + $PARAM[poster] + !$EXP[HasThumbImageResource]</visible>
         </control>
         <include content="def_widget_image" condition="!$PARAM[small]">
