@@ -14,11 +14,13 @@
         <property name="widgetBrowse">$VAR[DefWidgetBrowse]</property>
         <property name="widgetSortby" tag="property" attribute="name|widgetSortby"/>
         <property name="widgetSortorder" tag="property" attribute="name|widgetSortorder"/>
+        <property name="widgetAutoscroll" tag="property" attribute="name|widgetAutoscroll" value="no">false</property>
+        <property name="widgetAutoscroll">true</property>
         <property name="widgetLimit" tag="property" attribute="name|widgetLimit"/>
 
         <property name="autoLimit" tag="property" attribute="name|widgetAspect" value="Square">7</property>
         <property name="autoLimit" tag="property" attribute="name|widgetAspect" value="Thumbnail">4</property>
-        <property name="autoLimit" tag="property" attribute="name|widgetAspect" value="Fanart">4</property>
+        <property name="autoLimit" tag="property" attribute="name|widgetAspect" value="Landscape">4</property>
         <property name="autoLimit">10</property>
 
         <property name="isAutoLimit" tag="property" attribute="name|widgetLimit" value="Auto">true</property>
@@ -31,10 +33,6 @@
         <property name="widgetAspectCheck" tag="property" attribute="name|widgetAspect" value="Landscape">Landscape</property>
         <property name="widgetAspectCheck" tag="property" attribute="name|widgetAspect" value="Thumbnail">Thumbnail</property>
         <property name="widgetAspectCheck">Poster</property>
-        <property name="widgetAspectRatio" tag="property" attribute="name|widgetAspectRatio"/>
-        <property name="widgetAspectRatio">keep</property>
-        <property name="widgetEdgeDistance" tag="property" attribute="name|widgetEdgeDistance" value="yes">30</property>
-        <property name="widgetEdgeDistance">10</property>
 
         <property name="isNormalLayout" propertyValue="false">
             <rule tag="property" attribute="name|widget" value="submenu" />                
@@ -59,7 +57,7 @@
                 <preloaditems>2</preloaditems>
                 <orientation>horizontal</orientation>
                 <include>ScrolltimeWidgetsList</include>
-                <include content="Widget_AutoScroll">
+                <include content="Widget_AutoScroll" condition="$SKINSHORTCUTS[widgetAutoscroll]">
                     <param name="time" value="Skin.String(AutoScrollTime)" />
                     <param name="condition" value="!Control.HasFocus(301) + !System.ScreenSaverActive + System.IdleTime(1)" />
                 </include>
@@ -83,8 +81,6 @@
                 <itemlayout width="254" height="257" condition="$PYTHON['true' if widgetAspectCheck in 'Square' else 'false']">
                     <include content="include.widget.square">
                         <param name="height" value="257"/>
-                        <param name="aspectratio" value="$SKINSHORTCUTS[widgetAspectRatio]"/>
-                        <param name="distance" value="$SKINSHORTCUTS[widgetEdgeDistance]"/>
                         <param name="height_reflection" value="257"/>
                         <param name="top" value="238"/>
                         <param name="reflections" value="Skin.HasSetting(show.reflections)"/>
@@ -94,8 +90,6 @@
                     <include content="include.widget.square.focus">
                         <param name="id" value="301"/>
                         <param name="height" value="257"/>
-                        <param name="aspectratio" value="$SKINSHORTCUTS[widgetAspectRatio]"/>
-                        <param name="distance" value="$SKINSHORTCUTS[widgetEdgeDistance]"/>
                         <param name="height_reflection" value="257"/>
                         <param name="top" value="238"/>
                         <param name="reflections" value="Skin.HasSetting(show.reflections)"/>
@@ -173,6 +167,8 @@
         <property name="widgetBrowse">$VAR[DefWidgetBrowse]</property>
         <property name="widgetSortby" tag="property" attribute="name|widgetSortby"/>
         <property name="widgetSortorder" tag="property" attribute="name|widgetSortorder"/>
+        <property name="widgetAutoscroll" tag="property" attribute="name|widgetAutoscroll" value="no">false</property>
+        <property name="widgetAutoscroll">true</property>
         <property name="widgetLimit" tag="property" attribute="name|widgetLimit"/>
 
         <property name="isAutoLimit" tag="property" attribute="name|widgetLimit" value="Auto">true</property>
@@ -200,7 +196,7 @@
                 <preloaditems>2</preloaditems>
                 <orientation>horizontal</orientation>
                 <scrolltime tween="quadratic">0</scrolltime>
-                <include content="Widget_AutoScroll">
+                <include content="Widget_AutoScroll" condition="$SKINSHORTCUTS[widgetAutoscroll]">
                     <param name="time" value="Skin.String(AutoScrollTime)" />
                     <param name="condition" value="!Control.HasFocus(301) + !System.ScreenSaverActive" />
                 </include>
@@ -246,6 +242,8 @@
         <property name="widgetBrowse">$VAR[DefWidgetBrowse]</property>
         <property name="widgetSortby" tag="property" attribute="name|widgetSortby"/>
         <property name="widgetSortorder" tag="property" attribute="name|widgetSortorder"/>
+        <property name="widgetAutoscroll" tag="property" attribute="name|widgetAutoscroll" value="no">false</property>
+        <property name="widgetAutoscroll">true</property>
         <property name="widgetLimit" tag="property" attribute="name|widgetLimit"/>
 
         <property name="autoLimit" tag="property" attribute="name|widget" value="submenu">5</property>
@@ -253,7 +251,7 @@
         <property name="autoLimit" tag="property" attribute="name|widget" value="systeminfo">5</property>
         <property name="autoLimit" tag="property" attribute="name|widgetAspect" value="Square">5</property>
         <property name="autoLimit" tag="property" attribute="name|widgetAspect" value="Thumbnail">3</property>
-        <property name="autoLimit" tag="property" attribute="name|widgetAspect" value="Fanart">3</property>
+        <property name="autoLimit" tag="property" attribute="name|widgetAspect" value="Landscape">3</property>
         <property name="autoLimit">8</property>
 
         <property name="isAutoLimit" tag="property" attribute="name|widgetLimit" value="Auto">true</property>
@@ -266,10 +264,6 @@
         <property name="widgetAspectCheck" tag="property" attribute="name|widgetAspect" value="Landscape">Landscape</property>
         <property name="widgetAspectCheck" tag="property" attribute="name|widgetAspect" value="Thumbnail">Thumbnail</property>
         <property name="widgetAspectCheck">Poster</property>
-        <property name="widgetAspectRatio" tag="property" attribute="name|widgetAspectRatio"/>
-        <property name="widgetAspectRatio">keep</property>
-        <property name="widgetEdgeDistance" tag="property" attribute="name|widgetEdgeDistance" value="yes">30</property>
-        <property name="widgetEdgeDistance">10</property>
 
         <property name="isNormalLayout" propertyValue="false">
             <rule tag="property" attribute="name|widget" value="mysubmenu" />                
@@ -303,7 +297,7 @@
                 <pagecontrol>60</pagecontrol>
                 <movement>$PYTHON[int(autoLimit) - 1]</movement>
                 <include>ScrolltimeWidgetsList</include>
-                <include content="Widget_AutoScroll">
+                <include content="Widget_AutoScroll" condition="$SKINSHORTCUTS[widgetAutoscroll]">
                     <param name="time" value="Skin.String(AutoScrollTime)" />
                     <param name="condition" value="!Control.HasFocus(301) + !System.ScreenSaverActive + System.IdleTime(1)" />
                 </include>
@@ -315,8 +309,6 @@
                 </itemlayout>
                 <itemlayout height="325" width="325" condition="$PYTHON['true' if widgetAspectCheck in 'Square' else 'false']">
                     <include content="include.widget.square">
-                        <param name="aspectratio" value="$SKINSHORTCUTS[widgetAspectRatio]"/>
-                        <param name="distance" value="$SKINSHORTCUTS[widgetEdgeDistance]"/>
                         <param name="reflections" value="Skin.HasSetting(show.reflections)"/>
                         <param name="height" value="325"/>
                     </include>
@@ -343,8 +335,6 @@
                 <focusedlayout height="325" width="325" condition="$PYTHON['true' if widgetAspectCheck in 'Square' else 'false']">
                     <include content="include.widget.square.focus">
                         <param name="id" value="301"/>
-                        <param name="aspectratio" value="$SKINSHORTCUTS[widgetAspectRatio]"/>
-                        <param name="distance" value="$SKINSHORTCUTS[widgetEdgeDistance]"/>
                         <param name="reflections" value="Skin.HasSetting(show.reflections)"/>
                         <param name="height" value="325"/>
                     </include>
@@ -511,25 +501,25 @@
 	        <property name="widgetBrowse">$VAR[DefWidgetBrowse]</property>
 	        <property name="widgetSortby" tag="property" attribute="name|widgetSortby"/>
 	        <property name="widgetSortorder" tag="property" attribute="name|widgetSortorder"/>
-
-            <property name="widgetName" tag="label" />
-            <property name="widgetName">$LOCALIZE[31105]</property>
-
+	        <property name="widgetAutoscroll" tag="property" attribute="name|widgetAutoscroll" value="no">false</property>
+	        <property name="widgetAutoscroll">true</property>
 	        <property name="widgetLimit" tag="label2" value="tvguide">5</property>
 	        <property name="widgetLimit" tag="property" attribute="name|widgetLimit"/>
 
             <property name="isAutoLimit" tag="property" attribute="name|widgetLimit" value="Auto">true</property>
             <property name="isAutoLimit">false</property>
 
+            <property name="widgetName" tag="label" />
+            <property name="widgetName">$LOCALIZE[31105]</property>
+
             <property name="widgetMovement" tag="property" attribute="name|list" value="Submenu">4</property>
             <property name="widgetMovement" tag="property" attribute="name|list" value="Settings">4</property>
             <property name="widgetMovement" tag="property" attribute="name|list" value="Systeminfo">4</property>
             <property name="widgetMovement" tag="property" attribute="name|widgetAspect" value="Square">4</property>
             <property name="widgetMovement" tag="property" attribute="name|widgetAspect" value="Thumbnail">2</property>
-            <property name="widgetMovement" tag="property" attribute="name|widgetAspect" value="Fanart">2</property>
-            <property name="widgetMovement" tag="property" attribute="name|widgetAspect" value="FanartSmall">3</property>
-            <property name="widgetMovement" tag="property" attribute="name|widgetAspect" value="FanartPosterSmall">3</property>
-            <property name="widgetMovement" tag="property" attribute="name|widgetAspect" value="ThumbnailSmall">3</property>
+            <property name="widgetMovement" tag="property" attribute="name|widgetAspect" value="Landscape">2</property>
+            <property name="widgetMovement" tag="property" attribute="name|widgetAspect" value="LandscapeSmall">3</property>
+            <property name="widgetMovement" tag="property" attribute="name|widgetAspect" value="LandscapePosterSmall">2</property>
             <property name="widgetMovement">7</property>
 
             <property name="widgetInclude" tag="label2" value="tvguide">Widget_Layout_PVRGuide</property>
@@ -567,11 +557,6 @@
 	        <property name="widgetAspectCheck" tag="property" attribute="name|widgetAspect" value="LandscapeSmall">LandSmall</property>
             <property name="widgetAspectCheck" tag="property" attribute="name|widgetAspect" />
 	        <property name="widgetAspectCheck">Poster</property>
-
-            <property name="widgetAspectRatio" tag="property" attribute="name|widgetAspectRatio"/>
-            <property name="widgetAspectRatio">keep</property>
-            <property name="widgetEdgeDistance" tag="property" attribute="name|widgetEdgeDistance" value="yes">30</property>
-            <property name="widgetEdgeDistance">10</property>
 
             <!-- Widget Container -->
             <property name="layoutHeight" tag="property" attribute="name|widgetFullscreen" value="yes">710</property>
@@ -611,12 +596,11 @@
 	                    <param name="height2" value="$SKINSHORTCUTS[layoutHeight2]"/>
 	                    <param name="orientation" value="$SKINSHORTCUTS[orientation]"/>
                         <param name="movement" value="$SKINSHORTCUTS[widgetMovement]"/>
+                        <param name="autoscroll" value="$SKINSHORTCUTS[widgetAutoscroll]"/>
                     </include>
                     <!-- ItemLayout -->
 	                <include content="$SKINSHORTCUTS[widgetInclude]">
                         <param name="shortcutsid" value="$PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]"/>
-	                    <param name="aspectratio" value="$SKINSHORTCUTS[widgetAspectRatio]"/>
-	                    <param name="distance" value="$SKINSHORTCUTS[widgetEdgeDistance]"/>
 	                    <param name="Banner" value="$PYTHON['true' if widgetAspectCheck in 'Banner' else 'false']"/>
 	                    <param name="Thumbnail" value="$PYTHON['true' if widgetAspectCheck in 'Thumbnail' else 'false']"/>
 	                    <param name="Landscape" value="$PYTHON['true' if widgetAspectCheck in 'Landscape' else 'false']"/>

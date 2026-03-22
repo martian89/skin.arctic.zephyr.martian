@@ -4,6 +4,7 @@
     <include name="DefMultiWidgetContainer">
         <param name="height" value="$PARAM[height]" default="325"/>
         <param name="orientation" value="$PARAM[orientation]" default="horizontal"/>
+        <param name="autoscroll" default="true" />
         <param name="movement" default="0" />
         <definition>
             <include content="def_top" condition="Skin.HasSetting(homemenu.clean.flix)">
@@ -44,7 +45,7 @@
             <include content="def_left" condition="![$EXP[HomeIsModernMultiWidgets] + !Skin.HasSetting(homemenu.clean.flix)]"><param name="left" value="70" /></include>
             <left>0</left>
             <right>0</right>
-            <include content="Widget_AutoScroll">
+            <include content="Widget_AutoScroll" condition="$PARAM[autoscroll]">
                 <param name="time" value="Skin.String(AutoScrollTime)" />
                 <param name="condition" value="!Control.HasFocus($PARAM[id]) + !System.ScreenSaverActive + System.IdleTime(1)" />
             </include>
@@ -372,7 +373,7 @@
         <param name="Banner" default="false"/>
         <param name="Thumbnail" default="false"/>
         <param name="Landscape" default="false"/>
-        <param name="landscapeSmall" default="false"/>
+        <param name="LandscapeSmall" default="false"/>
         <param name="LandscapePosterSmall" default="false"/>
         <param name="Square" default="false"/>
         <definition>
@@ -390,8 +391,6 @@
                 <width>325</width>
                 <include content="def_left" condition="$EXP[HomeIsModernMultiWidgets] + !Skin.HasSetting(homemenu.clean.flix)"><param name="left" value="70" /></include>
                 <include content="include.widget.square">
-                    <param name="aspectratio" value="$PARAM[aspectratio]"/>
-                    <param name="distance" value="$PARAM[distance]"/>
                     <param name="reflections" value="Skin.HasSetting(show.reflections)"/>
                 </include>
             </control>
@@ -464,8 +463,6 @@
                 <include content="def_left" condition="$EXP[HomeIsModernMultiWidgets] + !Skin.HasSetting(homemenu.clean.flix)"><param name="left" value="70" /></include>
                 <include content="include.widget.square.focus">
                     <param name="id" value="$PARAM[shortcutsid]"/>
-                    <param name="aspectratio" value="$PARAM[aspectratio]"/>
-                    <param name="distance" value="$PARAM[distance]"/>
                     <param name="reflections" value="Skin.HasSetting(show.reflections)"/>
                 </include>
             </control>
@@ -1250,19 +1247,17 @@
         <control type="group">
             <height>$PARAM[height]</height>
             <include content="def_widgetsquare">
-                <param name="aspectratio" value="$PARAM[aspectratio]"/>
-                <param name="distance" value="$PARAM[distance]"/>
             </include>
         </control>
         <control type="group">
             <height>$PARAM[height_reflection]</height>
             <top>$PARAM[top]</top>
             <control type="image">
-                <left>$PARAM[distance]</left>
-                <top>$PARAM[distance]</top>
-                <right>$PARAM[distance]</right>
-                <bottom>$PARAM[distance]</bottom>
-                <aspectratio scalediffuse="false">$PARAM[aspectratio]</aspectratio>
+                <left>10</left>
+                <top>10</top>
+                <right>10</right>
+                <bottom>10</bottom>
+                <aspectratio scalediffuse="false">keep</aspectratio>
                 <texture flipy="true" diffuse="diffuse/listposter-ref-widgets.png" background="true">$VAR[PosterImage]</texture>
                 <visible>$PARAM[reflections]</visible>
             </control>
@@ -1474,11 +1469,11 @@
             <height>$PARAM[height_reflection]</height>
             <top>$PARAM[top]</top>
             <control type="image">
-                <left>$PARAM[distance]</left>
-                <top>$PARAM[distance]</top>
-                <right>$PARAM[distance]</right>
-                <bottom>$PARAM[distance]</bottom>
-                <aspectratio scalediffuse="false">$PARAM[aspectratio]</aspectratio>
+                <left>10</left>
+                <top>10</top>
+                <right>10</right>
+                <bottom>10</bottom>
+                <aspectratio scalediffuse="false">keep</aspectratio>
                 <texture flipy="true" diffuse="diffuse/listposter-ref-widgets.png" background="true">$VAR[PosterImage]</texture>
                 <visible>$PARAM[reflections]</visible>
             </control>
@@ -1486,8 +1481,6 @@
         <control type="group">
             <height>$PARAM[height]</height>
             <include content="def_widgetsquare">
-                <param name="aspectratio" value="$PARAM[aspectratio]"/>
-                <param name="distance" value="$PARAM[distance]"/>
             </include>
             <include content="def_widgetfocus">
                 <param name="id" value="$PARAM[id]"/>

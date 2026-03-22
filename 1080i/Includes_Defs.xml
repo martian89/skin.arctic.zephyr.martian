@@ -3174,12 +3174,8 @@
             <texture colordiffuse="Fallback" border="4" background="true">common/diffuse_box.png</texture>
         </control>
         <include content="def_widget_image">
-            <param name="top" value="$PARAM[distance]" /> 
-            <param name="left" value="$PARAM[distance]" />
-            <param name="right" value="$PARAM[distance]" /> 
-            <param name="bottom" value="$PARAM[distance]" />
             <param name="diffuse" value="diffuse/widgetsquare_new.png" />
-            <param name="aspectratio" value="$PARAM[aspectratio]" />
+            <param name="aspectratio" value="keep" />
         </include>        
         <control type="image">
             <left>10</left>
@@ -4377,27 +4373,7 @@
                 <visible>!Skin.HasSetting(homemenu.clean.flix)</visible>
                 <visible>$PARAM[visible]</visible>
 		    </control>
-		    <control type="button" id="$PARAM[baseid]13" description="Widget Aspect Ratio">
-		        <label>$LOCALIZE[31297]$LOCALIZE[31401]</label>
-		        <label2>$VAR[Label_Widget_AspectRatio]</label2>
-		        <include>Def_Skinshortcuts_Buttons</include>
-		        <visible>Skin.HasSetting(home.vertical.widgets) | $EXP[HomeIsVertical]</visible>
-                <visible>String.IsEqual(Container(211).ListItem.Property(widgetaspect),Square)</visible>
-                <visible>!String.StartsWith(Container(211).ListItem.Property(Path),weather)</visible> 
-                <visible>!$EXP[Widget_HasFixedAspect] + !Skin.HasSetting(homemenu.clean.flix)</visible>
-                <visible>$PARAM[visible]</visible>
-		    </control>
-		    <control type="button" id="$PARAM[baseid]14" description="Widget Edge Distance">
-		        <label>$LOCALIZE[31297]$LOCALIZE[31453]</label>
-		        <label2>$VAR[Label_Widget_EdgeDistance]</label2>
-		        <include>Def_Skinshortcuts_Buttons</include>
-                <enable>Skin.HasSetting(home.vertical.widgets) | $EXP[HomeIsVertical]</enable>
-		        <visible>String.IsEqual(Container(211).ListItem.Property(widgetaspect),Square)</visible>
-                <visible>!String.StartsWith(Container(211).ListItem.Property(Path),weather)</visible> 
-                <visible>!$EXP[Widget_HasFixedAspect] + !Skin.HasSetting(homemenu.clean.flix)</visible>
-                <visible>$PARAM[visible]</visible>
-		    </control>
-            <control type="button" id="$PARAM[baseid]15" description="Widget Content">
+            <control type="button" id="$PARAM[baseid]12" description="Widget Content">
                 <label>31479</label>
                 <label2>$VAR[Label_Widget_Content]</label2>
                 <include>Def_Skinshortcuts_Buttons</include>
@@ -4405,14 +4381,14 @@
                 <visible>!$EXP[Widget_HasStaticContent]</visible>
                 <visible>$PARAM[visible]</visible>
             </control>
-		    <control type="button" id="$PARAM[baseid]16" description="Widget SortBy">
+		    <control type="button" id="$PARAM[baseid]13" description="Widget SortBy">
 		        <label>581</label>
 		        <label2>$VAR[Label_Widget_SortBy]</label2>
 		        <include>Def_Skinshortcuts_Buttons</include>
                 <visible>!$EXP[Widget_HasStaticContent]</visible>
                 <visible>$PARAM[visible]</visible>
 		    </control>
-		    <control type="button" id="$PARAM[baseid]17">
+		    <control type="button" id="$PARAM[baseid]14">
 		        <description>Change widget sort order</description>
 		        <include>Def_Skinshortcuts_Buttons</include>
 		        <label>580</label>
@@ -4420,14 +4396,28 @@
                 <visible>!$EXP[Widget_HasStaticContent]</visible>
                 <visible>$PARAM[visible]</visible>
 		    </control>
-            <control type="button" id="$PARAM[baseid]18">
+            <control type="radiobutton" id="$PARAM[baseid]15" description="Widget Autoscoll">
+                <selected>!String.IsEqual(Container(211).ListItem.Property(widgetAutoscroll),no) + !String.IsEqual(Container(211).ListItem.Property(widgetLimit),Auto)</selected>
+                <label>$LOCALIZE[31340]</label>
+                <include>Def_Skinshortcuts_Buttons</include>
+                <onclick>SetProperty(customProperty,widgetAutoscroll)</onclick>
+                <onclick condition="!String.IsEqual(Container(211).ListItem.Property(widgetAutoscroll),no)">SetProperty(customValue,no)</onclick>
+                <onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetAutoscroll),no)">SetProperty(customValue,)</onclick>
+                <onclick>SendClick(404)</onclick>
+                <enable>!String.IsEqual(Container(211).ListItem.Property(widgetLimit),Auto)</enable>
+                <visible>!String.IsEmpty(Skin.String(AutoScrollTime))</visible>
+                <visible>!String.IsEqual(Container(211).ListItem.Property(widget),weather)</visible>
+                <visible>!String.IsEqual(Container(211).ListItem.Label2,tvguide)</visible>
+                <visible>$PARAM[visible]</visible>
+            </control>
+            <control type="button" id="$PARAM[baseid]16">
                 <include>Def_Skinshortcuts_Buttons</include>
                 <label>$LOCALIZE[31822]</label>
                 <label2>$VAR[Label_Widget_Limit]</label2>
                 <visible>!$EXP[Widget_HasStaticContent]</visible>
                 <visible>$PARAM[visible]</visible>
             </control>
-		    <control type="radiobutton" id="$PARAM[baseid]19" description="Prevent reload">
+		    <control type="radiobutton" id="$PARAM[baseid]17" description="Prevent reload">
 		        <selected>String.IsEqual(Container(211).ListItem.Property(widgetSortby),userpreference)</selected>
 		        <label>31820</label>
 		        <include>Def_Skinshortcuts_Buttons</include>
