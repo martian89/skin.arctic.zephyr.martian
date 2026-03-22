@@ -3306,7 +3306,38 @@
 
     <include name="def_widgetfanart">
         <param name="indicatorbackground" value="$PARAM[indicatorbackground]" default="false"/>
-        <param name="small" value="$PARAM[smallfanart]" default="false"/>
+        <definition>
+        <control type="image">
+            <texture border="11" background="true" infill="false">common/$VAR[nofocus-shadow10]</texture>
+        </control>
+        <control type="image">
+            <left>10</left>
+            <top>10</top>
+            <right>10</right>
+            <bottom>10</bottom>
+            <texture colordiffuse="Fallback" border="4" background="true">common/diffuse_box.png</texture>
+        </control>
+        <include content="def_widget_image">
+            <param name="image" value="$VAR[FanartImage]" />
+            <param name="diffuse" value="diffuse/widgetfanart_new.png" />
+        </include>        
+        <control type="image">
+            <left>10</left>
+            <top>10</top>
+            <right>10</right>
+            <bottom>10</bottom>
+            <texture colordiffuse="BoxWidget" border="4" background="true" infill="false">common/box21.png</texture>
+            <visible>Skin.HasSetting(global.showborders)</visible>
+        </control>
+        <include content="IndicatorPoster" condition="!Skin.HasSetting(hide.markers)">
+            <param name="indicatorbackground" value="$PARAM[indicatorbackground]" />
+        </include>
+        </definition>
+    </include>
+
+    <include name="def_widgetthumb">
+        <param name="indicatorbackground" value="$PARAM[indicatorbackground]" default="false"/>
+        <param name="small" value="$PARAM[small]" default="false"/>
         <definition>
         <control type="image">
             <texture border="11" background="true" infill="false">common/$VAR[nofocus-shadow10]</texture>
@@ -3319,11 +3350,11 @@
             <texture colordiffuse="Fallback" border="4" background="true">common/diffuse_box.png</texture>
         </control>
         <include content="def_widget_image" condition="!$PARAM[small]">
-            <param name="image" value="$VAR[WidgetFanartImage]" />
+            <param name="image" value="$VAR[ThumbImage]" />
             <param name="diffuse" value="diffuse/widgetfanart_new.png" />
         </include>        
         <include content="def_widget_image" condition="$PARAM[small]">
-            <param name="image" value="$VAR[WidgetFanartImage]" />
+            <param name="image" value="$VAR[ThumbImage]" />
             <param name="bottom" value="101" />
             <param name="diffuse" value="diffuse/widgetfanart_new.png" />
             <param name="genre_bordersize" value="54" />
@@ -3350,43 +3381,6 @@
             <label>$VAR[LabelGenreHomeSmallWidget]</label>
             <visible>$PARAM[small]</visible>
         </control>
-        <control type="image">
-            <left>10</left>
-            <top>10</top>
-            <right>10</right>
-            <bottom>10</bottom>
-            <texture colordiffuse="BoxWidget" border="4" background="true" infill="false">common/box21.png</texture>
-            <visible>Skin.HasSetting(global.showborders)</visible>
-        </control>
-        <include content="IndicatorPoster" condition="!Skin.HasSetting(hide.markers)">
-            <param name="indicatorbackground" value="$PARAM[indicatorbackground]" />
-        </include>
-        </definition>
-    </include>
-
-    <include name="def_widgetlandscape">
-        <param name="indicatorbackground" value="$PARAM[indicatorbackground]" default="false"/>
-        <param name="clearlogo" value="$PARAM[clearlogo]" default="false"/>
-        <definition>
-        <control type="image">
-            <texture border="11" background="true" infill="false">common/$VAR[nofocus-shadow10]</texture>
-        </control>
-        <control type="image">
-            <left>10</left>
-            <top>10</top>
-            <right>10</right>
-            <bottom>10</bottom>
-            <texture colordiffuse="Fallback" border="4" background="true">common/diffuse_box.png</texture>
-        </control>
-        <include content="def_widget_image">
-            <param name="image" value="$VAR[LandscapeImage]" />
-            <param name="diffuse" value="diffuse/widgetfanart_new.png" />
-        </include>        
-        <include content="ClearlogoOverlay" condition="$PARAM[clearlogo]">
-            <param name="width" value="250"/>
-            <param name="right" value="30"/>
-            <param name="bottom" value="20"/>
-        </include>
         <control type="image">
             <left>10</left>
             <top>10</top>
@@ -3455,10 +3449,9 @@
         </definition>
     </include>
 
-    <include name="def_widgetthumb">
+    <include name="def_widgetlandscape">
         <param name="indicatorbackground" value="$PARAM[indicatorbackground]" default="false"/>
-        <param name="clearlogo" value="$PARAM[clearlogo]" default="false"/>
-        <param name="small" value="$PARAM[smallthumb]" default="false"/>
+        <param name="small" value="$PARAM[small]" default="false"/>
         <param name="poster" value="$PARAM[poster]" default="false"/>
         <definition>
         <control type="image">
@@ -3489,7 +3482,7 @@
             <right>10</right>
             <bottom>10</bottom>
             <aspectratio scalediffuse="false">scale</aspectratio>
-            <texture diffuse="diffuse/widgetfanart_new.png" background="true" fallback="DefaultMovies.png">$VAR[WidgetThumbImage]</texture>
+            <texture diffuse="diffuse/widgetfanart_new.png" background="true" fallback="DefaultMovies.png">$VAR[LandscapeImage]</texture>
             <visible>!$PARAM[small] + !$EXP[HasThumbImageResource]</visible>
         </control>
         <control type="image">
@@ -3498,7 +3491,7 @@
             <right>10</right>
             <bottom>101</bottom>
             <aspectratio scalediffuse="false">scale</aspectratio>
-            <texture diffuse="diffuse/widgetfanart_top.png" background="true" fallback="DefaultMovies.png">$VAR[WidgetThumbImage]</texture>
+            <texture diffuse="diffuse/widgetfanart_top.png" background="true" fallback="DefaultMovies.png">$VAR[LandscapeImage]</texture>
             <visible>$PARAM[small] + !$PARAM[poster] + !$EXP[HasThumbImageResource]</visible>
         </control>
         <control type="image">
@@ -3507,7 +3500,7 @@
             <right>10</right>
             <bottom>101</bottom>
             <aspectratio scalediffuse="false">scale</aspectratio>
-            <texture diffuse="diffuse/widgetfanart_topright.png" border="1" background="true" fallback="DefaultMovies.png">$VAR[WidgetThumbImage]</texture>
+            <texture diffuse="diffuse/widgetfanart_topright.png" border="1" background="true" fallback="DefaultMovies.png">$VAR[LandscapeImage]</texture>
             <visible>$PARAM[small] + $PARAM[poster] + !$EXP[HasThumbImageResource]</visible>
         </control>
         <include content="def_widget_image" condition="!$PARAM[small]">
@@ -3520,18 +3513,6 @@
             <param name="diffuse" value="diffuse/widgetsquare_new.png" />
             <param name="visible" value="$EXP[HasThumbImageResource]" />
         </include>        
-        <control type="image">
-            <width>200</width>
-            <right>30</right>
-            <include content="def_bottom" condition="$PARAM[small]">
-                <param name="bottom" value="101" />
-            </include>
-            <bottom>30</bottom>
-            <aspectratio align="right" aligny="bottom">keep</aspectratio>
-            <texture background="true">$VAR[ClearLogoHome]</texture>
-            <visible>$PARAM[clearlogo]</visible>
-            <visible>!$EXP[HasThumbImageResource]</visible>
-        </control>
         <control type="label">
             <bottom>40</bottom>
             <left>35</left>
@@ -4045,7 +4026,7 @@
                     <left>32</left>
                     <top>12</top>
                     <aspectratio scalediffuse="false">scale</aspectratio>
-                    <texture diffuse="diffuse/dialogselect.png" fallback="DefaultAddonNone.png">$VAR[WidgetFanartImage]</texture>
+                    <texture diffuse="diffuse/dialogselect.png" fallback="DefaultAddonNone.png">$VAR[FanartImage]</texture>
                     <visible>!Skin.HasSetting(global.hidecirles)</visible>
                 </control>
                 <control type="image">
@@ -4055,7 +4036,7 @@
                     <top>12</top>
                     <left>32</left>
                     <aspectratio scalediffuse="false">keep</aspectratio>
-                    <texture fallback="DefaultAddonNone.png">$VAR[WidgetFanartImage]</texture>
+                    <texture fallback="DefaultAddonNone.png">$VAR[FanartImage]</texture>
                     <visible>Skin.HasSetting(global.hidecirles)</visible>
                 </control>
                 <control type="image">
@@ -4180,7 +4161,7 @@
                     <left>32</left>
                     <top>12</top>
                     <aspectratio scalediffuse="false">scale</aspectratio>
-                    <texture diffuse="diffuse/dialogselect.png" fallback="DefaultAddonNone.png">$VAR[WidgetFanartImage]</texture>
+                    <texture diffuse="diffuse/dialogselect.png" fallback="DefaultAddonNone.png">$VAR[FanartImage]</texture>
                     <visible>!Skin.HasSetting(global.hidecirles)</visible>
                 </control>
                 <control type="image">
@@ -4190,7 +4171,7 @@
                     <top>12</top>
                     <left>32</left>
                     <aspectratio scalediffuse="false">keep</aspectratio>
-                    <texture fallback="DefaultAddonNone.png">$VAR[WidgetFanartImage]</texture>
+                    <texture fallback="DefaultAddonNone.png">$VAR[FanartImage]</texture>
                     <visible>Skin.HasSetting(global.hidecirles)</visible>
                 </control>
                 <control type="image">
@@ -4396,24 +4377,12 @@
                 <visible>!Skin.HasSetting(homemenu.clean.flix)</visible>
                 <visible>$PARAM[visible]</visible>
 		    </control>
-		    <control type="radiobutton" id="$PARAM[baseid]12" description="Widget ClearLogo">
-		        <selected>!String.IsEqual(Container(211).ListItem.Property(widgetClearLogoThumb),no)</selected>
-		        <label>$LOCALIZE[31297]$LOCALIZE[31330]</label>
-		        <include>Def_Skinshortcuts_Buttons</include>
-		        <onclick>SetProperty(customProperty,widgetClearLogoThumb)</onclick>
-		        <onclick condition="!String.IsEqual(Container(211).ListItem.Property(widgetClearLogoThumb),no)">SetProperty(customValue,no)</onclick>
-		        <onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetClearLogoThumb),no)">SetProperty(customValue,)</onclick>
-		        <onclick>SendClick(404)</onclick>
-                <visible>String.IsEqual(Container(211).ListItem.Property(widgetaspect),Thumbnail) | String.IsEqual(Container(211).ListItem.Property(widgetaspect),ThumbnailSmall)</visible>
-		        <visible>!$EXP[Widget_HasFixedAspect] + !Skin.HasSetting(homemenu.clean.flix)</visible>
-                <visible>$PARAM[visible]</visible>
-		    </control>
 		    <control type="button" id="$PARAM[baseid]13" description="Widget Aspect Ratio">
 		        <label>$LOCALIZE[31297]$LOCALIZE[31401]</label>
 		        <label2>$VAR[Label_Widget_AspectRatio]</label2>
 		        <include>Def_Skinshortcuts_Buttons</include>
 		        <visible>Skin.HasSetting(home.vertical.widgets) | $EXP[HomeIsVertical]</visible>
-                <visible>String.IsEqual(Container(211).ListItem.Property(widgetaspect),Square) | String.IsEqual(Container(211).ListItem.Property(widgetaspect),SquareMedium)</visible>
+                <visible>String.IsEqual(Container(211).ListItem.Property(widgetaspect),Square)</visible>
                 <visible>!String.StartsWith(Container(211).ListItem.Property(Path),weather)</visible> 
                 <visible>!$EXP[Widget_HasFixedAspect] + !Skin.HasSetting(homemenu.clean.flix)</visible>
                 <visible>$PARAM[visible]</visible>
@@ -4423,7 +4392,7 @@
 		        <label2>$VAR[Label_Widget_EdgeDistance]</label2>
 		        <include>Def_Skinshortcuts_Buttons</include>
                 <enable>Skin.HasSetting(home.vertical.widgets) | $EXP[HomeIsVertical]</enable>
-		        <visible>String.IsEqual(Container(211).ListItem.Property(widgetaspect),Square) | String.IsEqual(Container(211).ListItem.Property(widgetaspect),SquareSmall) | String.IsEqual(Container(211).ListItem.Property(widgetaspect),SquareMedium)</visible>
+		        <visible>String.IsEqual(Container(211).ListItem.Property(widgetaspect),Square)</visible>
                 <visible>!String.StartsWith(Container(211).ListItem.Property(Path),weather)</visible> 
                 <visible>!$EXP[Widget_HasFixedAspect] + !Skin.HasSetting(homemenu.clean.flix)</visible>
                 <visible>$PARAM[visible]</visible>

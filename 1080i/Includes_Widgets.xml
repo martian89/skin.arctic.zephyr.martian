@@ -371,15 +371,12 @@
     <include name="Widget_Layout_Normal">
         <param name="Banner" default="false"/>
         <param name="Thumbnail" default="false"/>
-        <param name="Fanart" default="false"/>
-        <param name="FanartSmall" default="false"/>
-        <param name="ThumbnailSmall" default="false"/>
-        <param name="ThumbnailPosterSmall" default="false"/>
+        <param name="Landscape" default="false"/>
+        <param name="landscapeSmall" default="false"/>
+        <param name="LandscapePosterSmall" default="false"/>
         <param name="Square" default="false"/>
-        <param name="SquareSmall" default="false"/>
-        <param name="SquareMedium" default="false"/>
         <definition>
-        <itemlayout height="325" width="222" condition="![$PARAM[Banner] | $PARAM[Thumbnail] | $PARAM[Fanart] | $PARAM[FanartSmall] | $PARAM[ThumbnailSmall] | $PARAM[ThumbnailPosterSmall] | $PARAM[Square]]">
+        <itemlayout height="325" width="222" condition="![$PARAM[Banner] | $PARAM[Thumbnail] | $PARAM[Landscape] | $PARAM[LandscapeSmall] | $PARAM[LandscapePosterSmall] | $PARAM[Square]]">
             <control type="group">
                 <width>222</width>
                 <include content="def_left" condition="$EXP[HomeIsModernMultiWidgets] + !Skin.HasSetting(homemenu.clean.flix)"><param name="left" value="70" /></include>
@@ -399,22 +396,33 @@
                 </include>
             </control>
         </itemlayout>
-        <itemlayout height="325" width="562" condition="$PARAM[Fanart]">
+        <itemlayout height="325" width="562" condition="$PARAM[Landscape]">
             <control type="group">
                 <width>562</width>
                 <include content="def_left" condition="$EXP[HomeIsModernMultiWidgets] + !Skin.HasSetting(homemenu.clean.flix)"><param name="left" value="70" /></include>
-                <include content="include.widget.fanart">
+                <include content="include.widget.landscape">
                     <param name="reflections" value="Skin.HasSetting(show.reflections)"/>
                 </include>
             </control>
         </itemlayout>
-        <itemlayout height="325" width="400" condition="$PARAM[FanartSmall]">
+        <itemlayout height="325" width="400" condition="$PARAM[LandscapeSmall]">
             <control type="group">
                 <width>400</width>
                 <include content="def_left" condition="$EXP[HomeIsModernMultiWidgets] + !Skin.HasSetting(homemenu.clean.flix)"><param name="left" value="70" /></include>
-                <include content="include.widget.fanart">
+                <include content="include.widget.landscape">
                     <param name="reflections" value="false"/>
                     <param name="small" value="true"/>
+                </include>
+            </control>
+        </itemlayout>
+        <itemlayout height="325" width="542" condition="$PARAM[LandscapePosterSmall]">
+            <control type="group">
+                <width>542</width>
+                <include content="def_left" condition="$EXP[HomeIsModernMultiWidgets] + !Skin.HasSetting(homemenu.clean.flix)"><param name="left" value="70" /></include>
+                <include content="include.widget.landscape">
+                    <param name="small" value="true"/>
+                    <param name="poster" value="true"/>
+                    <param name="reflections" value="false"/>
                 </include>
             </control>
         </itemlayout>
@@ -432,35 +440,11 @@
                 <width>562</width>
                 <include content="def_left" condition="$EXP[HomeIsModernMultiWidgets] + !Skin.HasSetting(homemenu.clean.flix)"><param name="left" value="70" /></include>
                 <include content="include.widget.thumb">
-                    <param name="clearlogo" value="$PARAM[shortcutsclearlogo]"/>
                     <param name="reflections" value="Skin.HasSetting(show.reflections)"/>
                 </include>
             </control>
         </itemlayout>
-        <itemlayout height="325" width="400" condition="$PARAM[ThumbnailSmall]">
-            <control type="group">
-                <width>400</width>
-                <include content="def_left" condition="$EXP[HomeIsModernMultiWidgets] + !Skin.HasSetting(homemenu.clean.flix)"><param name="left" value="70" /></include>
-                <include content="include.widget.thumb">
-                    <param name="clearlogo" value="$PARAM[shortcutsclearlogo]"/>
-                    <param name="small" value="true"/>
-                    <param name="reflections" value="false"/>
-                </include>
-            </control>
-        </itemlayout>
-        <itemlayout height="325" width="542" condition="$PARAM[ThumbnailPosterSmall]">
-            <control type="group">
-                <width>542</width>
-                <include content="def_left" condition="$EXP[HomeIsModernMultiWidgets] + !Skin.HasSetting(homemenu.clean.flix)"><param name="left" value="70" /></include>
-                <include content="include.widget.thumb">
-                    <param name="clearlogo" value="false"/>
-                    <param name="small" value="true"/>
-                    <param name="poster" value="true"/>
-                    <param name="reflections" value="false"/>
-                </include>
-            </control>
-        </itemlayout>
-        <focusedlayout height="325" width="222" condition="![$PARAM[Banner] | $PARAM[Thumbnail] | $PARAM[Fanart] | $PARAM[FanartSmall] | $PARAM[ThumbnailSmall] | $PARAM[ThumbnailPosterSmall] | $PARAM[Square]] | $EXP[HomeIsCleanMinimal]">
+        <focusedlayout height="325" width="222" condition="![$PARAM[Banner] | $PARAM[Thumbnail] | $PARAM[Landscape] | $PARAM[LandscapeSmall] | $PARAM[LandscapePosterSmall] | $PARAM[Square]] | $EXP[HomeIsCleanMinimal]">
             <control type="group">
                 <width>222</width>
                 <include content="def_left" condition="$EXP[HomeIsModernMultiWidgets] + !Skin.HasSetting(homemenu.clean.flix)"><param name="left" value="70" /></include>
@@ -487,25 +471,38 @@
             </control>
             <include condition="Skin.HasSetting(home.netflix.autoplay.trailer) + [$EXP[HomeIsModernMultiWidgetsNetflix] | $EXP[HomeIsVerticalMultiWidgetsNetflix] | $EXP[HomeIsCleanMinimal]]">SetAutoTrailerControl</include>
         </focusedlayout>
-        <focusedlayout height="325" width="562" condition="$PARAM[Fanart] + !$EXP[HomeIsCleanMinimal]">
+        <focusedlayout height="325" width="562" condition="$PARAM[Landscape] + !$EXP[HomeIsCleanMinimal]">
             <control type="group">
                 <width>562</width>
                 <include content="def_left" condition="$EXP[HomeIsModernMultiWidgets] + !Skin.HasSetting(homemenu.clean.flix)"><param name="left" value="70" /></include>
-                <include content="include.widget.fanart.focus">
+                <include content="include.widget.landscape.focus">
                     <param name="id" value="$PARAM[shortcutsid]"/>
                     <param name="reflections" value="Skin.HasSetting(show.reflections)"/>
                 </include>
             </control>
             <include condition="Skin.HasSetting(home.netflix.autoplay.trailer) + [$EXP[HomeIsModernMultiWidgetsNetflix] | $EXP[HomeIsVerticalMultiWidgetsNetflix] | $EXP[HomeIsCleanMinimal]]">SetAutoTrailerControl</include>
         </focusedlayout>
-        <focusedlayout height="325" width="400" condition="$PARAM[FanartSmall] + !$EXP[HomeIsCleanMinimal]">
+        <focusedlayout height="325" width="400" condition="$PARAM[LandscapeSmall] + !$EXP[HomeIsCleanMinimal]">
             <control type="group">
                 <width>400</width>
                 <include content="def_left" condition="$EXP[HomeIsModernMultiWidgets] + !Skin.HasSetting(homemenu.clean.flix)"><param name="left" value="70" /></include>
-                <include content="include.widget.fanart.focus">
+                <include content="include.widget.landscape.focus">
                     <param name="id" value="$PARAM[shortcutsid]"/>
                     <param name="reflections" value="false"/>
                     <param name="small" value="true"/>
+                </include>
+            </control>
+            <include condition="Skin.HasSetting(home.netflix.autoplay.trailer) + [$EXP[HomeIsModernMultiWidgetsNetflix] | $EXP[HomeIsVerticalMultiWidgetsNetflix] | $EXP[HomeIsCleanMinimal]]">SetAutoTrailerControl</include>
+        </focusedlayout>
+        <focusedlayout height="325" width="542" condition="$PARAM[LandscapePosterSmall] + !$EXP[HomeIsCleanMinimal]">
+            <control type="group">
+                <width>542</width>
+                <include content="def_left" condition="$EXP[HomeIsModernMultiWidgets] + !Skin.HasSetting(homemenu.clean.flix)"><param name="left" value="70" /></include>
+                <include content="include.widget.landscape.focus">
+                    <param name="id" value="$PARAM[shortcutsid]"/>
+                    <param name="reflections" value="false"/>
+                    <param name="small" value="true"/>
+                    <param name="poster" value="true"/>
                 </include>
             </control>
             <include condition="Skin.HasSetting(home.netflix.autoplay.trailer) + [$EXP[HomeIsModernMultiWidgetsNetflix] | $EXP[HomeIsVerticalMultiWidgetsNetflix] | $EXP[HomeIsCleanMinimal]]">SetAutoTrailerControl</include>
@@ -527,35 +524,7 @@
                 <include content="def_left" condition="$EXP[HomeIsModernMultiWidgets] + !Skin.HasSetting(homemenu.clean.flix)"><param name="left" value="70" /></include>
                 <include content="include.widget.thumb.focus">
                     <param name="id" value="$PARAM[shortcutsid]"/>
-                    <param name="clearlogo" value="$PARAM[shortcutsclearlogo]"/>
                     <param name="reflections" value="Skin.HasSetting(show.reflections)"/>
-                </include>
-            </control>
-            <include condition="Skin.HasSetting(home.netflix.autoplay.trailer) + [$EXP[HomeIsModernMultiWidgetsNetflix] | $EXP[HomeIsVerticalMultiWidgetsNetflix] | $EXP[HomeIsCleanMinimal]]">SetAutoTrailerControl</include>
-        </focusedlayout>
-        <focusedlayout height="325" width="400" condition="$PARAM[ThumbnailSmall] + !$EXP[HomeIsCleanMinimal]">
-            <control type="group">
-                <width>400</width>
-                <include content="def_left" condition="$EXP[HomeIsModernMultiWidgets] + !Skin.HasSetting(homemenu.clean.flix)"><param name="left" value="70" /></include>
-                <include content="include.widget.thumb.focus">
-                    <param name="id" value="$PARAM[shortcutsid]"/>
-                    <param name="clearlogo" value="$PARAM[shortcutsclearlogo]"/>
-                    <param name="reflections" value="false"/>
-                    <param name="small" value="true"/>
-                </include>
-            </control>
-            <include condition="Skin.HasSetting(home.netflix.autoplay.trailer) + [$EXP[HomeIsModernMultiWidgetsNetflix] | $EXP[HomeIsVerticalMultiWidgetsNetflix] | $EXP[HomeIsCleanMinimal]]">SetAutoTrailerControl</include>
-        </focusedlayout>
-        <focusedlayout height="325" width="542" condition="$PARAM[ThumbnailPosterSmall] + !$EXP[HomeIsCleanMinimal]">
-            <control type="group">
-                <width>542</width>
-                <include content="def_left" condition="$EXP[HomeIsModernMultiWidgets] + !Skin.HasSetting(homemenu.clean.flix)"><param name="left" value="70" /></include>
-                <include content="include.widget.thumb.focus">
-                    <param name="id" value="$PARAM[shortcutsid]"/>
-                    <param name="clearlogo" value="false"/>
-                    <param name="reflections" value="false"/>
-                    <param name="small" value="true"/>
-                    <param name="poster" value="true"/>
                 </include>
             </control>
             <include condition="Skin.HasSetting(home.netflix.autoplay.trailer) + [$EXP[HomeIsModernMultiWidgetsNetflix] | $EXP[HomeIsVerticalMultiWidgetsNetflix] | $EXP[HomeIsCleanMinimal]]">SetAutoTrailerControl</include>
@@ -610,7 +579,7 @@
         <param name="Fanart" default="false"/>
         <param name="Square" default="false"/>
         <definition>
-        <itemlayout height="325" width="222" condition="![$PARAM[Fanart] | $PARAM[Square]]">
+        <itemlayout height="325" width="222" condition="![$PARAM[Landscape] | $PARAM[Square]]">
             <control type="group">
                 <width>222</width>
                 <include content="def_left" condition="$EXP[HomeIsModernMultiWidgets] + !Skin.HasSetting(homemenu.clean.flix)"><param name="left" value="70" /></include>
@@ -624,14 +593,14 @@
                 <include>weatherlayoutwidgetsvertical.square</include>
             </control>
         </itemlayout>
-        <itemlayout height="325" width="562" condition="$PARAM[Fanart]">
+        <itemlayout height="325" width="562" condition="$PARAM[Landscape]">
             <control type="group">
                 <width>562</width>
                 <include content="def_left" condition="$EXP[HomeIsModernMultiWidgets] + !Skin.HasSetting(homemenu.clean.flix)"><param name="left" value="70" /></include>
-                <include>weatherlayoutwidgetsvertical.fanart</include>
+                <include>weatherlayoutwidgetsvertical.landscape</include>
             </control>
         </itemlayout>
-        <focusedlayout height="325" width="222" condition="![$PARAM[Square] | $PARAM[Fanart]]">
+        <focusedlayout height="325" width="222" condition="![$PARAM[Square] | $PARAM[Landscape]]">
             <control type="group">
                 <width>222</width>
                 <include content="def_left" condition="$EXP[HomeIsModernMultiWidgets] + !Skin.HasSetting(homemenu.clean.flix)"><param name="left" value="70" /></include>
@@ -652,11 +621,11 @@
                 </include>
             </control>
         </focusedlayout>
-        <focusedlayout height="325" width="562" condition="$PARAM[Fanart]">
+        <focusedlayout height="325" width="562" condition="$PARAM[Landscape]">
             <control type="group">
                 <width>562</width>
                 <include content="def_left" condition="$EXP[HomeIsModernMultiWidgets] + !Skin.HasSetting(homemenu.clean.flix)"><param name="left" value="70" /></include>
-                <include content="weatherlayoutwidgetsvertical.fanart.focus">
+                <include content="weatherlayoutwidgetsvertical.landscape.focus">
                     <param name="id" value="$PARAM[shortcutsid]"/>
                 </include>
             </control>
@@ -1162,7 +1131,7 @@
         <include>def_weathersquare</include>
     </include>
 
-    <include name="weatherlayoutwidgetsvertical.fanart">
+    <include name="weatherlayoutwidgetsvertical.landscape">
         <include>def_weatherfanart</include>
     </include>
 
@@ -1188,7 +1157,7 @@
         </definition>
     </include>
 
-    <include name="weatherlayoutwidgetsvertical.fanart.focus">
+    <include name="weatherlayoutwidgetsvertical.landscape.focus">
         <definition>
         <control type="group">
             <include>def_weatherfanart</include>
@@ -1309,13 +1278,11 @@
         <param name="reflections" value="$PARAM[reflections]" default="false"/>
         <param name="height" value="$PARAM[height]" default="325"/>
         <param name="top" value="$PARAM[top]" default="305"/>
-        <param name="small" value="$PARAM[smallfanart]" default="false"/>
         <definition>
         <control type="group">
             <height>$PARAM[height]</height>
             <include content="def_widgetfanart">
                 <param name="indicatorbackground" value="$PARAM[indicatorbackground]" />
-                <param name="small" value="$PARAM[small]" default="false"/>
             </include>
         </control>
         <control type="group">
@@ -1327,7 +1294,7 @@
                 <right>10</right>
                 <bottom>10</bottom>
                 <aspectratio scalediffuse="false">scale</aspectratio>
-                <texture flipy="true" diffuse="diffuse/listposter-ref-widgets.png" background="true">$VAR[WidgetFanartImage]</texture>
+                <texture flipy="true" diffuse="diffuse/listposter-ref-widgets.png" background="true">$VAR[FanartImage]</texture>
                 <visible>$PARAM[reflections]</visible>
             </control>
         </control>
@@ -1338,12 +1305,15 @@
         <param name="height" value="$PARAM[height]" default="325"/>
         <param name="top" value="$PARAM[top]" default="305"/>
         <param name="reflections" value="$PARAM[reflections]" default="false"/>
+        <param name="small" default="false"/>
+        <param name="poster" default="false"/>
         <definition>
         <control type="group">
             <height>$PARAM[height]</height>
             <include content="def_widgetlandscape">
                 <param name="indicatorbackground" value="$PARAM[indicatorbackground]" />
-                <param name="clearlogo" value="$PARAM[clearlogo]" />
+                <param name="small" value="$PARAM[small]"/>
+                <param name="poster" value="$PARAM[poster]"/>
             </include>
         </control>
         <control type="group">
@@ -1392,15 +1362,13 @@
         <param name="height" value="$PARAM[height]" default="325"/>
         <param name="top" value="$PARAM[top]" default="305"/>
         <param name="reflections" value="$PARAM[reflections]" default="false"/>
-        <param name="small" value="$PARAM[smallthumb]" default="false"/>
+        <param name="small" default="false"/>
         <definition>
         <control type="group">
             <height>$PARAM[height]</height>
             <include content="def_widgetthumb">
-                <param name="clearlogo" value="$PARAM[clearlogo]"/>
                 <param name="indicatorbackground" value="$PARAM[indicatorbackground]" />
-                <param name="small" value="$PARAM[small]" />
-                <param name="poster" value="$PARAM[poster]" />
+                <param name="small" value="$PARAM[small]"/>
             </include>
         </control>
         <control type="group">
@@ -1412,7 +1380,7 @@
                 <right>10</right>
                 <bottom>10</bottom>
                 <aspectratio scalediffuse="false">scale</aspectratio>
-                <texture flipy="true" diffuse="diffuse/listposter-ref-widgets.png" background="true">$VAR[WidgetThumbImage]</texture>
+                <texture flipy="true" diffuse="diffuse/listposter-ref-widgets.png" background="true">$VAR[ThumbImage]</texture>
                 <visible>$PARAM[reflections]</visible>
             </control>
         </control>
@@ -1541,7 +1509,6 @@
         <param name="reflections" value="$PARAM[reflections]" default="false"/>
         <param name="height" value="$PARAM[height]" default="325"/>
         <param name="top" value="$PARAM[top]" default="305"/>
-        <param name="small" value="$PARAM[smallfanart]" default="false"/>
         <definition>
         <control type="group">
             <height>$PARAM[height]</height>
@@ -1552,7 +1519,7 @@
                 <right>10</right>
                 <bottom>10</bottom>
                 <aspectratio scalediffuse="false">scale</aspectratio>
-                <texture flipy="true" diffuse="diffuse/listposter-ref-widgets.png" background="true">$VAR[WidgetFanartImage]</texture>
+                <texture flipy="true" diffuse="diffuse/listposter-ref-widgets.png" background="true">$VAR[FanartImage]</texture>
                 <visible>$PARAM[reflections]</visible>
             </control>
         </control>
@@ -1560,7 +1527,6 @@
             <height>$PARAM[height]</height>
             <include content="def_widgetfanart">
                 <param name="indicatorbackground" value="$PARAM[indicatorbackground]" />
-                <param name="small" value="$PARAM[small]" default="false"/>
             </include>
             <include content="def_widgetfocus">
                 <param name="id" value="$PARAM[id]"/>
@@ -1573,6 +1539,8 @@
         <param name="height" value="$PARAM[height]" default="325"/>
         <param name="top" value="$PARAM[top]" default="305"/>
         <param name="reflections" value="$PARAM[reflections]" default="false"/>
+        <param name="small" default="false"/>
+        <param name="poster" default="false"/>
         <definition>
         <control type="group">
             <height>$PARAM[height]</height>
@@ -1591,7 +1559,8 @@
             <height>$PARAM[height]</height>
             <include content="def_widgetlandscape">
                 <param name="indicatorbackground" value="$PARAM[indicatorbackground]" />
-                <param name="clearlogo" value="$PARAM[clearlogo]" />
+                <param name="small" value="$PARAM[small]"/>
+                <param name="poster" value="$PARAM[poster]"/>
             </include>
             <include content="def_widgetfocus">
                 <param name="id" value="$PARAM[id]"/>
@@ -1633,7 +1602,7 @@
         <param name="height" value="$PARAM[height]" default="325"/>
         <param name="top" value="$PARAM[top]" default="305"/>
         <param name="reflections" value="$PARAM[reflections]" default="false"/>
-        <param name="small" value="$PARAM[smallthumb]" default="false"/>
+        <param name="small" default="false"/>
         <definition>
         <control type="group">
             <height>$PARAM[height]</height>
@@ -1644,17 +1613,15 @@
                 <right>10</right>
                 <bottom>10</bottom>
                 <aspectratio scalediffuse="false">scale</aspectratio>
-                <texture flipy="true" diffuse="diffuse/listposter-ref-widgets.png" background="true">$VAR[WidgetThumbImage]</texture>
+                <texture flipy="true" diffuse="diffuse/listposter-ref-widgets.png" background="true">$VAR[ThumbImage]</texture>
                 <visible>$PARAM[reflections]</visible>
             </control>
         </control>
         <control type="group">
             <height>$PARAM[height]</height>
             <include content="def_widgetthumb">
-                <param name="clearlogo" value="$PARAM[clearlogo]"/>
-                <param name="small" value="$PARAM[small]" />
-                <param name="poster" value="$PARAM[poster]" />
                 <param name="indicatorbackground" value="$PARAM[indicatorbackground]" />
+                <param name="small" value="$PARAM[small]"/>
             </include>
             <include content="def_widgetfocus">
                 <param name="id" value="$PARAM[id]"/>
