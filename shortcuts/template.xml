@@ -530,11 +530,10 @@
             <property name="isAutoLimit" tag="property" attribute="name|widgetLimit" value="Auto">true</property>
             <property name="isAutoLimit">false</property>
 
+            <property name="widgetMovement" tag="property" attribute="name|list" value="Submenu">4</property>
             <property name="widgetMovement" tag="property" attribute="name|list" value="Settings">4</property>
             <property name="widgetMovement" tag="property" attribute="name|list" value="Systeminfo">4</property>
             <property name="widgetMovement" tag="property" attribute="name|widgetAspect" value="Square">4</property>
-            <property name="widgetMovement" tag="property" attribute="name|widgetAspect" value="SquareMedium">6</property>
-            <property name="widgetMovement" tag="property" attribute="name|widgetAspect" value="SquareSmall">7</property>
             <property name="widgetMovement" tag="property" attribute="name|widgetAspect" value="Thumbnail">2</property>
             <property name="widgetMovement" tag="property" attribute="name|widgetAspect" value="Fanart">2</property>
             <property name="widgetMovement" tag="property" attribute="name|widgetAspect" value="ThumbnailSmall">3</property>
@@ -542,7 +541,6 @@
             <property name="widgetMovement">7</property>
 
             <property name="widgetInclude" tag="label2" value="tvguide">Widget_Layout_PVRGuide</property>
-            <property name="widgetInclude" tag="property" attribute="name|list" value="Submenu">Widget_Layout_Submenu</property>
             <property name="widgetInclude" tag="property" attribute="name|list" value="Settings">Widget_Layout_System</property>
             <property name="widgetInclude" tag="property" attribute="name|list" value="Systeminfo">Widget_Layout_System</property>
             <property name="widgetInclude" tag="property" attribute="name|list" value="WeatherDaily">Widget_Layout_Weather</property>
@@ -575,14 +573,12 @@
             <property name="isFullscreenWidget" tag="property" attribute="name|widgetFullscreen" value="yes">true</property>
             <property name="isFullscreenWidget">false</property>
 
+            <property name="widgetAspectCheck" tag="property" attribute="name|list" value="Submenu">Square</property>
 	        <property name="widgetAspectCheck" tag="property" attribute="name|widgetAspect" value="ThumbnailPosterSmall">ThumbPoSmall</property>
 	        <property name="widgetAspectCheck" tag="property" attribute="name|widgetAspect" value="ThumbnailSmall">ThumbSmall</property>
 	        <property name="widgetAspectCheck" tag="property" attribute="name|widgetAspect" value="FanartSmall">FanSmall</property>
 	        <property name="widgetAspectCheck" tag="property" attribute="name|widgetAspect" />
 	        <property name="widgetAspectCheck">Poster</property>
-	        <property name="widgetAspectSubcheck" tag="property" attribute="name|widgetAspect" value="SquareSmall">SqSmall</property>
-	        <property name="widgetAspectSubcheck" tag="property" attribute="name|widgetAspect" value="SquareMedium">SqMedium</property>
-	        <property name="widgetAspectSubcheck">Square</property> 
 
             <property name="widgetAspectRatio" tag="property" attribute="name|widgetAspectRatio"/>
             <property name="widgetAspectRatio">keep</property>
@@ -590,14 +586,8 @@
             <property name="widgetEdgeDistance">10</property>
 
             <!-- Widget Container -->
-            <property name="layoutHeight" tag="property" attribute="name|widgetAspect" value="SquareMedium">175</property>
-            <property name="layoutHeight" tag="property" attribute="name|widgetAspect" value="SquareSmall">125</property>
-            <property name="layoutHeight" tag="property" attribute="name|list" value="Submenu">325</property>
             <property name="layoutHeight" tag="property" attribute="name|widgetFullscreen" value="yes">710</property>
             <property name="layoutHeight">325</property>
-            <property name="layoutHeight2" tag="property" attribute="name|widgetAspect" value="SquareMedium">185</property>
-            <property name="layoutHeight2" tag="property" attribute="name|widgetAspect" value="SquareSmall">135</property>
-            <property name="layoutHeight2" tag="property" attribute="name|list" value="Submenu">365</property>
             <property name="layoutHeight2" tag="property" attribute="name|widgetFullscreen" value="yes">750</property>
             <property name="layoutHeight2">365</property>
             <property name="orientation" tag="label2" value="tvguide">vertical</property>
@@ -647,9 +637,7 @@
 	                    <param name="ThumbnailSmall" value="$PYTHON['true' if widgetAspectCheck in 'ThumbSmall' else 'false']"/>
 	                    <param name="ThumbnailPosterSmall" value="$PYTHON['true' if widgetAspectCheck in 'ThumbPoSmall' else 'false']"/>
 	                    <param name="Square" value="$PYTHON['true' if widgetAspectCheck in 'Square' else 'false']"/>  
-                        <param name="SquareMedium" value="$PYTHON['true' if widgetAspectSubcheck in 'SqMedium' else 'false']"/>
-                        <param name="SquareSmall" value="$PYTHON['true' if widgetAspectSubcheck in 'SqSmall' else 'false']"/>
-	                </include>
+                  </include>
 	                <include content="Widget_ContentDynamic" condition="$SKINSHORTCUTS[isNormalLayout]">
 	                   <param name="target" value="$SKINSHORTCUTS[widgetTarget]" />
                        <param name="limit" value="$SKINSHORTCUTS[widgetLimit]" />
