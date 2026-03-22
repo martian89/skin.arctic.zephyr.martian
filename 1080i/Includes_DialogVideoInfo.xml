@@ -1417,6 +1417,7 @@
                 <onclick condition="Skin.HasSetting(extended.info.local.cast)">SetProperty(dontslide,1,home)</onclick>
                 <onclick condition="Skin.HasSetting(extended.info.local.cast)">SetFocus(10050)</onclick>
                 <onclick condition="!Skin.HasSetting(extended.info.local.cast)">SetFocus(10052)</onclick>
+                <include>DialogVideoInfo_List_Click_Action</include>
                 <include content="DialogVideoInfoButtons">
                     <param name="icon" value="buttonsdialogs/cast.png" />
                 </include>
@@ -1427,6 +1428,7 @@
                 <visible>String.IsEqual(ListItem.DBType,set)</visible>
                 <onclick>SetProperty(content,1)</onclick>
                 <onclick>SetFocus(10050)</onclick>
+                <include>DialogVideoInfo_List_Click_Action</include>
                 <include content="DialogVideoInfoButtons">
                     <param name="icon" value="buttonsdialogs/set.png" />
                 </include>
@@ -1439,6 +1441,7 @@
                 <onfocus>SetProperty(videocrew,1)</onfocus>
                 <onclick>SetProperty(content,9)</onclick>
                 <onclick>SetFocus(10056)</onclick>
+                <include>DialogVideoInfo_List_Click_Action</include>
                 <include content="DialogVideoInfoButtons">
                     <param name="icon" value="buttonsdialogs/crew.png" />
                 </include>
@@ -1450,6 +1453,7 @@
                 <onfocus>SetProperty(videosimilar,1)</onfocus>
                 <onclick>SetProperty(content,2)</onclick>
                 <onclick>SetFocus(10053)</onclick>
+                <include>DialogVideoInfo_List_Click_Action</include>
                 <include content="DialogVideoInfoButtons">
                     <param name="icon" value="buttonsdialogs/similar.png" />
                 </include>
@@ -1460,6 +1464,7 @@
                 <onfocus>SetProperty(videostudio,1)</onfocus>
                 <onclick>SetProperty(content,3)</onclick>
                 <onclick>SetFocus(10060)</onclick>
+                <include>DialogVideoInfo_List_Click_Action</include>
                 <include content="DialogVideoInfoButtons">
                     <param name="icon" value="buttonsdialogs/studio.png" />
                 </include>
@@ -1471,6 +1476,7 @@
                 <onfocus>SetProperty(videodirector,1)</onfocus>
                 <onclick>SetProperty(content,7)</onclick>
                 <onclick>SetFocus(10062)</onclick>
+                <include>DialogVideoInfo_List_Click_Action</include>
                 <include content="DialogVideoInfoButtons">
                     <param name="icon" value="buttonsdialogs/director.png" />
                 </include>
@@ -1484,7 +1490,7 @@
                 <include content="DialogVideoInfoButtons">
                     <param name="icon" value="buttonsdialogs/youtube.png" />
                 </include>
-                <visible>!Skin.HasSetting(hidebutton.video.youtube) + [String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow)] | !Skin.HasSetting(hidebutton.person.youtube) + $EXP[IsPersonInfo]</visible>
+                <visible>Skin.HasSetting(showbutton.video.youtube) + [String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow)] | Skin.HasSetting(showbutton.person.youtube) + $EXP[IsPersonInfo]</visible>
                 <visible>System.AddonIsEnabled(plugin.video.youtube)</visible>
             </control>
 
@@ -1496,6 +1502,7 @@
 				<onclick condition="Skin.HasSetting(extended.info.local.collections) + Window.IsVisible(1190)">RunScript(plugin.video.themoviedb.helper,close_dialog=1190,call_path=videodb://movies/sets/$INFO[ListItem.SetId]/?setid=$INFO[ListItem.SetId])</onclick>
 				<onclick condition="Skin.HasSetting(extended.info.local.collections) + !Window.IsVisible(1190)">Dialog.Close(all,true)</onclick>
 				<onclick condition="Skin.HasSetting(extended.info.local.collections) + !Window.IsVisible(1190)">ActivateWindow(Videos,videodb://movies/sets/$INFO[ListItem.SetId]/?setid=$INFO[ListItem.SetId])</onclick>
+                <include>DialogVideoInfo_List_Click_Action</include>
                 <include content="DialogVideoInfoButtons">
                     <param name="icon" value="buttonsdialogs/set.png" />
                 </include>
