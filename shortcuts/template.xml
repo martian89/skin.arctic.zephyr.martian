@@ -385,6 +385,7 @@
 
 	    <controls>
             <control type="group">
+                <visible>[String.IsEmpty(Skin.String(home.slideshowpath)) | String.IsEqual(Skin.String(home.slideshowpath),none)] + String.IsEmpty(Container(300).ListItem.Property(Background))</visible>
                 <visible>Integer.IsEqual(Container(9989).NumItems,0)</visible>
                 <include condition="!Skin.HasSetting(widgets.fade)">Animation.Vertical.Widgets.Label</include>
                 <animation effect="slide" start="0" end="0,342" time="0" condition="Skin.HasSetting(homemenu.clean.flix) + Skin.HasSetting(homemenu.clean.flix.no.slide)">Conditional</animation>
@@ -405,6 +406,7 @@
                 <include>Widget_Navigation_Actions</include>
                 
 	            <control type="group" id="997500">
+                    <visible>[String.IsEmpty(Skin.String(home.slideshowpath)) | String.IsEqual(Skin.String(home.slideshowpath),none)] + String.IsEmpty(Container(300).ListItem.Property(Background))</visible>
 	                <visible>Integer.IsGreater(Container(993100).NumItems,0) | Container(993100).IsUpdating</visible>
 	                <control type="grouplist">
 	                    <include content="Widget_Title_Label">
@@ -414,8 +416,9 @@
 	                </control>
 	            </control>
 		        <control type="fixedlist" id="993100">
+                    <visible>[String.IsEmpty(Skin.String(home.slideshowpath)) | String.IsEqual(Skin.String(home.slideshowpath),none)] + String.IsEmpty(Container(300).ListItem.Property(Background))</visible>
 		            <visible>Integer.IsGreater(Container(993100).NumItems,0) | Container(993100).IsUpdating</visible>
-		            <include content="DefMultiWidgetContainer">
+ 		            <include content="DefMultiWidgetContainer">
 		                <param name="id" value="993100"/>
 		                <param name="baseid" value="9931"/>
 		                <param name="height" value="325"/>
@@ -434,6 +437,7 @@
 		        </control>
                 <!-- InfoSub -->
 	            <control type="group" id="995600">
+                    <visible>[String.IsEmpty(Skin.String(home.slideshowpath)) | String.IsEqual(Skin.String(home.slideshowpath),none)] + String.IsEmpty(Container(300).ListItem.Property(Background))</visible>
 	                <visible>Integer.IsGreater(Container(993100).NumItems,0) | Container(993100).IsUpdating</visible>
 	                <control type="grouplist">
 	                    <include content="HomeWidgetsFullscreenInfo">
@@ -480,7 +484,7 @@
                 <include>Widget_Navigation_Actions</include>
                 
                 <skinshortcuts insert="widgets">items</skinshortcuts>
-            </control>        
+             </control>        
         </controls>
 
 	    <items insert="widgets">
