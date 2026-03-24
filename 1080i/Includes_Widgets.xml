@@ -62,6 +62,7 @@
             <onfocus condition="Integer.IsGreater(Container($PARAM[baseid]03).NumItems,0) + Control.IsVisible($PARAM[baseid]03)">SetProperty(BackToId,$PARAM[baseid]03,Home)</onfocus>
             <onfocus condition="Integer.IsGreater(Container($PARAM[baseid]02).NumItems,0) + Control.IsVisible($PARAM[baseid]02)">SetProperty(BackToId,$PARAM[baseid]02,Home)</onfocus>
             <onfocus condition="Integer.IsGreater(Container($PARAM[baseid]01).NumItems,0) + Control.IsVisible($PARAM[baseid]01)">SetProperty(BackToId,$PARAM[baseid]01,Home)</onfocus>
+            <onfocus condition="Integer.IsGreater(Container(993100).NumItems,0) + Control.IsVisible(993100)">SetProperty(BackToId,993100,Home)</onfocus>
        
             <onfocus condition="Integer.IsGreater(Container($PARAM[baseid]01).NumItems,0) + Control.IsVisible($PARAM[baseid]01)">SetProperty(LastId,$PARAM[baseid]01,Home)</onfocus>
             <onfocus condition="Integer.IsGreater(Container($PARAM[baseid]02).NumItems,0) + Control.IsVisible($PARAM[baseid]02)">SetProperty(LastId,$PARAM[baseid]02,Home)</onfocus>
@@ -72,6 +73,7 @@
             <onfocus condition="Integer.IsGreater(Container($PARAM[baseid]07).NumItems,0) + Control.IsVisible($PARAM[baseid]07)">SetProperty(LastId,$PARAM[baseid]07,Home)</onfocus>
             <onfocus condition="Integer.IsGreater(Container($PARAM[baseid]08).NumItems,0) + Control.IsVisible($PARAM[baseid]08)">SetProperty(LastId,$PARAM[baseid]08,Home)</onfocus>
             <onfocus condition="Integer.IsGreater(Container($PARAM[baseid]09).NumItems,0) + Control.IsVisible($PARAM[baseid]09)">SetProperty(LastId,$PARAM[baseid]09,Home)</onfocus>
+            <onfocus condition="Integer.IsGreater(Container(993100).NumItems,0) + Control.IsVisible(993100)">SetProperty(LastId,993100,Home)</onfocus>
 
             <onback condition="[!Integer.IsEqual(Container($PARAM[id]).Position,0) | Container($PARAM[id]).HasPrevious] + !Skin.HasSetting(widget.items.onback.go.back.to.position.0)">PageUp</onback>
             <onback condition="[!Integer.IsEqual(Container($PARAM[id]).Position,0) | Container($PARAM[id]).HasPrevious] + !Skin.HasSetting(widget.items.onback.go.back.to.position.0)">PageUp</onback>
@@ -257,28 +259,28 @@
             <visible>Control.HasFocus($PARAM[focusid]) + [String.IsEqual(Container($PARAM[focusid]).ListItem.DBType,album) | String.IsEqual(Container($PARAM[focusid]).ListItem.DBType,song)] + !String.IsEmpty(Container($PARAM[focusid]).ListItem.Artist)</visible>
             <visible>!Skin.HasSetting(homemenu.netflix)</visible>
         </control>
-        <control type="label" id="9966">
+        <control type="label">
             <align>left</align>
             <height>38</height>
             <font>Small</font>
             <width>auto</width>
             <textcolor>Dark1</textcolor>
-            <label>$INFO[Container(44023).NumItems, •  , $LOCALIZE[342]]</label>
+            <label>$INFO[Container($PARAM[setinfo]).NumItems, •  , $LOCALIZE[342]]</label>
             <include>Animation.Vertical.Widgets.Title</include>
-            <visible>Control.HasFocus($PARAM[focusid])</visible>
-            <visible>ListItem.IsCollection + Integer.IsGreater(Container(9989).NumItems,1)</visible>
+            <visible>Control.HasFocus($PARAM[focusid]) + $PARAM[showinfo]</visible>
+            <visible>Container($PARAM[focusid]).ListItem.IsCollection + !String.IsEmpty(Container($PARAM[focusid]).ListItem.DBID)</visible>
             <visible>!Skin.HasSetting(homemenu.netflix)</visible>
         </control>
-        <control type="label" id="9967">
+        <control type="label">
             <align>left</align>
             <height>38</height>
             <font>Small</font>
             <width>auto</width>
             <textcolor>Dark1</textcolor>
-            <label>$INFO[Container(44022).NumItems, •  , $LOCALIZE[134]]</label>
+            <label>$INFO[Container($PARAM[albuminfo]).NumItems, •  , $LOCALIZE[134]]</label>
             <include>Animation.Vertical.Widgets.Title</include>
-            <visible>Control.HasFocus($PARAM[focusid])</visible>
-            <visible>String.IsEqual(ListItem.DBType,album) + Integer.IsGreater(Container(9989).NumItems,1)</visible>
+            <visible>Control.HasFocus($PARAM[focusid]) + $PARAM[showinfo]</visible>
+            <visible>String.IsEqual(Container($PARAM[focusid]).ListItem.DBType,album)</visible>
             <visible>!Skin.HasSetting(homemenu.netflix)</visible>
         </control>
         <control type="image">
@@ -2042,7 +2044,7 @@
             <!-- Sets -->
             <control type="label">
                 <include>MultiWidgetsSubLabelDefinition</include>
-                <label>$INFO[Container($PARAM[id]).ListItem.Year]$INFO[Container($PARAM[id]).ListItem.Rating,  •  ] $INFO[Control.GetLabel(9966)]</label>
+                <label>$INFO[Container($PARAM[id]).ListItem.Year]$INFO[Container($PARAM[id]).ListItem.Rating,  •  ]$INFO[Container($PARAM[setinfo]).NumItems,  •  , $LOCALIZE[342]]</label>
                 <visible>String.IsEqual(Container($PARAM[id]).ListItem.DBType,set)</visible>
                 <include content="IndicatorCleanHome" condition="!Skin.HasSetting(hide.markers) + Skin.HasSetting(homemenu.clean.flix)">
                     <param name="id" value="$PARAM[id]" />
@@ -2077,7 +2079,7 @@
                 </control>
                 <control type="label">
                     <include>MultiWidgetsSubLabelDefinition</include>
-                    <label>$INFO[Container($PARAM[id]).ListItem.Year]  $INFO[Control.GetLabel(9967)]</label>
+                    <label>$INFO[Container($PARAM[id]).ListItem.Year]$INFO[Container($PARAM[albuminfo]).NumItems,  •  , $LOCALIZE[134]]</label>
                 </control>
             </control>
             

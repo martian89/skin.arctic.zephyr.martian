@@ -1525,13 +1525,11 @@
     <variable name="SetsPath">
         <value condition="ListItem.IsCollection + !String.IsEmpty(ListItem.DBID)">videodb://movies/sets/$INFO[ListItem.DBID]/?setid=$INFO[ListItem.DBID]</value>
         <value condition="Container(301).ListItem.IsCollection + !String.IsEmpty(Container(301).ListItem.DBID)">videodb://movies/sets/$INFO[Container(301).ListItem.DBID]/?setid=$INFO[Container(301).ListItem.DBID]</value>
-        <value condition="Window.IsVisible(home) + Skin.HasSetting(home.vertical.widgets) + !ControlGroup(301).HasFocus()">$VAR[SetsPath_MultiWidgets_Parent]</value>
      </variable>
 
     <variable name="AlbumPath">
         <value condition="ListItem.IsFolder + String.IsEqual(ListItem.DBType,album)">$INFO[ListItem.FolderPath]</value>
         <value condition="Container(301).ListItem.IsFolder + String.IsEqual(Container(301).ListItem.DBType,album)">$INFO[Container(301).ListItem.FolderPath]</value>
-        <value condition="Window.IsVisible(home) + Skin.HasSetting(home.vertical.widgets) + !ControlGroup(301).HasFocus()">$VAR[AlbumPath_MultiWidgets_Parent]</value>
     </variable>
     
     <variable name="DB_type">

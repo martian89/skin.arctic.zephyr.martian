@@ -484,8 +484,28 @@
                 <include>Widget_Navigation_Actions</include>
                 
                 <skinshortcuts insert="widgets">items</skinshortcuts>
-             </control>        
+             </control>
+             <control type="group">
+                 <visible>String.IsEqual(Container(300).ListItem.Property(submenuVisibility),$SKINSHORTCUTS[submenuVisibility])</visible>
+                 <skinshortcuts insert="hidden-lists">items</skinshortcuts>
+             </control>       
         </controls>
+
+        <items insert="hidden-lists">
+            <property name="id" tag="mainmenuid"/>
+            <controls>
+                <control type="list" id="$PYTHON[int(mainmenuid) * 10000 + 4400 + int(id)]">
+                    <include>HiddenListControl</include>
+                    <visible>Container($PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]).ListItem.IsCollection + !String.IsEmpty($PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]).ListItem.DBID</visible>
+                    <content>videodb://movies/sets/$INFO[Container($PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]).ListItem.DBID]/?setid=$INFO[Container($PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]).ListItem.DBID]</content>
+                </control>
+				<control type="list" id="$PYTHON[int(mainmenuid) * 10000 + 4500 + int(id)]">
+                    <include>HiddenListControl</include>
+				    <visible>Container($PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]).ListItem.IsFolder + String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]).ListItem.DBType,album)</visible>
+				    <content>$INFO[Container($PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]).ListItem.FolderPath]</content>
+				</control>
+            </controls>
+       </items>
 
 	    <items insert="widgets">
 	        <property name="id" tag="mainmenuid"/>
@@ -581,6 +601,8 @@
                             <param name="id" value="$PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]"/>
                             <param name="issettingslayout" value="$SKINSHORTCUTS[isSettings]"/>
                             <param name="isfullscreenlayout" value="!$SKINSHORTCUTS[isFullscreenWidget] + !Skin.HasSetting(homemenu.netflix) + Integer.IsEqual(Container($PYTHON[int(mainmenuid) * 1000 + 301]).NumItems,1)" />
+                            <param name="setinfo" value="$PYTHON[int(mainmenuid) * 10000 + 4400 + int(id)]" />
+                            <param name="albuminfo" value="$PYTHON[int(mainmenuid) * 10000 + 4500 + int(id)]" />
                          </include>
                     </control>
                     <control type="grouplist">
@@ -640,11 +662,13 @@
                         <include content="Widget_Title_Label">
                             <param name="focusid" value="$PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]"/>
                             <param name="label" value="$SKINSHORTCUTS[widgetName]"/>
+                            <param name="setinfo" value="$PYTHON[int(mainmenuid) * 10000 + 4400 + int(id)]" />
+                            <param name="albuminfo" value="$PYTHON[int(mainmenuid) * 10000 + 4500 + int(id)]" />
+                            <param name="showinfo" value="!$SKINSHORTCUTS[isFullscreenWidget] + !Integer.IsEqual(Container($PYTHON[int(mainmenuid) * 1000 + 301]).NumItems,1)" />
                         </include>
                     </control>
                 </control>
 	        </controls>
 	    </items>	    
     </submenu>   
-            
 </template>
