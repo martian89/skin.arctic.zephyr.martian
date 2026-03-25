@@ -53,6 +53,7 @@
             <onfocus>SetProperty(TMDbHelper.WidgetContainer,$PARAM[id],Home)</onfocus>
             <onfocus condition="Skin.HasSetting(extended.nowplaying) + Window.IsVisible(Home) + Skin.HasSetting(home.nowplaying.info.auto.show)">SetProperty(nowplayingautoshowtimer,1,home)</onfocus>
             <onunfocus>ClearProperty(nowplayingautoshowtimer,home)</onunfocus>
+            <onfocus condition="Integer.IsGreater(Container(993100).NumItems,0) + Control.IsVisible(993100)">SetProperty(BackToId,993100,Home)</onfocus>
             <onfocus condition="Integer.IsGreater(Container($PARAM[baseid]09).NumItems,0) + Control.IsVisible($PARAM[baseid]09)">SetProperty(BackToId,$PARAM[baseid]09,Home)</onfocus>
             <onfocus condition="Integer.IsGreater(Container($PARAM[baseid]08).NumItems,0) + Control.IsVisible($PARAM[baseid]08)">SetProperty(BackToId,$PARAM[baseid]08,Home)</onfocus>
             <onfocus condition="Integer.IsGreater(Container($PARAM[baseid]07).NumItems,0) + Control.IsVisible($PARAM[baseid]07)">SetProperty(BackToId,$PARAM[baseid]07,Home)</onfocus>
@@ -62,8 +63,8 @@
             <onfocus condition="Integer.IsGreater(Container($PARAM[baseid]03).NumItems,0) + Control.IsVisible($PARAM[baseid]03)">SetProperty(BackToId,$PARAM[baseid]03,Home)</onfocus>
             <onfocus condition="Integer.IsGreater(Container($PARAM[baseid]02).NumItems,0) + Control.IsVisible($PARAM[baseid]02)">SetProperty(BackToId,$PARAM[baseid]02,Home)</onfocus>
             <onfocus condition="Integer.IsGreater(Container($PARAM[baseid]01).NumItems,0) + Control.IsVisible($PARAM[baseid]01)">SetProperty(BackToId,$PARAM[baseid]01,Home)</onfocus>
-            <onfocus condition="Integer.IsGreater(Container(993100).NumItems,0) + Control.IsVisible(993100)">SetProperty(BackToId,993100,Home)</onfocus>
        
+            <onfocus condition="Integer.IsGreater(Container(993100).NumItems,0) + Control.IsVisible(993100)">SetProperty(LastId,993100,Home)</onfocus>
             <onfocus condition="Integer.IsGreater(Container($PARAM[baseid]01).NumItems,0) + Control.IsVisible($PARAM[baseid]01)">SetProperty(LastId,$PARAM[baseid]01,Home)</onfocus>
             <onfocus condition="Integer.IsGreater(Container($PARAM[baseid]02).NumItems,0) + Control.IsVisible($PARAM[baseid]02)">SetProperty(LastId,$PARAM[baseid]02,Home)</onfocus>
             <onfocus condition="Integer.IsGreater(Container($PARAM[baseid]03).NumItems,0) + Control.IsVisible($PARAM[baseid]03)">SetProperty(LastId,$PARAM[baseid]03,Home)</onfocus>
@@ -73,7 +74,6 @@
             <onfocus condition="Integer.IsGreater(Container($PARAM[baseid]07).NumItems,0) + Control.IsVisible($PARAM[baseid]07)">SetProperty(LastId,$PARAM[baseid]07,Home)</onfocus>
             <onfocus condition="Integer.IsGreater(Container($PARAM[baseid]08).NumItems,0) + Control.IsVisible($PARAM[baseid]08)">SetProperty(LastId,$PARAM[baseid]08,Home)</onfocus>
             <onfocus condition="Integer.IsGreater(Container($PARAM[baseid]09).NumItems,0) + Control.IsVisible($PARAM[baseid]09)">SetProperty(LastId,$PARAM[baseid]09,Home)</onfocus>
-            <onfocus condition="Integer.IsGreater(Container(993100).NumItems,0) + Control.IsVisible(993100)">SetProperty(LastId,993100,Home)</onfocus>
 
             <onback condition="[!Integer.IsEqual(Container($PARAM[id]).Position,0) | Container($PARAM[id]).HasPrevious] + !Skin.HasSetting(widget.items.onback.go.back.to.position.0)">PageUp</onback>
             <onback condition="[!Integer.IsEqual(Container($PARAM[id]).Position,0) | Container($PARAM[id]).HasPrevious] + !Skin.HasSetting(widget.items.onback.go.back.to.position.0)">PageUp</onback>
