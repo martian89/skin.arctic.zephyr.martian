@@ -4,8 +4,8 @@
     <include name="DefMultiWidgetContainer">
         <param name="height" value="$PARAM[height]" default="325"/>
         <param name="orientation" value="$PARAM[orientation]" default="horizontal"/>
-        <param name="autoscroll" default="true" />
         <param name="movement" default="0" />
+        <param name="autoscroll" default="true" />
         <definition>
             <include content="def_top" condition="Skin.HasSetting(homemenu.clean.flix)">
                 <param name="top" value="200" />
@@ -194,6 +194,9 @@
     </include>
 
     <include name="Widget_Title_Label">
+        <param name="showinfo" default="false" />
+
+        <definition>
         <usecontrolcoords>true</usecontrolcoords>
         <height>40</height>
         <left>SidePad</left>
@@ -256,7 +259,7 @@
             <textcolor>Dark1</textcolor>
             <label>$INFO[ListItem.Artist, •  ,]</label>
             <include>Animation.Vertical.Widgets.Title</include>
-            <visible>Control.HasFocus($PARAM[focusid]) + [String.IsEqual(Container($PARAM[focusid]).ListItem.DBType,album) | String.IsEqual(Container($PARAM[focusid]).ListItem.DBType,song)] + !String.IsEmpty(Container($PARAM[focusid]).ListItem.Artist)</visible>
+            <visible>Control.HasFocus($PARAM[focusid]) + $PARAM[showinfo] + [String.IsEqual(Container($PARAM[focusid]).ListItem.DBType,album) | String.IsEqual(Container($PARAM[focusid]).ListItem.DBType,song)] + !String.IsEmpty(Container($PARAM[focusid]).ListItem.Artist)</visible>
             <visible>!Skin.HasSetting(homemenu.netflix)</visible>
         </control>
         <control type="label">
@@ -265,7 +268,7 @@
             <font>Small</font>
             <width>auto</width>
             <textcolor>Dark1</textcolor>
-            <label>$INFO[Container($PARAM[setinfo]).NumItems, •  , $LOCALIZE[342]]</label>
+            <label>$INFO[Container($PARAM[infoid]).NumItems, •  , $LOCALIZE[342]]</label>
             <include>Animation.Vertical.Widgets.Title</include>
             <visible>Control.HasFocus($PARAM[focusid]) + $PARAM[showinfo]</visible>
             <visible>Container($PARAM[focusid]).ListItem.IsCollection + !String.IsEmpty(Container($PARAM[focusid]).ListItem.DBID)</visible>
@@ -277,7 +280,7 @@
             <font>Small</font>
             <width>auto</width>
             <textcolor>Dark1</textcolor>
-            <label>$INFO[Container($PARAM[albuminfo]).NumItems, •  , $LOCALIZE[134]]</label>
+            <label>$INFO[Container($PARAM[infoid]).NumItems, •  , $LOCALIZE[134]]</label>
             <include>Animation.Vertical.Widgets.Title</include>
             <visible>Control.HasFocus($PARAM[focusid]) + $PARAM[showinfo]</visible>
             <visible>String.IsEqual(Container($PARAM[focusid]).ListItem.DBType,album)</visible>
@@ -293,6 +296,7 @@
             <include>Animation.Vertical.Widgets.Title.Loading</include>
             <visible>Container($PARAM[focusid]).IsUpdating</visible>
         </control>
+        </definition>
     </include>
 
     <include name="Widget_Navigation_Arrows">
@@ -2044,7 +2048,7 @@
             <!-- Sets -->
             <control type="label">
                 <include>MultiWidgetsSubLabelDefinition</include>
-                <label>$INFO[Container($PARAM[id]).ListItem.Year]$INFO[Container($PARAM[id]).ListItem.Rating,  •  ]$INFO[Container($PARAM[setinfo]).NumItems,  •  , $LOCALIZE[342]]</label>
+                <label>$INFO[Container($PARAM[id]).ListItem.Year]$INFO[Container($PARAM[id]).ListItem.Rating,  •  ]$INFO[Container($PARAM[infoid]).NumItems,  •  , $LOCALIZE[342]]</label>
                 <visible>String.IsEqual(Container($PARAM[id]).ListItem.DBType,set)</visible>
                 <include content="IndicatorCleanHome" condition="!Skin.HasSetting(hide.markers) + Skin.HasSetting(homemenu.clean.flix)">
                     <param name="id" value="$PARAM[id]" />
@@ -2079,7 +2083,7 @@
                 </control>
                 <control type="label">
                     <include>MultiWidgetsSubLabelDefinition</include>
-                    <label>$INFO[Container($PARAM[id]).ListItem.Year]$INFO[Container($PARAM[albuminfo]).NumItems,  •  , $LOCALIZE[134]]</label>
+                    <label>$INFO[Container($PARAM[id]).ListItem.Year]$INFO[Container($PARAM[infoid]).NumItems,  •  , $LOCALIZE[134]]</label>
                 </control>
             </control>
             
