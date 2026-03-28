@@ -407,7 +407,7 @@
                 <skinshortcuts insert="widgets">items</skinshortcuts>
              </control>
              <control type="group">
-                 <visible>String.IsEqual(Container(300).ListItem.Property(submenuVisibility),$SKINSHORTCUTS[submenuVisibility])</visible>
+                 <skinshortcuts>visibility</skinshortcuts>
                  <skinshortcuts insert="hidden-lists">items</skinshortcuts>
              </control>       
         </controls>
@@ -416,10 +416,12 @@
             <property name="id" tag="mainmenuid"/>
             <controls>
                 <control type="list" id="$PYTHON[int(mainmenuid) * 10000 + 4400 + int(id)]">
+                    <visible>String.IsEqual(Container(300).ListItem.Property(submenuVisibility),$SKINSHORTCUTS[submenuVisibility])</visible>
                     <include>HiddenListControl</include>
                     <content>$INFO[Container($PYTHON[int(mainmenuid) * 10000 + 4500 + int(id)]).ListItem.Label]</content>
                 </control>
                 <control type="list" id="$PYTHON[int(mainmenuid) * 10000 + 4500 + int(id)]">
+                    <visible>String.IsEqual(Container(300).ListItem.Property(submenuVisibility),$SKINSHORTCUTS[submenuVisibility])</visible>
                     <include>HiddenListControl</include>
                     <content>
                         <item>
