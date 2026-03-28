@@ -474,6 +474,77 @@
         </item>
     </include>
 
+    <include name="CustomSettings_Items.Autoscroll">
+        <item>
+            <label>$LOCALIZE[1223]</label>
+            <property name="SettingsName">$LOCALIZE[31339]</property>
+            <onclick>Skin.Reset(AutoScrollTime)</onclick>
+            <onclick>Close</onclick>
+            <include condition="String.IsEmpty(Skin.String(AutoScrollTime))">Item_Selected</include>
+        </item>
+        <item>
+            <label>$NUMBER[5] $LOCALIZE[31425]</label>
+            <property name="SettingsName">$LOCALIZE[31339]</property>
+            <onclick>Skin.SetString(AutoScrollTime,5s)</onclick>
+            <onclick>Close</onclick>
+            <include condition="String.IsEqual(Skin.String(AutoScrollTime),5s)">Item_Selected</include>
+        </item>
+        <item>
+            <label>$NUMBER[8] $LOCALIZE[31425]</label>
+            <onclick>Skin.SetString(AutoScrollTime,8s)</onclick>
+            <onclick>Close</onclick>
+            <include condition="String.IsEqual(Skin.String(AutoScrollTime),8s)">Item_Selected</include>
+        </item>
+        <item>
+            <label>$NUMBER[10] $LOCALIZE[31425]</label>
+            <onclick>Skin.SetString(AutoScrollTime,10s)</onclick>
+            <onclick>Close</onclick>
+            <include condition="String.IsEqual(Skin.String(AutoScrollTime),10s)">Item_Selected</include>
+        </item>
+        <item>
+            <label>$NUMBER[12] $LOCALIZE[31425]</label>
+            <onclick>Skin.SetString(AutoScrollTime,12s)</onclick>
+            <onclick>Close</onclick>
+            <include condition="String.IsEqual(Skin.String(AutoScrollTime),12s)">Item_Selected</include>
+        </item>
+        <item>
+            <label>$NUMBER[15] $LOCALIZE[31425]</label>
+            <onclick>Skin.SetString(AutoScrollTime,15s)</onclick>
+            <onclick>Close</onclick>
+            <include condition="String.IsEqual(Skin.String(AutoScrollTime),15s)">Item_Selected</include>
+        </item>
+        <item>
+            <label>$NUMBER[20] $LOCALIZE[31425]</label>
+            <onclick>Skin.SetString(AutoScrollTime,20s)</onclick>
+            <onclick>Close</onclick>
+            <include condition="String.IsEqual(Skin.String(AutoScrollTime),20s)">Item_Selected</include>
+        </item>
+        <item>
+            <label>$NUMBER[30] $LOCALIZE[31425]</label>
+            <onclick>Skin.SetString(AutoScrollTime,30s)</onclick>
+            <onclick>Close</onclick>
+            <include condition="String.IsEqual(Skin.String(AutoScrollTime),30s)">Item_Selected</include>
+        </item>
+        <item>
+            <label>$NUMBER[60] $LOCALIZE[31425]</label>
+            <onclick>Skin.SetString(AutoScrollTime,60s)</onclick>
+            <onclick>Close</onclick>
+            <include condition="String.IsEqual(Skin.String(AutoScrollTime),60s)">Item_Selected</include>
+        </item>
+        <item>
+            <label>$NUMBER[10] $LOCALIZE[12391]</label>
+            <onclick>Skin.SetString(AutoScrollTime,10m)</onclick>
+            <onclick>Close</onclick>
+            <include condition="String.IsEqual(Skin.String(AutoScrollTime),10m)">Item_Selected</include>
+        </item>
+        <item>
+            <label>$LOCALIZE[37030]</label>
+            <onclick>Skin.SetString(AutoScrollTime,$LOCALIZE[37030])</onclick>
+            <onclick>Close</onclick>
+            <include condition="String.IsEqual(Skin.String(AutoScrollTime),$LOCALIZE[37030])">Item_Selected</include>
+        </item>
+    </include>
+
     <include name="CustomSettings_Items.OSD_Timeout">
         <item>
             <label>$LOCALIZE[591] - $LOCALIZE[571]</label>
@@ -827,8 +898,7 @@
 	            <property name="FanartCode">$INFO[Window(Weather).Property(Daily.$PARAM[item_index].FanartCode)]</property>
 	            <thumb>$INFO[Window(weather).Property(Daily.$PARAM[item_index].OutlookIconWMO)]</thumb>
 	            <visible>!String.IsEmpty(Window(weather).Property(Daily.IsFetched)) + !String.IsEmpty(Window(Weather).Property(Daily.$PARAM[item_index].Outlook))</visible>
-                <visible>Integer.IsEqual(Skin.String(WidgetLimit),0) | Integer.IsLess($PARAM[item_index],Skin.String(WidgetLimit))</visible>
-	            <onclick>ActivateWindow(Weather)</onclick>
+                <onclick>ActivateWindow(Weather)</onclick>
 	            <onclick>SetFocus(9100,0,absolute)</onclick>
 	        </item>
 		</definition>
@@ -844,7 +914,6 @@
             <property name="FanartCode">$INFO[Window(Weather).Property(Hourly.$PARAM[item_index].FanartCode)]</property>
             <thumb>$INFO[Window(weather).Property(Hourly.$PARAM[item_index].OutlookIconWMO)]</thumb>
             <visible>!String.IsEmpty(Window(weather).Property(Hourly.IsFetched)) + !String.IsEmpty(Window(Weather).Property(Hourly.$PARAM[item_index].Outlook))</visible>
-            <visible>Integer.IsEqual(Skin.String(WidgetLimit),0) | Integer.IsLessOrEqual($PARAM[item_index],Skin.String(WidgetLimit))</visible>
             <onclick>ActivateWindow(Weather)</onclick>
             <onclick>SetFocus(9100,1,absolute)</onclick>
         </item>		
@@ -856,6 +925,7 @@
             <label2>$INFO[Network.LinkState]</label2>
             <icon>special://skin/extras/icons/networkinfo.png</icon>
             <property name="Label3">$INFO[Network.IPAddress,IP: ]</property>
+            <property name="Fanart">$VAR[Image_Systeminfo]</property>
             <visible>!String.IsEmpty(Network.IPAddress)</visible>
             <onclick>ActivateWindowAndFocus(systeminfo,96,0)</onclick>
         </item>
@@ -864,6 +934,7 @@
             <label2>$INFO[Network.LinkState]</label2>
             <icon>special://skin/extras/icons/network.png</icon>
             <property name="Label3">$INFO[Network.IPAddress,IP: ]</property>
+            <property name="Fanart">$VAR[Image_Systeminfo]</property>
             <visible>String.IsEmpty(Network.IPAddress)</visible>
             <onclick>ActivateWindowAndFocus(systeminfo,96,0)</onclick>
         </item>
@@ -872,6 +943,7 @@
             <label2>$INFO[System.ScreenWidth]x$INFO[System.ScreenHeight]</label2>
             <icon>special://skin/extras/icons/graphicinfo.png</icon>
             <property name="Label3">$INFO[System.fps,, FPS]</property>
+            <property name="Fanart">$VAR[Image_Systeminfo]</property>
             <onclick>ActivateWindowAndFocus(systeminfo,97,0)</onclick>
         </item>
         <item>
@@ -880,6 +952,7 @@
             <icon>special://skin/extras/icons/sysinfo.png</icon>
             <property name="Label3">$INFO[System.CpuFrequency]</property>
             <property name="Label4">cpu</property>
+            <property name="Fanart">$VAR[Image_Systeminfo]</property>
             <onclick>ActivateWindowAndFocus(systeminfo,98,0)</onclick>
         </item>
         <item>
@@ -888,6 +961,7 @@
             <icon>special://skin/extras/icons/raminfo.png</icon>
             <property name="Label3">$INFO[System.Memory(total)] $LOCALIZE[20161]</property>
             <property name="Label4">ram</property>
+            <property name="Fanart">$VAR[Image_Systeminfo]</property>
             <onclick>ActivateWindowAndFocus(systeminfo,98,0)</onclick>
         </item>
         <item>
@@ -896,6 +970,7 @@
             <icon>special://skin/extras/icons/storageinfo.png</icon>
             <property name="Label3">$INFO[System.TotalSpace]</property>
             <property name="Label4">storage</property>
+            <property name="Fanart">$VAR[Image_Systeminfo]</property>
             <onclick>ActivateWindowAndFocus(systeminfo,94,0)</onclick>
         </item>
         <item>
@@ -903,6 +978,7 @@
             <label2>$INFO[Pvr.BackendName]</label2>
             <icon>special://skin/extras/icons/pvrinfo.png</icon>
             <property name="Label3">$INFO[Pvr.BackendChannels] $LOCALIZE[19019]</property>
+            <property name="Fanart">$VAR[Image_Systeminfo]</property>
             <visible>PVR.HasTVChannels</visible>
             <onclick>ActivateWindowAndFocus(systeminfo,99,0)</onclick>
         </item>
@@ -911,6 +987,7 @@
             <label2>$INFO[Window(home).Property(Movies.Count)] $LOCALIZE[20342]</label2>
             <icon>special://skin/extras/icons/tv.png</icon>
             <property name="Label3">$INFO[Window(home).Property(TVShows.Count)] $LOCALIZE[20343]</property>
+            <property name="Fanart">$VAR[Image_Systeminfo]</property>
             <visible>Library.HasContent(Movies) | Library.HasContent(TVShows)</visible>
             <onclick>ActivateWindow(systeminfo)</onclick>
         </item>
@@ -919,6 +996,7 @@
             <label2>$INFO[Window(home).Property(Music.AlbumsCount)] $LOCALIZE[132]</label2>
             <icon>special://skin/extras/icons/songs.png</icon>
             <property name="Label3">$INFO[Window(home).Property(Music.SongsCount)] $LOCALIZE[134]</property>
+            <property name="Fanart">$VAR[Image_Systeminfo]</property>
             <visible>Library.HasContent(Music)</visible>
             <onclick>ActivateWindow(systeminfo)</onclick>
         </item>
@@ -927,6 +1005,7 @@
             <label2>$INFO[System.BuildVersion]</label2>
             <icon>special://skin/extras/icons/kodi.png</icon>
             <property name="Label3">$INFO[System.BuildDate]</property>
+            <property name="Fanart">$VAR[Image_Systeminfo]</property>
             <onclick>ActivateWindow(systeminfo)</onclick>
         </item>
     </include>
@@ -936,59 +1015,69 @@
             <label>20077</label>
             <label2>31166</label2>
             <icon>special://skin/extras/icons/paintbrush.png</icon>
+            <property name="Fanart">$VAR[Image_Systeminfo]</property>
             <onclick>ActivateWindow(SkinSettings)</onclick>
         </item>
         <item id="2">
             <label>14200</label>
             <label2>31277</label2>
             <icon>special://skin/extras/icons/equalizer.png</icon>
+            <property name="Fanart">$VAR[Image_Systeminfo]</property>
             <onclick>ActivateWindow(PlayerSettings)</onclick>
         </item>
         <item id="3">
             <label>15016</label>
             <label2>31987</label2>
             <icon>special://skin/extras/icons/xbox.png</icon>
+            <property name="Fanart">$VAR[Image_Systeminfo]</property>
             <onclick>ActivateWindow(gamesettings)</onclick>
         </item> 
         <item id="4">
             <label>$LOCALIZE[7]</label>
             <icon>special://skin/extras/icons/filemanager.png</icon>
+            <property name="Fanart">$VAR[Image_Systeminfo]</property>
             <onclick>ActivateWindow(filemanager)</onclick>
         </item>
         <item id="5">
             <label>14211</label>
             <label2>31276</label2>
             <icon>special://skin/extras/icons/tags.png</icon>
+            <property name="Fanart">$VAR[Image_Systeminfo]</property>
             <onclick>ActivateWindow(MediaSettings)</onclick>
         </item>
         <item id="6">
             <label>14206</label>
             <label2>31275</label2>
             <icon>special://skin/extras/icons/skinsettings.png</icon>
+            <property name="Fanart">$VAR[Image_Systeminfo]</property>
             <onclick>ActivateWindow(InterfaceSettings)</onclick>
         </item>
         <item id="7">
             <label>24001</label>
             <label2>31162</label2>
             <icon>special://skin/extras/icons/addons.png</icon>
+            <property name="Fanart">$VAR[Image_Systeminfo]</property>
             <onclick>ActivateWindow(AddonBrowser)</onclick>
         </item>
         <item id="8">
             <label>14204</label>
             <label2>31163</label2>
             <icon>special://skin/extras/icons/livetv.png</icon>
+            <property name="Fanart">$VAR[Image_Systeminfo]</property>
             <onclick>ActivateWindow(pvrsettings)</onclick>
         </item>
         <item id="9">
             <label>13200</label>
             <label2>31165</label2>
             <icon>special://skin/extras/icons/actor.png</icon>
+            <property name="Fanart">$VAR[Image_Systeminfo]</property>
             <onclick>ActivateWindow(Profiles)</onclick>
         </item>
         <item id="10">
             <label>130</label>
             <label2>31167</label2>
             <icon>special://skin/extras/icons/sysinfo.png</icon>
+            <property name="Fanart">$VAR[Image_Systeminfo]</property>
             <onclick>ActivateWindow(7)</onclick>
             <visible>!System.HasAddon(service.libreelec.settings) + !System.HasAddon(service.coreelec.settings)</visible>
         </item>
@@ -996,6 +1085,7 @@
             <label>LibreELEC $LOCALIZE[5]</label>
             <label2>31373</label2>
             <icon>special://skin/extras/icons/libreelec.png</icon>
+            <property name="Fanart">$VAR[Image_Systeminfo]</property>
             <onclick>RunScript(service.libreelec.settings)</onclick>
             <visible>System.HasAddon(service.libreelec.settings)</visible>
         </item>
@@ -1003,6 +1093,7 @@
             <label>CoreELEC $LOCALIZE[5]</label>
             <label2>31374</label2>
             <icon>special://skin/extras/icons/coreelec.png</icon>
+            <property name="Fanart">$VAR[Image_Systeminfo]</property>
             <onclick>RunScript(service.coreelec.settings)</onclick>
             <visible>System.HasAddon(service.coreelec.settings)</visible>
         </item>
@@ -1010,12 +1101,14 @@
             <label>14036</label>
             <label2>31164</label2>
             <icon>special://skin/extras/icons/network.png</icon>
+            <property name="Fanart">$VAR[Image_Systeminfo]</property>
             <onclick>ActivateWindow(servicesettings)</onclick>
         </item>
         <item id="14">
             <label>13000</label>
             <label2>31161</label2>
             <icon>special://skin/extras/icons/configure.png</icon>
+            <property name="Fanart">$VAR[Image_Systeminfo]</property>
             <onclick>ActivateWindow(SystemSettings)</onclick>
         </item>
     </include>

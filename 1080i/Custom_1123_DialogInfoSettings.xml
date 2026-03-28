@@ -86,8 +86,8 @@
                 <control type="radiobutton" id="112">
                     <include>DefContextButtonGradientSelect</include>
                     <label>31141</label>
-                    <selected>!Skin.HasSetting(hidebutton.video.youtube)</selected>
-                    <onclick>Skin.ToggleSetting(hidebutton.video.youtube)</onclick>
+                    <selected>Skin.HasSetting(showbuttonbutton.video.youtube)</selected>
+                    <onclick>Skin.ToggleSetting(showbutton.video.youtube)</onclick>
                     <visible>Window.IsVisible(DialogVideoInfo.xml) + String.IsEmpty(Window(movieinformation).Property(personinformation))</visible>
                     <visible>System.AddonIsEnabled(plugin.video.youtube)</visible>
                 </control>
@@ -146,8 +146,8 @@
                 <control type="radiobutton" id="1072">
                     <include>DefContextButtonGradientSelect</include>
                     <label>31141</label>
-                    <selected>!Skin.HasSetting(hidebutton.person.youtube)</selected>
-                    <onclick>Skin.ToggleSetting(hidebutton.person.youtube)</onclick>
+                    <selected>Skin.HasSetting(showbutton.person.youtube)</selected>
+                    <onclick>Skin.ToggleSetting(showbutton.person.youtube)</onclick>
                     <visible>Window.IsVisible(DialogVideoInfo.xml) + !String.IsEmpty(Window(movieinformation).Property(personinformation))</visible>
                     <visible>System.AddonIsEnabled(plugin.video.youtube)</visible>
                 </control>
@@ -185,8 +185,8 @@
                 <control type="radiobutton" id="133">
                     <include>DefContextButtonGradientSelect</include>
                     <label>31141</label>
-                    <selected>!Skin.HasSetting(hidebutton.music.youtube)</selected>
-                    <onclick>Skin.ToggleSetting(hidebutton.music.youtube)</onclick>
+                    <selected>Skin.HasSetting(showbutton.music.youtube)</selected>
+                    <onclick>Skin.ToggleSetting(showbutton.music.youtube)</onclick>
                     <visible>Window.IsVisible(DialogMusicInfo.xml)</visible>
                 </control>
                 <control type="radiobutton" id="134">
@@ -340,12 +340,9 @@
                 <control type="radiobutton" id="162">
                     <include>DefContextButtonGradientSelect</include>
                     <label>31365</label>
-                    <selected>System.AddonIsEnabled(plugin.video.imdb.trailers) + Skin.HasSetting(Use.IMDB.Trailer)</selected>
-                    <onclick condition="!System.HasAddon(plugin.video.imdb.trailers)">InstallAddon(plugin.video.imdb.trailers)</onclick>
-                    <onclick condition="System.HasAddon(plugin.video.imdb.trailers) + !System.AddonIsEnabled(plugin.video.imdb.trailers)">EnableAddon(plugin.video.imdb.trailers)</onclick>
-                    <onclick condition="System.AddonIsEnabled(plugin.video.imdb.trailers)">Skin.Reset(Use.IMDB.Trailer)</onclick>                            
-                    <onclick condition="System.AddonIsEnabled(plugin.video.imdb.trailers) + !Skin.HasSetting(Use.IMDB.Trailer)">Skin.SetBool(Use.IMDB.Trailer)</onclick>
-                    <visible>Window.IsVisible(DialogVideoInfo.xml) + String.IsEmpty(Window(movieinformation).Property(personinformation))</visible>
+                    <selected>Skin.HasSetting(Use.IMDB.Trailer)</selected>
+                    <onclick>Skin.ToggleSetting(Use.IMDB.Trailer)</onclick>
+                    <visible>Window.IsVisible(DialogVideoInfo.xml) + String.IsEmpty(Window(movieinformation).Property(personinformation)) + System.AddonIsEnabled(plugin.video.imdb.trailers)</visible>
                 </control>
                 <control type="radiobutton" id="163">
                     <include>DefContextButtonGradientSelect</include>

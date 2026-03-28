@@ -37,4 +37,13 @@
         <onstop condition="Window.IsVisible(videoosd)">Dialog.Close(videoosd)</onstop>
         <onstop condition="Window.IsVisible(musicosd)">Dialog.Close(musicosd)</onstop>
     </timer>
+
+    <timer>
+        <name>seekbartimer</name>
+        <description>Hide seekbar when video is paused</description>
+        <start>Window.IsVisible(fullscreenvideo) + !Window.IsVisible(videoosd) + !Window.IsVisible(fullscreeninfo) + Skin.HasSetting(osd.autohideonpause) + Player.Paused + System.IdleTime(3)</start>
+        <stop>!Window.IsVisible(fullscreenvideo) | Window.IsVisible(videoosd) | Window.IsVisible(fullscreeninfo) | !Player.Paused | Player.Seeking | Player.Forwarding | Player.Rewinding | Player.Rewinding | Player.Caching</stop>
+        <onstart>SetProperty(HideSeekbar,1,home)</onstart>
+        <onstop>ClearProperty(HideSeekbar,home)</onstop>
+    </timer>
 </timers>

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Foundation -->
 <window id="2006">
-    <onunload>ClearProperty(osdshowinfo,home)</onunload>
     <onunload>ClearProperty(SetUserRating,home)</onunload>
     <controls>        
         <control type="visualisation" id="2">
@@ -118,7 +117,7 @@
             </animation>
             <control type="group">
                 <visible>$EXP[MusicSeekbarIsVisible]</visible>
-                <animation effect="slide" start="0" end="0,-60" time="150" condition="Player.ShowInfo | Skin.HasSetting(musicosd.alwaysshowinfo) | Window.IsVisible(script-cu-lrclyrics-main.xml) | !String.IsEmpty(Window(home).Property(osdshowinfo))">Conditional</animation>
+                <animation effect="slide" start="0" end="0,-60" time="150" condition="Player.ShowInfo | Skin.HasSetting(musicosd.alwaysshowinfo) | Window.IsVisible(script-cu-lrclyrics-main.xml) | $EXP[ShowInfoWithOSD]">Conditional</animation>
 
                 <animation effect="fade" start="100" end="0" time="200">WindowClose</animation>
                 <animation effect="fade" start="0" end="100" time="200">WindowOpen</animation>
@@ -126,13 +125,13 @@
                 <animation effect="fade" start="0" end="100" time="200">Visible</animation>
                 <control type="image">
                     <visible>Skin.HasSetting(ShowClearArtMusicOSD)</visible>
-                    <animation effect="slide" start="0,0" end="0,-303" time="150" condition="[Player.ShowInfo | Skin.HasSetting(musicosd.alwaysshowinfo) | Window.IsVisible(script-cu-lrclyrics-main.xml) | !String.IsEmpty(Window(home).Property(osdshowinfo))] + Skin.HasSetting(osd.artistinfos) + !Window.IsVisible(script-cu-lrclyrics-main.xml)">Conditional</animation>
+                    <animation effect="slide" start="0,0" end="0,-303" time="150" condition="[Player.ShowInfo | Skin.HasSetting(musicosd.alwaysshowinfo) | Window.IsVisible(script-cu-lrclyrics-main.xml) | $EXP[ShowInfoWithOSD]] + Skin.HasSetting(osd.artistinfos) + !Window.IsVisible(script-cu-lrclyrics-main.xml)">Conditional</animation>
                     <right>SidePad</right>
                     <bottom>110</bottom>
                     <width>400</width>
                     <height>225</height>
                     <fadetime>ClearArtFadetime</fadetime>
-                    <texture>$VAR[MusicPlayerArt]</texture>
+                    <texture>$VAR[PlayerClearart]</texture>
                     <aspectratio align="right" aligny="bottom">keep</aspectratio>
                 </control>
 	            <control type="image">
@@ -153,7 +152,7 @@
 	            </control>
             </control>            
             <control type="group">
-            	<visible>Player.ShowInfo | Skin.HasSetting(musicosd.alwaysshowinfo) | Window.IsVisible(script-cu-lrclyrics-main.xml) | !String.IsEmpty(Window(home).Property(osdshowinfo))</visible>
+            	<visible>Player.ShowInfo | Skin.HasSetting(musicosd.alwaysshowinfo) | Window.IsVisible(script-cu-lrclyrics-main.xml) | $EXP[ShowInfoWithOSD]</visible>
                 <animation type="WindowClose">
                     <effect type="fade" start="100" end="0" time="200"/>
                     <effect type="slide" start="0,0" end="0,110" time="200"/>
@@ -216,7 +215,7 @@
                     <bottom>30</bottom>
                     <height>40</height>
 	                <control type="label">
-                        <visible>Player.Playing + !Player.Seeking + !Player.Caching + [Player.ShowInfo | Skin.HasSetting(musicosd.alwaysshowinfo) | Skin.HasSetting(musicosd.alwaysshowinfo) | Window.IsVisible(script-cu-lrclyrics-main.xml) | !String.IsEmpty(Window(home).Property(osdshowinfo))]</visible>	                         
+                        <visible>Player.Playing + !Player.Seeking + !Player.Caching + [Player.ShowInfo | Skin.HasSetting(musicosd.alwaysshowinfo) | Skin.HasSetting(musicosd.alwaysshowinfo) | Window.IsVisible(script-cu-lrclyrics-main.xml) | $EXP[ShowInfoWithOSD]]</visible>	                         
                         <width>100%</width>
                         <height>100%</height>
 	                    <font>Tiny</font>
@@ -224,7 +223,7 @@
 	                    <label>$VAR[PlayerTrackInfo]</label>
 	                </control>
                     <control type="label">
-                        <visible>!Player.Playing + !Player.Paused | Player.Seeking | Player.Caching | ![Player.ShowInfo | Skin.HasSetting(musicosd.alwaysshowinfo) | Skin.HasSetting(musicosd.alwaysshowinfo) | Window.IsVisible(script-cu-lrclyrics-main.xml) | !String.IsEmpty(Window(home).Property(osdshowinfo))]</visible>                            
+                        <visible>!Player.Playing + !Player.Paused | Player.Seeking | Player.Caching | ![Player.ShowInfo | Skin.HasSetting(musicosd.alwaysshowinfo) | Skin.HasSetting(musicosd.alwaysshowinfo) | Window.IsVisible(script-cu-lrclyrics-main.xml) | $EXP[ShowInfoWithOSD]]</visible>                            
                         <width>100%</width>
                         <height>100%</height>
                         <font>Tiny</font>
@@ -232,7 +231,7 @@
                         <label>$VAR[PlayerStatus]</label>
                     </control>
                     <control type="fadelabel">
-                        <visible>Player.Paused + [Player.ShowInfo | Skin.HasSetting(musicosd.alwaysshowinfo) | Window.IsVisible(script-cu-lrclyrics-main.xml) | !String.IsEmpty(Window(home).Property(osdshowinfo))]</visible>                            
+                        <visible>Player.Paused + [Player.ShowInfo | Skin.HasSetting(musicosd.alwaysshowinfo) | Window.IsVisible(script-cu-lrclyrics-main.xml) | $EXP[ShowInfoWithOSD]]</visible>                            
                         <width>100%</width>
                         <height>100%</height>
                         <font>Tiny</font>
@@ -310,7 +309,7 @@
                     <effect type="fade" start="100" end="0" time="200"/>
                 </animation>          
                 <control type="image">
-                	<visible>Player.ShowInfo | Skin.HasSetting(musicosd.alwaysshowinfo) | Window.IsVisible(script-cu-lrclyrics-main.xml) | !String.IsEmpty(Window(home).Property(osdshowinfo))</visible>
+                	<visible>Player.ShowInfo | Skin.HasSetting(musicosd.alwaysshowinfo) | Window.IsVisible(script-cu-lrclyrics-main.xml) | $EXP[ShowInfoWithOSD]</visible>
                     <visible>Skin.HasSetting(ShowClearArtMusicOSD)</visible>
 	    	        <animation effect="fade" start="0" end="100" time="250">Visible</animation>
 	                <animation effect="fade" start="0" end="100" time="250">WindowOpen</animation>
@@ -321,11 +320,11 @@
                     <bottom>220</bottom>
                     <width>400</width>
                     <fadetime>ClearArtFadetime</fadetime>
-                    <texture>$VAR[MusicPlayerArt]</texture>
+                    <texture>$VAR[PlayerClearart]</texture>
                     <aspectratio align="right" aligny="bottom">keep</aspectratio>
                 </control>
                 <control type="image">
-                	<visible>![Player.ShowInfo | Skin.HasSetting(musicosd.alwaysshowinfo) | Window.IsVisible(script-cu-lrclyrics-main.xml) | !String.IsEmpty(Window(home).Property(osdshowinfo))]</visible>
+                	<visible>![Player.ShowInfo | Skin.HasSetting(musicosd.alwaysshowinfo) | Window.IsVisible(script-cu-lrclyrics-main.xml) | $EXP[ShowInfoWithOSD]]</visible>
                     <visible>Skin.HasSetting(ShowClearArtMusicOSD)</visible>
 	    	        <animation effect="fade" start="0" end="100" time="250">Visible</animation>
 	                <animation effect="fade" start="0" end="100" time="250">WindowOpen</animation>
@@ -335,7 +334,7 @@
                     <bottom>160</bottom>
                     <width>400</width>
                     <fadetime>ClearArtFadetime</fadetime>
-                    <texture>$VAR[MusicPlayerArt]</texture>
+                    <texture>$VAR[PlayerClearart]</texture>
                     <aspectratio align="right" aligny="bottom">keep</aspectratio>
                 </control>
                 <control type="label" description="Duration Total Time">
@@ -364,7 +363,7 @@
 			            <animation effect="slide" start="0,0" end="0,-50" time="150" condition="true">Conditional</animation>
 			            <bottom>20</bottom>
 			            <control type="group">
-			                <visible>Player.ShowInfo | Skin.HasSetting(musicosd.alwaysshowinfo) | Window.IsVisible(script-cu-lrclyrics-main.xml) | !String.IsEmpty(Window(home).Property(osdshowinfo))</visible>
+			                <visible>Player.ShowInfo | Skin.HasSetting(musicosd.alwaysshowinfo) | Window.IsVisible(script-cu-lrclyrics-main.xml) | $EXP[ShowInfoWithOSD]</visible>
 			                <animation effect="fade" start="0" end="100" time="250">Visible</animation>
 			                <animation effect="fade" end="0" start="100" time="200">Hidden</animation>
 			                <control type="group">
@@ -397,7 +396,7 @@
 			                <align>left</align>
 			                <bottom>7</bottom>
                             <control type="label">
-                                <visible>Player.Playing + !Player.Seeking + !Player.Caching + [Player.ShowInfo | Skin.HasSetting(musicosd.alwaysshowinfo) | Skin.HasSetting(musicosd.alwaysshowinfo) | Window.IsVisible(script-cu-lrclyrics-main.xml) | !String.IsEmpty(Window(home).Property(osdshowinfo))]</visible>
+                                <visible>Player.Playing + !Player.Seeking + !Player.Caching + [Player.ShowInfo | Skin.HasSetting(musicosd.alwaysshowinfo) | Skin.HasSetting(musicosd.alwaysshowinfo) | Window.IsVisible(script-cu-lrclyrics-main.xml) | $EXP[ShowInfoWithOSD]]</visible>
                                 <width>auto</width>
                                 <align>left</align>
                                 <height>40</height>
@@ -406,7 +405,7 @@
                                 <label>$VAR[PlayerTrackInfo]</label>
                             </control>
 			                <control type="label">
-                                <visible>!Player.Playing + !Player.Paused | Player.Seeking | Player.Caching | ![Player.ShowInfo | Skin.HasSetting(musicosd.alwaysshowinfo) | Skin.HasSetting(musicosd.alwaysshowinfo) | Window.IsVisible(script-cu-lrclyrics-main.xml) | !String.IsEmpty(Window(home).Property(osdshowinfo))]</visible>
+                                <visible>!Player.Playing + !Player.Paused | Player.Seeking | Player.Caching | ![Player.ShowInfo | Skin.HasSetting(musicosd.alwaysshowinfo) | Skin.HasSetting(musicosd.alwaysshowinfo) | Window.IsVisible(script-cu-lrclyrics-main.xml) | $EXP[ShowInfoWithOSD]]</visible>
 			                    <width>auto</width>
 			                    <align>left</align>
                                 <height>40</height>
@@ -415,7 +414,7 @@
 			                    <label>$VAR[PlayerStatus]</label>
 			                </control>
                             <control type="fadelabel">
-                                <visible>Player.Paused + [Player.ShowInfo | Skin.HasSetting(musicosd.alwaysshowinfo) | Window.IsVisible(script-cu-lrclyrics-main.xml) | !String.IsEmpty(Window(home).Property(osdshowinfo))]</visible>
+                                <visible>Player.Paused + [Player.ShowInfo | Skin.HasSetting(musicosd.alwaysshowinfo) | Window.IsVisible(script-cu-lrclyrics-main.xml) | $EXP[ShowInfoWithOSD]]</visible>
                                 <width>auto</width>
                                 <align>left</align>
                                 <height>40</height>
@@ -469,7 +468,7 @@
             <visible>$EXP[MusicSeekbarIsVisible]</visible>
             <animation effect="slide" start="0" end="0,-74" time="150" condition="Window.IsVisible(musicosd) + !Skin.HasSetting(musicosd.side) + Skin.HasSetting(osd.usetheme)">Conditional</animation>
             <animation effect="slide" start="0" end="0,-44" time="150" condition="Window.IsVisible(musicosd) + !Skin.HasSetting(musicosd.side) + !Skin.HasSetting(osd.usetheme)">Conditional</animation>
-            <animation effect="slide" start="0" end="0,-60" time="150" condition="[Player.ShowInfo | Skin.HasSetting(musicosd.alwaysshowinfo) | Window.IsVisible(script-cu-lrclyrics-main.xml) | !String.IsEmpty(Window(home).Property(osdshowinfo))] + Skin.HasSetting(osd.usetheme)">Conditional</animation>
+            <animation effect="slide" start="0" end="0,-60" time="150" condition="[Player.ShowInfo | Skin.HasSetting(musicosd.alwaysshowinfo) | Window.IsVisible(script-cu-lrclyrics-main.xml) | $EXP[ShowInfoWithOSD]] + Skin.HasSetting(osd.usetheme)">Conditional</animation>
             <animation effect="slide" start="0,0" end="-50,-75" time="0" condition="Skin.HasSetting(osd.usetheme)">Conditional</animation>
             <animation type="Hidden">
                 <effect type="slide" start="0,0" end="-520,0" tween="sine" easing="out" time="300" delay="0"/>
@@ -538,7 +537,7 @@
         <!-- Artist Information -->
         <control type="group">
             <visible>Skin.HasSetting(osd.artistinfos) + !Skin.HasSetting(musicosd.hidedisc) + Skin.HasSetting(osd.usetheme)</visible>
-            <visible>Player.ShowInfo | Skin.HasSetting(musicosd.alwaysshowinfo) | Window.IsVisible(script-cu-lrclyrics-main.xml) | !String.IsEmpty(Window(home).Property(osdshowinfo))</visible>
+            <visible>Player.ShowInfo | Skin.HasSetting(musicosd.alwaysshowinfo) | Window.IsVisible(script-cu-lrclyrics-main.xml) | $EXP[ShowInfoWithOSD]</visible>
             <visible>!Window.IsVisible(musicosd) | !Skin.HasSetting(musicosd.side)</visible>
             <visible>!Window.IsVisible(script-cu-lrclyrics-main.xml)</visible>
             <animation type="Hidden" reversible="false">
@@ -602,7 +601,7 @@
         </control>
         <control type="group">
             <visible>Skin.HasSetting(osd.artistinfos) + Skin.HasSetting(musicosd.hidedisc) + Skin.HasSetting(osd.usetheme)</visible>
-            <visible>Player.ShowInfo | Skin.HasSetting(musicosd.alwaysshowinfo) | Window.IsVisible(script-cu-lrclyrics-main.xml) | !String.IsEmpty(Window(home).Property(osdshowinfo))</visible>
+            <visible>Player.ShowInfo | Skin.HasSetting(musicosd.alwaysshowinfo) | Window.IsVisible(script-cu-lrclyrics-main.xml) | $EXP[ShowInfoWithOSD]</visible>
             <visible>!Window.IsVisible(musicosd) | !Skin.HasSetting(musicosd.side)</visible>
             <visible>!Window.IsVisible(script-cu-lrclyrics-main.xml)</visible>
             <animation type="Hidden" reversible="false">

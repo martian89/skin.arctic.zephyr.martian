@@ -2,6 +2,7 @@
     <defaultcontrol always="true">9101</defaultcontrol>
     <backgroundcolor>0</backgroundcolor>
     <onunload condition="System.AddonIsEnabled(script.wikipedia)">Skin.SetString(Wikipedia.Format.Link,[COLOR=Dark2]{}[/COLOR])</onunload>
+    <onunload>RunScript(script.skinshortcuts,type=buildxml&amp;mainmenuID=300&amp;group=mainmenu|x1111|x1112|x1113|x1114|x1115|x1116|x1117|x1118|x1119|powermenu&amp;levels=6)</onunload>
     <controls>
         <include>GlobalBackground</include>
         <include>Furniture_Header</include>
@@ -321,7 +322,18 @@
                             <label>$LOCALIZE[31297]$LOCALIZE[31393]</label>
                             <selected>Skin.HasSetting(homemenu.only.icons)</selected>
                             <onclick>Skin.ToggleSetting(homemenu.only.icons)</onclick>
-                            <visible>!$EXP[HomeIsVertical] + Skin.HasSetting(home.showicons)</visible>
+                            <visible>!$EXP[HomeIsVertical]</visible>
+                            <enable>Skin.HasSetting(home.showicons)</enable>
+                        </control>
+                        <control type="radiobutton" id="9817">
+                            <width>1360</width>
+                            <visible>String.IsEqual(Window.Property(content),1)</visible>
+                            <include>DefSettingsButtonGradientSkinSettings</include>
+                            <label>$LOCALIZE[31489]</label>
+                            <selected>!Skin.HasSetting(homemenu.hide.underline)</selected>
+                            <onclick>Skin.ToggleSetting(homemenu.hide.underline)</onclick>
+                            <visible>!$EXP[HomeIsVerticalAll]</visible>
+                            <enable>!Skin.HasSetting(home.showicons)</enable>
                         </control>
                         <control type="radiobutton" id="9898" description="Horz Sub">
                             <width>1360</width>
@@ -513,26 +525,9 @@
                             <include>DefSettingsButtonGradientSkinSettings</include>
                             <label>31269</label>
                             <label2>$VAR[LabelFallbackWidgetName]</label2>
-                            <onclick>RunScript(script.skinvariables,run_dialog=select,heading=$LOCALIZE[31269],list=$LOCALIZE[16018] / $LOCALIZE[31271] / $LOCALIZE[31272] / $LOCALIZE[31105],"executebuiltin_0=Skin.SetString(home.slideshowpath,none)","executebuiltin_1=Skin.SetImage(home.slideshowpath)","executebuiltin_2=Skin.SetPath(home.slideshowpath)","executebuiltin_3=Skin.Reset(home.slideshowpath)||RunScript(script.skinshortcuts,type=widgets&amp;grouping=video&amp;skinWidgetPath=home.fallbackwidget&amp;skinWidgetName=home.fallbackwidget.name&amp;skinWidgetType=home.fallbackwidget.type)")</onclick>          
+                            <onclick>RunScript(script.skinvariables,run_dialog=select,heading=$LOCALIZE[31269],list=$LOCALIZE[16018] / $LOCALIZE[31271] / $LOCALIZE[31272] / $LOCALIZE[31105],"executebuiltin_0=Skin.SetString(home.slideshowpath,none)","executebuiltin_1=Skin.SetImage(home.slideshowpath)","executebuiltin_2=Skin.SetPath(home.slideshowpath)","executebuiltin_3=Skin.Reset(home.slideshowpath)||RunScript(script.skinshortcuts,type=widgets&amp;grouping=video&amp;skinWidgetPath=home.fallbackwidget&amp;skinWidgetName=home.fallbackwidget.name&amp;skinWidgetType=home.fallbackwidget.type&amp;skinWidgetTarget=home.fallbackwidget.target)")</onclick>          
                         </control>
-                        <control type="button" id="98401" description="Set Slideshow Path">
-                            <width>1360</width>
-                            <visible>String.IsEqual(Window.Property(content),1)</visible>
-                            <include>DefSettingsButtonGradientSkinSettings</include>
-                            <label>$LOCALIZE[31297]$LOCALIZE[31484]</label>
-                            <label2>$VAR[DefWidgetContent]</label2>
-                            <onclick>RunScript(script.skinshortcuts,type=widgets&amp;showNone=True&amp;skinWidgetTarget=widgetTarget&amp;skinWidgetPath=widgetSpotlightPath)</onclick>
-                            <visible>String.IsEmpty(Skin.String(home.slideshowpath))</visible>
-                        </control>
-                        <control type="button" id="9841" description="Set widgets items limit">
-                            <width>1360</width>
-                            <visible>String.IsEqual(Window.Property(content),1)</visible>
-                            <include>DefSettingsButtonGradientSkinSettings</include>
-                            <label>$LOCALIZE[31000]</label>
-                            <label2>$VAR[WidgetLimitLabel]</label2>
-                            <onclick>Skin.SetNumeric(WidgetLimit)</onclick>
-                        </control>
-                        <control type="radiobutton" id="9843">
+                        <control type="radiobutton" id="9841">
                             <width>1360</width>
                             <visible>String.IsEqual(Window.Property(content),1)</visible>
                             <include>DefSettingsButtonGradientSkinSettings</include>
@@ -540,6 +535,15 @@
                             <selected>Skin.HasSetting(LockFocusPosition)</selected>
                             <onclick>Skin.ToggleSetting(LockFocusPosition)</onclick>
                             <visible>Skin.HasSetting(home.vertical) | [Skin.HasSetting(home.vertical.widgets) + !Skin.HasSetting(homemenu.clean.flix)]</visible>
+                        </control>
+                        <control type="button" id="9842" description="Autoscroll widgets">
+                            <width>1360</width>
+                            <visible>String.IsEqual(Window.Property(content),1)</visible>
+                            <include>DefSettingsButtonGradientSkinSettings</include>
+                            <label>31823</label>
+                            <label2>$VAR[AutoscrollLabel]</label2>
+                            <onclick>SetProperty(includesetting,Autoscroll,home)</onclick>
+                            <onclick>ActivateWindow(1100)</onclick>
                         </control>
                         <control type="radiobutton" id="9844" description="more item">
                             <width>1360</width>
@@ -763,7 +767,16 @@
                             <onclick>Skin.ToggleSetting(EnableExtraFanart)</onclick>
                             <enable>!Skin.HasSetting(global.hidefanart)</enable>
                         </control>
-                        <control type="button" id="9717" description="Set Weather Fanart">
+                        <control type="radiobutton" id="9717">
+                            <width>1360</width>
+                            <visible>String.IsEqual(Window.Property(content),2)</visible>
+                            <include>DefSettingsButtonGradientSkinSettings</include>
+                            <label>31702</label>
+                            <selected>Skin.HasSetting(background.episodes.use.thumbnail)</selected>
+                            <onclick>Skin.ToggleSetting(background.episodes.use.thumbnail)</onclick>
+                            <enable>!Skin.HasSetting(global.hidefanart)</enable>
+                        </control>
+                        <control type="button" id="9718" description="Set Weather Fanart">
                             <width>1360</width>
                             <visible>String.IsEqual(Window.Property(content),2)</visible>
                             <include>DefSettingsButtonGradientSkinSettings</include>
@@ -771,7 +784,7 @@
                             <label2>$VAR[Label_WeatherFanart]</label2>
                             <onclick>RunScript(script.image.resource.select,property=weather.fanart&amp;type=resource.images.weatherfanart)</onclick>
                         </control>
-                        <control type="radiobutton" id="9718" description="Show video in background">
+                        <control type="radiobutton" id="9719" description="Show video in background">
                             <width>1360</width>
                             <visible>String.IsEqual(Window.Property(content),2)</visible>
                             <include>DefSettingsButtonGradientSkinSettings</include>
@@ -780,7 +793,7 @@
                             <onclick>Skin.ToggleSetting(global.showvideo)</onclick>
                             <onclick condition="!Skin.HasSetting(global.showvideo)">Skin.Reset(extended.nowplaying.videowindow)</onclick>
                         </control>
-                        <control type="radiobutton" id="9719" description="Show vis in background">
+                        <control type="radiobutton" id="97201" description="Show vis in background">
                             <width>1360</width>
                             <visible>String.IsEqual(Window.Property(content),2)</visible>
                             <include>DefSettingsButtonGradientSkinSettings</include>
@@ -1472,8 +1485,8 @@
                             <textcolor>PanelWhite30</textcolor>
                             <include>DefSettingsButtonGradientSkinSettings</include>
                             <label>31310</label>
-		                    <onclick>Skin.ToggleSetting(DebugInfoGrid)</onclick>
-		                    <selected>Skin.HasSetting(DebugInfoGrid)</selected>
+		                    <onclick>Skin.ToggleSetting(DebugGrid)</onclick>
+		                    <selected>Skin.HasSetting(DebugGrid)</selected>
                         </control>
                         <control type="button" id="9441" description="Reset Skin to Defaults">
                             <width>1360</width>
@@ -1590,7 +1603,7 @@
                         <include content="DefSkinAddons">
                             <param name="id" value="11027"/>
                             <param name="visible" value="String.IsEqual(Window.Property(content),8)"/>
-                            <param name="addonname" value="plugin.video.imdb.trailers"/>
+                            <param name="addonname" value="plugin.video.youtube"/>
                         </include>
                         <include content="DefSkinAddons">
                             <param name="id" value="11028"/>
@@ -2005,6 +2018,14 @@
                                 <label>31667</label>
                             </control>
                         </control>
+                        <control type="radiobutton" id="11296">
+                            <width>1360</width>
+                            <visible>String.IsEqual(Window.Property(content),4)</visible>
+                            <include>DefSettingsButtonGradientSkinSettings</include>
+                            <label>31001</label>
+                            <onclick>Skin.ToggleSetting(DisableLandscapeArt)</onclick>
+                            <selected>!Skin.HasSetting(DisableLandscapeArt)</selected>
+                        </control>
                         <control type="radiobutton" id="11297">
                             <width>1360</width>
                             <visible>String.IsEqual(Window.Property(content),4)</visible>
@@ -2031,38 +2052,6 @@
                             <label2>$INFO[Skin.String(ap_source)]</label2>
                             <onclick>Skin.SetPath(ap_source)</onclick>
                             <visible>System.AddonIsEnabled(script.module.animated_artwork)</visible>
-                        </control>
-                        <control type="grouplist" id="9296">
-                            <visible>String.IsEqual(Window.Property(content),4)</visible>
-                            <orientation>horizontal</orientation>
-                            <enable>false</enable>
-                            <height>70</height>
-                            <control type="button">
-                                <enable>false</enable>
-                                <textoffsetx>30</textoffsetx>
-                                <font>Button</font>
-                                <align>left</align>
-                                <width>1310</width>
-                                <disabledcolor>PanelWhite30</disabledcolor>
-                                <height>70</height>
-                                <label>31305</label>
-                            </control>
-                        </control>
-                        <control type="radiobutton" id="9297">
-                            <width>1360</width>
-                            <visible>String.IsEqual(Window.Property(content),4)</visible>
-                            <include>DefSettingsButtonGradientSkinSettings</include>
-                            <label>31299</label>
-                            <selected>Skin.HasSetting(hub.showplot)</selected>
-                            <onclick>Skin.ToggleSetting(hub.showplot)</onclick>
-                        </control>
-                        <control type="button" id="9842" description="Set hub items limit">
-                            <width>1360</width>
-                            <visible>String.IsEqual(Window.Property(content),4)</visible>
-                            <include>DefSettingsButtonGradientSkinSettings</include>
-                            <label>$LOCALIZE[31392]</label>
-                            <label2>$VAR[HubLimitLabel]</label2>
-                            <onclick>Skin.SetNumeric(HubLimit)</onclick>
                         </control>
                     </control>
 

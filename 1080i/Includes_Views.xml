@@ -2,7 +2,7 @@
 <includes>
 
 	<include name="View_IDs">
-		<views>50,550,505,506,507,508,509,511,512,513,504,56,57,53,55,555,59,54,51,58,52,500,503,514,515,516,517,519,521,522,523,524,526</views>
+		<views>50,550,505,506,507,508,509,511,512,513,56,57,53,55,555,59,54,51,58,52,500,503,514,515,516,517,519,521,522,523,524,526</views>
 	</include>
 
 	<include name="View_Includes">
@@ -27,7 +27,6 @@
 		<include condition="$EXP[Exp_View_59_Include]">View_59_BannerWall</include>
 		<include condition="$EXP[Exp_View_500_Include]">View_500_Thumbnails</include>
 		<include condition="$EXP[Exp_View_503_Include]">View_503_Poster_Square</include>
-		<include condition="$EXP[Exp_View_504_Include]">View_504_Netflix</include>
 		<include condition="$EXP[Exp_View_505_Include]">View_505_Wall</include>
 		<include condition="$EXP[Exp_View_506_Include]">View_506_Wall</include>
 		<include condition="$EXP[Exp_View_507_Include]">View_507_Wall</include>
@@ -96,7 +95,7 @@
             <visible>
                 Control.IsVisible(50) | Control.IsVisible(51) | Control.IsVisible(52)
 				| Control.IsVisible(54) + !Container.Content(episodes) + !Container.Content(albums) + !Container.Content(songs)
-				| Control.IsVisible(55) | Control.IsVisible(56) | Control.IsVisible(57) | Control.IsVisible(504) | Control.IsVisible(508)
+				| Control.IsVisible(55) | Control.IsVisible(56) | Control.IsVisible(57) | Control.IsVisible(508)
 				| Control.IsVisible(509) | Control.IsVisible(511) | Control.IsVisible(512) | Control.IsVisible(514)
 				| Control.IsVisible(516) + $EXP[HasEnableExtendedListInfo] | Control.IsVisible(517) | Control.IsVisible(521)
 				| Control.IsVisible(522) | Control.IsVisible(523) | Control.IsVisible(524) | Control.IsVisible(526)
@@ -291,25 +290,6 @@
 			<visible>Control.IsVisible(52)</visible>
 		</control>
 
-		<control type="radiobutton" id="9021" description="Netflix CLearlogo (504)">
-			<include>DefContextButtonGradient</include>
-			<align>left</align>
-			<label>31569</label>
-			<selected>Skin.HasSetting(504clearlogo)</selected>
-			<onclick>Skin.ToggleSetting(504clearlogo)</onclick>
-			<visible>Control.IsVisible(504)</visible>
-		</control>
-
-		<control type="button" id="9022" description="Netflix Icon Size (504)">
-			<include>DefContextButtonGradient</include>
-			<align>left</align>
-			<label>$LOCALIZE[31379]:</label>
-			<label2>$VAR[NetflixIconSize]</label2>
-			<onclick condition="String.IsEmpty(Skin.String(NetflixIconSize))">Skin.SetString(NetflixIconSize,1)</onclick>
-			<onclick condition="String.IsEqual(Skin.String(NetflixIconSize),1)">Skin.Reset(NetflixIconSize)</onclick>
-			<visible>Control.IsVisible(504)</visible>
-		</control>
-
 		<control type="radiobutton" id="9023" description="Disable Scrolling (508)">
 			<include>DefContextButtonGradient</include>
 			<align>left</align>
@@ -340,13 +320,13 @@
             <visible>$EXP[IsVideoAssets]</visible>
 		</control>
 
-		<control type="radiobutton" id="9027" description="Discart (504,508)">
+		<control type="radiobutton" id="9027" description="Discart (508)">
 			<include>DefContextButtonGradient</include>
 			<align>left</align>
 			<label>31459</label>
 			<selected>Skin.HasSetting(discartfanart)</selected>
 			<onclick>Skin.ToggleSetting(discartfanart)</onclick>
-			<visible>Control.IsVisible(508) | Control.IsVisible(504)</visible>
+			<visible>Control.IsVisible(508)</visible>
 		</control>
 
 		<control type="radiobutton" id="9028" description="Alternative CD Case (508)">
