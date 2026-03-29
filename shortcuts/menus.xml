@@ -1,0 +1,180 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<menus>
+	<!-- Main menus -->
+	<menu name="mainmenu" container="300">
+		<item name="videos">
+			<label>$LOCALIZE[3]</label>
+			<label2>Common item</label2>
+			<icon>special://skin/extras/icons/video-addons.png</icon>
+			<action>ActivateWindow(videos,library://video/)</action>
+			<visible>!Library.HasContent(Movies) + !Library.HasContent(TVShows)
+			</visible>
+		</item>
+		<item name="movies">
+			<label>$LOCALIZE[20342]</label>
+			<label2>Common item</label2>
+			<icon>special://skin/extras/icons/film.png</icon>
+			<action>ActivateWindow(videos,videodb://movies/titles/,return)
+			</action>
+		</item>
+		<item name="tvshows">
+			<label>$LOCALIZE[20343]</label>
+			<label2>Common item</label2>
+			<icon>special://skin/extras/icons/tv.png</icon>
+			<action>ActivateWindow(videos,videodb://tvshows/titles/,return)
+			</action>
+		</item>
+		<item name="music">
+			<label>$LOCALIZE[2]</label>
+			<label2>Common item</label2>
+			<icon>special://skin/extras/icons/songs.png</icon>
+			<action>ActivateWindow(Music,library://music/,return)</action>
+		</item>
+		<item name="livetv">
+			<label>$LOCALIZE[31103]</label>
+			<label2>Common item</label2>
+			<icon>special://skin/extras/icons/livetv.png</icon>
+			<action>ActivateWindow(Tvchannels)</action>
+		</item>
+		<item name="settings">
+			<label>$LOCALIZE[10004]</label>
+			<label2>Common item</label2>
+			<icon>special://skin/extras/icons/settings.png</icon>
+			<action>ActivateWindow(Settings)</action>
+		</item>
+		<item name="power">
+			<label>$LOCALIZE[33060]</label>
+			<label2>Common item</label2>
+			<icon>special://skin/extras/icons/power.png</icon>
+			<action>ActivateWindow(shutdownmenu)</action>
+		</item>
+	</menu>
+
+	<menu name="powermenu">
+		<item name="reload skin">
+			<label2>Power Menu Shortcut</label2>
+			<label>$LOCALIZE[31195]</label>
+			<action>ReloadSkin()</action>
+			<icon />
+			<thumb />
+		</item>
+		<item name="logoff">
+			<label2>Power Menu Shortcut</label2>
+			<label>$LOCALIZE[31360]</label>
+			<action>SystemLogOff</action>
+			<visible>[System.HasLoginScreen | Integer.IsGreater(System.ProfileCount,1)] + System.Loggedon</visible>
+			<icon />
+			<thumb />
+		</item>
+		<item name="mastermode">
+			<label2>Power Menu Shortcut</label2>
+			<label>$LOCALIZE[20046]</label>
+			<altlabel>20045</altlabel>
+			<action>mastermode</action>
+			<visible>System.HasLocks</visible>
+			<icon />
+			<thumb />
+		</item>
+		<item name="exit">
+			<label2>Power Menu Shortcut</label2>
+			<label>$LOCALIZE[13012]</label>
+			<action>Quit()</action>
+			<icon />
+			<thumb />
+			<visible>System.ShowExitButton</visible>
+		</item>
+		<item name="powerdown">
+			<label2>Power Menu Shortcut</label2>
+			<label>$LOCALIZE[13005]</label>
+			<action>Powerdown()</action>
+			<visible>System.CanPowerDown</visible>
+			<icon />
+			<thumb />
+		</item>
+		<item name="shutdowntimer">
+			<label2>Power Menu Shortcut</label2>
+			<label>$LOCALIZE[20150]</label>
+			<action>AlarmClock(shutdowntimer,Shutdown())</action>
+			<visible>!System.HasAlarm(shutdowntimer)</visible>
+			<visible>System.CanPowerDown | System.CanSuspend | System.CanHibernate</visible>
+			<icon />
+			<thumb />
+		</item>
+		<item name="cancel timer">
+			<label2>Power Menu Shortcut</label2>
+			<label>$LOCALIZE[20151]</label>
+			<action>CancelAlarm(shutdowntimer)</action>
+			<visible>System.HasAlarm(shutdowntimer)</visible>
+			<icon />
+			<thumb />
+		</item>
+		<item name="suspend">
+			<label2>Power Menu Shortcut</label2>
+			<label>$LOCALIZE[13011]</label>
+			<action>Suspend()</action>
+			<visible>System.CanSuspend</visible>
+			<icon />
+			<thumb />
+		</item>
+		<item name="hibernate">
+			<label2>Power Menu Shortcut</label2>
+			<label>$LOCALIZE[13010]</label>
+			<action>Hibernate()</action>
+			<visible>System.CanHibernate</visible>
+			<icon />
+			<thumb />
+		</item>
+		<item name="reboot">
+			<label2>Power Menu Shortcut</label2>
+			<label>$LOCALIZE[13013]</label>
+			<action>Reset()</action>
+			<visible>System.CanReboot</visible>
+			<icon />
+			<thumb />
+		</item>
+		<item name="reboot to android">
+			<label2>Power Menu Shortcut</label2>
+			<label>$LOCALIZE[31232]</label>
+			<action>RebootToAndroid</action>
+			<visible>System.PathExist("/dev/env")</visible>
+			<icon />
+			<thumb />
+		</item>
+		<item name="settings">
+			<label>$LOCALIZE[5]</label>
+			<label2>Power Menu Shortcut</label2>
+			<action>ActivateWindow(settings)</action>
+			<visible>System.Loggedon</visible>
+			<icon />
+			<thumb />
+		</item>
+	</menu>
+
+	<!-- Shortcut picker groupings -->
+	<groupings>
+		<group name="common" label="32029">
+			<shortcut name="TMDbHelper Movies" label="$LOCALIZE[31208]" type="TMDbHelper Movies" icon="special://skin/extras/icons/director.png">
+				<action>ActivateWindow(1124)</action>
+			</shortcut>
+			<shortcut name="TMDbHelper Episodes" label="$LOCALIZE[31212]" type="TMDbHelper Episodes" icon="special://skin/extras/icons/director.png">
+				<action>ActivateWindow(1125)</action>
+			</shortcut>
+		</group>
+		<group name="videos" label="32030">
+			<content source="nodes" target="videos" />
+			<!-- <node label="$LOCALIZE[32040]"> <content>playlist-video</content> </node> <node label="$LOCALIZE[32010]"> <content>addon-video</content> </node> <node label="$LOCALIZE[32075]"> <content>videosources</content> </node> -->
+		</group>
+		<group name="commands" label="32054">
+			<content source="commands" />
+		</group>
+	</groupings>
+
+	<!-- Icon picker sources -->
+	<icons>special://skin/extras/icons/</icons>
+
+	<!-- Subdialog definitions -->
+	<dialogs>
+	  <subdialog buttonID="406" menu="{item}.1">
+	  </subdialog>
+	</dialogs>
+</menus>
