@@ -2,7 +2,7 @@
     <defaultcontrol always="true">9101</defaultcontrol>
     <backgroundcolor>0</backgroundcolor>
     <onunload condition="System.AddonIsEnabled(script.wikipedia)">Skin.SetString(Wikipedia.Format.Link,[COLOR=Dark2]{}[/COLOR])</onunload>
-    <onunload>RunScript(script.skinshortcuts,type=buildxml&amp;mainmenuID=300&amp;group=mainmenu|x1111|x1112|x1113|x1114|x1115|x1116|x1117|x1118|x1119|powermenu&amp;levels=6)</onunload>
+    <onunload>RunScript(script.skinshortcuts,type=buildxml)</onunload>
     <controls>
         <include>GlobalBackground</include>
         <include>Furniture_Header</include>
@@ -237,11 +237,7 @@
                             <visible>String.IsEqual(Window.Property(content),1)</visible>
                             <include>DefSettingsButtonGradientSkinSettings</include>
                             <label>$LOCALIZE[31109]</label>
-                            <onclick>RunScript(script.skinshortcuts,type=manage&amp;group=mainmenu)</onclick>
-                            <onfocus>ClearProperty(Symbols,Home)</onfocus>
-                            <onfocus>ClearProperty(Backg,Home)</onfocus>
-                            <onfocus>ClearProperty(custommenu,Home)</onfocus>
-                            <onfocus>ClearProperty(skinshortcuts-Widget,Home)</onfocus>
+                            <onclick>RunScript(script.skinshortcuts,type=manage&amp;menu=mainmenu)</onclick>
                         </control>
                         <control type="button" id="9805">
                             <width>1360</width>
@@ -524,8 +520,8 @@
                             <visible>String.IsEqual(Window.Property(content),1)</visible>
                             <include>DefSettingsButtonGradientSkinSettings</include>
                             <label>31269</label>
-                            <label2>$VAR[LabelFallbackWidgetName]</label2>
-                            <onclick>RunScript(script.skinvariables,run_dialog=select,heading=$LOCALIZE[31269],list=$LOCALIZE[16018] / $LOCALIZE[31271] / $LOCALIZE[31272] / $LOCALIZE[31105],"executebuiltin_0=Skin.SetString(home.slideshowpath,none)","executebuiltin_1=Skin.SetImage(home.slideshowpath)","executebuiltin_2=Skin.SetPath(home.slideshowpath)","executebuiltin_3=Skin.Reset(home.slideshowpath)||RunScript(script.skinshortcuts,type=widgets&amp;grouping=video&amp;skinWidgetPath=home.fallbackwidget&amp;skinWidgetName=home.fallbackwidget.name&amp;skinWidgetType=home.fallbackwidget.type&amp;skinWidgetTarget=home.fallbackwidget.target)")</onclick>          
+                            <label2>$VAR[Label_FallbackWidget_Name]</label2>
+                            <onclick>RunScript(script.skinvariables,run_dialog=select,heading=$LOCALIZE[31269],list=$LOCALIZE[16018] / $LOCALIZE[31271] / $LOCALIZE[31272] / $LOCALIZE[31105],"executebuiltin_0=Skin.SetString(home.slideshowpath,none)","executebuiltin_1=Skin.SetImage(home.slideshowpath)","executebuiltin_2=Skin.SetPath(home.slideshowpath)","executebuiltin_3=Skin.Reset(home.slideshowpath)||RunScript(script.skinshortcuts,type=skinstring&amp;skinPath=home.fallbackwidget&amp;skinLabel=home.fallbackwidget.name&amp;skinType=home.fallbackwidget.type&amp;skinTarget=home.fallbackwidget.target)")</onclick>          
                         </control>
                         <control type="radiobutton" id="9841">
                             <width>1360</width>
@@ -645,7 +641,7 @@
                             <visible>String.IsEqual(Window.Property(content),1)</visible>
                             <include>DefSettingsButtonGradientSkinSettings</include>
                             <label>31359</label>
-                            <onclick>RunScript(script.skinshortcuts,type=manage&amp;group=powermenu)</onclick>
+                            <onclick>RunScript(script.skinshortcuts,type=manage&amp;menu=powermenu)</onclick>
                         </control>
                     </control>
                     

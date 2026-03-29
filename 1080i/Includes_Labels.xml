@@ -10,18 +10,6 @@
         <value>$LOCALIZE[31125]</value>
     </variable>
  
-    <variable name="LabelWidgetShortcutsName">
-        <value condition="!String.IsEmpty(Container(211).ListItem.Property(widgetName))">$INFO[Container(211).ListItem.Property(widgetName)]</value>
-        <value condition="!String.IsEmpty(Container(211).ListItem.Property(background))">$LOCALIZE[31110]</value>
-        <value>$LOCALIZE[31269]</value>
-    </variable>
-
-    <variable name="LabelFallbackWidgetName">
-        <value condition="String.IsEqual(Skin.String(home.slideshowpath),none)">$LOCALIZE[16018]</value>
-        <value condition="!String.IsEmpty(Skin.String(home.slideshowpath))">$INFO[Skin.String(home.slideshowpath)]</value>
-        <value>$LOCALIZE[31105]</value>
-    </variable>
-
     <variable name="ProgressCircleLabel">
         <value condition="String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,episode)">$VAR[Percentagelabel]</value>
         <value condition="String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) + !String.IsEmpty(ListItem.Property(WatchedEpisodes))">$INFO[ListItem.Property(WatchedEpisodes)]/$INFO[ListItem.Property(TotalEpisodes)]</value>
@@ -524,6 +512,18 @@
         <value>$LOCALIZE[37030]</value>
     </variable>
 
+    <variable name="Label_Widget_Name">
+        <value condition="!String.IsEmpty(Container(211).ListItem.Property(widgetLabel))">$INFO[Container(211).ListItem.Property(widgetLabel)]</value>
+        <value condition="!String.IsEmpty(Container(211).ListItem.Property(background))">$LOCALIZE[31110]</value>
+        <value>$LOCALIZE[31269]</value>
+    </variable>
+
+    <variable name="Label_FallbackWidget_Name">
+        <value condition="String.IsEqual(Skin.String(home.slideshowpath),none)">$LOCALIZE[16018]</value>
+        <value condition="!String.IsEmpty(Skin.String(home.slideshowpath))">$INFO[Skin.String(home.slideshowpath)]</value>
+        <value>$LOCALIZE[31105]</value>
+    </variable>
+
     <variable name="Label_Widget_Aspect">
         <value condition="[String.IsEmpty(Container(211).ListItem.Property(widgetaspect)) | String.IsEqual(Container(211).ListItem.Property(widgetaspect),Poster)] + !String.IsEqual(Container(211).ListItem.Property(widget),submenu)">$LOCALIZE[31262]</value>
         <value condition="String.IsEqual(Container(211).ListItem.Property(widgetaspect),Square)">$LOCALIZE[31263]</value>
@@ -587,11 +587,18 @@
         <value>$LOCALIZE[37030]</value>
     </variable>
     
-    <variable name="ItemStatus">
+    <variable name="Label_Skinshortcuts_ItemStatus">
         <value condition="!String.IsEqual(Container(211).ListItem.Property(skinshortcuts-disabled),True)">$LOCALIZE[305]</value>
         <value>$LOCALIZE[1223]</value>
     </variable>
 
+	<variable name="Label_Skinshortcuts_DialogTitle">
+		<value condition="String.IsEqual(Window.Property(menuname),mainmenu) | String.IsEmpty(Window.Property(menuname))">$ADDON[script.skinshortcuts 32071]</value>
+		<value condition="String.IsEqual(Window.Property(menuname),powermenu)">$LOCALIZE[31359]</value>
+		<value condition="String.EndsWith(Window.Property(menuname),.1)">Customize Widgets</value>
+		<value>$ADDON[script.skinshortcuts 32072]</value>
+	</variable>
+    
     <variable name="DialogInfoLabel">
         <value condition="Control.HasFocus(13) + Window.IsVisible(DialogAddonInfo.xml)">$LOCALIZE[21340]</value>
         <value condition="Control.HasFocus(10) + Window.IsVisible(DialogAddonInfo.xml)">$LOCALIZE[24996]</value>

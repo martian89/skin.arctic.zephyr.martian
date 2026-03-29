@@ -2,7 +2,7 @@
 <menus>
 	<!-- Main menus -->
 	<menu name="mainmenu" container="300">
-		<item name="videos">
+		<item name="videos" submenu="videos">
 			<label>$LOCALIZE[3]</label>
 			<label2>Common item</label2>
 			<icon>special://skin/extras/icons/video-addons.png</icon>
@@ -10,27 +10,27 @@
 			<visible>!Library.HasContent(Movies) + !Library.HasContent(TVShows)
 			</visible>
 		</item>
-		<item name="movies">
+		<item name="movies" submenu="movies">
 			<label>$LOCALIZE[20342]</label>
 			<label2>Common item</label2>
 			<icon>special://skin/extras/icons/film.png</icon>
 			<action>ActivateWindow(videos,videodb://movies/titles/,return)
 			</action>
 		</item>
-		<item name="tvshows">
+		<item name="tvshows" submenu="tvshows">
 			<label>$LOCALIZE[20343]</label>
 			<label2>Common item</label2>
 			<icon>special://skin/extras/icons/tv.png</icon>
 			<action>ActivateWindow(videos,videodb://tvshows/titles/,return)
 			</action>
 		</item>
-		<item name="music">
+		<item name="music" submenu="music">
 			<label>$LOCALIZE[2]</label>
 			<label2>Common item</label2>
 			<icon>special://skin/extras/icons/songs.png</icon>
 			<action>ActivateWindow(Music,library://music/,return)</action>
 		</item>
-		<item name="livetv">
+		<item name="livetv" submenu="livetv">
 			<label>$LOCALIZE[31103]</label>
 			<label2>Common item</label2>
 			<icon>special://skin/extras/icons/livetv.png</icon>
@@ -51,6 +51,7 @@
 	</menu>
 
 	<menu name="powermenu">
+		<allow widgets="false" backgrounds="false" submenus="false" />
 		<item name="reload skin">
 			<label2>Power Menu Shortcut</label2>
 			<label>$LOCALIZE[31195]</label>
@@ -150,6 +151,322 @@
 		</item>
 	</menu>
 
+	<!-- Submenus (only built when referenced) -->
+	<submenu name="videos">
+		<item name="titles">
+			<label>20389</label>
+			<label2>32018</label2>
+			<icon>DefaultMusicVideos.png</icon>
+			<action>ActivateWindow(Videos,videodb://musicvideos/titles/,return)</action>
+		</item>
+		<item name="files">
+			<label>744</label>
+			<label2>32014</label2>
+			<icon>DefaultFolder.png</icon>
+			<action>ActivateWindow(Videos,Files,return)</action>
+		</item>
+		<item name="video-addons">
+			<label>1037</label>
+			<label2>32014</label2>
+			<icon>DefaultAddonVideo.png</icon>
+			<action>ActivateWindow(Videos,Addons,return)</action>
+		</item>
+	    <item name="update-library">
+	        <label>$VAR[VideoScanLabel]</label>
+	        <label2>14236</label2>
+	        <icon>special://skin/extras/icons/update.png</icon>
+	        <action>UpdateLibrary(video)</action>
+	    </item>
+	    <item name="clean-library">
+	        <label>14247</label>
+	        <label2>14236</label2>
+	        <icon>special://skin/extras/icons/paintbrush.png</icon>
+	        <action>CleanLibrary(video)</action>
+	    </item>
+	</submenu>
+	
+	<submenu name="movies">
+		<item name="recently-added">
+			<label>20386</label>
+			<label2>342</label2>
+			<icon>DefaultRecentlyAddedMovies.png</icon>
+			<action>ActivateWindow(Videos,videodb://recentlyaddedmovies/,return)</action>
+		</item>
+	    <item name="in-progress">
+	        <label>575</label>
+	        <label2>342</label2>
+	        <icon>special://skin/extras/icons/timer.png</icon>
+	        <action>ActivateWindow(Videos,special://skin/extras/playlists/InProgressMovies.xsp,return)</action>
+	    </item>
+		<item name="sets">
+			<label>20434</label>
+			<label2>342</label2>
+			<icon>DefaultSets.png</icon>
+			<action>ActivateWindow(Videos,videodb://movies/sets/,return)</action>
+		</item>
+		<item name="titles">
+			<label>369</label>
+			<label2>342</label2>
+			<icon>DefaultMovieTitle.png</icon>
+			<action>ActivateWindow(Videos,videodb://movies/titles/,return)</action>
+		</item>
+		<item name="genres">
+			<label>135</label>
+			<label2>342</label2>
+			<icon>DefaultGenre.png</icon>
+			<action>ActivateWindow(Videos,videodb://movies/genres/,return)</action>
+		</item>
+		<item name="years">
+			<label>562</label>
+			<label2>342</label2>
+			<icon>DefaultYear.png</icon>
+			<action>ActivateWindow(Videos,videodb://movies/years/,return)</action>
+		</item>
+		<item name="actors">
+			<label>344</label>
+			<label2>342</label2>
+			<icon>DefaultActor.png</icon>
+			<action>ActivateWindow(Videos,videodb://movies/actors/,return)</action>
+		</item>
+	    <item name="files">
+	        <label>744</label>
+	        <label2>32014</label2>
+	        <icon>DefaultFolder.png</icon>
+	        <action>ActivateWindow(Videos,Files,return)</action>
+	    </item>
+	    <item name="video-addons">
+	        <label>1037</label>
+	        <label2>32014</label2>
+	        <icon>DefaultAddonVideo.png</icon>
+	        <action>ActivateWindow(Videos,Addons,return)</action>
+	    </item>
+	    <item name="update-library">
+	        <label>$VAR[VideoScanLabel]</label>
+	        <label2>14236</label2>
+	        <icon>special://skin/extras/icons/update.png</icon>
+	        <action>UpdateLibrary(video)</action>
+	    </item>
+	</submenu>
+
+	<submenu name="tvshows">
+		<item name="recently-added">
+			<label>20387</label>
+			<label2>20343</label2>
+			<icon>DefaultRecentlyAddedEpisodes.png</icon>
+			<action>ActivateWindow(Videos,videodb://recentlyaddedepisodes/,return)</action>
+		</item>
+	    <item name="in-progress">
+	        <label>575</label>
+	        <label2>20343</label2>
+	        <icon>special://skin/extras/icons/timer.png</icon>
+	        <action>ActivateWindow(Videos,special://skin/extras/playlists/InProgressTvShows.xsp,return)</action>
+	    </item>
+		<item name="titles">
+			<label>369</label>
+			<label2>20343</label2>
+			<icon>DefaultTVShowTitle.png</icon>
+			<action>ActivateWindow(Videos,videodb://tvshows/titles/,return)</action>
+		</item>
+		<item name="genres">
+			<label>135</label>
+			<label2>20343</label2>
+			<icon>DefaultGenre.png</icon>
+			<action>ActivateWindow(Videos,videodb://tvshows/genres/,return)</action>
+		</item>
+		<item name="years">
+			<label>562</label>
+			<label2>20343</label2>
+			<icon>DefaultYear.png</icon>
+			<action>ActivateWindow(Videos,videodb://tvshows/years/,return)</action>
+		</item>
+		<item name="actors">
+			<label>344</label>
+			<label2>20343</label2>
+			<icon>DefaultActor.png</icon>
+			<action>ActivateWindow(Videos,videodb://tvshows/actors/,return)</action>
+		</item>
+	    <item name="files">
+	        <label>744</label>
+	        <label2>32014</label2>
+	        <icon>DefaultFolder.png</icon>
+	        <action>ActivateWindow(Videos,Files,return)</action>
+	    </item>
+	    <item name="video-addons">
+	        <label>1037</label>
+	        <label2>32014</label2>
+	        <icon>DefaultAddonVideo.png</icon>
+	        <action>ActivateWindow(Videos,Addons,return)</action>
+	    </item>
+	    <item name="update-library">
+	        <label>$VAR[VideoScanLabel]</label>
+	        <label2>14236</label2>
+	        <icon>special://skin/extras/icons/update.png</icon>
+	        <action>UpdateLibrary(video)</action>
+	    </item>
+	</submenu>
+	
+	<submenu name="music">
+	    <item name="recently-added">
+	        <label>359</label>
+	        <label2>32019</label2>
+	        <icon>special://skin/extras/icons/recentlyadded.png</icon>
+	        <action>ActivateWindow(Music,musicdb://recentlyaddedalbums/,return)</action>
+	    </item>
+	    <item name="recently-played">
+	        <label>517</label>
+	        <label2>32019</label2>
+	        <icon>special://skin/extras/icons/recent.png</icon>
+	        <action>ActivateWindow(Music,musicdb://recentlyplayedalbums/,return)</action>
+	    </item>
+		<item name="files">
+			<label>744</label>
+			<label2>32019</label2>
+			<icon>DefaultFolder.png</icon>
+			<action>ActivateWindow(Music,Files,Return)</action>
+		</item>
+		<item name="music-library">
+			<label>15100</label>
+			<label2>32019</label2>
+			<icon>DefaultFolder.png</icon>
+			<action>ActivateWindow(MusicLibrary,MusicLibrary,return)</action>
+		</item>
+		<item name="music-addons">
+			<label>1038</label>
+			<label2>32019</label2>
+			<icon>DefaultAddonMusic.png</icon>
+			<action>ActivateWindow(MusicLibrary,Addons,return)</action>
+		</item>
+	    <item name="update-libary">
+	        <label>$VAR[MusicScanLabel]</label>
+	        <label2>14237</label2>
+	        <icon>special://skin/extras/icons/update.png</icon>
+	        <action>UpdateLibrary(music)</action>
+	    </item>
+	    <item name="clean-library">
+	        <label>14247</label>
+	        <label2>14237</label2>
+	        <icon>special://skin/extras/icons/paintbrush.png</icon>
+	        <action>CleanLibrary(music)</action>
+	    </item>
+	</submenu>
+
+	<submenu name="musicvideos">
+	    <item name="recently-added-musicvideos">
+	        <label>20390</label>
+	        <label2>20389</label2>
+	        <icon>DefaultRecentlyAddedMusicVideos.png</icon>
+	        <action>ActivateWindow(Videos,videodb://recentlyaddedmusicvideos/,return)</action>
+	    </item>
+	    <item name="titles">
+	        <label>369</label>
+	        <label2>20389</label2>
+	        <icon>DefaultMusicVideoTitle.png</icon>
+	        <action>ActivateWindow(Videos,videodb://musicvideos/titles/,return)</action>
+	    </item>
+	    <item name="musicvideo-albums">
+	        <label>132</label>
+	        <label2>20389</label2>
+	        <icon>DefaultMusicAlbums.png</icon>
+	        <action>ActivateWindow(Videos,MusicVideoAlbums,return)</action>
+	    </item>
+	    <item name="artists">
+	        <label>133</label>
+	        <label2>20389</label2>
+	        <icon>DefaultMusicArtists.png</icon>
+	        <action>ActivateWindow(Videos,videodb://musicvideos/artists/,return)</action>
+	    </item>
+	    <item name="genres">
+	        <label>135</label>
+	        <label2>20389</label2>
+	        <icon>DefaultMusicGenres.png</icon>
+	        <action>ActivateWindow(Videos,videodb://musicvideos/genres,return)</action>
+	    </item>
+	    <item name="years">
+	        <label>652</label>
+	        <label2>20389</label2>
+	        <icon>DefaultMusicYears.png</icon>
+	        <action>ActivateWindow(Videos,videodb://musicvideos/years/,return)</action>
+	    </item>
+	    <item name="files">
+	        <label>744</label>
+	        <label2>32014</label2>
+	        <icon>DefaultFolder.png</icon>
+	        <action>ActivateWindow(Videos,Files,return)</action>
+	    </item>
+	    <item name="update-library">
+	        <label>$VAR[VideoScanLabel]</label>
+	        <label2>14236</label2>
+	        <icon>special://skin/extras/icons/update.png</icon>
+	        <action>UpdateLibrary(video)</action>
+	    </item>
+	</submenu>	
+	
+	<submenu name="livetv">
+	    <item name="tvguide">
+	        <label>22020</label>
+	        <label2>32017</label2>
+	        <icon>special://skin/extras/icons/tvguide.png</icon>
+	        <action>ActivateWindow(TVGuide)</action>
+	    </item>
+	    <item name="tv-recordings">
+	        <label>19163</label>
+	        <label2>32017</label2>
+	        <icon>special://skin/extras/icons/bookmark-star.png</icon>
+	        <action>ActivateWindow(TVRecordings)</action>
+	    </item>
+	    <item name="tv-providers">
+	        <label>19348</label>
+	        <label2>32017</label2>
+	        <icon>special://skin/extras/icons/antenna.png</icon>
+	        <action>ActivateWindow(TVProviders)</action>
+	    </item>
+	    <item name="tv-timers">
+	        <label>19040</label>
+	        <label2>32017</label2>
+	        <icon>special://skin/extras/icons/timer.png</icon>
+	        <action>ActivateWindow(TVTimers)</action>
+	    </item>
+	    <item name="tv-search">
+	        <label>137</label>
+	        <label2>32017</label2>
+	        <icon>special://skin/extras/icons/search.png</icon>
+	        <action>ActivateWindow(TVSearch)</action>
+	    </item>
+	</submenu>
+
+	<submenu name="radio">
+	    <item name="radio-guide">
+	        <label>22020</label>
+	        <label2>32087</label2>
+	        <icon>special://skin/extras/icons/tvguide.png</icon>
+	        <action>ActivateWindow(RadioGuide)</action>
+	    </item>
+	    <item name="radio-recordings">
+	        <label>19163</label>
+	        <label2>32087</label2>
+	        <icon>special://skin/extras/icons/bookmark-star.png</icon>
+	        <action>ActivateWindow(RadioRecordings)</action>
+	    </item>
+	    <item name="radio-providers">
+	        <label>19348</label>
+	        <label2>32087</label2>
+	        <icon>special://skin/extras/icons/antenna.png</icon>
+	        <action>ActivateWindow(RadioProviders)</action>
+	    </item>
+	    <item name="radio-timers">
+	        <label>19040</label>
+	        <label2>32087</label2>
+	        <icon>special://skin/extras/icons/timer.png</icon>
+	        <action>ActivateWindow(RadioTimers)</action>
+	    </item>
+	    <item name="radio-search">
+	        <label>137</label>
+	        <label2>32087</label2>
+	        <icon>special://skin/extras/icons/search.png</icon>
+	        <action>ActivateWindow(RadioSearch)</action>
+	    </item>
+	</submenu>	
+	
 	<!-- Shortcut picker groupings -->
 	<groupings>
 		<group name="common" label="32029">
@@ -174,7 +491,7 @@
 
 	<!-- Subdialog definitions -->
 	<dialogs>
-	  <subdialog buttonID="406" menu="{item}.1">
-	  </subdialog>
+		<subdialog buttonID="406" menu="{item}.1" />
+		<subdialog buttonID="800" mode="widget" />
 	</dialogs>
 </menus>
