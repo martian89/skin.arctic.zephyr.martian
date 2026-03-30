@@ -425,11 +425,11 @@
                     <include>HiddenListControl</include>
                     <content>
                         <item>
-                            <visible>Container($PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]).ListItem.IsCollection + !String.IsEmpty($PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]).ListItem.DBID</visible>
+                            <visible>!ControlGroup(301).HasFocus() + Container($PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]).ListItem.IsCollection + !String.IsEmpty($PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]).ListItem.DBID</visible>
                             <label>videodb://movies/sets/$INFO[Container($PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]).ListItem.DBID]/?setid=$INFO[Container($PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]).ListItem.DBID]</label>
                         </item>
                         <item>
-                            <visible>Container($PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]).ListItem.IsFolder + String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]).ListItem.DBType,album)</visible>
+                            <visible>!ControlGroup(301).HasFocus() + Container($PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]).ListItem.IsFolder + String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]).ListItem.DBType,album)</visible>
                             <label>$INFO[Container($PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]).ListItem.FolderPath]</label>
                         </item>
                     </content>    
@@ -591,7 +591,6 @@
                         <include content="Widget_Title_Label">
                             <param name="focusid" value="$PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]"/>
                             <param name="label" value="$SKINSHORTCUTS[widgetName]"/>
-                            <param name="infoid" value="$PYTHON[int(mainmenuid) * 10000 + 4400 + int(id)]" />
                             <param name="showinfo" value="!$SKINSHORTCUTS[isFullscreenWidget] + !Integer.IsEqual(Container($PYTHON[int(mainmenuid) * 1000 + 301]).NumItems,1)" />
                         </include>
                     </control>
@@ -691,7 +690,7 @@
                     <include>HiddenListControl</include>
                     <content>
                         <item>
-                            <visible>Container(993100).ListItem.IsCollection + !String.IsEmpty(993100).ListItem.DBID</visible>
+                            <visible>!ControlGroup(301).HasFocus() + Container(993100).ListItem.IsCollection + !String.IsEmpty(993100).ListItem.DBID</visible>
                             <label>videodb://movies/sets/$INFO[Container(993100).ListItem.DBID]/?setid=$INFO[Container(993100).ListItem.DBID]</label>
                         </item>
                     </content>    
