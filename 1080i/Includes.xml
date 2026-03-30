@@ -1104,8 +1104,8 @@
     </variable>
     
     <variable name="HubWindowIcon">
-        <value condition="!String.IsEmpty(Container(300).ListItem.Icon)">$INFO[Container(300).ListItem.Icon]</value>
-        <value condition="!String.IsEmpty(Container(301).ListItem.Icon)">$INFO[Container(301).ListItem.Icon]</value>
+        <value condition="!String.IsEmpty(Container(300).ListItem.Icon)">$ESCINFO[Container(300).ListItem.Icon]</value>
+        <value condition="!String.IsEmpty(Container(301).ListItem.Icon)">$ESCINFO[Container(301).ListItem.Icon]</value>
     </variable>
 
 	<variable name="MusicInfoNavigation_onleft_control_id">
@@ -1471,7 +1471,6 @@
         <control type="button">
             <visible>false</visible>
             <onfocus>AlarmClock(Preload,SetProperty(TMDbHelper.WidgetContainer,$VAR[TMDBHelperWidgetContainer_Parent]),00:00,silent)</onfocus>
-            <onfocus>SetProperty(WindowTitle,$INFO[Container(300).ListItem.Label],home)</onfocus>
         </control>
     </include>
 

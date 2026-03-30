@@ -4337,24 +4337,23 @@
             <label>31273</label>
             <include>Def_Skinshortcuts_Buttons</include>
             <label2>$INFO[Skin.String(Widget.$PARAM[hubid])]</label2>
-            <visible>String.IsEqual(Container(211).ListItem.Label2,Hub $PARAM[hubid]) | String.IsEqual(Container(211).ListItem.Property(Path),ActivateWindow($PARAM[hubid]))</visible>
+            <visible>String.IsEqual(Container(211).ListItem.Property(Path),ActivateWindow($PARAM[hubid]))</visible>
             <visible>!$EXP[Skinshortcuts_Widgets_Active]</visible>
-            <onclick>RunScript(script.skinshortcuts,type=widgets&amp;grouping=widget&amp;skinWidgetPath=Widget.$PARAM[hubid]&amp;skinWidgetName=Widget.$PARAM[hubid].Label&amp;skinWidgetType=Widget.$PARAM[hubid].Type;&amp;skinWidgetTarget=Widget.$PARAM[hubid].Target)</onclick>
+            <onclick>RunScript(script.skinshortcuts,type=skinstring&amp;skinPath=Widget.$PARAM[hubid]&amp;skinLabel=Widget.$PARAM[hubid].Label&amp;skinType=Widget.$PARAM[hubid].Type;&amp;skinTarget=Widget.$PARAM[hubid].Target)</onclick>
         </control>
         <control type="button" id="$PARAM[buttonid2]1" description="Set HUB LIMIT">
             <label>31824</label>
             <include>Def_Skinshortcuts_Buttons</include>
             <label2>$VAR[Label_Hub_Limit]</label2>
-            <visible>String.IsEqual(Container(211).ListItem.Label2,Hub $PARAM[hubid]) | String.IsEqual(Container(211).ListItem.Property(Path),ActivateWindow($PARAM[hubid]))</visible>
+            <visible>String.IsEqual(Container(211).ListItem.Property(Path),ActivateWindow($PARAM[hubid]))</visible>
             <visible>!$EXP[Skinshortcuts_Widgets_Active]</visible>
             <onclick>RunScript(script.skinvariables,run_dialog=select,heading=$LOCALIZE[31824],list=$ADDON[script.skinshortcuts 32053] / 10 / 25 / 50 / 100,"executebuiltin=Skin.SetString(Widget.$PARAM[hubid].Limit,{v})")</onclick>          
         </control>
         <control type="button" id="$PARAM[buttonid1]" description="Set HUB">
             <label>31178</label>
             <include>Def_Skinshortcuts_Buttons</include>
-            <visible>String.IsEqual(Container(211).ListItem.Label2,Hub $PARAM[hubid]) | String.IsEqual(Container(211).ListItem.Property(Path),ActivateWindow($PARAM[hubid]))</visible>
+            <visible>String.IsEqual(Container(211).ListItem.Property(Path),ActivateWindow($PARAM[hubid]))</visible>
             <visible>!$EXP[Skinshortcuts_Widgets_Active]</visible>
-            <onclick>RunScript(script.skinshortcuts,type=manage&amp;group=x$PARAM[hubid])</onclick>
         </control>
     </include>
 
