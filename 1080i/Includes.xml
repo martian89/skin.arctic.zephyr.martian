@@ -1956,37 +1956,7 @@
           | String.IsEqual(Container(211).ListItem.Property(Path),settings) ]
     </expression>
 
-    <expression name="Skinshortcuts_Mainmenu_Active">String.IsEqual(Window.Property(menuname),mainmenu) | String.IsEmpty(Window.Property(menuname))</expression>
-    <expression name="Skinshortcuts_Widgets_Active">String.EndsWith(Window.Property(menuname),.1)</expression>
+    <expression name="Skinshortcuts_Mainmenu_Active">String.IsEqual(Window.Property(menuname),mainmenu) + String.IsEmpty(Window.Property(skinshortcuts-dialog))</expression>
+    <expression name="Skinshortcuts_Widgets_Active">String.EndsWith(Window.Property(menuname),.1) | String.IsEqual(Window.Property(skinshortcuts-dialog),widget)</expression>
 
-    <include name="Skinshortcuts_ContentType_AutoSetOnFocus">
-        <onfocus condition="String.IsEmpty(Container(211).ListItem.Property(widgetTarget))">SetProperty(customProperty,widgetTarget)</onfocus>
-        <onfocus condition="String.IsEmpty(Container(211).ListItem.Property(widgetTarget))">SetProperty(customValue,$VAR[Skinshortcuts_ContentType])</onfocus>
-        <onfocus condition="String.IsEmpty(Container(211).ListItem.Property(widgetTarget))">SendClick(404)</onfocus>
-    </include>
-    
-    <include name="Skinshortcuts_ContentType_AutoSetOnUnFocus">
-        <onunfocus condition="String.IsEmpty(Container(211).ListItem.Property(widgetTarget))">SetProperty(customProperty,widgetTarget)</onunfocus>
-        <onunfocus condition="String.IsEmpty(Container(211).ListItem.Property(widgetTarget))">SetProperty(customValue,$VAR[Skinshortcuts_ContentType])</onunfocus>
-        <onunfocus condition="String.IsEmpty(Container(211).ListItem.Property(widgetTarget))">SendClick(404)</onunfocus>
-    </include>
-
-    <include name="Skinshortcuts_ContentType_AutoSetOnBack">
-        <onback condition="String.IsEmpty(Container(211).ListItem.Property(widgetTarget))">SetProperty(customProperty,widgetTarget)</onback>
-        <onback condition="String.IsEmpty(Container(211).ListItem.Property(widgetTarget))">SetProperty(customValue,$VAR[Skinshortcuts_ContentType])</onback>
-        <onback condition="String.IsEmpty(Container(211).ListItem.Property(widgetTarget))">SendClick(404)</onback>
-    </include>
-
-    <variable name="Skinshortcuts_ContentType">
-        <value condition="String.IsEqual(Container(211).ListItem.Label2,$LOCALIZE[3])">videos</value>
-        <value condition="String.IsEqual(Container(211).ListItem.Label2,$LOCALIZE[2])">music</value>
-        <value condition="String.IsEqual(Container(211).ListItem.Label2,$LOCALIZE[10001])">programs</value>
-        <value condition="String.IsEqual(Container(211).ListItem.Label2,$LOCALIZE[1])">pictures</value>
-        <value condition="String.Contains(Container(211).ListItem.Property(path),Videos)">videos</value>
-        <value condition="String.Contains(Container(211).ListItem.Property(path),Music)">music</value>
-        <value condition="String.Contains(Container(211).ListItem.Property(path),Programs)">programs</value>
-        <value condition="String.Contains(Container(211).ListItem.Property(path),Pictures)">pictures</value>
-        <value condition="String.Contains(Container(211).ListItem.Property(path),favourites)">favouritesbrowser</value>
-    </variable>
-    
 </includes>
