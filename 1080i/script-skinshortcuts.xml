@@ -103,7 +103,6 @@
                     <font>Null</font>
                     <texturenofocus colordiffuse="PanelBlack30">buttons/delete.png</texturenofocus>
                     <texturefocus colordiffuse="Selected">buttons/delete.png</texturefocus>
-                    <onfocus>ClearProperty(skinshortcuts-Widget,Home)</onfocus>
                 </control>
                 <control type="button" id="301" description="Add">
                     <width>64</width>
@@ -111,8 +110,7 @@
                     <font>Null</font>
                     <texturenofocus colordiffuse="PanelBlack30">buttons/add.png</texturenofocus>
                     <texturefocus colordiffuse="Selected">buttons/add.png</texturefocus>
-                    <onfocus>ClearProperty(skinshortcuts-Widget,Home)</onfocus>
-                    <enable>![Integer.IsGreaterOrEqual(Container(211).NumItems,9) + $EXP[Skinshortcuts_Widgets_Active]] + ![Integer.IsGreaterOrEqual(Container(211).NumItems,20) + $EXP[Skinshortcuts_Mainmenu_Active]]</enable>
+                    <enable>![Integer.IsGreaterOrEqual(Container(211).NumItems,9) + $EXP[Skinshortcuts_Widgets_Active]]</enable>
                 </control>
                 <control type="button" id="303" description="Up">
                     <width>64</width>
@@ -120,7 +118,6 @@
                     <font>Null</font>
                     <texturenofocus colordiffuse="PanelBlack30">buttons/moveup.png</texturenofocus>
                     <texturefocus colordiffuse="Selected">buttons/moveup.png</texturefocus>
-                    <onfocus>ClearProperty(skinshortcuts-Widget,Home)</onfocus>
                 </control>
                 <control type="button" id="304" description="Down">
                     <width>64</width>
@@ -128,7 +125,6 @@
                     <font>Null</font>
                     <texturenofocus colordiffuse="PanelBlack30" flipy="true">buttons/moveup.png</texturenofocus>
                     <texturefocus colordiffuse="Selected" flipy="true">buttons/moveup.png</texturefocus>
-                    <onfocus>ClearProperty(skinshortcuts-Widget,Home)</onfocus>
                 </control>
             </control>
 
@@ -190,13 +186,13 @@
                     <include>Def_Skinshortcuts_Buttons</include>
                     <visible>!$EXP[Skinshortcuts_Widgets_Active]</visible>
                 </control>
-                <control type="button" id="406" description="Widget">
+                <control type="button" id="406" description="Widget Subdialog">
                     <label>31144</label>
                     <include>Def_Skinshortcuts_Buttons</include>
                     <visible>$EXP[Skinshortcuts_Mainmenu_Active]</visible>
                     <visible>Skin.HasSetting(home.vertical.widgets)</visible>
                 </control>
-		        <control type="button" id="800" description="Widget Submenu">
+		        <control type="button" id="800" description="Widget">
 		            <label>31266</label>
                     <label2>$VAR[Label_Widget_Name]</label2>
 		            <include>Def_Skinshortcuts_Buttons</include>
@@ -273,24 +269,32 @@
 			        <label2>$VAR[Label_Widget_Aspect]</label2>
 			        <include>Def_Skinshortcuts_Buttons</include>
 	                <visible>!$EXP[Widget_HasFixedAspect]</visible>
-	                <visible>!Skin.HasSetting(homemenu.clean.flix)</visible>
+	                <visible>!Skin.HasSetting(home.vertical.widgets)</visible>
                     <visible>$EXP[Skinshortcuts_Widgets_Active]</visible>
 			    </control>
-	            <control type="button" id="352" description="Widget Content">
+                <control type="button" id="352" description="Widget Style">
+                    <label>31261</label>
+                    <label2>$VAR[Label_Widget_Aspect]</label2>
+                    <include>Def_Skinshortcuts_Buttons</include>
+                    <visible>!$EXP[Widget_HasFixedAspect]</visible>
+                    <visible>Skin.HasSetting(home.vertical.widgets) + !Skin.HasSetting(homemenu.clean.flix)</visible>
+                    <visible>$EXP[Skinshortcuts_Widgets_Active]</visible>
+                </control>
+	            <control type="button" id="353" description="Widget Content">
 	                <label>31479</label>
 	                <label2>$VAR[Label_Widget_Content]</label2>
 	                <include>Def_Skinshortcuts_Buttons</include>
 	                <visible>!$EXP[Widget_HasStaticContent]</visible>
                     <visible>$EXP[Skinshortcuts_Widgets_Active]</visible>
 	            </control>
-			    <control type="button" id="353" description="Widget SortBy">
+			    <control type="button" id="354" description="Widget SortBy">
 			        <label>581</label>
 			        <label2>$VAR[Label_Widget_SortBy]</label2>
 			        <include>Def_Skinshortcuts_Buttons</include>
 	                <visible>!$EXP[Widget_HasStaticContent]</visible>
                     <visible>$EXP[Skinshortcuts_Widgets_Active]</visible>
 			    </control>
-			    <control type="button" id="354">
+			    <control type="button" id="355">
 			        <description>Change widget sort order</description>
 			        <include>Def_Skinshortcuts_Buttons</include>
 			        <label>580</label>
@@ -298,7 +302,7 @@
 	                <visible>!$EXP[Widget_HasStaticContent]</visible>
                     <visible>$EXP[Skinshortcuts_Widgets_Active]</visible>
 			    </control>
-	            <control type="radiobutton" id="355" description="Widget Autoscoll">
+	            <control type="radiobutton" id="356" description="Widget Autoscoll">
 	                <selected>String.IsEqual(Container(211).ListItem.Property(widgetAutoscroll),True) + [!String.IsEqual(Container(211).ListItem.Property(widgetLimit),Auto) | $EXP[Widget_HasStaticContent] | $EXP[HomeIsCleanMinimal] | $EXP[HomeIsSpotlight]]</selected>
 	                <label>$LOCALIZE[31340]</label>
 	                <include>Def_Skinshortcuts_Buttons</include>
@@ -308,14 +312,14 @@
 	                <visible>!String.IsEqual(Container(211).ListItem.Label2,tvguide)</visible>
                     <visible>$EXP[Skinshortcuts_Widgets_Active]</visible>
 	            </control>
-	            <control type="button" id="356">
+	            <control type="button" id="357">
 	                <include>Def_Skinshortcuts_Buttons</include>
 	                <label>$LOCALIZE[31822]</label>
 	                <label2>$VAR[Label_Widget_Limit]</label2>
 	                <visible>!$EXP[Widget_HasStaticContent]</visible>
                     <visible>$EXP[Skinshortcuts_Widgets_Active]</visible>
 	            </control>
-			    <control type="radiobutton" id="357" description="Prevent reload">
+			    <control type="radiobutton" id="358" description="Prevent reload">
 			        <selected>String.IsEqual(Container(211).ListItem.Property(widgetSortby),userpreference)</selected>
 			        <label>31820</label>
 			        <include>Def_Skinshortcuts_Buttons</include>

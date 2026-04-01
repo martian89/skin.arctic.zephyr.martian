@@ -681,13 +681,7 @@
 	<!-- Shortcut picker groupings -->
 	<groupings>
 		<group name="common" label="32029">
-			<group name="hubs" label="31305">
-				<shortcut name="tmdbhelper-movies" label="31208" icon="special://skin/extras/icons/director.png">
-					<action>ActivateWindow(1124)</action>
-				</shortcut>
-				<shortcut name="tmdbhelper-episodes" label="31212" icon="special://skin/extras/icons/director.png">
-					<action>ActivateWindow(1125)</action>
-				</shortcut>
+			<group name="hubs" label="31305" visible="String.IsEqual(Window.Property(menuname),mainmenu)">
 				<shortcut name="moviehub" label="31192" icon="special://skin/extras/icons/film.png">
 					<action>ActivateWindow(1111)</action>
 				</shortcut>
@@ -716,6 +710,12 @@
 					<action>ActivateWindow(1113)</action>
 				</shortcut>
 			</group>
+            <shortcut name="tmdbhelper-movies" label="31208" icon="special://skin/extras/icons/director.png">
+                <action>ActivateWindow(1124)</action>
+            </shortcut>
+            <shortcut name="tmdbhelper-episodes" label="31212" icon="special://skin/extras/icons/director.png">
+                <action>ActivateWindow(1125)</action>
+            </shortcut>
 			<shortcut name="videos" label="3" icon="DefaultVideo.png">
 				<action>ActivateWindow(Videos)</action>
 			</shortcut>
@@ -902,6 +902,7 @@
 
 	<!-- Subdialog definitions -->
 	<dialogs>
+        <subdialog buttonID="406" menu="{item}.widgets" />
 		<subdialog buttonID="9301" menu="x1111" />
 		<subdialog buttonID="9302" menu="x1112" />
 		<subdialog buttonID="9303" menu="x1113" />
@@ -911,7 +912,6 @@
 		<subdialog buttonID="9307" menu="x1117" />
 		<subdialog buttonID="9308" menu="x1118" />
 		<subdialog buttonID="9309" menu="x1119" />
-		<subdialog buttonID="406" menu="{item}.1" />
 		<subdialog buttonID="800" mode="widget" />
 	</dialogs>
 </menus>
