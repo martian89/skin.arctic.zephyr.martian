@@ -189,35 +189,43 @@
 	<template items="widgets" source="widgets" filter="widgetPath">
 		<property name="id" from="index" />
 
-        <property name="widgetAutoscroll" condition="widgetAutoscroll">true</property>
-        <property name="widgetAutoscroll">false</property>
+        <!--- Widget Content -->
+        <property name="content" condition="widgetPath=Submenu">skinshortcuts-mainmenu-submenu</property>
+        <property name="content" condition="widgetPath=Settings">SettingsInfoItems</property>
+        <property name="content" condition="widgetPath=Systeminfo">SystemInfoItems</property>
+        <property name="content" condition="widgetPath=WeatherDaily">WeatherDailyItems</property>
+        <property name="content" condition="widgetPath=WeatherHourly">WeatherHourlyItems</property>
+        <property name="content" from="widgetPath"/>
+        
+        <property name="target" from="widgetTarget"/>
+        <property name="browse" condition="widgetType=tvguide">never</property>
+        <property name="browse" condition="widgetLimit=Auto">never</property>
+        <property name="browse">$VAR[DefWidgetBrowse]</property>
+        <property name="sortby" from="widgetSortby"/>
+        <property name="sortorder" from="widgetSortorder"/>
+        <property name="limit" condition="widgetType=tvguide">5</property>
+        <property name="limit" from="widgetLimit"/>
 
-        <property name="widgetLabel" from="widgetLabel" />
-        <property name="widgetLabel">$LOCALIZE[31105]</property>
+        <property name="autoscroll" condition="widgetAutoscroll">true</property>
+        <property name="autoscroll">false</property>
 
-        <property name="widgetMovement" condition="widgetPath IN Submenu,Settings,Systeminfo">4</property>
-        <property name="widgetMovement" condition="widgetAspect=Square">4</property>
-        <property name="widgetMovement" condition="widgetAspect=Thumbnail">2</property>
-        <property name="widgetMovement" condition="widgetAspect=Landscape">2</property>
-        <property name="widgetMovement" condition="widgetAspect=LandscapeSmall">3</property>
-        <property name="widgetMovement" condition="widgetAspect=LandscapePosterSmall">2</property>
-        <property name="widgetMovement">7</property>
+        <property name="label" from="widgetLabel" />
+        <property name="label">$LOCALIZE[31105]</property>
 
-        <property name="widgetInclude" condition="widgetType=tvguide">Widget_Layout_PVRGuide</property>
-        <property name="widgetInclude" condition="widgetPath IN Settings,Systeminfo">Widget_Layout_System</property>
-        <property name="widgetInclude" condition="widgetPath IN WeatherDaily,WeatherHourly">Widget_Layout_Weather</property>
-        <property name="widgetInclude">Widget_Layout_Normal</property>
-
-        <property name="widgetInfoInclude" condition="widgetPath IN Settings,Systeminfo">HomeWidgetsSysteminfo</property>
-        <property name="widgetInfoInclude" condition="widgetPath IN WeatherDaily,WeatherHourly">HomeWidgetsWeatherInfo</property>
-        <property name="widgetInfoInclude">HomeWidgetsFullscreenInfo</property>
+        <property name="movement" condition="widgetPath IN Submenu,Settings,Systeminfo">4</property>
+        <property name="movement" condition="widgetStyle=Square">4</property>
+        <property name="movement" condition="widgetStyle=Thumbnail">2</property>
+        <property name="movement" condition="widgetStyle=Landscape">2</property>
+        <property name="movement" condition="widgetStyle=LandscapeSmall">3</property>
+        <property name="movement" condition="widgetStyle=LandscapePosterSmall">2</property>
+        <property name="movement">7</property>
 
         <property name="autolimit" condition="widgetPath IN Submenu,Settings,Systeminfo">5</property>
-        <property name="autolimit" condition="widgetAspect=Square">5</property>
-        <property name="autolimit" condition="widgetAspect=Thumbnail">3</property>
-        <property name="autolimit" condition="widgetAspect=Landscape">3</property>
-        <property name="autolimit" condition="widgetAspect=LandscapeSmall">4</property>
-        <property name="autolimit" condition="widgetAspect=LandscapePosterSmall">3</property>
+        <property name="autolimit" condition="widgetStyle=Square">5</property>
+        <property name="autolimit" condition="widgetStyle=Thumbnail">3</property>
+        <property name="autolimit" condition="widgetStyle=Landscape">3</property>
+        <property name="autolimit" condition="widgetStyle=LandscapeSmall">4</property>
+        <property name="autolimit" condition="widgetStyle=LandscapePosterSmall">3</property>
         <property name="autolimit">8</property>
 
         <property name="isAutoLimit" condition="widgetLimit=Auto">true</property>
@@ -231,6 +239,15 @@
         <property name="isFullscreenWidget" condition="widgetFullscreen">true</property>
         <property name="isFullscreenWidget">false</property>
 
+        <property name="widgetInclude" condition="widgetType=tvguide">Widget_Layout_PVRGuide</property>
+        <property name="widgetInclude" condition="widgetPath IN Settings,Systeminfo">Widget_Layout_System</property>
+        <property name="widgetInclude" condition="widgetPath IN WeatherDaily,WeatherHourly">Widget_Layout_Weather</property>
+        <property name="widgetInclude">Widget_Layout_Normal</property>
+
+        <property name="fullscreenInfoInclude" condition="widgetPath IN Settings,Systeminfo">HomeWidgetsSysteminfo</property>
+        <property name="fullscreenInfoInclude" condition="widgetPath IN WeatherDaily,WeatherHourly">HomeWidgetsWeatherInfo</property>
+        <property name="fullscreenInfoInclude">HomeWidgetsFullscreenInfo</property>
+
         <!-- Widget Container -->
         <property name="layoutHeight" condition="widgetFullscreen">710</property>
         <property name="layoutHeight">325</property>
@@ -238,23 +255,6 @@
         <property name="layoutHeight2">365</property>
         <property name="orientation" condition="widgetType=tvguide">vertical</property>
 	    <property name="orientation">horizontal</property>
-
-        <!--- Widget Content -->
-        <property name="widgetPath" condition="widgetPath=Submenu">skinshortcuts-mainmenu-submenu</property>
-        <property name="widgetPath" condition="widgetPath=Settings">SettingsInfoItems</property>
-        <property name="widgetPath" condition="widgetPath=Systeminfo">SystemInfoItems</property>
-        <property name="widgetPath" condition="widgetPath=WeatherDaily">WeatherDailyItems</property>
-        <property name="widgetPath" condition="widgetPath=WeatherHourly">WeatherHourlyItems</property>
-        <property name="widgetPath" from="widgetPath"/>
-        
-        <property name="widgetTarget" from="widgetTarget"/>
-        <property name="widgetTarget">$VAR[DefWidgetTarget]</property>
-        <property name="widgetBrowse" condition="widgetType=tvguide">never</property>
-        <property name="widgetBrowse" condition="widgetLimit=Auto">never</property>
-        <property name="widgetBrowse">$VAR[DefWidgetBrowse]</property>
-        <property name="widgetSortby" from="widgetSortby"/>
-        <property name="widgetSortorder" from="widgetSortorder"/>
-        <property name="widgetLimit" from="widgetLimit"/>
 	
 		<controls>
 			<control type="group" id="$MATH[$PARENT[index] * 10000 + 7500 + $PROPERTY[id]]">
@@ -263,7 +263,7 @@
 				<control type="grouplist">
 					<include content="Widget_Title_Label">
 						<param name="focusid" value="$MATH[$PARENT[index] * 10000 + 3100 + $PROPERTY[id]]" />
-						<param name="label" value="$PROPERTY[widgetLabel]" />
+						<param name="label" value="$PROPERTY[label]" />
 						<param name="showinfo" value="!$PROPERTY[isFullscreenWidget] + !Integer.IsEqual(Container($MATH[$PARENT[index] * 1000 + 301]).NumItems,1)" />
 					</include>
 				</control>
@@ -277,36 +277,36 @@
 					<param name="height" value="$PROPERTY[layoutHeight]" />
 					<param name="height2" value="$PROPERTY[layoutHeight2]" />
 					<param name="orientation" value="$PROPERTY[orientation]" />
-					<param name="movement" value="$PROPERTY[widgetMovement]" />
-					<param name="autoscroll" value="$PROPERTY[widgetAutoscroll]" />
+					<param name="movement" value="$PROPERTY[movement]" />
+					<param name="autoscroll" value="$PROPERTY[autoscroll]" />
 				</include>
 				<!-- ItemLayout -->
 				<include content="$PROPERTY[widgetInclude]">
 					<param name="shortcutsid" value="$MATH[$PARENT[index] * 10000 + 3100 + $PROPERTY[id]]" />
-					<param name="Banner" value="$IF[widgetAspect=Banner THEN true ELSE false]" />
-					<param name="Thumbnail" value="$IF[widgetAspect=Thumbnail THEN true ELSE false]" />
-					<param name="Landscape" value="$IF[widgetAspect=Landscape THEN true ELSE false]" />
-					<param name="LandscapeSmall" value="$IF[widgetAspect=LandscapeSmall THEN true ELSE false]" />
-					<param name="LandscapePosterSmall" value="$IF[widgetAspect=LandscapePosterSmall THEN true ELSE false]" />
-					<param name="Square" value="$IF[widgetAspect=Square | isSubmenu THEN true ELSE false]" />
+					<param name="Banner" value="$IF[widgetStyle=Banner THEN true ELSE false]" />
+					<param name="Thumbnail" value="$IF[widgetStyle=Thumbnail THEN true ELSE false]" />
+					<param name="Landscape" value="$IF[widgetStyle=Landscape THEN true ELSE false]" />
+					<param name="LandscapeSmall" value="$IF[widgetStyle=LandscapeSmall THEN true ELSE false]" />
+					<param name="LandscapePosterSmall" value="$IF[widgetStyle=LandscapePosterSmall THEN true ELSE false]" />
+					<param name="Square" value="$IF[widgetStyle=Square | isSubmenu THEN true ELSE false]" />
 				</include>
 				<include content="Widget_ContentDynamic" condition="$PROPERTY[isDynamicContent]">
-					<param name="target" value="$PROPERTY[widgetTarget]" />
-					<param name="limit" value="$PROPERTY[widgetLimit]" />
-					<param name="sortby" value="$PROPERTY[widgetSortby]" />
-					<param name="sortorder" value="$PROPERTY[widgetSortorder]" />
-					<param name="browse" value="$PROPERTY[widgetBrowse]" />
-					<param name="content" value="$PROPERTY[widgetPath]" />
+					<param name="target" value="$PROPERTY[target]" />
+					<param name="limit" value="$PROPERTY[limit]" />
+					<param name="sortby" value="$PROPERTY[sortby]" />
+					<param name="sortorder" value="$PROPERTY[sortorder]" />
+					<param name="browse" value="$PROPERTY[browse]" />
+					<param name="content" value="$PROPERTY[content]" />
 					<param name="is_autolimit" value="$PROPERTY[isAutoLimit]" />
 					<param name="autolimit" value="$PROPERTY[autolimit]" />
 				</include>
 				<include content="Widget_ContentInclude" condition="!$PROPERTY[isDynamicContent]">
-					<param name="target" value="$PROPERTY[widgetTarget]" />
-					<param name="limit" value="$PROPERTY[widgetLimit]" />
-					<param name="sortby" value="$PROPERTY[widgetSortby]" />
-					<param name="sortorder" value="$PROPERTY[widgetSortorder]" />
+					<param name="target" value="$PROPERTY[target]" />
+					<param name="limit" value="$PROPERTY[limit]" />
+					<param name="sortby" value="$PROPERTY[sortby]" />
+					<param name="sortorder" value="$PROPERTY[sortorder]" />
 					<param name="browse" value="never" />
-					<param name="include" value="$PROPERTY[widgetPath]" />
+					<param name="include" value="$PROPERTY[content]" />
 					<param name="is_autolimit" value="$PROPERTY[isAutoLimit]" />
 					<param name="autolimit" value="$PROPERTY[autolimit]" />
 				</include>
@@ -317,7 +317,7 @@
 				<visible>$PROPERTY[isFullscreenWidget] | Skin.HasSetting(homemenu.netflix) | Integer.IsEqual(Container(9989).NumItems,1)</visible>
 				<visible>[Integer.IsGreater(Container($MATH[$PARENT[index] * 10000 + 3100 + $PROPERTY[id]]).NumItems,0) | Container($MATH[$PARENT[index] * 10000 + 3100 + $PROPERTY[id]]).IsUpdating]</visible>
 				<control type="grouplist">
-					<include content="$PROPERTY[widgetInfoInclude]" condition="!$PROPERTY[isSubmenu]">
+					<include content="$PROPERTY[fullscreenInfoInclude]" condition="!$PROPERTY[isSubmenu]">
 						<param name="id" value="$MATH[$PARENT[index] * 10000 + 3100 + $PROPERTY[id]]" />
 						<param name="issettingslayout" value="$PROPERTY[isSettings]" />
 						<param name="isfullscreenlayout" value="!$PROPERTY[isFullscreenWidget] + !Skin.HasSetting(homemenu.netflix) + Integer.IsEqual(Container($MATH[$PARENT[index] * 1000 + 301]).NumItems,1)" />
@@ -403,10 +403,10 @@
 
     <template include="global" build="true">
         <!--- Widget Content -->
-        <property name="widgetPath">$VAR[DefWidgetContent]</property>
-        <property name="widgetTarget">$VAR[DefWidgetTarget]</property>
-        <property name="widgetBrowse">$VAR[DefWidgetBrowse]</property>
-        <property name="widgetLimit">$NUMBER[25]</property>
+        <property name="content">$VAR[DefWidgetContent]</property>
+        <property name="target">$VAR[DefWidgetTarget]</property>
+        <property name="browse">$VAR[DefWidgetBrowse]</property>
+        <property name="limit">$NUMBER[25]</property>
 
         <controls>
             <control type="group">
@@ -455,10 +455,10 @@
                         <param name="shortcutsid" value="993100"/>
                     </include>
                     <include content="Widget_ContentDynamic">
-                       <param name="target" value="$PROPERTY[widgetTarget]" />
-                       <param name="browse" value="$PROPERTY[widgetBrowse]" />
-                       <param name="content" value="$PROPERTY[widgetPath]" />
-                       <param name="limit" value="$PROPERTY[widgetLimit]" />
+                       <param name="target" value="$PROPERTY[target]" />
+                       <param name="browse" value="$PROPERTY[browse]" />
+                       <param name="content" value="$PROPERTY[content]" />
+                       <param name="limit" value="$PROPERTY[limit]" />
                     </include>
                 </control>
                 <!-- InfoSub -->
