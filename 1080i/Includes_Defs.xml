@@ -85,7 +85,7 @@
     </variable>
     
     <variable name="DefWidgetBrowse">
-        <value condition="Skin.HasSetting(enable.morewidget)">auto</value>
+        <value condition="Skin.HasSetting(enable.morewidget) + [$EXP[HomeIsModernMultiWidgets] | $EXP[HomeIsVerticalMultiWidgets]]">auto</value>
         <value>never</value>
     </variable>
 
@@ -3840,6 +3840,7 @@
         <param name="height" default="138" />
         <param name="focused"/>
         <param name="indicators" default="true" />      
+        <param name="detailed" default="true" />      
         <param name="item_selected" default="ListItem.IsSelected" />
         <definition>
             <itemlayout height="$PARAM[height]" width="$PARAM[width]">
@@ -3881,7 +3882,7 @@
                     <textcolor>Black70</textcolor>
                     <selectedcolor>Black70</selectedcolor>
                     <label>$INFO[ListItem.Label]</label>
-                    <animation effect="slide" end="0,18" condition="String.IsEmpty(ListItem.Label2)">Conditional</animation>
+                    <animation effect="slide" end="0,18" condition="!$PARAM[detailed] | String.IsEmpty(ListItem.Label2)">Conditional</animation>
                 </control>
                 <control type="label">
                     <posy>18</posy>
@@ -3895,6 +3896,7 @@
                     <textcolor>Black70</textcolor>
                     <selectedcolor>Black70</selectedcolor>
                     <label>$INFO[ListItem.Label2]</label>
+                    <visible>$PARAM[detailed]</visible>
                 </control>
                 <include condition="$PARAM[indicators]" content="Def_IndicatorImage">
                     <param name="selected" value="$PARAM[item_selected]" />
@@ -3915,7 +3917,7 @@
                         <textcolor>Black70</textcolor>
                         <selectedcolor>Black70</selectedcolor>
                         <label>$INFO[ListItem.Label]</label>
-                        <animation effect="slide" end="0,18" condition="String.IsEmpty(ListItem.Label2)">Conditional</animation>
+                        <animation effect="slide" end="0,18" condition="!$PARAM[detailed] | String.IsEmpty(ListItem.Label2)">Conditional</animation>
                     </control>
                     <control type="label">
                         <posy>18</posy>
@@ -3929,6 +3931,7 @@
                         <textcolor>Black70</textcolor>
                         <selectedcolor>Black70</selectedcolor>
                         <label>$INFO[ListItem.Label2]</label>
+                        <visible>$PARAM[detailed]</visible>
                     </control>
                     <include condition="$PARAM[indicators]" content="Def_IndicatorImage">
                         <param name="selected" value="$PARAM[item_selected]" />
@@ -3960,7 +3963,7 @@
                         <textcolor>Selected</textcolor>
                         <selectedcolor>Selected</selectedcolor>
                         <label>$INFO[ListItem.Label]</label>
-                        <animation effect="slide" end="0,18" condition="String.IsEmpty(ListItem.Label2)">Conditional</animation>
+                        <animation effect="slide" end="0,18" condition="!$PARAM[detailed] | String.IsEmpty(ListItem.Label2)">Conditional</animation>
                     </control>
                     <control type="label">
                         <posy>18</posy>
@@ -3974,6 +3977,7 @@
                         <textcolor>Selected</textcolor>
                         <selectedcolor>Selected</selectedcolor>
                         <label>$INFO[ListItem.Label2]</label>
+                        <visible>$PARAM[detailed]</visible>
                     </control>
                     <include condition="$PARAM[indicators]" content="Def_IndicatorImage">
                         <param name="selected" value="$PARAM[item_selected]" />
@@ -4379,6 +4383,7 @@
                 <include>Def_Skinshortcuts_Buttons</include>
                 <include>Skinshortcuts_ContentType_AutoSetOnFocus</include>
                 <visible>!$EXP[Widget_HasStaticContent]</visible>
+                <visible>!String.IsEqual(Container(211).ListItem.Label2,tvguide)</visible>
                 <visible>$PARAM[visible]</visible>
             </control>
 		    <control type="button" id="$PARAM[baseid]13" description="Widget SortBy">
@@ -4406,7 +4411,6 @@
                 <onclick>SendClick(404)</onclick>
                 <enable>!String.IsEqual(Container(211).ListItem.Property(widgetLimit),Auto) | $EXP[Widget_HasStaticContent] | $EXP[HomeIsCleanMinimal] | $EXP[HomeIsSpotlight]</enable>
                 <visible>!String.IsEmpty(Skin.String(AutoScrollTime))</visible>
-                <visible>!String.IsEqual(Container(211).ListItem.Property(widget),weather)</visible>
                 <visible>!String.IsEqual(Container(211).ListItem.Label2,tvguide)</visible>
                 <visible>$PARAM[visible]</visible>
             </control>
@@ -4415,6 +4419,7 @@
                 <label>$LOCALIZE[31822]</label>
                 <label2>$VAR[Label_Widget_Limit]</label2>
                 <visible>!$EXP[Widget_HasStaticContent]</visible>
+                <visible>!String.IsEqual(Container(211).ListItem.Label2,tvguide)</visible>
                 <visible>$PARAM[visible]</visible>
             </control>
 		    <control type="radiobutton" id="$PARAM[baseid]17" description="Prevent reload">
@@ -4427,6 +4432,7 @@
 		        <onclick>SendClick(404)</onclick>
                 <enable>String.IsEmpty(Container(211).ListItem.Property(widgetSortby)) | String.IsEqual(Container(211).ListItem.Property(widgetSortby),userpreference)</enable>
                 <visible>!$EXP[Widget_HasStaticContent]</visible>
+                <visible>!String.IsEqual(Container(211).ListItem.Label2,tvguide)</visible>
                 <visible>$PARAM[visible]</visible>
 		    </control>    
         </definition>
