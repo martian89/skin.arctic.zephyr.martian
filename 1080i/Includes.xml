@@ -1929,29 +1929,23 @@
     </variable>
 
     <expression name="Widget_HasStaticContent">
-        $EXP[Skinshortcuts_Mainmenu_Active]
-        + [ String.IsEqual(Container(211).ListItem.Property(widget),weather)
-          | String.IsEqual(Container(211).ListItem.Property(widget),submenu)
-          | String.IsEqual(Container(211).ListItem.Property(widget),systeminfo)
-          | String.IsEqual(Container(211).ListItem.Property(widget),settings) ]
-        | !$EXP[Skinshortcuts_Mainmenu_Active]
-        + [ String.StartsWith(Container(211).ListItem.Property(Path),weather)
-          | String.IsEqual(Container(211).ListItem.Property(Path),submenu)
-          | String.IsEqual(Container(211).ListItem.Property(Path),systeminfo)
-          | String.IsEqual(Container(211).ListItem.Property(Path),settings) ]
+        String.StartsWith(Container(211).ListItem.Property(widgetPath),weather)
+        | String.IsEqual(Container(211).ListItem.Property(widgetPath),submenu)
+        | String.IsEqual(Container(211).ListItem.Property(widgetPath),systeminfo)
+        | String.IsEqual(Container(211).ListItem.Property(widgetPath),settings)
     </expression>
     
     <expression name="Widget_HasFixedAspect">
         $EXP[Skinshortcuts_Mainmenu_Active]
-        + [ String.IsEqual(Container(211).ListItem.Property(widget),weather)
-          | String.IsEqual(Container(211).ListItem.Property(widget),submenu)
-          | String.IsEqual(Container(211).ListItem.Property(widget),systeminfo)
-          | String.IsEqual(Container(211).ListItem.Property(widget),settings) ]
+        + [ String.StartsWith(Container(211).ListItem.Property(widgetPath),weather)
+          | String.IsEqual(Container(211).ListItem.Property(widgetPath),submenu)
+          | String.IsEqual(Container(211).ListItem.Property(widgetPath),systeminfo)
+          | String.IsEqual(Container(211).ListItem.Property(widgetPath),settings) ]
         | !$EXP[Skinshortcuts_Mainmenu_Active]
-        + [ String.IsEqual(Container(211).ListItem.Label2,tvguide)
-          | String.IsEqual(Container(211).ListItem.Property(Path),submenu)
-          | String.IsEqual(Container(211).ListItem.Property(Path),systeminfo)
-          | String.IsEqual(Container(211).ListItem.Property(Path),settings) ]
+        + [ String.IsEqual(Container(211).ListItem.Property(widgetType),tvguide)
+          | String.IsEqual(Container(211).ListItem.Property(widgetPath),submenu)
+          | String.IsEqual(Container(211).ListItem.Property(widgetPath),systeminfo)
+          | String.IsEqual(Container(211).ListItem.Property(widgetPath),settings) ]
     </expression>
 
     <expression name="Skinshortcuts_Mainmenu_Active">String.IsEqual(Window.Property(menuname),mainmenu) + String.IsEmpty(Window.Property(skinshortcuts-dialog))</expression>
