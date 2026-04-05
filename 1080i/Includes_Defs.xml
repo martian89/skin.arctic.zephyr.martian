@@ -85,7 +85,7 @@
     </variable>
     
     <variable name="DefWidgetBrowse">
-        <value condition="Skin.HasSetting(enable.morewidget)">auto</value>
+        <value condition="Skin.HasSetting(enable.morewidget) + [$EXP[HomeIsModernMultiWidgets] | $EXP[HomeIsVerticalMultiWidgets]]">auto</value>
         <value>never</value>
     </variable>
 
@@ -3792,6 +3792,7 @@
         <param name="height" default="138" />
         <param name="focused"/>
         <param name="indicators" default="true" />      
+        <param name="detailed" default="true" />      
         <param name="item_selected" default="ListItem.IsSelected" />
         <definition>
             <itemlayout height="$PARAM[height]" width="$PARAM[width]">
@@ -3833,7 +3834,7 @@
                     <textcolor>Black70</textcolor>
                     <selectedcolor>Black70</selectedcolor>
                     <label>$INFO[ListItem.Label]</label>
-                    <animation effect="slide" end="0,18" condition="String.IsEmpty(ListItem.Label2)">Conditional</animation>
+                    <animation effect="slide" end="0,18" condition="!$PARAM[detailed] | String.IsEmpty(ListItem.Label2)">Conditional</animation>
                 </control>
                 <control type="label">
                     <posy>18</posy>
@@ -3847,6 +3848,7 @@
                     <textcolor>Black70</textcolor>
                     <selectedcolor>Black70</selectedcolor>
                     <label>$INFO[ListItem.Label2]</label>
+                    <visible>$PARAM[detailed]</visible>
                 </control>
                 <include condition="$PARAM[indicators]" content="Def_IndicatorImage">
                     <param name="selected" value="$PARAM[item_selected]" />
@@ -3867,7 +3869,7 @@
                         <textcolor>Black70</textcolor>
                         <selectedcolor>Black70</selectedcolor>
                         <label>$INFO[ListItem.Label]</label>
-                        <animation effect="slide" end="0,18" condition="String.IsEmpty(ListItem.Label2)">Conditional</animation>
+                        <animation effect="slide" end="0,18" condition="!$PARAM[detailed] | String.IsEmpty(ListItem.Label2)">Conditional</animation>
                     </control>
                     <control type="label">
                         <posy>18</posy>
@@ -3881,6 +3883,7 @@
                         <textcolor>Black70</textcolor>
                         <selectedcolor>Black70</selectedcolor>
                         <label>$INFO[ListItem.Label2]</label>
+                        <visible>$PARAM[detailed]</visible>
                     </control>
                     <include condition="$PARAM[indicators]" content="Def_IndicatorImage">
                         <param name="selected" value="$PARAM[item_selected]" />
@@ -3912,7 +3915,7 @@
                         <textcolor>Selected</textcolor>
                         <selectedcolor>Selected</selectedcolor>
                         <label>$INFO[ListItem.Label]</label>
-                        <animation effect="slide" end="0,18" condition="String.IsEmpty(ListItem.Label2)">Conditional</animation>
+                        <animation effect="slide" end="0,18" condition="!$PARAM[detailed] | String.IsEmpty(ListItem.Label2)">Conditional</animation>
                     </control>
                     <control type="label">
                         <posy>18</posy>
@@ -3926,6 +3929,7 @@
                         <textcolor>Selected</textcolor>
                         <selectedcolor>Selected</selectedcolor>
                         <label>$INFO[ListItem.Label2]</label>
+                        <visible>$PARAM[detailed]</visible>
                     </control>
                     <include condition="$PARAM[indicators]" content="Def_IndicatorImage">
                         <param name="selected" value="$PARAM[item_selected]" />

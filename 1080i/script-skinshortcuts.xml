@@ -285,6 +285,7 @@
 	                <label2>$VAR[Label_Widget_Content]</label2>
 	                <include>Def_Skinshortcuts_Buttons</include>
 	                <visible>!$EXP[Widget_HasStaticContent]</visible>
+                    <visible>!String.IsEqual(Container(211).ListItem.Property(widgetType),tvguide)</visible>
                     <visible>$EXP[Skinshortcuts_Widgets_Active]</visible>
 	            </control>
 			    <control type="button" id="354" description="Widget SortBy">
@@ -308,7 +309,6 @@
 	                <include>Def_Skinshortcuts_Buttons</include>
 	                <enable>!String.IsEqual(Container(211).ListItem.Property(widgetLimit),Auto) | $EXP[Widget_HasStaticContent] | $EXP[HomeIsCleanMinimal] | $EXP[HomeIsSpotlight]</enable>
 	                <visible>!String.IsEmpty(Skin.String(AutoScrollTime))</visible>
-	                <visible>!String.IsEqual(Container(211).ListItem.Property(widget),weather)</visible>
 	                <visible>!String.IsEqual(Container(211).ListItem.Property(widgetType),tvguide)</visible>
                     <visible>$EXP[Skinshortcuts_Widgets_Active]</visible>
 	            </control>
@@ -317,16 +317,20 @@
 	                <label>$LOCALIZE[31822]</label>
 	                <label2>$VAR[Label_Widget_Limit]</label2>
 	                <visible>!$EXP[Widget_HasStaticContent]</visible>
+                    <visible>!String.IsEqual(Container(211).ListItem.Property(widgetType),tvguide)</visible>
                     <visible>$EXP[Skinshortcuts_Widgets_Active]</visible>
 	            </control>
+                <!-- 
 			    <control type="radiobutton" id="358" description="Prevent reload">
 			        <selected>String.IsEqual(Container(211).ListItem.Property(widgetSortby),userpreference)</selected>
 			        <label>31820</label>
 			        <include>Def_Skinshortcuts_Buttons</include>
 	                <enable>String.IsEmpty(Container(211).ListItem.Property(widgetSortby)) | String.IsEqual(Container(211).ListItem.Property(widgetSortby),userpreference)</enable>
 	                <visible>!$EXP[Widget_HasStaticContent]</visible>
+                    <visible>!String.IsEqual(Container(211).ListItem.Property(widgetType),tvguide)</visible>
                     <visible>$EXP[Skinshortcuts_Widgets_Active]</visible>
-			    </control>			     
+			    </control>
+			    -->		     
                 <control type="button" id="312" description="Reset">
                 	<label>$ADDON[script.skinshortcuts 32028]</label>
                     <include>Def_Skinshortcuts_Buttons</include>
