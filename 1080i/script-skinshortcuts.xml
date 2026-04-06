@@ -191,6 +191,7 @@
                     <include>Def_Skinshortcuts_Buttons</include>
                     <visible>$EXP[Skinshortcuts_Mainmenu_Active]</visible>
                     <visible>Skin.HasSetting(home.vertical.widgets)</visible>
+                    <visible>String.IsEmpty(Window.Property(disableWidgets))</visible>
                 </control>
 		        <control type="button" id="800" description="Widget">
 		            <label>31266</label>
@@ -198,6 +199,7 @@
 		            <include>Def_Skinshortcuts_Buttons</include>
                     <visible>$EXP[Skinshortcuts_Mainmenu_Active]</visible>
                     <visible>!Skin.HasSetting(home.vertical.widgets)</visible>
+                    <visible>String.IsEmpty(Window.Property(disableWidgets))</visible>
 		        </control>
                 <include content="Def_Skinshortcuts_SetHub">
                     <param name="hubid" value="1111"/>
@@ -248,6 +250,7 @@
                     <label>31112</label>
                     <visible>$EXP[Skinshortcuts_Mainmenu_Active]</visible>
                     <include>Def_Skinshortcuts_Buttons</include>
+                    <visible>String.IsEmpty(Window.Property(disableSubmenus))</visible>
                     <visible>!String.IsEqual(Container(211).ListItem.Label2,ActivateWindow(1111)) + !String.IsEqual(Container(211).ListItem.Label2,ActivateWindow(1112)) + !String.IsEqual(Container(211).ListItem.Label2,ActivateWindow(1113)) + !String.IsEqual(Container(211).ListItem.Label2,ActivateWindow(1114)) + !String.IsEqual(Container(211).ListItem.Label2,ActivateWindow(1115)) + !String.IsEqual(Container(211).ListItem.Label2,ActivateWindow(1116)) + !String.IsEqual(Container(211).ListItem.Label2,ActivateWindow(1117)) + !String.IsEqual(Container(211).ListItem.Label2,ActivateWindow(1118)) + !String.IsEqual(Container(211).ListItem.Label2,ActivateWindow(1119))</visible>
                 </control>
                 <control type="button" id="310" description="Background">
@@ -255,6 +258,7 @@
                     <label2>$INFO[Container(211).ListItem.Property(background)]</label2>
                     <include>Def_Skinshortcuts_Buttons</include>
                     <visible>$EXP[Skinshortcuts_Mainmenu_Active]</visible>
+                    <visible>String.IsEmpty(Window.Property(disableBackgrounds))</visible>
                 </control>
 			    <control type="radiobutton" id="350" description="Widget Fullscreen">
 	 		        <selected>String.IsEqual(Container(211).ListItem.Property(widgetFullscreen),yes) | Skin.HasSetting(homemenu.netflix)</selected>
