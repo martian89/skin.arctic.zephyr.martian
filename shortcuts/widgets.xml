@@ -219,30 +219,72 @@
 		</widget>
 	</group>
 
-    <group name="videolibrary" label="32030">
-        <group name="movies" label="20342" icon="special://skin/extras/icons/film.png">
-            <widget name="recently-added" label="20386" target="videos" icon="DefaultRecentlyAddedMovies.png">
-                <path>videodb://recentlyaddedmovies/</path>
-            </widget>
-            <group name="genres" label="135" icon="DefaultGenre.png">
-                <content source="library" target="moviegenres" />
-            </group>
-            <widget name="titles" label="369" target="videos" icon="DefaultMovieTitle.png">
-                <path>videodb://movies/titles/</path>
-            </widget>
-            <group name="years" label="562" icon="DefaultYear.png">
-                <content source="library" target="years" />
-            </group>
-            <group name="actors" label="344" icon="DefaultActor.png">
-                <content source="library" target="actors" />
-            </group>
+    <!-- Video Library -->
+    <group name="video-library" label="32030" icon="special://skin/extras/icons/video.png">
+        <content source="nodes" target="videos" />
+        <group name="video-playlists" label="32040" icon="special://skin/extras/icons/playlist.png">
+            <content source="playlists" target="video" />
         </group>
-        <group name="tvshows" label="20343" icon="special://skin/extras/icons/tv.png">
+        <group name="video-addons" label="32010" icon="special://skin/extras/icons/video-addons.png">
+            <content source="addons" target="videos" />
         </group>
-        <group name="musicvideos" label="20389" icon="DefaultMusicVideos.png">
+        <group name="video-sources" label="32075" icon="special://skin/extras/icons/folder.png">
+            <content source="sources" target="video" />
         </group>
     </group>
 
+    <!-- Music Library -->
+    <group name="music-library" label="32031" icon="special://skin/extras/icons/songs.png">
+        <content source="nodes" target="music" />
+        <group name="music-playlists" label="32040" icon="special://skin/extras/icons/playlist.png">
+            <content source="playlists" target="music" />
+        </group>
+        <group name="music-addons" label="32011" icon="special://skin/extras/icons/songs.png">
+            <content source="addons" target="music" />
+        </group>
+        <group name="music-sources" label="32075" icon="special://skin/extras/icons/folder.png">
+            <content source="sources" target="music" />
+        </group>
+    </group>
+
+    <!-- Pictures -->
+    <group name="pictures" label="32020" icon="special://skin/extras/icons/pictures.png">
+        <content source="sources" target="pictures" />
+    </group>
+
+    <!-- Add-ons -->
+    <group name="addons" label="32007" icon="special://skin/extras/icons/addons.png">
+        <group name="addons-video" label="32010" icon="special://skin/extras/icons/video-addons.png">
+            <content source="addons" target="videos" />
+        </group>
+        <group name="addons-audio" label="32011" icon="special://skin/extras/icons/songs.png">
+            <content source="addons" target="music" />
+        </group>
+        <group name="addons-image" label="32012" icon="special://skin/extras/icons/pictures.png">
+            <content source="addons" target="pictures" />
+        </group>
+        <group name="addons-program" label="32009" icon="special://skin/extras/icons/addons.png">
+            <content source="addons" target="programs" />
+        </group>
+        <widget name="addon-programs" label="10001" type="program" target="programs" icon="special://skin/extras/icons/addons.png">
+            <path>addons://sources/executable/</path>
+        </widget>
+        <widget name="addon-android" label="20244" type="program" target="programs" icon="special://skin/extras/icons/addons.png" visible="System.Platform.Android">
+            <path>androidapp://sources/apps/</path>
+        </widget>
+        <widget name="addon-video" label="1037" type="video" target="videos" icon="special://skin/extras/icons/video-addons.png">
+            <path>addons://sources/video/</path>
+        </widget>
+        <widget name="addon-music" label="1038" type="music" target="music" icon="special://skin/extras/icons/songs.png">
+            <path>addons://sources/audio/</path>
+        </widget>
+        <widget name="addon-pictures" label="1039" type="picture" target="pictures" icon="special://skin/extras/icons/pictures.png">
+            <path>addons://sources/image/</path>
+        </widget>
+        <widget name="addon-games" label="35049" type="game" target="games" icon="special://skin/extras/icons/xbox.png">
+            <path>addons://sources/game/</path>
+        </widget>
+    </group>
 <!-- 
 	<group label="32030">
 		<content>video</content>

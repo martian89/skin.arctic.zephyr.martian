@@ -831,7 +831,153 @@
 				<action>ActivateWindow(shutdownmenu)</action>
 			</shortcut>
 		</group>
-		<!-- 
+
+        <!-- Video Library -->
+        <group name="video-library" label="32030" icon="special://skin/extras/icons/video.png">
+            <content source="nodes" target="video" />
+            <group name="video-playlists" label="32040" icon="special://skin/extras/icons/playlist.png">
+                <content source="playlists" target="video" />
+            </group>
+            <group name="video-addons" label="32010" icon="special://skin/extras/icons/video-addons.png">
+                <shortcut name="video-addons-browse" label="1037" type="32014" icon="special://skin/extras/icons/video-addons.png">
+                    <action>ActivateWindow(Videos,Addons,return)</action>
+                </shortcut>
+                <content source="addons" target="video" />
+            </group>
+            <group name="video-sources" label="32075" icon="special://skin/extras/icons/folder.png">
+                <content source="sources" target="video" />
+            </group>
+        </group>
+
+        <!-- Music Library -->
+        <group name="music-library" label="32031" icon="special://skin/extras/icons/songs.png">
+            <content source="nodes" target="music" />
+            <group name="music-playlists" label="32040" icon="special://skin/extras/icons/playlist.png">
+                <content source="playlists" target="music" />
+            </group>
+            <group name="music-addons" label="32011" icon="special://skin/extras/icons/songs.png">
+                <shortcut name="music-addons-browse" label="1038" type="32019" icon="special://skin/extras/icons/songs.png">
+                    <action>ActivateWindow(MusicLibrary,Addons,return)</action>
+                </shortcut>
+                <content source="addons" target="music" />
+            </group>
+            <group name="music-sources" label="32075" icon="special://skin/extras/icons/folder.png">
+                <content source="sources" target="music" />
+            </group>
+        </group>
+ 
+         <!-- Live TV  -->
+        <group name="livetv" label="32017" icon="special://skin/extras/icons/livetv.png" visible="PVR.HasTVChannels">
+            <shortcut name="tv-channels" label="10700" type="32017" icon="special://skin/extras/icons/tvguide.png">
+                <action>ActivateWindow(TVChannels)</action>
+            </shortcut>
+            <shortcut name="tv-guide" label="10702" type="32017" icon="special://skin/extras/icons/playlist.png">
+                <action>ActivateWindow(TVGuide)</action>
+            </shortcut>
+            <shortcut name="tv-providers" label="19334" type="32017" icon="special://skin/extras/icons/wifi.png">
+                <action>ActivateWindow(TVProviders)</action>
+            </shortcut>
+            <shortcut name="tv-recordings" label="10701" type="32017" icon="special://skin/extras/icons/folder-closed.png">
+                <action>ActivateWindow(TVRecordings)</action>
+            </shortcut>
+            <shortcut name="tv-tvtimers" label="10703" type="32017" icon="special://skin/extras/icons/timer.png">
+                <action>ActivateWindow(TVTimers)</action>
+            </shortcut>
+            <shortcut name="tv-tvtimerrules" label="10710" type="32017" icon="special://skin/extras/icons/recent.png">
+                <action>ActivateWindow(TVTimerRules)</action>
+            </shortcut>
+            <shortcut name="tv-tvsearch" label="10704" type="32017" icon="special://skin/extras/icons/search.png">
+                <action>ActivateWindow(TVSerch)</action>
+            </shortcut>
+            <shortcut name="tv-lastchannelview" label="31024" type="32017" icon="special://skin/extras/icons/livetv.png">
+                <action>PlayPvrTV</action>
+            </shortcut>
+            <group name="tv-channels" label="14301" icon="special://skin/extras/icons/tv.png">
+                <content source="pvr" target="tv" />
+            </group>
+        </group>       
+
+        <!-- Radio -->
+        <group name="radio" label="32087" icon="special://skin/extras/icons/livetv.png" visible="PVR.HasRadioChannels">
+            <content source="pvr-radio" target="radio" />
+            <group name="radio-channels" label="19024" icon="special://skin/extras/icons/livetv.png">
+                <content source="pvr" target="radio" />
+            </group>
+        </group>
+
+        <!-- Pictures -->
+        <group name="pictures-sources" label="32020" icon="special://skin/extras/icons/pictures.png">
+            <content source="sources" target="pictures" />
+        </group>
+
+        <!-- Add-ons -->
+        <group name="addons-all" label="32007" icon="special://skin/extras/icons/addons.png">
+            <group name="addon-programs" label="32009" icon="special://skin/extras/icons/addons.png">
+                <shortcut name="programs-browse" label="10001" type="32021" icon="special://skin/extras/icons/addons.png">
+                    <action>ActivateWindow(Programs,Addons,return)</action>
+                </shortcut>
+                <content source="addons" target="programs" />
+            </group>
+            <group name="addon-video-grp" label="32010" icon="special://skin/extras/icons/video-addons.png">
+                <shortcut name="video-addons-all" label="1037" type="32014" icon="special://skin/extras/icons/video-addons.png">
+                    <action>ActivateWindow(Videos,Addons,return)</action>
+                </shortcut>
+                <content source="addons" target="video" />
+            </group>
+            <group name="addon-audio-grp" label="32011" icon="special://skin/extras/icons/songs.png">
+                <shortcut name="music-addons-all" label="1038" type="32019" icon="special://skin/extras/icons/songs.png">
+                    <action>ActivateWindow(MusicLibrary,Addons,return)</action>
+                </shortcut>
+                <content source="addons" target="music" />
+            </group>
+            <group name="addon-image-grp" label="32012" icon="special://skin/extras/icons/pictures.png">
+                <shortcut name="picture-addons" label="1039" type="32020" icon="special://skin/extras/icons/pictures.png">
+                    <action>ActivateWindow(Pictures,Addons,return)</action>
+                </shortcut>
+                <content source="addons" target="pictures" />
+            </group>
+            <shortcut name="apps" label="20244" type="program" icon="DefaultAddonProgram.png" visible="System.Platform.Android">
+                <action>ActivateWindow(programs,androidapp://sources/apps/,return)</action>
+             </shortcut>
+        </group>
+
+        <!-- Favourites -->
+        <group name="favourites" label="1036" icon="special://skin/extras/icons/favourites.png">
+            <shortcut name="favouritesbrowser" label="1036" type="1036" icon="special://skin/extras/icons/favourites.png">
+                <action>ActivateWindow(favouritesbrowser)</action>
+            </shortcut>
+            <content source="favourites" />
+        </group>
+
+        <!-- Settings -->
+        <group name="settings-grp" label="10004" icon="special://skin/extras/icons/configure.png">
+            <content source="settings" />
+            <shortcut name="libreelec-settings" label="LibreELEC" type="10001" icon="special://skin/extras/icons/libreelec.png" visible="System.HasAddon(service.libreelec.settings)">
+                <action>RunAddon(service.libreelec.settings)</action>
+            </shortcut>
+            <shortcut name="coreelec-settings" label="CoreELEC" type="10001" icon="special://skin/extras/icons/coreelec.png" visible="System.HasAddon(service.coreelec.settings)">
+                <action>RunAddon(service.coreelec.settings)</action>
+            </shortcut>
+        </group>                
+
+       <!-- Kodi Commands -->
+        <group name="commands-grp" label="32054" icon="special://skin/extras/icons/power.png">
+            <content source="commands" />
+            <shortcut name="update-video" label="32046" type="427" icon="special://skin/extras/icons/update.png">
+                <action>UpdateLibrary(video,,true)</action>
+            </shortcut>
+            <shortcut name="update-music" label="32047" type="427" icon="special://skin/extras/icons/update.png">
+                <action>UpdateLibrary(music,,true)</action>
+            </shortcut>
+
+            <shortcut name="clean-video" label="32055" type="427" icon="special://skin/extras/icons/wand.png">
+                <action>CleanLibrary(video,true)</action>
+            </shortcut>
+            <shortcut name="clean-music" label="32056" type="427" icon="special://skin/extras/icons/wand.png">
+                <action>CleanLibrary(music,true)</action>
+            </shortcut>
+        </group>
+<!-- 
 		<group name="videos" label="32030">
 			<content>video</content>
 			<group label="32040">
