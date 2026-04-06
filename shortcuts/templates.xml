@@ -177,6 +177,367 @@
   		</variableGroup>
 	</variables>
 
+    <template include="widget-classic" menu="mainmenu">
+		<property name="id" from="index" />
+
+        <!--- Widget Content -->
+        <property name="content" condition="widgetPath=Submenu">skinshortcuts-mainmenu-submenu</property>
+        <property name="content" condition="widgetPath=Settings">SettingsInfoItems</property>
+        <property name="content" condition="widgetPath=Systeminfo">SystemInfoItems</property>
+        <property name="content" condition="widgetPath=WeatherDaily">WeatherDailyItems</property>
+        <property name="content" condition="widgetPath=WeatherHourly">WeatherHourlyItems</property>
+        <property name="content" condition="widgetPath" from="widgetPath"/>
+        <property name="content">$VAR[DefWidgetContent]</property>
+        
+        <property name="target" condition="widgetTarget" from="widgetTarget"/>
+        <property name="target" condition="!widgetPath">$VAR[DefWidgetTarget]</property>
+        <property name="browse">never</property>
+        <property name="sortby" from="widgetSortby"/>
+        <property name="sortorder" from="widgetSortorder"/>
+        <property name="limit" from="widgetLimit"/>
+
+        <property name="autoscroll" condition="widgetAutoscroll">true</property>
+        <property name="autoscroll">false</property>
+
+		<property name="widgetAspect" condition="widgetPath IN Submenu,Settings,Systeminfo">Square</property>
+		<property name="widgetAspect" from="widgetAspect" condition="widgetAspect" />		
+		<property name="widgetAspect">Poster</property>		
+		
+        <property name="autolimit" condition="widgetAspect=Square">7</property>
+        <property name="autolimit" condition="widgetAspect=Thumbnail">4</property>
+        <property name="autolimit" condition="widgetAspect=Landscape">4</property>
+        <property name="autolimit">10</property>
+
+        <property name="isAutoLimit" condition="widgetLimit=Auto">true</property>
+        <property name="isAutoLimit">false</property>
+
+		<property name="isDynamicContent" condition="widgetPath IN Submenu,Settings,Systeminfo,WeatherDaily,WeatherHourly">false</property>
+		<property name="isDynamicContent">true</property>
+
+         <controls>
+            <control type="list" id="301">
+                <skinshortcuts>visibility</skinshortcuts>
+                <description>Plugin Content Widget</description>
+                <left>70</left>
+                <right>70</right>
+                <height>297</height>
+                <onup>300</onup>
+                <ondown>300</ondown>
+                <onback>300</onback>
+                <onleft>301</onleft>
+                <onright>301</onright>
+                <preloaditems>2</preloaditems>
+                <orientation>horizontal</orientation>
+                <include>ScrolltimeWidgetsList</include>
+                <include content="Widget_AutoScroll" condition="$PROPERTY[autoscroll]">
+                    <param name="time" value="Skin.String(AutoScrollTime)" />
+                    <param name="condition" value="!Control.HasFocus(301) + !System.ScreenSaverActive + System.IdleTime(1)" />
+                </include>
+                <itemlayout width="178" height="257" condition="$IF[widgetAspect=Poster THEN true ELSE false]">
+                    <include content="include.widget.poster">
+                        <param name="height" value="257"/>
+                        <param name="height_reflection" value="257"/>
+                        <param name="top" value="238"/>
+                        <param name="reflections" value="Skin.HasSetting(show.reflections)"/>
+                    </include>
+                </itemlayout>
+                <focusedlayout width="178" height="257" condition="$IF[widgetAspect=Poster THEN true ELSE false]">
+                    <include content="include.widget.poster.focus">
+                        <param name="id" value="301"/>
+                        <param name="height" value="257"/>
+                        <param name="height_reflection" value="257"/>
+                        <param name="top" value="238"/>
+                        <param name="reflections" value="Skin.HasSetting(show.reflections)"/>
+                    </include>
+                </focusedlayout>
+                <itemlayout width="254" height="257" condition="$IF[widgetAspect=Square THEN true ELSE false]">
+                    <include content="include.widget.square">
+                        <param name="height" value="257"/>
+                        <param name="height_reflection" value="257"/>
+                        <param name="top" value="238"/>
+                        <param name="reflections" value="Skin.HasSetting(show.reflections)"/>
+                    </include>
+                </itemlayout>
+                <focusedlayout width="254" height="257" condition="$IF[widgetAspect=Square THEN true ELSE false]">
+                    <include content="include.widget.square.focus">
+                        <param name="id" value="301"/>
+                        <param name="height" value="257"/>
+                        <param name="height_reflection" value="257"/>
+                        <param name="top" value="238"/>
+                        <param name="reflections" value="Skin.HasSetting(show.reflections)"/>
+                    </include>
+                </focusedlayout>
+                <itemlayout width="445" height="257" condition="$IF[widgetAspect=Landscape THEN true ELSE false]">
+                    <include content="include.widget.landscape">
+                        <param name="height" value="257"/>
+                        <param name="height_reflection" value="257"/>
+                        <param name="top" value="238"/>
+                        <param name="reflections" value="Skin.HasSetting(show.reflections)"/>
+                    </include>
+                </itemlayout>
+                <focusedlayout width="445" height="257" condition="$IF[widgetAspect=Landscape THEN true ELSE false]">
+                    <include content="include.widget.landscape.focus">
+                        <param name="id" value="301"/>
+                        <param name="height" value="257"/>
+                        <param name="height_reflection" value="257"/>
+                        <param name="top" value="238"/>
+                        <param name="reflections" value="Skin.HasSetting(show.reflections)"/>
+                    </include>
+                </focusedlayout>
+                <itemlayout width="445" height="257" condition="$IF[widgetAspect=Thumbnail THEN true ELSE false]">
+                    <include content="include.widget.thumb">
+                        <param name="height" value="257"/>
+                        <param name="height_reflection" value="257"/>
+                        <param name="top" value="238"/>
+                        <param name="reflections" value="Skin.HasSetting(show.reflections)"/>
+                    </include>
+                </itemlayout>
+                <focusedlayout width="445" height="257" condition="$IF[widgetAspect=Thumbnail THEN true ELSE false]">
+                    <include content="include.widget.thumb.focus">
+                        <param name="id" value="301"/>
+                        <param name="height" value="257"/>
+                        <param name="height_reflection" value="257"/>
+                        <param name="top" value="238"/>
+                        <param name="reflections" value="Skin.HasSetting(show.reflections)"/>
+                    </include>
+                </focusedlayout>
+                <include content="Widget_ContentDynamic" condition="$PROPERTY[isDynamicContent]">
+                   <param name="target" value="$PROPERTY[target]" />
+                   <param name="limit" value="$PROPERTY[limit]" />
+                   <param name="sortby" value="$PROPERTY[sortby]" />
+                   <param name="sortorder" value="$PROPERTY[sortorder]" />
+                   <param name="browse" value="$PROPERTY[browse]" />
+                   <param name="content" value="$PROPERTY[content]" />
+                   <param name="is_autolimit" value="$PROPERTY[isAutoLimit]" />
+                   <param name="autolimit" value="$PROPERTY[autoLimit]" />
+                </include>
+                <include content="Widget_ContentInclude" condition="!$PROPERTY[isDynamicContent]">
+                   <param name="target" value="$PROPERTY[target]" />
+                   <param name="limit" value="$PROPERTY[limit]" />
+                   <param name="sortby" value="$PROPERTY[sortby]" />
+                   <param name="sortorder" value="$PROPERTY[sortorder]" />
+                   <param name="browse" value="never" />
+                   <param name="include" value="$PROPERTY[content]" />
+                   <param name="is_autolimit" value="$PROPERTY[isAutoLimit]" />
+                   <param name="autolimit" value="$PROPERTY[autoLimit]" />
+                </include>
+            </control>
+        </controls>
+    </template>
+
+    <template include="widget-featured" menu="mainmenu">
+		<property name="id" from="index" />
+
+        <!--- Widget Content -->
+        <property name="content" condition="widgetPath=Submenu">skinshortcuts-mainmenu-submenu</property>
+        <property name="content" condition="widgetPath=Settings">SettingsInfoItems</property>
+        <property name="content" condition="widgetPath=Systeminfo">SystemInfoItems</property>
+        <property name="content" condition="widgetPath=WeatherDaily">WeatherDailyItems</property>
+        <property name="content" condition="widgetPath=WeatherHourly">WeatherHourlyItems</property>
+        <property name="content" condition="widgetPath" from="widgetPath"/>
+        <property name="content">$VAR[DefWidgetContent]</property>
+        
+        <property name="target" condition="widgetTarget" from="widgetTarget"/>
+        <property name="target" condition="!widgetPath">$VAR[DefWidgetTarget]</property>
+        <property name="browse">never</property>
+        <property name="sortby" from="widgetSortby"/>
+        <property name="sortorder" from="widgetSortorder"/>
+        <property name="limit" from="widgetLimit"/>
+
+        <property name="autoscroll" condition="widgetAutoscroll">true</property>
+        <property name="autoscroll">false</property>
+
+        <property name="isAutoLimit">false</property>
+
+		<property name="isDynamicContent" condition="widgetPath IN Submenu,Settings,Systeminfo,WeatherDaily,WeatherHourly">false</property>
+		<property name="isDynamicContent">true</property>
+
+        <controls>
+            <control type="wraplist" id="301">
+                <skinshortcuts>visibility</skinshortcuts>
+                <description>Widget</description>
+                <width>1</width>
+                <height>1</height>
+                <onup>300</onup>
+                <ondown>300</ondown>
+                <onback>300</onback>
+                <onleft>301</onleft>
+                <onright>301</onright>
+                <preloaditems>2</preloaditems>
+                <orientation>horizontal</orientation>
+                <scrolltime tween="quadratic">0</scrolltime>
+                <include content="Widget_AutoScroll" condition="$PROPERTY[autoscroll]">
+                    <param name="time" value="Skin.String(AutoScrollTime)" />
+                    <param name="condition" value="!Control.HasFocus(301) + !System.ScreenSaverActive" />
+                </include>
+                <include>Animation.FadeIn</include>
+                <include>Animation.FadeOut</include>
+                <itemlayout width="1" height="1">
+                </itemlayout>
+                <focusedlayout width="1" height="1">
+                </focusedlayout>
+                <include content="Widget_ContentDynamic" condition="$PROPERTY[isDynamicContent]">
+                   <param name="target" value="$PROPERTY[target]" />
+                   <param name="limit" value="$PROPERTY[limit]" />
+                   <param name="sortby" value="$PROPERTY[sortby]" />
+                   <param name="sortorder" value="$PROPERTY[sortorder]" />
+                   <param name="browse" value="$PROPERTY[browse]" />
+                   <param name="content" value="$PROPERTY[content]" />
+                   <param name="is_autolimit" value="$PROPERTY[isAutoLimit]" />
+                </include>
+                <include content="Widget_ContentInclude" condition="!$PROPERTY[isDynamicContent]">
+                   <param name="target" value="$PROPERTY[target]" />
+                   <param name="limit" value="$PROPERTY[limit]" />
+                   <param name="sortby" value="$PROPERTY[sortby]" />
+                   <param name="sortorder" value="$PROPERTY[sortorder]" />
+                   <param name="browse" value="never" />
+                   <param name="include" value="$PROPERTY[content]" />
+                   <param name="is_autolimit" value="$PROPERTY[isAutoLimit]" />
+                </include>
+            </control>
+        </controls>
+    </template>
+
+    <template include="widget-vertical" menu="mainmenu">
+		<property name="id" from="index" />
+
+        <!--- Widget Content -->
+        <property name="content" condition="widgetPath=Submenu">skinshortcuts-mainmenu-submenu</property>
+        <property name="content" condition="widgetPath=Settings">SettingsInfoItems</property>
+        <property name="content" condition="widgetPath=Systeminfo">SystemInfoItems</property>
+        <property name="content" condition="widgetPath=WeatherDaily">WeatherDailyItems</property>
+        <property name="content" condition="widgetPath=WeatherHourly">WeatherHourlyItems</property>
+        <property name="content" condition="widgetPath" from="widgetPath"/>
+        <property name="content">$VAR[DefWidgetContent]</property>
+        
+        <property name="target" condition="widgetTarget" from="widgetTarget"/>
+        <property name="target" condition="!widgetPath">$VAR[DefWidgetTarget]</property>
+        <property name="browse">never</property>
+        <property name="sortby" from="widgetSortby"/>
+        <property name="sortorder" from="widgetSortorder"/>
+        <property name="limit" from="widgetLimit"/>
+
+        <property name="autoscroll" condition="widgetAutoscroll">true</property>
+        <property name="autoscroll">false</property>
+
+		<property name="widgetAspect" condition="widgetPath IN Submenu,Settings,Systeminfo">Square</property>
+		<property name="widgetAspect" from="widgetAspect" condition="widgetAspect" />		
+		<property name="widgetAspect">Poster</property>		
+		
+        <property name="autolimit" condition="widgetAspect=Square">5</property>
+        <property name="autolimit" condition="widgetAspect=Thumbnail">3</property>
+        <property name="autolimit" condition="widgetAspect=Landscape">3</property>
+        <property name="autolimit">8</property>
+
+        <property name="isAutoLimit" condition="widgetLimit=Auto">true</property>
+        <property name="isAutoLimit">false</property>
+
+		<property name="isDynamicContent" condition="widgetPath IN Submenu,Settings,Systeminfo,WeatherDaily,WeatherHourly">false</property>
+		<property name="isDynamicContent">true</property>
+
+        <controls>
+            <control type="fixedlist" id="301">
+                <skinshortcuts>visibility</skinshortcuts>
+                <visible>!String.Contains(Container(300).ListItem.Property(widget),weather)</visible>
+                <animation effect="fade" start="100" end="66" time="400" condition="!Control.HasFocus(301) + !Skin.HasSetting(widgets.fade)">Conditional</animation>
+                <top>330</top>
+                <left>518</left>
+                <width>1876</width>
+                <height>365</height>
+                <onright>noop</onright>
+                <onback condition="!Integer.IsEqual(Container(301).Position,0) | Container(301).HasPrevious">PageUp</onback>
+                <onback condition="!Integer.IsEqual(Container(301).Position,0) | Container(301).HasPrevious">PageUp</onback>
+                <onback condition="!Integer.IsEqual(Container(301).Position,0) | Container(301).HasPrevious">PageUp</onback>
+                <onback condition="Integer.IsEqual(Container(301).Position,0) + !Container(301).HasPrevious">300</onback>
+                <onleft>300</onleft>
+                <onup>300</onup>
+                <ondown>300</ondown>
+                <focusposition>0</focusposition>
+                <preloaditems>2</preloaditems>
+                <orientation>horizontal</orientation>
+                <pagecontrol>60</pagecontrol>
+                <movement>$PYTHON[int(autoLimit) - 1]</movement>
+                <include>ScrolltimeWidgetsList</include>
+                <include content="Widget_AutoScroll" condition="$PROPERTY[autoscroll]">
+                    <param name="time" value="Skin.String(AutoScrollTime)" />
+                    <param name="condition" value="!Control.HasFocus(301) + !System.ScreenSaverActive + System.IdleTime(1)" />
+                </include>
+                <itemlayout height="325" width="222" condition="$IF[widgetAspect=Poster THEN true ELSE false]">
+                    <include content="include.widget.poster">
+                        <param name="reflections" value="Skin.HasSetting(show.reflections)"/>
+                        <param name="height" value="325"/>
+                    </include>
+                </itemlayout>
+                <itemlayout height="325" width="325" condition="$IF[widgetAspect=Square THEN true ELSE false]">
+                    <include content="include.widget.square">
+                        <param name="reflections" value="Skin.HasSetting(show.reflections)"/>
+                        <param name="height" value="325"/>
+                    </include>
+                </itemlayout>
+                <itemlayout height="325" width="562" condition="$IF[widgetAspect=Landscape THEN true ELSE false]">
+                    <include content="include.widget.landscape">
+                        <param name="reflections" value="Skin.HasSetting(show.reflections)"/>
+                        <param name="height" value="325"/>
+                    </include>
+                </itemlayout>
+                <itemlayout height="325" width="562" condition="$IF[widgetAspect=Thumbnail THEN true ELSE false]">
+                    <include content="include.widget.thumb">
+                        <param name="reflections" value="Skin.HasSetting(show.reflections)"/>
+                        <param name="height" value="325"/>
+                    </include>
+                </itemlayout>
+                <focusedlayout height="325" width="222" condition="$IF[widgetAspect=Poster THEN true ELSE false]">
+                    <include content="include.widget.poster.focus">
+                        <param name="id" value="301"/>
+                        <param name="reflections" value="Skin.HasSetting(show.reflections)"/>
+                        <param name="height" value="325"/>
+                    </include>
+                </focusedlayout>
+                <focusedlayout height="325" width="325" condition="$IF[widgetAspect=Square THEN true ELSE false]">
+                    <include content="include.widget.square.focus">
+                        <param name="id" value="301"/>
+                        <param name="reflections" value="Skin.HasSetting(show.reflections)"/>
+                        <param name="height" value="325"/>
+                    </include>
+                </focusedlayout>
+                <focusedlayout height="325" width="562" condition="$IF[widgetAspect=Landscape THEN true ELSE false]">
+                    <include content="include.widget.landscape.focus">
+                        <param name="id" value="301"/>
+                        <param name="reflections" value="Skin.HasSetting(show.reflections)"/>
+                        <param name="height" value="325"/>
+                    </include>
+                </focusedlayout>
+                <focusedlayout height="325" width="562" condition="$IF[widgetAspect=Thumbnail THEN true ELSE false]">
+                    <include content="include.widget.thumb.focus">
+                        <param name="id" value="301"/>
+                        <param name="reflections" value="Skin.HasSetting(show.reflections)"/>
+                        <param name="height" value="325"/>
+                    </include>
+                </focusedlayout>
+                <include content="Widget_ContentDynamic" condition="$PROPERTY[isDynamicContent]">
+                   <param name="target" value="$PROPERTY[target]" />
+                   <param name="limit" value="$PROPERTY[limit]" />
+                   <param name="sortby" value="$PROPERTY[sortby]" />
+                   <param name="sortorder" value="$PROPERTY[sortorder]" />
+                   <param name="browse" value="$PROPERTY[browse]" />
+                   <param name="content" value="$PROPERTY[content]" />
+                   <param name="is_autolimit" value="$PROPERTY[isAutoLimit]" />
+                   <param name="autolimit" value="$PROPERTY[autoLimit]" />
+                </include>
+                <include content="Widget_ContentInclude" condition="!$PROPERTY[isDynamicContent]">
+                   <param name="target" value="$PROPERTY[target]" />
+                   <param name="limit" value="$PROPERTY[limit]" />
+                   <param name="sortby" value="$PROPERTY[sortby]" />
+                   <param name="sortorder" value="$PROPERTY[sortorder]" />
+                   <param name="browse" value="never" />
+                   <param name="include" value="$PROPERTY[content]" />
+                   <param name="is_autolimit" value="$PROPERTY[isAutoLimit]" />
+                   <param name="autolimit" value="$PROPERTY[autoLimit]" />
+                </include>
+            </control>
+        </controls>
+    </template>
+
 	<template items="menuitems" source="widgets" filter="widgetPath">
 		<property name="id" from="index" />
 		<controls>
@@ -230,12 +591,14 @@
 
         <property name="isAutoLimit" condition="widgetLimit=Auto">true</property>
         <property name="isAutoLimit">false</property>
+
+		<property name="isDynamicContent" condition="widgetPath IN Submenu,Settings,Systeminfo,WeatherDaily,WeatherHourly">false</property>
+		<property name="isDynamicContent">true</property>
+
         <property name="isSubmenu" condition="widgetPath=Submenu">true</property>
         <property name="isSubmenu">false</property>
         <property name="isSettings" condition="widgetPath=Settings">true</property>
         <property name="isSettings">false</property>
-		<property name="isDynamicContent" condition="widgetPath IN Submenu,Settings,Systeminfo,WeatherDaily,WeatherHourly">false</property>
-		<property name="isDynamicContent">true</property>
         <property name="isFullscreenWidget" condition="widgetFullscreen">true</property>
         <property name="isFullscreenWidget">false</property>
 
