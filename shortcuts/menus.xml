@@ -9,47 +9,47 @@
 		</defaults>
 		<item name="videos" submenu="videos">
 			<label>3</label>
-			<label2>Common item</label2>
+			<label2>32034</label2>
 			<icon>special://skin/extras/icons/video-addons.png</icon>
 			<action>ActivateWindow(videos,library://video/)</action>
-			<visible>!Library.HasContent(Movies) + !Library.HasContent(TVShows)
-			</visible>
+			<visible>!Library.HasContent(Movies) + !Library.HasContent(TVShows)</visible>
 		</item>
 		<item name="movies" submenu="movies">
 			<label>20342</label>
-			<label2>Common item</label2>
+			<label2>32034</label2>
 			<icon>special://skin/extras/icons/film.png</icon>
-			<action>ActivateWindow(videos,videodb://movies/titles/,return)
-			</action>
+			<action>ActivateWindow(videos,videodb://movies/titles/,return)</action>
+			<visible>Library.HasContent(Movies)</visible>
 		</item>
 		<item name="tvshows" submenu="tvshows">
 			<label>20343</label>
-			<label2>Common item</label2>
+			<label2>32034</label2>
 			<icon>special://skin/extras/icons/tv.png</icon>
-			<action>ActivateWindow(videos,videodb://tvshows/titles/,return)
-			</action>
+			<action>ActivateWindow(videos,videodb://tvshows/titles/,return)</action>
+            <visible>Library.HasContent(TVShows)</visible>
 		</item>
 		<item name="music" submenu="music">
 			<label>2</label>
-			<label2>Common item</label2>
+			<label2>32034</label2>
 			<icon>special://skin/extras/icons/songs.png</icon>
 			<action>ActivateWindow(Music,library://music/,return)</action>
 		</item>
 		<item name="livetv" submenu="livetv">
 			<label>31103</label>
-			<label2>Common item</label2>
+			<label2>32034</label2>
 			<icon>special://skin/extras/icons/livetv.png</icon>
 			<action>ActivateWindow(Tvchannels)</action>
 		</item>
 		<item name="settings">
 			<label>10004</label>
-			<label2>Common item</label2>
+			<label2>32034</label2>
 			<icon>special://skin/extras/icons/settings.png</icon>
 			<action>ActivateWindow(Settings)</action>
+            <protect type="all" heading="$LOCALIZE[31176]" message="$LOCALIZE[31177]" />
 		</item>
-		<item name="power">
+		<item name="power" required="true">
 			<label>33060</label>
-			<label2>Common item</label2>
+			<label2>32034</label2>
 			<icon>special://skin/extras/icons/power.png</icon>
 			<action>ActivateWindow(shutdownmenu)</action>
 		</item>
@@ -57,20 +57,19 @@
 
 	<menu name="powermenu">
 		<allow widgets="false" backgrounds="false" submenus="false" />
+        <defaults>
+            <action when="before" condition="Window.IsActive(DialogButtonMenu.xml)">Close</action>
+        </defaults>
 		<item name="reload skin">
 			<label2>Power Menu Shortcut</label2>
 			<label>31195</label>
 			<action>ReloadSkin()</action>
-			<icon />
-			<thumb />
 		</item>
 		<item name="logoff">
 			<label2>Power Menu Shortcut</label2>
 			<label>31360</label>
 			<action>SystemLogOff</action>
 			<visible>[System.HasLoginScreen | Integer.IsGreater(System.ProfileCount,1)] + System.Loggedon</visible>
-			<icon />
-			<thumb />
 		</item>
 		<item name="mastermode">
 			<label2>Power Menu Shortcut</label2>
@@ -78,15 +77,11 @@
 			<altlabel>20045</altlabel>
 			<action>mastermode</action>
 			<visible>System.HasLocks</visible>
-			<icon />
-			<thumb />
 		</item>
 		<item name="exit">
 			<label2>Power Menu Shortcut</label2>
 			<label>13012</label>
 			<action>Quit()</action>
-			<icon />
-			<thumb />
 			<visible>System.ShowExitButton</visible>
 		</item>
 		<item name="powerdown">
@@ -94,8 +89,6 @@
 			<label>13005</label>
 			<action>Powerdown()</action>
 			<visible>System.CanPowerDown</visible>
-			<icon />
-			<thumb />
 		</item>
 		<item name="shutdowntimer">
 			<label2>Power Menu Shortcut</label2>
@@ -103,59 +96,251 @@
 			<action>AlarmClock(shutdowntimer,Shutdown())</action>
 			<visible>!System.HasAlarm(shutdowntimer)</visible>
 			<visible>System.CanPowerDown | System.CanSuspend | System.CanHibernate</visible>
-			<icon />
-			<thumb />
 		</item>
 		<item name="cancel timer">
 			<label2>Power Menu Shortcut</label2>
 			<label>20151</label>
 			<action>CancelAlarm(shutdowntimer)</action>
 			<visible>System.HasAlarm(shutdowntimer)</visible>
-			<icon />
-			<thumb />
 		</item>
 		<item name="suspend">
 			<label2>Power Menu Shortcut</label2>
 			<label>13011</label>
 			<action>Suspend()</action>
 			<visible>System.CanSuspend</visible>
-			<icon />
-			<thumb />
 		</item>
 		<item name="hibernate">
 			<label2>Power Menu Shortcut</label2>
 			<label>13010</label>
 			<action>Hibernate()</action>
 			<visible>System.CanHibernate</visible>
-			<icon />
-			<thumb />
 		</item>
 		<item name="reboot">
 			<label2>Power Menu Shortcut</label2>
 			<label>13013</label>
 			<action>Reset()</action>
 			<visible>System.CanReboot</visible>
-			<icon />
-			<thumb />
 		</item>
 		<item name="reboot to android">
 			<label2>Power Menu Shortcut</label2>
 			<label>31232</label>
 			<action>RebootToAndroid</action>
 			<visible>System.PathExist("/dev/env")</visible>
-			<icon />
-			<thumb />
 		</item>
 		<item name="settings">
 			<label>5</label>
 			<label2>Power Menu Shortcut</label2>
 			<action>ActivateWindow(settings)</action>
 			<visible>System.Loggedon</visible>
-			<icon />
-			<thumb />
 		</item>
 	</menu>
 
+    <menu name="x1111" build="auto" action="ActivateWindow(1111)">
+        <allow widgets="false" backgrounds="false" submenus="false" />
+        <item name="movie-titles">
+            <label2>Movie Hub item</label2>
+            <label>20342</label>
+            <action>ActivateWindow(Videos,MovieTitles,return)</action>
+            <icon>special://skin/extras/icons/film.png</icon>
+        </item>
+        <item name="recently-added-movies">
+            <label>31173</label>
+            <label2>Movie Hub item</label2>
+            <action>ActivateWindow(Videos,RecentlyAddedMovies,return)</action>
+            <icon>special://skin/extras/icons/recentlyadded.png</icon>
+        </item>
+        <item name="recent-movies">
+            <label>31174</label>
+            <label2>Movie Hub item</label2>
+            <action>ActivateWindow(Videos,special://skin/extras/playlists/RecentMovies.xsp,return)</action>
+            <icon>special://skin/extras/icons/recent.png</icon>
+        </item> 
+        <item name="random-movies">
+            <label>31175</label>
+            <label2>Movie Hub item</label2>
+            <action>PlayMedia(special://skin/extras/playlists/RandomMovies.xsp)</action>
+            <icon>special://skin/extras/icons/signpost.png</icon>
+        </item>
+        <item name="search-movies">
+            <label>137</label>
+            <label2>Movie Hub item</label2>
+            <action>RunScript(script.globalsearch,movies=true)</action>
+            <icon>special://skin/extras/icons/search.png</icon>
+            <visible>System.AddonIsEnabled(script.globalsearch)</visible>
+        </item> 
+        <item name="genres">
+            <label>135</label>
+            <label2>Movie Hub item</label2>
+            <action>ActivateWindow(Videos,MovieGenres,return)</action>
+            <icon>special://skin/extras/icons/genre.png</icon>
+        </item>
+        <item name="directors">
+            <label>20348</label>
+            <label2>Movie Hub item</label2>
+            <action>ActivateWindow(Videos,MovieDirectors,return)</action>
+            <icon>special://skin/extras/icons/director.png</icon>
+        </item>
+        <item name="actors">
+            <label>344</label>
+            <label2>Movie Hub item</label2>
+            <action>ActivateWindow(Videos,MovieActors,return)</action>
+            <icon>special://skin/extras/icons/actor.png</icon>
+        </item>
+        <item name="sets">
+            <label>20434</label>
+            <label2>Movie Hub item</label2>
+            <action>ActivateWindow(Videos,MovieSets,return)</action>
+            <icon>special://skin/extras/icons/year.png</icon>
+        </item>
+        <item name="playlists">
+            <label>136</label>
+            <label2>Movie Hub item</label2>
+            <action>ActivateWindow(videos,special://videoplaylists/,return)</action>
+            <icon>special://skin/extras/icons/playlist.png</icon>
+        </item>
+        <item name="files">
+            <label>1214</label>
+            <label2>Movie Hub item</label2>
+            <action>ActivateWindow(Videos,Files,return)</action>
+            <icon>special://skin/extras/icons/files.png</icon>
+        </item>
+        <item name="addons">
+            <label>24001</label>
+            <label2>Movie Hub item</label2>
+            <action>ActivateWindow(videos,addons://sources/video/,return)</action>
+            <icon>special://skin/extras/icons/video-addons.png</icon>
+        </item>
+        <item name="update-library">
+            <label>$VAR[VideoScanLabel]</label>
+            <label2>Movie Hub item</label2>
+            <action>UpdateLibrary(video)</action>
+            <icon>special://skin/extras/icons/update.png</icon>
+        </item>
+        <item name="clean-library">
+            <label>14247</label>
+            <label2>Movie Hub item</label2>
+            <action>CleanLibrary(video)</action>
+            <icon>special://skin/extras/icons/paintbrush.png</icon>
+        </item>
+    </menu>
+
+    <menu name="x1112" build="auto" action="ActivateWindow(1112)">
+        <allow widgets="false" backgrounds="false" submenus="false" />
+        <item name="tvshow-titles">
+            <label2>Episode Hub item</label2>
+            <label>20343</label>
+            <action>ActivateWindow(Videos,TvShowTitles,return)</action>
+            <icon>special://skin/extras/icons/tv.png</icon>
+        </item>
+        <item name="recently-added-episodes">
+            <label2>Episode Hub item</label2>
+            <label>31173</label>
+            <action>ActivateWindow(Videos,RecentlyAddedEpisodes,return)</action>
+            <icon>special://skin/extras/icons/recentlyadded.png</icon>
+        </item>
+        <item name="recent-episodes">
+            <label2>Episode Hub item</label2>
+            <label>31174</label>
+            <action>ActivateWindow(Videos,special://skin/extras/playlists/RecentEpisodes.xsp,return)</action>
+            <icon>special://skin/extras/icons/recent.png</icon>
+        </item>
+        <item name="random-episodes">
+            <label2>Episode Hub item</label2>
+            <label>31175</label>
+            <action>PlayMedia(special://skin/extras/playlists/RandomEpisodes.xsp)</action>
+            <icon>special://skin/extras/icons/signpost.png</icon>
+        </item>
+        <item name="search-tvshows">
+            <label2>Episode Hub item</label2>
+            <label>137</label>
+            <action>RunScript(script.globalsearch,tvshows=true&amp;episodes=true)</action>
+            <icon>special://skin/extras/icons/search.png</icon>
+            <visible>System.AddonIsEnabled(script.globalsearch)</visible>
+        </item>
+        <item name="genres">
+            <label2>Episode Hub item</label2>
+            <label>135</label>
+            <action>ActivateWindow(Videos,TvShowGenres,return)</action>
+            <icon>special://skin/extras/icons/genre.png</icon>
+        </item>
+        <item name="studios">
+            <label2>Episode Hub item</label2>
+            <label>20388</label>
+            <action>ActivateWindow(Videos,TvShowStudios,return)</action>
+            <icon>special://skin/extras/icons/director.png</icon>
+        </item>
+        <item name="actors">
+            <label2>Episode Hub item</label2>
+            <label>344</label>
+            <action>ActivateWindow(Videos,TvShowActors,return)</action>
+            <icon>special://skin/extras/icons/actor.png</icon>
+        </item>
+        <item name="years">
+            <label2>Episode Hub item</label2>
+            <label>652</label>
+            <action>ActivateWindow(Videos,TvShowYears,return)</action>
+            <icon>special://skin/extras/icons/year.png</icon>
+        </item>
+        <item name="playlists">
+            <label2>Episode Hub item</label2>
+            <label>136</label>
+            <action>ActivateWindow(videos,special://videoplaylists/,return)</action>
+            <icon>special://skin/extras/icons/playlist.png</icon>
+        </item>
+        <item name="files">
+            <label2>Episode Hub item</label2>
+            <label>1214</label>
+            <action>ActivateWindow(Videos,Files,return)</action>
+            <icon>special://skin/extras/icons/files.png</icon>
+        </item>
+        <item name="addons"> 
+            <label2>Episode Hub item</label2>
+            <label>24001</label>
+            <action>ActivateWindow(videos,addons://sources/video/,return)</action>
+            <icon>special://skin/extras/icons/video-addons.png</icon>
+        </item>
+        <item name="update-library">
+            <label2>Episode Hub item</label2>
+            <label>$VAR[VideoScanLabel]</label>
+            <action>UpdateLibrary(video)</action>
+            <icon>special://skin/extras/icons/update.png</icon>
+        </item>
+        <item name="clean-library">
+            <label>14247</label>
+            <label2>Episode Hub item</label2>
+            <action>CleanLibrary(video)</action>
+            <icon>special://skin/extras/icons/paintbrush.png</icon>
+        </item>
+    </menu>
+
+    <menu name="x1113" build="auto" action="ActivateWindow(1113)">
+        <allow widgets="false" backgrounds="false" submenus="false" />
+    </menu>
+
+    <menu name="x1114" build="auto" action="ActivateWindow(1114)">
+        <allow widgets="false" backgrounds="false" submenus="false" />
+    </menu>
+
+    <menu name="x1115" build="auto" action="ActivateWindow(1115)">
+        <allow widgets="false" backgrounds="false" submenus="false" />
+    </menu>
+
+    <menu name="x1116" build="auto" action="ActivateWindow(1116)">
+        <allow widgets="false" backgrounds="false" submenus="false" />
+    </menu>
+
+    <menu name="x1117" build="auto" action="ActivateWindow(1117)">
+        <allow widgets="false" backgrounds="false" submenus="false" />
+    </menu>
+
+    <menu name="x1118" build="auto" action="ActivateWindow(1118)">
+        <allow widgets="false" backgrounds="false" submenus="false" />
+    </menu>
+
+    <menu name="x1119" build="auto" action="ActivateWindow(1119)">
+        <allow widgets="false" backgrounds="false" submenus="false" />
+    </menu>
+    
 	<!-- Submenus (only built when referenced) -->
 	<submenu name="videos">
 		<item name="titles">
@@ -472,211 +657,74 @@
 		</item>
 	</submenu>
 
-	<submenu name="x1111">
-		<allow widgets="false" backgrounds="false" submenus="false" />
-	    <item name="movie-titles">
-	        <label2>Movie Hub item</label2>
-	        <label>20342</label>
-	        <action>ActivateWindow(Videos,MovieTitles,return)</action>
-	        <icon>special://skin/extras/icons/film.png</icon>
+    <submenu name="addons">
+	    <item name="programaddons">
+	        <label>0</label>
+	        <icon>DefaultAddonProgram.png</icon>
+	        <action>ActivateWindow(programs,addons://sources/executable/,return)</action>
 	    </item>
-	    <item name="recently-added-movies">
-	        <label>31173</label>
-	        <label2>Movie Hub item</label2>
-	        <action>ActivateWindow(Videos,RecentlyAddedMovies,return)</action>
-	        <icon>special://skin/extras/icons/recentlyadded.png</icon>
+	    <item name="videoaddons">
+	        <label>157</label>
+	        <icon>DefaultAddonVideo.png</icon>
+	        <action>ActivateWindow(Videos,Addons,return)</action>
 	    </item>
-	    <item name="recent-movies">
-	        <label>31174</label>
-	        <label2>Movie Hub item</label2>
-	        <action>ActivateWindow(Videos,special://skin/extras/playlists/RecentMovies.xsp,return)</action>
-	        <icon>special://skin/extras/icons/recent.png</icon>
+	    <item name="musicaddons">
+	        <label>2</label>
+	        <icon>DefaultAddonMusic.png</icon>
+	        <action>ActivateWindow(Music,Addons,return)</action>
+	    </item>
+	    <item name="pictureaddons">
+	        <label>1</label>
+	        <icon>DefaultAddonPicture.png</icon>
+	        <action>ActivateWindow(Pictures,Addons,return)</action>
+	    </item>
+	    <item name="gameaddons">
+	        <label>15016</label>
+	        <icon>DefaultAddonGame.png</icon>
+	        <action>ActivateWindow(Games,Addons,return)</action>
+	    </item>
+	    <item name="addonbrowser">
+	        <label>10040</label>
+	        <icon>DefaultAddon.png</icon>
+	        <action>ActivateWindow(Addonbrowser,root)</action>
+	    </item>    
+    </submenu>
+	
+	<submenu name="pictures">
+	    <item name="pictureaddonssub">
+	        <label>1039</label>
+	        <label2>32020</label2>
+	        <icon>DefaultAddonPicture.png</icon>
+	        <action>ActivateWindow(Pictures,Addons,return)</action>
 	    </item>	
-	    <item name="random-movies">
-	        <label>31175</label>
-	        <label2>Movie Hub item</label2>
-	        <action>PlayMedia(special://skin/extras/playlists/RandomMovies.xsp)</action>
-	        <icon>special://skin/extras/icons/signpost.png</icon>
-	    </item>
-	    <item name="search-movies">
-	        <label>137</label>
-	        <label2>Movie Hub item</label2>
-	        <action>RunScript(script.globalsearch,movies=true)</action>
-	        <icon>special://skin/extras/icons/search.png</icon>
-	        <visible>System.AddonIsEnabled(script.globalsearch)</visible>
-	    </item>	
-	    <item name="genres">
-	        <label>135</label>
-	        <label2>Movie Hub item</label2>
-	        <action>ActivateWindow(Videos,MovieGenres,return)</action>
-	        <icon>special://skin/extras/icons/genre.png</icon>
-	    </item>
-	    <item name="directors">
-	        <label>20348</label>
-	        <label2>Movie Hub item</label2>
-	        <action>ActivateWindow(Videos,MovieDirectors,return)</action>
-	        <icon>special://skin/extras/icons/director.png</icon>
-	    </item>
-	    <item name="actors">
-	        <label>344</label>
-	        <label2>Movie Hub item</label2>
-	        <action>ActivateWindow(Videos,MovieActors,return)</action>
-	        <icon>special://skin/extras/icons/actor.png</icon>
-	    </item>
-	    <item name="sets">
-	        <label>20434</label>
-	        <label2>Movie Hub item</label2>
-	        <action>ActivateWindow(Videos,MovieSets,return)</action>
-	        <icon>special://skin/extras/icons/year.png</icon>
-	    </item>
-	    <item name="playlists">
-	        <label>136</label>
-	        <label2>Movie Hub item</label2>
-	        <action>ActivateWindow(videos,special://videoplaylists/,return)</action>
-	        <icon>special://skin/extras/icons/playlist.png</icon>
-	    </item>
-	    <item name="files">
-	        <label>1214</label>
-	        <label2>Movie Hub item</label2>
-	        <action>ActivateWindow(Videos,Files,return)</action>
-	        <icon>special://skin/extras/icons/files.png</icon>
-	    </item>
-	    <item name="addons">
-	        <label>24001</label>
-	        <label2>Movie Hub item</label2>
-	        <action>ActivateWindow(videos,addons://sources/video/,return)</action>
-	        <icon>special://skin/extras/icons/video-addons.png</icon>
-	    </item>
-	    <item name="update-library">
-	        <label>$VAR[VideoScanLabel]</label>
-	        <label2>Movie Hub item</label2>
-	        <action>UpdateLibrary(video)</action>
-	        <icon>special://skin/extras/icons/update.png</icon>
-	    </item>
-	    <item name="clean-library">
-	        <label>14247</label>
-	        <label2>Movie Hub item</label2>
-	        <action>CleanLibrary(video)</action>
-	        <icon>special://skin/extras/icons/paintbrush.png</icon>
-	    </item>
 	</submenu>
 
-	<submenu name="x1112">
-		<allow widgets="false" backgrounds="false" submenus="false" />
-	    <item name="tvshow-titles">
-	        <label2>Episode Hub item</label2>
-	        <label>20343</label>
-	        <action>ActivateWindow(Videos,TvShowTitles,return)</action>
-	        <icon>special://skin/extras/icons/tv.png</icon>
+    <submenu name="settings">
+	    <item name="filemanager">
+	        <label>7</label>
+	        <label2>32034</label2>
+	        <icon>DefaultFolder.png</icon>
+	        <action>ActivateWindow(FileManager)</action>
 	    </item>
-	    <item name="recently-added-episodes">
-	        <label2>Episode Hub item</label2>
-	        <label>31173</label>
-	        <action>ActivateWindow(Videos,RecentlyAddedEpisodes,return)</action>
-	        <icon>special://skin/extras/icons/recentlyadded.png</icon>
+	    <item name="profiles">
+	        <label>13200</label>
+	        <label2>32034</label2>
+	        <icon>special://skin/extras/icons/actor.png</icon>
+	        <action>ActivateWindow(Profiles)</action>
 	    </item>
-	    <item name="recent-episodes">
-	        <label2>Episode Hub item</label2>
-	        <label>31174</label>
-	        <action>ActivateWindow(Videos,special://skin/extras/playlists/RecentEpisodes.xsp,return)</action>
+	    <item name="systeminfo">
+	        <label>10007</label>
+	        <label2>32034</label2>
+	        <icon>special://skin/extras/icons/sysinfo.png</icon>
+	        <action>ActivateWindow(SystemInfo)</action>
+	    </item>
+	    <item name="eventlog">
+	        <label>14111</label>
+	        <label2>32034</label2>
 	        <icon>special://skin/extras/icons/recent.png</icon>
-	    </item>
-	    <item name="random-episodes">
-	        <label2>Episode Hub item</label2>
-	        <label>31175</label>
-	        <action>PlayMedia(special://skin/extras/playlists/RandomEpisodes.xsp)</action>
-	        <icon>special://skin/extras/icons/signpost.png</icon>
-	    </item>
-	    <item name="search-tvshows">
-	        <label2>Episode Hub item</label2>
-	        <label>137</label>
-	        <action>RunScript(script.globalsearch,tvshows=true&amp;episodes=true)</action>
-	        <icon>special://skin/extras/icons/search.png</icon>
-	        <visible>System.AddonIsEnabled(script.globalsearch)</visible>
-	    </item>
-	    <item name="genres">
-	        <label2>Episode Hub item</label2>
-	        <label>135</label>
-	        <action>ActivateWindow(Videos,TvShowGenres,return)</action>
-	        <icon>special://skin/extras/icons/genre.png</icon>
-	    </item>
-	    <item name="studios">
-	        <label2>Episode Hub item</label2>
-	        <label>20388</label>
-	        <action>ActivateWindow(Videos,TvShowStudios,return)</action>
-	        <icon>special://skin/extras/icons/director.png</icon>
-	    </item>
-	    <item name="actors">
-	        <label2>Episode Hub item</label2>
-	        <label>344</label>
-	        <action>ActivateWindow(Videos,TvShowActors,return)</action>
-	        <icon>special://skin/extras/icons/actor.png</icon>
-	    </item>
-	    <item name="years">
-	        <label2>Episode Hub item</label2>
-	        <label>652</label>
-	        <action>ActivateWindow(Videos,TvShowYears,return)</action>
-	        <icon>special://skin/extras/icons/year.png</icon>
-	    </item>
-	    <item name="playlists">
-	        <label2>Episode Hub item</label2>
-	        <label>136</label>
-	        <action>ActivateWindow(videos,special://videoplaylists/,return)</action>
-	        <icon>special://skin/extras/icons/playlist.png</icon>
-	    </item>
-	    <item name="files">
-	        <label2>Episode Hub item</label2>
-	        <label>1214</label>
-	        <action>ActivateWindow(Videos,Files,return)</action>
-	        <icon>special://skin/extras/icons/files.png</icon>
-	    </item>
-	    <item name="addons"> 
-	        <label2>Episode Hub item</label2>
-	        <label>24001</label>
-	        <action>ActivateWindow(videos,addons://sources/video/,return)</action>
-	        <icon>special://skin/extras/icons/video-addons.png</icon>
-	    </item>
-	    <item name="update-library">
-	        <label2>Episode Hub item</label2>
-	        <label>$VAR[VideoScanLabel]</label>
-	        <action>UpdateLibrary(video)</action>
-	        <icon>special://skin/extras/icons/update.png</icon>
-	    </item>
-	    <item name="clean-library">
-	        <label>14247</label>
-	        <label2>Episode Hub item</label2>
-	        <action>CleanLibrary(video)</action>
-	        <icon>special://skin/extras/icons/paintbrush.png</icon>
-	    </item>
-	</submenu>
-
-	<submenu name="x1113">
-		<allow widgets="false" backgrounds="false" submenus="false" />
-	</submenu>
-
-	<submenu name="x1114">
-		<allow widgets="false" backgrounds="false" submenus="false" />
-	</submenu>
-
-	<submenu name="x1115">
-		<allow widgets="false" backgrounds="false" submenus="false" />
-	</submenu>
-
-	<submenu name="x1116">
-		<allow widgets="false" backgrounds="false" submenus="false" />
-	</submenu>
-
-	<submenu name="x1117">
-		<allow widgets="false" backgrounds="false" submenus="false" />
-	</submenu>
-
-	<submenu name="x1118">
-		<allow widgets="false" backgrounds="false" submenus="false" />
-	</submenu>
-
-	<submenu name="x1119">
-		<allow widgets="false" backgrounds="false" submenus="false" />
-	</submenu>
+	        <action>ActivateWindow(EventLog,events://,return)</action>
+	    </item>    
+    </submenu>	
 	
 	<!-- Shortcut picker groupings -->
 	<groupings>
