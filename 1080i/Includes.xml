@@ -126,7 +126,7 @@
         + [String.IsEmpty(ListItem.Art(season.poster)) | Window.IsVisible(Home)]
         + String.IsEmpty(ListItem.Art(poster))
         + String.IsEmpty(ListItem.Art(tvshow.poster))
-        + [String.IsEmpty(ListItem.EpgEventIcon) | !String.StartsWith(ListItem.FolderPath,pvr://timers)]
+        + String.IsEmpty(ListItem.EpgEventIcon)
         + [!$EXP[HasThumbImageResource] + String.StartsWith(ListItem.Icon,Default)
         | $EXP[HasThumbImageResource] + [$EXP[IsDefaultStudioIcon] | $EXP[IsDefaultGenreIcon] | $EXP[IsDefaultCountryIcon]]]
     </expression>
@@ -640,7 +640,10 @@
 	</variable>
 
     <variable name="GlobalFanart">
-    	<!-- Video Info Dialog -->
+        <value condition="Window.IsVisible(script-wikipedia.xml) + !String.IsEmpty(Window(Home).Property(TMDbHelper.Wikipedia.Backdrop))">$INFO[Window(Home).Property(TMDbHelper.Wikipedia.Backdrop)]</value>
+        <value condition="Window.IsVisible(script-wikipedia.xml)">$VAR[Image_SimpleBackground]</value>
+
+        <!-- Video Info Dialog -->
         <value condition="$EXP[IsPersonInfo]">special://skin/extras/backgrounds/actor.jpg</value>
 
 		<!-- Weather -->
@@ -679,8 +682,8 @@
         <value condition="String.IsEqual(Container(9500).ListItem.DBtype,episode) + !String.IsEmpty(Container(9500).ListItem.Art(season.fanart)) + String.IsEqual(Container(9500).ListItem.Art(fanart),Container(9500).ListItem.Art(tvshow.fanart))">$INFO[Container(9500).ListItem.Art(season.fanart)]</value>
         <value condition="!String.IsEmpty(Container(9500).ListItem.Art(fanart))">$INFO[Container(9500).ListItem.Art(fanart)]</value>
         <value condition="!String.IsEmpty(ListItem.Property(Fanart)) + !Window.IsVisible(Settings.xml)">$INFO[ListItem.Property(Fanart)]</value>
-        <value condition="[Window.IsVisible(tvchannels) | Window.IsVisible(tvguide)] + !String.IsEmpty(ListItem.EpgEventIcon)">$INFO[ListItem.EpgEventIcon]</value>
         <value condition="[Window.IsVisible(tvchannels) | Window.IsVisible(tvguide)] + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Fanart))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Fanart)]</value>
+        <value condition="[Window.IsVisible(tvchannels) | Window.IsVisible(tvguide)] + !String.IsEmpty(ListItem.EpgEventIcon)">$INFO[ListItem.EpgEventIcon]</value>
         <value>$VAR[Image_SimpleBackground]</value>
     </variable>
 
