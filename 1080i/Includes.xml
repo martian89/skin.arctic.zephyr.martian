@@ -126,7 +126,7 @@
         + [String.IsEmpty(ListItem.Art(season.poster)) | Window.IsVisible(Home)]
         + String.IsEmpty(ListItem.Art(poster))
         + String.IsEmpty(ListItem.Art(tvshow.poster))
-        + [String.IsEmpty(ListItem.EpgEventIcon) | !String.StartsWith(ListItem.FolderPath,pvr://timers)]
+        + String.IsEmpty(ListItem.EpgEventIcon)
         + [!$EXP[HasThumbImageResource] + String.StartsWith(ListItem.Icon,Default)
         | $EXP[HasThumbImageResource] + [$EXP[IsDefaultStudioIcon] | $EXP[IsDefaultGenreIcon] | $EXP[IsDefaultCountryIcon]]]
     </expression>
@@ -599,6 +599,7 @@
         <value condition="!String.IsEmpty(ListItem.Art(fanart)) + [!Skin.HasSetting(disable.background.addons.fanart) | [Skin.HasSetting(disable.background.addons.fanart) + !String.Contains(ListItem.Art(fanart),addons) + ![String.Contains(ListItem.Art(fanart),plugin) | String.Contains(ListItem.Art(fanart),script) | String.Contains(ListItem.Art(fanart),service)]]]">$INFO[ListItem.Art(fanart)]</value>
         <value condition="!String.IsEmpty(ListItem.Property(fanart))">$INFO[ListItem.Property(fanart)]</value>
         <value condition="String.StartsWith(ListItem.FolderPath,pvr://) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Fanart))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Fanart)]</value>
+        <value condition="!String.IsEmpty(ListItem.EpgEventIcon)">$INFO[ListItem.EpgEventIcon]</value>
         
 		<!-- Fallbacks -->
         <value condition="String.IsEqual(ListItem.DBtype,movie) | String.IsEqual(ListItem.DBtype,set)">special://skin/extras/backgrounds/fallbacks/film.jpg</value>
@@ -638,14 +639,17 @@
 	</variable>
 
     <variable name="GlobalFanart">
-    	<!-- Video Info Dialog -->
+        <value condition="Window.IsVisible(script-wikipedia.xml) + !String.IsEmpty(Window(Home).Property(TMDbHelper.Wikipedia.Backdrop))">$INFO[Window(Home).Property(TMDbHelper.Wikipedia.Backdrop)]</value>
+        <value condition="Window.IsVisible(script-wikipedia.xml)">$VAR[Image_SimpleBackground]</value>
+
+        <!-- Video Info Dialog -->
         <value condition="$EXP[IsPersonInfo]">special://skin/extras/backgrounds/actor.jpg</value>
 
 		<!-- Weather -->
         <value condition="Window.IsVisible(weather) + [$EXP[HasWeatherFanartSingle] | $EXP[HasWeatherFanartMulti]]">$VAR[Image_WeatherCurrent]</value>
  
 		<!-- Extra Fanart -->
-        <value condition="[!String.IsEmpty(Control.GetLabel(4399)) + Skin.HasSetting(EnableExtraFanart) + !Skin.HasSetting(global.hidefanart) + [!Skin.HasSetting(disable.background.addons.fanart) | [Skin.HasSetting(disable.background.addons.fanart) + !String.Contains(Control.GetLabel(4399),addons) + ![String.Contains(Control.GetLabel(4399),plugin) | String.Contains(Control.GetLabel(4399),script) | String.Contains(Control.GetLabel(4399),service)]]]] + !String.IsEqual(ListItem.DBType,season) + !Container.Content(seasons)">$INFO[Control.GetLabel(4399)]</value>
+        <value condition="[!String.IsEmpty(Control.GetLabel(4399)) + Skin.HasSetting(EnableExtraFanart) + !Skin.HasSetting(global.hidefanart) + [!Skin.HasSetting(disable.background.addons.fanart) | [Skin.HasSetting(disable.background.addons.fanart) + !String.Contains(Control.GetLabel(4399),addons) + ![String.Contains(Control.GetLabel(4399),plugin) | String.Contains(Control.GetLabel(4399),script) | String.Contains(Control.GetLabel(4399),service)]]]] + !String.IsEqual(ListItem.DBType,season) + !Container.Content(seasons) + ![String.IsEqual(ListItem.DBtype,episode) + [!String.IsEmpty(ListItem.Art(thumb)) + Skin.HasSetting(background.episodes.use.thumbnail)] | [!String.IsEmpty(ListItem.Art(season.fanart)) + String.IsEqual(ListItem.Art(fanart),ListItem.Art(tvshow.fanart))]]">$INFO[Control.GetLabel(4399)]</value>
 
 		<!-- Multi Widgets -->
 		<value condition="Window.IsVisible(home) + Skin.HasSetting(home.vertical.widgets)">$VAR[GlobalFanart_MultiWidgets]</value>
@@ -662,6 +666,8 @@
 
 		<!-- TMDbHelper PVR Artwork -->
         <value condition="Window.IsVisible(home) + String.StartsWith(Container(301).ListItem.FolderPath,pvr://) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Fanart)) + [!Skin.HasSetting(home.dontshowfanart) | Control.HasFocus(301)] + Control.IsVisible(301)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Fanart)]</value>
+        
+        <value condition="Window.IsVisible(home) + !String.IsEmpty(ListItem.EpgEventIcon) + [!Skin.HasSetting(home.dontshowfanart) | Control.HasFocus(301)] + Control.IsVisible(301)">$INFO[ListItem.EpgEventIcon]</value>
 
         <!-- Weather -->
         <value condition="!String.IsEmpty(Weather.Plugin) + [$EXP[HasWeatherFanartSingle] | $EXP[HasWeatherFanartMulti]] + String.IsEqual(Container(300).ListItem.Property(widget),weather) + [!Skin.HasSetting(home.dontshowfanart) | Control.HasFocus(301)]">$VAR[Image_WeatherCurrent]</value>
@@ -677,8 +683,8 @@
         <value condition="String.IsEqual(Container(9500).ListItem.DBtype,episode) + !String.IsEmpty(Container(9500).ListItem.Art(season.fanart)) + String.IsEqual(Container(9500).ListItem.Art(fanart),Container(9500).ListItem.Art(tvshow.fanart))">$INFO[Container(9500).ListItem.Art(season.fanart)]</value>
         <value condition="!String.IsEmpty(Container(9500).ListItem.Art(fanart))">$INFO[Container(9500).ListItem.Art(fanart)]</value>
         <value condition="!String.IsEmpty(ListItem.Property(Fanart)) + !Window.IsVisible(Settings.xml)">$INFO[ListItem.Property(Fanart)]</value>
-        <value condition="[Window.IsVisible(tvchannels) | Window.IsVisible(tvguide)] + !String.IsEmpty(ListItem.EpgEventIcon)">$INFO[ListItem.EpgEventIcon]</value>
         <value condition="[Window.IsVisible(tvchannels) | Window.IsVisible(tvguide)] + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Fanart))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Fanart)]</value>
+        <value condition="[Window.IsVisible(tvchannels) | Window.IsVisible(tvguide)] + !String.IsEmpty(ListItem.EpgEventIcon)">$INFO[ListItem.EpgEventIcon]</value>
         <value>$VAR[Image_SimpleBackground]</value>
     </variable>
 
@@ -846,6 +852,7 @@
             <label>$INFO[ListItem.Art(fanart18)]</label>
             <label>$INFO[ListItem.Art(fanart19)]</label>
             <label>$INFO[ListItem.Art(fanart20)]</label>
+            <label>$INFO[ListItem.Art(artist.fanart)]</label>
             <label>$INFO[ListItem.Art(artist.fanart1)]</label>
             <label>$INFO[ListItem.Art(artist.fanart2)]</label>
             <label>$INFO[ListItem.Art(artist.fanart3)]</label>
@@ -866,6 +873,7 @@
             <label>$INFO[ListItem.Art(artist.fanart18)]</label>
             <label>$INFO[ListItem.Art(artist.fanart19)]</label>
             <label>$INFO[ListItem.Art(artist.fanart20)]</label>
+            <label>$INFO[ListItem.Art(tvshow.fanart)]</label>
             <label>$INFO[ListItem.Art(tvshow.fanart1)]</label>
             <label>$INFO[ListItem.Art(tvshow.fanart2)]</label>
             <label>$INFO[ListItem.Art(tvshow.fanart3)]</label>
