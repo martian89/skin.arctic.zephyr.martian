@@ -601,6 +601,7 @@
         <value condition="!String.IsEmpty(ListItem.Art(fanart)) + [!Skin.HasSetting(disable.background.addons.fanart) | [Skin.HasSetting(disable.background.addons.fanart) + !String.Contains(ListItem.Art(fanart),addons) + ![String.Contains(ListItem.Art(fanart),plugin) | String.Contains(ListItem.Art(fanart),script) | String.Contains(ListItem.Art(fanart),service)]]]">$INFO[ListItem.Art(fanart)]</value>
         <value condition="!String.IsEmpty(ListItem.Property(fanart))">$INFO[ListItem.Property(fanart)]</value>
         <value condition="String.StartsWith(ListItem.FolderPath,pvr://) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Fanart))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Fanart)]</value>
+        <value condition="!String.IsEmpty(ListItem.EpgEventIcon)">$INFO[ListItem.EpgEventIcon]</value>
         
 		<!-- Fallbacks -->
         <value condition="String.IsEqual(ListItem.DBtype,movie) | String.IsEqual(ListItem.DBtype,set)">special://skin/extras/backgrounds/fallbacks/film.jpg</value>
@@ -667,6 +668,8 @@
 
 		<!-- TMDbHelper PVR Artwork -->
         <value condition="Window.IsVisible(home) + String.StartsWith(Container(301).ListItem.FolderPath,pvr://) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Fanart)) + [!Skin.HasSetting(home.dontshowfanart) | Control.HasFocus(301)] + Control.IsVisible(301)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Fanart)]</value>
+        
+        <value condition="Window.IsVisible(home) + !String.IsEmpty(ListItem.EpgEventIcon) + [!Skin.HasSetting(home.dontshowfanart) | Control.HasFocus(301)] + Control.IsVisible(301)">$INFO[ListItem.EpgEventIcon]</value>
 
         <!-- Weather -->
         <value condition="!String.IsEmpty(Weather.Plugin) + [$EXP[HasWeatherFanartSingle] | $EXP[HasWeatherFanartMulti]] + String.IsEqual(Container(300).ListItem.Property(widget),weather) + [!Skin.HasSetting(home.dontshowfanart) | Control.HasFocus(301)]">$VAR[Image_WeatherCurrent]</value>
