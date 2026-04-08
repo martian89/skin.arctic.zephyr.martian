@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <template>
     <other include="widget-classic">
-        <property name="widgetPath" tag="property" attribute="name|widgetPath" value="Submenu">skinshortcuts-submenu</property>
-        <property name="widgetPath" tag="property" attribute="name|widgetPath" value="Settings">SettingsInfoItems</property>
-        <property name="widgetPath" tag="property" attribute="name|widgetPath" value="Systeminfo">SystemInfoItems</property>
-        <property name="widgetPath" tag="property" attribute="name|widgetPath" value="WeatherDaily">WeatherDailyItems</property>
-        <property name="widgetPath" tag="property" attribute="name|widgetPath" value="WeatherHourly">WeatherHourlyItems</property>
-        <property name="widgetPath" tag="property" attribute="name|widgetPath"/>
-        <property name="widgetPath">$VAR[DefWidgetContent]</property>
-        <property name="widgetTarget" tag="property" attribute="name|widgetTarget"/>
-        <property name="widgetTarget">$VAR[DefWidgetTarget]</property>
-        <property name="widgetBrowse" tag="property" attribute="name|widgetLimit" value="Auto">never</property>
-        <property name="widgetBrowse">$VAR[DefWidgetBrowse]</property>
-        <property name="widgetSortby" tag="property" attribute="name|widgetSortby"/>
-        <property name="widgetSortorder" tag="property" attribute="name|widgetSortorder"/>
-        <property name="widgetAutoscroll" tag="property" attribute="name|widgetAutoscroll" value="no">false</property>
-        <property name="widgetAutoscroll">true</property>
-        <property name="widgetLimit" tag="property" attribute="name|widgetLimit"/>
+        <property name="content" tag="property" attribute="name|widgetPath" value="Submenu">skinshortcuts-submenu</property>
+        <property name="content" tag="property" attribute="name|widgetPath" value="Settings">SettingsInfoItems</property>
+        <property name="content" tag="property" attribute="name|widgetPath" value="Systeminfo">SystemInfoItems</property>
+        <property name="content" tag="property" attribute="name|widgetPath" value="WeatherDaily">WeatherDailyItems</property>
+        <property name="content" tag="property" attribute="name|widgetPath" value="WeatherHourly">WeatherHourlyItems</property>
+        <property name="content" tag="property" attribute="name|widgetPath"/>
+        <property name="content">$VAR[DefWidgetContent]</property>
+        <property name="target" tag="property" attribute="name|widgetTarget"/>
+        <property name="target">$VAR[DefWidgetTarget]</property>
+        <property name="browse" tag="property" attribute="name|widgetLimit" value="Auto">never</property>
+        <property name="browse">$VAR[DefWidgetBrowse]</property>
+        <property name="sortby" tag="property" attribute="name|widgetSortby"/>
+        <property name="sortorder" tag="property" attribute="name|widgetSortorder"/>
+        <property name="autoscroll" tag="property" attribute="name|widgetAutoscroll" value="yes">true</property>
+        <property name="autoscroll">false</property>
+        <property name="limit" tag="property" attribute="name|widgetLimit"/>
 
         <property name="autoLimit" tag="property" attribute="name|widgetAspect" value="Square">7</property>
         <property name="autoLimit" tag="property" attribute="name|widgetAspect" value="Thumbnail">4</property>
@@ -26,6 +26,14 @@
         <property name="isAutoLimit" tag="property" attribute="name|widgetLimit" value="Auto">true</property>
         <property name="isAutoLimit">false</property>
 
+        <property name="isDynamicContent" propertyValue="false">
+            <rule tag="property" attribute="name|widget" value="submenu" />                
+            <rule tag="property" attribute="name|widget" value="settings" />                
+            <rule tag="property" attribute="name|widget" value="systeminfo" />                
+            <rule tag="property" attribute="name|widget" value="weather" />                
+        </property>
+        <property name="isDynamicContent">true</property>
+
         <property name="widgetAspectCheck" tag="property" attribute="name|widget" value="submenu">Square</property>
         <property name="widgetAspectCheck" tag="property" attribute="name|widget" value="settings">Square</property>
         <property name="widgetAspectCheck" tag="property" attribute="name|widget" value="systeminfo">Square</property>
@@ -33,14 +41,6 @@
         <property name="widgetAspectCheck" tag="property" attribute="name|widgetAspect" value="Landscape">Landscape</property>
         <property name="widgetAspectCheck" tag="property" attribute="name|widgetAspect" value="Thumbnail">Thumbnail</property>
         <property name="widgetAspectCheck">Poster</property>
-
-        <property name="isNormalLayout" propertyValue="false">
-            <rule tag="property" attribute="name|widget" value="submenu" />                
-            <rule tag="property" attribute="name|widget" value="settings" />                
-            <rule tag="property" attribute="name|widget" value="systeminfo" />                
-            <rule tag="property" attribute="name|widget" value="weather" />                
-        </property>
-        <property name="isNormalLayout">true</property>
 
         <controls>
             <control type="list" id="301">
@@ -57,7 +57,7 @@
                 <preloaditems>2</preloaditems>
                 <orientation>horizontal</orientation>
                 <include>ScrolltimeWidgetsList</include>
-                <include content="Widget_AutoScroll" condition="$SKINSHORTCUTS[widgetAutoscroll]">
+                <include content="Widget_AutoScroll" condition="$SKINSHORTCUTS[autoscroll]">
                     <param name="time" value="Skin.String(AutoScrollTime)" />
                     <param name="condition" value="!Control.HasFocus(301) + !System.ScreenSaverActive + System.IdleTime(1)" />
                 </include>
@@ -129,23 +129,23 @@
                         <param name="reflections" value="Skin.HasSetting(show.reflections)"/>
                     </include>
                 </focusedlayout>
-                <include content="Widget_ContentDynamic" condition="$SKINSHORTCUTS[isNormalLayout]">
-                   <param name="target" value="$SKINSHORTCUTS[widgetTarget]" />
-                   <param name="limit" value="$SKINSHORTCUTS[widgetLimit]" />
-                   <param name="sortby" value="$SKINSHORTCUTS[widgetSortby]" />
-                   <param name="sortorder" value="$SKINSHORTCUTS[widgetSortorder]" />
-                   <param name="browse" value="$SKINSHORTCUTS[widgetBrowse]" />
-                   <param name="content" value="$SKINSHORTCUTS[widgetPath]" />
+                <include content="Widget_ContentDynamic" condition="$SKINSHORTCUTS[isDynamicContent]">
+                   <param name="target" value="$SKINSHORTCUTS[target]" />
+                   <param name="limit" value="$SKINSHORTCUTS[limit]" />
+                   <param name="sortby" value="$SKINSHORTCUTS[sortby]" />
+                   <param name="sortorder" value="$SKINSHORTCUTS[sortorder]" />
+                   <param name="browse" value="$SKINSHORTCUTS[browse]" />
+                   <param name="content" value="$SKINSHORTCUTS[content]" />
                    <param name="is_autolimit" value="$SKINSHORTCUTS[isAutoLimit]" />
                    <param name="autolimit" value="$SKINSHORTCUTS[autoLimit]" />
                 </include>
-                <include content="Widget_ContentInclude" condition="!$SKINSHORTCUTS[isNormalLayout]">
-                   <param name="target" value="$SKINSHORTCUTS[widgetTarget]" />
-                   <param name="limit" value="$SKINSHORTCUTS[widgetLimit]" />
-                   <param name="sortby" value="$SKINSHORTCUTS[widgetSortby]" />
-                   <param name="sortorder" value="$SKINSHORTCUTS[widgetSortorder]" />
+                <include content="Widget_ContentInclude" condition="!$SKINSHORTCUTS[isDynamicContent]">
+                   <param name="target" value="$SKINSHORTCUTS[target]" />
+                   <param name="limit" value="$SKINSHORTCUTS[limit]" />
+                   <param name="sortby" value="$SKINSHORTCUTS[sortby]" />
+                   <param name="sortorder" value="$SKINSHORTCUTS[sortorder]" />
                    <param name="browse" value="never" />
-                   <param name="include" value="$SKINSHORTCUTS[widgetPath]" />
+                   <param name="include" value="$SKINSHORTCUTS[content]" />
                    <param name="is_autolimit" value="$SKINSHORTCUTS[isAutoLimit]" />
                    <param name="autolimit" value="$SKINSHORTCUTS[autoLimit]" />
                 </include>
@@ -154,33 +154,33 @@
     </other>
 
     <other include="widget-featured">
-        <property name="widgetPath" tag="property" attribute="name|widgetPath" value="Submenu">skinshortcuts-submenu</property>
-        <property name="widgetPath" tag="property" attribute="name|widgetPath" value="Settings">SettingsInfoItems</property>
-        <property name="widgetPath" tag="property" attribute="name|widgetPath" value="Systeminfo">SystemInfoItems</property>
-        <property name="widgetPath" tag="property" attribute="name|widgetPath" value="WeatherDaily">WeatherDailyItems</property>
-        <property name="widgetPath" tag="property" attribute="name|widgetPath" value="WeatherHourly">WeatherHourlyItems</property>
-        <property name="widgetPath" tag="property" attribute="name|widgetPath"/>
-        <property name="widgetPath">$VAR[DefWidgetContent]</property>
-        <property name="widgetTarget" tag="property" attribute="name|widgetTarget"/>
-        <property name="widgetTarget">$VAR[DefWidgetTarget]</property>
-        <property name="widgetBrowse" tag="property" attribute="name|widgetLimit" value="Auto">never</property>
-        <property name="widgetBrowse">$VAR[DefWidgetBrowse]</property>
-        <property name="widgetSortby" tag="property" attribute="name|widgetSortby"/>
-        <property name="widgetSortorder" tag="property" attribute="name|widgetSortorder"/>
-        <property name="widgetAutoscroll" tag="property" attribute="name|widgetAutoscroll" value="no">false</property>
-        <property name="widgetAutoscroll">true</property>
-        <property name="widgetLimit" tag="property" attribute="name|widgetLimit"/>
+        <property name="content" tag="property" attribute="name|widgetPath" value="Submenu">skinshortcuts-submenu</property>
+        <property name="content" tag="property" attribute="name|widgetPath" value="Settings">SettingsInfoItems</property>
+        <property name="content" tag="property" attribute="name|widgetPath" value="Systeminfo">SystemInfoItems</property>
+        <property name="content" tag="property" attribute="name|widgetPath" value="WeatherDaily">WeatherDailyItems</property>
+        <property name="content" tag="property" attribute="name|widgetPath" value="WeatherHourly">WeatherHourlyItems</property>
+        <property name="content" tag="property" attribute="name|widgetPath"/>
+        <property name="content">$VAR[DefWidgetContent]</property>
+        <property name="target" tag="property" attribute="name|widgetTarget"/>
+        <property name="target">$VAR[DefWidgetTarget]</property>
+        <property name="browse" tag="property" attribute="name|widgetLimit" value="Auto">never</property>
+        <property name="browse">$VAR[DefWidgetBrowse]</property>
+        <property name="sortby" tag="property" attribute="name|widgetSortby"/>
+        <property name="sortorder" tag="property" attribute="name|widgetSortorder"/>
+        <property name="autoscroll" tag="property" attribute="name|widgetAutoscroll" value="yes">true</property>
+        <property name="autoscroll">false</property>
+        <property name="limit" tag="property" attribute="name|widgetLimit"/>
 
         <property name="isAutoLimit" tag="property" attribute="name|widgetLimit" value="Auto">true</property>
         <property name="isAutoLimit">false</property>
 
-        <property name="isNormalLayout" propertyValue="false">
+        <property name="isDynamicContent" propertyValue="false">
             <rule tag="property" attribute="name|widget" value="submenu" />                
             <rule tag="property" attribute="name|widget" value="settings" />                
             <rule tag="property" attribute="name|widget" value="systeminfo" />                
             <rule tag="property" attribute="name|widget" value="weather" />                
         </property>
-        <property name="isNormalLayout">true</property>
+        <property name="isDynamicContent">true</property>
 
         <controls>
             <control type="wraplist" id="301">
@@ -196,7 +196,7 @@
                 <preloaditems>2</preloaditems>
                 <orientation>horizontal</orientation>
                 <scrolltime tween="quadratic">0</scrolltime>
-                <include content="Widget_AutoScroll" condition="$SKINSHORTCUTS[widgetAutoscroll]">
+                <include content="Widget_AutoScroll" condition="$SKINSHORTCUTS[autoscroll]">
                     <param name="time" value="Skin.String(AutoScrollTime)" />
                     <param name="condition" value="!Control.HasFocus(301) + !System.ScreenSaverActive" />
                 </include>
@@ -206,22 +206,22 @@
                 </itemlayout>
                 <focusedlayout width="1" height="1">
                 </focusedlayout>
-                <include content="Widget_ContentDynamic" condition="$SKINSHORTCUTS[isNormalLayout]">
-                   <param name="target" value="$SKINSHORTCUTS[widgetTarget]" />
-                   <param name="limit" value="$SKINSHORTCUTS[widgetLimit]" />
-                   <param name="sortby" value="$SKINSHORTCUTS[widgetSortby]" />
-                   <param name="sortorder" value="$SKINSHORTCUTS[widgetSortorder]" />
-                   <param name="browse" value="$SKINSHORTCUTS[widgetBrowse]" />
-                   <param name="content" value="$SKINSHORTCUTS[widgetPath]" />
+                <include content="Widget_ContentDynamic" condition="$SKINSHORTCUTS[isDynamicContent]">
+                   <param name="target" value="$SKINSHORTCUTS[target]" />
+                   <param name="limit" value="$SKINSHORTCUTS[limit]" />
+                   <param name="sortby" value="$SKINSHORTCUTS[sortby]" />
+                   <param name="sortorder" value="$SKINSHORTCUTS[sortorder]" />
+                   <param name="browse" value="$SKINSHORTCUTS[browse]" />
+                   <param name="content" value="$SKINSHORTCUTS[content]" />
                    <param name="is_autolimit" value="$SKINSHORTCUTS[isAutoLimit]" />
                 </include>
-                <include content="Widget_ContentInclude" condition="!$SKINSHORTCUTS[isNormalLayout]">
-                   <param name="target" value="$SKINSHORTCUTS[widgetTarget]" />
-                   <param name="limit" value="$SKINSHORTCUTS[widgetLimit]" />
-                   <param name="sortby" value="$SKINSHORTCUTS[widgetSortby]" />
-                   <param name="sortorder" value="$SKINSHORTCUTS[widgetSortorder]" />
+                <include content="Widget_ContentInclude" condition="!$SKINSHORTCUTS[isDynamicContent]">
+                   <param name="target" value="$SKINSHORTCUTS[target]" />
+                   <param name="limit" value="$SKINSHORTCUTS[limit]" />
+                   <param name="sortby" value="$SKINSHORTCUTS[sortby]" />
+                   <param name="sortorder" value="$SKINSHORTCUTS[sortorder]" />
                    <param name="browse" value="never" />
-                   <param name="include" value="$SKINSHORTCUTS[widgetPath]" />
+                   <param name="include" value="$SKINSHORTCUTS[content]" />
                    <param name="is_autolimit" value="$SKINSHORTCUTS[isAutoLimit]" />
                 </include>
             </control>
@@ -229,22 +229,22 @@
     </other>
 
     <other include="widget-vertical">
-        <property name="widgetPath" tag="property" attribute="name|widgetPath" value="Submenu">skinshortcuts-submenu</property>
-        <property name="widgetPath" tag="property" attribute="name|widgetPath" value="Settings">SettingsInfoItems</property>
-        <property name="widgetPath" tag="property" attribute="name|widgetPath" value="Systeminfo">SystemInfoItems</property>
-        <property name="widgetPath" tag="property" attribute="name|widgetPath" value="WeatherDaily">WeatherDailyItems</property>
-        <property name="widgetPath" tag="property" attribute="name|widgetPath" value="WeatherHourly">WeatherHourlyItems</property>
-        <property name="widgetPath" tag="property" attribute="name|widgetPath"/>
-        <property name="widgetPath">$VAR[DefWidgetContent]</property>
-        <property name="widgetTarget" tag="property" attribute="name|widgetTarget"/>
-        <property name="widgetTarget">$VAR[DefWidgetTarget]</property>
-        <property name="widgetBrowse" tag="property" attribute="name|widgetLimit" value="Auto">never</property>
-        <property name="widgetBrowse">$VAR[DefWidgetBrowse]</property>
-        <property name="widgetSortby" tag="property" attribute="name|widgetSortby"/>
-        <property name="widgetSortorder" tag="property" attribute="name|widgetSortorder"/>
-        <property name="widgetAutoscroll" tag="property" attribute="name|widgetAutoscroll" value="no">false</property>
-        <property name="widgetAutoscroll">true</property>
-        <property name="widgetLimit" tag="property" attribute="name|widgetLimit"/>
+        <property name="content" tag="property" attribute="name|widgetPath" value="Submenu">skinshortcuts-submenu</property>
+        <property name="content" tag="property" attribute="name|widgetPath" value="Settings">SettingsInfoItems</property>
+        <property name="content" tag="property" attribute="name|widgetPath" value="Systeminfo">SystemInfoItems</property>
+        <property name="content" tag="property" attribute="name|widgetPath" value="WeatherDaily">WeatherDailyItems</property>
+        <property name="content" tag="property" attribute="name|widgetPath" value="WeatherHourly">WeatherHourlyItems</property>
+        <property name="content" tag="property" attribute="name|widgetPath"/>
+        <property name="content">$VAR[DefWidgetContent]</property>
+        <property name="target" tag="property" attribute="name|widgetTarget"/>
+        <property name="target">$VAR[DefWidgetTarget]</property>
+        <property name="browse" tag="property" attribute="name|widgetLimit" value="Auto">never</property>
+        <property name="browse">$VAR[DefWidgetBrowse]</property>
+        <property name="sortby" tag="property" attribute="name|widgetSortby"/>
+        <property name="sortorder" tag="property" attribute="name|widgetSortorder"/>
+        <property name="autoscroll" tag="property" attribute="name|widgetAutoscroll" value="yes">true</property>
+        <property name="autoscroll">false</property>
+        <property name="limit" tag="property" attribute="name|widgetLimit"/>
 
         <property name="autoLimit" tag="property" attribute="name|widget" value="submenu">5</property>
         <property name="autoLimit" tag="property" attribute="name|widget" value="settings">5</property>
@@ -257,6 +257,15 @@
         <property name="isAutoLimit" tag="property" attribute="name|widgetLimit" value="Auto">true</property>
         <property name="isAutoLimit">false</property>
 
+        <property name="isDynamicContent" propertyValue="false">
+            <rule tag="property" attribute="name|widget" value="mysubmenu" />                
+            <rule tag="property" attribute="name|widget" value="settings" />                
+            <rule tag="property" attribute="name|widget" value="systeminfo" />                
+            <rule tag="property" attribute="name|widget" value="weatherdaily" />                
+            <rule tag="property" attribute="name|widget" value="weatherhourly" />                
+        </property>
+        <property name="isDynamicContent">true</property>
+
         <property name="widgetAspectCheck" tag="property" attribute="name|widget" value="submenu">Square</property>
         <property name="widgetAspectCheck" tag="property" attribute="name|widget" value="settings">Square</property>
         <property name="widgetAspectCheck" tag="property" attribute="name|widget" value="systeminfo">Square</property>
@@ -264,15 +273,6 @@
         <property name="widgetAspectCheck" tag="property" attribute="name|widgetAspect" value="Landscape">Landscape</property>
         <property name="widgetAspectCheck" tag="property" attribute="name|widgetAspect" value="Thumbnail">Thumbnail</property>
         <property name="widgetAspectCheck">Poster</property>
-
-        <property name="isNormalLayout" propertyValue="false">
-            <rule tag="property" attribute="name|widget" value="mysubmenu" />                
-            <rule tag="property" attribute="name|widget" value="settings" />                
-            <rule tag="property" attribute="name|widget" value="systeminfo" />                
-            <rule tag="property" attribute="name|widget" value="weatherdaily" />                
-            <rule tag="property" attribute="name|widget" value="weatherhourly" />                
-        </property>
-        <property name="isNormalLayout">true</property>
 
         <controls>
             <control type="fixedlist" id="301">
@@ -297,7 +297,7 @@
                 <pagecontrol>60</pagecontrol>
                 <movement>$PYTHON[int(autoLimit) - 1]</movement>
                 <include>ScrolltimeWidgetsList</include>
-                <include content="Widget_AutoScroll" condition="$SKINSHORTCUTS[widgetAutoscroll]">
+                <include content="Widget_AutoScroll" condition="$SKINSHORTCUTS[autoscroll]">
                     <param name="time" value="Skin.String(AutoScrollTime)" />
                     <param name="condition" value="!Control.HasFocus(301) + !System.ScreenSaverActive + System.IdleTime(1)" />
                 </include>
@@ -353,23 +353,23 @@
                         <param name="height" value="325"/>
                     </include>
                 </focusedlayout>
-                <include content="Widget_ContentDynamic" condition="$SKINSHORTCUTS[isNormalLayout]">
-                   <param name="target" value="$SKINSHORTCUTS[widgetTarget]" />
-                   <param name="limit" value="$SKINSHORTCUTS[widgetLimit]" />
-                   <param name="sortby" value="$SKINSHORTCUTS[widgetSortby]" />
-                   <param name="sortorder" value="$SKINSHORTCUTS[widgetSortorder]" />
-                   <param name="browse" value="$SKINSHORTCUTS[widgetBrowse]" />
-                   <param name="content" value="$SKINSHORTCUTS[widgetPath]" />
+                <include content="Widget_ContentDynamic" condition="$SKINSHORTCUTS[isDynamicContent]">
+                   <param name="target" value="$SKINSHORTCUTS[target]" />
+                   <param name="limit" value="$SKINSHORTCUTS[limit]" />
+                   <param name="sortby" value="$SKINSHORTCUTS[sortby]" />
+                   <param name="sortorder" value="$SKINSHORTCUTS[sortorder]" />
+                   <param name="browse" value="$SKINSHORTCUTS[browse]" />
+                   <param name="content" value="$SKINSHORTCUTS[content]" />
                    <param name="is_autolimit" value="$SKINSHORTCUTS[isAutoLimit]" />
                    <param name="autolimit" value="$SKINSHORTCUTS[autoLimit]" />
                 </include>
-                <include content="Widget_ContentInclude" condition="!$SKINSHORTCUTS[isNormalLayout]">
-                   <param name="target" value="$SKINSHORTCUTS[widgetTarget]" />
-                   <param name="limit" value="$SKINSHORTCUTS[widgetLimit]" />
-                   <param name="sortby" value="$SKINSHORTCUTS[widgetSortby]" />
-                   <param name="sortorder" value="$SKINSHORTCUTS[widgetSortorder]" />
+                <include content="Widget_ContentInclude" condition="!$SKINSHORTCUTS[isDynamicContent]">
+                   <param name="target" value="$SKINSHORTCUTS[target]" />
+                   <param name="limit" value="$SKINSHORTCUTS[limit]" />
+                   <param name="sortby" value="$SKINSHORTCUTS[sortby]" />
+                   <param name="sortorder" value="$SKINSHORTCUTS[sortorder]" />
                    <param name="browse" value="never" />
-                   <param name="include" value="$SKINSHORTCUTS[widgetPath]" />
+                   <param name="include" value="$SKINSHORTCUTS[content]" />
                    <param name="is_autolimit" value="$SKINSHORTCUTS[isAutoLimit]" />
                    <param name="autolimit" value="$SKINSHORTCUTS[autoLimit]" />
                 </include>
@@ -425,11 +425,11 @@
                     <include>HiddenListControl</include>
                     <content>
                         <item>
-                            <visible>Container($PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]).ListItem.IsCollection + !String.IsEmpty($PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]).ListItem.DBID</visible>
+                            <visible>!ControlGroup(301).HasFocus() + Container($PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]).ListItem.IsCollection + !String.IsEmpty($PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]).ListItem.DBID</visible>
                             <label>videodb://movies/sets/$INFO[Container($PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]).ListItem.DBID]/?setid=$INFO[Container($PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]).ListItem.DBID]</label>
                         </item>
                         <item>
-                            <visible>Container($PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]).ListItem.IsFolder + String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]).ListItem.DBType,album)</visible>
+                            <visible>!ControlGroup(301).HasFocus() + Container($PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]).ListItem.IsFolder + String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]).ListItem.DBType,album)</visible>
                             <label>$INFO[Container($PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]).ListItem.FolderPath]</label>
                         </item>
                     </content>    
@@ -441,40 +441,62 @@
 	        <property name="id" tag="mainmenuid"/>
 
             <!--- Widget Content -->
-            <property name="widgetPath" tag="property" attribute="name|list" value="Submenu">skinshortcuts-submenu</property>
-            <property name="widgetPath" tag="property" attribute="name|list" value="Settings">SettingsInfoItems</property>
-            <property name="widgetPath" tag="property" attribute="name|list" value="Systeminfo">SystemInfoItems</property>
-            <property name="widgetPath" tag="property" attribute="name|list" value="WeatherDaily">WeatherDailyItems</property>
-            <property name="widgetPath" tag="property" attribute="name|list" value="WeatherHourly">WeatherHourlyItems</property>
-	        <property name="widgetPath" tag="property" attribute="name|list"/>
+            <property name="content" tag="property" attribute="name|list" value="Submenu">skinshortcuts-submenu</property>
+            <property name="content" tag="property" attribute="name|list" value="Settings">SettingsInfoItems</property>
+            <property name="content" tag="property" attribute="name|list" value="Systeminfo">SystemInfoItems</property>
+            <property name="content" tag="property" attribute="name|list" value="WeatherDaily">WeatherDailyItems</property>
+            <property name="content" tag="property" attribute="name|list" value="WeatherHourly">WeatherHourlyItems</property>
+	        <property name="content" tag="property" attribute="name|list"/>
 	        
-	        <property name="widgetTarget" tag="property" attribute="name|widgetTarget"/>
-	        <property name="widgetTarget">$VAR[DefWidgetTarget]</property>
-            <property name="widgetBrowse" tag="label2" value="tvguide">never</property>
-            <property name="widgetBrowse" tag="property" attribute="name|widgetLimit" value="Auto">never</property>
-	        <property name="widgetBrowse">$VAR[DefWidgetBrowse]</property>
-	        <property name="widgetSortby" tag="property" attribute="name|widgetSortby"/>
-	        <property name="widgetSortorder" tag="property" attribute="name|widgetSortorder"/>
-	        <property name="widgetAutoscroll" tag="property" attribute="name|widgetAutoscroll" value="no">false</property>
-	        <property name="widgetAutoscroll">true</property>
-	        <property name="widgetLimit" tag="label2" value="tvguide">5</property>
-	        <property name="widgetLimit" tag="property" attribute="name|widgetLimit"/>
+	        <property name="target" tag="property" attribute="name|widgetTarget"/>
+            <property name="browse" tag="label2" value="tvguide">never</property>
+            <property name="browse" tag="property" attribute="name|widgetLimit" value="Auto">never</property>
+	        <property name="browse">$VAR[DefWidgetBrowse]</property>
+	        <property name="sortby" tag="property" attribute="name|widgetSortby"/>
+	        <property name="sortorder" tag="property" attribute="name|widgetSortorder"/>
+	        <property name="autoscroll" tag="property" attribute="name|widgetAutoscroll" value="yes">true</property>
+	        <property name="autoscroll">false</property>
+	        <property name="limit" tag="label2" value="tvguide">5</property>
+	        <property name="limit" tag="property" attribute="name|widgetLimit"/>
 
             <property name="isAutoLimit" tag="property" attribute="name|widgetLimit" value="Auto">true</property>
             <property name="isAutoLimit">false</property>
 
-            <property name="widgetName" tag="label" />
-            <property name="widgetName">$LOCALIZE[31105]</property>
+            <property name="label" tag="label" />
+            <property name="label">$LOCALIZE[31105]</property>
 
-            <property name="widgetMovement" tag="property" attribute="name|list" value="Submenu">4</property>
-            <property name="widgetMovement" tag="property" attribute="name|list" value="Settings">4</property>
-            <property name="widgetMovement" tag="property" attribute="name|list" value="Systeminfo">4</property>
-            <property name="widgetMovement" tag="property" attribute="name|widgetAspect" value="Square">4</property>
-            <property name="widgetMovement" tag="property" attribute="name|widgetAspect" value="Thumbnail">2</property>
-            <property name="widgetMovement" tag="property" attribute="name|widgetAspect" value="Landscape">2</property>
-            <property name="widgetMovement" tag="property" attribute="name|widgetAspect" value="LandscapeSmall">3</property>
-            <property name="widgetMovement" tag="property" attribute="name|widgetAspect" value="LandscapePosterSmall">2</property>
-            <property name="widgetMovement">7</property>
+            <property name="movement" tag="property" attribute="name|list" value="Submenu">4</property>
+            <property name="movement" tag="property" attribute="name|list" value="Settings">4</property>
+            <property name="movement" tag="property" attribute="name|list" value="Systeminfo">4</property>
+            <property name="movement" tag="property" attribute="name|widgetAspect" value="Square">4</property>
+            <property name="movement" tag="property" attribute="name|widgetAspect" value="Thumbnail">2</property>
+            <property name="movement" tag="property" attribute="name|widgetAspect" value="Landscape">2</property>
+            <property name="movement" tag="property" attribute="name|widgetAspect" value="LandscapeSmall">3</property>
+            <property name="movement" tag="property" attribute="name|widgetAspect" value="LandscapePosterSmall">2</property>
+            <property name="movement">7</property>
+
+            <property name="isSubmenu" tag="property" attribute="name|list" value="Submenu">true</property>
+            <property name="isSubmenu">false</property>
+            <property name="isSettings" tag="property" attribute="name|list" value="Settings">true</property>
+            <property name="isSettings">false</property>
+ 
+            <property name="isDynamicContent" propertyValue="false">
+                <rule tag="property" attribute="name|list" value="Submenu" />                
+                <rule tag="property" attribute="name|list" value="Settings" />                
+                <rule tag="property" attribute="name|list" value="Systeminfo" />                
+                <rule tag="property" attribute="name|list" value="WeatherDaily" />                
+                <rule tag="property" attribute="name|list" value="WeatherHourly" />                
+            </property>
+            <property name="isDynamicContent">true</property>
+
+            <property name="isFullscreenWidget" tag="property" attribute="name|widgetFullscreen" value="yes">true</property>
+            <property name="isFullscreenWidget">false</property>
+
+            <property name="widgetAspectCheck" tag="property" attribute="name|list" value="Submenu">Square</property>
+            <property name="widgetAspectCheck" tag="property" attribute="name|widgetAspect" value="LandscapePosterSmall">LandPoSmall</property>
+            <property name="widgetAspectCheck" tag="property" attribute="name|widgetAspect" value="LandscapeSmall">LandSmall</property>
+            <property name="widgetAspectCheck" tag="property" attribute="name|widgetAspect" />
+            <property name="widgetAspectCheck">Poster</property>
 
             <property name="widgetInclude" tag="label2" value="tvguide">Widget_Layout_PVRGuide</property>
             <property name="widgetInclude" tag="property" attribute="name|list" value="Settings">Widget_Layout_System</property>
@@ -483,34 +505,11 @@
             <property name="widgetInclude" tag="property" attribute="name|list" value="WeatherHourly">Widget_Layout_Weather</property>
             <property name="widgetInclude">Widget_Layout_Normal</property>
 
-            <property name="widgetInfoInclude" tag="property" attribute="name|list" value="Settings">HomeWidgetsSysteminfo</property>
-            <property name="widgetInfoInclude" tag="property" attribute="name|list" value="Systeminfo">HomeWidgetsSysteminfo</property>
-            <property name="widgetInfoInclude" tag="property" attribute="name|list" value="WeatherDaily">HomeWidgetsWeatherInfo</property>
-            <property name="widgetInfoInclude" tag="property" attribute="name|list" value="WeatherHourly">HomeWidgetsWeatherInfo</property>
-            <property name="widgetInfoInclude">HomeWidgetsFullscreenInfo</property>
-
-            <property name="isSubmenu" tag="property" attribute="name|list" value="Submenu">true</property>
-            <property name="isSubmenu">false</property>
-            <property name="isSettings" tag="property" attribute="name|list" value="Settings">true</property>
-            <property name="isSettings">false</property>
- 
-            <property name="isNormalLayout" propertyValue="false">
-                <rule tag="property" attribute="name|list" value="Submenu" />                
-                <rule tag="property" attribute="name|list" value="Settings" />                
-                <rule tag="property" attribute="name|list" value="Systeminfo" />                
-                <rule tag="property" attribute="name|list" value="WeatherDaily" />                
-                <rule tag="property" attribute="name|list" value="WeatherHourly" />                
-            </property>
-            <property name="isNormalLayout">true</property>
-
-            <property name="isFullscreenWidget" tag="property" attribute="name|widgetFullscreen" value="yes">true</property>
-            <property name="isFullscreenWidget">false</property>
-
-            <property name="widgetAspectCheck" tag="property" attribute="name|list" value="Submenu">Square</property>
-	        <property name="widgetAspectCheck" tag="property" attribute="name|widgetAspect" value="LandscapePosterSmall">LandPoSmall</property>
-	        <property name="widgetAspectCheck" tag="property" attribute="name|widgetAspect" value="LandscapeSmall">LandSmall</property>
-            <property name="widgetAspectCheck" tag="property" attribute="name|widgetAspect" />
-	        <property name="widgetAspectCheck">Poster</property>
+            <property name="fullscreenInfoInclude" tag="property" attribute="name|list" value="Settings">HomeWidgetsSysteminfo</property>
+            <property name="fullscreenInfoInclude" tag="property" attribute="name|list" value="Systeminfo">HomeWidgetsSysteminfo</property>
+            <property name="fullscreenInfoInclude" tag="property" attribute="name|list" value="WeatherDaily">HomeWidgetsWeatherInfo</property>
+            <property name="fullscreenInfoInclude" tag="property" attribute="name|list" value="WeatherHourly">HomeWidgetsWeatherInfo</property>
+            <property name="fullscreenInfoInclude">HomeWidgetsFullscreenInfo</property>
 
             <!-- Widget Container -->
             <property name="layoutHeight" tag="property" attribute="name|widgetFullscreen" value="yes">710</property>
@@ -527,7 +526,7 @@
                     <visible>$SKINSHORTCUTS[isFullscreenWidget] | Skin.HasSetting(homemenu.netflix) | Integer.IsEqual(Container(9989).NumItems,1)</visible>
                     <visible>[Integer.IsGreater(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]).NumItems,0) | Container($PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]).IsUpdating]</visible>
                     <control type="grouplist">
-                        <include content="$SKINSHORTCUTS[widgetInfoInclude]" condition="!$SKINSHORTCUTS[isSubmenu]">
+                        <include content="$SKINSHORTCUTS[fullscreenInfoInclude]" condition="!$SKINSHORTCUTS[isSubmenu]">
                             <param name="id" value="$PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]"/>
                             <param name="issettingslayout" value="$SKINSHORTCUTS[isSettings]"/>
                             <param name="isfullscreenlayout" value="!$SKINSHORTCUTS[isFullscreenWidget] + !Skin.HasSetting(homemenu.netflix) + Integer.IsEqual(Container($PYTHON[int(mainmenuid) * 1000 + 301]).NumItems,1)" />
@@ -535,7 +534,7 @@
                          </include>
                     </control>
                     <control type="grouplist">
-                        <include content="HomeClearArt" condition="$SKINSHORTCUTS[isNormalLayout] + !Skin.HasSetting(homemenu.netflix) + !Skin.HasSetting(home.multiwidgets.hideclearart)">
+                        <include content="HomeClearArt" condition="$SKINSHORTCUTS[isDynamicContent] + !Skin.HasSetting(homemenu.netflix) + !Skin.HasSetting(home.multiwidgets.hideclearart)">
                             <param name="id" value="$PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]"/>
                             <param name="isfullscreenlayout" value="!$SKINSHORTCUTS[isFullscreenWidget] + !Skin.HasSetting(homemenu.netflix) + Integer.IsEqual(Container($PYTHON[int(mainmenuid) * 1000 + 301]).NumItems,1)" />
                         </include>
@@ -550,8 +549,8 @@
 	                    <param name="height" value="$SKINSHORTCUTS[layoutHeight]"/>
 	                    <param name="height2" value="$SKINSHORTCUTS[layoutHeight2]"/>
 	                    <param name="orientation" value="$SKINSHORTCUTS[orientation]"/>
-                        <param name="movement" value="$SKINSHORTCUTS[widgetMovement]"/>
-                        <param name="autoscroll" value="$SKINSHORTCUTS[widgetAutoscroll]"/>
+                        <param name="movement" value="$SKINSHORTCUTS[movement]"/>
+                        <param name="autoscroll" value="$SKINSHORTCUTS[autoscroll]"/>
                     </include>
                     <!-- ItemLayout -->
 	                <include content="$SKINSHORTCUTS[widgetInclude]">
@@ -563,25 +562,25 @@
                         <param name="LandscapePosterSmall" value="$PYTHON['true' if widgetAspectCheck in 'LandPoSmall' else 'false']"/>
 	                    <param name="Square" value="$PYTHON['true' if widgetAspectCheck in 'Square' else 'false']"/>  
                   </include>
-	                <include content="Widget_ContentDynamic" condition="$SKINSHORTCUTS[isNormalLayout]">
-	                   <param name="target" value="$SKINSHORTCUTS[widgetTarget]" />
-                       <param name="limit" value="$SKINSHORTCUTS[widgetLimit]" />
-	                   <param name="sortby" value="$SKINSHORTCUTS[widgetSortby]" />
-                       <param name="sortorder" value="$SKINSHORTCUTS[widgetSortorder]" />
-                       <param name="browse" value="$SKINSHORTCUTS[widgetBrowse]" />
-                       <param name="content" value="$SKINSHORTCUTS[widgetPath]" />
+	                <include content="Widget_ContentDynamic" condition="$SKINSHORTCUTS[isDynamicContent]">
+	                   <param name="target" value="$SKINSHORTCUTS[target]" />
+                       <param name="limit" value="$SKINSHORTCUTS[limit]" />
+	                   <param name="sortby" value="$SKINSHORTCUTS[sortby]" />
+                       <param name="sortorder" value="$SKINSHORTCUTS[sortorder]" />
+                       <param name="browse" value="$SKINSHORTCUTS[browse]" />
+                       <param name="content" value="$SKINSHORTCUTS[content]" />
                        <param name="is_autolimit" value="$SKINSHORTCUTS[isAutoLimit]" />
-                       <param name="autolimit" value="$PYTHON[int(widgetMovement) + 1]" />
+                       <param name="autolimit" value="$PYTHON[int(movement) + 1]" />
 	                </include>
-                    <include content="Widget_ContentInclude" condition="!$SKINSHORTCUTS[isNormalLayout]">
-                       <param name="target" value="$SKINSHORTCUTS[widgetTarget]" />
-                       <param name="limit" value="$SKINSHORTCUTS[widgetLimit]" />
-                       <param name="sortby" value="$SKINSHORTCUTS[widgetSortby]" />
-                       <param name="sortorder" value="$SKINSHORTCUTS[widgetSortorder]" />
+                    <include content="Widget_ContentInclude" condition="!$SKINSHORTCUTS[isDynamicContent]">
+                       <param name="target" value="$SKINSHORTCUTS[target]" />
+                       <param name="limit" value="$SKINSHORTCUTS[limit]" />
+                       <param name="sortby" value="$SKINSHORTCUTS[sortby]" />
+                       <param name="sortorder" value="$SKINSHORTCUTS[sortorder]" />
                        <param name="browse" value="never" />
-                       <param name="include" value="$SKINSHORTCUTS[widgetPath]" />
+                       <param name="include" value="$SKINSHORTCUTS[content]" />
                        <param name="is_autolimit" value="$SKINSHORTCUTS[isAutoLimit]" />
-                       <param name="autolimit" value="$PYTHON[int(widgetMovement) + 1]" />
+                       <param name="autolimit" value="$PYTHON[int(movement) + 1]" />
                     </include>
                 </control>
                 <control type="group" id="$PYTHON[int(mainmenuid) * 10000 + 7500 + int(id)]">
@@ -590,8 +589,7 @@
                     <control type="grouplist">
                         <include content="Widget_Title_Label">
                             <param name="focusid" value="$PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]"/>
-                            <param name="label" value="$SKINSHORTCUTS[widgetName]"/>
-                            <param name="infoid" value="$PYTHON[int(mainmenuid) * 10000 + 4400 + int(id)]" />
+                            <param name="label" value="$SKINSHORTCUTS[label]"/>
                             <param name="showinfo" value="!$SKINSHORTCUTS[isFullscreenWidget] + !Integer.IsEqual(Container($PYTHON[int(mainmenuid) * 1000 + 301]).NumItems,1)" />
                         </include>
                     </control>
@@ -602,10 +600,10 @@
 
     <other include="global">
         <!--- Widget Content -->
-        <property name="widgetPath">$VAR[DefWidgetContent]</property>
-        <property name="widgetTarget">$VAR[DefWidgetTarget]</property>
-        <property name="widgetBrowse">$VAR[DefWidgetBrowse]</property>
-        <property name="widgetLimit">$NUMBER[25]</property>
+        <property name="content">$VAR[DefWidgetContent]</property>
+        <property name="target">$VAR[DefWidgetTarget]</property>
+        <property name="browse">$VAR[DefWidgetBrowse]</property>
+        <property name="limit">$NUMBER[25]</property>
 
         <controls>
             <control type="group">
@@ -654,10 +652,10 @@
                         <param name="shortcutsid" value="993100"/>
                     </include>
                     <include content="Widget_ContentDynamic">
-                       <param name="target" value="$SKINSHORTCUTS[widgetTarget]" />
-                       <param name="browse" value="$SKINSHORTCUTS[widgetBrowse]" />
-                       <param name="content" value="$SKINSHORTCUTS[widgetPath]" />
-                       <param name="limit" value="$SKINSHORTCUTS[widgetLimit]" />
+                       <param name="target" value="$SKINSHORTCUTS[target]" />
+                       <param name="browse" value="$SKINSHORTCUTS[browse]" />
+                       <param name="content" value="$SKINSHORTCUTS[content]" />
+                       <param name="limit" value="$SKINSHORTCUTS[limit]" />
                     </include>
                 </control>
                 <!-- InfoSub -->
@@ -678,7 +676,7 @@
                         </include>
                     </control>
                 </control>
-           </control>        
+            </control>        
 
             <control type="group">
                 <visible>[String.IsEmpty(Skin.String(home.slideshowpath)) | String.IsEqual(Skin.String(home.slideshowpath),none)] + String.IsEmpty(Container(300).ListItem.Property(Background))</visible>
@@ -691,7 +689,7 @@
                     <include>HiddenListControl</include>
                     <content>
                         <item>
-                            <visible>Container(993100).ListItem.IsCollection + !String.IsEmpty(993100).ListItem.DBID</visible>
+                            <visible>!ControlGroup(301).HasFocus() + Container(993100).ListItem.IsCollection + !String.IsEmpty(993100).ListItem.DBID</visible>
                             <label>videodb://movies/sets/$INFO[Container(993100).ListItem.DBID]/?setid=$INFO[Container(993100).ListItem.DBID]</label>
                         </item>
                     </content>    
@@ -700,4 +698,182 @@
         </controls>
     </other>
 
+    <other>
+        <property name="mainmenuid" tag="mainmenuid" />
+    
+        <variables>
+	        <variable name="TMDBHelperWidgetContainer_Parent">
+	            <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 1000 + 301])">$VAR[TMDBHelperWidgetContainer_C$PYTHON[int(mainmenuid) * 1000 + 301]]</value>
+	        </variable>
+            <variable name="GlobalFanart_MultiWidgets_Parent">
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 1000 + 301])">$VAR[GlobalFanart_MultiWidgets_C$PYTHON[int(mainmenuid) * 1000 + 301]]</value>            
+            </variable>
+            <variable name="TMDBHelperWidgetContainer_C$PYTHON[int(mainmenuid) * 1000 + 301]">
+		        <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 1])">$NUMBER[$PYTHON[int(mainmenuid) * 10000 + 3100 + 1]]</value>
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 2])">$NUMBER[$PYTHON[int(mainmenuid) * 10000 + 3100 + 2]]</value>
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 3])">$NUMBER[$PYTHON[int(mainmenuid) * 10000 + 3100 + 3]]</value>
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 4])">$NUMBER[$PYTHON[int(mainmenuid) * 10000 + 3100 + 4]]</value>
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 5])">$NUMBER[$PYTHON[int(mainmenuid) * 10000 + 3100 + 5]]</value>
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 6])">$NUMBER[$PYTHON[int(mainmenuid) * 10000 + 3100 + 6]]</value>
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 7])">$NUMBER[$PYTHON[int(mainmenuid) * 10000 + 3100 + 7]]</value>
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 8])">$NUMBER[$PYTHON[int(mainmenuid) * 10000 + 3100 + 8]]</value>
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 9])">$NUMBER[$PYTHON[int(mainmenuid) * 10000 + 3100 + 9]]</value>
+            </variable>
+            <variable name="GlobalFanart_MultiWidgets_C$PYTHON[int(mainmenuid) * 1000 + 301]">
+		        <!-- Widget 1 -->
+		        <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 1]) + String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 1]).ListItem.DBtype,episode) + !String.IsEmpty(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 1]).ListItem.Art(thumb)) + Skin.HasSetting(background.episodes.use.thumbnail)">$INFO[Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 1]).ListItem.Art(thumb)]</value>
+		        <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 1]) + String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 1]).ListItem.DBtype,episode) + !String.IsEmpty(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 1]).ListItem.Art(season.fanart)) + String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 1]).ListItem.Art(fanart),Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 1])ListItem.Art(tvshow.fanart))">$INFO[Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 1]).ListItem.Art(season.fanart)]</value>
+		        <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 1]) + !String.IsEmpty(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 1]).ListItem.Art(fanart))">$INFO[Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 1]).ListItem.Art(fanart)]</value>
+		        <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 1]) + !String.IsEmpty(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 1]).ListItem.Property(fanart))">$INFO[Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 1]).ListItem.Property(fanart)]</value>
+		        <!-- PVR -->
+		        <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 1]) + String.StartsWith(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 1]).ListItem.FolderPath,pvr://) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Fanart))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Fanart)]</value>
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 1]) + !String.IsEmpty(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 1]).ListItem.EpgEventIcon)">$INFO[Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 1]).ListItem.EpgEventIcon)]</value>
+		        <!-- Weather -->
+		        <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 1]) + !String.IsEmpty(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 1]).ListItem.Property(FanartCode)) + $EXP[HasWeatherFanartMulti]">$VAR[WeatherFanartPath]$INFO[Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 1]).ListItem.Property(FanartCode)]/</value>
+		        <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 1]) + !String.IsEmpty(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 1]).ListItem.Property(FanartCode)) + $EXP[HasWeatherFanartSingle]">$VAR[WeatherFanartPath]$INFO[Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 1]).ListItem.Property(FanartCode),,.jpg]</value>
+		        <!-- Fallback -->
+		        <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 1]) + [String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 1]).ListItem.DBType,movie) | String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 1]).ListItem.DBType,set)]">special://skin/extras/backgrounds/fallbacks/film.jpg</value>
+		        <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 1]) + [String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 1]).ListItem.DBType,artist) | String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 1]).ListItem.DBType,album) | String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 1]).ListItem.DBType,song) | String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 1]).ListItem.DBType,musicvideo)]">special://skin/extras/backgrounds/fallbacks/music.jpg</value>
+		        <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 1]) + [String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 1]).ListItem.DBType,tvshow) | String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 1]).ListItem.DBType,season) | String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 1]).ListItem.DBType,episode) | String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 1]).ListItem.DBType,video)]">special://skin/extras/backgrounds/fallbacks/tv.jpg</value>
+		        <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 1])">$VAR[GlobalFanart_Fallback]</value>
+
+                <!-- Widget 2 -->
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 2]) + String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 2]).ListItem.DBtype,episode) + !String.IsEmpty(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 2]).ListItem.Art(thumb)) + Skin.HasSetting(background.episodes.use.thumbnail)">$INFO[Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 2]).ListItem.Art(thumb)]</value>
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 2]) + String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 2]).ListItem.DBtype,episode) + !String.IsEmpty(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 2]).ListItem.Art(season.fanart)) + String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 2]).ListItem.Art(fanart),Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 2])ListItem.Art(tvshow.fanart))">$INFO[Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 2]).ListItem.Art(season.fanart)]</value>
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 2]) + !String.IsEmpty(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 2]).ListItem.Art(fanart))">$INFO[Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 2]).ListItem.Art(fanart)]</value>
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 2]) + !String.IsEmpty(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 2]).ListItem.Property(fanart))">$INFO[Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 2]).ListItem.Property(fanart)]</value>
+                <!-- PVR -->
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 2]) + String.StartsWith(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 2]).ListItem.FolderPath,pvr://) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Fanart))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Fanart)]</value>
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 2]) + !String.IsEmpty(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 2]).ListItem.EpgEventIcon)">$INFO[Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 2]).ListItem.EpgEventIcon)]</value>
+                <!-- Weather -->
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 2]) + !String.IsEmpty(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 2]).ListItem.Property(FanartCode)) + $EXP[HasWeatherFanartMulti]">$VAR[WeatherFanartPath]$INFO[Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 2]).ListItem.Property(FanartCode)]/</value>
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 2]) + !String.IsEmpty(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 2]).ListItem.Property(FanartCode)) + $EXP[HasWeatherFanartSingle]">$VAR[WeatherFanartPath]$INFO[Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 2]).ListItem.Property(FanartCode),,.jpg]</value>
+                <!-- Fallback -->
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 2]) + [String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 2]).ListItem.DBType,movie) | String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 2]).ListItem.DBType,set)]">special://skin/extras/backgrounds/fallbacks/film.jpg</value>
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 2]) + [String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 2]).ListItem.DBType,artist) | String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 2]).ListItem.DBType,album) | String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 2]).ListItem.DBType,song) | String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 2]).ListItem.DBType,musicvideo)]">special://skin/extras/backgrounds/fallbacks/music.jpg</value>
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 2]) + [String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 2]).ListItem.DBType,tvshow) | String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 2]).ListItem.DBType,season) | String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 2]).ListItem.DBType,episode) | String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 2]).ListItem.DBType,video)]">special://skin/extras/backgrounds/fallbacks/tv.jpg</value>
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 2])">$VAR[GlobalFanart_Fallback]</value>
+
+                <!-- Widget 3 -->
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 3]) + String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 3]).ListItem.DBtype,episode) + !String.IsEmpty(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 3]).ListItem.Art(thumb)) + Skin.HasSetting(background.episodes.use.thumbnail)">$INFO[Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 3]).ListItem.Art(thumb)]</value>
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 3]) + String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 3]).ListItem.DBtype,episode) + !String.IsEmpty(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 3]).ListItem.Art(season.fanart)) + String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 3]).ListItem.Art(fanart),Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 3])ListItem.Art(tvshow.fanart))">$INFO[Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 3]).ListItem.Art(season.fanart)]</value>
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 3]) + !String.IsEmpty(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 3]).ListItem.Art(fanart))">$INFO[Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 3]).ListItem.Art(fanart)]</value>
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 3]) + !String.IsEmpty(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 3]).ListItem.Property(fanart))">$INFO[Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 3]).ListItem.Property(fanart)]</value>
+                <!-- PVR -->
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 3]) + String.StartsWith(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 3]).ListItem.FolderPath,pvr://) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Fanart))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Fanart)]</value>
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 3]) + !String.IsEmpty(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 3]).ListItem.EpgEventIcon)">$INFO[Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 3]).ListItem.EpgEventIcon)]</value>    
+                <!-- Weather -->
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 3]) + !String.IsEmpty(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 3]).ListItem.Property(FanartCode)) + $EXP[HasWeatherFanartMulti]">$VAR[WeatherFanartPath]$INFO[Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 3]).ListItem.Property(FanartCode)]/</value>
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 3]) + !String.IsEmpty(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 3]).ListItem.Property(FanartCode)) + $EXP[HasWeatherFanartSingle]">$VAR[WeatherFanartPath]$INFO[Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 3]).ListItem.Property(FanartCode),,.jpg]</value>
+                <!-- Fallback -->
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 3]) + [String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 3]).ListItem.DBType,movie) | String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 3]).ListItem.DBType,set)]">special://skin/extras/backgrounds/fallbacks/film.jpg</value>
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 3]) + [String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 3]).ListItem.DBType,artist) | String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 3]).ListItem.DBType,album) | String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 3]).ListItem.DBType,song) | String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 3]).ListItem.DBType,musicvideo)]">special://skin/extras/backgrounds/fallbacks/music.jpg</value>
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 3]) + [String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 3]).ListItem.DBType,tvshow) | String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 3]).ListItem.DBType,season) | String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 3]).ListItem.DBType,episode) | String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 3]).ListItem.DBType,video)]">special://skin/extras/backgrounds/fallbacks/tv.jpg</value>
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 3])">$VAR[GlobalFanart_Fallback]</value>
+
+                <!-- Widget 4 -->
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 4]) + String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 4]).ListItem.DBtype,episode) + !String.IsEmpty(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 4]).ListItem.Art(thumb)) + Skin.HasSetting(background.episodes.use.thumbnail)">$INFO[Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 4]).ListItem.Art(thumb)]</value>
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 4]) + String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 4]).ListItem.DBtype,episode) + !String.IsEmpty(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 4]).ListItem.Art(season.fanart)) + String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 4]).ListItem.Art(fanart),Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 4])ListItem.Art(tvshow.fanart))">$INFO[Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 4]).ListItem.Art(season.fanart)]</value>
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 4]) + !String.IsEmpty(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 4]).ListItem.Art(fanart))">$INFO[Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 4]).ListItem.Art(fanart)]</value>
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 4]) + !String.IsEmpty(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 4]).ListItem.Property(fanart))">$INFO[Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 4]).ListItem.Property(fanart)]</value>
+                <!-- PVR -->
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 4]) + String.StartsWith(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 4]).ListItem.FolderPath,pvr://) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Fanart))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Fanart)]</value>
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 4]) + !String.IsEmpty(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 4]).ListItem.EpgEventIcon)">$INFO[Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 4]).ListItem.EpgEventIcon)]</value>    
+                <!-- Weather -->
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 4]) + !String.IsEmpty(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 4]).ListItem.Property(FanartCode)) + $EXP[HasWeatherFanartMulti]">$VAR[WeatherFanartPath]$INFO[Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 4]).ListItem.Property(FanartCode)]/</value>
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 4]) + !String.IsEmpty(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 4]).ListItem.Property(FanartCode)) + $EXP[HasWeatherFanartSingle]">$VAR[WeatherFanartPath]$INFO[Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 4]).ListItem.Property(FanartCode),,.jpg]</value>
+                <!-- Fallback -->
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 4]) + [String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 4]).ListItem.DBType,movie) | String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 4]).ListItem.DBType,set)]">special://skin/extras/backgrounds/fallbacks/film.jpg</value>
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 4]) + [String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 4]).ListItem.DBType,artist) | String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 4]).ListItem.DBType,album) | String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 4]).ListItem.DBType,song) | String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 4]).ListItem.DBType,musicvideo)]">special://skin/extras/backgrounds/fallbacks/music.jpg</value>
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 4]) + [String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 4]).ListItem.DBType,tvshow) | String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 4]).ListItem.DBType,season) | String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 4]).ListItem.DBType,episode) | String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 4]).ListItem.DBType,video)]">special://skin/extras/backgrounds/fallbacks/tv.jpg</value>
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 4])">$VAR[GlobalFanart_Fallback]</value>
+
+                <!-- Widget 5 -->
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 5]) + String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 5]).ListItem.DBtype,episode) + !String.IsEmpty(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 5]).ListItem.Art(thumb)) + Skin.HasSetting(background.episodes.use.thumbnail)">$INFO[Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 5]).ListItem.Art(thumb)]</value>
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 5]) + String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 5]).ListItem.DBtype,episode) + !String.IsEmpty(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 5]).ListItem.Art(season.fanart)) + String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 5]).ListItem.Art(fanart),Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 5])ListItem.Art(tvshow.fanart))">$INFO[Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 5]).ListItem.Art(season.fanart)]</value>
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 5]) + !String.IsEmpty(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 5]).ListItem.Art(fanart))">$INFO[Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 5]).ListItem.Art(fanart)]</value>
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 5]) + !String.IsEmpty(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 5]).ListItem.Property(fanart))">$INFO[Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 5]).ListItem.Property(fanart)]</value>
+                <!-- PVR -->
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 5]) + String.StartsWith(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 5]).ListItem.FolderPath,pvr://) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Fanart))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Fanart)]</value>
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 5]) + !String.IsEmpty(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 5]).ListItem.EpgEventIcon)">$INFO[Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 5]).ListItem.EpgEventIcon)]</value>
+                <!-- Weather -->
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 5]) + !String.IsEmpty(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 5]).ListItem.Property(FanartCode)) + $EXP[HasWeatherFanartMulti]">$VAR[WeatherFanartPath]$INFO[Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 5]).ListItem.Property(FanartCode)]/</value>
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 5]) + !String.IsEmpty(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 5]).ListItem.Property(FanartCode)) + $EXP[HasWeatherFanartSingle]">$VAR[WeatherFanartPath]$INFO[Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 5]).ListItem.Property(FanartCode),,.jpg]</value>
+                <!-- Fallback -->
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 5]) + [String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 5]).ListItem.DBType,movie) | String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 5]).ListItem.DBType,set)]">special://skin/extras/backgrounds/fallbacks/film.jpg</value>
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 5]) + [String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 5]).ListItem.DBType,artist) | String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 5]).ListItem.DBType,album) | String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 5]).ListItem.DBType,song) | String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 5]).ListItem.DBType,musicvideo)]">special://skin/extras/backgrounds/fallbacks/music.jpg</value>
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 5]) + [String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 5]).ListItem.DBType,tvshow) | String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 5]).ListItem.DBType,season) | String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 5]).ListItem.DBType,episode) | String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 5]).ListItem.DBType,video)]">special://skin/extras/backgrounds/fallbacks/tv.jpg</value>
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 5])">$VAR[GlobalFanart_Fallback]</value>
+
+                <!-- Widget 6 -->
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 6]) + String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 6]).ListItem.DBtype,episode) + !String.IsEmpty(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 6]).ListItem.Art(thumb)) + Skin.HasSetting(background.episodes.use.thumbnail)">$INFO[Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 6]).ListItem.Art(thumb)]</value>
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 6]) + String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 6]).ListItem.DBtype,episode) + !String.IsEmpty(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 6]).ListItem.Art(season.fanart)) + String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 6]).ListItem.Art(fanart),Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 6])ListItem.Art(tvshow.fanart))">$INFO[Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 6]).ListItem.Art(season.fanart)]</value>
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 6]) + !String.IsEmpty(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 6]).ListItem.Art(fanart))">$INFO[Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 6]).ListItem.Art(fanart)]</value>
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 6]) + !String.IsEmpty(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 6]).ListItem.Property(fanart))">$INFO[Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 6]).ListItem.Property(fanart)]</value>
+                <!-- PVR -->
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 6]) + String.StartsWith(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 6]).ListItem.FolderPath,pvr://) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Fanart))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Fanart)]</value>
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 6]) + !String.IsEmpty(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 6]).ListItem.EpgEventIcon)">$INFO[Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 6]).ListItem.EpgEventIcon)]</value>
+                <!-- Weather -->
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 6]) + !String.IsEmpty(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 6]).ListItem.Property(FanartCode)) + $EXP[HasWeatherFanartMulti]">$VAR[WeatherFanartPath]$INFO[Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 6]).ListItem.Property(FanartCode)]/</value>
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 6]) + !String.IsEmpty(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 6]).ListItem.Property(FanartCode)) + $EXP[HasWeatherFanartSingle]">$VAR[WeatherFanartPath]$INFO[Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 6]).ListItem.Property(FanartCode),,.jpg]</value>
+                <!-- Fallback -->
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 6]) + [String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 6]).ListItem.DBType,movie) | String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 6]).ListItem.DBType,set)]">special://skin/extras/backgrounds/fallbacks/film.jpg</value>
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 6]) + [String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 6]).ListItem.DBType,artist) | String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 6]).ListItem.DBType,album) | String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 6]).ListItem.DBType,song) | String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 6]).ListItem.DBType,musicvideo)]">special://skin/extras/backgrounds/fallbacks/music.jpg</value>
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 6]) + [String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 6]).ListItem.DBType,tvshow) | String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 6]).ListItem.DBType,season) | String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 6]).ListItem.DBType,episode) | String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 6]).ListItem.DBType,video)]">special://skin/extras/backgrounds/fallbacks/tv.jpg</value>
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 6])">$VAR[GlobalFanart_Fallback]</value>
+
+                <!-- Widget 7 -->
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 7]) + String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 7]).ListItem.DBtype,episode) + !String.IsEmpty(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 7]).ListItem.Art(thumb)) + Skin.HasSetting(background.episodes.use.thumbnail)">$INFO[Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 7]).ListItem.Art(thumb)]</value>
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 7]) + String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 7]).ListItem.DBtype,episode) + !String.IsEmpty(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 7]).ListItem.Art(season.fanart)) + String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 7]).ListItem.Art(fanart),Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 7])ListItem.Art(tvshow.fanart))">$INFO[Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 7]).ListItem.Art(season.fanart)]</value>
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 7]) + !String.IsEmpty(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 7]).ListItem.Art(fanart))">$INFO[Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 7]).ListItem.Art(fanart)]</value>
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 7]) + !String.IsEmpty(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 7]).ListItem.Property(fanart))">$INFO[Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 7]).ListItem.Property(fanart)]</value>
+                <!-- PVR -->
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 7]) + String.StartsWith(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 7]).ListItem.FolderPath,pvr://) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Fanart))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Fanart)]</value>
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 7]) + !String.IsEmpty(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 7]).ListItem.EpgEventIcon)">$INFO[Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 7]).ListItem.EpgEventIcon)]</value>
+                <!-- Weather -->
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 7]) + !String.IsEmpty(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 7]).ListItem.Property(FanartCode)) + $EXP[HasWeatherFanartMulti]">$VAR[WeatherFanartPath]$INFO[Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 7]).ListItem.Property(FanartCode)]/</value>
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 7]) + !String.IsEmpty(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 7]).ListItem.Property(FanartCode)) + $EXP[HasWeatherFanartSingle]">$VAR[WeatherFanartPath]$INFO[Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 7]).ListItem.Property(FanartCode),,.jpg]</value>
+                <!-- Fallback -->
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 7]) + [String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 7]).ListItem.DBType,movie) | String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 7]).ListItem.DBType,set)]">special://skin/extras/backgrounds/fallbacks/film.jpg</value>
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 7]) + [String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 7]).ListItem.DBType,artist) | String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 7]).ListItem.DBType,album) | String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 7]).ListItem.DBType,song) | String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 7]).ListItem.DBType,musicvideo)]">special://skin/extras/backgrounds/fallbacks/music.jpg</value>
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 7]) + [String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 7]).ListItem.DBType,tvshow) | String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 7]).ListItem.DBType,season) | String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 7]).ListItem.DBType,episode) | String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 7]).ListItem.DBType,video)]">special://skin/extras/backgrounds/fallbacks/tv.jpg</value>
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 7])">$VAR[GlobalFanart_Fallback]</value>
+
+                <!-- Widget 8 -->
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 8]) + String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 8]).ListItem.DBtype,episode) + !String.IsEmpty(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 8]).ListItem.Art(thumb)) + Skin.HasSetting(background.episodes.use.thumbnail)">$INFO[Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 8]).ListItem.Art(thumb)]</value>
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 8]) + String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 8]).ListItem.DBtype,episode) + !String.IsEmpty(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 8]).ListItem.Art(season.fanart)) + String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 8]).ListItem.Art(fanart),Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 8])ListItem.Art(tvshow.fanart))">$INFO[Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 8]).ListItem.Art(season.fanart)]</value>
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 8]) + !String.IsEmpty(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 8]).ListItem.Art(fanart))">$INFO[Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 8]).ListItem.Art(fanart)]</value>
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 8]) + !String.IsEmpty(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 8]).ListItem.Property(fanart))">$INFO[Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 8]).ListItem.Property(fanart)]</value>
+                <!-- PVR -->
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 8]) + String.StartsWith(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 8]).ListItem.FolderPath,pvr://) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Fanart))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Fanart)]</value>
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 8]) + !String.IsEmpty(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 8]).ListItem.EpgEventIcon)">$INFO[Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 8]).ListItem.EpgEventIcon)]</value>
+                <!-- Weather -->
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 8]) + !String.IsEmpty(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 8]).ListItem.Property(FanartCode)) + $EXP[HasWeatherFanartMulti]">$VAR[WeatherFanartPath]$INFO[Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 8]).ListItem.Property(FanartCode)]/</value>
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 8]) + !String.IsEmpty(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 8]).ListItem.Property(FanartCode)) + $EXP[HasWeatherFanartSingle]">$VAR[WeatherFanartPath]$INFO[Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 8]).ListItem.Property(FanartCode),,.jpg]</value>
+                <!-- Fallback -->
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 8]) + [String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 8]).ListItem.DBType,movie) | String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 8]).ListItem.DBType,set)]">special://skin/extras/backgrounds/fallbacks/film.jpg</value>
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 8]) + [String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 8]).ListItem.DBType,artist) | String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 8]).ListItem.DBType,album) | String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 8]).ListItem.DBType,song) | String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 8]).ListItem.DBType,musicvideo)]">special://skin/extras/backgrounds/fallbacks/music.jpg</value>
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 8]) + [String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 8]).ListItem.DBType,tvshow) | String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 8]).ListItem.DBType,season) | String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 8]).ListItem.DBType,episode) | String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 8]).ListItem.DBType,video)]">special://skin/extras/backgrounds/fallbacks/tv.jpg</value>
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 8])">$VAR[GlobalFanart_Fallback]</value>
+
+                <!-- Widget 9 -->
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 9]) + String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 9]).ListItem.DBtype,episode) + !String.IsEmpty(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 9]).ListItem.Art(thumb)) + Skin.HasSetting(background.episodes.use.thumbnail)">$INFO[Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 9]).ListItem.Art(thumb)]</value>
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 9]) + String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 9]).ListItem.DBtype,episode) + !String.IsEmpty(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 9]).ListItem.Art(season.fanart)) + String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 9]).ListItem.Art(fanart),Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 9])ListItem.Art(tvshow.fanart))">$INFO[Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 9]).ListItem.Art(season.fanart)]</value>
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 9]) + !String.IsEmpty(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 9]).ListItem.Art(fanart))">$INFO[Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 9]).ListItem.Art(fanart)]</value>
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 9]) + !String.IsEmpty(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 9]).ListItem.Property(fanart))">$INFO[Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 9]).ListItem.Property(fanart)]</value>
+                <!-- PVR -->
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 9]) + String.StartsWith(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 9]).ListItem.FolderPath,pvr://) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Fanart))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Fanart)]</value>
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 9]) + !String.IsEmpty(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 9]).ListItem.EpgEventIcon)">$INFO[Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 9]).ListItem.EpgEventIcon)]</value>
+                <!-- Weather -->
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 9]) + !String.IsEmpty(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 9]).ListItem.Property(FanartCode)) + $EXP[HasWeatherFanartMulti]">$VAR[WeatherFanartPath]$INFO[Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 9]).ListItem.Property(FanartCode)]/</value>
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 9]) + !String.IsEmpty(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 9]).ListItem.Property(FanartCode)) + $EXP[HasWeatherFanartSingle]">$VAR[WeatherFanartPath]$INFO[Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 9]).ListItem.Property(FanartCode),,.jpg]</value>
+                <!-- Fallback -->
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 9]) + [String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 9]).ListItem.DBType,movie) | String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 9]).ListItem.DBType,set)]">special://skin/extras/backgrounds/fallbacks/film.jpg</value>
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 9]) + [String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 9]).ListItem.DBType,artist) | String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 9]).ListItem.DBType,album) | String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 9]).ListItem.DBType,song) | String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 9]).ListItem.DBType,musicvideo)]">special://skin/extras/backgrounds/fallbacks/music.jpg</value>
+                <value condition="Control.IsVisible($PYTHON[int(mainmenuid) * 10000 + 3100 + 9]) + [String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 9]).ListItem.DBType,tvshow) | String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 9]).ListItem.DBType,season) | String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 9]).ListItem.DBType,episode) | String.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + 9]).ListItem.DBType,video)]">special://skin/extras/backgrounds/fallbacks/tv.jpg</value>
+                
+                <value>$VAR[GlobalFanart_Fallback]</value>
+            </variable>
+        </variables>
+    </other>
 </template>

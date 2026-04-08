@@ -527,16 +527,7 @@
                             <label2>$VAR[LabelFallbackWidgetName]</label2>
                             <onclick>RunScript(script.skinvariables,run_dialog=select,heading=$LOCALIZE[31269],list=$LOCALIZE[16018] / $LOCALIZE[31271] / $LOCALIZE[31272] / $LOCALIZE[31105],"executebuiltin_0=Skin.SetString(home.slideshowpath,none)","executebuiltin_1=Skin.SetImage(home.slideshowpath)","executebuiltin_2=Skin.SetPath(home.slideshowpath)","executebuiltin_3=Skin.Reset(home.slideshowpath)||RunScript(script.skinshortcuts,type=widgets&amp;grouping=video&amp;skinWidgetPath=home.fallbackwidget&amp;skinWidgetName=home.fallbackwidget.name&amp;skinWidgetType=home.fallbackwidget.type&amp;skinWidgetTarget=home.fallbackwidget.target)")</onclick>          
                         </control>
-                        <control type="radiobutton" id="9841">
-                            <width>1360</width>
-                            <visible>String.IsEqual(Window.Property(content),1)</visible>
-                            <include>DefSettingsButtonGradientSkinSettings</include>
-                            <label>$LOCALIZE[31982]</label>
-                            <selected>Skin.HasSetting(LockFocusPosition)</selected>
-                            <onclick>Skin.ToggleSetting(LockFocusPosition)</onclick>
-                            <visible>Skin.HasSetting(home.vertical) | [Skin.HasSetting(home.vertical.widgets) + !Skin.HasSetting(homemenu.clean.flix)]</visible>
-                        </control>
-                        <control type="button" id="9842" description="Autoscroll widgets">
+                        <control type="button" id="9841" description="Autoscroll widgets">
                             <width>1360</width>
                             <visible>String.IsEqual(Window.Property(content),1)</visible>
                             <include>DefSettingsButtonGradientSkinSettings</include>
@@ -544,6 +535,15 @@
                             <label2>$VAR[AutoscrollLabel]</label2>
                             <onclick>SetProperty(includesetting,Autoscroll,home)</onclick>
                             <onclick>ActivateWindow(1100)</onclick>
+                        </control>
+                        <control type="radiobutton" id="9842">
+                            <width>1360</width>
+                            <visible>String.IsEqual(Window.Property(content),1)</visible>
+                            <include>DefSettingsButtonGradientSkinSettings</include>
+                            <label>$LOCALIZE[31982]</label>
+                            <selected>Skin.HasSetting(LockFocusPosition)</selected>
+                            <onclick>Skin.ToggleSetting(LockFocusPosition)</onclick>
+                            <visible>Skin.HasSetting(home.vertical) | [Skin.HasSetting(home.vertical.widgets) + !Skin.HasSetting(homemenu.clean.flix)]</visible>
                         </control>
                         <control type="radiobutton" id="9844" description="more item">
                             <width>1360</width>

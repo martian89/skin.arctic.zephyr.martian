@@ -268,7 +268,7 @@
             <font>Small</font>
             <width>auto</width>
             <textcolor>Dark1</textcolor>
-            <label>$INFO[Container($PARAM[infoid]).NumItems, •  , $LOCALIZE[342]]</label>
+            <label>$INFO[Container(44023).NumItems, •  , $LOCALIZE[342]]</label>
             <include>Animation.Vertical.Widgets.Title</include>
             <visible>Control.HasFocus($PARAM[focusid]) + $PARAM[showinfo]</visible>
             <visible>Container($PARAM[focusid]).ListItem.IsCollection + !String.IsEmpty(Container($PARAM[focusid]).ListItem.DBID)</visible>
@@ -280,7 +280,7 @@
             <font>Small</font>
             <width>auto</width>
             <textcolor>Dark1</textcolor>
-            <label>$INFO[Container($PARAM[infoid]).NumItems, •  , $LOCALIZE[134]]</label>
+            <label>$INFO[Container(44023).NumItems, •  , $LOCALIZE[134]]</label>
             <include>Animation.Vertical.Widgets.Title</include>
             <visible>Control.HasFocus($PARAM[focusid]) + $PARAM[showinfo]</visible>
             <visible>String.IsEqual(Container($PARAM[focusid]).ListItem.DBType,album)</visible>
@@ -2046,14 +2046,30 @@
             </control>
 
             <!-- Sets -->
-            <control type="label">
-                <include>MultiWidgetsSubLabelDefinition</include>
-                <label>$INFO[Container($PARAM[id]).ListItem.Year]$INFO[Container($PARAM[id]).ListItem.Rating,  •  ]$INFO[Container($PARAM[infoid]).NumItems,  •  , $LOCALIZE[342]]</label>
+            <control type="grouplist">
+                <itemgap>0</itemgap>
                 <visible>String.IsEqual(Container($PARAM[id]).ListItem.DBType,set)</visible>
+                <orientation>horizontal</orientation>
+                <height>36</height>
+                <usecontrolcoords>true</usecontrolcoords>
+	            <control type="label">
+	                <include>MultiWidgetsSubLabelDefinition</include>
+	                <label>$INFO[Container($PARAM[id]).ListItem.Year]$INFO[Container($PARAM[id]).ListItem.Rating,  •  ]</label>
+	            </control>
+                <control type="label">
+                    <visible>Integer.IsGreater(Container(44023).NumItems,0)</visible>
+                    <include>MultiWidgetsSubLabelDefinition</include>
+                    <label>$INFO[Container(44023).NumItems,  •  , $LOCALIZE[342]]</label>
+                </control>
+                <control type="label">
+                    <visible>Integer.IsEqual(Container(44023).NumItems,0)</visible>
+                    <include>MultiWidgetsSubLabelDefinition</include>
+                    <label>$INFO[Container($PARAM[infoid]).NumItems,  •  , $LOCALIZE[342]]</label>
+                </control>
                 <include content="IndicatorCleanHome" condition="!Skin.HasSetting(hide.markers) + Skin.HasSetting(homemenu.clean.flix)">
                     <param name="id" value="$PARAM[id]" />
                 </include>
-            </control>
+	        </control>
 
             <!-- Musicvideos -->
             <control type="label">
@@ -2083,7 +2099,17 @@
                 </control>
                 <control type="label">
                     <include>MultiWidgetsSubLabelDefinition</include>
-                    <label>$INFO[Container($PARAM[id]).ListItem.Year]$INFO[Container($PARAM[infoid]).NumItems,  •  , $LOCALIZE[134]]</label>
+                    <label>$INFO[Container($PARAM[id]).ListItem.Year]</label>
+                </control>
+                <control type="label">
+                    <visible>Integer.IsGreater(Container(44022).NumItems,0)</visible>
+                    <include>MultiWidgetsSubLabelDefinition</include>
+                    <label>$INFO[Container(44022).NumItems,  •  , $LOCALIZE[134]]</label>
+                </control>
+                <control type="label">
+                    <visible>Integer.IsEqual(Container(44022).NumItems,0)</visible>
+                    <include>MultiWidgetsSubLabelDefinition</include>
+                    <label>$INFO[Container($PARAM[infoid]).NumItems,  •  , $LOCALIZE[134]]</label>
                 </control>
             </control>
             

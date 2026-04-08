@@ -782,7 +782,7 @@
                     <onup condition="$EXP[ExtendedNowPlayingIsVisible] + !Skin.HasSetting(hide.home.nowplaying.controls) + [$EXP[HomeIsModernMultiWidgets] | $EXP[HomeIsVerticalMultiWidgets]]">777</onup>
                     <onup condition="!Player.HasVideo | !Skin.HasSetting(global.showvideo)">301</onup>
                     <onup>301</onup>
-                    <ondown condition="Integer.IsGreater(Container(302).NumItems,0)">SetFocus(302,0)</ondown>
+                    <ondown condition="Integer.IsGreater(Container(302).NumItems,0) + !$EXP[HomeDisableSubmenu]">SetFocus(302,0)</ondown>
                     <onback condition="Skin.HasSetting(home.onback.go.to.first.widget) + Integer.IsGreater(Container(301).NumItems,0)">SetFocus(301)</onback>
                     <onleft>300</onleft>
                     <onright>300</onright>
@@ -833,63 +833,63 @@
                 <description>9 Option Menu</description>
                 <width>100%</width>
                 <height>662</height>
-                <texture border="16" colordiffuse="Light1">common/rounded-shadow8.png</texture>
+                <texture border="16" colordiffuse="White100">common/rounded-shadow8.png</texture>
                 <visible>Integer.IsGreater(Container(302).NumItems,8)</visible>
             </control>
             <control type="image">
                 <description>8 Option Menu</description>
                 <width>100%</width>
                 <height>592</height>
-                <texture border="16" colordiffuse="Light1">common/rounded-shadow8.png</texture>
+                <texture border="16" colordiffuse="White100">common/rounded-shadow8.png</texture>
                 <visible>Integer.IsGreater(Container(302).NumItems,7) + !Integer.IsGreater(Container(302).NumItems,8)</visible>
             </control>
             <control type="image">
                 <description>7 Option Menu</description>
                 <width>100%</width>
                 <height>522</height>
-                <texture border="16" colordiffuse="Light1">common/rounded-shadow8.png</texture>
+                <texture border="16" colordiffuse="White100">common/rounded-shadow8.png</texture>
                 <visible>Integer.IsGreater(Container(302).NumItems,6) + !Integer.IsGreater(Container(302).NumItems,7)</visible>
             </control>
             <control type="image">
                 <description>6 Option Menu</description>
                 <width>100%</width>
                 <height>452</height>
-                <texture border="16" colordiffuse="Light1">common/rounded-shadow8.png</texture>
+                <texture border="16" colordiffuse="White100">common/rounded-shadow8.png</texture>
                 <visible>Integer.IsGreater(Container(302).NumItems,5) + !Integer.IsGreater(Container(302).NumItems,6)</visible>
             </control>
             <control type="image">
                 <description>5 Option Menu</description>
                 <width>100%</width>
                 <height>382</height>
-                <texture border="16" colordiffuse="Light1">common/rounded-shadow8.png</texture>
+                <texture border="16" colordiffuse="White100">common/rounded-shadow8.png</texture>
                 <visible>Integer.IsGreater(Container(302).NumItems,4) + !Integer.IsGreater(Container(302).NumItems,5)</visible>
             </control>
             <control type="image">
                 <description>4 Option Menu</description>
                 <width>100%</width>
                 <height>312</height>
-                <texture border="16" colordiffuse="Light1">common/rounded-shadow8.png</texture>
+                <texture border="16" colordiffuse="White100">common/rounded-shadow8.png</texture>
                 <visible>Integer.IsGreater(Container(302).NumItems,3) + !Integer.IsGreater(Container(302).NumItems,4)</visible>
             </control>
             <control type="image">
                 <description>3 Option Menu</description>
                 <width>100%</width>
                 <height>242</height>
-                <texture border="16" colordiffuse="Light1">common/rounded-shadow8.png</texture>
+                <texture border="16" colordiffuse="White100">common/rounded-shadow8.png</texture>
                 <visible>Integer.IsGreater(Container(302).NumItems,2) + !Integer.IsGreater(Container(302).NumItems,3)</visible>
             </control>
             <control type="image">
                 <description>2 Option Menu</description>
                 <width>100%</width>
                 <height>172</height>
-                <texture border="16" colordiffuse="Light1">common/rounded-shadow8.png</texture>
+                <texture border="16" colordiffuse="White100">common/rounded-shadow8.png</texture>
                 <visible>Integer.IsGreater(Container(302).NumItems,1) + !Integer.IsGreater(Container(302).NumItems,2)</visible>
             </control>
             <control type="image">
                 <description>1 Option Menu</description>
                 <width>100%</width>
                 <height>102</height>
-                <texture border="16" colordiffuse="Light1">common/rounded-shadow8.png</texture>
+                <texture border="16" colordiffuse="White100">common/rounded-shadow8.png</texture>
                 <visible>!Integer.IsGreater(Container(302).NumItems,1)</visible>
             </control>
             <control type="list" id="302">
@@ -915,7 +915,7 @@
                         <width>218</width>
                         <centertop>50%</centertop>
                         <height>100%</height>
-                        <textcolor>Dark2</textcolor>
+                        <textcolor>Black70</textcolor>
                         <include>DefContextButton</include>
                         <label>$INFO[ListItem.Label]</label>
                     </control>
@@ -925,7 +925,7 @@
                         <width>64</width>
                         <height>64</height>
                         <centertop>50%</centertop>
-                        <texture colordiffuse="Dark2">$INFO[ListItem.Icon]</texture>
+                        <texture colordiffuse="Black70">$INFO[ListItem.Icon]</texture>
                     </control>
                 </itemlayout>
                 <focusedlayout height="70">
@@ -1437,7 +1437,7 @@
                 <include condition="Skin.HasSetting(furniture.clock)">DefHomeRightSidePad</include>
                 <onup condition="!Skin.HasSetting(home.dontshowfanart) + [!String.IsEmpty(Container(300).ListItem.Property(widget)) | [String.IsEmpty(Container(300).ListItem.Property(widget)) + [String.IsEmpty(Container(300).ListItem.Property(Background)) + [String.IsEmpty(Skin.String(home.slideshowpath))]]]]">301</onup>
                 <onup condition="Skin.HasSetting(home.dontshowfanart) + [!String.IsEmpty(Container(300).ListItem.Property(widget)) | [String.IsEmpty(Container(300).ListItem.Property(widget)) + [String.IsEmpty(Container(300).ListItem.Property(Background)) + [String.IsEmpty(Skin.String(home.slideshowpath))]]]]">SetFocus(301,0)</onup>
-                <ondown condition="Integer.IsGreater(Container(302).NumItems,0)">SetFocus(302,0)</ondown>
+                <ondown condition="Integer.IsGreater(Container(302).NumItems,0) + !$EXP[HomeDisableSubmenu]">SetFocus(302,0)</ondown>
                 <onleft>300</onleft>
                 <onright>300</onright>
                 <orientation>horizontal</orientation>
@@ -1490,7 +1490,7 @@
                     <include>arrowdimensions</include>
                     <texture colordiffuse="Dark1">common/arrow-small.png</texture>
                     <visible>Control.HasFocus(300)</visible>
-                    <visible>Integer.IsGreater(Container(302).NumItems,0)</visible>
+                    <visible>Integer.IsGreater(Container(302).NumItems,0) + !$EXP[HomeDisableSubmenu]</visible>
                     <animation effect="fade" end="100" start="0" delay="300" time="400" reversible="false">Focus</animation>
                 </control>
             </control>
@@ -1512,7 +1512,7 @@
                     <include>arrowdimensions</include>
                     <texture colordiffuse="Dark3">common/arrow-small.png</texture>
                     <visible>Control.HasFocus(300)</visible>
-                    <visible>Integer.IsGreater(Container(302).NumItems,0)</visible>
+                    <visible>Integer.IsGreater(Container(302).NumItems,0) + !$EXP[HomeDisableSubmenu]</visible>
                     <animation effect="fade" end="100" start="0" delay="300" time="400" reversible="false">Focus</animation>
                 </control>
                 <control type="group">
@@ -1629,7 +1629,7 @@
                     <include>arrowdimensions</include>
                     <texture colordiffuse="Dark1">common/arrow-small.png</texture>
                     <visible>Control.HasFocus(300)</visible>
-                    <visible>Integer.IsGreater(Container(302).NumItems,0)</visible>
+                    <visible>Integer.IsGreater(Container(302).NumItems,0) + !$EXP[HomeDisableSubmenu]</visible>
                     <animation effect="fade" end="100" start="0" delay="300" time="400" reversible="false">Focus</animation>
                 </control>
             </control>
@@ -1909,7 +1909,7 @@
                     <height>720</height>
                     <orientation>vertical</orientation>
                     <onright>301</onright>
-                    <onleft>302</onleft>
+                    <onleft condition="!$EXP[HomeDisableSubmenu]">302</onleft>
                     <scrolltime>200</scrolltime>
                     <include>HomeVerticalMenuListLayout</include>
                     <content>
@@ -2171,7 +2171,7 @@
                     <onright condition="$EXP[ExtendedNowPlayingIsVisible] + Skin.HasSetting(hide.home.nowplaying.controls) + Skin.HasSetting(home.extended.nowplaying.tracklist) + Integer.IsGreater(Container(778).NumItems,0) + Player.HasAudio">778</onright>
                     <onright condition="$EXP[ExtendedNowPlayingIsVisible] + !Skin.HasSetting(hide.home.nowplaying.controls)">777</onright>
                     <onright>301</onright>
-                    <onleft>302</onleft>
+                    <onleft condition="!$EXP[HomeDisableSubmenu]">302</onleft>
                     <onfocus>ClearProperty(nowplayingautoshowtimer,home)</onfocus>
                     <onback condition="Skin.HasSetting(home.onback.go.to.first.widget) + Integer.IsGreater(Container(301).NumItems,0)">SetFocus(301)</onback>
                     <scrolltime>200</scrolltime>
