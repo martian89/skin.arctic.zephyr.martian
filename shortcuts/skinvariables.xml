@@ -23,33 +23,33 @@
 
     <variable name="PosterPercentWatched" containers="301">
         <value condition="Skin.HasSetting(hide.markers)"></value>
-        <value condition="ListItem.IsPlaying + !Skin.HasSetting(hide.markers.isplaying)">indicator/poster-play.png</value>
-        <value condition="$EXP[IsInProgress] + !Skin.HasSetting(hide.markers.inprogress)">$VAR[PosterInProgressIndicator]</value>
-        <value condition="$EXP[IsWatched] + !Skin.HasSetting(hide.markers.watched)">indicator/poster-checkmark.png</value>
-        <value condition="$EXP[IsNewContent] + !Skin.HasSetting(hide.markers.newcontent)">indicator/poster-new.png</value>
-        <value condition="$EXP[IsUnwatched] + !String.IsEmpty(ListItem.DBID) + Skin.HasSetting(markers.unwatched)">indicator/poster-unwatched.png</value>
-        <value condition="ListItem.HasVideoVersions + !$EXP[IsVideoAssets] + !Skin.HasSetting(hide.markers.versions)">indicator/poster-versions.png</value>
-        <value condition="ListItem.HasVideoExtras + !$EXP[IsVideoAssets] + !Skin.HasSetting(hide.markers.extras)">indicator/poster-extras.png</value>
-        <value condition="ListItem.IsCollection + !Skin.HasSetting(hide.markers.collection)">indicator/poster-movieset.png</value>
-        <value condition="!String.IsEmpty(ListItem.DBID) + !String.IsEmpty(ListItem.Property(Item.Info)) + !Skin.HasSetting(hide.markers.library)">indicator/poster-library.png</value>
+        <value condition="{listitem}.IsPlaying + !Skin.HasSetting(hide.markers.isplaying)">indicator/poster-play.png</value>
+        <value condition="$EXP[IsInProgress{cid}{lid}] + !Skin.HasSetting(hide.markers.inprogress)">$VAR[PosterInProgressIndicator]</value>
+        <value condition="$EXP[IsWatched{cid}{lid}] + !Skin.HasSetting(hide.markers.watched)">indicator/poster-checkmark.png</value>
+        <value condition="$EXP[IsNewContent{cid}{lid}] + !Skin.HasSetting(hide.markers.newcontent)">indicator/poster-new.png</value>
+        <value condition="$EXP[IsUnwatched{cid}{lid}] + !String.IsEmpty({listitem}.DBID) + Skin.HasSetting(markers.unwatched)">indicator/poster-unwatched.png</value>
+        <value condition="{listitem}.HasVideoVersions + ![Container({id}).Content(videoversions) + !String.IsEqual(Container({id}).FolderPath,videodb://movies/videoversions/) | Container({id}).Content(videoassets) | Container({id}).Content(videoextras)] + !Skin.HasSetting(hide.markers.versions)">indicator/poster-versions.png</value>
+        <value condition="{listitem}.HasVideoExtras + ![Container({id}).Content(videoversions) + !String.IsEqual(Container({id}).FolderPath,videodb://movies/videoversions/) | Container({id}).Content(videoassets) | Container({id}).Content(videoextras)] + !Skin.HasSetting(hide.markers.extras)">indicator/poster-extras.png</value>
+        <value condition="{listitem}.IsCollection + !Skin.HasSetting(hide.markers.collection)">indicator/poster-movieset.png</value>
+        <value condition="!String.IsEmpty({listitem}.DBID) + !String.IsEmpty({listitem}.Property(Item.Info)) + !Skin.HasSetting(hide.markers.library)">indicator/poster-library.png</value>
     </variable>
 
     <variable name="PosterPercentWatchedBacking" containers="301">
         <value condition="Skin.HasSetting(hide.markers)"></value>
-        <value condition="ListItem.IsPlaying + !Skin.HasSetting(hide.markers.isplaying)">indicator/backing.png</value>
-        <value condition="$EXP[IsInProgress] + !Skin.HasSetting(hide.markers.inprogress)">indicator/backing.png</value>
-        <value condition="$EXP[IsWatched] + !Skin.HasSetting(hide.markers.watched)">indicator/backing.png</value>
-        <value condition="$EXP[IsNewContent] + !Skin.HasSetting(hide.markers.newcontent)">indicator/backing.png</value>
-        <value condition="$EXP[IsUnwatched] + !String.IsEmpty(ListItem.DBID) + Skin.HasSetting(markers.unwatched)">indicator/backing.png</value>
-        <value condition="ListItem.HasVideoVersions + !$EXP[IsVideoAssets] + !Skin.HasSetting(hide.markers.versions)">indicator/backing.png</value>
-        <value condition="ListItem.HasVideoExtras + !$EXP[IsVideoAssets] + !Skin.HasSetting(hide.markers.extras)">indicator/backing.png</value>
-        <value condition="ListItem.IsCollection + !Skin.HasSetting(hide.markers.collection)">indicator/backing.png</value>
-        <value condition="!String.IsEmpty(ListItem.DBID) + !String.IsEmpty(ListItem.Property(Item.Info)) + !Skin.HasSetting(hide.markers.library)">indicator/backing.png</value>
+        <value condition="{listitem}.IsPlaying + !Skin.HasSetting(hide.markers.isplaying)">indicator/backing.png</value>
+        <value condition="$EXP[IsInProgress{cid}{lid}] + !Skin.HasSetting(hide.markers.inprogress)">indicator/backing.png</value>
+        <value condition="$EXP[IsWatched{cid}{lid}] + !Skin.HasSetting(hide.markers.watched)">indicator/backing.png</value>
+        <value condition="$EXP[IsNewContent{cid}{lid}] + !Skin.HasSetting(hide.markers.newcontent)">indicator/backing.png</value>
+        <value condition="$EXP[IsUnwatched{cid}{lid}] + !String.IsEmpty({listitem}.DBID) + Skin.HasSetting(markers.unwatched)">indicator/backing.png</value>
+        <value condition="{listitem}.HasVideoVersions + ![Container({id}).Content(videoversions) + !String.IsEqual(Container({id}).FolderPath,videodb://movies/videoversions/) | Container({id}).Content(videoassets) | Container({id}).Content(videoextras)] + !Skin.HasSetting(hide.markers.versions)">indicator/backing.png</value>
+        <value condition="{listitem}.HasVideoExtras + ![Container({id}).Content(videoversions) + !String.IsEqual(Container({id}).FolderPath,videodb://movies/videoversions/) | Container({id}).Content(videoassets) | Container({id}).Content(videoextras)] + !Skin.HasSetting(hide.markers.extras)">indicator/backing.png</value>
+        <value condition="{listitem}.IsCollection + !Skin.HasSetting(hide.markers.collection)">indicator/backing.png</value>
+        <value condition="!String.IsEmpty({listitem}.DBID) + !String.IsEmpty({listitem}.Property(Item.Info)) + !Skin.HasSetting(hide.markers.library)">indicator/backing.png</value>
     </variable>
 
     <variable name="PosterInProgressIndicator" containers="301">
-        <value condition="Integer.IsGreater(ListItem.PercentPlayed,66) | Integer.IsGreater(ListItem.Property(WatchedEpisodePercent),66)">indicator/poster-inprogress-75.png</value>
-        <value condition="Integer.IsGreater(ListItem.PercentPlayed,33) | Integer.IsGreater(ListItem.Property(WatchedEpisodePercent),33)">indicator/poster-inprogress-50.png</value>
+        <value condition="Integer.IsGreater({listitem}.PercentPlayed,66) | Integer.IsGreater({listitem}.Property(WatchedEpisodePercent),66)">indicator/poster-inprogress-75.png</value>
+        <value condition="Integer.IsGreater({listitem}.PercentPlayed,33) | Integer.IsGreater({listitem}.Property(WatchedEpisodePercent),33)">indicator/poster-inprogress-50.png</value>
         <value>indicator/poster-inprogress-25.png</value>    
     </variable>
 

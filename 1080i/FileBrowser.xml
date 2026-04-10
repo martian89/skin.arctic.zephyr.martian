@@ -64,6 +64,7 @@
                 <include content="Def_ThumbnailListLayout">
                     <param name="focused" value="Control.HasFocus(450)" />
                     <param name="indicators" value="false" />
+                    <param name="default_icon" value="$EXP[IsDefaultIcon_C450]" />
                 </include>
             </control>
             <include content="scrollbar_dialog">
@@ -112,7 +113,17 @@
                 <height>450</height>
                 <texture fallback="DefaultAddonNone.png">$INFO[Container(450).ListItem.Icon]</texture>
                 <aspectratio align="center" aligny="bottom">keep</aspectratio>
-                <visible>!String.Contains(Control.GetLabel(416),*)</visible>
+                <visible>!String.Contains(Control.GetLabel(416),*) + !$EXP[IsDefaultIcon_C450]</visible>
+            </control>
+            <control type="image">
+                <description>Large Icon Image</description>
+                <posx>738</posx>
+                <posy>357</posy>
+                <width>300</width>
+                <height>450</height>
+                <texture colordiffuse="Black70" fallback="DefaultAddonNone.png">$INFO[Container(450).ListItem.Icon]</texture>
+                <aspectratio align="center" aligny="bottom">keep</aspectratio>
+                <visible>!String.Contains(Control.GetLabel(416),*) + $EXP[IsDefaultIcon_C450]</visible>
             </control>
             <control type="image">
                 <description>Large Icon Image</description>
@@ -122,7 +133,17 @@
                 <height>450</height>
                 <texture fallback="DefaultAddonNone.png" flipx="true">$INFO[Container(450).ListItem.Icon]</texture>
                 <aspectratio align="center" aligny="bottom">keep</aspectratio>
-                <visible>String.Contains(Control.GetLabel(416),*)</visible>
+                <visible>String.Contains(Control.GetLabel(416),*) + !$EXP[IsDefaultIcon_C450]</visible>
+            </control>
+            <control type="image">
+                <description>Large Icon Image</description>
+                <posx>738</posx>
+                <posy>357</posy>
+                <width>300</width>
+                <height>450</height>
+                <texture colordiffuse="Black70" fallback="DefaultAddonNone.png" flipx="true">$INFO[Container(450).ListItem.Icon]</texture>
+                <aspectratio align="center" aligny="bottom">keep</aspectratio>
+                <visible>String.Contains(Control.GetLabel(416),*) + $EXP[IsDefaultIcon_C450]</visible>
             </control>
             <control type="image">
                 <posx>704</posx>
