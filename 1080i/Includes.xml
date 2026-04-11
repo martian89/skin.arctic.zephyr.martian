@@ -131,6 +131,19 @@
         | $EXP[HasThumbImageResource] + [$EXP[IsDefaultStudioIcon] | $EXP[IsDefaultGenreIcon] | $EXP[IsDefaultCountryIcon]]]
     </expression>
     
+    <expression name="IsDefaultIcon_C6">
+        Window.IsVisible(script-skinshortcuts.xml) + [String.IsEqual(Container(6).ListItem.Label,..) | String.IsEqual(Container(6).ListItem.Icon,thumb)] 
+        | ![String.IsEqual(Container(6).ListItem.DBType,tvshow) + !String.IsEmpty(Container(6).ListItem.Art(tvshow.poster))]
+        + ![[String.IsEqual(Container(6).ListItem.DBType,movie) | String.IsEqual(Container(6).ListItem.DBType,tvshow)] + !String.IsEmpty(Container(6).ListItem.Art(poster))]
+        + [String.IsEmpty(Container(6).ListItem.Icon) | String.StartsWith(Container(6).ListItem.Icon,Default) | String.StartsWith(Container(6).ListItem.Icon,special://skin/extras/icons/)]
+    </expression>
+
+    <expression name="IsDefaultIcon_C450">
+        ![String.IsEqual(Container(450).ListItem.DBType,tvshow) + !String.IsEmpty(Container(450).ListItem.Art(tvshow.poster))]
+        + ![[String.IsEqual(Container(450).ListItem.DBType,movie) | String.IsEqual(Container(450).ListItem.DBType,tvshow)] + !String.IsEmpty(Container(450).ListItem.Art(poster))]
+        + [String.IsEmpty(Container(450).ListItem.Icon) | String.StartsWith(Container(450).ListItem.Icon,Default) | String.StartsWith(Container(450).ListItem.Icon,special://skin/extras/icons/)]
+    </expression>
+    
     <expression name="HideViewContent">
         $EXP[InfoDialogsActive] | Control.HasFocus(9601) | !String.IsEmpty(Window(Home).Property(TMDbHelper.HideView))
     </expression>
