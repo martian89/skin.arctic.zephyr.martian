@@ -310,9 +310,8 @@
         <value condition="!String.IsEqual(ListItem.Title,ListItem.EpisodeName) + !String.StartsWith(ListItem.Plot,ListItem.EpisodeName)">$INFO[ListItem.EpisodeName]</value>
     </variable>
 
-    <variable name="PVRGenreLabel">
-        <value condition="!String.IsEmpty(ListItem.Episode)">$INFO[ListItem.Season,  •  $LOCALIZE[20373] ,]$INFO[ListItem.Episode,  •  $LOCALIZE[20359] ,]</value>
-        <value>        [COLOR=$VAR[ColorHighlight]]$LOCALIZE[515][/COLOR]$INFO[ListItem.Genre,  ,]</value>
+    <variable name="PVREpisodeNumberLabel">
+        <value condition="Integer.IsGreater(ListItem.Season,0) + Integer.IsGreater(ListItem.Episode,0)">$INFO[ListItem.Season,  •  $LOCALIZE[20373] ,]$INFO[ListItem.Episode,  •  $LOCALIZE[20359] ,]</value>
     </variable>
 
     <variable name="PVRInfoStatus">
