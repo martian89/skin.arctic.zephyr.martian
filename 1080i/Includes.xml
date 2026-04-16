@@ -88,8 +88,7 @@
     <expression name="MusicSeekbarIsVisible">Window.IsVisible(musicosd) + !Skin.HasSetting(musicosd.side) | !Window.IsVisible(musicosd) + [Window.IsVisible(script-cu-lrclyrics-main.xml) | Skin.HasSetting(musicosd.alwaysshowinfo) | Player.ShowInfo | Player.Seeking | Player.HasPerformedSeek(3) | Player.Paused | Player.Forwarding | Player.Rewinding]</expression>
     <expression name="ShowInfoOnPause">Player.Paused + Skin.HasSetting(osd.showinfoonpause) + String.IsEmpty(Window(Home).Property(OSDExtendedInfo))</expression>
     <expression name="ShowInfoWithOSD">Skin.HasSetting(osd.showinfo) + Window.IsVisible(videoosd) | Skin.HasSetting(musicosd.showinfo) + Window.IsVisible(musicosd)</expression>
-    <expression name="VideoOSDShort">Skin.HasSetting(osd.showinfo) | !String.IsEmpty(Window(home).Property(osdinfo)) | Player.ShowInfo | $EXP[ShowInfoOnPause] | [Window.IsVisible(videoosd) + Window.IsVisible(DialogFullScreenInfo.xml)]</expression>
-    <expression name="VideoOSDWide">!Skin.HasSetting(osd.showinfo) + String.IsEmpty(Window(home).Property(osdinfo)) + !Player.ShowInfo + !$EXP[ShowInfoOnPause] + ![Window.IsVisible(videoosd) + Window.IsVisible(DialogFullScreenInfo.xml)]</expression>
+    <expression name="VideoOSDShort">!Skin.HasSetting(osd.disableposter) + [Window.IsVisible(fullscreeninfo) | Player.ShowInfo | !String.IsEmpty(Window(home).Property(osdinfo)) | $EXP[ShowInfoWithOSD] | $EXP[ShowInfoOnPause]] + [[!String.IsEmpty(Player.Art(tvshow.poster)) | !String.IsEmpty(Player.Art(poster))] + !VideoPlayer.Content(LiveTV) | !String.IsEmpty(Player.Art(thumb)) + VideoPlayer.Content(LiveTV)]</expression>
     <expression name="TrailerWindowIsActive">Skin.HasSetting(home.netflix.autoplay.trailer) + [[Window.IsVisible(Home.xml) + [$EXP[HomeIsModernMultiWidgetsNetflix] | $EXP[HomeIsCleanMinimal] | $EXP[HomeIsVerticalMultiWidgetsNetflix]]] | Control.IsVisible(521) | Control.IsVisible(522)] + !Window.IsVisible(DialogVideoInfo.xml) + String.IsEqual(Window(home).Property(TrailerPath2),Player.FileNameAndPath) + !String.IsEmpty(Player.FileNameAndPath)</expression>
     <expression name="TrailerIsReady">Skin.HasSetting(home.netflix.autoplay.trailer) + [Window.IsVisible(Home.xml) | Window.IsVisible(MyVideoNav.xml) | $EXP[InGameMode]] + !Control.HasFocus(300) + !Player.HasMedia + !String.IsEmpty(Window(home).Property(listitem.trailer)) + !System.HasVisibleModalDialog + !Window.IsVisible(script-globalsearch.xml) + !String.IsEqual(Window(home).Property(TrailerPath),Window(home).Property(listitem.trailer)) + !System.IdleTime(30)</expression>
     <expression name="TrailerWaitingForPlayer">!String.IsEmpty(Window(home).Property(TrailerPath2)) + !String.IsEmpty(Window(home).Property(TrailerPath)) + String.IsEmpty(Player.FileNameAndPath)</expression>
@@ -614,7 +613,6 @@
         <value condition="!String.IsEmpty(ListItem.Art(fanart)) + [!Skin.HasSetting(disable.background.addons.fanart) | [Skin.HasSetting(disable.background.addons.fanart) + !String.Contains(ListItem.Art(fanart),addons) + ![String.Contains(ListItem.Art(fanart),plugin) | String.Contains(ListItem.Art(fanart),script) | String.Contains(ListItem.Art(fanart),service)]]]">$INFO[ListItem.Art(fanart)]</value>
         <value condition="!String.IsEmpty(ListItem.Property(fanart))">$INFO[ListItem.Property(fanart)]</value>
         <value condition="String.StartsWith(ListItem.FolderPath,pvr://) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Fanart))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Fanart)]</value>
-        <value condition="!String.IsEmpty(ListItem.EpgEventIcon)">$INFO[ListItem.EpgEventIcon]</value>
         
 		<!-- Fallbacks -->
         <value condition="String.IsEqual(ListItem.DBtype,movie) | String.IsEqual(ListItem.DBtype,set)">special://skin/extras/backgrounds/fallbacks/film.jpg</value>
@@ -681,8 +679,6 @@
 
 		<!-- TMDbHelper PVR Artwork -->
         <value condition="Window.IsVisible(home) + String.StartsWith(Container(301).ListItem.FolderPath,pvr://) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Fanart)) + [!Skin.HasSetting(home.dontshowfanart) | Control.HasFocus(301)] + Control.IsVisible(301)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Fanart)]</value>
-        
-        <value condition="Window.IsVisible(home) + !String.IsEmpty(ListItem.EpgEventIcon) + [!Skin.HasSetting(home.dontshowfanart) | Control.HasFocus(301)] + Control.IsVisible(301)">$INFO[ListItem.EpgEventIcon]</value>
 
         <!-- Weather -->
         <value condition="!String.IsEmpty(Weather.Plugin) + [$EXP[HasWeatherFanartSingle] | $EXP[HasWeatherFanartMulti]] + String.IsEqual(Container(300).ListItem.Property(widget),weather) + [!Skin.HasSetting(home.dontshowfanart) | Control.HasFocus(301)]">$VAR[Image_WeatherCurrent]</value>
@@ -699,7 +695,6 @@
         <value condition="!String.IsEmpty(Container(9500).ListItem.Art(fanart))">$INFO[Container(9500).ListItem.Art(fanart)]</value>
         <value condition="!String.IsEmpty(ListItem.Property(Fanart)) + !Window.IsVisible(Settings.xml)">$INFO[ListItem.Property(Fanart)]</value>
         <value condition="[Window.IsVisible(tvchannels) | Window.IsVisible(tvguide)] + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Fanart))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Fanart)]</value>
-        <value condition="[Window.IsVisible(tvchannels) | Window.IsVisible(tvguide)] + !String.IsEmpty(ListItem.EpgEventIcon)">$INFO[ListItem.EpgEventIcon]</value>
         <value>$VAR[Image_SimpleBackground]</value>
     </variable>
 
