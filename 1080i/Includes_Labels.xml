@@ -1376,10 +1376,6 @@
         <value>$INFO[ListItem.PlayCount,,x $LOCALIZE[31371]$COMMA]$INFO[ListItem.LastPlayed, $LOCALIZE[31372] ,]</value>
     </variable>
 
-    <variable name="LabelRating">
-        <value condition="[!String.IsEmpty(ListItem.Rating) | [!String.IsEmpty(ListItem.UserRating) + Skin.HasSetting(userrating.override.rating)]]">$VAR[RatingLabel]</value>
-    </variable>
-
     <variable name="509Align">
         <value condition="Skin.HasSetting(509NoCenter)">$LOCALIZE[31381]</value>
         <value>$LOCALIZE[31382]</value>
@@ -1750,6 +1746,11 @@
         <value condition="$EXP[InGameMode]">$VAR[GameYear]</value>
         <value condition="[Container.Content(songs) | Container.Content(albums) | Container.Content(musicvideos)]">$VAR[LabelDurationMusic]</value>
         <value>$INFO[ListItem.Label2]</value>
+    </variable>
+
+    <variable name="Label_List_50_Rating">
+        <value condition="[!String.IsEmpty(ListItem.Rating) | [!String.IsEmpty(ListItem.UserRating) + Skin.HasSetting(userrating.override.rating)]]">$VAR[RatingLabel]</value>
+        <value>0.0</value>
     </variable>
 
     <variable name="Label_List_50_Extended_Details">
