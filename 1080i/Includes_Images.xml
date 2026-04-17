@@ -76,8 +76,8 @@
         <value condition="!String.IsEmpty(ListItem.Art(title))">$INFO[ListItem.Art(title)]</value>
         <value condition="!String.IsEmpty(ListItem.Art(fanart))">$INFO[ListItem.Art(fanart)]</value>
         <value condition="!String.IsEmpty(ListItem.Art(tvshow.fanart))">$INFO[ListItem.Art(tvshow.fanart)]</value>
-        <value condition="!String.IsEmpty(ListItem.Thumb)">$INFO[ListItem.Thumb]</value>
         <value condition="!String.IsEmpty(ListItem.EpgEventIcon)">$INFO[ListItem.EpgEventIcon]</value>
+        <value condition="!String.IsEmpty(ListItem.Thumb)">$INFO[ListItem.Thumb]</value>
         <value>$INFO[ListItem.Icon]</value>
     </variable>
 
@@ -85,15 +85,16 @@
         <value condition="!String.IsEmpty(ListItem.Art(animatedfanart)) + !String.IsEqual(ListItem.DBType,episode) + Skin.HasSetting(furniture.animatedfanarts)">$INFO[ListItem.Art(animatedfanart)]</value>
         <value condition="!String.IsEmpty(ListItem.Art(fanart))">$INFO[ListItem.Art(fanart)]</value>
         <value condition="!String.IsEmpty(ListItem.Art(tvshow.fanart))">$INFO[ListItem.Art(tvshow.fanart)]</value>
-        <value condition="!String.IsEmpty(ListItem.Thumb)">$INFO[ListItem.Thumb]</value>
         <value condition="!String.IsEmpty(ListItem.EpgEventIcon)">$INFO[ListItem.EpgEventIcon]</value>
+        <value condition="!String.IsEmpty(ListItem.Thumb)">$INFO[ListItem.Thumb]</value>
         <value>$INFO[ListItem.Icon]</value>
     </variable>
 
     <variable name="WidgetThumbImageFeatured">
-        <value condition="!String.IsEmpty(Container(301).ListItem.Art(landscape)) + String.IsEqual(Container(300).ListItem.Property(widgetaspect),Landscape)">$INFO[Container(301).ListItem.Art(landscape)]</value>
+        <value condition="!String.IsEmpty(Container(301).ListItem.EpgEventIcon)">$INFO[Container(301).ListItem.EpgEventIcon]</value>
+        <value condition="!String.IsEmpty(Container(301).ListItem.Art(landscape)) + String.IsEqual(Container(300).ListItem.Property(widgetaspect),Landscape) + !Skin.HasSetting(DisableLandscapeArt)">$INFO[Container(301).ListItem.Art(landscape)]</value>
         <value condition="!String.IsEmpty(Container(301).ListItem.Art(thumb)) + String.IsEqual(Container(300).ListItem.Property(widgetaspect),Thumbnail)">$INFO[Container(301).ListItem.Art(thumb)]</value>
-        <value condition="!String.IsEmpty(Container(301).ListItem.Art(landscape))">$INFO[Container(301).ListItem.Art(landscape)]</value>
+        <value condition="!String.IsEmpty(Container(301).ListItem.Art(fanart))">$INFO[Container(301).ListItem.Art(landscape)]</value>
         <value condition="!String.IsEmpty(Container(301).ListItem.Art(thumb))">$INFO[Container(301).ListItem.Art(thumb)]</value>
         <value condition="!String.IsEmpty(Container(301).ListItem.Thumb)">$INFO[Container(301).ListItem.Thumb]</value>
         <value>$INFO[Container(301).ListItem.Icon]</value>
