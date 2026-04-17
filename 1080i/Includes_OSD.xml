@@ -1223,7 +1223,7 @@
             <include>DefOSDButtonsNewOSD</include>
             <enable>VideoPlayer.IsStereoscopic</enable>
             <disabledcolor>PanelWhite12</disabledcolor>
-            <visible>$EXP[VideoOSDWide]</visible>
+            <visible>!$EXP[VideoOSDShort]</visible>
             <include>Animation.OSD.Wide.Short</include>
         </control>
     </include>
@@ -1246,7 +1246,7 @@
             <include>DefOSDButtonsNewOSD</include>
             <label>298</label>
             <onclick>ActivateWindow(125)</onclick>
-            <visible>$EXP[VideoOSDWide]</visible>
+            <visible>!$EXP[VideoOSDShort]</visible>
             <include>Animation.OSD.Wide.Short</include>
         </control>
     </include>
@@ -1306,7 +1306,7 @@
             <include>DefOSDUpDown</include>
             <include>DefOSDButtonsNewOSD</include>
             <onclick>ActivateWindow(pvrosdchannels)</onclick>
-            <visible>$EXP[VideoOSDWide]</visible>
+            <visible>!$EXP[VideoOSDShort]</visible>
             <include>Animation.OSD.Wide.Short</include>
         </control>
         <control type="button" id="250">
@@ -1317,7 +1317,7 @@
             <onclick>ActivateWindow(pvrchannelguide)</onclick>
             <include>DefOSDUpDown</include>
             <include>DefOSDButtonsNewOSD</include>
-            <visible>$EXP[VideoOSDWide]</visible>
+            <visible>!$EXP[VideoOSDShort]</visible>
             <include>Animation.OSD.Wide.Short</include>
         </control>
     </include>
@@ -1345,7 +1345,7 @@
             <onclick>PlayerControl(ShowVideoMenu)</onclick>
             <enable>VideoPlayer.HasMenu</enable>
             <disabledcolor>White12</disabledcolor>
-            <visible>$EXP[VideoOSDWide]</visible>
+            <visible>!$EXP[VideoOSDShort]</visible>
             <include>Animation.OSD.Wide.Short</include>
         </control>
     </include>
@@ -1370,7 +1370,7 @@
             <include>DefOSDUpDown</include>
             <include>DefOSDButtonsNewOSD</include>
             <disabledcolor>White12</disabledcolor>
-            <visible>$EXP[VideoOSDWide]</visible>
+            <visible>!$EXP[VideoOSDShort]</visible>
             <include>OSDExtendedInfo_Click_Action</include>
             <include>Animation.OSD.Wide.Short</include>
         </control>
@@ -1396,7 +1396,7 @@
             <include>DefOSDUpDown</include>
             <include>DefOSDButtonsNewOSD</include>
             <disabledcolor>White12</disabledcolor>
-            <visible>$EXP[VideoOSDWide]</visible>
+            <visible>!$EXP[VideoOSDShort]</visible>
             <include>Animation.OSD.Wide.Short</include>
             <include>OSDExtendedInfo_Click_Action</include>
         </control>
@@ -2469,15 +2469,11 @@
                 <orientation>horizontal</orientation>
                 <align>left</align>
                 <onleft condition="$EXP[VideoOSDShort]">5</onleft>
-                <onleft condition="$EXP[VideoOSDWide]">250</onleft>
+                <onleft condition="!$EXP[VideoOSDShort]">250</onleft>
                 <onright condition="!PVR.CanRecordPlayingChannel | !VideoPlayer.Content(LiveTV)">12</onright>
                 <onright condition="PVR.CanRecordPlayingChannel + VideoPlayer.Content(LiveTV)">9003</onright>
 
-                <animation effect="slide" start="0,0" end="320,0" time="150" condition="!Skin.HasSetting(osd.disableposter) + [Window.IsVisible(fullscreeninfo) | Player.ShowInfo | !String.IsEmpty(Window(home).Property(osdinfo)) | $EXP[ShowInfoWithOSD] | $EXP[ShowInfoOnPause]] + [!String.IsEmpty(Player.Art(tvshow.poster)) | !String.IsEmpty(Player.Art(poster))] + !VideoPlayer.Content(LiveTV)">Conditional</animation>
-                <animation effect="slide" start="0,0" end="320,0" time="150" condition="!Skin.HasSetting(osd.disableposter) + [Window.IsVisible(fullscreeninfo) | Player.ShowInfo | !String.IsEmpty(Window(home).Property(osdinfo)) | $EXP[ShowInfoWithOSD] | $EXP[ShowInfoOnPause]] + !String.IsEmpty(Player.Art(thumb)) + VideoPlayer.Content(LiveTV)">Conditional</animation>
-
-                <animation effect="slide" start="0,0" end="0,0" time="150" condition="Skin.HasSetting(osd.disableposter) + [Window.IsVisible(fullscreeninfo) | Player.ShowInfo | !String.IsEmpty(Window(home).Property(osdinfo)) | $EXP[ShowInfoWithOSD] | $EXP[ShowInfoOnPause]] + [!String.IsEmpty(Player.Art(tvshow.poster)) | !String.IsEmpty(Player.Art(poster))] + !VideoPlayer.Content(LiveTV)">Conditional</animation>
-                <animation effect="slide" start="0,0" end="0,0" time="150" condition="Skin.HasSetting(osd.disableposter) + [Window.IsVisible(fullscreeninfo) | Player.ShowInfo | !String.IsEmpty(Window(home).Property(osdinfo)) | $EXP[ShowInfoWithOSD] | $EXP[ShowInfoOnPause]] + !String.IsEmpty(Player.Art(thumb)) + VideoPlayer.Content(LiveTV)">Conditional</animation>
+                <animation effect="slide" start="0,0" end="320,0" time="150" condition="$EXP[VideoOSDShort]">Conditional</animation>
 
                 <usecontrolcoords>true</usecontrolcoords>
                 <include condition="!VideoPlayer.Content(livetv)">OSDVideosLeftNewOSD</include>
@@ -2502,7 +2498,7 @@
                     <onclick>ActivateWindow(1101)</onclick>
                     <include>DefOSDUpDown</include>
                     <include>DefOSDButtonsNewOSD</include>
-                    <visible>$EXP[VideoOSDWide]</visible>
+                    <visible>!$EXP[VideoOSDShort]</visible>
                     <include>Animation.OSD.Wide.Short</include>
                 </control>
             </control>
@@ -2521,9 +2517,9 @@
                 <orientation>horizontal</orientation>
                 <align>center</align>
                 <onleft condition="$EXP[VideoOSDShort]">2</onleft>
-                <onleft condition="$EXP[VideoOSDWide]">220</onleft>
+                <onleft condition="!$EXP[VideoOSDShort]">220</onleft>
                 <onright condition="$EXP[VideoOSDShort]">4</onright>
-                <onright condition="$EXP[VideoOSDWide]">240</onright>
+                <onright condition="!$EXP[VideoOSDShort]">240</onright>
                 <ondown>noop</ondown>
                 <include>OSDVideoControlsFlipNewOSD</include>
             </control>
@@ -2536,7 +2532,7 @@
                 <align>right</align>
                 <onleft>19</onleft>
                 <onright condition="$EXP[VideoOSDShort]">1</onright>
-                <onright condition="$EXP[VideoOSDWide]">210</onright>
+                <onright condition="!$EXP[VideoOSDShort]">210</onright>
                 <usecontrolcoords>true</usecontrolcoords>
                 <include condition="!VideoPlayer.Content(livetv) + [VideoPlayer.HasMenu | [!VideoPlayer.Content(movies) + !VideoPlayer.Content(episodes)]]">OSDDVDMenuNewOSD</include>
                 <include condition="!VideoPlayer.HasMenu + VideoPlayer.Content(episodes)">OSDExtraInfoTVNewOSD</include>
