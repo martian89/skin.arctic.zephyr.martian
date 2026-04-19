@@ -288,7 +288,7 @@
                     <bottom>10</bottom>
                     <height>8</height>
                     <info>Player.ProgressCache</info>
-                    <visible>true</visible>
+                    <visible>!Pvr.IsPlayingRadio</visible>
                     <texturebg colordiffuse="OSDProgressBarColor">osd/progress-bg.png</texturebg>
                     <lefttexture colordiffuse="Highlight2">osd/progress-end.png</lefttexture>
                     <midtexture colordiffuse="Highlight2">osd/progress-end.png</midtexture>
@@ -300,6 +300,15 @@
                     <bottom>10</bottom>
                     <height>8</height>
                     <info>Player.Progress</info>
+                    <visible>!Pvr.IsPlayingRadio</visible>
+                </control>
+                <control type="progress">
+                    <description>Progress Bar</description>
+                    <width>100%</width>
+                    <bottom>10</bottom>
+                    <height>8</height>
+                    <info>PVR.EpgEventProgress</info>
+                    <visible>Pvr.IsPlayingRadio</visible>
                 </control>
             </control>
         </control>    
@@ -519,7 +528,7 @@
 			                <bottom>10</bottom>
 			                <height>8</height>
 			                <info>Player.ProgressCache</info>
-			                <visible>true</visible>
+			                <visible>!Pvr.IsPlayingRadio</visible>
 			                <texturebg colordiffuse="OSDProgressBarColor">osd/progress-bg.png</texturebg>
 			                <lefttexture colordiffuse="Highlight2">osd/progress-end.png</lefttexture>
 			                <midtexture colordiffuse="Highlight2">osd/progress-end.png</midtexture>
@@ -531,7 +540,16 @@
 			                <bottom>10</bottom>
 			                <height>8</height>
 			                <info>Player.Progress</info>
+                            <visible>!Pvr.IsPlayingRadio</visible>
 			            </control>
+                        <control type="progress">
+                            <description>Progress Bar</description>
+                            <width>100%</width>
+                            <bottom>10</bottom>
+                            <height>8</height>
+                            <info>PVR.EpgEventProgress</info>
+                            <visible>Pvr.IsPlayingRadio</visible>
+                        </control>
 			            <control type="label" description="Lyrics">
 			                <include>Animation.FadeIn</include>
 			                <animation effect="fade" end="100" start="0" time="150" condition="Window.IsVisible(script-cu-lrclyrics-main.xml)">Conditional</animation>
