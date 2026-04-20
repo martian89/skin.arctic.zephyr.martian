@@ -374,8 +374,8 @@
             <textcolor>Light1</textcolor>
             <selectedcolor>Light1</selectedcolor>
             <label>$VAR[Label_List_50_LabelTwo]</label>
-            <animation effect="slide" start="0" end="60" time="0" condition="Container.Content(Seasons) | Skin.HasSetting(hide.markers)">Conditional</animation>
-            <animation effect="slide" start="0" end="66" time="0" condition="!Container.Content(Seasons) + !$EXP[ShowRatingInfo]">Conditional</animation>
+            <animation effect="slide" start="0" end="60" time="0" condition="Skin.HasSetting(hide.markers)">Conditional</animation>
+            <animation effect="slide" start="0" end="66" time="0" condition="!$EXP[ShowRatingInfo]">Conditional</animation>
         </control>
         <control type="label">
             <align>right</align>
@@ -388,8 +388,8 @@
             <font>WatchedIcon</font>
             <label>$VAR[LabelPercentWatched]</label>
             <visible>!String.IsEqual(ListItem.Label,..) + [Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(musicvideos) | Container.Content(files) | Container.Content(videos) | $EXP[IsVideoAssets]] + !Skin.HasSetting(hide.markers)</visible>
-            <animation effect="slide" start="0" end="60" time="0" condition="Container.Content(Seasons) | Skin.HasSetting(hide.markers)">Conditional</animation>
-            <animation effect="slide" start="0" end="66" time="0" condition="!Container.Content(Seasons) + !$EXP[ShowRatingInfo]">Conditional</animation>
+            <animation effect="slide" start="0" end="60" time="0" condition="Skin.HasSetting(hide.markers)">Conditional</animation>
+            <animation effect="slide" start="0" end="66" time="0" condition="!$EXP[ShowRatingInfo]">Conditional</animation>
         </control>
         <control type="label">
             <right>30</right>
@@ -400,10 +400,9 @@
             <font>Small</font>
             <textcolor>Light1</textcolor>
             <selectedcolor>Light1</selectedcolor>
-            <label>$VAR[LabelRating]</label>
+            <label>$VAR[Label_List_50_Rating]</label>
             <visible>!String.IsEqual(ListItem.Label,..)</visible>
-            <visible>!Container.Content(seasons) | String.IsEqual(Container.SortMethod,$LOCALIZE[553]) | String.IsEqual(Container.SortMethod,$LOCALIZE[561])</visible>
-            <visible>$EXP[ShowRatingInfo] | String.IsEqual(Container.SortMethod,$LOCALIZE[553]) | String.IsEqual(Container.SortMethod,$LOCALIZE[561])</visible>
+            <visible>$EXP[ShowRatingInfo]</visible>
         </control>
     </include>
 
@@ -452,8 +451,8 @@
             <textcolor>Dark1</textcolor>
             <selectedcolor>Dark1</selectedcolor>
             <label>$VAR[Label_List_50_LabelTwo]</label>
-            <animation effect="slide" start="0" end="60" time="0" condition="Container.Content(Seasons) | Skin.HasSetting(hide.markers)">Conditional</animation>
-            <animation effect="slide" start="0" end="66" time="0" condition="!Container.Content(Seasons) + !$EXP[ShowRatingInfo]">Conditional</animation>
+            <animation effect="slide" start="0" end="60" time="0" condition="Skin.HasSetting(hide.markers)">Conditional</animation>
+            <animation effect="slide" start="0" end="66" time="0" condition="!$EXP[ShowRatingInfo]">Conditional</animation>
         </control>
         <control type="label">
             <align>right</align>
@@ -466,8 +465,8 @@
             <font>WatchedIcon</font>
             <label>$VAR[LabelPercentWatched]</label>
             <visible>!String.IsEqual(ListItem.Label,..) + [Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(musicvideos) | Container.Content(files) | Container.Content(videos) | $EXP[IsVideoAssets]] + !Skin.HasSetting(hide.markers)</visible>
-            <animation effect="slide" start="0" end="60" time="0" condition="Container.Content(Seasons) | Skin.HasSetting(hide.markers)">Conditional</animation>
-            <animation effect="slide" start="0" end="66" time="0" condition="!Container.Content(Seasons) + !$EXP[ShowRatingInfo]">Conditional</animation>
+            <animation effect="slide" start="0" end="60" time="0" condition="Skin.HasSetting(hide.markers)">Conditional</animation>
+            <animation effect="slide" start="0" end="66" time="0" condition="!$EXP[ShowRatingInfo]">Conditional</animation>
         </control>
         <control type="label">
             <right>30</right>
@@ -478,10 +477,9 @@
             <font>Small</font>
             <textcolor>Dark1</textcolor>
             <selectedcolor>Dark1</selectedcolor>
-            <label>$VAR[LabelRating]</label>
+            <label>$VAR[Label_List_50_Rating]</label>
             <visible>!String.IsEqual(ListItem.Label,..)</visible>
-            <visible>!Container.Content(seasons) | String.IsEqual(Container.SortMethod,$LOCALIZE[553]) | String.IsEqual(Container.SortMethod,$LOCALIZE[561])</visible>
-            <visible>$EXP[ShowRatingInfo] | String.IsEqual(Container.SortMethod,$LOCALIZE[553]) | String.IsEqual(Container.SortMethod,$LOCALIZE[561])</visible>
+            <visible>$EXP[ShowRatingInfo]</visible>
         </control>
     </include>
 
@@ -1078,8 +1076,8 @@
         </control>
         <control type="label">
             <top>-5</top>
-            <animation effect="slide" start="0" end="60" time="0" condition="Container.Content(Seasons) | Skin.HasSetting(hide.markers)">Conditional</animation>
-            <animation effect="slide" start="0" end="66" time="0" condition="!Container.Content(Seasons) + !$EXP[ShowRatingInfo]">Conditional</animation>
+            <animation effect="slide" start="0" end="60" time="0" condition="Skin.HasSetting(hide.markers)">Conditional</animation>
+            <animation effect="slide" start="0" end="66" time="0" condition="Container.Content(Seasons) | !$EXP[ShowRatingInfo]">Conditional</animation>
             <right>154</right>
             <width>500</width>
             <aligny>center</aligny>
@@ -1102,8 +1100,8 @@
             <font>WatchedIcon</font>
             <label>$VAR[LabelPercentWatched]</label>
             <visible>!String.IsEqual(ListItem.Label,..) + [Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(musicvideos) | Container.Content(files) | Container.Content(videos) | $EXP[IsVideoAssets]] + !Skin.HasSetting(hide.markers)</visible>
-            <animation effect="slide" start="0" end="60" time="0" condition="Container.Content(Seasons) | Skin.HasSetting(hide.markers)">Conditional</animation>
-            <animation effect="slide" start="0" end="66" time="0" condition="!Container.Content(Seasons) + !$EXP[ShowRatingInfo]">Conditional</animation>
+            <animation effect="slide" start="0" end="60" time="0" condition="Skin.HasSetting(hide.markers)">Conditional</animation>
+            <animation effect="slide" start="0" end="66" time="0" condition="Container.Content(Seasons) | !$EXP[ShowRatingInfo]">Conditional</animation>
         </control>
         <control type="label">
             <top>-5</top>
@@ -1115,10 +1113,9 @@
             <font>Small</font>
             <textcolor>Light1</textcolor>
             <selectedcolor>Light1</selectedcolor>
-            <label>$VAR[LabelRating]</label>
+            <label>$VAR[Label_List_50_Rating]</label>
             <visible>!String.IsEqual(ListItem.Label,..)</visible>
-            <visible>!Container.Content(seasons) | String.IsEqual(Container.SortMethod,$LOCALIZE[553]) | String.IsEqual(Container.SortMethod,$LOCALIZE[561])</visible>
-            <visible>$EXP[ShowRatingInfo] | String.IsEqual(Container.SortMethod,$LOCALIZE[553]) | String.IsEqual(Container.SortMethod,$LOCALIZE[561])</visible>
+            <visible>!Container.Content(seasons) + $EXP[ShowRatingInfo]</visible>
         </control>
     </include>
 
@@ -1169,8 +1166,8 @@
             <textcolor>Dark1</textcolor>
             <selectedcolor>Dark1</selectedcolor>
             <label>$VAR[Label_List_50_Extended_LabelTwo]</label>
-            <animation effect="slide" start="0" end="60" time="0" condition="Container.Content(Seasons) | Skin.HasSetting(hide.markers)">Conditional</animation>
-            <animation effect="slide" start="0" end="66" time="0" condition="!Container.Content(Seasons) + !$EXP[ShowRatingInfo]">Conditional</animation>
+            <animation effect="slide" start="0" end="60" time="0" condition="Skin.HasSetting(hide.markers)">Conditional</animation>
+            <animation effect="slide" start="0" end="66" time="0" condition="!$EXP[ShowRatingInfo]">Conditional</animation>
         </control>
         <control type="label">
             <top>-5</top>
@@ -1184,8 +1181,8 @@
             <font>WatchedIcon</font>
             <label>$VAR[LabelPercentWatched]</label>
             <visible>!String.IsEqual(ListItem.Label,..) + [Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(musicvideos) | Container.Content(files) | Container.Content(videos) | $EXP[IsVideoAssets]] + !Skin.HasSetting(hide.markers)</visible>
-            <animation effect="slide" start="0" end="60" time="0" condition="Container.Content(Seasons) | Skin.HasSetting(hide.markers)">Conditional</animation>
-            <animation effect="slide" start="0" end="66" time="0" condition="!Container.Content(Seasons) + !$EXP[ShowRatingInfo]">Conditional</animation>
+            <animation effect="slide" start="0" end="60" time="0" condition="Skin.HasSetting(hide.markers)">Conditional</animation>
+            <animation effect="slide" start="0" end="66" time="0" condition="!$EXP[ShowRatingInfo]">Conditional</animation>
         </control>
         <control type="label">
             <top>-5</top>
@@ -1197,10 +1194,9 @@
             <font>Small</font>
             <textcolor>Dark1</textcolor>
             <selectedcolor>Dark1</selectedcolor>
-            <label>$VAR[LabelRating]</label>
+            <label>$VAR[Label_List_50_Rating]</label>
             <visible>!String.IsEqual(ListItem.Label,..)</visible>
-            <visible>!Container.Content(seasons) | String.IsEqual(Container.SortMethod,$LOCALIZE[553]) | String.IsEqual(Container.SortMethod,$LOCALIZE[561])</visible>
-            <visible>$EXP[ShowRatingInfo] | String.IsEqual(Container.SortMethod,$LOCALIZE[553]) | String.IsEqual(Container.SortMethod,$LOCALIZE[561])</visible>
+            <visible>$EXP[ShowRatingInfo]</visible>
         </control>
     </include>
 </includes>

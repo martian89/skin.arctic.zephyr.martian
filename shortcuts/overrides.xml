@@ -5,8 +5,7 @@
     <!-- Playlist -->
     <widgetPlaylists>True</widgetPlaylists>
     <groupoverride group="powermenu" condition="Window.IsActive(DialogButtonMenu.xml)">Close</groupoverride>
-    <warn heading="31361" message="31362">ActivateWindow(Settings)</warn>
-
+ 
     <override action="ActivateWindow(Favourites)">
         <action>ActivateWindow(favouritesbrowser)</action>
     </override>
@@ -21,348 +20,73 @@
         <action>System.LogOff</action>
     </override>
 
-    <!-- Widget 1 Sort by -->
-    <propertySettings property="widgetSortby" buttonID="9402" templateonly="True" title="$LOCALIZE[581]"/>
-    <property property="widgetSortby" label="$LOCALIZE[369]">title</property>
-    <property property="widgetSortby" label="$LOCALIZE[345]">year</property>
-    <property property="widgetSortby" label="$LOCALIZE[558]">album</property>
-    <property property="widgetSortby" label="$LOCALIZE[554]" condition="String.IsEqual(Container(211).ListItem.Property(widgetType),songs)">tracknumber</property>
-    <property property="widgetSortby" label="$LOCALIZE[19029]">channelnumber</property>
-    <property property="widgetSortby" label="$LOCALIZE[570]" condition="!String.IsEqual(Container(211).ListItem.Property(widgetType),pvr)">dateadded</property>
+    <!-- Widget Aspect -->
+    <propertySettings property="widgetAspect" buttonID="9111" showNone="False" title="$LOCALIZE[31261]"/>
+    <propertySettings property="widgetAspect" buttonID="9411" showNone="False" title="$LOCALIZE[31261]"/>
+    <property property="widgetAspect" label="$LOCALIZE[31262]">Poster</property>
+    <property property="widgetAspect" label="$LOCALIZE[31263]">Square</property>
+    <property property="widgetAspect" label="$LOCALIZE[31462]">Landscape</property>
+    <property property="widgetAspect" label="$LOCALIZE[21371]" condition="!String.Contains(Container(211).ListItem.Property(Path),weather)">Thumbnail</property>
+    <property property="widgetAspect" label="$LOCALIZE[31703]" condition="Skin.HasSetting(home.vertical.widgets) + !String.Contains(Container(211).ListItem.Property(Path),weather)">LandscapeSmall</property>
+    <property property="widgetAspect" label="$LOCALIZE[31704]" condition="Skin.HasSetting(home.vertical.widgets) + !String.Contains(Container(211).ListItem.Property(Path),weather) + !String.Contains(Container(211).ListItem.Property(Path),studios) + !String.Contains(Container(211).ListItem.Property(Path),genres) + !String.Contains(Container(211).ListItem.Property(Path),countries)">LandscapePosterSmall</property>
+    <property property="widgetAspect" label="$LOCALIZE[20020]" condition="Skin.HasSetting(home.vertical.widgets) + !String.Contains(Container(211).ListItem.Property(Path),weather) + !String.Contains(Container(211).ListItem.Property(Path),studios) + !String.Contains(Container(211).ListItem.Property(Path),genres) + !String.Contains(Container(211).ListItem.Property(Path),countries)">Banner</property>
+
+    <!-- Widget Target -->
+    <propertySettings property="widgetTarget" buttonID="9112" title="$LOCALIZE[31479]" />
+    <propertySettings property="widgetTarget" buttonID="9412" title="$LOCALIZE[31479]" />
+    <property property="widgetTarget" label="$LOCALIZE[3]">videos</property>
+    <property property="widgetTarget" label="$LOCALIZE[2]">music</property>
+    <property property="widgetTarget" label="$LOCALIZE[1]">pictures</property>
+    <property property="widgetTarget" label="$LOCALIZE[0]">programs</property>
+    <property property="widgetTarget" label="$LOCALIZE[1036]">favouritesbrowser</property>
+
+    <!-- Widget Sort by -->
+    <propertySettings property="widgetSortby" buttonID="9113" templateonly="True" title="$LOCALIZE[581]"/>
+    <propertySettings property="widgetSortby" buttonID="9413" templateonly="True" title="$LOCALIZE[581]"/>
+    <property property="widgetSortby" label="$LOCALIZE[551]">name</property>
     <property property="widgetSortby" label="$LOCALIZE[590]">random</property>
-    <property property="widgetSortby" label="$LOCALIZE[36902]">tvshowtitle</property>
-    <property property="widgetSortby" label="$LOCALIZE[552]" condition="String.IsEqual(Container(211).ListItem.Property(widgetType),episodes)">date</property>
-    <property property="widgetSortby" label="$LOCALIZE[557]">artist</property>
+    <property property="widgetSortby" label="$LOCALIZE[570]">dateadded</property>
+    <property property="widgetSortby" label="$LOCALIZE[568]">lastplayed</property>
+    <property property="widgetSortby" label="$LOCALIZE[567]">playcount</property>
+    <property property="widgetSortby" label="$LOCALIZE[345]">year</property>
     <property property="widgetSortby" label="$LOCALIZE[563]">rating</property>
     <property property="widgetSortby" label="$LOCALIZE[38018]">userrating</property>
-    <property property="widgetSortby" label="$LOCALIZE[568]">lastplayed</property>
-    <property property="widgetSortby" label="$LOCALIZE[12012]">lastused</property>
-    <property property="widgetSortby" label="$LOCALIZE[561]">file</property>
+    <property property="widgetSortby" label="$LOCALIZE[205]">votes</property>
     <property property="widgetSortby" label="$LOCALIZE[515]">genre</property>
+    <property property="widgetSortby" label="$LOCALIZE[574]">country</property>
+    <property property="widgetSortby" label="$LOCALIZE[572]">studio</property>
+    <property property="widgetSortby" label="$LOCALIZE[559]">playlist</property>
+    <property property="widgetSortby" label="$LOCALIZE[20359]">episode</property>
+    <property property="widgetSortby" label="$LOCALIZE[20373]">season</property>
+    <property property="widgetSortby" label="$LOCALIZE[20360]">totalepisodes</property>
+    <property property="widgetSortby" label="$LOCALIZE[21457]">watchedepisodes</property>
+    <property property="widgetSortby" label="$LOCALIZE[36902]">tvshowtitle</property>
+    <property property="widgetSortby" label="$LOCALIZE[561]">file</property>
+    <property property="widgetSortby" label="$LOCALIZE[369]">title</property>
+    <property property="widgetSortby" label="$LOCALIZE[554]">tracknumber</property>
+    <property property="widgetSortby" label="$LOCALIZE[555]">time</property>
+    <property property="widgetSortby" label="$LOCALIZE[557]">artist</property>
+    <property property="widgetSortby" label="$LOCALIZE[558]">album</property>
+    <property property="widgetSortby" label="$LOCALIZE[19029]">channelnumber</property>
+    <property property="widgetSortby" label="$LOCALIZE[12014]">lastupdated</property>
+    <property property="widgetSortby" label="$LOCALIZE[12012]">lastused</property>
+    <property property="widgetSortby" label="$LOCALIZE[552]">date</property>
     <property property="widgetSortby" label="$LOCALIZE[19349]">userpreference</property>
 
-    <!-- Widget 2 Sort by -->
-    <propertySettings property="widgetSortby.2" buttonID="9792" templateonly="True" title="$LOCALIZE[581]"/>
-    <property property="widgetSortby.2" label="$LOCALIZE[369]">title</property>
-    <property property="widgetSortby.2" label="$LOCALIZE[345]">year</property>
-    <property property="widgetSortby.2" label="$LOCALIZE[558]">album</property>
-    <property property="widgetSortby.2" label="$LOCALIZE[554]" condition="String.IsEqual(Container(211).ListItem.Property(widgetType.2),songs)">tracknumber</property>
-    <property property="widgetSortby.2" label="$LOCALIZE[19029]">channelnumber</property>
-    <property property="widgetSortby.2" label="$LOCALIZE[570]" condition="!String.IsEqual(Container(211).ListItem.Property(widgetType.2),pvr)">dateadded</property>
-    <property property="widgetSortby.2" label="$LOCALIZE[590]">random</property>
-    <property property="widgetSortby.2" label="$LOCALIZE[36902]">tvshowtitle</property>
-    <property property="widgetSortby.2" label="$LOCALIZE[552]" condition="String.IsEqual(Container(211).ListItem.Property(widgetType.2),episodes)">date</property>
-    <property property="widgetSortby.2" label="$LOCALIZE[557]">artist</property>
-    <property property="widgetSortby.2" label="$LOCALIZE[563]">rating</property>
-    <property property="widgetSortby.2" label="$LOCALIZE[38018]">userrating</property>
-    <property property="widgetSortby.2" label="$LOCALIZE[568]">lastplayed</property>
-    <property property="widgetSortby.2" label="$LOCALIZE[12012]">lastused</property>
-    <property property="widgetSortby.2" label="$LOCALIZE[561]">file</property>
-    <property property="widgetSortby.2" label="$LOCALIZE[515]">genre</property>
-    <property property="widgetSortby.2" label="$LOCALIZE[19349]">userpreference</property>
+    <!-- Widget Sorting -->
+    <propertySettings property="widgetSortorder" buttonID="9114" templateonly="True" title="$LOCALIZE[580]"/>
+    <propertySettings property="widgetSortorder" buttonID="9414" templateonly="True" title="$LOCALIZE[580]"/>
+    <property property="widgetSortorder" label="$LOCALIZE[585]">descending</property>
+    <property property="widgetSortorder" label="$LOCALIZE[584]">ascending</property>
 
-    <!-- Widget 3 Sort by -->
-    <propertySettings property="widgetSortby.3" buttonID="9602" templateonly="True" title="$LOCALIZE[581]"/>
-    <property property="widgetSortby.3" label="$LOCALIZE[369]">title</property>
-    <property property="widgetSortby.3" label="$LOCALIZE[345]">year</property>
-    <property property="widgetSortby.3" label="$LOCALIZE[558]">album</property>
-    <property property="widgetSortby.3" label="$LOCALIZE[554]" condition="String.IsEqual(Container(211).ListItem.Property(widgetType.3),songs)">tracknumber</property>
-    <property property="widgetSortby.3" label="$LOCALIZE[19029]">channelnumber</property>
-    <property property="widgetSortby.3" label="$LOCALIZE[570]" condition="!String.IsEqual(Container(211).ListItem.Property(widgetType.3),pvr)">dateadded</property>
-    <property property="widgetSortby.3" label="$LOCALIZE[590]">random</property>
-    <property property="widgetSortby.3" label="$LOCALIZE[36902]">tvshowtitle</property>
-    <property property="widgetSortby.3" label="$LOCALIZE[552]" condition="String.IsEqual(Container(211).ListItem.Property(widgetType.3),episodes)">date</property>
-    <property property="widgetSortby.3" label="$LOCALIZE[557]">artist</property>
-    <property property="widgetSortby.3" label="$LOCALIZE[563]">rating</property>
-    <property property="widgetSortby.3" label="$LOCALIZE[38018]">userrating</property>
-    <property property="widgetSortby.3" label="$LOCALIZE[568]">lastplayed</property>
-    <property property="widgetSortby.3" label="$LOCALIZE[12012]">lastused</property>
-    <property property="widgetSortby.3" label="$LOCALIZE[561]">file</property>
-    <property property="widgetSortby.3" label="$LOCALIZE[515]">genre</property>
-    <property property="widgetSortby.3" label="$LOCALIZE[19349]">userpreference</property>
-
-    <!-- Widget 4 Sort by -->
-    <propertySettings property="widgetSortby.4" buttonID="9702" templateonly="True" title="$LOCALIZE[581]"/>
-    <property property="widgetSortby.4" label="$LOCALIZE[369]">title</property>
-    <property property="widgetSortby.4" label="$LOCALIZE[345]">year</property>
-    <property property="widgetSortby.4" label="$LOCALIZE[558]">album</property>
-    <property property="widgetSortby.4" label="$LOCALIZE[554]" condition="String.IsEqual(Container(211).ListItem.Property(widgetType.4),songs)">tracknumber</property>
-    <property property="widgetSortby.4" label="$LOCALIZE[19029]">channelnumber</property>
-    <property property="widgetSortby.4" label="$LOCALIZE[570]" condition="!String.IsEqual(Container(211).ListItem.Property(widgetType.4),pvr)">dateadded</property>
-    <property property="widgetSortby.4" label="$LOCALIZE[590]">random</property>
-    <property property="widgetSortby.4" label="$LOCALIZE[36902]">tvshowtitle</property>
-    <property property="widgetSortby.4" label="$LOCALIZE[552]" condition="String.IsEqual(Container(211).ListItem.Property(widgetType.4),episodes)">date</property>
-    <property property="widgetSortby.4" label="$LOCALIZE[557]">artist</property>
-    <property property="widgetSortby.4" label="$LOCALIZE[563]">rating</property>
-    <property property="widgetSortby.4" label="$LOCALIZE[38018]">userrating</property>
-    <property property="widgetSortby.4" label="$LOCALIZE[568]">lastplayed</property>
-    <property property="widgetSortby.4" label="$LOCALIZE[12012]">lastused</property>
-    <property property="widgetSortby.4" label="$LOCALIZE[561]">file</property>
-    <property property="widgetSortby.4" label="$LOCALIZE[515]">genre</property>
-    <property property="widgetSortby.4" label="$LOCALIZE[19349]">userpreference</property>
-
-    <!-- Widget 5 Sort by -->
-    <propertySettings property="widgetSortby.5" buttonID="9802" templateonly="True" title="$LOCALIZE[581]"/>
-    <property property="widgetSortby.5" label="$LOCALIZE[369]">title</property>
-    <property property="widgetSortby.5" label="$LOCALIZE[345]">year</property>
-    <property property="widgetSortby.5" label="$LOCALIZE[558]">album</property>
-    <property property="widgetSortby.5" label="$LOCALIZE[554]" condition="String.IsEqual(Container(211).ListItem.Property(widgetType.5),songs)">tracknumber</property>
-    <property property="widgetSortby.5" label="$LOCALIZE[19029]">channelnumber</property>
-    <property property="widgetSortby.5" label="$LOCALIZE[570]" condition="!String.IsEqual(Container(211).ListItem.Property(widgetType.5),pvr)">dateadded</property>
-    <property property="widgetSortby.5" label="$LOCALIZE[590]">random</property>
-    <property property="widgetSortby.5" label="$LOCALIZE[36902]">tvshowtitle</property>
-    <property property="widgetSortby.5" label="$LOCALIZE[552]" condition="String.IsEqual(Container(211).ListItem.Property(widgetType.5),episodes)">date</property>
-    <property property="widgetSortby.5" label="$LOCALIZE[557]">artist</property>
-    <property property="widgetSortby.5" label="$LOCALIZE[563]">rating</property>
-    <property property="widgetSortby.5" label="$LOCALIZE[38018]">userrating</property>
-    <property property="widgetSortby.5" label="$LOCALIZE[568]">lastplayed</property>
-    <property property="widgetSortby.5" label="$LOCALIZE[12012]">lastused</property>
-    <property property="widgetSortby.5" label="$LOCALIZE[561]">file</property>
-    <property property="widgetSortby.5" label="$LOCALIZE[515]">genre</property>
-    <property property="widgetSortby.5" label="$LOCALIZE[19349]">userpreference</property>
-
-    <!-- Widget 6 Sort by -->
-    <propertySettings property="widgetSortby.6" buttonID="11009" templateonly="True" title="$LOCALIZE[581]"/>
-    <property property="widgetSortby.6" label="$LOCALIZE[369]">title</property>
-    <property property="widgetSortby.6" label="$LOCALIZE[345]">year</property>
-    <property property="widgetSortby.6" label="$LOCALIZE[558]">album</property>
-    <property property="widgetSortby.6" label="$LOCALIZE[554]" condition="String.IsEqual(Container(211).ListItem.Property(widgetType.6),songs)">tracknumber</property>
-    <property property="widgetSortby.6" label="$LOCALIZE[19029]">channelnumber</property>
-    <property property="widgetSortby.6" label="$LOCALIZE[570]" condition="!String.IsEqual(Container(211).ListItem.Property(widgetType.6),pvr)">dateadded</property>
-    <property property="widgetSortby.6" label="$LOCALIZE[590]">random</property>
-    <property property="widgetSortby.6" label="$LOCALIZE[36902]">tvshowtitle</property>
-    <property property="widgetSortby.6" label="$LOCALIZE[552]" condition="String.IsEqual(Container(211).ListItem.Property(widgetType.6),episodes)">date</property>
-    <property property="widgetSortby.6" label="$LOCALIZE[557]">artist</property>
-    <property property="widgetSortby.6" label="$LOCALIZE[563]">rating</property>
-    <property property="widgetSortby.6" label="$LOCALIZE[38018]">userrating</property>
-    <property property="widgetSortby.6" label="$LOCALIZE[568]">lastplayed</property>
-    <property property="widgetSortby.6" label="$LOCALIZE[12012]">lastused</property>
-    <property property="widgetSortby.6" label="$LOCALIZE[561]">file</property>
-    <property property="widgetSortby.6" label="$LOCALIZE[515]">genre</property>
-    <property property="widgetSortby.6" label="$LOCALIZE[19349]">userpreference</property>
-
-
-    <!-- Widget 1 Aspect -->
-    <propertySettings property="widgetaspect" buttonID="9401" title="$LOCALIZE[31261]"/>
-    <property property="widgetaspect" label="$LOCALIZE[31262]" condition="!String.IsEqual(Container(211).ListItem.Property(widget),mysubmenu)">Poster</property>
-    <property property="widgetaspect" label="$LOCALIZE[31263]">Square</property>
-    <property property="widgetaspect" label="$LOCALIZE[31462]" condition="!String.IsEqual(Container(211).ListItem.Property(widget),mysubmenu)">Fanart</property>
-    <property property="widgetaspect" label="$LOCALIZE[31265]" condition="!String.IsEqual(Container(211).ListItem.Property(widget),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget),weather)">Thumbnail</property>
-    <property property="widgetaspect" label="$LOCALIZE[31703]" condition="!String.IsEqual(Container(211).ListItem.Property(widget),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget),weather) + !String.IsEqual(Container(211).ListItem.Property(widget),custom)">FanartSmall</property>
-    <property property="widgetaspect" label="$LOCALIZE[31704]" condition="!String.IsEqual(Container(211).ListItem.Property(widget),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget),weather) + !String.IsEqual(Container(211).ListItem.Property(widget),custom)">ThumbnailSmall</property>
-    <property property="widgetaspect" label="$LOCALIZE[31705]" condition="!String.IsEqual(Container(211).ListItem.Property(widget),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget),weather) + !String.IsEqual(Container(211).ListItem.Property(widget),custom) + !String.Contains(Container(211).ListItem.Property(widgetPath),studios) + !String.Contains(Container(211).ListItem.Property(widgetPath),genres)">ThumbnailPosterSmall</property>
-    <property property="widgetaspect" label="$LOCALIZE[20020]" condition="!String.IsEqual(Container(211).ListItem.Property(widget),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget),weather) + !String.Contains(Container(211).ListItem.Property(widgetPath),studios) + !String.Contains(Container(211).ListItem.Property(widgetPath),genres)">Banner</property>
-    <property property="widgetaspect" label="$LOCALIZE[31406]" condition="String.IsEqual(Container(211).ListItem.Property(widget),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget),weather) + !String.IsEqual(Container(211).ListItem.Property(widget),custom)">SquareSmall</property>
-    <property property="widgetaspect" label="$LOCALIZE[31407]" condition="String.IsEqual(Container(211).ListItem.Property(widget),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget),weather) + !String.IsEqual(Container(211).ListItem.Property(widget),custom)">SquareMedium</property>
-
-    <!-- Widget 2 Aspect -->
-    <propertySettings property="widgetaspect.2" buttonID="9521" title="$LOCALIZE[31261]"/>
-    <property property="widgetaspect.2" label="$LOCALIZE[31262]" condition="!String.IsEqual(Container(211).ListItem.Property(widget.2),mysubmenu)">Poster</property>
-    <property property="widgetaspect.2" label="$LOCALIZE[31263]">Square</property>
-    <property property="widgetaspect.2" label="$LOCALIZE[31462]" condition="!String.IsEqual(Container(211).ListItem.Property(widget.2),mysubmenu)">Fanart</property>
-    <property property="widgetaspect.2" label="$LOCALIZE[31265]" condition="!String.IsEqual(Container(211).ListItem.Property(widget.2),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget.2),weather)">Thumbnail</property>
-    <property property="widgetaspect.2" label="$LOCALIZE[31703]" condition="!String.IsEqual(Container(211).ListItem.Property(widget.2),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget.2),weather) + !String.IsEqual(Container(211).ListItem.Property(widget.2),custom)">FanartSmall</property>
-    <property property="widgetaspect.2" label="$LOCALIZE[31704]" condition="!String.IsEqual(Container(211).ListItem.Property(widget.2),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget.2),weather) + !String.IsEqual(Container(211).ListItem.Property(widget.2),custom)">ThumbnailSmall</property>
-    <property property="widgetaspect.2" label="$LOCALIZE[31705]" condition="!String.IsEqual(Container(211).ListItem.Property(widget.2),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget.2),weather) + !String.IsEqual(Container(211).ListItem.Property(widget.2),custom) + !String.Contains(Container(211).ListItem.Property(widgetPath.2),studios) + !String.Contains(Container(211).ListItem.Property(widgetPath.2),genres)">ThumbnailPosterSmall</property>
-    <property property="widgetaspect.2" label="$LOCALIZE[20020]" condition="!String.IsEqual(Container(211).ListItem.Property(widget.2),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget.2),weather) + !String.Contains(Container(211).ListItem.Property(widgetPath.2),studios) + !String.Contains(Container(211).ListItem.Property(widgetPath.2),genres)">Banner</property>
-    <property property="widgetaspect.2" label="$LOCALIZE[31406]" condition="String.IsEqual(Container(211).ListItem.Property(widget.2),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget.2),weather) + !String.IsEqual(Container(211).ListItem.Property(widget.2),custom)">SquareSmall</property>
-    <property property="widgetaspect.2" label="$LOCALIZE[31407]" condition="String.IsEqual(Container(211).ListItem.Property(widget.2),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget.2),weather) + !String.IsEqual(Container(211).ListItem.Property(widget.2),custom)">SquareMedium</property>
-
-    <!-- Widget 3 Aspect -->
-    <propertySettings property="widgetaspect.3" buttonID="9621" title="$LOCALIZE[31261]"/>
-    <property property="widgetaspect.3" label="$LOCALIZE[31262]" condition="!String.IsEqual(Container(211).ListItem.Property(widget.3),mysubmenu)">Poster</property>
-    <property property="widgetaspect.3" label="$LOCALIZE[31263]">Square</property>
-    <property property="widgetaspect.3" label="$LOCALIZE[31462]" condition="!String.IsEqual(Container(211).ListItem.Property(widget.3),mysubmenu)">Fanart</property>
-    <property property="widgetaspect.3" label="$LOCALIZE[31265]" condition="!String.IsEqual(Container(211).ListItem.Property(widget.3),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget.3),weather)">Thumbnail</property>
-    <property property="widgetaspect.3" label="$LOCALIZE[31703]" condition="!String.IsEqual(Container(211).ListItem.Property(widget.3),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget.3),weather) + !String.IsEqual(Container(211).ListItem.Property(widget.3),custom)">FanartSmall</property>
-    <property property="widgetaspect.3" label="$LOCALIZE[31704]" condition="!String.IsEqual(Container(211).ListItem.Property(widget.3),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget.3),weather) + !String.IsEqual(Container(211).ListItem.Property(widget.3),custom)">ThumbnailSmall</property>
-    <property property="widgetaspect.3" label="$LOCALIZE[31705]" condition="!String.IsEqual(Container(211).ListItem.Property(widget.3),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget.3),weather) + !String.IsEqual(Container(211).ListItem.Property(widget.3),custom) + !String.Contains(Container(211).ListItem.Property(widgetPath.3),studios) + !String.Contains(Container(211).ListItem.Property(widgetPath.3),genres)">ThumbnailPosterSmall</property>
-    <property property="widgetaspect.3" label="$LOCALIZE[20020]" condition="!String.IsEqual(Container(211).ListItem.Property(widget.3),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget.3),weather) + !String.Contains(Container(211).ListItem.Property(widgetPath.3),studios) + !String.Contains(Container(211).ListItem.Property(widgetPath.3),genres)">Banner</property>
-    <property property="widgetaspect.3" label="$LOCALIZE[31406]" condition="String.IsEqual(Container(211).ListItem.Property(widget.3),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget.3),weather) + !String.IsEqual(Container(211).ListItem.Property(widget.3),custom)">SquareSmall</property>
-    <property property="widgetaspect.3" label="$LOCALIZE[31407]" condition="String.IsEqual(Container(211).ListItem.Property(widget.3),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget.3),weather) + !String.IsEqual(Container(211).ListItem.Property(widget.3),custom)">SquareMedium</property>
-
-    <!-- Widget 4 Aspect -->
-    <propertySettings property="widgetaspect.4" buttonID="9721" title="$LOCALIZE[31261]"/>
-    <property property="widgetaspect.4" label="$LOCALIZE[31262]" condition="!String.IsEqual(Container(211).ListItem.Property(widget.4),mysubmenu)">Poster</property>
-    <property property="widgetaspect.4" label="$LOCALIZE[31263]">Square</property>
-    <property property="widgetaspect.4" label="$LOCALIZE[31462]" condition="!String.IsEqual(Container(211).ListItem.Property(widget.4),mysubmenu)">Fanart</property>
-    <property property="widgetaspect.4" label="$LOCALIZE[31265]" condition="!String.IsEqual(Container(211).ListItem.Property(widget.4),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget.4),weather)">Thumbnail</property>
-    <property property="widgetaspect.4" label="$LOCALIZE[31703]" condition="!String.IsEqual(Container(211).ListItem.Property(widget.4),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget.4),weather) + !String.IsEqual(Container(211).ListItem.Property(widget.4),custom)">FanartSmall</property>
-    <property property="widgetaspect.4" label="$LOCALIZE[31704]" condition="!String.IsEqual(Container(211).ListItem.Property(widget.4),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget.4),weather) + !String.IsEqual(Container(211).ListItem.Property(widget.4),custom)">ThumbnailSmall</property>
-    <property property="widgetaspect.4" label="$LOCALIZE[31705]" condition="!String.IsEqual(Container(211).ListItem.Property(widget.4),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget.4),weather) + !String.IsEqual(Container(211).ListItem.Property(widget.4),custom) + !String.Contains(Container(211).ListItem.Property(widgetPath.4),studios) + !String.Contains(Container(211).ListItem.Property(widgetPath.4),genres)">ThumbnailPosterSmall</property>
-    <property property="widgetaspect.4" label="$LOCALIZE[20020]" condition="!String.IsEqual(Container(211).ListItem.Property(widget.4),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget.4),weather) + !String.Contains(Container(211).ListItem.Property(widgetPath.4),studios) + !String.Contains(Container(211).ListItem.Property(widgetPath.4),genres)">Banner</property>
-    <property property="widgetaspect.4" label="$LOCALIZE[31406]" condition="String.IsEqual(Container(211).ListItem.Property(widget.4),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget.4),weather) + !String.IsEqual(Container(211).ListItem.Property(widget.4),custom)">SquareSmall</property>
-    <property property="widgetaspect.4" label="$LOCALIZE[31407]" condition="String.IsEqual(Container(211).ListItem.Property(widget.4),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget.4),weather) + !String.IsEqual(Container(211).ListItem.Property(widget.4),custom)">SquareMedium</property>
-
-        <!-- Widget 5 Aspect -->
-    <propertySettings property="widgetaspect.5" buttonID="9821" title="$LOCALIZE[31261]"/>
-    <property property="widgetaspect.5" label="$LOCALIZE[31262]" condition="!String.IsEqual(Container(211).ListItem.Property(widget.5),mysubmenu)">Poster</property>
-    <property property="widgetaspect.5" label="$LOCALIZE[31263]">Square</property>
-    <property property="widgetaspect.5" label="$LOCALIZE[31462]" condition="!String.IsEqual(Container(211).ListItem.Property(widget.5),mysubmenu)">Fanart</property>
-    <property property="widgetaspect.5" label="$LOCALIZE[31265]" condition="!String.IsEqual(Container(211).ListItem.Property(widget.5),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget.5),weather)">Thumbnail</property>
-    <property property="widgetaspect.5" label="$LOCALIZE[31703]" condition="!String.IsEqual(Container(211).ListItem.Property(widget.5),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget.5),weather) + !String.IsEqual(Container(211).ListItem.Property(widget.5),custom)">FanartSmall</property>
-    <property property="widgetaspect.5" label="$LOCALIZE[31704]" condition="!String.IsEqual(Container(211).ListItem.Property(widget.5),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget.5),weather) + !String.IsEqual(Container(211).ListItem.Property(widget.5),custom)">ThumbnailSmall</property>
-    <property property="widgetaspect.5" label="$LOCALIZE[31705]" condition="!String.IsEqual(Container(211).ListItem.Property(widget.5),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget.5),weather) + !String.IsEqual(Container(211).ListItem.Property(widget.5),custom) + !String.Contains(Container(211).ListItem.Property(widgetPath.5),studios) + !String.Contains(Container(211).ListItem.Property(widgetPath.5),genres)">ThumbnailPosterSmall</property>
-    <property property="widgetaspect.5" label="$LOCALIZE[20020]" condition="!String.IsEqual(Container(211).ListItem.Property(widget.5),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget.5),weather) + !String.Contains(Container(211).ListItem.Property(widgetPath.5),studios) + !String.Contains(Container(211).ListItem.Property(widgetPath.5),genres)">Banner</property>
-    <property property="widgetaspect.5" label="$LOCALIZE[31406]" condition="String.IsEqual(Container(211).ListItem.Property(widget.5),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget.5),weather) + !String.IsEqual(Container(211).ListItem.Property(widget.5),custom)">SquareSmall</property>
-    <property property="widgetaspect.5" label="$LOCALIZE[31407]" condition="String.IsEqual(Container(211).ListItem.Property(widget.5),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget.5),weather) + !String.IsEqual(Container(211).ListItem.Property(widget.5),custom)">SquareMedium</property>
-
-    <!-- Widget 6 Aspect -->
-    <propertySettings property="widgetaspect.6" buttonID="11005" title="$LOCALIZE[31261]"/>
-    <property property="widgetaspect.6" label="$LOCALIZE[31262]" condition="!String.IsEqual(Container(211).ListItem.Property(widget.6),mysubmenu)">Poster</property>
-    <property property="widgetaspect.6" label="$LOCALIZE[31263]">Square</property>
-    <property property="widgetaspect.6" label="$LOCALIZE[31462]" condition="!String.IsEqual(Container(211).ListItem.Property(widget.6),mysubmenu)">Fanart</property>
-    <property property="widgetaspect.6" label="$LOCALIZE[31265]" condition="!String.IsEqual(Container(211).ListItem.Property(widget.6),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget.6),weather)">Thumbnail</property>
-    <property property="widgetaspect.6" label="$LOCALIZE[31703]" condition="!String.IsEqual(Container(211).ListItem.Property(widget.6),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget.6),weather) + !String.IsEqual(Container(211).ListItem.Property(widget.6),custom)">FanartSmall</property>
-    <property property="widgetaspect.6" label="$LOCALIZE[31704]" condition="!String.IsEqual(Container(211).ListItem.Property(widget.6),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget.6),weather) + !String.IsEqual(Container(211).ListItem.Property(widget.6),custom)">ThumbnailSmall</property>
-    <property property="widgetaspect.6" label="$LOCALIZE[31705]" condition="!String.IsEqual(Container(211).ListItem.Property(widget.6),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget.6),weather) + !String.IsEqual(Container(211).ListItem.Property(widget.6),custom) + !String.Contains(Container(211).ListItem.Property(widgetPath.6),studios) + !String.Contains(Container(211).ListItem.Property(widgetPath.6),genres)">ThumbnailPosterSmall</property>
-    <property property="widgetaspect.6" label="$LOCALIZE[20020]" condition="!String.IsEqual(Container(211).ListItem.Property(widget.6),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget.6),weather) + !String.Contains(Container(211).ListItem.Property(widgetPath.6),studios) + !String.Contains(Container(211).ListItem.Property(widgetPath.6),genres)">Banner</property>
-    <property property="widgetaspect.6" label="$LOCALIZE[31406]" condition="String.IsEqual(Container(211).ListItem.Property(widget.6),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget.6),weather) + !String.IsEqual(Container(211).ListItem.Property(widget.6),custom)">SquareSmall</property>
-    <property property="widgetaspect.6" label="$LOCALIZE[31407]" condition="String.IsEqual(Container(211).ListItem.Property(widget.6),mysubmenu) + !String.Contains(Container(211).ListItem.Property(widget.6),weather) + !String.IsEqual(Container(211).ListItem.Property(widget.6),custom)">SquareMedium</property>
-
-
-    <!-- Widget 1 Sorting -->
-    <propertySettings property="widgetSort" buttonID="9403" templateonly="True" title="$LOCALIZE[580]"/>
-    <property property="widgetSort" label="$LOCALIZE[585]">descending</property>
-    <property property="widgetSort" label="$LOCALIZE[584]">ascending</property>
-
-    <!-- Widget 2 Sorting -->
-    <propertySettings property="widgetSort.2" buttonID="9793" templateonly="True" title="$LOCALIZE[580]"/>
-    <property property="widgetSort.2" label="$LOCALIZE[585]">descending</property>
-    <property property="widgetSort.2" label="$LOCALIZE[584]">ascending</property>
-
-    <!-- Widget 3 Sorting -->
-    <propertySettings property="widgetSort.3" buttonID="9603" templateonly="True" title="$LOCALIZE[580]"/>
-    <property property="widgetSort.3" label="$LOCALIZE[585]">descending</property>
-    <property property="widgetSort.3" label="$LOCALIZE[584]">ascending</property>
-
-    <!-- Widget 4 Sorting -->
-    <propertySettings property="widgetSort.4" buttonID="9703" templateonly="True" title="$LOCALIZE[580]"/>
-    <property property="widgetSort.4" label="$LOCALIZE[585]">descending</property>
-    <property property="widgetSort.4" label="$LOCALIZE[584]">ascending</property>
-
-    <!-- Widget 5 Sorting -->
-    <propertySettings property="widgetSort.5" buttonID="9803" templateonly="True" title="$LOCALIZE[580]"/>
-    <property property="widgetSort.5" label="$LOCALIZE[585]">descending</property>
-    <property property="widgetSort.5" label="$LOCALIZE[584]">ascending</property>
-
-    <!-- Widget 6 Sorting -->
-    <propertySettings property="widgetSort.6" buttonID="11010" templateonly="True" title="$LOCALIZE[580]"/>
-    <property property="widgetSort.6" label="$LOCALIZE[585]">descending</property>
-    <property property="widgetSort.6" label="$LOCALIZE[584]">ascending</property>
-
-    <!-- Widget Banner -->
-    <propertySettings property="widgetBanner" buttonID="9404" title="$LOCALIZE[31235]"/>
-    <property property="widgetBanner" label="$LOCALIZE[107]">yes</property>
-    <property property="widgetBanner" label="$LOCALIZE[106]">no</property>
-
-    <!-- Widget Square Distance -->
-    <propertySettings property="widgetEdgeDistance" buttonID="10301" title="$LOCALIZE[31453]"/>
-    <property property="widgetEdgeDistance" label="$LOCALIZE[31454]">yes</property>
-    <propertySettings property="widgetEdgeDistance.2" buttonID="10302" title="$LOCALIZE[31453]"/>
-    <property property="widgetEdgeDistance.2" label="$LOCALIZE[31454]">yes</property>
-    <propertySettings property="widgetEdgeDistance.3" buttonID="10303" title="$LOCALIZE[31453]"/>
-    <property property="widgetEdgeDistance.3" label="$LOCALIZE[31454]">yes</property>
-    <propertySettings property="widgetEdgeDistance.4" buttonID="10304" title="$LOCALIZE[31453]"/>
-    <property property="widgetEdgeDistance.4" label="$LOCALIZE[31454]">yes</property>
-    <propertySettings property="widgetEdgeDistance.5" buttonID="10305" title="$LOCALIZE[31453]"/>
-    <property property="widgetEdgeDistance.5" label="$LOCALIZE[31454]">yes</property>
-    <propertySettings property="widgetEdgeDistance.6" buttonID="11008" title="$LOCALIZE[31453]"/>
-    <property property="widgetEdgeDistance.6" label="$LOCALIZE[31454]">yes</property>
-
-    <!-- Widget Square Aspect Ratio -->
-    <propertySettings property="widgetAspectRatio" buttonID="10001" title="$LOCALIZE[31402]"/>
-    <property property="widgetAspectRatio" label="$LOCALIZE[31403]">scale</property>
-    <propertySettings property="widgetAspectRatio.2" buttonID="10002" title="$LOCALIZE[31402]"/>
-    <property property="widgetAspectRatio.2" label="$LOCALIZE[31403]">scale</property>
-    <propertySettings property="widgetAspectRatio.3" buttonID="10003" title="$LOCALIZE[31402]"/>
-    <property property="widgetAspectRatio.3" label="$LOCALIZE[31403]">scale</property>
-    <propertySettings property="widgetAspectRatio.4" buttonID="10004" title="$LOCALIZE[31402]"/>
-    <property property="widgetAspectRatio.4" label="$LOCALIZE[31403]">scale</property>
-    <propertySettings property="widgetAspectRatio.5" buttonID="10005" title="$LOCALIZE[31402]"/>
-    <property property="widgetAspectRatio.5" label="$LOCALIZE[31403]">scale</property>
-    <propertySettings property="widgetAspectRatio.6" buttonID="11007" title="$LOCALIZE[31402]"/>
-    <property property="widgetAspectRatio.6" label="$LOCALIZE[31403]">scale</property>
-
-    <!-- Widget AutoScroll in Seconds -->
-    <propertySettings property="widgetAuto.2" buttonID="4195" title="$LOCALIZE[31339]"/>
-    <property property="widgetAuto.2" label=" 5">$NUMBER[5000]</property>
-    <property property="widgetAuto.2" label=" 7">$NUMBER[7000]</property>
-    <property property="widgetAuto.2" label=" 10">$NUMBER[10000]</property>
-    <property property="widgetAuto.2" label=" 15">$NUMBER[15000]</property>
-    <property property="widgetAuto.2" label=" 20">$NUMBER[20000]</property>
-    <property property="widgetAuto.2" label=" 25">$NUMBER[25000]</property>
-
-    <propertySettings property="widgetAuto.3" buttonID="4194" title="$LOCALIZE[31339]"/>
-    <property property="widgetAuto.3" label=" 5">$NUMBER[5000]</property>
-    <property property="widgetAuto.3" label=" 7">$NUMBER[7000]</property>
-    <property property="widgetAuto.3" label=" 10">$NUMBER[10000]</property>
-    <property property="widgetAuto.3" label=" 15">$NUMBER[15000]</property>
-    <property property="widgetAuto.3" label=" 20">$NUMBER[20000]</property>
-    <property property="widgetAuto.3" label=" 25">$NUMBER[25000]</property>
-
-    <propertySettings property="widgetAuto.4" buttonID="4193" title="$LOCALIZE[31339]"/>
-    <property property="widgetAuto.4" label=" 5">$NUMBER[5000]</property>
-    <property property="widgetAuto.4" label=" 7">$NUMBER[7000]</property>
-    <property property="widgetAuto.4" label=" 10">$NUMBER[10000]</property>
-    <property property="widgetAuto.4" label=" 15">$NUMBER[15000]</property>
-    <property property="widgetAuto.4" label=" 20">$NUMBER[20000]</property>
-    <property property="widgetAuto.4" label=" 25">$NUMBER[25000]</property>
-
-    <propertySettings property="widgetAuto.5" buttonID="4593" title="$LOCALIZE[31339]"/>
-    <property property="widgetAuto.5" label=" 5">$NUMBER[5000]</property>
-    <property property="widgetAuto.5" label=" 7">$NUMBER[7000]</property>
-    <property property="widgetAuto.5" label=" 10">$NUMBER[10000]</property>
-    <property property="widgetAuto.5" label=" 15">$NUMBER[15000]</property>
-    <property property="widgetAuto.5" label=" 20">$NUMBER[20000]</property>
-    <property property="widgetAuto.5" label=" 25">$NUMBER[25000]</property>
-
-    <propertySettings property="widgetAuto.6" buttonID="11011" title="$LOCALIZE[31339]"/>
-    <property property="widgetAuto.6" label=" 5">$NUMBER[5000]</property>
-    <property property="widgetAuto.6" label=" 7">$NUMBER[7000]</property>
-    <property property="widgetAuto.6" label=" 10">$NUMBER[10000]</property>
-    <property property="widgetAuto.6" label=" 15">$NUMBER[15000]</property>
-    <property property="widgetAuto.6" label=" 20">$NUMBER[20000]</property>
-    <property property="widgetAuto.6" label=" 25">$NUMBER[25000]</property>
-
-    <propertySettings property="widgetAuto" buttonID="4196" title="$LOCALIZE[31339]"/>
-    <property property="widgetAuto" label=" 5">$NUMBER[5000]</property>
-    <property property="widgetAuto" label=" 7">$NUMBER[7000]</property>
-    <property property="widgetAuto" label=" 10">$NUMBER[10000]</property>
-    <property property="widgetAuto" label=" 15">$NUMBER[15000]</property>
-    <property property="widgetAuto" label=" 20">$NUMBER[20000]</property>
-    <property property="widgetAuto" label=" 25">$NUMBER[25000]</property>
-
-    <!-- Widget List Type? -->
-    <propertySettings property="widgetListType" buttonID="41911" title="$LOCALIZE[31341]"/>
-    <property property="widgetListType" label="$LOCALIZE[31148]">wraplist</property>
-    <property property="widgetListType" label="$LOCALIZE[31342]">list</property>
-    <property property="widgetListType" label="$LOCALIZE[31343]">fixedlist</property>
-
-    <propertySettings property="widgetListType.2" buttonID="41912" title="$LOCALIZE[31341]"/>
-    <property property="widgetListType.2" label="$LOCALIZE[31148]">wraplist</property>
-    <property property="widgetListType.2" label="$LOCALIZE[31342]">list</property>
-    <property property="widgetListType.2" label="$LOCALIZE[31343]">fixedlist</property>
-
-    <propertySettings property="widgetListType.3" buttonID="41913" title="$LOCALIZE[31341]"/>
-    <property property="widgetListType.3" label="$LOCALIZE[31148]">wraplist</property>
-    <property property="widgetListType.3" label="$LOCALIZE[31342]">list</property>
-    <property property="widgetListType.3" label="$LOCALIZE[31343]">fixedlist</property>
-
-    <propertySettings property="widgetListType.4" buttonID="41914" title="$LOCALIZE[31341]"/>
-    <property property="widgetListType.4" label="$LOCALIZE[31148]">wraplist</property>
-    <property property="widgetListType.4" label="$LOCALIZE[31342]">list</property>
-    <property property="widgetListType.4" label="$LOCALIZE[31343]">fixedlist</property>
-
-    <propertySettings property="widgetListType.5" buttonID="41915" title="$LOCALIZE[31341]"/>
-    <property property="widgetListType.5" label="$LOCALIZE[31148]">wraplist</property>
-    <property property="widgetListType.5" label="$LOCALIZE[31342]">list</property>
-    <property property="widgetListType.5" label="$LOCALIZE[31343]">fixedlist</property>
-
-    <propertySettings property="widgetListType.6" buttonID="41916" title="$LOCALIZE[31341]"/>
-    <property property="widgetListType.6" label="$LOCALIZE[31148]">wraplist</property>
-    <property property="widgetListType.6" label="$LOCALIZE[31342]">list</property>
-    <property property="widgetListType.6" label="$LOCALIZE[31343]">fixedlist</property>
+    <!-- Widget Limit -->
+    <propertySettings property="widgetLimit" buttonID="9116" title="$LOCALIZE[31822]" />
+    <propertySettings property="widgetLimit" buttonID="9416" title="$LOCALIZE[31822]" />
+    <property property="widgetLimit" label="10 ">$NUMBER[10]</property>
+    <property property="widgetLimit" label="25 ">$NUMBER[25]</property>
+    <property property="widgetLimit" label="50 ">$NUMBER[50]</property>
+    <property property="widgetLimit" label="100 ">$NUMBER[100]</property>
+    <property property="widgetLimit" label="$LOCALIZE[31821]" condition="[Skin.HasSetting(home.classicwidgets) | Skin.HasSetting(home.vertical) | Skin.HasSetting(homemenu.netflix) | Skin.HasSetting(home.modernwidgets)] + !Skin.HasSetting(homemenu.clean.flix)">Auto</property>
 
     <override action="ActivateWindow(1111)">
         <action>SetProperty(WindowTitle,$VAR[HubWindowTitle],Home)</action>
@@ -666,8 +390,8 @@
     <groupings>
         <node label="$LOCALIZE[32029]">
             <node label="$LOCALIZE[31305]">
-                <shortcut label="$LOCALIZE[31193]" type="TVHub" icon="special://skin/extras/icons/tv.png">ActivateWindow(1112)</shortcut>
                 <shortcut label="$LOCALIZE[31192]" type="MovieHub" icon="special://skin/extras/icons/film.png">ActivateWindow(1111)</shortcut>
+                <shortcut label="$LOCALIZE[31193]" type="TVHub" icon="special://skin/extras/icons/tv.png">ActivateWindow(1112)</shortcut>
                 <shortcut label="Hub 1119" type="Custom Hub" icon="special://skin/extras/icons/addons.png">ActivateWindow(1119)</shortcut>
                 <shortcut label="Hub 1118" type="Custom Hub" icon="special://skin/extras/icons/addons.png">ActivateWindow(1118)</shortcut>
                 <shortcut label="Hub 1117" type="Custom Hub" icon="special://skin/extras/icons/addons.png">ActivateWindow(1117)</shortcut>
@@ -678,28 +402,28 @@
             </node>
             <shortcut label="$LOCALIZE[31208]" type="TMDbHelper Movies" icon="special://skin/extras/icons/director.png">ActivateWindow(1124)</shortcut>
             <shortcut label="$LOCALIZE[31212]" type="TMDbHelper Episodes" icon="special://skin/extras/icons/director.png">ActivateWindow(1125)</shortcut>
-            <shortcut label="$LOCALIZE[3]" type="32034" icon="DefaultVideo.png">ActivateWindow(Videos)</shortcut>
-            <shortcut label="$LOCALIZE[342]" type="32034" icon="DefaultMovies.png">ActivateWindow(Videos,videodb://movies/titles/,return)</shortcut>
-            <shortcut label="$LOCALIZE[20343]" type="32034" icon="DefaultTVShows.png">ActivateWindow(Videos,videodb://tvshows/titles/,return)</shortcut>
-            <shortcut label="$LOCALIZE[32022]" type="32034" icon="DefaultTVShows.png">ActivateWindow(TVGuide)</shortcut>
-            <shortcut label="$LOCALIZE[32087]" type="32034" icon="DefaultTVShows.png">ActivateWindow(RadioGuide)</shortcut>
-            <shortcut label="$LOCALIZE[2]" type="32034" icon="DefaultMusicAlbums.png">ActivateWindow(Music)</shortcut>
-            <shortcut label="$LOCALIZE[589]" type="32034" icon="DefaultMusicAlbums.png">PlayerControl(PartyMode)</shortcut>
-            <shortcut label="$LOCALIZE[32108]" type="32034" icon="DefaultMusicVideos.png">PlayerControl(PartyMode(Video))</shortcut>
-            <shortcut label="$LOCALIZE[20389]" type="32034" icon="DefaultMusicVideos.png">ActivateWindow(Videos,videodb://musicvideos/titles/,return)</shortcut>
-            <shortcut label="$LOCALIZE[10002]" type="32034" icon="DefaultPicture.png">ActivateWindow(Pictures)</shortcut>
-            <shortcut label="$LOCALIZE[10821]" type="32034" icon="DefaultAddonGame.png">ActivateWindow(Games)</shortcut>
-            <shortcut label="$LOCALIZE[12600]" type="32034" icon="Weather.png">ActivateWindow(Weather)</shortcut>
-            <shortcut label="$LOCALIZE[10001]" type="32034" icon="DefaultProgram.png">ActivateWindow(Programs,Addons,return)</shortcut>
-            <shortcut label="$LOCALIZE[32032]" type="32034" icon="DefaultDVDFull.png">PlayDVD</shortcut>
-            <shortcut label="$LOCALIZE[32033]" type="32034" icon="DefaultDVDFull.png">EjectTray()</shortcut>
-            <shortcut label="$LOCALIZE[10004]" type="32034" icon="Settings.png">ActivateWindow(Settings)</shortcut>
-            <shortcut label="$LOCALIZE[7]" type="32034" icon="DefaultFolder.png">ActivateWindow(FileManager)</shortcut>
-            <shortcut label="$LOCALIZE[13200]" type="32034" icon="UnknownUser.png">ActivateWindow(Profiles)</shortcut>
-            <shortcut label="$LOCALIZE[10007]" type="32034" icon="SystemInfo.png">ActivateWindow(SystemInfo)</shortcut>
-            <shortcut label="$LOCALIZE[14111]" type="32034" icon="Events.png">ActivateWindow(EventLog,events://,return)</shortcut>
-            <shortcut label="$LOCALIZE[1036]" type="32034" icon="Favourites.png">ActivateWindow(FavouritesBrowser)</shortcut>
-            <shortcut label="$LOCALIZE[33060]" type="32034" icon="special://skin/extras/icons/power.png">ActivateWindow(shutdownmenu)</shortcut>
+            <shortcut label="$LOCALIZE[3]" icon="DefaultVideo.png">ActivateWindow(Videos)</shortcut>
+            <shortcut label="$LOCALIZE[342]" icon="DefaultMovies.png">ActivateWindow(Videos,videodb://movies/titles/,return)</shortcut>
+            <shortcut label="$LOCALIZE[20343]" icon="DefaultTVShows.png">ActivateWindow(Videos,videodb://tvshows/titles/,return)</shortcut>
+            <shortcut label="$LOCALIZE[31103]" icon="DefaultTVShows.png">ActivateWindow(Tvchannels)</shortcut>
+            <shortcut label="$LOCALIZE[32087]" icon="DefaultAudio.png">ActivateWindow(RadioChannels)</shortcut>
+            <shortcut label="$LOCALIZE[2]" icon="DefaultMusicAlbums.png">ActivateWindow(Music)</shortcut>
+            <shortcut label="$LOCALIZE[589]" icon="DefaultMusicAlbums.png">PlayerControl(PartyMode)</shortcut>
+            <shortcut label="$LOCALIZE[32108]" icon="DefaultMusicVideos.png">PlayerControl(PartyMode(Video))</shortcut>
+            <shortcut label="$LOCALIZE[20389]" icon="DefaultMusicVideos.png">ActivateWindow(Videos,videodb://musicvideos/titles/,return)</shortcut>
+            <shortcut label="$LOCALIZE[10002]" icon="DefaultPicture.png">ActivateWindow(Pictures)</shortcut>
+            <shortcut label="$LOCALIZE[10821]" icon="DefaultAddonGame.png">ActivateWindow(Games)</shortcut>
+            <shortcut label="$LOCALIZE[12600]" icon="Weather.png">ActivateWindow(Weather)</shortcut>
+            <shortcut label="$LOCALIZE[10001]" icon="DefaultProgram.png">ActivateWindow(Programs,Addons,return)</shortcut>
+            <shortcut label="$LOCALIZE[32032]" icon="DefaultDVDFull.png">PlayDVD</shortcut>
+            <shortcut label="$LOCALIZE[32033]" icon="DefaultDVDFull.png">EjectTray()</shortcut>
+            <shortcut label="$LOCALIZE[10004]" icon="Settings.png">ActivateWindow(Settings)</shortcut>
+            <shortcut label="$LOCALIZE[7]" icon="DefaultFolder.png">ActivateWindow(FileManager)</shortcut>
+            <shortcut label="$LOCALIZE[13200]" icon="UnknownUser.png">ActivateWindow(Profiles)</shortcut>
+            <shortcut label="$LOCALIZE[10007]" icon="SystemInfo.png">ActivateWindow(SystemInfo)</shortcut>
+            <shortcut label="$LOCALIZE[14111]" icon="Events.png">ActivateWindow(EventLog,events://,return)</shortcut>
+            <shortcut label="$LOCALIZE[1036]" icon="Favourites.png">ActivateWindow(FavouritesBrowser)</shortcut>
+            <shortcut label="$LOCALIZE[33060]" icon="special://skin/extras/icons/power.png">ActivateWindow(shutdownmenu)</shortcut>
         </node>
         <node label="$LOCALIZE[32030]">
             <content>video</content>
@@ -707,7 +431,7 @@
                 <content>playlist-video</content>
             </node>
             <node label="$LOCALIZE[32010]">
-                <shortcut label="$LOCALIZE[1037]" type="32014" icon="DefaultAddonVideo.png">ActivateWindow(Videos,Addons,return)</shortcut>
+                <shortcut label="$LOCALIZE[1037]" type="video" icon="DefaultAddonVideo.png">ActivateWindow(Videos,Addons,return)</shortcut>
                 <content>addon-video</content>
             </node>
             <node label="$LOCALIZE[32075]">
@@ -721,7 +445,7 @@
                 <content>playlist-audio</content>
             </node>
             <node label="$LOCALIZE[32011]">
-                <shortcut label="$LOCALIZE[1038]" type="32019" icon="DefaultAddonMusic.png">ActivateWindow(MusicLibrary,Addons,return)</shortcut>
+                <shortcut label="$LOCALIZE[1038]" type="music" icon="DefaultAddonMusic.png">ActivateWindow(MusicLibrary,Addons,return)</shortcut>
                 <content>addon-audio</content>
             </node>
             <node label="$LOCALIZE[32075]">
@@ -755,34 +479,34 @@
         </node>
         <node label="$LOCALIZE[32007]">
             <node label="$LOCALIZE[32009]">
-                <shortcut label="$LOCALIZE[10001]" type="32021" icon="DefaultAddonProgram.png">ActivateWindow(Programs,Addons,return)</shortcut>
+                <shortcut label="$LOCALIZE[10001]" type="program" icon="DefaultAddonProgram.png">ActivateWindow(Programs,Addons,return)</shortcut>
                 <content>addon-program</content>
             </node>
             <node label="$LOCALIZE[32010]">
-                <shortcut label="$LOCALIZE[1037]" type="32014" icon="DefaultAddonVideo.png">ActivateWindow(Videos,Addons,return)</shortcut>
+                <shortcut label="$LOCALIZE[1037]" type="video" icon="DefaultAddonVideo.png">ActivateWindow(Videos,Addons,return)</shortcut>
                 <content>addon-video</content>
             </node>
             <node label="$LOCALIZE[32011]">
-                <shortcut label="$LOCALIZE[1038]" type="32019" icon="DefaultAddonMusic.png">ActivateWindow(MusicLibrary,Addons,return)</shortcut>
+                <shortcut label="$LOCALIZE[1038]" type="music" icon="DefaultAddonMusic.png">ActivateWindow(MusicLibrary,Addons,return)</shortcut>
                 <content>addon-audio</content>
             </node>
             <node label="$LOCALIZE[32012]">
-                <shortcut label="$LOCALIZE[1039]" type="32020" icon="DefaultAddonPicture.png">ActivateWindow(Pictures,Addons,return)</shortcut>
+                <shortcut label="$LOCALIZE[1039]" type="picture" icon="DefaultAddonPicture.png">ActivateWindow(Pictures,Addons,return)</shortcut>
                 <content>addon-image</content>
             </node>
-            <shortcut label="20244" type="32021" icon="DefaultAddonProgram.png" condition="System.Platform.Android">ActivateWindow(programs,androidapp://sources/apps/,return)</shortcut>
+            <shortcut label="20244" type="program" icon="DefaultAddonProgram.png" condition="System.Platform.Android">ActivateWindow(programs,androidapp://sources/apps/,return)</shortcut>
         </node>
         <node label="$LOCALIZE[1036]">
             <content>favourite</content>
         </node>
         <node label="$LOCALIZE[10004]">
             <content>settings</content>
-            <shortcut label="LibreELEC" type="10004" icon="DefaultLibreELEC.png" condition="System.AddonIsEnabled(service.libreelec.settings)">RunAddon(service.libreelec.settings)</shortcut>
-            <shortcut label="CoreELEC" type="10004" icon="DefaultCoreELEC.png" condition="System.AddonIsEnabled(service.coreelec.settings)">RunAddon(service.coreelec.settings)</shortcut>
+            <shortcut label="LibreELEC" icon="DefaultLibreELEC.png" condition="System.AddonIsEnabled(service.libreelec.settings)">RunAddon(service.libreelec.settings)</shortcut>
+            <shortcut label="CoreELEC" icon="DefaultCoreELEC.png" condition="System.AddonIsEnabled(service.coreelec.settings)">RunAddon(service.coreelec.settings)</shortcut>
         </node>
         <node label="$LOCALIZE[32054]">
             <content>commands</content>
-            <shortcut label="$LOCALIZE[31232]" type="32054" icon="special://skin/extras/icons/power.png" condition="System.Platform.Linux">RebootToAndroid</shortcut>
+            <shortcut label="$LOCALIZE[31232]" icon="special://skin/extras/icons/power.png" condition="System.Platform.Linux">RebootToAndroid</shortcut>
         </node>
     </groupings>
 
@@ -793,7 +517,7 @@
             <content>playlist-video</content>
         </node>
         <node label="$LOCALIZE[32010]">
-            <shortcut label="$LOCALIZE[1037]" type="32014" icon="DefaultAddonVideo.png">ActivateWindow(Videos,Addons,return)</shortcut>
+            <shortcut label="$LOCALIZE[1037]" type="video" icon="DefaultAddonVideo.png">ActivateWindow(Videos,Addons,return)</shortcut>
             <content>addon-video</content>
         </node>
     </video-groupings>
@@ -801,98 +525,90 @@
     <widget-groupings>
         <node label="$LOCALIZE[32119]">
 	        <node label="$LOCALIZE[342]">
-	            <shortcut widget="NewMovies" type="31452" label="$LOCALIZE[31045]" icon="DefaultRecentlyAddedMovies.png" widgetTarget="videos">special://skin/extras/playlists/NewMovies.xsp</shortcut>
-	            <shortcut widget="NewUnwatchedMovies" type="31452" label="$LOCALIZE[31321]" icon="DefaultRecentlyAddedMovies.png" widgetTarget="videos">special://skin/extras/playlists/NewUnwatchedMovies.xsp</shortcut>
-	            <shortcut widget="RecentMovies" type="31452" label="$LOCALIZE[31046]" icon="DefaultMusicRecentlyPlayed.png" widgetTarget="videos">special://skin/extras/playlists/RecentMovies.xsp</shortcut>
-	            <shortcut widget="RandomMovies" type="31452" label="$LOCALIZE[31047]" icon="DefaultMovies.png" widgetTarget="videos">special://skin/extras/playlists/RandomMovies.xsp</shortcut>
-	            <shortcut widget="InProgressMovies" type="31452" label="$LOCALIZE[31048]" icon="special://skin/extras/icons/timer.png" widgetTarget="videos">special://skin/extras/playlists/InProgressMovies.xsp</shortcut>
-	            <shortcut widget="TopRatedMovies" type="31452" label="$LOCALIZE[31049]" icon="special://skin/extras/icons/favourites.png" widgetTarget="videos">special://skin/extras/playlists/TopRatedMovies.xsp</shortcut>
-	            <shortcut widget="Top20UserRatedMovies" type="31452" label="$LOCALIZE[31317]" icon="special://skin/extras/icons/favourites.png" widgetTarget="videos">special://skin/extras/playlists/Top20UserRatedMovies.xsp</shortcut>
-	            <shortcut widget="Top250Movies" type="31452" label="$LOCALIZE[31050]" icon="special://skin/extras/icons/favourites.png" widgetTarget="videos">special://skin/extras/playlists/Top250Movies.xsp</shortcut>
-	            <shortcut widget="UnwatchedMovies" type="31452" label="$LOCALIZE[31051]" icon="DefaultMovies.png" widgetTarget="videos">special://skin/extras/playlists/UnwatchedMovies.xsp</shortcut>
-      			<shortcut widget="MovieNodes"  type="31452" label="$LOCALIZE[31905]" icon="special://skin/extras/icons/title.png" widgetTarget="videos">library://video/movies/</shortcut>          
-	            <shortcut widget="MovieGenres" type="31452" label="$LOCALIZE[135]" icon="special://skin/extras/icons/genre.png" widgetTarget="videos">library://video/movies/genres.xml</shortcut>
-	            <shortcut widget="MovieSets" type="31452" label="$LOCALIZE[31052]" icon="DefaultMovies.png" widgetTarget="videos">videodb://movies/sets/</shortcut>
+	            <shortcut widget="NewMovies" type="video" label="$LOCALIZE[31045]" icon="DefaultRecentlyAddedMovies.png" widgetTarget="videos">special://skin/extras/playlists/NewMovies.xsp</shortcut>
+	            <shortcut widget="NewUnwatchedMovies" type="video" label="$LOCALIZE[31321]" icon="DefaultRecentlyAddedMovies.png" widgetTarget="videos">special://skin/extras/playlists/NewUnwatchedMovies.xsp</shortcut>
+	            <shortcut widget="RecentMovies" type="video" label="$LOCALIZE[31046]" icon="DefaultMusicRecentlyPlayed.png" widgetTarget="videos">special://skin/extras/playlists/RecentMovies.xsp</shortcut>
+	            <shortcut widget="RandomMovies" type="video" label="$LOCALIZE[31047]" icon="DefaultMovies.png" widgetTarget="videos">special://skin/extras/playlists/RandomMovies.xsp</shortcut>
+	            <shortcut widget="InProgressMovies" type="video" label="$LOCALIZE[31048]" icon="special://skin/extras/icons/timer.png" widgetTarget="videos">special://skin/extras/playlists/InProgressMovies.xsp</shortcut>
+	            <shortcut widget="TopRatedMovies" type="video" label="$LOCALIZE[31049]" icon="special://skin/extras/icons/favourites.png" widgetTarget="videos">special://skin/extras/playlists/TopRatedMovies.xsp</shortcut>
+	            <shortcut widget="Top20UserRatedMovies" type="video" label="$LOCALIZE[31317]" icon="special://skin/extras/icons/favourites.png" widgetTarget="videos">special://skin/extras/playlists/Top20UserRatedMovies.xsp</shortcut>
+	            <shortcut widget="Top250Movies" type="video" label="$LOCALIZE[31050]" icon="special://skin/extras/icons/favourites.png" widgetTarget="videos">special://skin/extras/playlists/Top250Movies.xsp</shortcut>
+	            <shortcut widget="UnwatchedMovies" type="video" label="$LOCALIZE[31051]" icon="DefaultMovies.png" widgetTarget="videos">special://skin/extras/playlists/UnwatchedMovies.xsp</shortcut>
+      			<shortcut widget="MovieNodes"  type="video" label="$LOCALIZE[31905]" icon="special://skin/extras/icons/title.png" widgetTarget="videos">library://video/movies/</shortcut>          
+	            <shortcut widget="MovieGenres" type="video" label="$LOCALIZE[135]" icon="special://skin/extras/icons/genre.png" widgetTarget="videos">library://video/movies/genres.xml</shortcut>
+	            <shortcut widget="MovieSets" type="video" label="$LOCALIZE[31052]" icon="DefaultMovies.png" widgetTarget="videos">videodb://movies/sets/</shortcut>
 	        </node>
             <node label="$LOCALIZE[20343]">
-                <shortcut widget="NewTvShows" type="31452" label="$LOCALIZE[31053]" icon="DefaultRecentlyAddedMovies.png" widgetTarget="videos">special://skin/extras/playlists/NewShows.xsp</shortcut>
-                <shortcut widget="NewUnwatchedTvShows" type="31452" label="$LOCALIZE[31323]" icon="DefaultRecentlyAddedMovies.png" widgetTarget="videos">special://skin/extras/playlists/NewUnwatchedShows.xsp</shortcut>
-                <shortcut widget="RecentTvShows" type="31452" label="$LOCALIZE[31054]" icon="DefaultMusicRecentlyPlayed.png" widgetTarget="videos">special://skin/extras/playlists/RecentTvShows.xsp</shortcut>
-                <shortcut widget="InProgress" type="31452" label="$LOCALIZE[626]" icon="special://skin/extras/icons/timer.png" widgetTarget="videos">special://skin/extras/playlists/InProgressTvShows.xsp</shortcut>
-                <shortcut widget="RandomTvShows" type="31452" label="$LOCALIZE[31056]" icon="DefaultTVShows.png" widgetTarget="videos">special://skin/extras/playlists/RandomTvShows.xsp</shortcut>
-                <shortcut widget="TopRatedTvShows" type="31452" label="$LOCALIZE[31057]" icon="DefaultTVShows.png" widgetTarget="videos">special://skin/extras/playlists/TopRatedTvShows.xsp</shortcut>
-                <shortcut widget="UnwatchedTvShows" type="31452" label="$LOCALIZE[31518]" icon="DefaultRecentlyAddedMovies.png" widgetTarget="videos">special://skin/extras/playlists/UnwatchedTvShows.xsp</shortcut>
-                <shortcut widget="TvShowNodes" type="31452" label="$LOCALIZE[31905]" icon="special://skin/extras/icons/title.png" widgetTarget="videos">library://video/tvshows/</shortcut>
-                <shortcut widget="TvShowGenres" type="31452" label="$LOCALIZE[135]" icon="DefaultGenre.png" widgetTarget="videos">library://video/tvshows/genres.xml</shortcut>
+                <shortcut widget="NewTvShows" type="video" label="$LOCALIZE[31053]" icon="DefaultRecentlyAddedMovies.png" widgetTarget="videos">special://skin/extras/playlists/NewShows.xsp</shortcut>
+                <shortcut widget="NewUnwatchedTvShows" type="video" label="$LOCALIZE[31323]" icon="DefaultRecentlyAddedMovies.png" widgetTarget="videos">special://skin/extras/playlists/NewUnwatchedShows.xsp</shortcut>
+                <shortcut widget="RecentTvShows" type="video" label="$LOCALIZE[31054]" icon="DefaultMusicRecentlyPlayed.png" widgetTarget="videos">special://skin/extras/playlists/RecentTvShows.xsp</shortcut>
+                <shortcut widget="InProgress" type="video" label="$LOCALIZE[626]" icon="special://skin/extras/icons/timer.png" widgetTarget="videos">special://skin/extras/playlists/InProgressTvShows.xsp</shortcut>
+                <shortcut widget="RandomTvShows" type="video" label="$LOCALIZE[31056]" icon="DefaultTVShows.png" widgetTarget="videos">special://skin/extras/playlists/RandomTvShows.xsp</shortcut>
+                <shortcut widget="TopRatedTvShows" type="video" label="$LOCALIZE[31057]" icon="DefaultTVShows.png" widgetTarget="videos">special://skin/extras/playlists/TopRatedTvShows.xsp</shortcut>
+                <shortcut widget="UnwatchedTvShows" type="video" label="$LOCALIZE[31518]" icon="DefaultRecentlyAddedMovies.png" widgetTarget="videos">special://skin/extras/playlists/UnwatchedTvShows.xsp</shortcut>
+                <shortcut widget="TvShowNodes" type="video" label="$LOCALIZE[31905]" icon="special://skin/extras/icons/title.png" widgetTarget="videos">library://video/tvshows/</shortcut>
+                <shortcut widget="TvShowGenres" type="video" label="$LOCALIZE[135]" icon="DefaultGenre.png" widgetTarget="videos">library://video/tvshows/genres.xml</shortcut>
             </node>
             <node label="$LOCALIZE[20360]">
-                <shortcut widget="NewEpisodes" type="31452" label="$LOCALIZE[31058]" icon="DefaultRecentlyAddedMovies.png" widgetTarget="videos">special://skin/extras/playlists/NewEpisodes.xsp</shortcut>
-                <shortcut widget="NewUnwatchedEpisodes" type="31452" label="$LOCALIZE[31322]" icon="DefaultRecentlyAddedMovies.png" widgetTarget="videos">special://skin/extras/playlists/NewUnwatchedEpisodes.xsp</shortcut>
-                <shortcut widget="Recent Episodes" type="31452" label="$LOCALIZE[31059]" icon="DefaultMusicRecentlyPlayed.png" widgetTarget="videos">special://skin/extras/playlists/RecentEpisodes.xsp</shortcut>
-                <shortcut widget="RandomEpisodes" type="31452" label="$LOCALIZE[31060]" icon="DefaultTVShows.png" widgetTarget="videos">special://skin/extras/playlists/RandomEpisodes.xsp</shortcut>
-                <shortcut widget="UnwatchedEpisodes" type="31452" label="$LOCALIZE[31061]" icon="DefaultTVShows.png" widgetTarget="videos">special://skin/extras/playlists/UnwatchedEpisodes.xsp</shortcut>
-                <shortcut widget="InProgressEpisodes" type="31452" label="$LOCALIZE[31062]" icon="special://skin/extras/icons/timer.png" widgetTarget="videos">special://skin/extras/playlists/InProgressEpisodes.xsp</shortcut>
-                <shortcut widget="TopRatedEpisodes" type="31452" label="$LOCALIZE[31063]" icon="DefaultTVShows.png" widgetTarget="videos">special://skin/extras/playlists/TopRatedEpisodes.xsp</shortcut>
+                <shortcut widget="NewEpisodes" type="video" label="$LOCALIZE[31058]" icon="DefaultRecentlyAddedMovies.png" widgetTarget="videos">special://skin/extras/playlists/NewEpisodes.xsp</shortcut>
+                <shortcut widget="NewUnwatchedEpisodes" type="video" label="$LOCALIZE[31322]" icon="DefaultRecentlyAddedMovies.png" widgetTarget="videos">special://skin/extras/playlists/NewUnwatchedEpisodes.xsp</shortcut>
+                <shortcut widget="Recent Episodes" type="video" label="$LOCALIZE[31059]" icon="DefaultMusicRecentlyPlayed.png" widgetTarget="videos">special://skin/extras/playlists/RecentEpisodes.xsp</shortcut>
+                <shortcut widget="RandomEpisodes" type="video" label="$LOCALIZE[31060]" icon="DefaultTVShows.png" widgetTarget="videos">special://skin/extras/playlists/RandomEpisodes.xsp</shortcut>
+                <shortcut widget="UnwatchedEpisodes" type="video" label="$LOCALIZE[31061]" icon="DefaultTVShows.png" widgetTarget="videos">special://skin/extras/playlists/UnwatchedEpisodes.xsp</shortcut>
+                <shortcut widget="InProgressEpisodes" type="video" label="$LOCALIZE[31062]" icon="special://skin/extras/icons/timer.png" widgetTarget="videos">special://skin/extras/playlists/InProgressEpisodes.xsp</shortcut>
+                <shortcut widget="TopRatedEpisodes" type="video" label="$LOCALIZE[31063]" icon="DefaultTVShows.png" widgetTarget="videos">special://skin/extras/playlists/TopRatedEpisodes.xsp</shortcut>
             </node>
-        	<node label="$LOCALIZE[249]">
-				<node label="$LOCALIZE[132]">
-	                <shortcut widget="NewAlbums" type="31452" label="$LOCALIZE[31064]" icon="DefaultMusicRecentlyAdded.png" widgetType="albums" widgetTarget="music">musicdb://recentlyaddedalbums/</shortcut>
-	                <shortcut widget="RecentAlbums" type="31452" label="$LOCALIZE[31065]" icon="DefaultMusicRecentlyPlayed.png" widgetType="albums" widgetTarget="music">musicdb://recentlyplayedalbums/</shortcut>
-	                <shortcut widget="TopAlbums" type="31452" label="$LOCALIZE[31066]" icon="DefaultMusicAlbums.png" widgetType="albums" widgetTarget="music">musicdb://top100/albums/</shortcut>
-	                <shortcut widget="RandomAlbums" type="31452" label="$LOCALIZE[31067]" icon="DefaultMusicAlbums.png" widgetType="albums" widgetTarget="music">special://skin/extras/playlists/RandomAlbums.xsp</shortcut>
-            	</node>
-	            <node label="$LOCALIZE[134]">
-	                <shortcut widget="TopSongs" type="31452" label="$LOCALIZE[31285]" icon="DefaultMusicSongs.png" widgetTarget="music">musicdb://top100/songs/</shortcut>
-	                <shortcut widget="RandomSongs" type="31452" label="$LOCALIZE[31286]" icon="DefaultMusicSongs.png" widgetTarget="music">special://skin/extras/playlists/RandomSongs.xsp</shortcut>
-	                <shortcut widget="RecentlyAddedSongs" type="31452" label="$LOCALIZE[31435]" icon="DefaultMusicSongs.png" widgetTarget="music">special://skin/extras/playlists/RecentlyAddedSongs.xsp</shortcut>
-	                <shortcut widget="MostPlayedSongs" type="31452" label="$LOCALIZE[31436]" icon="DefaultMusicSongs.png" widgetTarget="music">special://skin/extras/playlists/MostPlayedSongs.xsp</shortcut>
-	            </node>
-                <shortcut widget="MusicNodes" type="31452" label="$LOCALIZE[31905]" icon="special://skin/extras/icons/title.png" widgetTarget="music">library://music/</shortcut>
-	    	</node>
-       		<node label="$LOCALIZE[31314]">
-	            <node label="$LOCALIZE[133]">
-	                <shortcut widget="RandomArtists" type="31452" label="$LOCALIZE[31068]" icon="DefaultMusicArtists.png" widgetType="artists" widgetTarget="music">special://skin/extras/playlists/RandomArtists.xsp</shortcut>
-	                <shortcut widget="RandomArtistsBiography" type="31452" label="$LOCALIZE[31313]" icon="DefaultMusicArtists.png" widgetType="artists" widgetTarget="music">special://skin/extras/playlists/RandomArtistsBiography.xsp</shortcut>
-	                <shortcut widget="RecentlyAddedArtists" type="31452" label="$LOCALIZE[31315]" icon="DefaultMusicArtists.png" widgetType="artists" widgetTarget="music">special://skin/extras/playlists/RecentlyAddedArtists.xsp</shortcut>
-	                <shortcut widget="RecentlyAddedArtistsBiography" type="31452" label="$LOCALIZE[31316]" icon="DefaultMusicArtists.png" widgetType="artists" widgetTarget="music">special://skin/extras/playlists/RecentlyAddedArtistsBiography.xsp</shortcut>
-	            </node>
-	            <node label="$LOCALIZE[344]">
-	                <shortcut widget="RandomActors" type="31452" label="$LOCALIZE[344]" icon="DefaultMusicArtists.png" widgetType="actors" widgetTarget="videos">library://video/movies/actors.xml/</shortcut>
-	                <shortcut widget="RandomActors" type="31452" label="$LOCALIZE[31320]" icon="DefaultMusicArtists.png" widgetType="actors" widgetTarget="videos">videodb://movies/actors/</shortcut>
-	            </node>
-	        </node>    
+            <node label="$LOCALIZE[133]">
+                <shortcut widget="RandomArtists" type="music" label="$LOCALIZE[31068]" icon="DefaultMusicArtists.png" widgetType="artists" widgetTarget="music">special://skin/extras/playlists/RandomArtists.xsp</shortcut>
+                <shortcut widget="RandomArtistsBiography" type="music" label="$LOCALIZE[31313]" icon="DefaultMusicArtists.png" widgetType="artists" widgetTarget="music">special://skin/extras/playlists/RandomArtistsBiography.xsp</shortcut>
+                <shortcut widget="RecentlyAddedArtists" type="music" label="$LOCALIZE[31315]" icon="DefaultMusicArtists.png" widgetType="artists" widgetTarget="music">special://skin/extras/playlists/RecentlyAddedArtists.xsp</shortcut>
+                <shortcut widget="RecentlyAddedArtistsBiography" type="music" label="$LOCALIZE[31316]" icon="DefaultMusicArtists.png" widgetType="artists" widgetTarget="music">special://skin/extras/playlists/RecentlyAddedArtistsBiography.xsp</shortcut>
+                <shortcut widget="MusicNodes" type="music" label="$LOCALIZE[31905]" icon="special://skin/extras/icons/title.png" widgetTarget="music">library://music/</shortcut>
+            </node>
+			<node label="$LOCALIZE[132]">
+                <shortcut widget="NewAlbums" type="music" label="$LOCALIZE[31064]" icon="DefaultMusicRecentlyAdded.png" widgetType="albums" widgetTarget="music">musicdb://recentlyaddedalbums/</shortcut>
+                <shortcut widget="RecentAlbums" type="music" label="$LOCALIZE[31065]" icon="DefaultMusicRecentlyPlayed.png" widgetType="albums" widgetTarget="music">musicdb://recentlyplayedalbums/</shortcut>
+                <shortcut widget="TopAlbums" type="music" label="$LOCALIZE[31066]" icon="DefaultMusicAlbums.png" widgetType="albums" widgetTarget="music">musicdb://top100/albums/</shortcut>
+                <shortcut widget="RandomAlbums" type="music" label="$LOCALIZE[31067]" icon="DefaultMusicAlbums.png" widgetType="albums" widgetTarget="music">special://skin/extras/playlists/RandomAlbums.xsp</shortcut>
+           	</node>
+            <node label="$LOCALIZE[134]">
+                <shortcut widget="TopSongs" type="music" label="$LOCALIZE[31285]" icon="DefaultMusicSongs.png" widgetTarget="music">musicdb://top100/songs/</shortcut>
+                <shortcut widget="RandomSongs" type="music" label="$LOCALIZE[31286]" icon="DefaultMusicSongs.png" widgetTarget="music">special://skin/extras/playlists/RandomSongs.xsp</shortcut>
+                <shortcut widget="RecentlyAddedSongs" type="music" label="$LOCALIZE[31435]" icon="DefaultMusicSongs.png" widgetTarget="music">special://skin/extras/playlists/RecentlyAddedSongs.xsp</shortcut>
+                <shortcut widget="MostPlayedSongs" type="music" label="$LOCALIZE[31436]" icon="DefaultMusicSongs.png" widgetTarget="music">special://skin/extras/playlists/MostPlayedSongs.xsp</shortcut>
+            </node>
 	        <node label="$LOCALIZE[31103]">
 	            <node label="$LOCALIZE[31517]" condition="Skin.HasSetting(home.vertical.widgets)">
-	                <shortcut widget="epg" type="31452" label="$LOCALIZE[31043]" icon="DefaultMovies.png" widgetTarget="pvr">pvr://channels/tv/*?view=lastplayed</shortcut>
-	                <shortcut widget="epg" type="31452" label="$LOCALIZE[31044]" icon="DefaultTVShows.png" widgetTarget="pvr">pvr://channels/tv/*</shortcut>
-	                <shortcut widget="epg" type="31452" label="$LOCALIZE[19040]" icon="DefaultAddonPVRClient.png" widgetTarget="pvr">pvr://timers/tv/timers</shortcut>
+	                <shortcut widget="LastPlayedChannels" type="tvguide" label="$LOCALIZE[31043]" icon="DefaultAddonPVRClient.png" widgetType="pvr">pvr://channels/tv/*?view=lastplayed</shortcut>
+	                <shortcut widget="AllChannels" type="tvguide" label="$LOCALIZE[31044]" icon="DefaultAddonPVRClient.png" widgetType="pvr">pvr://channels/tv/*</shortcut>
+	                <shortcut widget="Timers" type="tvguide" label="$LOCALIZE[19040]" icon="DefaultAddonPVRClient.png" widgetType="pvr">pvr://timers/tv/timers</shortcut>
 	            </node>
-	            <shortcut widget="LastPlayedChannels" type="31452" label="$LOCALIZE[31043]" icon="DefaultTVShows.png" widgetTarget="pvr">pvr://channels/tv/*?view=lastplayed</shortcut>
-	            <shortcut widget="AllChannels" type="31452" label="$LOCALIZE[31044]" icon="DefaultTVShows.png" widgetTarget="pvr">pvr://channels/tv/*</shortcut>
-	            <shortcut widget="AllChannelGroups" type="31452" label="$LOCALIZE[19173]" icon="DefaultTVShows.png" widgetTarget="tvguide">pvr://channels/tv/</shortcut>
-	            <shortcut widget="ActiveRecordings" type="31452" label="$LOCALIZE[31510]" icon="DefaultAddonPVRClient.png" widgetTarget="pvr">pvr://recordings/tv/active?view=flat</shortcut>
-	            <shortcut widget="GroupedActiveRecordings" type="31452" label="$LOCALIZE[31511]" icon="DefaultAddonPVRClient.png" widgetTarget="pvr">pvr://recordings/tv/active?view=grouped</shortcut>
-	            <shortcut widget="DeletedRecordings" type="31452" label="$LOCALIZE[19184]" icon="DefaultAddonPVRClient.png" widgetTarget="pvr">pvr://recordings/tv/deleted?view=flat</shortcut>
-	            <shortcut widget="GroupedDeletedRecordings" type="31452" label="$LOCALIZE[31512]" icon="DefaultAddonPVRClient.png" widgetTarget="pvr">pvr://recordings/tv/deleted?view=grouped</shortcut>
-	            <shortcut widget="Timers" type="31452" label="$LOCALIZE[19040]" icon="DefaultAddonPVRClient.png" widgetTarget="pvr">pvr://timers/tv/timers</shortcut>
+	            <shortcut widget="LastPlayedChannels" label="$LOCALIZE[31043]" icon="DefaultAddonPVRClient.png" widgetType="pvr">pvr://channels/tv/*?view=lastplayed</shortcut>
+	            <shortcut widget="AllChannels" label="$LOCALIZE[31044]" icon="DefaultAddonPVRClient.png" widgetType="pvr">pvr://channels/tv/*</shortcut>
+	            <shortcut widget="AllChannelGroups" label="$LOCALIZE[19173]" icon="DefaultAddonPVRClient.png" widgetType="pvr">pvr://channels/tv/</shortcut>
+	            <shortcut widget="ActiveRecordings" label="$LOCALIZE[31510]" icon="DefaultAddonPVRClient.png" widgetType="pvr">pvr://recordings/tv/active?view=flat</shortcut>
+	            <shortcut widget="GroupedActiveRecordings" label="$LOCALIZE[31511]" icon="DefaultAddonPVRClient.png" widgetType="pvr">pvr://recordings/tv/active?view=grouped</shortcut>
+	            <shortcut widget="DeletedRecordings" label="$LOCALIZE[19184]" icon="DefaultAddonPVRClient.png" widgetType="pvr">pvr://recordings/tv/deleted?view=flat</shortcut>
+	            <shortcut widget="GroupedDeletedRecordings" label="$LOCALIZE[31512]" icon="DefaultAddonPVRClient.png" widgetType="pvr">pvr://recordings/tv/deleted?view=grouped</shortcut>
+	            <shortcut widget="Timers" label="$LOCALIZE[19040]" icon="DefaultAddonPVRClient.png" widgetType="pvr">pvr://timers/tv/timers</shortcut>
 	        </node>
 	        <node label="$LOCALIZE[19021]">
-	            <shortcut widget="RadioAllChannels" type="31452" label="$LOCALIZE[19216]" icon="DefaultAddonPVRClient.png" widgetTarget="pvr">pvr://channels/radio/*</shortcut>
-	            <shortcut widget="RadioLastPlayedChannels" type="31452" label="$LOCALIZE[31516]" icon="DefaultAddonPVRClient.png" widgetTarget="pvr">pvr://channels/radio/*?view=lastplayed</shortcut>
-	            <shortcut widget="RadioActiveRecordings" type="31452" label="$LOCALIZE[10706]" icon="DefaultAddonPVRClient.png" widgetTarget="pvr">pvr://recordings/radio/active?view=flat</shortcut>
-                <shortcut widget="RadioGroupedActiveRecordings" type="31452" label="$LOCALIZE[31097]" icon="DefaultAddonPVRClient.png" widgetTarget="pvr">pvr://recordings/radio/active?view=grouped</shortcut>
-                <shortcut widget="RadioDeletedRecordings" type="31452" label="$LOCALIZE[19184]" icon="DefaultAddonPVRClient.png" widgetTarget="pvr">pvr://recordings/radio/deleted?view=flat</shortcut>
-                <shortcut widget="RadioGroupedDeletedRecordings" type="31452" label="$LOCALIZE[31098]" icon="DefaultAddonPVRClient.png" widgetTarget="pvr">pvr://recordings/radio/deleted?view=grouped</shortcut>
-	            <shortcut widget="RadioTimers" type="31452" label="$LOCALIZE[10708]" icon="DefaultAddonPVRClient.png" widgetTarget="pvr">pvr://timers/radio/timers</shortcut>
+	            <shortcut widget="RadioAllChannels" label="$LOCALIZE[19216]" icon="DefaultAddonPVRClient.png" widgetType="pvr">pvr://channels/radio/*</shortcut>
+	            <shortcut widget="RadioLastPlayedChannels" label="$LOCALIZE[31516]" icon="DefaultAddonPVRClient.png" widgetType="pvr">pvr://channels/radio/*?view=lastplayed</shortcut>
+	            <shortcut widget="RadioActiveRecordings" label="$LOCALIZE[10706]" icon="DefaultAddonPVRClient.png" widgetType="pvr">pvr://recordings/radio/active?view=flat</shortcut>
+                <shortcut widget="RadioGroupedActiveRecordings" label="$LOCALIZE[31097]" icon="DefaultAddonPVRClient.png" widgetType="pvr">pvr://recordings/radio/active?view=grouped</shortcut>
+                <shortcut widget="RadioDeletedRecordings" label="$LOCALIZE[19184]" icon="DefaultAddonPVRClient.png" widgetType="pvr">pvr://recordings/radio/deleted?view=flat</shortcut>
+                <shortcut widget="RadioGroupedDeletedRecordings" label="$LOCALIZE[31098]" icon="DefaultAddonPVRClient.png" widgetType="pvr">pvr://recordings/radio/deleted?view=grouped</shortcut>
+	            <shortcut widget="RadioTimers" label="$LOCALIZE[10708]" icon="DefaultAddonPVRClient.png" widgetType="pvr">pvr://timers/radio/timers</shortcut>
 	        </node>
             <node label="$LOCALIZE[8]">
-                <shortcut label="$LOCALIZE[31288]" type="31452" icon="special://skin/extras/icons/sun.png" widget="weatherdaily" condition="!String.IsEmpty(Window(Weather).Property(Daily.IsFetched))" widgetType="widget" widgetTarget="weather">$INCLUDE[skinshortcuts-template-WeatherDailyInfoContent]</shortcut>
-                <shortcut label="$LOCALIZE[31289]" type="31452" icon="special://skin/extras/icons/sun.png" widget="weatherhourly" condition="!String.IsEmpty(Window(Weather).Property(Hourly.IsFetched))" widgetType="widget" widgetTarget="weather">$INCLUDE[skinshortcuts-template-WeatherHourlyInfoContent]</shortcut>
+                <shortcut label="$LOCALIZE[31288]" icon="special://skin/extras/icons/sun.png" widget="weather" condition="!String.IsEmpty(Window(Weather).Property(Daily.IsFetched))" widgetType="weather">WeatherDaily</shortcut>
+                <shortcut label="$LOCALIZE[31289]" icon="special://skin/extras/icons/sun.png" widget="weather" condition="!String.IsEmpty(Window(Weather).Property(Hourly.IsFetched))" widgetType="weather">WeatherHourly</shortcut>
             </node>
             <shortcut widget="Favourites" label="$LOCALIZE[1036]" widgetTarget="">favourites://</shortcut>
-            <shortcut widget="systeminfo" type="31452" label="$LOCALIZE[130]" icon="special://skin/extras/icons/sysinfo.png" widgetType="system" widgetTarget="system">$INCLUDE[skinshortcuts-template-SystemInfoContent]</shortcut>
-            <shortcut widget="settings" type="31452" label="$LOCALIZE[5]" icon="special://skin/extras/icons/settings.png" widgetType="system" widgetTarget="system">$INCLUDE[skinshortcuts-template-SettingsInfoContent]</shortcut>
-            <shortcut widget="mysubmenu" type="31452" label="$LOCALIZE[1034]" icon="DefaultAddon.png" widgetType="addons" widgetTarget="programs">$INCLUDE[skinshortcuts-submenu]</shortcut>
+            <shortcut widget="systeminfo" label="$LOCALIZE[130]" icon="special://skin/extras/icons/sysinfo.png" widgetType="system">Systeminfo</shortcut>
+            <shortcut widget="settings" label="$LOCALIZE[5]" icon="special://skin/extras/icons/settings.png" widgetType="system">Settings</shortcut>
+            <shortcut widget="submenu" label="$LOCALIZE[1034]" icon="DefaultAddon.png" widgetType="addons" widgetTarget="programs">Submenu</shortcut>
         </node>    
         <node label="$LOCALIZE[32030]">
             <content>video</content>
@@ -934,11 +650,11 @@
             <node label="$LOCALIZE[32009]">
                 <content>addon-program-plugin</content>
             </node>
-            <shortcut label="$LOCALIZE[10001]" type="32021" icon="DefaultAddonProgram.png" widget="addon" widgetType="program" widgetTarget="programs">addons://sources/executable/</shortcut>
-            <shortcut label="$LOCALIZE[20244]" type="32021" icon="DefaultAddonProgram.png" widget="addon" widgetType="program" widgetTarget="programs" condition="System.Platform.Android">androidapp://sources/apps/</shortcut>
-            <shortcut label="$LOCALIZE[1037]" type="32014" icon="DefaultAddonVideo.png" widget="addon" widgetType="video" widgetTarget="videos">addons://sources/video/</shortcut>
-            <shortcut label="$LOCALIZE[1038]" type="32019" icon="DefaultAddonMusic.png" widget="addon" widgetType="music" widgetTarget="music">addons://sources/audio/</shortcut>
-            <shortcut label="$LOCALIZE[1039]" type="32020" icon="DefaultAddonPicture.png" widget="addon" widgetType="picture" widgetTarget="pictures">addons://sources/image/</shortcut>
+            <shortcut label="$LOCALIZE[10001]" type="program" icon="DefaultAddonProgram.png" widget="addon" widgetType="addon" widgetTarget="programs">addons://sources/executable/</shortcut>
+            <shortcut label="$LOCALIZE[20244]" type="program" icon="DefaultAddonProgram.png" widget="addon" widgetType="addon" widgetTarget="programs" condition="System.Platform.Android">androidapp://sources/apps/</shortcut>
+            <shortcut label="$LOCALIZE[1037]" type="video" icon="DefaultAddonVideo.png" widget="addon" widgetType="video" widgetTarget="videos">addons://sources/video/</shortcut>
+            <shortcut label="$LOCALIZE[1038]" type="music" icon="DefaultAddonMusic.png" widget="addon" widgetType="music" widgetTarget="music">addons://sources/audio/</shortcut>
+            <shortcut label="$LOCALIZE[1039]" type="picture" icon="DefaultAddonPicture.png" widget="addon" widgetType="picture" widgetTarget="pictures">addons://sources/image/</shortcut>
         </node>
         <node label="$LOCALIZE[1036]">
             <content>favourite</content>
@@ -946,72 +662,14 @@
     </widget-groupings>
 
     <!-- OnBack Action Override -->
-    <onback to="9101">9451</onback>
     <onback to="9101">9401</onback>
-    <onback to="9101">9402</onback>
-    <onback to="9101">9403</onback>
-    <onback to="9101">9404</onback>
-    <onback to="9101">4196</onback>
-    <onback to="9101">10030</onback>
-    <onback to="9101">10301</onback>
-    <onback to="9101">10001</onback>
-    <onback to="9102">4197</onback>
-    <onback to="9102">9345</onback>
-    <onback to="9102">9521</onback>
-    <onback to="9102">9572</onback>
-    <onback to="9102">9573</onback>
-    <onback to="9102">4195</onback>
-    <onback to="9102">9792</onback>
-    <onback to="9102">9793</onback>
-    <onback to="9102">10031</onback>
-    <onback to="9102">10302</onback>
-    <onback to="9102">10002</onback>
-    <onback to="9103">4198</onback>
-    <onback to="9103">9346</onback>
-    <onback to="9103">9621</onback>
-    <onback to="9103">9602</onback>
-    <onback to="9103">9603</onback>
-    <onback to="9103">4194</onback>
-    <onback to="9103">10032</onback>
-    <onback to="9103">10303</onback>
-    <onback to="9103">10003</onback>
-    <onback to="9104">4199</onback>
-    <onback to="9104">9358</onback>
-    <onback to="9104">9721</onback>
-    <onback to="9104">9702</onback>
-    <onback to="9104">9703</onback>
-    <onback to="9104">4193</onback>
-    <onback to="9104">10033</onback>
-    <onback to="9104">10304</onback>
-    <onback to="9104">10004</onback>
-    <onback to="9105">4590</onback>
-    <onback to="9105">4591</onback>
-    <onback to="9105">9821</onback>
-    <onback to="9105">9802</onback>
-    <onback to="9105">9803</onback>
-    <onback to="9105">4593</onback>
-    <onback to="9105">10034</onback>
-    <onback to="9105">10305</onback>
-    <onback to="9105">10005</onback>
-    <onback to="9101">406</onback>
-    <onback to="9102">407</onback>
-    <onback to="9103">408</onback>
-    <onback to="9104">409</onback>
-    <onback to="9105">410</onback>
-    <onback to="9106">11001</onback>
-    <onback to="9106">11002</onback>
-    <onback to="9106">11003</onback>
-    <onback to="9106">11004</onback>
-    <onback to="9106">11005</onback>
-    <onback to="9106">11006</onback>
-    <onback to="9106">11007</onback>
-    <onback to="9106">11008</onback>
-    <onback to="9106">11009</onback>
-    <onback to="9106">11011</onback>
-    <onback to="9101">41911</onback>
-    <onback to="9102">41912</onback>
-    <onback to="9103">41913</onback>
-    <onback to="9104">41914</onback>
-    <onback to="9105">41915</onback>
-    <onback to="9106">41916</onback>
+    <onback to="9101">9410</onback>
+    <onback to="9101">9411</onback>
+    <onback to="9101">9412</onback>
+    <onback to="9101">9413</onback>
+    <onback to="9101">9414</onback>
+    <onback to="9101">9415</onback>
+    <onback to="9101">9416</onback>
+    <onback to="9101">9417</onback>
+
 </overrides>
