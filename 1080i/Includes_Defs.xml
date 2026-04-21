@@ -4380,6 +4380,7 @@
             <label2>$INFO[Skin.String(Widget.$PARAM[hubid])]</label2>
             <visible>String.IsEqual(Container(211).ListItem.Property(Path),ActivateWindow($PARAM[hubid]))</visible>
             <visible>!$EXP[Skinshortcuts_Widgets_Active]</visible>
+            <onfocus>ClearProperty(TMDbHelper.IsStandardSkinShortcut,Home)</onfocus>
             <onclick>RunScript(script.skinshortcuts,type=skinstring&amp;skinPath=Widget.$PARAM[hubid]&amp;skinLabel=Widget.$PARAM[hubid].Label&amp;skinType=Widget.$PARAM[hubid].Type;&amp;skinTarget=Widget.$PARAM[hubid].Target)</onclick>
         </control>
         <control type="button" id="$PARAM[buttonid2]1" description="Set HUB LIMIT">
@@ -4395,6 +4396,7 @@
             <include>Def_Skinshortcuts_Buttons</include>
             <visible>String.IsEqual(Container(211).ListItem.Property(Path),ActivateWindow($PARAM[hubid]))</visible>
             <visible>!$EXP[Skinshortcuts_Widgets_Active]</visible>
+            <onfocus>SetProperty(TMDbHelper.IsStandardSkinShortcut,1,Home)</onfocus>
         </control>
     </include>
 

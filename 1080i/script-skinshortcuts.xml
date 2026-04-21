@@ -158,23 +158,27 @@
                 <control type="button" id="401" description="Alt chooser">
                     <label>$ADDON[script.skinshortcuts 32048]</label>
                     <include>Def_Skinshortcuts_Buttons</include>
+                    <onfocus>SetProperty(TMDbHelper.IsStandardSkinShortcut,1,Home)</onfocus>
                     <visible>!$EXP[Skinshortcuts_Widgets_Active]</visible>
                 </control>
                 <control type="button" id="307" description="Custom">
                     <label>31267</label>                    
                     <label2>$INFO[Container(211).ListItem.Property(Path)]</label2>
                     <include>Def_Skinshortcuts_Buttons</include>
+                    <onfocus>SetProperty(TMDbHelper.IsStandardSkinShortcut,1,Home)</onfocus>
                     <visible>!$EXP[Skinshortcuts_Widgets_Active]</visible>
                 </control>
                 <control type="button" id="4001" description="Alt chooser">
                     <label>$ADDON[script.skinshortcuts 32044]</label>
                     <include>Def_Skinshortcuts_Buttons</include>
+                   <onfocus>ClearProperty(TMDbHelper.IsStandardSkinShortcut,Home)</onfocus>
                     <visible>$EXP[Skinshortcuts_Widgets_Active]</visible>
                 </control>
                 <control type="button" id="3007" description="Custom">
                     <label>31267</label>                    
                     <label2>$INFO[Container(211).ListItem.Property(widgetPath)]</label2>
                     <include>Def_Skinshortcuts_Buttons</include>
+                    <onfocus>ClearProperty(TMDbHelper.IsStandardSkinShortcut,Home)</onfocus>
                     <visible>$EXP[Skinshortcuts_Widgets_Active]</visible>
                 </control>
                 <control type="button" id="305" description="Set Label">
@@ -191,6 +195,7 @@
                     <label>31144</label>
                     <include>Def_Skinshortcuts_Buttons</include>
                     <visible>$EXP[Skinshortcuts_Mainmenu_Active]</visible>
+                    <onfocus>ClearProperty(TMDbHelper.IsStandardSkinShortcut,Home)</onfocus>
                     <visible>Skin.HasSetting(home.vertical.widgets)</visible>
                     <visible>String.IsEmpty(Window.Property(disableWidgets))</visible>
                 </control>
@@ -251,8 +256,10 @@
                     <label>31112</label>
                     <visible>$EXP[Skinshortcuts_Mainmenu_Active]</visible>
                     <include>Def_Skinshortcuts_Buttons</include>
+                    <onfocus>SetProperty(TMDbHelper.IsStandardSkinShortcut,1,Home)</onfocus>
                     <visible>String.IsEmpty(Window.Property(disableSubmenus))</visible>
                     <visible>!String.IsEqual(Container(211).ListItem.Label2,ActivateWindow(1111)) + !String.IsEqual(Container(211).ListItem.Label2,ActivateWindow(1112)) + !String.IsEqual(Container(211).ListItem.Label2,ActivateWindow(1113)) + !String.IsEqual(Container(211).ListItem.Label2,ActivateWindow(1114)) + !String.IsEqual(Container(211).ListItem.Label2,ActivateWindow(1115)) + !String.IsEqual(Container(211).ListItem.Label2,ActivateWindow(1116)) + !String.IsEqual(Container(211).ListItem.Label2,ActivateWindow(1117)) + !String.IsEqual(Container(211).ListItem.Label2,ActivateWindow(1118)) + !String.IsEqual(Container(211).ListItem.Label2,ActivateWindow(1119))</visible>
+                    <visible>[!String.IsEqual(Container(211).ListItem.Label2,MovieHub) + !String.IsEqual(Container(211).ListItem.Label2,TVHub) + !String.IsEqual(Container(211).ListItem.Label2,Custom Hub)]</visible>
                 </control>
                 <control type="button" id="310" description="Background">
                     <label>31110</label>
