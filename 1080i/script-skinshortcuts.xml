@@ -164,12 +164,14 @@
                 </control>
                 <control type="button" id="401" description="Alt chooser">
                     <include>Def_Skinshortcuts_Buttons</include>
+                    <onfocus>SetProperty(TMDbHelper.IsStandardSkinShortcut,1,Home)</onfocus>
                     <visible>!$EXP[Skinshortcuts_Widgets_Active]</visible>
                 </control>
                 <control type="button" id="307" description="Custom">
                     <label>31267</label>                    
                     <label2>$INFO[Container(211).ListItem.Property(Path)]</label2>
                     <include>Def_Skinshortcuts_Buttons</include>
+                    <onfocus>SetProperty(TMDbHelper.IsStandardSkinShortcut,1,Home)</onfocus>
                     <visible>!$EXP[Skinshortcuts_Widgets_Active]</visible>
                 </control>
                 <control type="button" id="4001" description="Alt chooser">
@@ -182,6 +184,7 @@
                     <include>Def_Skinshortcuts_Buttons</include>
                     <include>Skinshortcuts_ContentType_AutoSetOnUnFocus</include>
                     <include>Skinshortcuts_ContentType_AutoSetOnBack</include>
+                    <onfocus>ClearProperty(TMDbHelper.IsStandardSkinShortcut,Home)</onfocus>
                     <visible>$EXP[Skinshortcuts_Widgets_Active]</visible>
                 </control>
                 <control type="button" id="3007" description="Custom">
@@ -190,6 +193,7 @@
                     <onclick>SetProperty(custom-grouping,widget)</onclick>
                     <onclick>SendClick(307)</onclick>
                     <include>Def_Skinshortcuts_Buttons</include>
+                    <onfocus>ClearProperty(TMDbHelper.IsStandardSkinShortcut,Home)</onfocus>
                     <visible>$EXP[Skinshortcuts_Widgets_Active]</visible>
                 </control>
                 <control type="button" id="305" description="Set Label">
@@ -215,6 +219,7 @@
                     <label>31144</label>
                     <include>Def_Skinshortcuts_Buttons</include>
                     <visible>$EXP[Skinshortcuts_Mainmenu_Active]</visible>
+                    <onfocus>ClearProperty(TMDbHelper.IsStandardSkinShortcut,Home)</onfocus>
                     <visible>Skin.HasSetting(home.vertical.widgets)</visible>
                 </control>
                 <include content="Def_Skinshortcuts_SetHub">
@@ -266,6 +271,7 @@
                     <label>31112</label>
                     <visible>$EXP[Skinshortcuts_Mainmenu_Active]</visible>
                     <include>Def_Skinshortcuts_Buttons</include>
+                    <onfocus>SetProperty(TMDbHelper.IsStandardSkinShortcut,1,Home)</onfocus>
                     <visible>[!String.IsEqual(Container(211).ListItem.Label2,MovieHub) + !String.IsEqual(Container(211).ListItem.Label2,TVHub) + !String.IsEqual(Container(211).ListItem.Label2,Custom Hub)]</visible>
                 </control>
                 <control type="button" id="310" description="Background">
@@ -307,6 +313,7 @@
                     <include>Def_Skinshortcuts_Buttons</include>
                     <visible allowhiddenfocus="true">!String.IsEmpty(Window(Home).Property(skinshortcuts-Widget))</visible>
                     <onclick>SendClick(312)</onclick>
+                    <onfocus>ClearProperty(TMDbHelper.IsStandardSkinShortcut,Home)</onfocus>
                     <include>Skinshortcuts_ContentType_AutoSetOnUnFocus</include>
                 </control>
                 <include content="Def_Skinshortcuts_WidgetSettings">
