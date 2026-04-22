@@ -4371,6 +4371,7 @@
             <label2>$INFO[Skin.String(Widget.$PARAM[hubid])]</label2>
             <visible>String.IsEqual(Container(211).ListItem.Label2,Hub $PARAM[hubid]) | String.IsEqual(Container(211).ListItem.Property(Path),ActivateWindow($PARAM[hubid]))</visible>
             <visible>!$EXP[Skinshortcuts_Widgets_Active]</visible>
+            <onfocus>ClearProperty(TMDbHelper.IsStandardSkinShortcut,Home)</onfocus>
             <onclick>RunScript(script.skinshortcuts,type=widgets&amp;grouping=widget&amp;skinWidgetPath=Widget.$PARAM[hubid]&amp;skinWidgetName=Widget.$PARAM[hubid].Label&amp;skinWidgetType=Widget.$PARAM[hubid].Type;&amp;skinWidgetTarget=Widget.$PARAM[hubid].Target)</onclick>
         </control>
         <control type="button" id="$PARAM[buttonid2]1" description="Set HUB LIMIT">
@@ -4386,6 +4387,7 @@
             <include>Def_Skinshortcuts_Buttons</include>
             <visible>String.IsEqual(Container(211).ListItem.Label2,Hub $PARAM[hubid]) | String.IsEqual(Container(211).ListItem.Property(Path),ActivateWindow($PARAM[hubid]))</visible>
             <visible>!$EXP[Skinshortcuts_Widgets_Active]</visible>
+            <onfocus>SetProperty(TMDbHelper.IsStandardSkinShortcut,1,Home)</onfocus>
             <onclick>RunScript(script.skinshortcuts,type=manage&amp;group=x$PARAM[hubid])</onclick>
         </control>
     </include>
