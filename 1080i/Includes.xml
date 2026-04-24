@@ -2030,7 +2030,7 @@
           | String.IsEqual(Container(211).ListItem.Property(Path),settings) ]
     </expression>
 
-    <expression name="IsSkinshortcuts">!Window.IsVisible(script-skinshortcuts.xml) + String.IsEmpty(Window(home).Property(TMDBHelper.IsSkinShortcut))</expression>
+    <expression name="IsSkinshortcuts">Window.IsVisible(script-skinshortcuts.xml) | !String.IsEmpty(Window(home).Property(TMDBHelper.IsSkinShortcut))</expression>
     
     <expression name="Skinshortcuts_Mainmenu_Active">String.IsEqual(Window.Property(groupname),mainmenu) | String.IsEmpty(Window.Property(groupname))</expression>
     <expression name="Skinshortcuts_Widgets_Active">String.EndsWith(Window.Property(groupname),.1)</expression>
