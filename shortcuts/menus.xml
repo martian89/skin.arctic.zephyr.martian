@@ -237,7 +237,7 @@
             <label>14247</label>
             <label2>Movie Hub item</label2>
             <action>CleanLibrary(video)</action>
-            <icon>special://skin/extras/icons/paintbrush.png</icon>
+            <icon>special://skin/extras/icons/wand.png</icon>
         </item>
     </menu>
 
@@ -326,7 +326,7 @@
             <label>14247</label>
             <label2>Episode Hub item</label2>
             <action>CleanLibrary(video)</action>
-            <icon>special://skin/extras/icons/paintbrush.png</icon>
+            <icon>special://skin/extras/icons/wand.png</icon>
         </item>
     </menu>
 
@@ -387,7 +387,7 @@
 		<item name="clean-library">
 			<label>14247</label>
 			<label2>14236</label2>
-			<icon>special://skin/extras/icons/paintbrush.png</icon>
+			<icon>special://skin/extras/icons/wand.png</icon>
 			<action>CleanLibrary(video)</action>
 		</item>
 	</submenu>
@@ -552,7 +552,7 @@
 		<item name="clean-library">
 			<label>14247</label>
 			<label2>14237</label2>
-			<icon>special://skin/extras/icons/paintbrush.png</icon>
+			<icon>special://skin/extras/icons/wand.png</icon>
 			<action>CleanLibrary(music)</action>
 		</item>
 	</submenu>
@@ -816,10 +816,10 @@
 			<shortcut name="tvshows" label="20343" icon="special://skin/extras/icons/tv.png">
 				<action>ActivateWindow(Videos,videodb://tvshows/titles/,return)</action>
 			</shortcut>
-			<shortcut name="tvchannels" label="31103" icon="special://skin/extras/icons/livetv.png">
+			<shortcut name="tvchannels" label="31103" icon="special://skin/extras/icons/livetv.png" visible="Pvr.HasTVChannels">
 				<action>ActivateWindow(Tvchannels)</action>
 			</shortcut>
-			<shortcut name="radiochannels" label="$ADDON[script.skinshortcuts 32087]" icon="special://skin/extras/icons/songs.png">
+			<shortcut name="radiochannels" label="$ADDON[script.skinshortcuts 32087]" icon="special://skin/extras/icons/songs.png" visible="PVR.HasRadioChannels">
 				<action>ActivateWindow(RadioChannels)</action>
 			</shortcut>
 			<shortcut name="music" label="2" icon="special://skin/extras/icons/songs.png">
@@ -846,15 +846,6 @@
 			<shortcut name="addons" label="10001" icon="special://skin/extras/icons/addons.png">
 				<action>ActivateWindow(Programs,Addons,return)</action>
 			</shortcut>
-            <shortcut name="playdisc" label="341" icon="special://skin/extras/icons/cd.png" visible="System.HasMediaDVD | System.HasMediaAudioCD">
-                <action>PlayDisc</action>
-            </shortcut>
-            <shortcut name="ejecttray" label="13391" icon="special://skin/extras/icons/cd.png" visible="System.HasMediaDVD | System.HasMediaAudioCD">
-                <action>EjectTray()</action>
-            </shortcut>
-            <shortcut name="ripcd" label="600" icon="special://skin/extras/icons/cd.png" visible="System.HasMediaDVD | System.HasMediaAudioCD">
-                <action>RipCD</action>
-            </shortcut>
 			<shortcut name="settings" label="10004" icon="special://skin/extras/icons/settings.png">
 				<action>ActivateWindow(Settings)</action>
 			</shortcut>
@@ -1028,6 +1019,21 @@
             <shortcut name="reboot to android" label="31232" icon="special://skin/extras/icons/power.png" visible="System.Platform.Android">
 		        <action>System.ExecWait("/usr/sbin/rebootfromnand")</action>
 		        <action>Reset()</action>
+            </shortcut>
+            <shortcut name="mastermode" label="20045" icon="special://skin/extras/icons/artist.png">
+                <action>Mastermode</action>
+            </shortcut>
+            <shortcut name="screensaver" label="24008" icon="special://skin/extras/icons/eye2.png">
+                <action>ActivateScreensaver</action>
+            </shortcut>
+            <shortcut name="playdisc" label="341" icon="special://skin/extras/icons/cd.png">
+                <action>PlayDisc</action>
+            </shortcut>
+            <shortcut name="ejecttray" label="13391" icon="special://skin/extras/icons/cd.png">
+                <action>EjectTray()</action>
+            </shortcut>
+            <shortcut name="ripcd" label="600" icon="special://skin/extras/icons/cd.png">
+                <action>RipCD</action>
             </shortcut>
         </group>
 <!-- 

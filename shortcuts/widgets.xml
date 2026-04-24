@@ -137,7 +137,7 @@
 				<path>special://skin/extras/playlists/MostPlayedSongs.xsp</path>
 			</widget>
 		</group>
-		<group name="tv" label="31103">
+		<group name="tv" label="31103" visible="Pvr.HasTVChannels">
 			<group name="epg" label="31517" visible="Skin.HasSetting(home.vertical.widgets)">
 				<widget name="LastPlayedChannels" label="31043" icon="DefaultAddonPVRClient.png" type="tvguide">
 					<path>pvr://channels/tv/*?view=lastplayed</path>
@@ -174,7 +174,7 @@
 				<path>pvr://timers/tv/timers</path>
 			</widget>
 		</group>
-		<group name="radio" label="19021">
+		<group name="radio" label="19021" visible="PVR.HasRadioChannels">
 			<widget name="RadioAllChannels" label="19216" icon="DefaultAddonPVRClient.png" type="pvr">
 				<path>pvr://channels/radio/*</path>
 			</widget>
@@ -197,7 +197,7 @@
 				<path>pvr://timers/radio/timers</path>
 			</widget>
 		</group>
-		<group name="weather" label="8">
+		<group name="weather" label="8" visible="!String.IsEmpty(Weather.Plugin)">
 			<widget label="31288" icon="special://skin/extras/icons/sun.png" name="weather">
 				<path>WeatherDaily</path>
 			</widget>
