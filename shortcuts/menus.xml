@@ -3,49 +3,57 @@
 
 	<!-- Main menus -->
 	<menu name="mainmenu" container="300">
-		<item name="videos" submenu="videos">
-			<label>3</label>
-			<label2>32034</label2>
-			<icon>special://skin/extras/icons/video-addons.png</icon>
-			<action>ActivateWindow(videos,library://video/)</action>
-			<visible>!Library.HasContent(Movies) + !Library.HasContent(TVShows)</visible>
-		</item>
-		<item name="movies" submenu="movies">
+		<item name="movies" submenu="movies" visible="Library.HasContent(Movies)">
 			<label>20342</label>
-			<label2>32034</label2>
+			<label2>$ADDON[script.skinshortcuts 32034]</label2>
 			<icon>special://skin/extras/icons/film.png</icon>
 			<action>ActivateWindow(videos,videodb://movies/titles/,return)</action>
 			<visible>Library.HasContent(Movies)</visible>
 		</item>
-		<item name="tvshows" submenu="tvshows">
+		<item name="tvshows" submenu="tvshows" visible="Library.HasContent(TVShows)">
 			<label>20343</label>
-			<label2>32034</label2>
+			<label2>$ADDON[script.skinshortcuts 32034]</label2>
 			<icon>special://skin/extras/icons/tv.png</icon>
 			<action>ActivateWindow(videos,videodb://tvshows/titles/,return)</action>
             <visible>Library.HasContent(TVShows)</visible>
 		</item>
 		<item name="music" submenu="music">
 			<label>2</label>
-			<label2>32034</label2>
+			<label2>$ADDON[script.skinshortcuts 32034]</label2>
 			<icon>special://skin/extras/icons/songs.png</icon>
 			<action>ActivateWindow(Music,library://music/,return)</action>
 		</item>
-		<item name="livetv" submenu="livetv">
+		<item name="livetv" submenu="livetv" visible="Pvr.HasTVChannels">
 			<label>31103</label>
-			<label2>32034</label2>
+			<label2>$ADDON[script.skinshortcuts 32034]</label2>
 			<icon>special://skin/extras/icons/livetv.png</icon>
 			<action>ActivateWindow(Tvchannels)</action>
+			<visible>Pvr.HasTVChannels</visible>
 		</item>
+        <item name="videos" submenu="videos" visible="!Library.HasContent(Movies) + !Library.HasContent(TVShows)">
+            <label>3</label>
+            <label2>$ADDON[script.skinshortcuts 32034]</label2>
+            <icon>special://skin/extras/icons/video-addons.png</icon>
+            <action>ActivateWindow(videos,library://video/)</action>
+            <visible>!Library.HasContent(Movies) + !Library.HasContent(TVShows)</visible>
+        </item>
+        <item name="playdisc" submenu="playdisc" visible="System.HasMediaDVD | System.HasMediaAudioCD">
+            <label>341</label>
+            <label2>$ADDON[script.skinshortcuts 32034]</label2>
+            <icon>special://skin/extras/icons/cd.png</icon>
+            <action>PlayDisc</action>
+            <visible>System.HasMediaDVD | System.HasMediaAudioCD</visible>
+        </item>
 		<item name="settings">
 			<label>10004</label>
-			<label2>32034</label2>
+			<label2>$ADDON[script.skinshortcuts 32034]</label2>
 			<icon>special://skin/extras/icons/settings.png</icon>
 			<action>ActivateWindow(Settings)</action>
             <protect type="all" heading="$LOCALIZE[31176]" message="$LOCALIZE[31177]" />
 		</item>
 		<item name="power" required="true">
 			<label>33060</label>
-			<label2>32034</label2>
+			<label2>$ADDON[script.skinshortcuts 32034]</label2>
 			<icon>special://skin/extras/icons/power.png</icon>
 			<action>ActivateWindow(shutdownmenu)</action>
 		</item>
@@ -127,13 +135,13 @@
 			<action>Reset()</action>
 			<visible>System.CanReboot</visible>
 		</item>
-		<item name="reboot to android">
+		<item name="reboot to android" visible="System.Platform.Android">
 			<label2>Power Menu Shortcut</label2>
 			<label>31232</label>
 			<icon>special://skin/extras/icons/power.png</icon>
 	        <action>System.ExecWait("/usr/sbin/rebootfromnand")</action>
 	        <action>Reset()</action>
-			<visible>System.PathExist("/dev/env")</visible>
+			<visible>System.Platform.Android</visible>
 		</item>
 		<item name="settings">
 			<label>5</label>
@@ -170,7 +178,7 @@
             <action>PlayMedia(special://skin/extras/playlists/RandomMovies.xsp)</action>
             <icon>special://skin/extras/icons/signpost.png</icon>
         </item>
-        <item name="search-movies">
+        <item name="search-movies" visible="System.AddonIsEnabled(script.globalsearch)">
             <label>137</label>
             <label2>Movie Hub item</label2>
             <action>RunScript(script.globalsearch,movies=true)</action>
@@ -259,7 +267,7 @@
             <action>PlayMedia(special://skin/extras/playlists/RandomEpisodes.xsp)</action>
             <icon>special://skin/extras/icons/signpost.png</icon>
         </item>
-        <item name="search-tvshows">
+        <item name="search-tvshows" visible="System.AddonIsEnabled(script.globalsearch)">
             <label2>Episode Hub item</label2>
             <label>137</label>
             <action>RunScript(script.globalsearch,tvshows=true&amp;episodes=true)</action>
@@ -354,19 +362,19 @@
 	<submenu name="videos">
 		<item name="titles">
 			<label>20389</label>
-			<label2>32018</label2>
+			<label2>$ADDON[script.skinshortcuts 32018]</label2>
 			<icon>special://skin/extras/icons/musicvideo.png</icon>
 			<action>ActivateWindow(Videos,videodb://musicvideos/titles/,return)</action>
 		</item>
 		<item name="files">
 			<label>744</label>
-			<label2>32014</label2>
+			<label2>$ADDON[script.skinshortcuts 32014]</label2>
 			<icon>special://skin/extras/icons/files.png</icon>
 			<action>ActivateWindow(Videos,Files,return)</action>
 		</item>
 		<item name="video-addons">
 			<label>1037</label>
-			<label2>32014</label2>
+			<label2>$ADDON[script.skinshortcuts 32014]</label2>
 			<icon>special://skin/extras/icons/video-addons.png</icon>
 			<action>ActivateWindow(Videos,Addons,return)</action>
 		</item>
@@ -429,13 +437,13 @@
 		</item>
 		<item name="files">
 			<label>744</label>
-			<label2>32014</label2>
+			<label2>$ADDON[script.skinshortcuts 32014]</label2>
 			<icon>special://skin/extras/icons/files.png</icon>
 			<action>ActivateWindow(Videos,Files,return)</action>
 		</item>
 		<item name="video-addons">
 			<label>1037</label>
-			<label2>32014</label2>
+			<label2>$ADDON[script.skinshortcuts 32014]</label2>
 			<icon>special://skin/extras/icons/video-addons.png</icon>
 			<action>ActivateWindow(Videos,Addons,return)</action>
 		</item>
@@ -486,13 +494,13 @@
 		</item>
 		<item name="files">
 			<label>744</label>
-			<label2>32014</label2>
+			<label2>$ADDON[script.skinshortcuts 32014]</label2>
 			<icon>special://skin/extras/icons/files.png</icon>
 			<action>ActivateWindow(Videos,Files,return)</action>
 		</item>
 		<item name="video-addons">
 			<label>1037</label>
-			<label2>32014</label2>
+			<label2>$ADDON[script.skinshortcuts 32014]</label2>
 			<icon>special://skin/extras/icons/video-addons.png</icon>
 			<action>ActivateWindow(Videos,Addons,return)</action>
 		</item>
@@ -507,31 +515,31 @@
 	<submenu name="music">
 		<item name="recently-added">
 			<label>359</label>
-			<label2>32019</label2>
+			<label2>$ADDON[script.skinshortcuts 32019]</label2>
 			<icon>special://skin/extras/icons/recentlyadded.png</icon>
 			<action>ActivateWindow(Music,musicdb://recentlyaddedalbums/,return)</action>
 		</item>
 		<item name="recently-played">
 			<label>517</label>
-			<label2>32019</label2>
+			<label2>$ADDON[script.skinshortcuts 32019]</label2>
 			<icon>special://skin/extras/icons/recent.png</icon>
 			<action>ActivateWindow(Music,musicdb://recentlyplayedalbums/,return)</action>
 		</item>
 		<item name="files">
 			<label>744</label>
-			<label2>32019</label2>
+			<label2>$ADDON[script.skinshortcuts 32019]</label2>
 			<icon>special://skin/extras/icons/files.png</icon>
 			<action>ActivateWindow(Music,Files,Return)</action>
 		</item>
 		<item name="music-library">
 			<label>15100</label>
-			<label2>32019</label2>
+			<label2>$ADDON[script.skinshortcuts 32019]</label2>
 			<icon>special://skin/extras/icons/files.png</icon>
 			<action>ActivateWindow(MusicLibrary,MusicLibrary,return)</action>
 		</item>
 		<item name="music-addons">
 			<label>1038</label>
-			<label2>32019</label2>
+			<label2>$ADDON[script.skinshortcuts 32019]</label2>
 			<icon>special://skin/extras/icons/songs.png</icon>
 			<action>ActivateWindow(MusicLibrary,Addons,return)</action>
 		</item>
@@ -588,7 +596,7 @@
 		</item>
 		<item name="files">
 			<label>744</label>
-			<label2>32014</label2>
+			<label2>$ADDON[script.skinshortcuts 32014]</label2>
 			<icon>special://skin/extras/icons/files.png</icon>
 			<action>ActivateWindow(Videos,Files,return)</action>
 		</item>
@@ -603,31 +611,31 @@
 	<submenu name="livetv">
 		<item name="tvguide">
 			<label>22020</label>
-			<label2>32017</label2>
+			<label2>$ADDON[script.skinshortcuts 32017]</label2>
 			<icon>special://skin/extras/icons/tvguide.png</icon>
 			<action>ActivateWindow(TVGuide)</action>
 		</item>
 		<item name="tv-recordings">
 			<label>19163</label>
-			<label2>32017</label2>
+			<label2>$ADDON[script.skinshortcuts 32017]</label2>
 			<icon>special://skin/extras/icons/bookmark-star.png</icon>
 			<action>ActivateWindow(TVRecordings)</action>
 		</item>
 		<item name="tv-providers">
 			<label>19348</label>
-			<label2>32017</label2>
+			<label2>$ADDON[script.skinshortcuts 32017]</label2>
 			<icon>special://skin/extras/icons/antenna.png</icon>
 			<action>ActivateWindow(TVProviders)</action>
 		</item>
 		<item name="tv-timers">
 			<label>19040</label>
-			<label2>32017</label2>
+			<label2>$ADDON[script.skinshortcuts 32017]</label2>
 			<icon>special://skin/extras/icons/timer.png</icon>
 			<action>ActivateWindow(TVTimers)</action>
 		</item>
 		<item name="tv-search">
 			<label>137</label>
-			<label2>32017</label2>
+			<label2>$ADDON[script.skinshortcuts 32017]</label2>
 			<icon>special://skin/extras/icons/search.png</icon>
 			<action>ActivateWindow(TVSearch)</action>
 		</item>
@@ -636,31 +644,31 @@
 	<submenu name="radio">
 		<item name="radio-guide">
 			<label>22020</label>
-			<label2>32087</label2>
+			<label2>$ADDON[script.skinshortcuts 32087]</label2>
 			<icon>special://skin/extras/icons/tvguide.png</icon>
 			<action>ActivateWindow(RadioGuide)</action>
 		</item>
 		<item name="radio-recordings">
 			<label>19163</label>
-			<label2>32087</label2>
+			<label2>$ADDON[script.skinshortcuts 32087]</label2>
 			<icon>special://skin/extras/icons/bookmark-star.png</icon>
 			<action>ActivateWindow(RadioRecordings)</action>
 		</item>
 		<item name="radio-providers">
 			<label>19348</label>
-			<label2>32087</label2>
+			<label2>$ADDON[script.skinshortcuts 32087]</label2>
 			<icon>special://skin/extras/icons/antenna.png</icon>
 			<action>ActivateWindow(RadioProviders)</action>
 		</item>
 		<item name="radio-timers">
 			<label>19040</label>
-			<label2>32087</label2>
+			<label2>$ADDON[script.skinshortcuts 32087]</label2>
 			<icon>special://skin/extras/icons/timer.png</icon>
 			<action>ActivateWindow(RadioTimers)</action>
 		</item>
 		<item name="radio-search">
 			<label>137</label>
-			<label2>32087</label2>
+			<label2>$ADDON[script.skinshortcuts 32087]</label2>
 			<icon>special://skin/extras/icons/search.png</icon>
 			<action>ActivateWindow(RadioSearch)</action>
 		</item>
@@ -702,15 +710,15 @@
 	<submenu name="pictures">
 	    <item name="pictureaddonssub">
 	        <label>1039</label>
-	        <label2>32020</label2>
+	        <label2>$ADDON[script.skinshortcuts 32020]</label2>
 	        <icon>DefaultAddonPicture.png</icon>
 	        <action>ActivateWindow(Pictures,Addons,return)</action>
 	    </item>	
 	</submenu>
 
-    <submenu name="dvd">
+    <submenu name="playdisc">
         <item name="ejecttray">
-            <label>32033</label>
+            <label>13391</label>
             <icon>special://skin/extras/icons/cd.png</icon>
             <action>EjectTray()</action>
         </item> 
@@ -719,25 +727,25 @@
     <submenu name="settings">
 	    <item name="filemanager">
 	        <label>7</label>
-	        <label2>32034</label2>
+	        <label2>$ADDON[script.skinshortcuts 32034]</label2>
 	        <icon>special://skin/extras/icons/files.png</icon>
 	        <action>ActivateWindow(FileManager)</action>
 	    </item>
 	    <item name="profiles">
 	        <label>13200</label>
-	        <label2>32034</label2>
+	        <label2>$ADDON[script.skinshortcuts 32034]</label2>
 	        <icon>special://skin/extras/icons/actor.png</icon>
 	        <action>ActivateWindow(Profiles)</action>
 	    </item>
 	    <item name="systeminfo">
 	        <label>10007</label>
-	        <label2>32034</label2>
+	        <label2>$ADDON[script.skinshortcuts 32034]</label2>
 	        <icon>special://skin/extras/icons/sysinfo.png</icon>
 	        <action>ActivateWindow(SystemInfo)</action>
 	    </item>
 	    <item name="eventlog">
 	        <label>14111</label>
-	        <label2>32034</label2>
+	        <label2>$ADDON[script.skinshortcuts 32034]</label2>
 	        <icon>special://skin/extras/icons/recent.png</icon>
 	        <action>ActivateWindow(EventLog,events://,return)</action>
 	    </item>    
@@ -832,17 +840,20 @@
 			<shortcut name="games" label="10821" icon="special://skin/extras/icons/xbox.png">
 				<action>ActivateWindow(Games)</action>
 			</shortcut>
-			<shortcut name="weather" label="12600" icon="special://skin/extras/icons/sun.png">
+			<shortcut name="weather" label="12600" icon="special://skin/extras/icons/sun.png" visible="!String.IsEmpty(Weather.Plugin)">
 				<action>ActivateWindow(Weather)</action>
 			</shortcut>
 			<shortcut name="addons" label="10001" icon="special://skin/extras/icons/addons.png">
 				<action>ActivateWindow(Programs,Addons,return)</action>
 			</shortcut>
-            <shortcut name="playdvd" label="$ADDON[script.skinshortcuts 32032]" icon="special://skin/extras/icons/cd.png">
-                <action>PlayDVD</action>
+            <shortcut name="playdisc" label="341" icon="special://skin/extras/icons/cd.png" visible="System.HasMediaDVD | System.HasMediaAudioCD">
+                <action>PlayDisc</action>
             </shortcut>
-            <shortcut name="ejecttray" label="$ADDON[script.skinshortcuts 32033]" icon="special://skin/extras/icons/cd.png">
+            <shortcut name="ejecttray" label="13391" icon="special://skin/extras/icons/cd.png" visible="System.HasMediaDVD | System.HasMediaAudioCD">
                 <action>EjectTray()</action>
+            </shortcut>
+            <shortcut name="ripcd" label="600" icon="special://skin/extras/icons/cd.png" visible="System.HasMediaDVD | System.HasMediaAudioCD">
+                <action>RipCD</action>
             </shortcut>
 			<shortcut name="settings" label="10004" icon="special://skin/extras/icons/settings.png">
 				<action>ActivateWindow(Settings)</action>
@@ -1014,10 +1025,9 @@
 		        <action>Dialog.Close(all,true)</action>
 				<action>SystemLogOff</action>
             </shortcut>
-            <shortcut name="reboot to android" label="31232" icon="special://skin/extras/icons/power.png">
+            <shortcut name="reboot to android" label="31232" icon="special://skin/extras/icons/power.png" visible="System.Platform.Android">
 		        <action>System.ExecWait("/usr/sbin/rebootfromnand")</action>
 		        <action>Reset()</action>
-				<visible>System.Platform.Linux"</visible>
             </shortcut>
         </group>
 <!-- 
