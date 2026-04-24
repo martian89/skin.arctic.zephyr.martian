@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <widgets>
 
-	<group name="common" label="32119">
+	<group name="common" label="32119" visible="String.IsEmpty(Window(home).Property(SpotlightWidget))">
 		<group name="movies" label="342">
 			<widget name="NewMovies" label="31045" icon="special://skin/extras/icons/recentlyadded.png" type="movies" target="videos">
 				<path>special://skin/extras/playlists/NewMovies.xsp</path>
@@ -220,7 +220,7 @@
 	</group>
 
     <!-- Video Library -->
-    <group name="video-library" label="32030" icon="special://skin/extras/icons/video.png">
+    <group name="video-library" label="32030" icon="special://skin/extras/icons/video.png" visible="String.IsEmpty(Window(home).Property(SpotlightWidget))">
         <content source="nodes" target="videos" />
         <group name="video-playlists" label="32040" icon="special://skin/extras/icons/playlist.png">
             <content source="playlists" target="videos" />
@@ -234,7 +234,7 @@
     </group>
 
     <!-- Music Library -->
-    <group name="music-library" label="32031" icon="special://skin/extras/icons/songs.png">
+    <group name="music-library" label="32031" icon="special://skin/extras/icons/songs.png" visible="String.IsEmpty(Window(home).Property(SpotlightWidget))">
         <content source="nodes" target="music" />
         <group name="music-playlists" label="32040" icon="special://skin/extras/icons/playlist.png">
             <content source="playlists" target="music" />
@@ -248,12 +248,12 @@
     </group>
 
     <!-- Pictures -->
-    <group name="pictures" label="32020" icon="special://skin/extras/icons/pictures.png">
+    <group name="pictures" label="32020" icon="special://skin/extras/icons/pictures.png" visible="String.IsEmpty(Window(home).Property(SpotlightWidget))">
         <content source="sources" target="pictures" />
     </group>
 
     <!-- Add-ons -->
-    <group name="addons" label="32007" icon="special://skin/extras/icons/addons.png">
+    <group name="addons" label="32007" icon="special://skin/extras/icons/addons.png" visible="String.IsEmpty(Window(home).Property(SpotlightWidget))">
         <group name="addons-video" label="32010" icon="special://skin/extras/icons/video-addons.png">
             <content source="addons" target="videos" />
         </group>
@@ -285,76 +285,19 @@
             <path>androidapp://sources/apps/</path>
         </widget>
     </group>
-<!-- 
-	<group label="32030">
-		<content>video</content>
-		<group label="32040">
-			<content>playlist-video</content>
-		</group>
-		<group label="32010">
-			<content>addon-video</content>
-		</group>
-		<group label="32075">
-			<content>videosources</content>
-		</group>
-	</group>
-	<group label="32031">
-		<content>music</content>
-		<group label="32040">
-			<content>playlist-audio</content>
-		</group>
-		<group label="32011">
-			<content>addon-audio</content>
-		</group>
-		<group label="32075">
-			<content>musicsources</content>
-		</group>
-	</group>
-	<group label="32020">
-		<content>picturesources</content>
-	</group>
-	<group label="32007">
-		<group label="32010">
-			<content>addon-video</content>
-		</group>
-		<group label="32011">
-			<content>addon-audio</content>
-		</group>
-		<group label="32012">
-			<content>addon-image</content>
-		</group>
-		<group label="32009">
-			<content>addon-program-plugin</content>
-		</group>
-		<widget label="10001" icon="DefaultAddonProgram.png" name="addon" type="addon" target="programs">
-			<path>addons://sources/executable/</path>
-		</widget>
-		<widget label="20244" icon="DefaultAddonProgram.png" name="addon" type="addon" target="programs"
-			condition="System.Platform.Android">
-			<path>androidapp://sources/apps/</path>
-		</widget>
-		<widget label="1037" icon="DefaultAddonVideo.png" name="addon" type="video" target="videos">
-			<path>addons://sources/video/</path>
-		</widget>
-		<widget label="1038" icon="DefaultAddonMusic.png" name="addon" type="music" target="music">
-			<path>addons://sources/audio/</path>
-		</widget>
-		<widget label="1039" icon="DefaultAddonPicture.png" name="addon" type="picture" target="pictures">
-			<path>addons://sources/image/</path>
-		</widget>
-	</group>
-	<group label="1036">
-		<content>favourite</content>
-	</group>
 
-    <widget name="favourites" label="Favourites" type="videos">
-        <path>favourites://</path>
-    </widget>
-
-    <group name="movies" label="Movies" visible="Library.HasContent(movies)">
-        <widget name="recent-movies" label="Recently Added" type="movies">
-            <path>videodb://recentlyaddedmovies/</path>
-        </widget>
+    <!-- Spotlight Widget -->
+    <group name="video-library" label="32030" icon="special://skin/extras/icons/video.png" visible="!String.IsEmpty(Window(home).Property(SpotlightWidget))">
+    	<content source="nodes" target="videos"/>
     </group>
--->
+    <group name="video-playlists" label="32040" icon="special://skin/extras/icons/playlist.png" visible="!String.IsEmpty(Window(home).Property(SpotlightWidget))">
+        <content source="playlists" target="videos" />
+    </group>
+    <group name="video-addons" label="32010" icon="special://skin/extras/icons/video-addons.png" visible="!String.IsEmpty(Window(home).Property(SpotlightWidget))">
+        <content source="addons" target="videos" />
+    </group>
+    <group name="video-sources" label="32075" icon="special://skin/extras/icons/folder.png" visible="!String.IsEmpty(Window(home).Property(SpotlightWidget))">
+        <content source="sources" target="videos" />
+    </group>
+
 </widgets>
