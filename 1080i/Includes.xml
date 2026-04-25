@@ -102,7 +102,7 @@
 	<expression name="IsVideoInfo">Window.IsVisible(DialogVideoInfo.xml) + ![String.IsEqual(ListItem.Property(item.type),person) | String.IsEqual(ListItem.Property(dbtype),person) | String.IsEqual(ListItem.Property(Param.Info),person)]</expression>
 	<expression name="IsPersonInfo">Window.IsVisible(DialogVideoInfo.xml) + [String.IsEqual(ListItem.Property(item.type),person) | String.IsEqual(ListItem.Property(dbtype),person) | String.IsEqual(ListItem.Property(Param.Info),person)]</expression>
 
-    <expression name="HasThumbImageResource">
+    <expression name="HasImage_ListItem_IconResource">
         [ Window.IsVisible(MyVideoNav.xml) | Window.IsVisible(home)] + String.IsEqual(ListItem.DBType,country) + [!String.IsEmpty(Skin.String(moviecountry.icons.path)) | System.AddonIsEnabled(resource.images.moviecountryicons.maps)]
         | [Window.IsVisible(MyVideoNav.xml) | Window.IsVisible(home)] + String.IsEqual(ListItem.DBType,genre) + [!String.IsEmpty(Skin.String(genre.icons.path)) | System.AddonIsEnabled(resource.images.moviegenreicons.transparent)]
         | [Window.IsVisible(MyVideoNav.xml) | Window.IsVisible(home)] + String.IsEqual(ListItem.DBType,studio) + [!String.IsEmpty(Skin.String(studio.logos.path)) | System.AddonIsEnabled(resource.images.studios.white)]
@@ -126,8 +126,8 @@
         + String.IsEmpty(ListItem.Art(poster))
         + String.IsEmpty(ListItem.Art(tvshow.poster))
         + String.IsEmpty(ListItem.EpgEventIcon)
-        + [!$EXP[HasThumbImageResource] + String.StartsWith(ListItem.Icon,Default)
-        | $EXP[HasThumbImageResource] + [$EXP[IsDefaultStudioIcon] | $EXP[IsDefaultGenreIcon] | $EXP[IsDefaultCountryIcon]]]
+        + [!$EXP[HasImage_ListItem_IconResource] + String.StartsWith(ListItem.Icon,Default)
+        | $EXP[HasImage_ListItem_IconResource] + [$EXP[IsDefaultStudioIcon] | $EXP[IsDefaultGenreIcon] | $EXP[IsDefaultCountryIcon]]]
     </expression>
     
     <expression name="IsDefaultIcon_C6">
@@ -765,7 +765,7 @@
                 <aspectratio>scale</aspectratio>
                 <include>Dimensions_Fullscreen</include>
                 <include>BackgroundFanartFadetime</include>
-                <texture background="true">$VAR[Visualisation_Image]</texture>
+                <texture background="true">$VAR[Image_Visualisation_Background]</texture>
                 <visible>$EXP[Visualisation_ShowFanart]</visible>
                 <animation effect="fade" start="100" end="65" time="0" condition="Visualisation.Enabled">Conditional</animation>
                 <animation effect="fade" start="100" end="0" time="500" condition="String.Contains(Window(Visualisation).Property(ArtistSlideshow.Image),black-hd.png)">Conditional</animation>

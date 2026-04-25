@@ -119,13 +119,13 @@
         <value>$INFO[ListItem.Icon]</value>
     </variable>
 
-    <variable name="ClearlogoImage">
+    <variable name="Image_Clearlogo">
         <value condition="!String.IsEmpty(ListItem.Art(tvshow.clearlogo))">$INFO[ListItem.Art(tvshow.clearlogo)]</value>
         <value condition="!String.IsEmpty(ListItem.Art(clearlogo))">$INFO[ListItem.Art(clearlogo)]</value>
         <value condition="!String.IsEmpty(ListItem.Art(artist.clearlogo))">$INFO[ListItem.Art(artist.clearlogo)]</value>
     </variable>
 
-    <variable name="ClearLogoHome">
+    <variable name="Image_Home_Clearlogo">
         <value condition="!String.IsEmpty(Container(301).ListItem.Art(tvshow.clearlogo))">$INFO[Container(301).ListItem.Art(tvshow.clearlogo)]</value>
         <value condition="!String.IsEmpty(Container(301).ListItem.Art(clearlogo))">$INFO[Container(301).ListItem.Art(clearlogo)]</value>
         <value condition="!String.IsEmpty(Container(301).ListItem.Art(artist.clearlogo))">$INFO[Container(301).ListItem.Art(artist.clearlogo)]</value>
@@ -135,19 +135,19 @@
         <value condition="String.IsEqual(Container(300).ListItem.Property(background),playlistBackground) + !String.IsEmpty(Container(9988).ListItem.Art(artist.clearlogo))">$INFO[Container(9988).ListItem.Art(artist.clearlogo)]</value>
     </variable>
 
-    <variable name="RottenTomatoes">
+    <variable name="Image_RottenTomatoes_Rating">
         <value condition="Integer.IsGreater(Window(Home).Property(TMDbHelper.ListItem.RottenTomatoes_Rating),74) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.RottenTomatoes_Rating))">ratings/hot.png</value>
         <value condition="Integer.IsGreater(Window(Home).Property(TMDbHelper.ListItem.RottenTomatoes_Rating),59) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.RottenTomatoes_Rating))">ratings/tomato.png</value>
         <value condition="Integer.IsGreater(Window(Home).Property(TMDbHelper.ListItem.RottenTomatoes_Rating),0) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.RottenTomatoes_Rating))">ratings/rt.png</value>
         <value></value>
     </variable>
 
-    <variable name="RottenTomatoesAudience">
+    <variable name="Image_RottenTomatoes_UserMeter">
         <value condition="Integer.IsGreater(Window(Home).Property(TMDbHelper.ListItem.RottenTomatoes_UserMeter),59) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.RottenTomatoes_UserMeter))">ratings/good.png</value>
         <value condition="Integer.IsGreater(Window(Home).Property(TMDbHelper.ListItem.RottenTomatoes_UserMeter),0) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.RottenTomatoes_UserMeter))">ratings/notgood.png</value>
     </variable>
 
-    <variable name="MusicDiscart">
+    <variable name="Image_DiscArt_Music">
         <value condition="!String.IsEmpty(Player.Art(album.discart))">$INFO[Player.Art(album.discart)]</value>
         <value condition="!String.IsEmpty(Player.Art(discart))">$INFO[Player.Art(discart)]</value>
         <value condition="Skin.HasSetting(osd.music.disc.fallback.vinyl)">misc/vinyl.png</value>
@@ -155,19 +155,19 @@
         <value>misc/default_cd.png</value>
     </variable>
 
-    <variable name="VideoDiscart">
+    <variable name="Image_DiscArt_Video">
         <value condition="!String.IsEmpty(Player.Art(discart))">$INFO[Player.Art(discart)]</value>
         <value condition="Skin.HasSetting(home.video.disc.fallback.bluray)">misc/bd.png</value>
         <value condition="!String.IsEmpty(Player.Art(Thumb)) + Skin.HasSetting(home.video.disc.fake.bluray)">$VAR[PlayerPoster]</value>
         <value>misc/default_cd.png</value>
     </variable>
 
-    <variable name="UpNextImage">
+    <variable name="Image_UpNext">
         <value condition="!String.IsEmpty(Window.Property(fanart))">$INFO[Window.Property(fanart)]</value>
         <value>$INFO[Window.Property(thumb)]</value>
     </variable>
     
-    <variable name="DialogSelectImageList">
+    <variable name="Image_ListItem_DialogSelect">
         <value condition="$EXP[IsSkinshortcuts] + String.IsEqual(ListItem.Label,..)">DefaultFolderBack.png</value>
         <value condition="$EXP[IsSkinshortcuts] + String.IsEqual(ListItem.Icon,thumb)">special://skin/extras/icons/addon.png</value>
         <value condition="String.IsEqual(ListItem.DBType,tvshow) + !String.IsEmpty(ListItem.Art(tvshow.poster))">$INFO[ListItem.Art(tvshow.poster)]</value>
@@ -175,7 +175,7 @@
         <value>$INFO[ListItem.Icon]</value>
     </variable>
 
-    <variable name="DialogSelectImageBig">
+    <variable name="Image_ListItem_DialogSelect_C6">
         <value condition="$EXP[IsSkinshortcuts] + String.IsEqual(Container(6).ListItem.Label,..)">DefaultFolderBack.png</value>
         <value condition="$EXP[IsSkinshortcuts] + String.IsEqual(Container(6).ListItem.Icon,thumb)">special://skin/extras/icons/addon.png</value>
         <value condition="String.IsEqual(Container(6).ListItem.DBType,tvshow) + !String.IsEmpty(Container(6).ListItem.Art(tvshow.poster))">$INFO[Container(6).ListItem.Art(tvshow.poster)]</value>
@@ -183,7 +183,7 @@
         <value>$INFO[Container(6).ListItem.Icon]</value>
     </variable>
 
-    <variable name="ThumbImageStudiosDialogInfo">
+    <variable name="Image_StudioLogo">
         <value condition="!String.IsEmpty(Skin.String(studio.logos.path)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Network.1.Name))">$INFO[Skin.String(studio.logos.path)]$INFO[Window(Home).Property(TMDbHelper.ListItem.Network.1.Name)]$INFO[Skin.String(studio.logos.ext)]</value>
         <value condition="System.AddonIsEnabled(resource.images.studios.white) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Network.1.Name))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Network.1.Name),resource://resource.images.studios.white/,.png]</value>
         <value condition="!String.IsEmpty(Skin.String(studio.logos.path)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Studio.1.Name))">$INFO[Skin.String(studio.logos.path)]$INFO[Window(Home).Property(TMDbHelper.ListItem.Studio.1.Name)]$INFO[Skin.String(studio.logos.ext)]</value>
@@ -192,12 +192,12 @@
         <value condition="System.AddonIsEnabled(resource.images.studios.white) + !String.IsEmpty(ListItem.Studio)">$INFO[ListItem.Studio,resource://resource.images.studios.white/,.png]</value>
     </variable>
     
-    <variable name="ThumbImageRecordLabelDialogInfo">
+    <variable name="Image_RecordlabelLogo">
         <value condition="!String.IsEmpty(Skin.String(recordlabel.logos.path))">$INFO[Skin.String(recordlabel.logos.path)]$INFO[ListItem.Property(Album_Label)]$INFO[Skin.String(recordlabel.logos.ext)]</value>
         <value condition="System.AddonIsEnabled(resource.images.recordlabels.white)">$INFO[ListItem.Property(Album_Label),resource://resource.images.recordlabels.white/,.png]</value>
     </variable>
 
-    <variable name="ThumbImageResource">
+    <variable name="Image_ListItem_IconResource">
         <value condition="[Window.IsVisible(MyVideoNav.xml) | Window.IsVisible(home)] + String.IsEqual(ListItem.DBType,country) + !String.IsEmpty(Skin.String(moviecountry.icons.path))">$INFO[Skin.String(moviecountry.icons.path)]$INFO[ListItem.Label]$INFO[Skin.String(moviecountry.icons.ext)]</value>
         <value condition="[Window.IsVisible(MyVideoNav.xml) | Window.IsVisible(home)] + String.IsEqual(ListItem.DBType,country) + System.AddonIsEnabled(resource.images.moviecountryicons.maps)">$INFO[ListItem.Label,resource://resource.images.moviecountryicons.maps/,.png]</value>
         <value condition="[Window.IsVisible(MyVideoNav.xml) | Window.IsVisible(home)] + String.IsEqual(ListItem.DBType,studio) + !String.IsEmpty(Skin.String(studio.logos.path))">$INFO[Skin.String(studio.logos.path)]$INFO[ListItem.Label]$INFO[Skin.String(studio.logos.ext)]</value>
@@ -208,7 +208,17 @@
         <value condition="Window.IsVisible(MyMusicNav.xml) + String.IsEqual(ListItem.DBType,studio) + System.AddonIsEnabled(resource.images.recordlabels.white)">$INFO[ListItem.Label,resource://resource.images.recordlabels.white/,.png]</value>
     </variable>
    
-    <variable name="ImageViewSelector">
+    <variable name="Image_Thumb_Label">
+        <value condition="!String.IsEmpty(ListItem.Thumb)">$INFO[ListItem.Thumb]</value>
+        <value>$INFO[ListItem.Label]</value>
+    </variable>
+    
+    <variable name="Image_55_Thumb_Label">
+        <value condition="!String.IsEmpty(Container(55).ListItem.Thumb)">$INFO[Container(55).ListItem.Thumb]</value>
+        <value>$INFO[Container(55).ListItem.Label]</value>
+    </variable>
+    
+    <variable name="Image_ViewSelector_Preview">
         <value condition="String.IsEqual(Container(3).ListItem.Label,$LOCALIZE[535]) + $EXP[UsePreviewImageSquare]">special://skin/extras/viewtypes/$VAR[ColorTheme,,/]50Music.jpg</value>
         <value condition="String.IsEqual(Container(3).ListItem.Label,$LOCALIZE[31422]) + $EXP[UsePreviewImageMusic]">special://skin/extras/viewtypes/$VAR[ColorTheme,,/]51Music.jpg</value>
         <value condition="String.IsEqual(Container(3).ListItem.Label,$LOCALIZE[537]) + $EXP[UsePreviewImageMusic]">special://skin/extras/viewtypes/$VAR[ColorTheme,,/]52Music.jpg</value> 
@@ -249,16 +259,6 @@
         <value condition="String.IsEqual(Container(3).ListItem.Label,$LOCALIZE[31258])">special://skin/extras/viewtypes/$VAR[ColorTheme,,/]555.jpg</value>
     </variable>
 
-    <variable name="Image_Thumb_Label">
-        <value condition="!String.IsEmpty(ListItem.Thumb)">$INFO[ListItem.Thumb]</value>
-        <value>$INFO[ListItem.Label]</value>
-    </variable>
-    
-    <variable name="Image_55_Thumb_Label">
-        <value condition="!String.IsEmpty(Container(55).ListItem.Thumb)">$INFO[Container(55).ListItem.Thumb]</value>
-        <value>$INFO[Container(55).ListItem.Label]</value>
-    </variable>
-    
     <variable name="Image_SimpleBackground">
         <value condition="!String.IsEmpty(Skin.String(fanart.fallback))">$INFO[Skin.String(fanart.fallback)]</value>
         <value condition="!String.IsEmpty(Skin.String(Background.Image))">$INFO[Skin.String(Background.Image)]</value>
@@ -276,28 +276,23 @@
         <value>special://skin/extras/backgrounds/systeminfo.jpg</value>
     </variable>
     
-    <variable name="Visualisation_Image">
+    <variable name="Image_Visualisation_Background">
         <value condition="$EXP[Visualisation_ShowSlideshow] + !String.IsEmpty(Window(Visualisation).Property(ArtistSlideshow.Image))">$INFO[Window(Visualisation).Property(ArtistSlideshow.Image)]</value>
         <value condition="$EXP[Visualisation_ShowFanart]">$INFO[Player.Art(fanart)]</value>
         <value condition="$EXP[Visualisation_ShowFanart] + !String.IsEmpty(Skin.String(fanart.fallback.music))">$INFO[Skin.String(fanart.fallback.music)]</value>
     </variable>
     
-    <variable name="SkinHelperPing">
-        <value condition="!String.IsEmpty(Window(home).Property(SkinHelperPING))">dialog/on.png</value>
-        <value>dialog/off.png</value>
-    </variable>
-    
-    <variable name="VideoListCastFallbackPicture">
+    <variable name="Image_VideoListCast_Fallback">
         <value condition="!String.IsEqual(ListItem.DBType,set)">DefaultActor.png</value>
         <value condition="String.IsEqual(ListItem.DBType,set)">DefaultMovieTitle.png</value>
     </variable>
 
-    <variable name="VideoListSimilarFallbackPicture">
+    <variable name="Image_VideoListSimilar_Fallback">
         <value condition="String.IsEqual(ListItem.DBType,movie)">DefaultMovieTitle.png</value>
         <value condition="String.IsEqual(ListItem.DBType,tvshow)">DefaultTVShowTitle.png</value>
     </variable>
 
-    <variable name="AudioCodecImage">
+    <variable name="Image_AudioCodec">
         <value condition="$EXP[IsAudioCodecATMOS]">$VAR[MediaFlagsPath]/audio/atmos.png</value>
         <value condition="$EXP[IsAudioCodecDTSX]">$VAR[MediaFlagsPath]/audio/dtshd_ma_x.png</value>
         <value condition="String.IsEqual(ListItem.AudioCodec,eac3_ddp_atmos) | [VideoPlayer.IsFullscreen + String.IsEqual(VideoPlayer.AudioCodec,eac3_ddp_atmos)] | [Window.IsActive(visualisation) + String.IsEqual(MusicPlayer.Codec,eac3_ddp_atmos)]">$VAR[MediaFlagsPath]/audio/atmos.png</value>
@@ -317,7 +312,7 @@
         <value condition="Window.IsActive(visualisation) + !String.IsEmpty(MusicPlayer.Codec)">$VAR[MediaFlagsPath]$INFO[MusicPlayer.Codec,/audio/,.png]</value>
     </variable>
 
-    <variable name="AudioCodecImageHub">
+    <variable name="Image_AudioCodec_Hub">
         <value condition="$EXP[IsAudioCodecATMOSHub]">$VAR[MediaFlagsPath]/audio/atmos.png</value>
         <value condition="$EXP[IsAudioCodecDTSXHub]">$VAR[MediaFlagsPath]/audio/dtshd_ma_x.png</value>
         <value condition="String.IsEqual(Container(9500).ListItem.AudioCodec,eac3_ddp_atmos)">$VAR[MediaFlagsPath]/audio/atmos.png</value>
@@ -331,13 +326,13 @@
         <value condition="!String.IsEmpty(Container(9500).ListItem.AudioCodec)">$VAR[MediaFlagsPath]$INFO[Container(9500).ListItem.AudioCodec,/audio/,.png]</value>
     </variable>
 
-    <variable name="VideoHDRTypeImage">
+    <variable name="Image_Video_HDRType">
         <value condition="$EXP[IsVideoHDR10Plus]">$VAR[MediaFlagsPath]/other/hdr10plus.png</value>
         <value condition="!VideoPlayer.IsFullscreen + !String.IsEmpty(ListItem.HdrType)">$VAR[MediaFlagsPath]$INFO[ListItem.HdrType,/other/,.png]</value>
         <value condition="VideoPlayer.IsFullscreen + !String.IsEmpty(VideoPlayer.HdrType)">$VAR[MediaFlagsPath]$INFO[VideoPlayer.HdrType,/other/,.png]</value>
     </variable>
 
-    <variable name="VideoHDRTypeImageHub">
+    <variable name="Image_Video_HDRType_Hub">
         <value condition="$EXP[IsVideoHDR10PlusHub]">$VAR[MediaFlagsPath]/other/hdr10plus.png</value>
         <value condition="!String.IsEmpty(Container(9500).ListItem.HdrType)">$VAR[MediaFlagsPath]$INFO[Container(9500).ListItem.HdrType,/other/,.png]</value>
     </variable>

@@ -1599,7 +1599,7 @@
             <right>$PARAM[right]</right>
             <bottom>$PARAM[bottom]</bottom>
             <aspectratio align="right" aligny="bottom">keep</aspectratio>
-            <texture background="true">$VAR[ClearlogoImage]</texture>
+            <texture background="true">$VAR[Image_Clearlogo]</texture>
         </control>
     </include>
 
@@ -1697,7 +1697,7 @@
             <height>254</height>
             <top>641</top>
             <left>100</left>
-            <texture diffuse="diffuse/diffuse_cd_full.png">$VAR[MusicDiscart]</texture>
+            <texture diffuse="diffuse/diffuse_cd_full.png">$VAR[Image_DiscArt_Music]</texture>
             <animation effect="rotate" center="auto" time="6000" end="-360" condition="true" loop="true">Conditional</animation>
         </control>
         <control type="image">
@@ -1707,7 +1707,7 @@
             <height>254</height>
             <top>641</top>
             <left>100</left>
-            <texture diffuse="diffuse/diffuse_cd.png">$VAR[MusicDiscart]</texture>
+            <texture diffuse="diffuse/diffuse_cd.png">$VAR[Image_DiscArt_Music]</texture>
             <animation effect="rotate" center="auto" time="6000" end="-360" condition="true" loop="true">Conditional</animation>
         </control>
     </include>
@@ -2204,7 +2204,7 @@
     <include name="DefDiscArtNowPlaying">
         <param name="width" value="$PARAM[width]" default="296"/>
         <param name="visible" value="$PARAM[visible]" default="true"/>
-        <param name="discart" value="$PARAM[discart]" default="$VAR[MusicDiscart]"/>
+        <param name="discart" value="$PARAM[discart]" default="$VAR[Image_DiscArt_Music]"/>
         <param name="diffuse" value="$PARAM[diffuse]" default="diffuse/diffuse_cd_full.png"/>
         <definition>
         <control type="image">
@@ -3012,11 +3012,11 @@
                 <aspectratio scalediffuse="false">$PARAM[aspectratio]</aspectratio>
                 <texture flipy="$PARAM[flipy]" colordiffuse="$PARAM[colordiffuse]" diffuse="$PARAM[diffuse]" background="true" fallback="DefaultMovies.png">$PARAM[image]</texture>
                 <include condition="$PARAM[border]">def_widget_image_border_texture</include>
-                <visible>!$EXP[HasThumbImageResource]</visible>
+                <visible>!$EXP[HasImage_ListItem_IconResource]</visible>
                 <visible>$PARAM[visible]</visible>
             </control>
             <control type="group">
-                <visible>$EXP[HasThumbImageResource]</visible>
+                <visible>$EXP[HasImage_ListItem_IconResource]</visible>
                 <visible>$PARAM[visible]</visible>
                 <control type="image">
                     <include content="def_widget_image_dimensions">
@@ -3030,7 +3030,7 @@
                     <fadetime>$PARAM[fadetime]</fadetime>
                     <animation effect="fade" end="80" start="100" time="0" condition="$EXP[IsDefaultCountryIcon]">Conditional</animation>                
                     <aspectratio scalediffuse="false">$PARAM[icon_aspectratio]</aspectratio>
-                    <texture flipy="$PARAM[flipy]" colordiffuse="$PARAM[colordiffuse]" diffuse="$PARAM[diffuse]" background="true" fallback="DefaultFolder.png">$VAR[ThumbImageResource]</texture>
+                    <texture flipy="$PARAM[flipy]" colordiffuse="$PARAM[colordiffuse]" diffuse="$PARAM[diffuse]" background="true" fallback="DefaultFolder.png">$VAR[Image_ListItem_IconResource]</texture>
                     <visible>!$EXP[IsDefaultGenreIcon]</visible>
                 </control>
                 <control type="image">
@@ -3046,7 +3046,7 @@
                     <bordersize>$PARAM[genre_bordersize]</bordersize>
                     <animation effect="fade" end="80" start="100" time="0" condition="true">Conditional</animation>                
                     <aspectratio scalediffuse="false">keep</aspectratio>
-                    <texture colordiffuse="$PARAM[colordiffuse]" diffuse="$PARAM[diffuse]" background="true" fallback="resource://resource.images.moviegenreicons.transparent/Drama.png">$VAR[ThumbImageResource]</texture>
+                    <texture colordiffuse="$PARAM[colordiffuse]" diffuse="$PARAM[diffuse]" background="true" fallback="resource://resource.images.moviegenreicons.transparent/Drama.png">$VAR[Image_ListItem_IconResource]</texture>
                     <visible>$EXP[IsDefaultGenreIcon]</visible>
                     <visible>!$PARAM[flipy]</visible>
                 </control>
@@ -3428,7 +3428,7 @@
             <bottom>30</bottom>
             <top>30</top>
             <aspectratio align="right" aligny="bottom">keep</aspectratio>
-            <texture background="true">$VAR[ClearLogoHome]</texture>
+            <texture background="true">$VAR[Image_Home_Clearlogo]</texture>
             <visible>String.IsEmpty(ListItem.Art(banner)) + String.IsEmpty(ListItem.Art(tvshow.banner))</visible>
         </control>
         <control type="image">
@@ -3479,7 +3479,7 @@
             <bottom>10</bottom>
             <aspectratio scalediffuse="false">scale</aspectratio>
             <texture diffuse="diffuse/widgetfanart_new.png" background="true" fallback="DefaultMovies.png">$VAR[LandscapeImage]</texture>
-            <visible>!$PARAM[small] + !$EXP[HasThumbImageResource]</visible>
+            <visible>!$PARAM[small] + !$EXP[HasImage_ListItem_IconResource]</visible>
         </control>
         <control type="image">
             <left>10</left>
@@ -3488,7 +3488,7 @@
             <bottom>101</bottom>
             <aspectratio scalediffuse="false">scale</aspectratio>
             <texture diffuse="diffuse/widgetfanart_top.png" background="true" fallback="DefaultMovies.png">$VAR[LandscapeImage]</texture>
-            <visible>$PARAM[small] + !$PARAM[poster] + !$EXP[HasThumbImageResource]</visible>
+            <visible>$PARAM[small] + !$PARAM[poster] + !$EXP[HasImage_ListItem_IconResource]</visible>
         </control>
         <control type="image">
             <left>154</left>
@@ -3497,17 +3497,17 @@
             <bottom>101</bottom>
             <aspectratio scalediffuse="false">scale</aspectratio>
             <texture diffuse="diffuse/widgetfanart_topright.png" border="1" background="true" fallback="DefaultMovies.png">$VAR[LandscapeImage]</texture>
-            <visible>$PARAM[small] + $PARAM[poster] + !$EXP[HasThumbImageResource]</visible>
+            <visible>$PARAM[small] + $PARAM[poster] + !$EXP[HasImage_ListItem_IconResource]</visible>
         </control>
         <include content="def_widget_image" condition="!$PARAM[small]">
             <param name="diffuse" value="diffuse/widgetsquare_new.png" />
-            <param name="visible" value="$EXP[HasThumbImageResource]" />
+            <param name="visible" value="$EXP[HasImage_ListItem_IconResource]" />
         </include>        
         <include content="def_widget_image" condition="$PARAM[small]">
             <param name="bottom" value="101" />
             <param name="genre_bordersize" value="54" />
             <param name="diffuse" value="diffuse/widgetsquare_new.png" />
-            <param name="visible" value="$EXP[HasThumbImageResource]" />
+            <param name="visible" value="$EXP[HasImage_ListItem_IconResource]" />
         </include>        
         <control type="label">
             <bottom>40</bottom>
@@ -3851,7 +3851,7 @@
                     <width>111</width>
                     <height>111</height>
                     <aspectratio scalediffuse="false">scale</aspectratio>
-                    <texture diffuse="diffuse/dialogselect.png" fallback="DefaultAddonNone.png">$VAR[DialogSelectImageList]</texture>
+                    <texture diffuse="diffuse/dialogselect.png" fallback="DefaultAddonNone.png">$VAR[Image_ListItem_DialogSelect]</texture>
                     <visible>!Skin.HasSetting(global.hidecirles) + !$PARAM[default_icon]</visible>
                 </control>
                 <control type="image">
@@ -3860,7 +3860,7 @@
                     <width>111</width>
                     <height>111</height>
                     <aspectratio scalediffuse="false">scale</aspectratio>
-                    <texture colordiffuse="Black70" diffuse="diffuse/dialogselect.png" fallback="DefaultAddonNone.png">$VAR[DialogSelectImageList]</texture>
+                    <texture colordiffuse="Black70" diffuse="diffuse/dialogselect.png" fallback="DefaultAddonNone.png">$VAR[Image_ListItem_DialogSelect]</texture>
                     <visible>!Skin.HasSetting(global.hidecirles) + $PARAM[default_icon]</visible>
                 </control>
                 <control type="image">
@@ -3869,7 +3869,7 @@
                     <width>111</width>
                     <height>111</height>
                     <aspectratio scalediffuse="false">keep</aspectratio>
-                    <texture fallback="DefaultAddonNone.png">$VAR[DialogSelectImageList]</texture>
+                    <texture fallback="DefaultAddonNone.png">$VAR[Image_ListItem_DialogSelect]</texture>
                     <visible>Skin.HasSetting(global.hidecirles) + !$PARAM[default_icon]</visible>
                 </control>
                 <control type="image">
@@ -3878,7 +3878,7 @@
                     <width>111</width>
                     <height>111</height>
                     <aspectratio scalediffuse="false">keep</aspectratio>
-                    <texture colordiffuse="Black70" fallback="DefaultAddonNone.png">$VAR[DialogSelectImageList]</texture>
+                    <texture colordiffuse="Black70" fallback="DefaultAddonNone.png">$VAR[Image_ListItem_DialogSelect]</texture>
                     <visible>Skin.HasSetting(global.hidecirles) + $PARAM[default_icon]</visible>
                 </control>
                 <control type="image">
@@ -4009,7 +4009,7 @@
                     <width>111</width>
                     <height>111</height>
                     <aspectratio scalediffuse="false">scale</aspectratio>
-                    <texture diffuse="diffuse/dialogselect.png" fallback="DefaultAddonNone.png">$VAR[DialogSelectImageList]</texture>
+                    <texture diffuse="diffuse/dialogselect.png" fallback="DefaultAddonNone.png">$VAR[Image_ListItem_DialogSelect]</texture>
                     <visible>!Skin.HasSetting(global.hidecirles) + [$PARAM[focused] | !$PARAM[default_icon]]</visible>
                 </control>
                 <control type="image">
@@ -4018,7 +4018,7 @@
                     <width>111</width>
                     <height>111</height>
                     <aspectratio scalediffuse="false">scale</aspectratio>
-                    <texture colordiffuse="Black70" diffuse="diffuse/dialogselect.png" fallback="DefaultAddonNone.png">$VAR[DialogSelectImageList]</texture>
+                    <texture colordiffuse="Black70" diffuse="diffuse/dialogselect.png" fallback="DefaultAddonNone.png">$VAR[Image_ListItem_DialogSelect]</texture>
                     <visible>!Skin.HasSetting(global.hidecirles) + !$PARAM[focused] + !$PARAM[default_icon]</visible>
                 </control>
                 <control type="image">
@@ -4027,7 +4027,7 @@
                     <width>111</width>
                     <height>111</height>
                     <aspectratio scalediffuse="false">keep</aspectratio>
-                    <texture fallback="DefaultAddonNone.png">$VAR[DialogSelectImageList]</texture>
+                    <texture fallback="DefaultAddonNone.png">$VAR[Image_ListItem_DialogSelect]</texture>
                     <visible>Skin.HasSetting(global.hidecirles) + [$PARAM[focused] | !$PARAM[default_icon]]</visible>
                 </control>
                 <control type="image">
@@ -4036,7 +4036,7 @@
                     <width>111</width>
                     <height>111</height>
                     <aspectratio scalediffuse="false">keep</aspectratio>
-                    <texture colordiffuse="Black70" fallback="DefaultAddonNone.png">$VAR[DialogSelectImageList]</texture>
+                    <texture colordiffuse="Black70" fallback="DefaultAddonNone.png">$VAR[Image_ListItem_DialogSelect]</texture>
                     <visible>Skin.HasSetting(global.hidecirles) + !$PARAM[focused] + $PARAM[default_icon]</visible>
                 </control>
                 <control type="image">
