@@ -790,7 +790,7 @@
 	                <width min="20" max="120">auto</width>
 	                <height>64</height>
 	                <centertop>50%</centertop>
-	                <texture colordiffuse="Dark1" fallback="flags/fallback.png">$VAR[VideoHDRTypeImage]</texture>
+	                <texture colordiffuse="Dark1" fallback="flags/fallback.png">$VAR[Image_Video_HDRType]</texture>
 	                <aspectratio align="center">keep</aspectratio>
 	                <visible>Skin.HasSetting(furniture.flagicons) + !Skin.HasSetting(furniture.flags.hdr) + !String.IsEmpty(ListItem.HdrType)</visible>
 	            </control>
@@ -799,7 +799,7 @@
 	                <height>64</height>
 	                <left>-5</left>
 	                <centertop>50%</centertop>
-	                <texture colordiffuse="Dark1" fallback="flags/fallback.png">$VAR[AudioCodecImage]</texture>
+	                <texture colordiffuse="Dark1" fallback="flags/fallback.png">$VAR[Image_AudioCodec]</texture>
 	                <aspectratio align="center">keep</aspectratio>
 	                <visible>Skin.HasSetting(furniture.flagicons) + !Skin.HasSetting(furniture.flags.audiocodec) + !String.IsEmpty(ListItem.AudioCodec) + !Skin.HasSetting(furniture.coloredicons)</visible>
 	            </control>
@@ -1120,7 +1120,7 @@
 	                <width min="20" max="120">auto</width>
 	                <height>64</height>
 	                <centertop>50%</centertop>
-	                <texture fallback="flags/fallback.png">$VAR[VideoHDRTypeImage]</texture>
+	                <texture fallback="flags/fallback.png">$VAR[Image_Video_HDRType]</texture>
 	                <aspectratio align="center">keep</aspectratio>
 	                <visible>!Skin.HasSetting(furniture.flags.hdr) + !String.isEmpty(ListItem.HdrType)</visible>
 	            </control>
@@ -1129,7 +1129,7 @@
 	                <height>60</height>
 	                <left>-10</left>
 	                <centertop>50%</centertop>
-	                <texture fallback="flags/fallback.png">$VAR[AudioCodecImage]</texture>
+	                <texture fallback="flags/fallback.png">$VAR[Image_AudioCodec]</texture>
 	                <aspectratio align="center">keep</aspectratio>
 	                <visible>!Skin.HasSetting(furniture.flags.audiocodec) + !String.IsEmpty(ListItem.AudioCodec)</visible>
 	            </control>
@@ -1424,7 +1424,7 @@
 	                <width min="20" max="120">auto</width>
 	                <height>64</height>
 	                <centertop>50%</centertop>
-	                <texture colordiffuse="Dark1" fallback="flags/fallback.png">$VAR[VideoHDRTypeImageHub]</texture>
+	                <texture colordiffuse="Dark1" fallback="flags/fallback.png">$VAR[Image_Video_HDRType_Hub]</texture>
 	                <aspectratio align="center">keep</aspectratio>
 	                <visible>Skin.HasSetting(furniture.flagicons) + !Skin.HasSetting(furniture.flags.hdr) + !String.IsEmpty(Container(9500).ListItem.HdrType)</visible>
 	            </control>
@@ -1433,7 +1433,7 @@
 	                <height>64</height>
 	                <left>-5</left>
 	                <centertop>50%</centertop>
-	                <texture colordiffuse="Dark1" fallback="flags/fallback.png">$VAR[AudioCodecImageHub]</texture>
+	                <texture colordiffuse="Dark1" fallback="flags/fallback.png">$VAR[Image_AudioCodec_Hub]</texture>
 	                <aspectratio align="center">keep</aspectratio>
 	                <visible>Skin.HasSetting(furniture.flagicons) + !Skin.HasSetting(furniture.flags.audiocodec) + !String.IsEmpty(Container(9500).ListItem.AudioCodec) + !Skin.HasSetting(furniture.coloredicons)</visible>
 	            </control>
@@ -1709,7 +1709,7 @@
 	                <width min="20" max="120">auto</width>
 	                <height>64</height>
 	                <centertop>50%</centertop>
-	                <texture fallback="flags/fallback.png">$VAR[VideoHDRTypeImageHub]</texture>
+	                <texture fallback="flags/fallback.png">$VAR[Image_Video_HDRType_Hub]</texture>
 	                <aspectratio align="center">keep</aspectratio>
 	                <visible>!Skin.HasSetting(furniture.flags.hdr) + !String.isEmpty(Container(9500).ListItem.HdrType)</visible>
 	            </control>
@@ -1718,7 +1718,7 @@
 	                <height>60</height>
 	                <left>-10</left>
 	                <centertop>50%</centertop>
-	                <texture fallback="flags/fallback.png">$VAR[AudioCodecImageHub]</texture>
+	                <texture fallback="flags/fallback.png">$VAR[Image_AudioCodec_Hub]</texture>
 	                <aspectratio align="center">keep</aspectratio>
 	                <visible>!Skin.HasSetting(furniture.flags.audiocodec) + !String.IsEmpty(Container(9500).ListItem.AudioCodec)</visible>
 	            </control>
@@ -2163,24 +2163,6 @@
             <visible>!Skin.HasSetting(furniture.clock)</visible>
             <height>84</height>
             <animation effect="slide" start="0" end="0,-10" time="150" condition="Skin.HasSetting(furniture.weather) + !String.IsEmpty(Weather.Plugin)">Conditional</animation>
-            <control type="image">
-                <visible>String.IsEmpty(System.Time(xx)) + System.AddonIsEnabled(service.skinhelper.ping)</visible>
-                <centertop>32</centertop>
-                <right>356</right>
-                <align>right</align>
-                <width>18</width>
-                <height>18</height>
-                <texture>$VAR[SkinHelperPing]</texture>
-            </control>
-            <control type="image">
-                <visible>!String.IsEmpty(System.Time(xx)) + System.AddonIsEnabled(service.skinhelper.ping)</visible>
-                <centertop>32</centertop>
-                <right>386</right>
-                <align>right</align>
-                <width>18</width>
-                <height>18</height>
-                <texture>$VAR[SkinHelperPing]</texture>
-            </control>
             <control type="group">
                 <visible>Skin.HasSetting(furniture.weatherleft) + !String.IsEmpty(Weather.Plugin)</visible>
                 <animation effect="slide" start="0" end="-20,0" time="0" condition="Integer.IsGreater(System.Time(hh),9) + !String.IsEmpty(System.Time(xx))">Conditional</animation>
@@ -3479,7 +3461,7 @@
             <width>33</width>
             <height>33</height>
             <left>15</left>
-            <texture colordiffuse="Dark1" background="true">flags/monochrome/$VAR[RottenTomatoes]</texture>
+            <texture colordiffuse="Dark1" background="true">flags/monochrome/$VAR[Image_RottenTomatoes_Rating]</texture>
         </control>
         <control type="label" description="Rotten Tomatoes">
             <visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.RottenTomatoes_Rating)) + Skin.HasSetting(furniture.showtomatoes)</visible>
@@ -3497,7 +3479,7 @@
             <width>33</width>
             <height>33</height>
             <left>15</left>
-            <texture colordiffuse="Dark1" background="true">flags/monochrome/$VAR[RottenTomatoesAudience]</texture>
+            <texture colordiffuse="Dark1" background="true">flags/monochrome/$VAR[Image_RottenTomatoes_UserMeter]</texture>
         </control>
         <control type="label" description="Rotten Tomatoes">
             <visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.RottenTomatoes_UserMeter)) + Skin.HasSetting(furniture.showtomatoes)</visible>
@@ -3587,7 +3569,7 @@
             <width>34</width>
             <height>34</height>
             <left>15</left>
-            <texture background="true">flags/color/$VAR[RottenTomatoes]</texture>
+            <texture background="true">flags/color/$VAR[Image_RottenTomatoes_Rating]</texture>
         </control>
         <control type="label" description="Rotten Tomatoes">
             <visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.RottenTomatoes_Rating)) + Skin.HasSetting(furniture.showtomatoes)</visible>
@@ -3605,7 +3587,7 @@
             <width>34</width>
             <height>34</height>
             <left>15</left>
-            <texture background="true">flags/color/$VAR[RottenTomatoesAudience]</texture>
+            <texture background="true">flags/color/$VAR[Image_RottenTomatoes_UserMeter]</texture>
         </control>
         <control type="label" description="Rotten Tomatoes">
             <visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.RottenTomatoes_UserMeter)) + Skin.HasSetting(furniture.showtomatoes)</visible>
