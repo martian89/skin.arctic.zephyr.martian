@@ -894,11 +894,6 @@
         <value>$LOCALIZE[31382]</value>
     </variable>
 
-    <variable name="RatingInfo">
-        <value condition="ListItem.IsCollection + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Set.Rating))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Set.Rating)] $INFO[Window(Home).Property(TMDbHelper.ListItem.Set.Votes),(, $LOCALIZE[205])]</value>
-        <value>$VAR[RatingAndVotesLabelInfo]</value>
-    </variable>
-
     <variable name="ColorPickerInfo">
         <value condition="String.IsEqual(Window(home).Property(gradient),selectbox)">$LOCALIZE[31395]$LOCALIZE[31130]</value>
         <value condition="String.IsEqual(Window(home).Property(gradient),bar)">$LOCALIZE[31395]$LOCALIZE[31367]</value>
@@ -1104,7 +1099,8 @@
     <variable name="RatingAndVotesLabelInfo">
         <value condition="!String.IsEmpty(ListItem.UserRating) + Skin.HasSetting(userrating.override.rating)">$INFO[ListItem.UserRating,,.0] ($LOCALIZE[38018])</value>
         <value condition="!String.IsEmpty(ListItem.RatingAndVotes)">$INFO[ListItem.RatingAndVotes]</value>
-        <value condition="!String.IsEqual(ListItem.DBType,musicvideo)">$INFO[Window(home).Property(TMDbHelper.ListItem.Rating)]$INFO[Window(home).Property(TMDbHelper.ListItem.Votes), (, $LOCALIZE[205])]</value>
+        <value condition="Integer.IsGreater(Window(Home).Property(TMDbHelper.ListItem.Set.Rating),0) + ListItem.IsCollection">$INFO[Window(Home).Property(TMDbHelper.ListItem.Set.Rating)] $INFO[Window(Home).Property(TMDbHelper.ListItem.Set.Votes),(, $LOCALIZE[205])]</value>
+        <value condition="Integer.IsGreater(Window(home).Property(TMDBHelper.ListItem.Rating),0)">$INFO[Window(home).Property(TMDbHelper.ListItem.Rating)]$INFO[Window(home).Property(TMDbHelper.ListItem.Votes), (, $LOCALIZE[205])]</value>
     </variable>
     
     <variable name="RatingLabel9500">
