@@ -275,11 +275,10 @@
                             <include>DefSettingsButtonGradientSkinSettings</include>
                             <label>31145</label>
                             <visible>![[Skin.HasSetting(home.vertical) | Skin.HasSetting(home.vertical.widgets)] + !Skin.HasSetting(homemenu.netflix)] + !Skin.HasSetting(furniture.weather) + !Skin.HasSetting(furniture.weatherleft)</visible>
-                            <selected>Skin.HasSetting(home.showweatherfanart) + !$EXP[HomeShowHeader] + !String.IsEmpty(Weather.Plugin)</selected>
+                            <selected>Skin.HasSetting(home.showweatherfanart) + !String.IsEmpty(Weather.Plugin)</selected>
                             <onclick condition="!String.IsEmpty(Weather.Plugin) + Skin.HasSetting(home.showweatherfanart)">Skin.Reset(home.showweatherfanart)</onclick>
                             <onclick condition="!String.IsEmpty(Weather.Plugin) + !Skin.HasSetting(home.showweatherfanart)">Skin.SetBool(home.showweatherfanart)</onclick>
                             <onclick condition="String.IsEmpty(Weather.Plugin)">ActivateWindow(servicesettings,weather)</onclick>
-                            <enable>!$EXP[HomeShowHeader]</enable>                            
                         </control>
                         <control type="radiobutton" id="9822">
                             <width>1360</width>
