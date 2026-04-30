@@ -615,7 +615,7 @@
 	                <align>right</align>
 	                <textcolor>$VAR[OSDPanelWhite70]</textcolor>
 	                <font>Flag</font>
-	                <visible>!Skin.HasSetting(videoosd.hideflags) + [Integer.IsGreater(VideoPlayer.Rating,0) | [Integer.IsGreater(VideoPlayer.UserRating,0) + Skin.HasSetting(userrating.override.rating)]]</visible>
+	                <visible>!Skin.HasSetting(videoosd.hideflags) + [Integer.IsGreater(VideoPlayer.Rating,0) | Integer.IsGreater(Window(Home).Property(TMDbHelper.Player.Rating),0) | [Integer.IsGreater(VideoPlayer.UserRating,0) + Skin.HasSetting(userrating.override.rating)]]</visible>
 	            </control>
         	</control>        
         </control>
@@ -694,7 +694,7 @@
                     <align>right</align>
                     <textcolor>$VAR[OSDPanelWhite70]</textcolor>
                     <font>Flag</font>
-                    <visible>[Integer.IsGreater(VideoPlayer.Rating,0) | [Integer.IsGreater(VideoPlayer.UserRating,0) + Skin.HasSetting(userrating.override.rating)]]</visible>
+                    <visible>[Integer.IsGreater(VideoPlayer.Rating,0) | Integer.IsGreater(Window(Home).Property(TMDbHelper.Player.Rating),0) | [Integer.IsGreater(VideoPlayer.UserRating,0) + Skin.HasSetting(userrating.override.rating)]]</visible>
                 </control>
             </control>
         </control>
