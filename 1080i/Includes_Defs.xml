@@ -2046,13 +2046,15 @@
     <include name="ClearArtHomeImageContainer">
         <animation effect="slide" start="0" end="-50,0" time="0" condition="$EXP[HomeIsVerticalMultiWidgets] + Skin.HasSetting(homemenu.only.icons) + Skin.HasSetting(home.showicons)">Conditional</animation>
         <animation effect="slide" start="0" end="0,385" time="0" condition="$PARAM[isfullscreenlayout]">Conditional</animation>
+        <animation effect="fade" start="100" end="0" time="400" condition="!ControlGroup(301).HasFocus() + $EXP[HomeIsVerticalMultiWidgets] + ![Skin.HasSetting(homemenu.only.icons) + Skin.HasSetting(home.showicons)]">Conditional</animation>
+        <animation type="WindowOpen" condition="!$EXP[HomeIsVerticalMultiWidgets]" reversible="false">
+            <effect type="slide" start="0,250" end="0" time="150"/>
+            <effect type="fade" start="20" end="100" time="150"/>
+        </animation>
         <animation type="WindowClose" condition="!$EXP[HomeIsVerticalMultiWidgets]">
             <effect type="slide" start="0" end="0,250" time="150"/>
             <effect type="fade" start="100" end="20" time="150"/>
         </animation>
-        <animation effect="slide" start="0,150" end="0" time="130" reversible="false" condition="String.IsEqual(Container(300).ListItem.Label,Window(home).Property(ClearArtAnimation))">Conditional</animation>
-        <animation effect="fade" start="20" end="100" time="150" reversible="false" condition="String.IsEqual(Container(300).ListItem.Label,Window(home).Property(ClearArtAnimation))">Conditional</animation>
-        <animation effect="fade" start="100" end="0" time="400" condition="!ControlGroup(301).HasFocus() + $EXP[HomeIsVerticalMultiWidgets] + ![Skin.HasSetting(homemenu.only.icons) + Skin.HasSetting(home.showicons)]">Conditional</animation>
         <include condition="!Skin.HasSetting(widgets.fade)">Animation.Vertical.Widgets.Label</include>
         <fadetime>ClearArtFadetime</fadetime>
         <right>SidePad</right>
