@@ -64,6 +64,134 @@
         <value condition="!String.IsEmpty(Window(Weather).Property(Current.DewPoint))">$INFO[Window(Weather).Property(Current.DewPoint)]$INFO[System.TemperatureUnits]</value>
     </variable>
 
+    <include name="Weather_Icon_Image">
+        <param name="top"/>
+        <param name="left"/>
+        <param name="size"/>
+        <param name="FanartCode"/>
+        <param name="OutlookIconWMO"/>
+        <param name="force_fallback" default="false" />
+        <definition>
+            <control type="image">
+                <top>$PARAM[top]</top>
+                <left>$PARAM[left]</left>
+                <height>$PARAM[size]</height>
+                <width>$PARAM[size]</width>
+                <aspectratio align="center" aligny="center">keep</aspectratio>
+                <texture>resource://resource.images.weathericons.default/$PARAM[FanartCode].png</texture>
+                <visible>String.IsEmpty(Skin.String(weather.icons.path)) + !$EXP[UseOutlookIconsWMO]</visible>
+                <visible>!$PARAM[force_fallback]</visible>
+            </control>
+            <control type="image">
+                <top>$PARAM[top]</top>
+                <left>$PARAM[left]</left>
+                <height>$PARAM[size]</height>
+                <width>$PARAM[size]</width>
+                <aspectratio align="center" aligny="center">keep</aspectratio>
+                <texture>$PARAM[OutlookIconWMO]</texture>
+                <visible>$EXP[UseOutlookIconsWMO]</visible>
+                <visible>!$PARAM[force_fallback]</visible>
+            </control>
+            <control type="image">
+                <top>$PARAM[top]</top>
+                <left>$PARAM[left]</left>
+                <height>$PARAM[size]</height>
+                <width>$PARAM[size]</width>
+                <aspectratio align="center" aligny="center">keep</aspectratio>
+                <texture>$INFO[Skin.String(weather.icons.path),,/]$PARAM[FanartCode].png</texture>
+                <visible>!String.IsEmpty(Skin.String(weather.icons.path)) + !String.Contains(Skin.String(weather.icons.path),animated)</visible>
+                <visible>!$PARAM[force_fallback]</visible>
+            </control>
+            <control type="image">
+                <top>$PARAM[top]</top>
+                <left>$PARAM[left]</left>
+                <height>$PARAM[size]</height>
+                <width>$PARAM[size]</width>
+                <aspectratio align="center" aligny="center">keep</aspectratio>
+                <texture>$INFO[Skin.String(weather.icons.path),,/na.png]</texture>
+                <visible>!String.IsEmpty(Skin.String(weather.icons.path)) + !String.Contains(Skin.String(weather.icons.path),animated)</visible>
+                <visible>$PARAM[force_fallback]</visible>
+            </control>
+            <control type="multiimage">
+                <top>$PARAM[top]</top>
+                <left>$PARAM[left]</left>
+                <height>$PARAM[size]</height>
+                <width>$PARAM[size]</width>
+                <aspectratio align="center" aligny="center">keep</aspectratio>
+                <imagepath>$INFO[Skin.String(weather.icons.path),,/]$PARAM[FanartCode]</imagepath>
+                <visible>!String.IsEmpty(Skin.String(weather.icons.path)) + String.Contains(Skin.String(weather.icons.path),animated)</visible>
+                <visible>$PARAM[force_fallback]</visible>
+            </control>
+        </definition>   
+    </include>
+    
+    <include name="Weather_Fanart_Image">
+        <param name="bordertopbottom" default="10"/>
+        <param name="borderleftright" default="10"/>
+        <param name="force_fallback" default="false" />
+        <param name="FanartCode" default="$INFO[ListItem.Property(FanartCode)]"/>
+        <definition>
+            <control type="image">
+                <top>$PARAM[bordertopbottom]</top>
+                <left>$PARAM[borderleftright]</left>
+                <right>$PARAM[borderleftright]</right>
+                <bottom>$PARAM[bordertopbottom]</bottom>
+                <texture border="5" colordiffuse="Panel">common/box.png</texture>
+                <animation effect="fade" start="100" end="90" condition="true">Conditional</animation>
+            </control>
+            <control type="multiimage" description="Fanart">
+                <visible>!Skin.HasSetting(weather.hidefanart) + $EXP[HasWeatherFanartMulti]</visible>
+                <visible>!$PARAM[force_fallback]</visible>
+                <top>$PARAM[bordertopbottom]</top>
+                <left>$PARAM[borderleftright]</left>
+                <right>$PARAM[borderleftright]</right>
+                <bottom>$PARAM[bordertopbottom]</bottom>
+                <fadetime>600</fadetime>
+                <timeperimage>12000</timeperimage>
+                <randomize>true</randomize>
+                <aspectratio>scale</aspectratio>
+                <animation effect="fade" start="100" end="10" condition="true">Conditional</animation>
+                <imagepath background="true">$VAR[WeatherFanartPath]$PARAM[FanartCode]/</imagepath>
+            </control>
+            <control type="multiimage" description="Fanart">
+                <visible>!Skin.HasSetting(weather.hidefanart) + $EXP[HasWeatherFanartMulti]</visible>
+                <visible>$PARAM[force_fallback]</visible>
+                <top>$PARAM[bordertopbottom]</top>
+                <left>$PARAM[borderleftright]</left>
+                <right>$PARAM[borderleftright]</right>
+                <bottom>$PARAM[bordertopbottom]</bottom>
+                <fadetime>600</fadetime>
+                <timeperimage>12000</timeperimage>
+                <randomize>true</randomize>
+                <aspectratio>scale</aspectratio>
+                <animation effect="fade" start="100" end="10" condition="true">Conditional</animation>
+                <imagepath background="true">$VAR[WeatherFanartPath,,na/]</imagepath>
+            </control>
+            <control type="image" description="Fanart">
+                <visible>!Skin.HasSetting(weather.hidefanart) + $EXP[HasWeatherFanartSingle]</visible>
+                <visible>!$PARAM[force_fallback]</visible>
+                <top>$PARAM[bordertopbottom]</top>
+                <left>$PARAM[borderleftright]</left>
+                <right>$PARAM[borderleftright]</right>
+                <bottom>$PARAM[bordertopbottom]</bottom>
+                <aspectratio>scale</aspectratio>
+                <animation effect="fade" start="100" end="10" condition="true">Conditional</animation>
+                <texture background="true">$VAR[WeatherFanartPath]$PARAM[FanartCode].jpg</texture>
+            </control>
+            <control type="image" description="Fanart">
+                <visible>!Skin.HasSetting(weather.hidefanart) + $EXP[HasWeatherFanartSingle]</visible>
+                <visible>$PARAM[force_fallback]</visible>
+                <top>$PARAM[bordertopbottom]</top>
+                <left>$PARAM[borderleftright]</left>
+                <right>$PARAM[borderleftright]</right>
+                <bottom>$PARAM[bordertopbottom]</bottom>
+                <aspectratio>scale</aspectratio>
+                <animation effect="fade" start="100" end="10" condition="true">Conditional</animation>
+                <texture background="true">$VAR[WeatherFanartPath,,na.jpg]</texture>
+            </control>
+        </definition>
+    </include>
+
 	<include name="weatherlist.itemlayout">
 		<control type="group">
 			<visible>String.IsEqual(ListItem.Label2,Daily)</visible>
@@ -123,13 +251,13 @@
                 <texture colordiffuse="BoxNotification" border="4" background="true" infill="false">common/box21.png</texture>
                 <visible>Skin.HasSetting(global.showborders)</visible>
             </control>
-            <include content="def_weatherfanart.widgets">
+            <include content="Weather_Fanart_Image">
                 <param name="bordertopbottom" value="0" />
                 <param name="borderleftright" value="0" />
                 <param name="force_fallback" value="String.IsEmpty(Window(weather).Property(Current.FanartCode))" />
                 <param name="FanartCode" value="$INFO[Window(weather).Property(Current.FanartCode)]" />
             </include>
-            <include content="def_weathericon">
+            <include content="Weather_Icon_Image">
                 <param name="left" value="38" />
                 <param name="top" value="89" />
                 <param name="size" value="200" />
@@ -216,13 +344,13 @@
                 <texture colordiffuse="BoxNotification" border="4" background="true" infill="false">common/box21.png</texture>
                 <visible>Skin.HasSetting(global.showborders)</visible>
             </control>
-            <include content="def_weatherfanart.widgets">
+            <include content="Weather_Fanart_Image">
                 <param name="bordertopbottom" value="0" />
                 <param name="borderleftright" value="0" />
                 <param name="force_fallback" value="String.IsEmpty(Window(weather).Property(Daily.$PARAM[day].FanartCode))" />
                 <param name="FanartCode" value="$INFO[Window(weather).Property(Daily.$PARAM[day].FanartCode)]" />
             </include>
-            <include content="def_weathericon">
+            <include content="Weather_Icon_Image">
                 <param name="left" value="38" />
                 <param name="top" value="89" />
                 <param name="size" value="200" />
@@ -402,7 +530,7 @@
         <control type="group">
             <height>106</height>
             <top>$PARAM[top]</top>
-            <include content="def_weathericon">
+            <include content="Weather_Icon_Image">
                 <param name="left" value="27" />
                 <param name="top" value="8" />
                 <param name="size" value="90" />
@@ -462,7 +590,7 @@
             <height>100%</height>
             <texture border="5" colordiffuse="Panel">common/box.png</texture>
         </control>
-        <include content="def_weatherfanart.widgets">
+        <include content="Weather_Fanart_Image">
             <param name="bordertopbottom" value="0" />
             <param name="borderleftright" value="0" />
             <param name="force_fallback" value="String.IsEmpty(Window(Weather).Property(Hourly.$PARAM[weatherfanartcode].FanartCode))" />

@@ -73,7 +73,7 @@
     </variable>
     
     <variable name="DefWidgetContent">
-        <value condition="!String.IsEmpty(Skin.String(home.slideshowpath)) | !String.IsEmpty(Container(300).ListItem.Property(Background))">special://skin/extras/playlists/Null.xsp</value>
+        <value condition="!String.IsEmpty(Skin.String(home.slideshowpath)) | !String.IsEmpty(Container(300).ListItem.Property(Background))">special://skin/extras/Null.xsp</value>
         <value condition="!String.IsEmpty(Skin.String(home.fallbackwidget))">$INFO[Skin.String(home.fallbackwidget)]</value>
         <value condition="!Library.HasContent(Movies) + !Library.HasContent(TVShows)">plugin://plugin.video.themoviedb.helper/?info=trending_day&amp;tmdb_type=movie&amp;widget=true&amp;cacheonly=true&amp;reload=$INFO[Window(Home).Property(TMDbHelper.Widgets.Reload)]</value>
         <value>$VAR[RandomMovies]</value>
@@ -1998,13 +1998,15 @@
     <include name="ClearArtHomeImageContainer">
         <animation effect="slide" start="0" end="-50,0" time="0" condition="$EXP[HomeIsVerticalMultiWidgets] + Skin.HasSetting(homemenu.only.icons) + Skin.HasSetting(home.showicons)">Conditional</animation>
         <animation effect="slide" start="0" end="0,385" time="0" condition="$PARAM[isfullscreenlayout]">Conditional</animation>
+        <animation effect="fade" start="100" end="0" time="400" condition="!ControlGroup(301).HasFocus() + $EXP[HomeIsVerticalMultiWidgets] + ![Skin.HasSetting(homemenu.only.icons) + Skin.HasSetting(home.showicons)]">Conditional</animation>
+        <animation type="WindowOpen" condition="!$EXP[HomeIsVerticalMultiWidgets]" reversible="false">
+            <effect type="slide" start="0,250" end="0" time="150"/>
+            <effect type="fade" start="20" end="100" time="150"/>
+        </animation>
         <animation type="WindowClose" condition="!$EXP[HomeIsVerticalMultiWidgets]">
             <effect type="slide" start="0" end="0,250" time="150"/>
             <effect type="fade" start="100" end="20" time="150"/>
         </animation>
-        <animation effect="slide" start="0,150" end="0" time="130" reversible="false" condition="String.IsEqual(Container(300).ListItem.Label,Window(home).Property(ClearArtAnimation))">Conditional</animation>
-        <animation effect="fade" start="20" end="100" time="150" reversible="false" condition="String.IsEqual(Container(300).ListItem.Label,Window(home).Property(ClearArtAnimation))">Conditional</animation>
-        <animation effect="fade" start="100" end="0" time="400" condition="!ControlGroup(301).HasFocus() + $EXP[HomeIsVerticalMultiWidgets] + ![Skin.HasSetting(homemenu.only.icons) + Skin.HasSetting(home.showicons)]">Conditional</animation>
         <include condition="!Skin.HasSetting(widgets.fade)">Animation.Vertical.Widgets.Label</include>
         <fadetime>ClearArtFadetime</fadetime>
         <right>SidePad</right>
@@ -2602,134 +2604,6 @@
         <font>WatchedIcon</font>
     </include>
 
-    <include name="def_weathericon">
-        <param name="top"/>
-        <param name="left"/>
-        <param name="size"/>
-        <param name="FanartCode"/>
-        <param name="OutlookIconWMO"/>
-        <param name="force_fallback" default="false" />
-        <definition>
-            <control type="image">
-                <top>$PARAM[top]</top>
-                <left>$PARAM[left]</left>
-                <height>$PARAM[size]</height>
-                <width>$PARAM[size]</width>
-                <aspectratio align="center" aligny="center">keep</aspectratio>
-                <texture>resource://resource.images.weathericons.default/$PARAM[FanartCode].png</texture>
-                <visible>String.IsEmpty(Skin.String(weather.icons.path)) + !$EXP[UseOutlookIconsWMO]</visible>
-                <visible>!$PARAM[force_fallback]</visible>
-            </control>
-            <control type="image">
-                <top>$PARAM[top]</top>
-                <left>$PARAM[left]</left>
-                <height>$PARAM[size]</height>
-                <width>$PARAM[size]</width>
-                <aspectratio align="center" aligny="center">keep</aspectratio>
-                <texture>$PARAM[OutlookIconWMO]</texture>
-                <visible>$EXP[UseOutlookIconsWMO]</visible>
-                <visible>!$PARAM[force_fallback]</visible>
-            </control>
-            <control type="image">
-                <top>$PARAM[top]</top>
-                <left>$PARAM[left]</left>
-                <height>$PARAM[size]</height>
-                <width>$PARAM[size]</width>
-                <aspectratio align="center" aligny="center">keep</aspectratio>
-                <texture>$INFO[Skin.String(weather.icons.path),,/]$PARAM[FanartCode].png</texture>
-                <visible>!String.IsEmpty(Skin.String(weather.icons.path)) + !String.Contains(Skin.String(weather.icons.path),animated)</visible>
-                <visible>!$PARAM[force_fallback]</visible>
-            </control>
-            <control type="image">
-                <top>$PARAM[top]</top>
-                <left>$PARAM[left]</left>
-                <height>$PARAM[size]</height>
-                <width>$PARAM[size]</width>
-                <aspectratio align="center" aligny="center">keep</aspectratio>
-                <texture>$INFO[Skin.String(weather.icons.path),,/na.png]</texture>
-                <visible>!String.IsEmpty(Skin.String(weather.icons.path)) + !String.Contains(Skin.String(weather.icons.path),animated)</visible>
-                <visible>$PARAM[force_fallback]</visible>
-            </control>
-            <control type="multiimage">
-                <top>$PARAM[top]</top>
-                <left>$PARAM[left]</left>
-                <height>$PARAM[size]</height>
-                <width>$PARAM[size]</width>
-                <aspectratio align="center" aligny="center">keep</aspectratio>
-                <imagepath>$INFO[Skin.String(weather.icons.path),,/]$PARAM[FanartCode]</imagepath>
-                <visible>!String.IsEmpty(Skin.String(weather.icons.path)) + String.Contains(Skin.String(weather.icons.path),animated)</visible>
-                <visible>$PARAM[force_fallback]</visible>
-            </control>
-		</definition>	
-    </include>
-    
-    <include name="def_weatherfanart.widgets">
-        <param name="bordertopbottom" default="10"/>
-        <param name="borderleftright" default="10"/>
-        <param name="force_fallback" default="false" />
-        <param name="FanartCode" default="$INFO[ListItem.Property(FanartCode)]"/>
-        <definition>
-            <control type="image">
-                <top>$PARAM[bordertopbottom]</top>
-                <left>$PARAM[borderleftright]</left>
-                <right>$PARAM[borderleftright]</right>
-                <bottom>$PARAM[bordertopbottom]</bottom>
-                <texture border="5" colordiffuse="Panel">common/box.png</texture>
-                <animation effect="fade" start="100" end="90" condition="true">Conditional</animation>
-            </control>
-            <control type="multiimage" description="Fanart">
-                <visible>!Skin.HasSetting(weather.hidefanart) + $EXP[HasWeatherFanartMulti]</visible>
-                <visible>!$PARAM[force_fallback]</visible>
-                <top>$PARAM[bordertopbottom]</top>
-                <left>$PARAM[borderleftright]</left>
-                <right>$PARAM[borderleftright]</right>
-                <bottom>$PARAM[bordertopbottom]</bottom>
-                <fadetime>600</fadetime>
-                <timeperimage>12000</timeperimage>
-                <randomize>true</randomize>
-                <aspectratio>scale</aspectratio>
-                <animation effect="fade" start="100" end="10" condition="true">Conditional</animation>
-                <imagepath background="true">$VAR[WeatherFanartPath]$PARAM[FanartCode]/</imagepath>
-            </control>
-            <control type="multiimage" description="Fanart">
-                <visible>!Skin.HasSetting(weather.hidefanart) + $EXP[HasWeatherFanartMulti]</visible>
-                <visible>$PARAM[force_fallback]</visible>
-                <top>$PARAM[bordertopbottom]</top>
-                <left>$PARAM[borderleftright]</left>
-                <right>$PARAM[borderleftright]</right>
-                <bottom>$PARAM[bordertopbottom]</bottom>
-                <fadetime>600</fadetime>
-                <timeperimage>12000</timeperimage>
-                <randomize>true</randomize>
-                <aspectratio>scale</aspectratio>
-                <animation effect="fade" start="100" end="10" condition="true">Conditional</animation>
-                <imagepath background="true">$VAR[WeatherFanartPath,,na/]</imagepath>
-            </control>
-            <control type="image" description="Fanart">
-                <visible>!Skin.HasSetting(weather.hidefanart) + $EXP[HasWeatherFanartSingle]</visible>
-                <visible>!$PARAM[force_fallback]</visible>
-                <top>$PARAM[bordertopbottom]</top>
-                <left>$PARAM[borderleftright]</left>
-                <right>$PARAM[borderleftright]</right>
-                <bottom>$PARAM[bordertopbottom]</bottom>
-                <aspectratio>scale</aspectratio>
-                <animation effect="fade" start="100" end="10" condition="true">Conditional</animation>
-                <texture background="true">$VAR[WeatherFanartPath]$PARAM[FanartCode].jpg</texture>
-            </control>
-            <control type="image" description="Fanart">
-                <visible>!Skin.HasSetting(weather.hidefanart) + $EXP[HasWeatherFanartSingle]</visible>
-                <visible>$PARAM[force_fallback]</visible>
-                <top>$PARAM[bordertopbottom]</top>
-                <left>$PARAM[borderleftright]</left>
-                <right>$PARAM[borderleftright]</right>
-                <bottom>$PARAM[bordertopbottom]</bottom>
-                <aspectratio>scale</aspectratio>
-                <animation effect="fade" start="100" end="10" condition="true">Conditional</animation>
-                <texture background="true">$VAR[WeatherFanartPath,,na.jpg]</texture>
-            </control>
-        </definition>
-    </include>
-
     <include name="def_weatherposter">
         <control type="image">
             <left>0</left>
@@ -2738,8 +2612,8 @@
             <bottom>0</bottom>
             <texture border="11" background="true" infill="false">common/$VAR[nofocus-shadow10]</texture>
         </control>
-        <include>def_weatherfanart.widgets</include>
-        <include content="def_weathericon">
+        <include>Weather_Fanart_Image</include>
+        <include content="Weather_Icon_Image">
 			<param name="top" value="85" />
 			<param name="left" value="36" />
 			<param name="size" value="150" />
@@ -2795,8 +2669,8 @@
             <bottom>0</bottom>
             <texture border="11" background="true" infill="false">common/$VAR[nofocus-shadow10]</texture>
         </control>
-        <include>def_weatherfanart.widgets</include>
-        <include content="def_weathericon">
+        <include>Weather_Fanart_Image</include>
+        <include content="Weather_Icon_Image">
 			<param name="top" value="90" />
 			<param name="left" value="25" />
 			<param name="size" value="135" />
@@ -2872,8 +2746,8 @@
         <control type="image">
             <texture border="11" background="true" infill="false">common/$VAR[nofocus-shadow10]</texture>
         </control>
-        <include>def_weatherfanart.widgets</include>
-        <include content="def_weathericon">
+        <include>Weather_Fanart_Image</include>
+        <include content="Weather_Icon_Image">
 			<param name="top" value="65" />
 			<param name="left" value="40" />
 			<param name="size" value="192" />
