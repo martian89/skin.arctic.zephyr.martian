@@ -23,26 +23,25 @@
 	                <itemgap>0</itemgap>
 	                <usecontrolcoords>true</usecontrolcoords>
                     <control type="list" id="9000">
-                        <height>512</height>
+                        <height>480</height>
                         <width>410</width>
                         <onup>990</onup>
                         <ondown>990</ondown>
                         <onleft>555</onleft>
                         <onright>555</onright>
                         <scrolltime tween="cubic" easing="out">500</scrolltime>
-                        <itemlayout height="64" width="410">
+                        <itemlayout height="80" width="410">
                             <control type="image">
-                                <left>12</left>
-                                <top>1</top>
-                                <width>64</width>
-                                <height>64</height>
+                                <left>10</left>
+                                <top>5</top>
+                                <width>70</width>
+                                <height>70</height>
                                 <texture colordiffuse="Dark2">$VAR[Image_Globalsearch_Icon]</texture>
                             </control>
                             <control type="label">
                                 <left>86</left>
                                 <width>auto</width>
-                                <aligny>center</aligny>
-                                <height>64</height>
+                                <height>100%</height>
                                 <font>SmallBold</font>
                                 <textcolor>Dark2</textcolor>
                                 <label>$INFO[ListItem.Label]</label>
@@ -50,15 +49,14 @@
                             <control type="label">
                                 <right>30</right>
                                 <width>340</width>
-                                <aligny>center</aligny>
-                                <height>64</height>
+                                <height>100%</height>
                                 <align>right</align>
                                 <font>Small</font>
                                 <textcolor>Dark2</textcolor>
                                 <label>$INFO[ListItem.Label2]</label>
                             </control>
                         </itemlayout>
-                        <focusedlayout height="64" width="410">
+                        <focusedlayout height="80" width="410">
                             <control type="group">
                                 <visible>Control.HasFocus(9000)</visible>
 	                            <control type="image">
@@ -68,17 +66,16 @@
 	                                <include>ListViewScrollAnim</include>
 	                            </control>
 	                            <control type="image">
-	                                <left>12</left>
-	                                <top>1</top>
-	                                <width>64</width>
-	                                <height>64</height>
+	                                <left>10</left>
+	                                <top>5</top>
+	                                <width>70</width>
+	                                <height>70</height>
 	                                <texture colordiffuse="Light1">$VAR[Image_Globalsearch_Icon]</texture>
 	                            </control>
 	                            <control type="label">
 	                                <posx>86</posx>
 	                                <width>auto</width>
-	                                <aligny>center</aligny>
-	                                <height>64</height>
+	                                <height>100%</height>
 	                                <font>SmallBold</font>
 	                                <label>$INFO[ListItem.Label]</label>
 	                                <textcolor>Light1</textcolor>
@@ -87,8 +84,7 @@
 	                            <control type="label">
 	                                <right>30</right>
 	                                <width>340</width>
-	                                <aligny>center</aligny>
-	                                <height>64</height>
+	                                <height>100%</height>
 	                                <align>right</align>
 	                                <font>Small</font>
 	                                <textcolor>Light1</textcolor>
@@ -99,17 +95,16 @@
                             <control type="group">
                                 <visible>!Control.HasFocus(9000)</visible>
 	                            <control type="image">
-	                                <left>12</left>
-	                                <top>1</top>
-	                                <width>64</width>
-	                                <height>64</height>
+	                                <left>10</left>
+	                                <top>5</top>
+	                                <width>70</width>
+	                                <height>70</height>
 	                                <texture colordiffuse="Dark1">$VAR[Image_Globalsearch_Icon]</texture>
 	                            </control>
 	                            <control type="label">
 	                                <left>86</left>
 	                                <width>auto</width>
-	                                <aligny>center</aligny>
-	                                <height>64</height>
+	                                <height>100%</height>
 	                                <font>SmallBold</font>
 	                                <textcolor>Dark1</textcolor>
 	                                <label>$INFO[ListItem.Label]</label>
@@ -117,8 +112,7 @@
 	                            <control type="label">
 	                                <right>30</right>
 	                                <width>340</width>
-	                                <aligny>center</aligny>
-	                                <height>64</height>
+	                                <height>100%</height>
 	                                <align>right</align>
 	                                <font>Small</font>
 	                                <textcolor>Dark1</textcolor>
@@ -128,9 +122,9 @@
                         </focusedlayout>
                     </control>
                     <control type="radiobutton" id="990">
-                        <top>64</top>
+                        <top>80</top>
                         <width>410</width>
-                        <height>64</height>
+                        <height>80</height>
                         <label>$ADDON[script.globalsearch 32299]?</label>
                         <font>SmallBold</font>
                         <align>left</align>
@@ -144,10 +138,10 @@
                         <textureradioonnofocus colordiffuse="Dark2">special://skin/extras/icons/search.png</textureradioonnofocus>
                         <textureradioofffocus colordiffuse="Light1">special://skin/extras/icons/search.png</textureradioofffocus>
                         <textureradiooffnofocus colordiffuse="Dark2">special://skin/extras/icons/search.png</textureradiooffnofocus>
-                        <radioposx>12</radioposx>
-                        <radioposy>1</radioposy>
-                        <radiowidth>64</radiowidth>
-                        <radioheight>64</radioheight>
+                        <radioposx>10</radioposx>
+                        <radioposy>5</radioposy>
+                        <radiowidth>70</radiowidth>
+                        <radioheight>70</radioheight>
                         <onclick>ClearProperty(GlobalSearchWindowOpen,home)</onclick>
                         <onclick condition="String.IsEmpty(Window(home).Property(GlobalSearchWindowOpen))">SetFocus(9000)</onclick>
                         <onclick condition="String.IsEmpty(Window(home).Property(GlobalSearchWindowOpen))">SetProperty(GlobalSearchWindowOpen,1,home)</onclick>
