@@ -2,7 +2,7 @@
 <includes>
 
     <variable name="LabelPercentWatched" containers="9500" start="-3" end="3">
-        <value condition="ListItem.IsPlaying + !Skin.HasSetting(hide.markers.isplaying)">&#62811;</value>
+        <value condition="{listitem}.IsPlaying + !Skin.HasSetting(hide.markers.isplaying)">&#62811;</value>
         <value condition="{listitem}.HasVideoVersions + ![Container({id}).Content(videoversions) | Container({id}).Content(videoassets) | Container({id}).Content(videoextras)] + !String.StartsWith(Container({id}).FolderPath,videodb://movies/videoversions/) + !Skin.HasSetting(hide.markers.versions)">&#63341;</value>
         <value condition="{listitem}.HasVideoExtras + ![Container({id}).Content(videoversions) | Container({id}).Content(videoassets) | Container({id}).Content(videoextras)] + !String.StartsWith(Container({id}).FolderPath,videodb://movies/videoversions/) + !Skin.HasSetting(hide.markers.extras)">&#61754;</value>
         <value condition="$EXP[IsInProgress{cid}{lid}] + !Skin.HasSetting(hide.markers.inprogress)">$VAR[LabelInProgressPercentage{cid}{lid}]</value>

@@ -38,20 +38,17 @@
 					<param name="align_right" value="true" />
 				</include>
 				<control type="grouplist" id="9000">
-					<left>8</left>
-					<top>112</top>
-					<right>8</right>
-					<bottom>18</bottom>
+                    <top>112</top>
+                    <left>8</left>
+                    <right>8</right>
+                    <bottom>18</bottom>
 					<itemgap>0</itemgap>
 					<usecontrolcoords>true</usecontrolcoords>
 					<scrolltime>0</scrolltime>
 					<onright>Dialog.Close(1101)</onright>
 					<onleft>Dialog.Close(1101)</onleft>
 					<defaultcontrol always="true">101</defaultcontrol>
-					<include condition="String.IsEqual(Window(home).Property(CustomDialogSettingsContent),videosettings)">DialogVideoSettingsContent</include>
-					<include condition="String.IsEqual(Window(home).Property(CustomDialogSettingsContent),musicsettings)">DialogMusicSettingsContent</include>
-					<include condition="String.IsEqual(Window(home).Property(CustomDialogSettingsContent),gamesettings)">DialogGameSettingsContent</include>
-					<include condition="String.IsEqual(Window(home).Property(CustomDialogSettingsContent),streamsettings)">DialogStreamSettingsContent</include>
+					<include>$PARAM[content_include]</include>
 				</control>
 			</control>
 		</definition>
@@ -233,7 +230,14 @@
 			<onclick>Skin.ToggleSetting(ArtistSlideshow.Animate)</onclick>
 			<enable>$EXP[Visualisation_ShowFanart]</enable>
 		</control>
-		<control type="button" id="107">
+        <control type="radiobutton" id="107">
+            <align>left</align>
+            <include>DefContextButtonGradient</include>
+            <label>21891</label>
+            <selected>Skin.HasSetting(osd.artistinfos)</selected>
+            <onclick>Skin.ToggleSetting(osd.artistinfos)</onclick>
+        </control>
+		<control type="button" id="108">
 			<description>Visualisation</description>
 			<include>DefContextButtonGradient</include>
 			<label>$LOCALIZE[250]:</label>
@@ -241,7 +245,7 @@
 			<align>left</align>
 			<onclick>SendClick(500)</onclick>
 		</control>
-		<control type="button" id="108">
+		<control type="button" id="109">
 			<description>Visualisation</description>
 			<include>DefContextButtonGradient</include>
 			<align>left</align>
@@ -250,7 +254,7 @@
 			<onclick>ActivateWindow(visualisationpresetlist)</onclick>
 			<visible>Visualisation.HasPresets</visible>
 		</control>
-		<control type="button" id="109">
+		<control type="button" id="110">
 			<description>Visualisation</description>
 			<include>DefContextButtonGradient</include>
 			<label>$LOCALIZE[31977]</label>

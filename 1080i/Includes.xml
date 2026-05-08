@@ -1540,11 +1540,13 @@
 
     <variable name="SetsPath">
         <value condition="ListItem.IsCollection + !String.IsEmpty(ListItem.DBID)">videodb://movies/sets/$INFO[ListItem.DBID]/?setid=$INFO[ListItem.DBID]</value>
+        <value condition="Container(9500).ListItem.IsCollection + !String.IsEmpty(Container(9500).ListItem.DBID)">videodb://movies/sets/$INFO[Container(9500).ListItem.DBID]/?setid=$INFO[Container(9500).ListItem.DBID]</value>
         <value condition="Container(301).ListItem.IsCollection + !String.IsEmpty(Container(301).ListItem.DBID)">videodb://movies/sets/$INFO[Container(301).ListItem.DBID]/?setid=$INFO[Container(301).ListItem.DBID]</value>
      </variable>
 
     <variable name="AlbumPath">
         <value condition="ListItem.IsFolder + String.IsEqual(ListItem.DBType,album)">$INFO[ListItem.FolderPath]</value>
+        <value condition="Container(9500).ListItem.IsFolder + String.IsEqual(Container(9500).ListItem.DBType,album)">$INFO[Container(9500).ListItem.FolderPath]</value>
         <value condition="Container(301).ListItem.IsFolder + String.IsEqual(Container(301).ListItem.DBType,album)">$INFO[Container(301).ListItem.FolderPath]</value>
     </variable>
     

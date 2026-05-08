@@ -1353,9 +1353,27 @@
     </include>
 
     <include name="Furniture_Hub_Flags">
+        <control type="group">
+            <include>Animation.FurnitureVisible</include>
+            <visible>String.IsEqual(Container(9500).ListItem.DBType,movie) | String.IsEqual(Container(9500).ListItem.DBType,set) | String.IsEqual(Container(9500).ListItem.DBType,episode) | String.IsEqual(Container(9500).ListItem.DBType,tvshow) | String.IsEqual(Container(9500).ListItem.DBType,season)</visible>
+            <include content="Furniture_Hub_Flags_Include" condition="!Skin.HasSetting(furniture.flags)">
+            </include>
+        </control>
+        <control type="group">
+            <include>Animation.FurnitureVisible</include>
+            <visible>String.IsEqual(Container(9500).ListItem.DBType,album) | String.IsEqual(Container(9500).ListItem.DBType,song)</visible>
+            <include content="Furniture_Hub_Flags_Audio_Include" condition="!Skin.HasSetting(furniture.flags)">
+            </include>
+            <control type="group">
+                <visible>String.IsEqual(Container(9500).ListItem.DBType,album)</visible>
+                <include condition="!Skin.HasSetting(furniture.flags)">AlbumInfo</include>
+            </control>
+        </control>
+    </include>
+
+    <include name="Furniture_Hub_Flags_Include">
         <control type="grouplist">
             <visible>![Skin.HasSetting(furniture.flagicons) + Skin.HasSetting(furniture.coloredicons)]</visible>
-            <visible>String.IsEqual(Container(9500).ListItem.DBType,movie) | String.IsEqual(Container(9500).ListItem.DBType,episode) | String.IsEqual(Container(9500).ListItem.DBType,tvshow) | String.IsEqual(Container(9500).ListItem.DBType,season)</visible>
             <visible>!String.IsEqual(Container(9500).ListItem.Label,..)</visible>
             <left>70</left>
             <centerbottom>NavBarPad</centerbottom>
@@ -1639,7 +1657,7 @@
         </control>
         <control type="grouplist">
             <visible>Skin.HasSetting(furniture.flagicons) + Skin.HasSetting(furniture.coloredicons)</visible>
-            <visible>String.IsEqual(Container(9500).ListItem.DBType,movie) | String.IsEqual(Container(9500).ListItem.DBType,episode) | String.IsEqual(Container(9500).ListItem.DBType,tvshow) | String.IsEqual(Container(9500).ListItem.DBType,season)</visible>
+            <visible>String.IsEqual(Container(9500).ListItem.DBType,movie) | String.IsEqual(Container(9500).ListItem.DBType,set) | String.IsEqual(Container(9500).ListItem.DBType,episode) | String.IsEqual(Container(9500).ListItem.DBType,tvshow) | String.IsEqual(Container(9500).ListItem.DBType,season)</visible>
             <visible>!String.IsEqual(Container(9500).ListItem.Label,..)</visible>
             <left>70</left>
             <centerbottom>NavBarPad</centerbottom>
@@ -2485,7 +2503,7 @@
 
     <include name="AlbumCount">
         <control type="group">
-            <visible>Container.Content(albums) | String.IsEqual(ListItem.DBType,album)</visible>
+            <visible>Container.Content(albums) | String.IsEqual(ListItem.DBType,album) | String.IsEqual(Container(9500).ListItem.DBType,album)</visible>
             <centertop>50%</centertop>
             <width>70</width>
             <height>45</height>
@@ -2565,7 +2583,7 @@
                 <height>64</height>
                 <align>left</align>
                 <aligny>center</aligny>
-                <label>$INFO[ListItem.FileExtension]$VAR[LabelAudioChannels, ,  ]</label>
+                <label>$INFO[ListItem.FileExtension]$VAR[LabelAudioChannels, ]  </label>
                 <font>Flag</font>
                 <textcolor>Dark1</textcolor>
                 <visible>!Skin.HasSetting(furniture.flagicons)</visible>
@@ -2887,6 +2905,324 @@
                 <textcolor>Dark1</textcolor>
                 <visible>$EXP[ShowFurnitureFlagsAudioDuration]</visible>
             </control>
+        </control>
+    </include>
+
+    <include name="Furniture_Hub_Flags_Audio_Include">
+        <control type="grouplist">
+            <visible>![Skin.HasSetting(furniture.flagicons) + Skin.HasSetting(furniture.coloredicons)]</visible>
+            <visible>!String.IsEqual(ListItem.Label,..)</visible>
+            <left>70</left>
+            <centerbottom>NavBarPad</centerbottom>
+            <include content="def_right" condition="Skin.HasSetting(furniture.clock)">
+                <param name="right" value="SidePad" />
+            </include>
+            <include content="def_right" condition="!Skin.HasSetting(furniture.clock)">
+                <param name="right" value="440" />
+            </include>
+            <height>120</height>
+            <orientation>horizontal</orientation>
+            <align>left</align>
+            <itemgap>0</itemgap>
+            <usecontrolcoords>true</usecontrolcoords>
+            <include>AlbumCount</include>
+            <include content="Def_Flags_Furniture_Small" condition="!Skin.HasSetting(furniture.hide.musicrating)">
+                <param name="Star" value="HubFlagstar" />
+                <param name="visible" value="!Skin.HasSetting(furniture.numericrating)" />
+            </include>
+            <control type="label">
+                <width min="48">auto</width>
+                <centertop>50%</centertop>
+                <height>64</height>
+                <align>left</align>
+                <aligny>center</aligny>
+                <label>$VAR[RatingLabel9500]</label>
+                <font>Flag</font>
+                <textcolor>Dark1</textcolor>
+                <visible>!String.IsEmpty(Container(9500).ListItem.Rating) | [!String.IsEmpty(Container(9500).ListItem.UserRating) + Skin.HasSetting(userrating.override.rating)]</visible>
+                <visible>Skin.HasSetting(furniture.numericrating) + !Skin.HasSetting(furniture.hide.musicrating)</visible>
+            </control>
+            <control type="label">
+                <left>10</left>
+                <width>auto</width>
+                <centertop>50%</centertop>
+                <height>64</height>
+                <align>left</align>
+                <aligny>center</aligny>
+                <label>$INFO[Container(9500).ListItem.FileExtension]$VAR[LabelHubAudioChannels, ]  </label>
+                <font>Flag</font>
+                <textcolor>Dark1</textcolor>
+                <visible>!Skin.HasSetting(furniture.flagicons)</visible>
+            </control>
+            <control type="label">
+                <width>auto</width>
+                <centertop>50%</centertop>
+                <height>64</height>
+                <align>left</align>
+                <aligny>center</aligny>
+                <label>$INFO[Container(9500).ListItem.BitRate,•  ,kbps  ]</label>
+                <font>Flag</font>
+                <textcolor>Dark1</textcolor>
+                <visible>!Skin.HasSetting(furniture.flagicons) + !String.IsEmpty(Container(9500).ListItem.BitRate) + !Skin.HasSetting(furniture.hide.bitrate)</visible>
+            </control>
+            <control type="label">
+                <width>auto</width>
+                <centertop>50%</centertop>
+                <height>64</height>
+                <align>left</align>
+                <aligny>center</aligny>
+                <label>$INFO[Container(9500).ListItem.Samplerate,•  ,kHz  ]</label>
+                <font>Flag</font>
+                <textcolor>Dark1</textcolor>
+                <visible>!Skin.HasSetting(furniture.flagicons) + !String.IsEmpty(Container(9500).ListItem.Samplerate) + !Skin.HasSetting(furniture.hide.samplerate)</visible>
+            </control>
+            <control type="label">
+                <width>auto</width>
+                <centertop>50%</centertop>
+                <height>64</height>
+                <align>left</align>
+                <aligny>center</aligny>
+                <label>$INFO[Container(9500).ListItem.BPM,•  ,bpm  ]</label>
+                <font>Flag</font>
+                <textcolor>Dark1</textcolor>
+                <visible>!Skin.HasSetting(furniture.flagicons) + !String.IsEmpty(Container(9500).ListItem.BPM) + !Skin.HasSetting(furniture.hide.bpm)</visible>
+            </control>
+            <control type="image">
+                <width min="20" max="100">auto</width>
+                <height>54</height>
+                <centertop>50%</centertop>
+                <texture colordiffuse="Dark1" fallback="flags/fallback.png">$INFO[Container(9500).ListItem.FileExtension,flags/monochrome/audio/,.png]</texture>
+                <aspectratio align="center">keep</aspectratio>
+                <visible>Skin.HasSetting(furniture.flagicons) + !String.IsEmpty(Container(9500).ListItem.FileExtension) + !Skin.HasSetting(furniture.hide.fileextension)</visible>
+            </control>
+            <control type="image">
+                <width min="20" max="100">auto</width>
+                <height>45</height>
+                <centertop>48%</centertop>
+                <texture colordiffuse="Dark1" fallback="flags/fallback.png">$INFO[Container(9500).ListItem.MusicChannels,flags/monochrome/channels/,.png]</texture>
+                <aspectratio align="center">keep</aspectratio>
+                <visible>Skin.HasSetting(furniture.flagicons) + !String.IsEmpty(Container(9500).ListItem.MusicChannels) + !Skin.HasSetting(furniture.hide.channels)</visible>
+            </control>
+            <control type="grouplist">
+                <width min="20" max="100">auto</width>
+                <height>64</height>
+                <orientation>vertical</orientation>
+                <centertop>54%</centertop>
+                <itemgap>-17</itemgap>
+                <visible>Skin.HasSetting(furniture.flagicons) + !String.IsEmpty(Container(9500).ListItem.BitRate) + !Skin.HasSetting(furniture.hide.bitrate)</visible>
+                <control type="label">                
+                    <height>28</height>
+                    <align>center</align>
+                    <aligny>center</aligny>
+                    <label>$INFO[Container(9500).ListItem.BitRate]</label>
+                    <font>Hint</font>
+                    <textcolor>Dark1</textcolor>
+                </control>
+                <control type="image">
+                    <height>44</height> 
+                    <aspectratio>keep</aspectratio>
+                    <texture colordiffuse="Dark1">flags/monochrome/other/kbps.png</texture>
+                    <aspectratio>keep</aspectratio>
+                </control>
+            </control>
+            <control type="grouplist">
+                <width min="20" max="100">auto</width>
+                <height>64</height>
+                <orientation>vertical</orientation>
+                <centertop>54%</centertop>
+                <itemgap>-17</itemgap>
+                <visible>Skin.HasSetting(furniture.flagicons) + !String.IsEmpty(Container(9500).ListItem.Samplerate) + !Skin.HasSetting(furniture.hide.samplerate)</visible>
+                <control type="label">
+                    <height>28</height>
+                    <align>center</align>
+                    <aligny>center</aligny>
+                    <label>$INFO[Container(9500).ListItem.Samplerate]</label>
+                    <font>Hint</font>
+                    <textcolor>Dark1</textcolor>
+                </control>
+                <control type="image">
+                    <height>44</height>
+                    <aspectratio>keep</aspectratio>
+                    <texture colordiffuse="Dark1">flags/monochrome/other/khz.png</texture>
+                    <aspectratio>keep</aspectratio>
+                </control>
+            </control>
+            <control type="grouplist">
+                <width min="20" max="100">auto</width>
+                <height>64</height>
+                <orientation>vertical</orientation>
+                <centertop>54%</centertop>
+                <itemgap>-17</itemgap>
+                <visible>Skin.HasSetting(furniture.flagicons) + !String.IsEmpty(Container(9500).ListItem.BPM) + !Skin.HasSetting(furniture.hide.bpm)</visible>
+                <control type="label">                
+                    <height>28</height>
+                    <align>center</align>
+                    <aligny>center</aligny>
+                    <label>$INFO[Container(9500).ListItem.BPM]</label>
+                    <font>Hint</font>
+                    <textcolor>Dark1</textcolor>
+                </control>
+                <control type="image">
+                    <height>44</height> 
+                    <aspectratio>keep</aspectratio>
+                    <texture>flags/monochrome/other/bpm.png</texture>
+                    <aspectratio>keep</aspectratio>
+                </control>
+            </control>
+            <control type="image">
+                <visible>!String.IsEmpty(Container(9500).ListItem.UserRating) + Skin.HasSetting(furniture.showuserrating.audio) + !Skin.HasSetting(userrating.override.rating)</visible>
+                <centertop>50%</centertop>
+                <width>37</width>
+                <height>37</height>
+                <left>15</left>
+                <texture colordiffuse="Dark1" background="true">flags/monochrome/ratings/userrating.png</texture>
+            </control>
+            <control type="label">
+                <visible>!String.IsEmpty(Container(9500).ListItem.UserRating) + Skin.HasSetting(furniture.showuserrating.audio) + !Skin.HasSetting(userrating.override.rating)</visible>
+                <centertop>50%</centertop>
+                <width>auto</width>
+                <height>64</height>
+                <font>Flag</font>
+                <left>5</left>
+                <textcolor>Dark1</textcolor>
+                <label>$INFO[Container(9500).ListItem.UserRating].0</label>
+            </control>
+        </control>
+        <control type="grouplist">
+            <visible>Skin.HasSetting(furniture.flagicons) + Skin.HasSetting(furniture.coloredicons)</visible>
+            <visible>!String.IsEqual(ListItem.Label,..)</visible>
+            <left>70</left>
+            <centerbottom>NavBarPad</centerbottom>
+            <include content="def_right" condition="Skin.HasSetting(furniture.clock)">
+                <param name="right" value="SidePad" />
+            </include>
+            <include content="def_right" condition="!Skin.HasSetting(furniture.clock)">
+                <param name="right" value="440" />
+            </include>
+            <height>120</height>
+            <orientation>horizontal</orientation>
+            <align>left</align>
+            <itemgap>0</itemgap>
+            <usecontrolcoords>true</usecontrolcoords>
+            <include>AlbumCount</include>
+            <include content="Def_Flags_Furniture_Small" condition="!Skin.HasSetting(furniture.hide.musicrating)">
+                <param name="Star" value="HubFlagstar" />
+                <param name="visible" value="!Skin.HasSetting(furniture.numericrating)" />
+            </include>
+            <control type="label">
+                <left>-6</left>
+                <width min="48">auto</width>
+                <centertop>50%</centertop>
+                <height>64</height>
+                <align>left</align>
+                <aligny>center</aligny>
+                <label>$VAR[RatingLabel9500]</label>
+                <font>Flag</font>
+                <textcolor>Dark1</textcolor>
+                <visible>!String.IsEmpty(Container(9500).ListItem.Rating) | [!String.IsEmpty(Container(9500).ListItem.UserRating) + Skin.HasSetting(userrating.override.rating)]</visible>
+                <visible>Skin.HasSetting(furniture.numericrating) + !Skin.HasSetting(furniture.hide.musicrating)</visible>
+            </control>
+            <control type="image">
+                <width min="20" max="100">auto</width>
+                <height>54</height>
+                <centertop>50%</centertop>
+                <texture fallback="flags/fallback.png">$INFO[Container(9500).ListItem.FileExtension,flags/color/audio/,.png]</texture>
+                <aspectratio align="center">keep</aspectratio>
+                <visible>!String.IsEmpty(Container(9500).ListItem.FileExtension) + !Skin.HasSetting(furniture.hide.fileextension)</visible>
+            </control>
+            <control type="image">
+                <width min="20" max="100">auto</width>
+                <height>36</height>
+                <centertop>50%</centertop>
+                <texture fallback="flags/fallback.png">$INFO[Container(9500).ListItem.MusicChannels,flags/color/channels/,.png]</texture>
+                <aspectratio align="center">keep</aspectratio>
+                <visible>Skin.HasSetting(furniture.flagicons) + !String.IsEmpty(Container(9500).ListItem.MusicChannels) + !Skin.HasSetting(furniture.hide.channels)</visible>
+            </control>
+            <control type="grouplist">
+                <width min="20" max="100">auto</width>
+                <height>64</height>
+                <orientation>vertical</orientation>
+                <centertop>54%</centertop>
+                <itemgap>-17</itemgap>
+                <visible>!String.IsEmpty(Container(9500).ListItem.BitRate) + !Skin.HasSetting(furniture.hide.bitrate)</visible>
+                <control type="label">
+                    <height>28</height>
+                    <align>center</align>
+                    <aligny>center</aligny>
+                    <label>$INFO[Container(9500).ListItem.BitRate]</label>
+                    <font>Hint</font>
+                    <textcolor>Dark1</textcolor>
+                </control>
+                <control type="image">
+                    <height>44</height> 
+                    <aspectratio>keep</aspectratio>
+                    <texture colordiffuse="Dark1">flags/monochrome/other/kbps.png</texture>
+                    <aspectratio>keep</aspectratio>
+                </control>
+            </control>
+            <control type="grouplist">
+                <width min="20" max="100">auto</width>
+                <height>64</height>
+                <orientation>vertical</orientation>
+                <centertop>54%</centertop>
+                <itemgap>-17</itemgap>
+                <visible>!String.IsEmpty(Container(9500).ListItem.Samplerate) + !Skin.HasSetting(furniture.hide.samplerate)</visible>
+                <control type="label">
+                    <height>28</height>
+                    <align>center</align>
+                    <aligny>center</aligny>
+                    <label>$INFO[Container(9500).ListItem.Samplerate]</label>
+                    <font>Hint</font>
+                    <textcolor>Dark1</textcolor>
+                </control>
+                <control type="image">
+                    <height>44</height>
+                    <aspectratio>keep</aspectratio>
+                    <texture colordiffuse="Dark1">flags/monochrome/other/khz.png</texture>
+                    <aspectratio>keep</aspectratio>
+                </control>
+            </control>
+            <control type="grouplist">
+                <width min="20" max="100">auto</width>
+                <height>64</height>
+                <orientation>vertical</orientation>
+                <centertop>54%</centertop>
+                <itemgap>-17</itemgap>
+                <visible>!String.IsEmpty(Container(9500).ListItem.BPM) + !Skin.HasSetting(furniture.hide.bpm)</visible>
+                <control type="label">                
+                    <height>28</height>
+                    <align>center</align>
+                    <aligny>center</aligny>
+                    <label>$INFO[Container(9500).ListItem.BPM]</label>
+                    <font>Hint</font>
+                    <textcolor>Dark1</textcolor>
+                </control>
+                <control type="image">
+                    <height>44</height> 
+                    <aspectratio>keep</aspectratio>
+                    <texture>flags/monochrome/other/bpm.png</texture>
+                    <aspectratio>keep</aspectratio>
+                </control>
+            </control>
+            <control type="image">
+                <visible>!String.IsEmpty(Container(9500).ListItem.UserRating) + Skin.HasSetting(furniture.showuserrating.audio) + !Skin.HasSetting(userrating.override.rating)</visible>
+                <centertop>50%</centertop>
+                <width>37</width>
+                <height>37</height>
+                <left>15</left>
+                <texture background="true" colordiffuse="$VAR[ColorStars]">flags/monochrome/ratings/userrating.png</texture>
+                <animation effect="fadediffuse" start="FFFFFFFF" end="FFDD99DD" condition="true">Conditional</animation>                                        
+            </control>
+            <control type="label">
+                <visible>!String.IsEmpty(Container(9500).ListItem.UserRating) + Skin.HasSetting(furniture.showuserrating.audio) + !Skin.HasSetting(userrating.override.rating)</visible>
+                <centertop>50%</centertop>
+                <width>auto</width>
+                <height>64</height>
+                <font>Flag</font>
+                <left>5</left>
+                <textcolor>Dark1</textcolor>
+                <label>$INFO[Container(9500).ListItem.UserRating].0</label>
+            </control>            
         </control>
     </include>
 
