@@ -861,18 +861,24 @@
                         <include>Animation.FadeIn</include>
                         <include>Animation.FadeOut</include>
                         <itemlayout width="1122" height="640">
-                            <control type="image">
-                                <width>100%</width>
-                                <height>100%</height>
-                                <texture background="true" diffuse="diffuse/bigwiderolodex.png" border="5">$VAR[FanartImage]</texture>
-                            </control>
+                             <include content="def_widget_image">
+                                <param name="image" value="$VAR[FanartImage]" />
+                                <param name="diffuse" value="diffuse/home-fanart.png" />
+                                <param name="top" value="0" />
+                                <param name="left" value="0" />
+                                <param name="right" value="0" />
+                                <param name="bottom" value="0" />
+                            </include>        
                         </itemlayout>
                         <focusedlayout width="1122" height="640">
-                            <control type="image">
-                                <width>100%</width>
-                                <height>100%</height>
-                                <texture background="true" diffuse="diffuse/bigwiderolodex.png" border="5">$VAR[FanartImage]</texture>
-                            </control>
+					         <include content="def_widget_image">
+					            <param name="image" value="$VAR[FanartImage]" />
+					            <param name="diffuse" value="diffuse/home-fanart.png" />
+						        <param name="top" value="0" />
+						        <param name="left" value="0" />
+						        <param name="right" value="0" />
+						        <param name="bottom" value="0" />
+					        </include>        
                         </focusedlayout>
                         <content limit="$VAR[DefHubLimit]" target="$VAR[DefHubWidgetTarget]" browse="never">$VAR[DefHubWidget]</content>
                     </control>
@@ -884,71 +890,83 @@
                         <visible>Integer.IsGreater(Container(9500).NumItems,0)</visible>
                         <animation effect="fade" start="0" end="100" time="500">Visible</animation>
                         <animation effect="fade" start="100" end="0" time="300">Hidden</animation>
-                        <visible>Skin.HasSetting(hub.showplot)</visible>
                         <control type="image">
                             <left>0</left>
                             <right>0</right>
                             <bottom>0</bottom>
                             <height>210</height>
                             <texture border="15" colordiffuse="df000000">common/shadowbottom.png</texture>
+                            <visible>Skin.HasSetting(hub.showplot) + [String.IsEqual(Container(9500).ListItem.DBType,movie) | String.IsEqual(Container(9500).ListItem.DBType,set) | String.IsEqual(Container(9500).ListItem.DBType,tvshow) | String.IsEqual(Container(9500).ListItem.DBType,season) | String.IsEqual(Container(9500).ListItem.DBType,episode) | String.IsEqual(Container(9500).ListItem.DBType,artist) | String.IsEqual(Container(9500).ListItem.DBType,album) | String.IsEqual(Container(9500).ListItem.DBType,musicvideo)]</visible>
                         </control>
-                        <control type="label">
-                            <posx>30</posx>
-                            <top>-80</top>
-                            <width>200</width>
-                            <font>Small</font>
-                            <aligny>center</aligny>
-                            <height>64</height>
-                            <textcolor>PanelWhite70</textcolor>
-                            <selectedcolor>PanelWhite70</selectedcolor>
-                            <label>$INFO[Container(9500).ListItem.Year]</label>
+                        <control type="image">
+                            <left>0</left>
+                            <right>0</right>
+                            <bottom>0</bottom>
+                            <height>90</height>
+                            <texture border="15" colordiffuse="df000000">common/shadowbottomsmall.png</texture>
+                            <visible>!Skin.HasSetting(hub.showplot) | ![String.IsEqual(Container(9500).ListItem.DBType,movie) | String.IsEqual(Container(9500).ListItem.DBType,set) | String.IsEqual(Container(9500).ListItem.DBType,tvshow) | String.IsEqual(Container(9500).ListItem.DBType,season) | String.IsEqual(Container(9500).ListItem.DBType,episode) | String.IsEqual(Container(9500).ListItem.DBType,artist) | String.IsEqual(Container(9500).ListItem.DBType,album) | String.IsEqual(Container(9500).ListItem.DBType,musicvideo)]</visible>
                         </control>
-                        <control type="label">
-                            <posx>120</posx>
-                            <top>-80</top>
-                            <width max="730">auto</width>
-                            <aligny>center</aligny>
-                            <height>64</height>
-                            <font>SmallBold</font>
-                            <textcolor>PanelWhite70</textcolor>
-                            <selectedcolor>PanelWhite70</selectedcolor>
-                            <label>$INFO[Container(9500).ListItem.Label]</label>
-                        </control>
-                        <control type="label">
-                            <top>-80</top>
-                            <right>154</right>
-                            <width>500</width>
-                            <aligny>center</aligny>
-                            <height>64</height>
-                            <align>right</align>
-                            <font>Small</font>
-                            <textcolor>PanelWhite70</textcolor>
-                            <selectedcolor>PanelWhite70</selectedcolor>
-                            <label>$VAR[LabelDurationTimeCheck9500]</label>
-                            <visible>!String.IsEqual(Container(9500).ListItem.DBType,tvshow)</visible>
-                        </control>
-                        <control type="label">
-                            <centerright>96</centerright>
-                            <width>50</width>
-                            <top>-72</top>
-                            <height>50</height>
-                            <textcolor>PanelWhite70</textcolor>
-                            <selectedcolor>PanelWhite70</selectedcolor>
-                            <font>WatchedIcon</font>
-                            <label>$VAR[LabelPercentWatched_C9500]</label>
-                            <visible>!String.IsEqual(ListItem.Label,..)</visible>
-                        </control>
-                        <control type="label">
-                            <right>30</right>
-                            <width>500</width>
-                            <top>-80</top>
-                            <aligny>center</aligny>
-                            <height>64</height>
-                            <align>right</align>
-                            <font>Small</font>
-                            <textcolor>PanelWhite70</textcolor>
-                            <selectedcolor>PanelWhite70</selectedcolor>
-                            <label>$VAR[RatingLabel9500]</label>
+                        <control type="group">
+                            <animation effect="slide" start="0,0" end="0,-80" time="0" condition="Skin.HasSetting(hub.showplot) + [String.IsEqual(Container(9500).ListItem.DBType,movie) | String.IsEqual(Container(9500).ListItem.DBType,set) | String.IsEqual(Container(9500).ListItem.DBType,tvshow) | String.IsEqual(Container(9500).ListItem.DBType,season) | String.IsEqual(Container(9500).ListItem.DBType,episode) | String.IsEqual(Container(9500).ListItem.DBType,artist) | String.IsEqual(Container(9500).ListItem.DBType,album) | String.IsEqual(Container(9500).ListItem.DBType,musicvideo)]">Conditional</animation>
+	                        <control type="label">
+	                            <posx>30</posx>
+	                            <width>200</width>
+	                            <font>Small</font>
+	                            <aligny>center</aligny>
+	                            <height>64</height>
+	                            <textcolor>PanelWhite70</textcolor>
+	                            <selectedcolor>PanelWhite70</selectedcolor>
+	                            <label>$INFO[Container(9500).ListItem.Year]</label>
+	                            <visible>String.IsEqual(Container(9500).ListItem.DBType,movie) | String.IsEqual(Container(9500).ListItem.DBType,tvshow) | String.IsEqual(Container(9500).ListItem.DBType,album) | String.IsEqual(Container(9500).ListItem.DBType,song) | String.IsEqual(Container(9500).ListItem.DBType,musicvideo)</visible>
+	                        </control>
+	                        <control type="label">
+	                            <posx>120</posx>
+	                            <width max="730">auto</width>
+	                            <aligny>center</aligny>
+	                            <height>64</height>
+	                            <font>SmallBold</font>
+	                            <textcolor>PanelWhite70</textcolor>
+	                            <selectedcolor>PanelWhite70</selectedcolor>
+	                            <label>$INFO[Container(9500).ListItem.Label]</label>
+	                            <animation effect="slide" start="0" end="-90" time="0" condition="![String.IsEqual(Container(9500).ListItem.DBType,movie) | String.IsEqual(Container(9500).ListItem.DBType,tvshow) | String.IsEqual(Container(9500).ListItem.DBType,album) | String.IsEqual(Container(9500).ListItem.DBType,song) | String.IsEqual(Container(9500).ListItem.DBType,musicvideo)] | [[String.IsEqual(Container(9500).ListItem.DBType,movie) | String.IsEqual(Container(9500).ListItem.DBType,tvshow) | String.IsEqual(Container(9500).ListItem.DBType,album) | String.IsEqual(Container(9500).ListItem.DBType,song) | String.IsEqual(Container(9500).ListItem.DBType,musicvideo)] + String.IsEmpty(Container(9500).ListItem.Year)]">Conditional</animation>
+	                        </control>
+	                        <control type="grouplist">
+	                            <height>64</height>
+	                            <right>30</right>
+	                            <orientation>horizontal</orientation>
+	                            <align>right</align>
+	                            <usecontrolcoords>true</usecontrolcoords>
+	                            <itemgap>24</itemgap>
+		                        <control type="label">
+		                            <width>auto</width>
+		                            <aligny>center</aligny>
+		                            <height>64</height>
+		                            <font>Small</font>
+		                            <textcolor>PanelWhite70</textcolor>
+		                            <selectedcolor>PanelWhite70</selectedcolor>
+		                            <label>$VAR[LabelDurationTimeCheck9500]</label>
+		                            <visible>!String.IsEqual(Container(9500).ListItem.DBType,tvshow)</visible>
+		                        </control>
+		                        <control type="label">
+		                            <width>auto</width>
+		                            <aligny>center</aligny>
+		                            <top>8</top>
+		                            <height>50</height>
+		                            <textcolor>PanelWhite70</textcolor>
+		                            <selectedcolor>PanelWhite70</selectedcolor>
+		                            <font>WatchedIcon</font>
+		                            <label>$VAR[LabelPercentWatched_C9500]</label>
+		                            <visible>!String.IsEqual(Container(9500).ListItem.Label,..) + [String.IsEqual(Container(9500).ListItem.DBType,movie) | String.IsEqual(Container(9500).ListItem.DBType,set) | String.IsEqual(Container(9500).ListItem.DBType,tvshow) | String.IsEqual(Container(9500).ListItem.DBType,season) | String.IsEqual(Container(9500).ListItem.DBType,episode) | String.IsEqual(Container(9500).ListItem.DBType,musicvideo)]</visible>
+		                        </control>
+		                        <control type="label">
+		                            <width>auto</width>
+		                            <height>64</height>
+		                            <font>Small</font>
+		                            <textcolor>PanelWhite70</textcolor>
+		                            <selectedcolor>PanelWhite70</selectedcolor>
+		                            <label>$VAR[RatingLabel9500]</label>
+		                        </control>
+	                        </control>
                         </control>
                         <control type="textbox">
                             <top>-20</top>
@@ -959,85 +977,14 @@
                             <font>Tiny24</font>
                             <textcolor>PanelWhite70</textcolor>
                             <selectedcolor>PanelWhite70</selectedcolor>
-                            <label>$INFO[Container(9500).ListItem.Plot]</label>
-                        </control>
-                    </control>
-                    <control type="group">
-                        <left>0</left>
-                        <width>1122</width>
-                        <bottom>0</bottom>
-                        <height>70</height>
-                        <animation effect="fade" start="0" end="100" time="500">Visible</animation>
-                        <animation effect="fade" start="100" end="0" time="300">Hidden</animation>
-                        <visible>!Skin.HasSetting(hub.showplot)</visible>
-                        <visible>Integer.IsGreater(Container(9500).NumItems,0)</visible>
-                        <control type="image">
-                            <left>0</left>
-                            <right>0</right>
-                            <bottom>0</bottom>
-                            <height>90</height>
-                            <texture border="15" colordiffuse="df000000">common/shadowbottomsmall.png</texture>
-                        </control>
-                        <control type="label">
-                            <posx>30</posx>
-                            <width>200</width>
-                            <font>Small</font>
-                            <aligny>center</aligny>
-                            <height>64</height>
-                            <textcolor>PanelWhite70</textcolor>
-                            <selectedcolor>PanelWhite70</selectedcolor>
-                            <label>$INFO[Container(9500).ListItem.Year]</label>
-                        </control>
-                        <control type="label">
-                            <posx>120</posx>
-                            <width max="730">auto</width>
-                            <aligny>center</aligny>
-                            <height>64</height>
-                            <font>SmallBold</font>
-                            <textcolor>PanelWhite70</textcolor>
-                            <selectedcolor>PanelWhite70</selectedcolor>
-                            <label>$INFO[Container(9500).ListItem.Label]</label>
-                        </control>
-                        <control type="label">
-                            <right>154</right>
-                            <width>500</width>
-                            <aligny>center</aligny>
-                            <height>64</height>
-                            <align>right</align>
-                            <font>Small</font>
-                            <textcolor>PanelWhite70</textcolor>
-                            <selectedcolor>PanelWhite70</selectedcolor>
-                            <label>$VAR[LabelDurationTimeCheck9500]</label>
-                            <visible>!String.IsEqual(Container(9500).ListItem.DBType,tvshow)</visible>
-                        </control>
-                        <control type="label">
-                            <centerright>96</centerright>
-                            <width>50</width>
-                            <top>8</top>
-                            <aligny>center</aligny>
-                            <height>50</height>
-                            <textcolor>PanelWhite70</textcolor>
-                            <selectedcolor>PanelWhite70</selectedcolor>
-                            <font>WatchedIcon</font>
-                            <label>$VAR[LabelPercentWatched_C9500]</label>
-                            <visible>!String.IsEqual(ListItem.Label,..)</visible>
-                        </control>
-                        <control type="label">
-                            <right>30</right>
-                            <width>500</width>
-                            <aligny>center</aligny>
-                            <height>64</height>
-                            <align>right</align>
-                            <font>Small</font>
-                            <textcolor>PanelWhite70</textcolor>
-                            <selectedcolor>PanelWhite70</selectedcolor>
-                            <label>$VAR[RatingLabel9500]</label>
+                            <label fallback="$LOCALIZE[19055]">$VAR[LabelPlot9500]</label>
+                            <visible>Skin.HasSetting(hub.showplot) + [String.IsEqual(Container(9500).ListItem.DBType,movie) | String.IsEqual(Container(9500).ListItem.DBType,set) | String.IsEqual(Container(9500).ListItem.DBType,tvshow) | String.IsEqual(Container(9500).ListItem.DBType,season) | String.IsEqual(Container(9500).ListItem.DBType,episode) | String.IsEqual(Container(9500).ListItem.DBType,artist) | String.IsEqual(Container(9500).ListItem.DBType,album) | String.IsEqual(Container(9500).ListItem.DBType,musicvideo)]</visible>
                         </control>
                     </control>
                     <control type="image">
                         <left>0</left>
                         <top>0</top>
-                        <right>637</right>
+                        <right>636</right>
                         <bottom>0</bottom>
                         <texture colordiffuse="Box2" border="4" background="true" infill="false">common/box21.png</texture>
                         <visible>Skin.HasSetting(global.showborders)</visible>
@@ -1064,7 +1011,7 @@
                 <control type="group">
                     <control type="list" id="9501">
                         <description>Widget</description>
-                        <left>1140</left>
+                        <left>1155</left>
                         <right>0</right>
                         <top>0</top>
                         <height>640</height>
@@ -1078,9 +1025,9 @@
                         <include>ScrolltimeViewsList</include>
                         <include>Animation.FadeIn</include>
                         <include>Animation.FadeOut</include>
-                        <itemlayout width="620" height="80">
+                        <itemlayout width="605" height="80">
                             <control type="image">
-                                <right>0</right>
+                                <right>10</right>
                                 <top>5</top>
                                 <bottom>0</bottom>
                                 <width>70</width>
@@ -1089,14 +1036,14 @@
                             </control>
                             <control type="label">
                                 <left>30</left>
-                                <right>SidePad</right>
+                                <right>80</right>
                                 <height>100%</height>
                                 <font>SmallBold</font>
                                 <textcolor>Dark2</textcolor>
                                 <label>$INFO[ListItem.Label]</label>
                             </control>
                         </itemlayout>
-                        <focusedlayout width="620" height="80">
+                        <focusedlayout width="605" height="80">
                             <control type="group">
                                 <visible>Control.HasFocus(9501)</visible>
                                 <control type="image">
@@ -1105,7 +1052,7 @@
                                     <texture border="8" colordiffuse="Dark1">common/box.png</texture>
                                 </control>
                                 <control type="image">
-                                    <right>0</right>
+                                    <right>10</right>
                                     <top>5</top>
                                     <bottom>0</bottom>
                                     <width>70</width>
@@ -1114,7 +1061,7 @@
                                 </control>
                                 <control type="label">
                                     <left>30</left>
-                                    <right>SidePad</right>
+                                    <right>80</right>
                                     <height>100%</height>
                                     <font>SmallBold</font>
                                     <textcolor>Light1</textcolor>
@@ -1124,18 +1071,18 @@
                             <control type="group">
                                 <visible>!Control.HasFocus(9501)</visible>
                                 <control type="image">
-                                    <right>0</right>
+                                    <right>10</right>
                                     <top>0</top>
                                     <bottom>0</bottom>
-                                    <width>80</width>
+                                    <width>70</width>
                                     <texture colordiffuse="Dark1">$INFO[ListItem.Icon]</texture>
                                 </control>
                                 <control type="label">
                                     <left>30</left>
-                                    <right>SidePad</right>
+                                    <right>80</right>
                                     <height>100%</height>
                                     <font>SmallBold</font>
-                                    <textcolor>Dark2</textcolor>
+                                    <textcolor>Dark1</textcolor>
                                     <label>$INFO[ListItem.Label]</label>
                                 </control>
                             </control>
@@ -1167,49 +1114,9 @@
             <include>GlobalOverlay</include>
         </control>
         <control type="group">
-            <height>413</height>
+            <height>203</height>
             <include>Def9000Background</include>
-            <control type="group">
-                <control type="image">
-                    <description>arrow image</description>
-                    <centerleft>50%</centerleft>
-                    <posy>-16</posy>
-                    <include>arrowdimensions</include>
-                    <texture colordiffuse="White70" flipy="true">common/arrow-small.png</texture>
-                </control>
-                <control type="image">
-                    <description>arrow image</description>
-                    <centerleft>50%</centerleft>
-                    <posy>482</posy>
-                    <include>arrowdimensions</include>
-                    <texture colordiffuse="White70" flipy="false">common/arrow-small.png</texture>
-                </control>
-            </control>
-            <control type="group">
-                <left>22</left>
-                <top>22</top>
-                <control type="label">
-                    <description>Header Label</description>
-                    <left>70</left>
-                    <width>1000</width>
-                    <posy>0</posy>
-                    <include>FontTop</include>
-                    <textcolor>Black70</textcolor>
-                    <label>14018</label>
-                </control>
-                <include>Kodi_Logo</include>
-
-                <!-- Lines -->
-                <control type="image">
-                    <top>70</top>
-                    <left>17</left>
-                    <width>385</width>
-                    <height>1</height>
-                    <bottom>10</bottom>
-                    <colordiffuse>Black12</colordiffuse>
-                    <texture>common/white.png</texture>
-                </control>
-            </control>
+            <include>Def9000Header</include>
             <control type="image">
                 <top>110</top>
                 <left>8</left>
@@ -1226,7 +1133,7 @@
                 <animation effect="slide" end="0,70" time="0" condition="Integer.IsGreater(Container(9000).Position,5)">Conditional</animation>
             </control>
             <control type="grouplist" id="9000">
-                <height>280</height>
+                <height>70</height>
                 <top>110</top>
                 <usecontrolcoords>true</usecontrolcoords>
                 <include>Def9000GroupListHub</include>
@@ -1237,22 +1144,6 @@
                     <label>31299</label>
                     <selected>Skin.HasSetting(hub.showplot)</selected>
                     <onclick>Skin.ToggleSetting(hub.showplot)</onclick>
-                </control>
-                <control type="togglebutton" id="20">
-                    <description>Update</description>
-                    <align>left</align>
-                    <label>653</label>
-                    <altlabel>13353</altlabel>
-                    <include>DefContextButtonGradient</include>
-                    <usealttexture>Library.IsScanningVideo</usealttexture>
-                </control>
-                <include>ButtonPlaylist</include>
-                <control type="button" id="5555">
-                    <include>DefContextButtonGradient</include>
-                    <align>left</align>
-                    <label>31195</label>
-                    <onclick>ReloadSkin()</onclick>
-                    <visible>Skin.HasSetting(DebugInfo)</visible>
                 </control>
             </control>
         </control>

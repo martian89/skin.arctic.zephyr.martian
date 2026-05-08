@@ -176,6 +176,13 @@
         <value>$INFO[ListItem.Plot]</value>
     </variable>
 
+    <variable name="LabelPlot9500">
+        <value condition="!String.IsEmpty(Container(9500).ListItem.Property(Artist_Description))">$INFO[Container(9500).ListItem.Property(Artist_Description)]</value>
+        <value condition="!String.IsEmpty(Container(9500).ListItem.Property(Album_Description))">$INFO[Container(9500).ListItem.Property(Album_Description)]</value>
+        <value condition="!String.IsEmpty(Container(9500).ListItem.AddonDescription)">$INFO[Container(9500).ListItem.AddonDescription]</value>
+        <value>$INFO[Container(9500).ListItem.Plot]</value>
+    </variable>
+
     <variable name="LabelAudioChannels">
         <value condition="String.IsEqual(ListItem.AudioChannels,1) | [VideoPlayer.IsFullscreen + String.IsEqual(VideoPlayer.AudioChannels,1)] | String.IsEqual(ListItem.MusicChannels,1) | [Window.IsActive(visualisation) + String.IsEqual(MusicPlayer.Channels,1)]">1.0</value>
         <value condition="String.IsEqual(ListItem.AudioChannels,2) | [VideoPlayer.IsFullscreen + String.IsEqual(VideoPlayer.AudioChannels,2)] | String.IsEqual(ListItem.MusicChannels,2) | [Window.IsActive(visualisation) + String.IsEqual(MusicPlayer.Channels,2)]">2.0</value>
@@ -191,17 +198,17 @@
     </variable>
 
     <variable name="LabelHubAudioChannels">
-        <value condition="String.IsEqual(Container(9500).ListItem.AudioChannels,1)">1.0</value>
-        <value condition="String.IsEqual(Container(9500).ListItem.AudioChannels,2)">2.0</value>
-        <value condition="String.IsEqual(Container(9500).ListItem.AudioChannels,3)">2.1</value>
-        <value condition="String.IsEqual(Container(9500).ListItem.AudioChannels,4)">4.0</value>
-        <value condition="String.IsEqual(Container(9500).ListItem.AudioChannels,5)">4.1</value>
-        <value condition="String.IsEqual(Container(9500).ListItem.AudioChannels,6)">5.1</value>
-        <value condition="String.IsEqual(Container(9500).ListItem.AudioChannels,7)">6.1</value>
-        <value condition="String.IsEqual(Container(9500).ListItem.AudioChannels,8)">7.1</value>
-        <value condition="String.IsEqual(Container(9500).ListItem.AudioChannels,10)">9.1</value>
-        <value condition="String.IsEqual(Container(9500).ListItem.AudioChannels,12)">7.1.4</value>
-        <value condition="String.IsEqual(Container(9500).ListItem.AudioChannels,16)">9.1.6</value>
+        <value condition="String.IsEqual(Container(9500).ListItem.AudioChannels,1) | String.IsEqual(Container(9500).ListItem.MusicChannels,1)">1.0</value>
+        <value condition="String.IsEqual(Container(9500).ListItem.AudioChannels,2) | String.IsEqual(Container(9500).ListItem.MusicChannels,2)">2.0</value>
+        <value condition="String.IsEqual(Container(9500).ListItem.AudioChannels,3) | String.IsEqual(Container(9500).ListItem.MusicChannels,3)">2.1</value>
+        <value condition="String.IsEqual(Container(9500).ListItem.AudioChannels,4) | String.IsEqual(Container(9500).ListItem.MusicChannels,4)">4.0</value>
+        <value condition="String.IsEqual(Container(9500).ListItem.AudioChannels,5) | String.IsEqual(Container(9500).ListItem.MusicChannels,5)">4.1</value>
+        <value condition="String.IsEqual(Container(9500).ListItem.AudioChannels,6) | String.IsEqual(Container(9500).ListItem.MusicChannels,6)">5.1</value>
+        <value condition="String.IsEqual(Container(9500).ListItem.AudioChannels,7) | String.IsEqual(Container(9500).ListItem.MusicChannels,7)">6.1</value>
+        <value condition="String.IsEqual(Container(9500).ListItem.AudioChannels,8) | String.IsEqual(Container(9500).ListItem.MusicChannels,8)">7.1</value>
+        <value condition="String.IsEqual(Container(9500).ListItem.AudioChannels,10) | String.IsEqual(Container(9500).ListItem.MusicChannels,10)">9.1</value>
+        <value condition="String.IsEqual(Container(9500).ListItem.AudioChannels,12) | String.IsEqual(Container(9500).ListItem.MusicChannels,12)">7.1.4</value>
+        <value condition="String.IsEqual(Container(9500).ListItem.AudioChannels,16) | String.IsEqual(Container(9500).ListItem.MusicChannels,16)">9.1.6</value>
     </variable>
 
     <variable name="Label_SettingsHeader">
@@ -379,6 +386,10 @@
     </variable>
 
     <variable name="HDSD_Hub">
+        <value condition="[String.IsEqual(Container(9500).ListItem.DBType,tvshow) | String.IsEqual(Container(9500).ListItem.DBType,season)] + !String.IsEmpty(Container(9500).ListItem.Property(TotalEpisodes))">$INFO[Container(9500).ListItem.Property(TotalEpisodes)]</value>
+        <value condition="[String.IsEqual(Container(9500).ListItem.DBType,tvshow) | String.IsEqual(Container(9500).ListItem.DBType,season)] + !String.IsEmpty(Window(home).Property(TMDbHelper.ListItem.TotalEpisodes))">$INFO[Window(home).Property(TMDbHelper.ListItem.TotalEpisodes)]</value>
+        <value condition="[String.IsEqual(Container(9500).ListItem.DBType,tvshow) | String.IsEqual(Container(9500).ListItem.DBType,season)] + !String.IsEmpty(Container(9500).ListItem.Episode)">$INFO[Container(9500).ListItem.Episode]</value>
+        <value condition="[String.IsEqual(Container(9500).ListItem.DBType,tvshow) | String.IsEqual(Container(9500).ListItem.DBType,season)] + !String.IsEmpty(Window(home).Property(TMDbHelper.ListItem.Episode))">$INFO[Window(home).Property(TMDbHelper.ListItem.Episode)]</value>
         <value condition="String.IsEqual(Container(9500).ListItem.VideoResolution,4K) | String.IsEqual(Container(9500).ListItem.VideoResolution,8K)">UHD</value>
         <value condition="Integer.IsGreaterOrEqual(Container(9500).ListItem.VideoResolution,720)">HD</value>
         <value condition="!String.IsEmpty(Container(9500).ListItem.VideoResolution)">SD</value>
