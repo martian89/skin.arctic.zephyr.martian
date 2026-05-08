@@ -5,7 +5,15 @@
     <zorder>1</zorder>
     <defaultcontrol always="true">9000</defaultcontrol>
     <controls>
-        <include content="DialogSettingsLayout">
+        <include content="DialogSettingsLayout" condition="String.IsEqual(Window(home).Property(CustomDialogSettingsContent),videosettings)">
+            <param name="content_include" value="DialogVideoSettingsContent"/>
+        </include>
+        <include content="DialogSettingsLayout" condition="String.IsEqual(Window(home).Property(CustomDialogSettingsContent),musicsettings)">
+            <param name="height" value="690"/>
+            <param name="content_include" value="DialogMusicSettingsContent"/>
+        </include>
+        <include content="DialogSettingsLayout" condition="String.IsEqual(Window(home).Property(CustomDialogSettingsContent),gamessettings)">
+            <param name="content_include" value="DialogGamesSettingsContent"/>
         </include>
     </controls>
 </window>

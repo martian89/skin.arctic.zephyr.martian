@@ -4,6 +4,7 @@
 
 	<include name="DialogSettingsLayout">
 		<param name="header_label" default="5" />
+        <param name="height" default="620"/>
 		<param name="content_include" />
 
 		<definition>
@@ -17,13 +18,13 @@
 	            <visible>!Window.IsActive(GameVideoFilter) + !Window.IsActive(GameStretchMode) + !Window.IsActive(GameVideoRotation) + !Window.IsActive(DialogSlider.xml)</visible>
 	            <include>Animation.ZoomIn</include>
 	            <include>Animation.FadeOut</include>
-				<height>620</height>
+				<height>$PARAM[height]</height>
 				<include>Def9000Background</include>
 				<include content="Def9000Header">
 					<param name="header_label" value="$PARAM[header_label]" />
 				</include>
 				<include content="Def9000Arrows">
-					<param name="arrow_bottom" value="620" />
+					<param name="arrow_bottom" value="$PARAM[height]" />
 				</include>
 				<include content="Def_Gradient_Settings_Image">
 					<param name="controlid" value="9000" />
@@ -32,19 +33,17 @@
 					<param name="width" value="450" />
 				</include>
 				<control type="grouplist" id="9000">
-					<posx>8</posx>
-					<posy>112</posy>
-					<width>510</width>
-					<height>490</height>
+                    <top>112</top>
+                    <left>8</left>
+                    <right>8</right>
+                    <bottom>18</bottom>
 					<itemgap>0</itemgap>
 					<usecontrolcoords>true</usecontrolcoords>
 					<scrolltime>0</scrolltime>
 					<onright>Dialog.Close(1101)</onright>
 					<onleft>Dialog.Close(1101)</onleft>
 					<defaultcontrol always="true">101</defaultcontrol>
-					<include condition="String.IsEqual(Window(home).Property(CustomDialogSettingsContent),videosettings)">DialogVideoSettingsContent</include>
-					<include condition="String.IsEqual(Window(home).Property(CustomDialogSettingsContent),musicsettings)">DialogMusicSettingsContent</include>
-					<include condition="String.IsEqual(Window(home).Property(CustomDialogSettingsContent),gamesettings)">DialogGameSettingsContent</include>
+					<include>$PARAM[content_include]</include>
 				</control>
 			</control>
 		</definition>
@@ -159,7 +158,14 @@
 			<onclick>Skin.ToggleSetting(ArtistSlideshow.Animate)</onclick>
 			<enable>$EXP[Visualisation_ShowFanart]</enable>
 		</control>
-		<control type="button" id="107">
+        <control type="radiobutton" id="107">
+            <align>left</align>
+            <include>DefContextButtonGradient</include>
+            <label>21891</label>
+            <selected>Skin.HasSetting(osd.artistinfos)</selected>
+            <onclick>Skin.ToggleSetting(osd.artistinfos)</onclick>
+        </control>
+		<control type="button" id="108">
 			<description>Visualisation</description>
 			<include>DefContextButtonGradient</include>
 			<label>$LOCALIZE[250]:</label>
@@ -167,7 +173,7 @@
 			<align>left</align>
 			<onclick>SendClick(500)</onclick>
 		</control>
-		<control type="button" id="108">
+		<control type="button" id="109">
 			<description>Visualisation</description>
 			<include>DefContextButtonGradient</include>
 			<align>left</align>
@@ -176,7 +182,7 @@
 			<onclick>ActivateWindow(visualisationpresetlist)</onclick>
 			<visible>Visualisation.HasPresets</visible>
 		</control>
-		<control type="button" id="109">
+		<control type="button" id="110">
 			<description>Visualisation</description>
 			<include>DefContextButtonGradient</include>
 			<label>$LOCALIZE[31977]</label>
