@@ -170,7 +170,7 @@
                 <control type="button" id="4001" description="Alt chooser">
                     <label>$ADDON[script.skinshortcuts 32044]</label>
                     <include>Def_Skinshortcuts_Buttons</include>
-                   <onfocus>ClearProperty(TMDbHelper.IsStandardSkinShortcut,Home)</onfocus>
+                    <onfocus>ClearProperty(TMDbHelper.IsStandardSkinShortcut,Home)</onfocus>
                     <visible>$EXP[Skinshortcuts_Widgets_Active]</visible>
                 </control>
                 <control type="button" id="3007" description="Custom">
@@ -193,8 +193,8 @@
                 <control type="button" id="406" description="Widget Subdialog">
                     <label>31144</label>
                     <include>Def_Skinshortcuts_Buttons</include>
-                    <visible>$EXP[Skinshortcuts_Mainmenu_Active]</visible>
                     <onfocus>ClearProperty(TMDbHelper.IsStandardSkinShortcut,Home)</onfocus>
+                    <visible>$EXP[Skinshortcuts_Mainmenu_Active]</visible>
                     <visible>Skin.HasSetting(home.vertical.widgets)</visible>
                     <visible>String.IsEmpty(Window.Property(disableWidgets))</visible>
                 </control>
@@ -202,6 +202,7 @@
 		            <label>31266</label>
                     <label2>$VAR[Label_Widget_Name]</label2>
 		            <include>Def_Skinshortcuts_Buttons</include>
+                    <onfocus>ClearProperty(TMDbHelper.IsStandardSkinShortcut,Home)</onfocus>
                     <visible>$EXP[Skinshortcuts_Mainmenu_Active]</visible>
                     <visible>!Skin.HasSetting(home.vertical.widgets)</visible>
                     <visible>String.IsEmpty(Window.Property(disableWidgets))</visible>
@@ -268,10 +269,10 @@
                     <visible>String.IsEmpty(Window.Property(disableBackgrounds))</visible>
                 </control>
 			    <control type="radiobutton" id="350" description="Widget Fullscreen">
-	 		        <selected>String.IsEqual(Container(211).ListItem.Property(widgetFullscreen),yes) | Skin.HasSetting(homemenu.netflix)</selected>
+	 		        <selected>String.IsEqual(Container(211).ListItem.Property(widgetFullscreen),true)</selected>
 			        <label>$LOCALIZE[31411]</label>
 			        <include>Def_Skinshortcuts_Buttons</include>
-			        <enable>!String.IsEqual(Container(211).ListItem.Property(widgetPath),submenu)</enable>
+			        <visible>!String.IsEqual(Container(211).ListItem.Property(widgetPath),submenu)</visible>
 			        <visible>Skin.HasSetting(home.vertical.widgets) + !Skin.HasSetting(homemenu.netflix)</visible>
                     <visible>$EXP[Skinshortcuts_Widgets_Active]</visible>
 			    </control>
