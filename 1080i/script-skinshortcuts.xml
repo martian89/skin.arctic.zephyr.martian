@@ -195,7 +195,7 @@
                     <include>Def_Skinshortcuts_Buttons</include>
                     <onfocus>ClearProperty(TMDbHelper.IsStandardSkinShortcut,Home)</onfocus>
                     <visible>$EXP[Skinshortcuts_Mainmenu_Active]</visible>
-                    <visible>Skin.HasSetting(home.vertical.widgets)</visible>
+                    <visible>!String.IsEmpty(Window(home).Property(multiWidgets))</visible>
                     <visible>String.IsEmpty(Window.Property(disableWidgets))</visible>
                 </control>
 		        <control type="button" id="800" description="Widget">
@@ -204,7 +204,7 @@
 		            <include>Def_Skinshortcuts_Buttons</include>
                     <onfocus>ClearProperty(TMDbHelper.IsStandardSkinShortcut,Home)</onfocus>
                     <visible>$EXP[Skinshortcuts_Mainmenu_Active]</visible>
-                    <visible>!Skin.HasSetting(home.vertical.widgets)</visible>
+                    <visible>String.IsEmpty(Window(home).Property(multiWidgets))</visible>
                     <visible>String.IsEmpty(Window.Property(disableWidgets))</visible>
 		        </control>
                 <include content="Def_Skinshortcuts_SetHub">
