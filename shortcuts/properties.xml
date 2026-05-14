@@ -40,12 +40,12 @@
 		    <option value="random" label="$LOCALIZE[590]" />
 		    <option value="dateadded" label="$LOCALIZE[570]" />
 		    <option value="lastplayed" label="$LOCALIZE[568]" />
-		    <option value="playcount" label="$LOCALIZE[567]" condition="widgetType=movies | widgetType=tvshows | widgetType=episodes | widgetType=musicvideos" />
-		    <option value="year" label="$LOCALIZE[345]" condition="widgetType=movies | widgetType=tvshows | widgetType=musicvideos | widgetType=albums | widgetType=songs" />
-		    <option value="rating" label="$LOCALIZE[563]" condition="widgetType=movies | widgetType=tvshows | widgetType=episodes | widgetType=musicvideos | widgetType=albums | widgetType=songs" />
+		    <option value="playcount" label="$LOCALIZE[567]" condition="widgetType=movies | widgetType=sets | widgetType=tvshows | widgetType=episodes | widgetType=musicvideos | widgetType=albums | widgetType=songs" />
+		    <option value="year" label="$LOCALIZE[345]" condition="widgetType=movies | widgetType=sets | widgetType=tvshows | widgetType=musicvideos | widgetType=albums | widgetType=songs" />
+		    <option value="rating" label="$LOCALIZE[563]" condition="widgetType=movies | widgetType=sets | widgetType=tvshows | widgetType=episodes | widgetType=musicvideos | widgetType=albums | widgetType=songs" />
 		    <option value="userrating" label="$LOCALIZE[38018]" condition="widgetTarget=videos | widgetTarget=music" />
 		    <option value="votes" label="$LOCALIZE[205]" condition="widgetType=movies | widgetType=tvshows | widgetType=episodes" />
-		    <option value="genre" label="$LOCALIZE[515]" condition="widgetType=movies | widgetType=tvshows | widgetType=musicvideos | widgetType=albums | widgetType=songs | widgetType=artists"/>
+		    <option value="genre" label="$LOCALIZE[515]" condition="widgetType=movies | widgetType=sets | widgetType=tvshows | widgetType=musicvideos | widgetType=albums | widgetType=songs | widgetType=artists"/>
 		    <option value="country" label="$LOCALIZE[574]" condition="widgetType=movies | widgetType=tvshows | widgetType=episodes" />
 		    <option value="studio" label="$LOCALIZE[572]" condition="widgetType=movies | widgetType=tvshows | widgetType=episodes" />
 		    <option value="playlist" label="$LOCALIZE[559]" condition="widgetPath~/playlists/" />
@@ -54,7 +54,7 @@
 		    <option value="totalepisodes" label="$LOCALIZE[20360]" condition="widgetType=tvshows" />
 		    <option value="watchedepisodes" label="$LOCALIZE[21457]" condition="widgetType=tvshows" />
 		    <option value="tvshowtitle" label="$LOCALIZE[36902]" condition="widgetType=episodes" />
-		    <option value="file" label="$LOCALIZE[561]" />
+		    <option value="file" label="$LOCALIZE[561]" condition="widgetType=movies | widgetType=episodes | widgetType=musicvideos | widgetType=songs | widgetType=pictures" />
 		    <option value="title" label="$LOCALIZE[369]" />
 		    <option value="tracknumber" label="$LOCALIZE[554]" condition="widgetType=musicvideos | widgetType=songs" />
 		    <option value="time" label="$LOCALIZE[555]" condition="widgetType=movies | widgetType=tvshows | widgetType=episodes | widgetType=musicvideos | widgetType=albums | widgetType=songs" />
@@ -93,6 +93,7 @@
 	<buttons suffix="true">
 		<button id="4001" property="widget" type="widget" />
 		<button id="3007" property="widgetPath" type="text" />
+        <button id="3005" property="widgetLabel" type="text" />
 		<button id="310" property="background" type="background" />
         <button id="350" property="widgetFullscreen" type="toggle" />
 		<button id="351" property="widgetAspect" title="$LOCALIZE[31261]" showIcons="false" showNone="false" />
@@ -112,6 +113,8 @@
             <when condition="widgetType=tvshows">Poster</when>
             <when condition="widgetType=episodes">Poster</when>
             <when condition="widgetType=games">Poster</when>
+            <!-- Spotlight widget -->
+            <when condition="!widgetPath">Poster</when>
             <default>Square</default>
         </fallback>
         <fallback property="widgetStyle">

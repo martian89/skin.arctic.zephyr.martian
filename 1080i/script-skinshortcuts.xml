@@ -184,6 +184,13 @@
                     <label>31268</label>
                     <label2>$INFO[Container(211).ListItem.Label]</label2>
                     <include>Def_Skinshortcuts_Buttons</include>
+                    <visible>!$EXP[Skinshortcuts_Widgets_Active] | !String.IsEmpty(Window(home).Property(multiWidgets))</visible>
+                </control>
+                <control type="button" id="3005" description="Set Widget Label">
+                    <label>31268</label>
+                    <label2>$INFO[Container(211).ListItem.Property(widgetLabel)]</label2>
+                    <include>Def_Skinshortcuts_Buttons</include>
+                    <visible>$EXP[Skinshortcuts_Widgets_Active] + String.IsEmpty(Window(home).Property(multiWidgets))</visible>
                 </control>
                 <control type="button" id="306" description="Select Icon">
                     <label>31477</label>
