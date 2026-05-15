@@ -10,7 +10,11 @@
             <include>GlobalOverlay</include>
         </control>
         <control type="group">
+        	<include content="def_height" condition="RetroPlayer.SupportsEject">
+        		<param name="height" value="620" />
+        	</include>
             <height>550</height>
+            <width>566</width>
             <visible allowhiddenfocus="true">ControlGroup(9000).HasFocus()</visible>
             <include>Animation.ZoomIn</include>
             <include>Animation.FadeOut</include>
@@ -19,20 +23,23 @@
 			<include content="Def9000Header">
 				<param name="header_label" value="35221" />
 			</include>
-			<include content="Def9000Arrows">
+			<include content="Def9000Arrows" condition="RetroPlayer.SupportsEject">
+				<param name="arrow_bottom" value="620" />
+			</include>
+			<include content="Def9000Arrows" condition="!RetroPlayer.SupportsEject">
 				<param name="arrow_bottom" value="550" />
 			</include>
 			<include content="Def_Gradient_Settings_Image">
 				<param name="controlid" value="9000" />
 				<param name="left" value="8" />
 				<param name="top" value="112" />
-				<param name="width" value="450" />
+				<param name="width" value="550" />
 			</include>
             <control type="grouplist" id="9000">
-				<posx>8</posx>
-				<posy>112</posy>
-				<width>510</width>
-				<height>420</height>
+                <top>112</top>
+                <left>8</left>
+                <right>8</right>
+                <bottom>18</bottom>
 				<itemgap>0</itemgap>
                 <scrolltime>0</scrolltime>
                 <onleft>Close</onleft>
@@ -42,41 +49,58 @@
                 <control type="button" id="101">
                     <description>Pause / Resume button</description>
                     <align>left</align>
+					<width>100%</width>
                     <label>$LOCALIZE[35224]</label>
+					<label2>[COLOR Black30]$FEATURE[select,game.controller.snes] + $FEATURE[x,game.controller.default][/COLOR]</label2>
                     <include>DefContextButtonGradient</include>
                     <onclick>Play</onclick>
                 </control>
                 <control type="button" id="102">
                     <description>Save / Load button</description>
                     <align>left</align>
+					<width>100%</width>
                     <label>$LOCALIZE[35249]</label>
                     <include>DefContextButtonGradient</include>
                     <onclick>ActivateWindow(InGameSaves)</onclick>
                 </control>
                 <control type="button" id="103">
+					<description>Disc Manager button</description>
+					<align>left</align>
+					<width>100%</width>
+					<label>$LOCALIZE[35272]</label>
+                    <include>DefContextButtonGradient</include>
+					<onclick>ActivateWindow(GameDiscManager)</onclick>
+					<visible>RetroPlayer.SupportsEject</visible>
+                </control>
+                <control type="button" id="104">
                     <description>Players button</description>
                     <align>left</align>
+					<width>100%</width>
                     <label>$LOCALIZE[35172]</label>
                     <include>DefContextButtonGradient</include>
                     <onclick>ActivateWindow(GameAgents)</onclick>
                 </control>
-                <control type="button" id="104">
+                <control type="button" id="105">
                     <description>Reset button</description>
                     <align>left</align>
+					<width>100%</width>
                     <label>$LOCALIZE[13007]</label>
                     <include>DefContextButtonGradient</include>
                     <onclick>PlayerControl(Reset)</onclick>
                 </control>
-                <control type="button" id="105">
+                <control type="button" id="106">
                     <description>Stop button</description>
                     <align>left</align>
+					<width>100%</width>
                     <label>$LOCALIZE[35222]</label>
+					<label2>[COLOR Black30]$FEATURE[select,game.controller.snes] + $FEATURE[start,game.controller.default][/COLOR]</label2>
                     <include>DefContextButtonGradient</include>
                     <onclick>Stop</onclick>
                 </control>
-                <control type="button" id="106">
+                <control type="button" id="107">
                     <description>Settings</description>
                     <align>left</align>
+					<width>100%</width>
                     <label>$LOCALIZE[5]</label>
                     <include>DefContextButtonGradient</include>
 		            <onclick>SetProperty(CustomDialogSettingsContent,gamesettings,home)</onclick>
