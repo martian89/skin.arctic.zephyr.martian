@@ -4,6 +4,8 @@
 
 	<include name="DialogSettingsLayout">
 		<param name="header_label" default="5" />
+		<param name="top" default="184"/>
+		<param name="width" default="466"/>
         <param name="height" default="620"/>
 		<param name="content_include" />
 
@@ -18,6 +20,8 @@
 	            <visible>!Window.IsActive(GameVideoFilter) + !Window.IsActive(GameStretchMode) + !Window.IsActive(GameVideoRotation) + !Window.IsActive(DialogSlider.xml)</visible>
 	            <include>Animation.ZoomIn</include>
 	            <include>Animation.FadeOut</include>
+	            <top>$PARAM[top]</top>
+				<width>$PARAM[width]</width>
 				<height>$PARAM[height]</height>
 				<include>Def9000Background</include>
 				<include content="Def9000Header">
@@ -29,8 +33,9 @@
 				<include content="Def_Gradient_Settings_Image">
 					<param name="controlid" value="9000" />
 					<param name="left" value="8" />
+					<param name="right" value="8" />
 					<param name="top" value="112" />
-					<param name="width" value="450" />
+					<param name="align_right" value="true" />
 				</include>
 				<control type="grouplist" id="9000">
                     <top>112</top>
@@ -194,42 +199,50 @@
 
 	<include name="DialogGameSettingsContent">
 		<control type="button" id="101">
+			<width>100%</width>
 			<include>DefContextButtonGradient</include>
 			<align>left</align>
 			<label>$LOCALIZE[35225]</label>
 			<onclick>ActivateWindow(GameVideoFilter)</onclick>
 		</control>
 		<control type="button" id="102">
+			<width>100%</width>
 			<include>DefContextButtonGradient</include>
 			<align>left</align>
 			<label>$LOCALIZE[35233]</label>
 			<onclick>ActivateWindow(GameStretchMode)</onclick>
 		</control>
 		<control type="button" id="103">
+			<width>100%</width>
 			<include>DefContextButtonGradient</include>
 			<align>left</align>
 			<label>$LOCALIZE[35227]</label>
 			<onclick>ActivateWindow(GameVideoRotation)</onclick>
 		</control>
 		<control type="button" id="104">
+			<width>100%</width>
 			<label>$LOCALIZE[13376]</label>
+			<label2>[COLOR Black30]$FEATURE[select,game.controller.snes] + $FEATURE[rightstick,game.controller.default][/COLOR]</label2>
 			<align>left</align>
 			<include>DefContextButtonGradient</include>
 			<onclick>ActivateWindow(GameVolume)</onclick>
 		</control>
 		<control type="button" id="105">
+			<width>100%</width>
 			<include>DefContextButtonGradient</include>
 			<align>left</align>
 			<label>$LOCALIZE[35234]</label>
 			<onclick>ActivateWindow(GameControllers)</onclick>
 		</control>
 		<control type="button" id="106">
+			<width>100%</width>
 			<include>DefContextButtonGradient</include>
 			<align>left</align>
 			<label>$LOCALIZE[35110]</label>
 			<onclick>ActivateWindow(GamePorts)</onclick>
 		</control>
 		<control type="button" id="107">
+			<width>100%</width>
 			<include>DefContextButtonGradient</include>
 			<align>left</align>
 			<label>$LOCALIZE[35226]</label>
