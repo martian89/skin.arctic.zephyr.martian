@@ -623,11 +623,6 @@
 		<value>$VAR[GlobalFanart_Fallback]</value>
 	</variable>
 	
-	<!-- Dummy definition in case no widgets are defined -->
-	<variable name="GlobalFanart_MultiWidgets_Parent">
-		<value></value>
-	</variable>
-	
 	<variable name="GlobalFanart_MultiWidgets_Spotlight">
         <value condition="String.IsEqual(Container(993100).ListItem.DBtype,episode) + !String.IsEmpty(Container(993100).ListItem.Art(thumb)) + Skin.HasSetting(background.episodes.use.thumbnail)">$INFO[Container(993100).ListItem.Art(thumb)]</value>
         <value condition="String.IsEqual(Container(993100).ListItem.DBtype,episode) + !String.IsEmpty(Container(993100).ListItem.Art(season.fanart)) + String.IsEqual(Container(993100).ListItem.Art(fanart),Container(993100)ListItem.Art(tvshow.fanart))">$INFO[Container(993100).ListItem.Art(season.fanart)]</value>
@@ -1486,11 +1481,6 @@
         <value condition="Integer.IsGreater(Container(9989).NumItems,0)">$VAR[TMDBHelperWidgetContainer_Parent]</value>
         <value condition="Control.IsVisible(993100)">$NUMBER[993100]</value>
     </variable>
-
-	<!-- Dummy definition in case no widgets are defined -->
-	<variable name="TMDBHelperWidgetContainer_Parent">
-		<value></value>
-	</variable>
 
     <include name="SetWidgetContainerForTMDB">
         <control type="button">
