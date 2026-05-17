@@ -37,7 +37,17 @@
                         <height>66</height>
                         <aspectratio>keep</aspectratio>
                         <texture colordiffuse="Black70" fallback="special://skin/extras/icons/addtile.png">$INFO[ListItem.Icon]</texture>
-                        <visible>true</visible>
+                        <visible>String.IsEmpty(ListItem.Icon) | String.StartsWith(ListItem.Icon,Default) | String.StartsWith(ListItem.Icon,special://skin/extras/icons/)</visible>
+                        <animation effect="fade" start="0" end="100" time="1" delay="1" reversible="false">Visible</animation>
+                    </control>
+                    <control type="image">
+                        <left>16</left>
+                        <top>0</top>
+                        <width>66</width>
+                        <height>66</height>
+                        <aspectratio>scale</aspectratio>
+                        <texture>$INFO[ListItem.Icon]</texture>
+                        <visible>![String.IsEmpty(ListItem.Icon) | String.StartsWith(ListItem.Icon,Default) | String.StartsWith(ListItem.Icon,special://skin/extras/icons/)]</visible>
                         <animation effect="fade" start="0" end="100" time="1" delay="1" reversible="false">Visible</animation>
                     </control>
                     <control type="label">
@@ -65,7 +75,19 @@
                         <top>0</top>
                         <width>66</width>
                         <height>66</height>
+                        <aspectratio>keep</aspectratio>
                         <texture colordiffuse="Selected" fallback="special://skin/extras/icons/addtile.png">$INFO[ListItem.Icon]</texture>
+                        <visible>String.IsEmpty(ListItem.Icon) | String.StartsWith(ListItem.Icon,Default) | String.StartsWith(ListItem.Icon,special://skin/extras/icons/)</visible>
+                        <animation effect="fade" start="0" end="100" time="1" delay="1" reversible="false">Visible</animation>
+                    </control>
+                    <control type="image">
+                        <left>16</left>
+                        <top>0</top>
+                        <width>66</width>
+                        <height>66</height>
+                        <aspectratio>scale</aspectratio>
+                        <texture>$INFO[ListItem.Icon]</texture>
+                        <visible>![String.IsEmpty(ListItem.Icon) | String.StartsWith(ListItem.Icon,Default) | String.StartsWith(ListItem.Icon,special://skin/extras/icons/)]</visible>
                         <animation effect="fade" start="0" end="100" time="1" delay="1" reversible="false">Visible</animation>
                     </control>
                     <control type="label">
