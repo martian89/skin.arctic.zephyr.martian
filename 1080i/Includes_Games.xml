@@ -823,4 +823,129 @@
 			</control>
  		</definition>	
 	</include>
+	
+	<include name="GameDialogDiscManager">
+		<include content="DefDialog">
+			<param name="height" value="480" />
+			<param name="width" value="900" />					
+			<param name="header_label" value="$LOCALIZE[35272]" />
+
+			<include content="Def9000Arrows">
+				<param name="arrow_bottom" value="480" />
+			</include>
+
+			<control type="group">
+				<description>Visibility group for main menu</description>
+				<visible>String.IsEqual(Window.Property(GameDiscManager.ShowMenu),true)</visible>
+
+				<include content="Def_Gradient_Settings_Image">
+					<param name="controlid" value="9000" />
+					<param name="top" value="112" />
+					<param name="left" value="8" />
+					<param name="right" value="8" />
+					<param name="align_right" value="true" />
+				</include>
+				<control type="grouplist" id="9000">
+                    <top>112</top>
+                    <left>8</left>
+                    <right>8</right>
+                    <bottom>18</bottom>
+					<itemgap>0</itemgap>
+					<usecontrolcoords>true</usecontrolcoords>
+					<scrolltime>0</scrolltime>
+					<control type="button" id="108323">
+						<align>left</align>
+						<width>100%</width>
+						<include>DefContextButtonGradient</include>
+						<label>$LOCALIZE[35273]</label>
+						<label2>$LOCALIZE[35274]</label2>
+						<enable>RetroPlayer.DiscEjected</enable>
+					</control>
+					<control type="button" id="108324">
+						<align>left</align>
+						<width>100%</width>
+						<include>DefContextButtonGradient</include>
+						<label>$LOCALIZE[35275]</label>
+					</control>
+					<control type="button" id="108325">
+						<align>left</align>
+						<width>100%</width>
+						<include>DefContextButtonGradient</include>
+						<label>$LOCALIZE[15019]</label>
+						<enable>RetroPlayer.DiscEjected</enable>
+					</control>
+					<control type="button" id="108326">
+						<align>left</align>
+						<width>100%</width>
+						<include>DefContextButtonGradient</include>
+						<label>$LOCALIZE[1210]</label>
+						<enable>RetroPlayer.DiscEjected</enable>
+					</control>
+					<control type="button" id="108327">
+						<align>left</align>
+						<width>100%</width>
+						<include>DefContextButtonGradient</include>
+						<label>$LOCALIZE[35277]</label>
+					</control>
+				</control>
+			</control>
+				
+			<control type="group">
+				<description>Visibility group for disc list</description>
+				<visible>String.IsEqual(Window.Property(GameDiscManager.ShowDiscList),true)</visible>
+
+				<control type="list" id="208321">
+					<description>Disc list</description>
+                    <top>112</top>
+                    <left>8</left>
+                    <right>8</right>
+                    <bottom>18</bottom>
+					<itemlayout width="884" height="70">
+		                <control type="label">
+		                    <left>30</left>
+		                    <right>30</right>
+		                    <font>SmallBold</font>
+		                    <textcolor>Black70</textcolor>
+		                    <selectedcolor>Black70</selectedcolor>
+		                    <height>67</height>
+		                    <aligny>center</aligny>
+		                    <info>ListItem.Label</info>
+		                </control>
+					</itemlayout>
+					<focusedlayout width="884" height="70">
+	                    <control type="image">
+	                        <left>0</left>
+	                        <right>0</right>
+	                        <height>67</height>
+	                        <texture border="5" colordiffuse="$VAR[ColorHighlight]">common/white.png</texture>
+	                    </control>
+	                    <control type="image">
+	                        <left>0</left>
+	                        <right>0</right>
+	                        <height>67</height>
+	                        <texture border="8" colordiffuse="$VAR[ColorGradient]">common/gradient-box-wide-cut.png</texture>
+	                    </control>
+	                    <control type="label">
+	                        <left>30</left>
+	                        <right>30</right>
+	                        <height>67</height>
+	                        <font>SmallBold</font>
+	                        <textcolor>Selected</textcolor>
+	                        <selectedcolor>Selected</selectedcolor>
+	                        <aligny>center</aligny>
+	                        <info>ListItem.Label</info>
+	                    </control>
+					</focusedlayout>
+				</control>
+			</control>
+
+			<control type="button" id="3">
+				<include>HiddenButton</include>
+				<onfocus condition="Control.IsEnabled(108321)">Control.SetFocus(108321)</onfocus>
+				<onfocus condition="Control.IsEnabled(108323)">Control.SetFocus(108323)</onfocus>
+				<onfocus condition="Control.IsEnabled(108324)">Control.SetFocus(108324)</onfocus>
+			</control>
+		</include>	
+	</include>
+		
 </includes>
