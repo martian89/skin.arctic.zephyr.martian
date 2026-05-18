@@ -12,6 +12,8 @@
 
     <controls>
         <control type="group">
+            <visible>String.IsEmpty(Window(Home).Property(OSDExtendedInfo))</visible>
+            <animation effect="fade" start="100" end="0" time="250">Hidden</animation>
             <animation effect="fade" start="100" end="0" time="250" condition="Window.IsVisible(DialogSlider.xml)">Conditional</animation>
             <include condition="Skin.HasSetting(osd.usetheme) + !Skin.HasSetting(videoosd.side)">Seekbar1</include>
             <include condition="!Skin.HasSetting(osd.usetheme) + !Skin.HasSetting(videoosd.side)">Seekbar2</include>

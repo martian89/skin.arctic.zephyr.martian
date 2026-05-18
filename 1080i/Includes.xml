@@ -102,7 +102,7 @@
 	<expression name="IsVideoInfo">Window.IsVisible(DialogVideoInfo.xml) + ![String.IsEqual(ListItem.Property(item.type),person) | String.IsEqual(ListItem.Property(dbtype),person) | String.IsEqual(ListItem.Property(Param.Info),person)]</expression>
 	<expression name="IsPersonInfo">Window.IsVisible(DialogVideoInfo.xml) + [String.IsEqual(ListItem.Property(item.type),person) | String.IsEqual(ListItem.Property(dbtype),person) | String.IsEqual(ListItem.Property(Param.Info),person)]</expression>
 
-    <expression name="HasThumbImageResource">
+    <expression name="HasImage_ListItem_IconResource">
         [ Window.IsVisible(MyVideoNav.xml) | Window.IsVisible(home)] + String.IsEqual(ListItem.DBType,country) + [!String.IsEmpty(Skin.String(moviecountry.icons.path)) | System.AddonIsEnabled(resource.images.moviecountryicons.maps)]
         | [Window.IsVisible(MyVideoNav.xml) | Window.IsVisible(home)] + String.IsEqual(ListItem.DBType,genre) + [!String.IsEmpty(Skin.String(genre.icons.path)) | System.AddonIsEnabled(resource.images.moviegenreicons.transparent)]
         | [Window.IsVisible(MyVideoNav.xml) | Window.IsVisible(home)] + String.IsEqual(ListItem.DBType,studio) + [!String.IsEmpty(Skin.String(studio.logos.path)) | System.AddonIsEnabled(resource.images.studios.white)]
@@ -126,8 +126,8 @@
         + String.IsEmpty(ListItem.Art(poster))
         + String.IsEmpty(ListItem.Art(tvshow.poster))
         + String.IsEmpty(ListItem.EpgEventIcon)
-        + [!$EXP[HasThumbImageResource] + String.StartsWith(ListItem.Icon,Default)
-        | $EXP[HasThumbImageResource] + [$EXP[IsDefaultStudioIcon] | $EXP[IsDefaultGenreIcon] | $EXP[IsDefaultCountryIcon]]]
+        + [!$EXP[HasImage_ListItem_IconResource] + String.StartsWith(ListItem.Icon,Default)
+        | $EXP[HasImage_ListItem_IconResource] + [$EXP[IsDefaultStudioIcon] | $EXP[IsDefaultGenreIcon] | $EXP[IsDefaultCountryIcon]]]
     </expression>
     
     <expression name="IsDefaultIcon_C6">
@@ -252,6 +252,7 @@
            !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Next_Aired)) | !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Last_Aired))
            | !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Status)) | !String.IsEmpty(ListItem.Status)
           ]
+        + !Window.IsVisible(script-globalsearch.xml)  
     </expression>
     
     <expression name="InGameMode">
@@ -646,7 +647,7 @@
 	    <value condition="String.IsEqual(Container(300).ListItem.Property(background),playlistBackground)">$INFO[Container(9988).ListItem.Art(fanart)]</value>
         <value condition="!String.IsEmpty(Container(300).ListItem.Property(Background))">$INFO[Container(300).ListItem.Property(Background)]</value>
        	<value condition="![String.IsEmpty(Skin.String(home.slideshowpath)) | String.IsEqual(Skin.String(home.slideshowpath),none)] + [!Skin.HasSetting(home.vertical.widgets) + [String.IsEmpty(Container(300).ListItem.Property(widget)) | Container(301).IsUpdating] | [Skin.HasSetting(home.vertical.widgets) + Integer.IsEqual(Container(9989).NumItems,0)] | Skin.HasSetting(home.dontshowfanart)]">$INFO[Skin.String(home.slideshowpath)]</value>
-        <value condition="!String.IsEmpty(Weather.Plugin) + [$EXP[HasWeatherFanartSingle] | $EXP[HasWeatherFanartMulti]] + Skin.HasSetting(home.showweatherfanart) + !$EXP[HomeShowHeader] + !Skin.HasSetting(furniture.weather) + !Skin.HasSetting(furniture.weatherleft) + !Skin.HasSetting(home.vertical) + [!Skin.HasSetting(home.vertical.widgets) + [String.IsEmpty(Container(300).ListItem.Property(widget)) | Container(301).IsUpdating] | Skin.HasSetting(homemenu.netflix) + Integer.IsEqual(Container(9989).NumItems,0)]">$VAR[Image_WeatherCurrent]/</value>
+        <value condition="!String.IsEmpty(Weather.Plugin) + [$EXP[HasWeatherFanartSingle] | $EXP[HasWeatherFanartMulti]] + Skin.HasSetting(home.showweatherfanart) + !$EXP[HomeShowHeader] + !Skin.HasSetting(furniture.weather) + !Skin.HasSetting(furniture.weatherleft) + !Skin.HasSetting(home.vertical) + [!Skin.HasSetting(home.vertical.widgets) | Skin.HasSetting(homemenu.netflix)] + [!Skin.HasSetting(home.vertical.widgets) + [String.IsEmpty(Container(300).ListItem.Property(widget)) | Container(301).IsUpdating] | Skin.HasSetting(homemenu.netflix) + Integer.IsEqual(Container(9989).NumItems,0) | Skin.HasSetting(home.dontshowfanart)]">$VAR[Image_WeatherCurrent]/</value>
         <value condition="!Container(301).IsUpdating + !Skin.HasSetting(home.vertical.widgets) + String.IsEmpty(Skin.String(fanart.fallback))">special://skin/extras/backgrounds/default.jpg</value>
         <value condition="!Container(301).IsUpdating ">$VAR[Image_SimpleBackground]</value>
 	</variable>
@@ -765,7 +766,7 @@
                 <aspectratio>scale</aspectratio>
                 <include>Dimensions_Fullscreen</include>
                 <include>BackgroundFanartFadetime</include>
-                <texture background="true">$VAR[Visualisation_Image]</texture>
+                <texture background="true">$VAR[Image_Visualisation_Background]</texture>
                 <visible>$EXP[Visualisation_ShowFanart]</visible>
                 <animation effect="fade" start="100" end="65" time="0" condition="Visualisation.Enabled">Conditional</animation>
                 <animation effect="fade" start="100" end="0" time="500" condition="String.Contains(Window(Visualisation).Property(ArtistSlideshow.Image),black-hd.png)">Conditional</animation>
@@ -1543,11 +1544,13 @@
 
     <variable name="SetsPath">
         <value condition="ListItem.IsCollection + !String.IsEmpty(ListItem.DBID)">videodb://movies/sets/$INFO[ListItem.DBID]/?setid=$INFO[ListItem.DBID]</value>
+        <value condition="Container(9500).ListItem.IsCollection + !String.IsEmpty(Container(9500).ListItem.DBID)">videodb://movies/sets/$INFO[Container(9500).ListItem.DBID]/?setid=$INFO[Container(9500).ListItem.DBID]</value>
         <value condition="Container(301).ListItem.IsCollection + !String.IsEmpty(Container(301).ListItem.DBID)">videodb://movies/sets/$INFO[Container(301).ListItem.DBID]/?setid=$INFO[Container(301).ListItem.DBID]</value>
      </variable>
 
     <variable name="AlbumPath">
         <value condition="ListItem.IsFolder + String.IsEqual(ListItem.DBType,album)">$INFO[ListItem.FolderPath]</value>
+        <value condition="Container(9500).ListItem.IsFolder + String.IsEqual(Container(9500).ListItem.DBType,album)">$INFO[Container(9500).ListItem.FolderPath]</value>
         <value condition="Container(301).ListItem.IsFolder + String.IsEqual(Container(301).ListItem.DBType,album)">$INFO[Container(301).ListItem.FolderPath]</value>
     </variable>
     
@@ -2030,7 +2033,7 @@
           | String.IsEqual(Container(211).ListItem.Property(Path),settings) ]
     </expression>
 
-    <expression name="IsSkinshortcuts">!Window.IsVisible(script-skinshortcuts.xml) + String.IsEmpty(Window(home).Property(TMDBHelper.IsSkinShortcut))</expression>
+    <expression name="IsSkinshortcuts">Window.IsVisible(script-skinshortcuts.xml) | !String.IsEmpty(Window(home).Property(TMDBHelper.IsSkinShortcut))</expression>
     
     <expression name="Skinshortcuts_Mainmenu_Active">String.IsEqual(Window.Property(groupname),mainmenu) | String.IsEmpty(Window.Property(groupname))</expression>
     <expression name="Skinshortcuts_Widgets_Active">String.EndsWith(Window.Property(groupname),.1)</expression>

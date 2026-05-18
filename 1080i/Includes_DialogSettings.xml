@@ -4,6 +4,9 @@
 
 	<include name="DialogSettingsLayout">
 		<param name="header_label" default="5" />
+		<param name="top" default="184"/>
+		<param name="width" default="466"/>
+        <param name="height" default="620"/>
 		<param name="content_include" />
 
 		<definition>
@@ -17,34 +20,35 @@
 	            <visible>!Window.IsActive(GameVideoFilter) + !Window.IsActive(GameStretchMode) + !Window.IsActive(GameVideoRotation) + !Window.IsActive(DialogSlider.xml)</visible>
 	            <include>Animation.ZoomIn</include>
 	            <include>Animation.FadeOut</include>
-				<height>620</height>
+	            <top>$PARAM[top]</top>
+				<width>$PARAM[width]</width>
+				<height>$PARAM[height]</height>
 				<include>Def9000Background</include>
 				<include content="Def9000Header">
 					<param name="header_label" value="$PARAM[header_label]" />
 				</include>
 				<include content="Def9000Arrows">
-					<param name="arrow_bottom" value="620" />
+					<param name="arrow_bottom" value="$PARAM[height]" />
 				</include>
 				<include content="Def_Gradient_Settings_Image">
 					<param name="controlid" value="9000" />
 					<param name="left" value="8" />
+					<param name="right" value="8" />
 					<param name="top" value="112" />
-					<param name="width" value="450" />
+					<param name="align_right" value="true" />
 				</include>
 				<control type="grouplist" id="9000">
-					<posx>8</posx>
-					<posy>112</posy>
-					<width>510</width>
-					<height>490</height>
+                    <top>112</top>
+                    <left>8</left>
+                    <right>8</right>
+                    <bottom>18</bottom>
 					<itemgap>0</itemgap>
 					<usecontrolcoords>true</usecontrolcoords>
 					<scrolltime>0</scrolltime>
 					<onright>Dialog.Close(1101)</onright>
 					<onleft>Dialog.Close(1101)</onleft>
 					<defaultcontrol always="true">101</defaultcontrol>
-					<include condition="String.IsEqual(Window(home).Property(CustomDialogSettingsContent),videosettings)">DialogVideoSettingsContent</include>
-					<include condition="String.IsEqual(Window(home).Property(CustomDialogSettingsContent),musicsettings)">DialogMusicSettingsContent</include>
-					<include condition="String.IsEqual(Window(home).Property(CustomDialogSettingsContent),gamesettings)">DialogGameSettingsContent</include>
+					<include>$PARAM[content_include]</include>
 				</control>
 			</control>
 		</definition>
@@ -159,7 +163,14 @@
 			<onclick>Skin.ToggleSetting(ArtistSlideshow.Animate)</onclick>
 			<enable>$EXP[Visualisation_ShowFanart]</enable>
 		</control>
-		<control type="button" id="107">
+        <control type="radiobutton" id="107">
+            <align>left</align>
+            <include>DefContextButtonGradient</include>
+            <label>21891</label>
+            <selected>Skin.HasSetting(osd.artistinfos)</selected>
+            <onclick>Skin.ToggleSetting(osd.artistinfos)</onclick>
+        </control>
+		<control type="button" id="108">
 			<description>Visualisation</description>
 			<include>DefContextButtonGradient</include>
 			<label>$LOCALIZE[250]:</label>
@@ -167,7 +178,7 @@
 			<align>left</align>
 			<onclick>SendClick(500)</onclick>
 		</control>
-		<control type="button" id="108">
+		<control type="button" id="109">
 			<description>Visualisation</description>
 			<include>DefContextButtonGradient</include>
 			<align>left</align>
@@ -176,7 +187,7 @@
 			<onclick>ActivateWindow(visualisationpresetlist)</onclick>
 			<visible>Visualisation.HasPresets</visible>
 		</control>
-		<control type="button" id="109">
+		<control type="button" id="110">
 			<description>Visualisation</description>
 			<include>DefContextButtonGradient</include>
 			<label>$LOCALIZE[31977]</label>
@@ -188,42 +199,50 @@
 
 	<include name="DialogGameSettingsContent">
 		<control type="button" id="101">
+			<width>100%</width>
 			<include>DefContextButtonGradient</include>
 			<align>left</align>
 			<label>$LOCALIZE[35225]</label>
 			<onclick>ActivateWindow(GameVideoFilter)</onclick>
 		</control>
 		<control type="button" id="102">
+			<width>100%</width>
 			<include>DefContextButtonGradient</include>
 			<align>left</align>
 			<label>$LOCALIZE[35233]</label>
 			<onclick>ActivateWindow(GameStretchMode)</onclick>
 		</control>
 		<control type="button" id="103">
+			<width>100%</width>
 			<include>DefContextButtonGradient</include>
 			<align>left</align>
 			<label>$LOCALIZE[35227]</label>
 			<onclick>ActivateWindow(GameVideoRotation)</onclick>
 		</control>
 		<control type="button" id="104">
+			<width>100%</width>
 			<label>$LOCALIZE[13376]</label>
+			<label2>[COLOR Black30]$FEATURE[select,game.controller.snes] + $FEATURE[rightstick,game.controller.default][/COLOR]</label2>
 			<align>left</align>
 			<include>DefContextButtonGradient</include>
 			<onclick>ActivateWindow(GameVolume)</onclick>
 		</control>
 		<control type="button" id="105">
+			<width>100%</width>
 			<include>DefContextButtonGradient</include>
 			<align>left</align>
 			<label>$LOCALIZE[35234]</label>
 			<onclick>ActivateWindow(GameControllers)</onclick>
 		</control>
 		<control type="button" id="106">
+			<width>100%</width>
 			<include>DefContextButtonGradient</include>
 			<align>left</align>
 			<label>$LOCALIZE[35110]</label>
 			<onclick>ActivateWindow(GamePorts)</onclick>
 		</control>
 		<control type="button" id="107">
+			<width>100%</width>
 			<include>DefContextButtonGradient</include>
 			<align>left</align>
 			<label>$LOCALIZE[35226]</label>
