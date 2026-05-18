@@ -71,65 +71,56 @@
 		<value>DefaultAddonGame.png</value>
 	</variable>
 
-	<include name="NumberOfPlayersFurniture">
-		<control type="group" description="NumberOfPlayers">
-			<width>100</width>
-			<height>100</height>
-			<top>8</top>
-			<visible>!String.IsEmpty(ListItem.Property($PARAM[nplayerfield]))</visible>
-			<control type="image">
-				<width>100%</width>
-				<height>100%</height>
-				<texture colordiffuse="Box2" border="4" background="true" infill="false">common/box21.png</texture>
-			</control>
-			<control type="grouplist">
+    <include name="NumberOfPlayersFurniture">
+	   <control type="group">
+           <top>8</top>
+           <left>10</left>
+	       <width>120</width>
+           <height>100</height>
+           <visible>!String.IsEmpty(ListItem.Property($PARAM[nplayerfield]))</visible>
+		   <control type="group" description="NumberOfPlayers">
 				<width>100</width>
-				<itemgap>0</itemgap>
-				<orientation>vertical</orientation>
-				<control type="label">
+				<control type="image">
 					<width>100%</width>
-					<height>20</height>
-					<aligny>center</aligny>
-					<align>center</align>
-					<font>Flag</font>
-					<textcolor>Dark1</textcolor>
-					<label>$LOCALIZE[$PARAM[textid]]</label>
+					<height>100%</height>
+					<texture colordiffuse="Box2" border="4" background="true" infill="false">common/box21.png</texture>
 				</control>
-				<control type="group">
-					<height>50</height>
+				<control type="grouplist">
 					<width>100</width>
-					<align>center</align>
-					<control type="image">
-						<left>5</left>
-						<width>50</width>
+					<itemgap>0</itemgap>
+					<orientation>vertical</orientation>
+					<control type="label">
+						<width>100%</width>
+						<height>23</height>
+						<aligny>center</aligny>
+						<align>center</align>
+						<font>Hint</font>
+						<textcolor>Dark1</textcolor>
+						<label>$LOCALIZE[$PARAM[textid]]</label>
+					</control>
+					<control type="group">
 						<height>50</height>
-						<texture colordiffuse="Dark1">DefaultActor.png</texture>					
+						<width>100</width>
+						<align>center</align>
+						<control type="image">
+	                        <centerleft>50%</centerleft>
+							<width>50</width>
+							<height>50</height>
+							<texture colordiffuse="Dark1">DefaultActor.png</texture>					
+						</control>
 					</control>
 					<control type="label">
-						<left>60</left>
-						<height>50</height>
-						<label>$INFO[ListItem.Property($PARAM[nplayerfield])]</label>
+					    <left>0</left>
+					    <right>0</right>
+						<height>20</height>
 						<aligny>center</aligny>
-						<align>left</align>
-						<font>Flag</font>
+						<align>center</align>
+						<font>Hint</font>
 						<textcolor>Dark1</textcolor>
+						<label>$INFO[ListItem.Property($PARAM[nplayerfield])]</label>
 					</control>
-				</control>
-				<control type="label">
-					<height>20</height>
-					<aligny>center</aligny>
-					<align>center</align>
-					<font>Flag</font>
-					<textcolor>Dark1</textcolor>
-					<label>$VAR[$PARAM[playersTextId]]</label>
-				</control>
-			</control>	 
-		</control>
-		<control type="textbox">
-			<left>1</left>
-			<width>10</width>
-			<label></label>
-			<height>50</height>
+				</control>	 
+			</control>
 		</control>
 	</include>
 
