@@ -401,7 +401,7 @@
             <shortcut label="$LOCALIZE[32108]" icon="DefaultMusicVideos.png">PlayerControl(PartyMode(Video))</shortcut>
             <shortcut label="$LOCALIZE[20389]" icon="DefaultMusicVideos.png">ActivateWindow(Videos,videodb://musicvideos/titles/,return)</shortcut>
             <shortcut label="$LOCALIZE[10002]" icon="DefaultPicture.png">ActivateWindow(Pictures)</shortcut>
-            <shortcut label="$LOCALIZE[10821]" icon="DefaultAddonGame.png">ActivateWindow(Games)</shortcut>
+            <shortcut label="$LOCALIZE[10821]" icon="DefaultAddonGame.png">ActivateWindow(Games,root)</shortcut>
             <shortcut label="$LOCALIZE[12600]" icon="Weather.png">ActivateWindow(Weather)</shortcut>
             <shortcut label="$LOCALIZE[10001]" icon="DefaultProgram.png">ActivateWindow(Programs,Addons,return)</shortcut>
             <shortcut label="$LOCALIZE[32032]" icon="DefaultDVDFull.png">PlayDVD</shortcut>
@@ -498,6 +498,7 @@
                 <shortcut label="$LOCALIZE[1039]" type="picture" icon="DefaultAddonPicture.png">ActivateWindow(Pictures,Addons,return)</shortcut>
                 <content>addon-image</content>
             </node>
+            <shortcut label="$LOCALIZE[35049]" type="games" icon="DefaultAddonGame.png">ActivateWindow(Games,Addons,return)</shortcut>
             <shortcut label="20244" type="program" icon="DefaultAddonProgram.png" condition="System.Platform.Android">ActivateWindow(programs,androidapp://sources/apps/,return)</shortcut>
         </node>
         <node label="$LOCALIZE[1036]">
@@ -605,10 +606,11 @@
                 <shortcut widget="RadioGroupedDeletedRecordings" label="$LOCALIZE[31098]" icon="DefaultAddonPVRClient.png" widgetType="pvr">pvr://recordings/radio/deleted?view=grouped</shortcut>
 	            <shortcut widget="RadioTimers" label="$LOCALIZE[10708]" icon="DefaultAddonPVRClient.png" widgetType="pvr">pvr://timers/radio/timers</shortcut>
 	        </node>
-            <node label="$LOCALIZE[8]">
-                <shortcut label="$LOCALIZE[31288]" icon="special://skin/extras/icons/sun.png" widget="weather" condition="!String.IsEmpty(Window(Weather).Property(Daily.IsFetched))" widgetType="weather">WeatherDaily</shortcut>
-                <shortcut label="$LOCALIZE[31289]" icon="special://skin/extras/icons/sun.png" widget="weather" condition="!String.IsEmpty(Window(Weather).Property(Hourly.IsFetched))" widgetType="weather">WeatherHourly</shortcut>
+            <node label="$LOCALIZE[8]" condition="Skin.HasSetting(home.vertical.widgets)">
+                <shortcut label="$LOCALIZE[31288]" icon="special://skin/extras/icons/sun.png" widget="weather" condition="!String.IsEmpty(Weather.Plugin)" widgetType="weather">WeatherDaily</shortcut>
+                <shortcut label="$LOCALIZE[31289]" icon="special://skin/extras/icons/sun.png" widget="weather" condition="!String.IsEmpty(Weather.Plugin)" widgetType="weather">WeatherHourly</shortcut>
             </node>
+            <shortcut label="$LOCALIZE[8]" icon="special://skin/extras/icons/sun.png" widget="weather" condition="!Skin.HasSetting(home.vertical.widgets) + !String.IsEmpty(Weather.Plugin)" widgetType="weather">Weather</shortcut>
             <shortcut widget="Favourites" label="$LOCALIZE[1036]" widgetTarget="">favourites://</shortcut>
             <shortcut widget="systeminfo" label="$LOCALIZE[130]" icon="special://skin/extras/icons/sysinfo.png" widgetType="system">Systeminfo</shortcut>
             <shortcut widget="settings" label="$LOCALIZE[5]" icon="special://skin/extras/icons/settings.png" widgetType="system">Settings</shortcut>
@@ -654,11 +656,12 @@
             <node label="$LOCALIZE[32009]">
                 <content>addon-program-plugin</content>
             </node>
-            <shortcut label="$LOCALIZE[10001]" type="program" icon="DefaultAddonProgram.png" widget="addon" widgetType="addon" widgetTarget="programs">addons://sources/executable/</shortcut>
-            <shortcut label="$LOCALIZE[20244]" type="program" icon="DefaultAddonProgram.png" widget="addon" widgetType="addon" widgetTarget="programs" condition="System.Platform.Android">androidapp://sources/apps/</shortcut>
+            <shortcut label="$LOCALIZE[10001]" type="program" icon="DefaultAddonProgram.png" widget="addon" widgetType="program" widgetTarget="programs">addons://sources/executable/</shortcut>
+            <shortcut label="$LOCALIZE[20244]" type="program" icon="DefaultAddonProgram.png" widget="addon" widgetType="program" widgetTarget="programs" condition="System.Platform.Android">androidapp://sources/apps/</shortcut>
             <shortcut label="$LOCALIZE[1037]" type="video" icon="DefaultAddonVideo.png" widget="addon" widgetType="video" widgetTarget="videos">addons://sources/video/</shortcut>
             <shortcut label="$LOCALIZE[1038]" type="music" icon="DefaultAddonMusic.png" widget="addon" widgetType="music" widgetTarget="music">addons://sources/audio/</shortcut>
             <shortcut label="$LOCALIZE[1039]" type="picture" icon="DefaultAddonPicture.png" widget="addon" widgetType="picture" widgetTarget="pictures">addons://sources/image/</shortcut>
+            <shortcut label="$LOCALIZE[35049]" type="games" icon="DefaultAddonGame.png" widget="addon" widgetType="game" widgetTarget="games">addons://sources/game/</shortcut>
         </node>
         <node label="$LOCALIZE[1036]">
             <content>favourite</content>
