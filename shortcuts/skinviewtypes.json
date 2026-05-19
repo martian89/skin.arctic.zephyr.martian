@@ -96,13 +96,13 @@
             "plugins": "50"
         },
         "episodes": {
-            "rule": "Container.Content(episodes) + [!String.IsEmpty(Container.PluginName) | String.StartsWith(Container.FolderPath,videodb://) | String.StartsWith(Container.FolderPath,special://)]",
+            "rule": "Container.Content(episodes) + !Window.IsVisible(MyGames.xml) + [!String.IsEmpty(Container.PluginName) | String.StartsWith(Container.FolderPath,videodb://) | String.StartsWith(Container.FolderPath,special://)]",
             "viewtypes": ["50", "56", "57", "521", "522", "514", "508", "555", "54", "51", "58", "515", "513", "52", "500"],
             "library": "50",
             "plugins": "50"
         },
         "episodes-files": {
-            "rule": "Container.Content(episodes) + [String.IsEmpty(Container.PluginName) + !String.StartsWith(Container.FolderPath,videodb://) + !String.StartsWith(Container.FolderPath,special://)]",
+            "rule": "Container.Content(episodes) + !Window.IsVisible(MyGames.xml) + [String.IsEmpty(Container.PluginName) + !String.StartsWith(Container.FolderPath,videodb://) + !String.StartsWith(Container.FolderPath,special://)]",
             "viewtypes": ["50", "56", "57", "521", "522", "514", "508", "555", "54", "51", "58", "515", "513", "52", "500"],
             "library": "50",
             "plugins": "50"
@@ -240,16 +240,16 @@
             "plugins": "550"
         },
         "games": {
-            "rule": "Container.Content(games)",
-            "viewtypes": ["550", "56", "57", "523", "522", "503", "505", "506", "507", "55", "517", "514", "509", "508", "555", "59", "54", "51", "58", "515", "511", "512", "519", "513", "52", "500"],
-            "library": "550",
-            "plugins": "550"
+            "rule": "[Container.Content(games) | Container.Content(episodes) + Window.IsVisible(MyGames.xml)]",
+            "viewtypes": ["50", "56", "57", "521", "522", "514", "508", "555", "54", "51", "58", "515", "513", "52", "500"],
+            "library": "50",
+            "plugins": "50"
         },
         "none-games": {
             "rule": "Container.Content() + Window.IsVisible(MyGames.xml)",
-            "viewtypes": ["550", "56", "57", "523", "522", "503", "505", "506", "507", "55", "517", "514", "509", "508", "555", "59", "54", "51", "58", "515", "511", "512", "519", "513", "52", "500"],
-            "library": "550",
-            "plugins": "550"
+            "viewtypes": ["50", "56", "57", "521", "522", "514", "508", "555", "54", "51", "58", "515", "513", "52", "500"],
+            "library": "50",
+            "plugins": "50"
         },
         "none-providers": {
             "rule": "Container.Content() + String.IsEqual(Container.Property(param.info),watch_providers)",

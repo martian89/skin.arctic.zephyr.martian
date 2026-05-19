@@ -197,7 +197,7 @@
 				<path>pvr://timers/radio/timers</path>
 			</widget>
 		</group>
-		<group name="weather" label="8" visible="!String.IsEmpty(Weather.Plugin)">
+		<group name="weather" label="8" visible="Skin.HasSetting(home.vertical.widgets) + !String.IsEmpty(Weather.Plugin)">
 			<widget label="31288" icon="special://skin/extras/icons/sun.png" name="weather">
 				<path>WeatherDaily</path>
 			</widget>
@@ -205,6 +205,9 @@
 				<path>WeatherHourly</path>
 			</widget>
 		</group>
+        <widget label="8" icon="special://skin/extras/icons/sun.png" name="weather" visible="!Skin.HasSetting(home.vertical.widgets) + !String.IsEmpty(Weather.Plugin)">
+            <path>Weather</path>
+        </widget>
 		<widget name="Favourites" label="1036" icon="special://skin/extras/icons/favourites2.png" target="">
 			<path>favourites://</path>
 		</widget>

@@ -839,7 +839,7 @@
 				<action>ActivateWindow(Pictures)</action>
 			</shortcut>
 			<shortcut name="games" label="10821" icon="special://skin/extras/icons/xbox.png">
-				<action>ActivateWindow(Games)</action>
+				<action>ActivateWindow(Games,root)</action>
 			</shortcut>
 			<shortcut name="weather" label="12600" icon="special://skin/extras/icons/sun.png" visible="!String.IsEmpty(Weather.Plugin)">
 				<action>ActivateWindow(Weather)</action>
@@ -999,6 +999,9 @@
                 <shortcut name="programs-browse" label="10001" type="32021" icon="special://skin/extras/icons/addons.png">
                     <action>ActivateWindow(Programs,Addons,return)</action>
                 </shortcut>
+	            <shortcut name="apps" label="20244" type="program" icon="special://skin/extras/icons/addons.png" visible="System.Platform.Android">
+	                <action>ActivateWindow(programs,androidapp://sources/apps/,return)</action>
+	             </shortcut>
                 <content source="addons" target="programs" />
             </group>
             <group name="addon-video-grp" label="$ADDON[script.skinshortcuts 32010]" icon="special://skin/extras/icons/video-addons.png">
@@ -1019,9 +1022,9 @@
                 </shortcut>
                 <content source="addons" target="pictures" />
             </group>
-            <shortcut name="apps" label="20244" type="program" icon="special://skin/extras/icons/addons.png" visible="System.Platform.Android">
-                <action>ActivateWindow(programs,androidapp://sources/apps/,return)</action>
-             </shortcut>
+            <shortcut name="game-addons" label="35049" type="games" icon="special://skin/extras/icons/xbox.png">
+                <action>ActivateWindow(Games,Addons,return)</action>
+            </shortcut>
         </group>
 
         <!-- Favourites -->
