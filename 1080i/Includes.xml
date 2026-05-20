@@ -1956,12 +1956,12 @@
     </expression>
     
     <expression name="Widget_HasFixedAspect">
-        $EXP[Skinshortcuts_Mainmenu_Active]
+        String.IsEqual(Window.Property(menuname),mainmenu)
         + [ String.StartsWith(Container(211).ListItem.Property(widgetPath),weather)
           | String.IsEqual(Container(211).ListItem.Property(widgetPath),submenu)
           | String.IsEqual(Container(211).ListItem.Property(widgetPath),systeminfo)
           | String.IsEqual(Container(211).ListItem.Property(widgetPath),settings) ]
-        | !$EXP[Skinshortcuts_Mainmenu_Active]
+        | !String.IsEqual(Window.Property(menuname),mainmenu)
         + [ String.IsEqual(Container(211).ListItem.Property(widgetType),tvguide)
           | String.IsEqual(Container(211).ListItem.Property(widgetPath),submenu)
           | String.IsEqual(Container(211).ListItem.Property(widgetPath),systeminfo)
