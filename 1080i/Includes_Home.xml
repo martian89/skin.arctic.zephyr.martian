@@ -2262,6 +2262,18 @@
                 <onfocus>SetFocus($INFO[Window(home).Property(BackToId)])</onfocus>
                 <onfocus>SetFocus(300)</onfocus>
             </control>
+            <control type="button" id="8808">
+                <include>HiddenButton</include>
+                <onfocus condition="String.IsEqual(Window(Home).Property(BackToId),Window(Home).Property(LastId))">SetFocus(300)</onfocus>
+                <onfocus condition="!String.IsEqual(Window(Home).Property(BackToId),Window(Home).Property(LastId)) + !String.IsEmpty(Window(Home).Property(BackToId))">SetFocus($INFO[Window(Home).Property(BackToId)])</onfocus>
+                <onfocus condition="String.IsEmpty(Window(Home).Property(BackToId))">SetFocus(300)</onfocus>
+            </control>
+            <control type="button" id="8888">
+	            <include>HiddenButton</include>
+	            <onfocus condition="String.IsEqual(Window(Home).Property(BackToId),Window(Home).Property(LastId))">SetFocus(300)</onfocus>
+	            <onfocus condition="!String.IsEqual(Window(Home).Property(BackToId),Window(Home).Property(LastId)) + !String.IsEmpty(Window(Home).Property(BackToId))">SetFocus($INFO[Window(Home).Property(LastId)])</onfocus>
+	            <onfocus condition="String.IsEmpty(Window(Home).Property(BackToId))">SetFocus(300)</onfocus>
+	        </control>
         </control>
     </include>
 
