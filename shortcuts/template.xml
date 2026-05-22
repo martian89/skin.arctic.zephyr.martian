@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <template>
-    <other include="widget-classic">
+ 
+    <propertyGroup name="widgetContentProperties">
         <property name="content" tag="property" attribute="name|widgetPath" value="Submenu">skinshortcuts-submenu</property>
         <property name="content" tag="property" attribute="name|widgetPath" value="Settings">SettingsInfoItems</property>
         <property name="content" tag="property" attribute="name|widgetPath" value="Systeminfo">SystemInfoItems</property>
@@ -15,14 +16,6 @@
         <property name="autoscroll">false</property>
         <property name="limit" tag="property" attribute="name|widgetLimit"/>
 
-        <property name="autoLimit" tag="property" attribute="name|widgetAspect" value="Square">7</property>
-        <property name="autoLimit" tag="property" attribute="name|widgetAspect" value="Thumbnail">4</property>
-        <property name="autoLimit" tag="property" attribute="name|widgetAspect" value="Landscape">4</property>
-        <property name="autoLimit">10</property>
-
-        <property name="isAutoLimit" tag="property" attribute="name|widgetLimit" value="Auto">true</property>
-        <property name="isAutoLimit">false</property>
-
         <property name="isDynamicContent" propertyValue="false">
             <rule tag="property" attribute="name|widget" value="submenu" />                
             <rule tag="property" attribute="name|widget" value="settings" />                
@@ -30,14 +23,59 @@
             <rule tag="property" attribute="name|widget" value="weather" />                
         </property>
         <property name="isDynamicContent">true</property>
-
-        <property name="widgetAspectCheck" tag="property" attribute="name|widget" value="submenu">Square</property>
+    </propertyGroup>
+    
+    <propertyGroup name="widgetLayoutProperties">
+         <property name="widgetAspectCheck" tag="property" attribute="name|widget" value="submenu">Square</property>
         <property name="widgetAspectCheck" tag="property" attribute="name|widget" value="settings">Square</property>
         <property name="widgetAspectCheck" tag="property" attribute="name|widget" value="systeminfo">Square</property>
         <property name="widgetAspectCheck" tag="property" attribute="name|widgetAspect" value="Square">Square</property>
         <property name="widgetAspectCheck" tag="property" attribute="name|widgetAspect" value="Landscape">Landscape</property>
         <property name="widgetAspectCheck" tag="property" attribute="name|widgetAspect" value="Thumbnail">Thumbnail</property>
         <property name="widgetAspectCheck">Poster</property>
+    </propertyGroup>
+    
+    <propertyGroup name="moreItemProperties">
+	    <!-- Show More Item -->
+	    <property name="showMore" propertyValue="true">
+	        <match>all</match>
+	        <rule tag="property" attribute="name|widgetLimit" />                
+	        <rule tag="property" attribute="name|widgetTarget" />                
+	    </property>
+	    <property name="showMore">false</property>
+
+        <property name="showMoreFanart" tag="property" attribute="name|widgetType" value="movies">special://skin/extras/backgrounds/fallbacks/film.jpg</property>
+        <property name="showMoreFanart" tag="property" attribute="name|widgetType" value="sets">special://skin/extras/backgrounds/fallbacks/film.jpg</property>
+        <property name="showMoreFanart" tag="property" attribute="name|widgetType" value="tvshows">special://skin/extras/backgrounds/fallbacks/tv.jpg</property>
+        <property name="showMoreFanart" tag="property" attribute="name|widgetType" value="episodes">special://skin/extras/backgrounds/fallbacks/tv.jpg</property>
+        <property name="showMoreFanart" tag="property" attribute="name|widgetType" value="musicvideos">special://skin/extras/backgrounds/fallbacks/music.jpg</property>
+        <property name="showMoreFanart" tag="property" attribute="name|widgetType" value="artists">special://skin/extras/backgrounds/fallbacks/music.jpg</property>
+        <property name="showMoreFanart" tag="property" attribute="name|widgetType" value="albums">special://skin/extras/backgrounds/fallbacks/music.jpg</property>
+        <property name="showMoreFanart" tag="property" attribute="name|widgetType" value="songs">special://skin/extras/backgrounds/fallbacks/music.jpg</property>
+        <property name="showMoreFanart" tag="property" attribute="name|widgetType" value="pictures">special://skin/extras/backgrounds/fallbacks/pictures.jpg</property>
+	    <property name="showMoreFanart" tag="property" attribute="name|widgetTarget" value="videos">special://skin/extras/backgrounds/fallbacks/tv.jpg</property>
+	    <property name="showMoreFanart" tag="property" attribute="name|widgetTarget" value="music">special://skin/extras/backgrounds/fallbacks/music.jpg</property>
+	    <property name="showMoreFanart" tag="property" attribute="name|widgetTarget" value="pictures">special://skin/extras/backgrounds/fallbacks/pictures.jpg</property>
+	
+	    <property name="limitNumber" tag="property" attribute="name|widgetLimit" value="$NUMBER[10]">10</property>
+	    <property name="limitNumber" tag="property" attribute="name|widgetLimit" value="$NUMBER[25]">25</property>
+	    <property name="limitNumber" tag="property" attribute="name|widgetLimit" value="$NUMBER[50]">50</property>
+	    <property name="limitNumber" tag="property" attribute="name|widgetLimit" value="$NUMBER[100]">100</property>
+	    <property name="limitNumber">99999</property>    
+    </propertyGroup>   
+    
+    <other include="widget-classic">
+        <propertyGroup>widgetContentProperties</propertyGroup>
+        <propertyGroup>widgetLayoutProperties</propertyGroup>
+        <propertyGroup>moreItemProperties</propertyGroup>
+
+        <property name="autoLimit" tag="property" attribute="name|widgetAspect" value="Square">7</property>
+        <property name="autoLimit" tag="property" attribute="name|widgetAspect" value="Thumbnail">4</property>
+        <property name="autoLimit" tag="property" attribute="name|widgetAspect" value="Landscape">4</property>
+        <property name="autoLimit">10</property>
+
+        <property name="isAutoLimit" tag="property" attribute="name|widgetLimit" value="Auto">true</property>
+        <property name="isAutoLimit">false</property>
 
         <controls>
             <control type="list" id="301">
@@ -134,35 +172,20 @@
                 <include content="Widget_ContentInclude" condition="!$SKINSHORTCUTS[isDynamicContent]">
                    <param name="include" value="$SKINSHORTCUTS[content]" />
                 </include>
+		        <include content="Widget_ContentItem" condition="$SKINSHORTCUTS[showMore] + $SKINSHORTCUTS[isDynamicContent] + !$SKINSHORTCUTS[isAutoLimit] + Skin.HasSetting(enable.morewidget)">
+		            <param name="label">31429</param>
+		            <param name="icon">misc/more-items.png</param>
+		            <param name="fanart">$SKINSHORTCUTS[showMoreFanart]</param>
+		            <param name="onclick">ActivateWindow($SKINSHORTCUTS[target],$SKINSHORTCUTS[content],return)</param>
+		            <param name="visible">Integer.IsEqual(Container(301).NumItems,$SKINSHORTCUTS[limit]) | Integer.IsEqual(Container(301).NumItems,$PYTHON[int(limitNumber) + 1])</param>
+		        </include>
             </control>
         </controls>
     </other>
 
     <other include="widget-featured">
-        <property name="content" tag="property" attribute="name|widgetPath" value="Submenu">skinshortcuts-submenu</property>
-        <property name="content" tag="property" attribute="name|widgetPath" value="Settings">SettingsInfoItems</property>
-        <property name="content" tag="property" attribute="name|widgetPath" value="Systeminfo">SystemInfoItems</property>
-        <property name="content" tag="property" attribute="name|widgetPath" value="Weather">WeatherDailyItems</property>
-        <property name="content" tag="property" attribute="name|widgetPath"/>
-        <property name="content">$VAR[DefWidgetContent]</property>
-        <property name="target" tag="property" attribute="name|widgetTarget"/>
-        <property name="target">$VAR[DefWidgetTarget]</property>
-        <property name="sortby" tag="property" attribute="name|widgetSortby"/>
-        <property name="sortorder" tag="property" attribute="name|widgetSortorder"/>
-        <property name="autoscroll" tag="property" attribute="name|widgetAutoscroll" value="yes">true</property>
-        <property name="autoscroll">false</property>
-        <property name="limit" tag="property" attribute="name|widgetLimit"/>
-
-        <property name="isAutoLimit" tag="property" attribute="name|widgetLimit" value="Auto">true</property>
-        <property name="isAutoLimit">false</property>
-
-        <property name="isDynamicContent" propertyValue="false">
-            <rule tag="property" attribute="name|widget" value="submenu" />                
-            <rule tag="property" attribute="name|widget" value="settings" />                
-            <rule tag="property" attribute="name|widget" value="systeminfo" />                
-            <rule tag="property" attribute="name|widget" value="weather" />                
-        </property>
-        <property name="isDynamicContent">true</property>
+        <propertyGroup>widgetContentProperties</propertyGroup>
+        <propertyGroup>moreItemProperties</propertyGroup>
 
         <controls>
             <control type="wraplist" id="301">
@@ -194,29 +217,25 @@
                    <param name="sortby" value="$SKINSHORTCUTS[sortby]" />
                    <param name="sortorder" value="$SKINSHORTCUTS[sortorder]" />
                    <param name="content" value="$SKINSHORTCUTS[content]" />
-                   <param name="is_autolimit" value="$SKINSHORTCUTS[isAutoLimit]" />
                 </include>
                 <include content="Widget_ContentInclude" condition="!$SKINSHORTCUTS[isDynamicContent]">
                    <param name="include" value="$SKINSHORTCUTS[content]" />
+                </include>
+                <include content="Widget_ContentItem" condition="$SKINSHORTCUTS[showMore] + $SKINSHORTCUTS[isDynamicContent] + Skin.HasSetting(enable.morewidget)">
+                    <param name="label">31429</param>
+                    <param name="icon">misc/more-items.png</param>
+                    <param name="fanart">$SKINSHORTCUTS[showMoreFanart]</param>
+                    <param name="onclick">ActivateWindow($SKINSHORTCUTS[target],$SKINSHORTCUTS[content],return)</param>
+                    <param name="visible">Integer.IsEqual(Container(301).NumItems,$SKINSHORTCUTS[limit]) | Integer.IsEqual(Container(301).NumItems,$PYTHON[int(limitNumber) + 1])</param>
                 </include>
             </control>
         </controls>
     </other>
 
     <other include="widget-vertical">
-        <property name="content" tag="property" attribute="name|widgetPath" value="Submenu">skinshortcuts-submenu</property>
-        <property name="content" tag="property" attribute="name|widgetPath" value="Settings">SettingsInfoItems</property>
-        <property name="content" tag="property" attribute="name|widgetPath" value="Systeminfo">SystemInfoItems</property>
-        <property name="content" tag="property" attribute="name|widgetPath" value="Weather">WeatherDailyItems</property>
-        <property name="content" tag="property" attribute="name|widgetPath"/>
-        <property name="content">$VAR[DefWidgetContent]</property>
-        <property name="target" tag="property" attribute="name|widgetTarget"/>
-        <property name="target">$VAR[DefWidgetTarget]</property>
-        <property name="sortby" tag="property" attribute="name|widgetSortby"/>
-        <property name="sortorder" tag="property" attribute="name|widgetSortorder"/>
-        <property name="autoscroll" tag="property" attribute="name|widgetAutoscroll" value="yes">true</property>
-        <property name="autoscroll">false</property>
-        <property name="limit" tag="property" attribute="name|widgetLimit"/>
+        <propertyGroup>widgetContentProperties</propertyGroup>
+        <propertyGroup>widgetLayoutProperties</propertyGroup>
+        <propertyGroup>moreItemProperties</propertyGroup>
 
         <property name="autoLimit" tag="property" attribute="name|widget" value="submenu">5</property>
         <property name="autoLimit" tag="property" attribute="name|widget" value="settings">5</property>
@@ -228,23 +247,6 @@
 
         <property name="isAutoLimit" tag="property" attribute="name|widgetLimit" value="Auto">true</property>
         <property name="isAutoLimit">false</property>
-
-        <property name="isDynamicContent" propertyValue="false">
-            <rule tag="property" attribute="name|widget" value="mysubmenu" />                
-            <rule tag="property" attribute="name|widget" value="settings" />                
-            <rule tag="property" attribute="name|widget" value="systeminfo" />                
-            <rule tag="property" attribute="name|widget" value="weatherdaily" />                
-            <rule tag="property" attribute="name|widget" value="weatherhourly" />                
-        </property>
-        <property name="isDynamicContent">true</property>
-
-        <property name="widgetAspectCheck" tag="property" attribute="name|widget" value="submenu">Square</property>
-        <property name="widgetAspectCheck" tag="property" attribute="name|widget" value="settings">Square</property>
-        <property name="widgetAspectCheck" tag="property" attribute="name|widget" value="systeminfo">Square</property>
-        <property name="widgetAspectCheck" tag="property" attribute="name|widgetAspect" value="Square">Square</property>
-        <property name="widgetAspectCheck" tag="property" attribute="name|widgetAspect" value="Landscape">Landscape</property>
-        <property name="widgetAspectCheck" tag="property" attribute="name|widgetAspect" value="Thumbnail">Thumbnail</property>
-        <property name="widgetAspectCheck">Poster</property>
 
         <controls>
             <control type="fixedlist" id="301">
@@ -341,6 +343,13 @@
                 <include content="Widget_ContentInclude" condition="!$SKINSHORTCUTS[isDynamicContent]">
                    <param name="include" value="$SKINSHORTCUTS[content]" />
                 </include>
+                <include content="Widget_ContentItem" condition="$SKINSHORTCUTS[showMore] + $SKINSHORTCUTS[isDynamicContent] + !$SKINSHORTCUTS[isAutoLimit] + Skin.HasSetting(enable.morewidget)">
+                    <param name="label">31429</param>
+                    <param name="icon">misc/more-items.png</param>
+                    <param name="fanart">$SKINSHORTCUTS[showMoreFanart]</param>
+                    <param name="onclick">ActivateWindow($SKINSHORTCUTS[target],$SKINSHORTCUTS[content],return)</param>
+                    <param name="visible">Integer.IsEqual(Container(301).NumItems,$SKINSHORTCUTS[limit]) | Integer.IsEqual(Container(301).NumItems,$PYTHON[int(limitNumber) + 1])</param>
+                </include>
             </control>
         </controls>
     </other>
@@ -427,12 +436,6 @@
             <property name="isAutoLimit" tag="property" attribute="name|widgetLimit" value="Auto">true</property>
             <property name="isAutoLimit">false</property>
 
-            <property name="limitNumber" tag="property" attribute="name|widgetLimit" value="$NUMBER[10]">10</property>
-            <property name="limitNumber" tag="property" attribute="name|widgetLimit" value="$NUMBER[25]">25</property>
-            <property name="limitNumber" tag="property" attribute="name|widgetLimit" value="$NUMBER[50]">50</property>
-            <property name="limitNumber" tag="property" attribute="name|widgetLimit" value="$NUMBER[100]">100</property>
-            <property name="limitNumber">99999</property>
-
             <property name="label" tag="label" />
             <property name="label">$LOCALIZE[31105]</property>
 
@@ -482,17 +485,8 @@
             <property name="fullscreenInfoInclude" tag="property" attribute="name|list" value="WeatherHourly">HomeWidgetsWeatherInfo</property>
             <property name="fullscreenInfoInclude">HomeWidgetsFullscreenInfo</property>
 
-            <property name="showMore" propertyValue="true">
-                <match>all</match>
-                <rule tag="property" attribute="name|widgetLimit" />                
-                <rule tag="property" attribute="name|widgetTarget" />                
-            </property>
-            <property name="showMore">false</property>
+            <propertyGroup>moreItemProperties</propertyGroup>
 
-            <property name="showMoreFanart" tag="property" attribute="name|widgetTarget" value="videos">special://skin/extras/backgrounds/fallbacks/tv.jpg</property>
-            <property name="showMoreFanart" tag="property" attribute="name|widgetTarget" value="music">special://skin/extras/backgrounds/fallbacks/music.jpg</property>
-            <property name="showMoreFanart" tag="property" attribute="name|widgetTarget" value="pictures">special://skin/extras/backgrounds/fallbacks/pictures.jpg</property>
-                        
             <!-- Widget Container -->
             <property name="layoutHeight" tag="property" attribute="name|widgetFullscreen" value="yes">710</property>
             <property name="layoutHeight">325</property>
