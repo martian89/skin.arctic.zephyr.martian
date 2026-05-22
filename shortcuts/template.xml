@@ -9,7 +9,6 @@
         <property name="content">$VAR[DefWidgetContent]</property>
         <property name="target" tag="property" attribute="name|widgetTarget"/>
         <property name="target">$VAR[DefWidgetTarget]</property>
-        <property name="browse">never</property>
         <property name="sortby" tag="property" attribute="name|widgetSortby"/>
         <property name="sortorder" tag="property" attribute="name|widgetSortorder"/>
         <property name="autoscroll" tag="property" attribute="name|widgetAutoscroll" value="yes">true</property>
@@ -128,20 +127,12 @@
                    <param name="limit" value="$SKINSHORTCUTS[limit]" />
                    <param name="sortby" value="$SKINSHORTCUTS[sortby]" />
                    <param name="sortorder" value="$SKINSHORTCUTS[sortorder]" />
-                   <param name="browse" value="$SKINSHORTCUTS[browse]" />
                    <param name="content" value="$SKINSHORTCUTS[content]" />
                    <param name="is_autolimit" value="$SKINSHORTCUTS[isAutoLimit]" />
                    <param name="autolimit" value="$SKINSHORTCUTS[autoLimit]" />
                 </include>
                 <include content="Widget_ContentInclude" condition="!$SKINSHORTCUTS[isDynamicContent]">
-                   <param name="target" value="$SKINSHORTCUTS[target]" />
-                   <param name="limit" value="$SKINSHORTCUTS[limit]" />
-                   <param name="sortby" value="$SKINSHORTCUTS[sortby]" />
-                   <param name="sortorder" value="$SKINSHORTCUTS[sortorder]" />
-                   <param name="browse" value="never" />
                    <param name="include" value="$SKINSHORTCUTS[content]" />
-                   <param name="is_autolimit" value="$SKINSHORTCUTS[isAutoLimit]" />
-                   <param name="autolimit" value="$SKINSHORTCUTS[autoLimit]" />
                 </include>
             </control>
         </controls>
@@ -156,7 +147,6 @@
         <property name="content">$VAR[DefWidgetContent]</property>
         <property name="target" tag="property" attribute="name|widgetTarget"/>
         <property name="target">$VAR[DefWidgetTarget]</property>
-        <property name="browse">never</property>
         <property name="sortby" tag="property" attribute="name|widgetSortby"/>
         <property name="sortorder" tag="property" attribute="name|widgetSortorder"/>
         <property name="autoscroll" tag="property" attribute="name|widgetAutoscroll" value="yes">true</property>
@@ -203,18 +193,11 @@
                    <param name="limit" value="$SKINSHORTCUTS[limit]" />
                    <param name="sortby" value="$SKINSHORTCUTS[sortby]" />
                    <param name="sortorder" value="$SKINSHORTCUTS[sortorder]" />
-                   <param name="browse" value="$SKINSHORTCUTS[browse]" />
                    <param name="content" value="$SKINSHORTCUTS[content]" />
                    <param name="is_autolimit" value="$SKINSHORTCUTS[isAutoLimit]" />
                 </include>
                 <include content="Widget_ContentInclude" condition="!$SKINSHORTCUTS[isDynamicContent]">
-                   <param name="target" value="$SKINSHORTCUTS[target]" />
-                   <param name="limit" value="$SKINSHORTCUTS[limit]" />
-                   <param name="sortby" value="$SKINSHORTCUTS[sortby]" />
-                   <param name="sortorder" value="$SKINSHORTCUTS[sortorder]" />
-                   <param name="browse" value="never" />
                    <param name="include" value="$SKINSHORTCUTS[content]" />
-                   <param name="is_autolimit" value="$SKINSHORTCUTS[isAutoLimit]" />
                 </include>
             </control>
         </controls>
@@ -229,7 +212,6 @@
         <property name="content">$VAR[DefWidgetContent]</property>
         <property name="target" tag="property" attribute="name|widgetTarget"/>
         <property name="target">$VAR[DefWidgetTarget]</property>
-        <property name="browse">never</property>
         <property name="sortby" tag="property" attribute="name|widgetSortby"/>
         <property name="sortorder" tag="property" attribute="name|widgetSortorder"/>
         <property name="autoscroll" tag="property" attribute="name|widgetAutoscroll" value="yes">true</property>
@@ -352,20 +334,12 @@
                    <param name="limit" value="$SKINSHORTCUTS[limit]" />
                    <param name="sortby" value="$SKINSHORTCUTS[sortby]" />
                    <param name="sortorder" value="$SKINSHORTCUTS[sortorder]" />
-                   <param name="browse" value="$SKINSHORTCUTS[browse]" />
                    <param name="content" value="$SKINSHORTCUTS[content]" />
                    <param name="is_autolimit" value="$SKINSHORTCUTS[isAutoLimit]" />
                    <param name="autolimit" value="$SKINSHORTCUTS[autoLimit]" />
                 </include>
                 <include content="Widget_ContentInclude" condition="!$SKINSHORTCUTS[isDynamicContent]">
-                   <param name="target" value="$SKINSHORTCUTS[target]" />
-                   <param name="limit" value="$SKINSHORTCUTS[limit]" />
-                   <param name="sortby" value="$SKINSHORTCUTS[sortby]" />
-                   <param name="sortorder" value="$SKINSHORTCUTS[sortorder]" />
-                   <param name="browse" value="never" />
                    <param name="include" value="$SKINSHORTCUTS[content]" />
-                   <param name="is_autolimit" value="$SKINSHORTCUTS[isAutoLimit]" />
-                   <param name="autolimit" value="$SKINSHORTCUTS[autoLimit]" />
                 </include>
             </control>
         </controls>
@@ -443,9 +417,6 @@
 	        <property name="content" tag="property" attribute="name|list"/>
 	        
 	        <property name="target" tag="property" attribute="name|widgetTarget"/>
-            <property name="browse" tag="label2" value="tvguide">never</property>
-            <property name="browse" tag="property" attribute="name|widgetLimit" value="Auto">never</property>
-	        <property name="browse">$VAR[DefWidgetBrowse]</property>
 	        <property name="sortby" tag="property" attribute="name|widgetSortby"/>
 	        <property name="sortorder" tag="property" attribute="name|widgetSortorder"/>
 	        <property name="autoscroll" tag="property" attribute="name|widgetAutoscroll" value="yes">true</property>
@@ -455,6 +426,12 @@
 
             <property name="isAutoLimit" tag="property" attribute="name|widgetLimit" value="Auto">true</property>
             <property name="isAutoLimit">false</property>
+
+            <property name="limitNumber" tag="property" attribute="name|widgetLimit" value="$NUMBER[10]">10</property>
+            <property name="limitNumber" tag="property" attribute="name|widgetLimit" value="$NUMBER[25]">25</property>
+            <property name="limitNumber" tag="property" attribute="name|widgetLimit" value="$NUMBER[50]">50</property>
+            <property name="limitNumber" tag="property" attribute="name|widgetLimit" value="$NUMBER[100]">100</property>
+            <property name="limitNumber">99999</property>
 
             <property name="label" tag="label" />
             <property name="label">$LOCALIZE[31105]</property>
@@ -505,6 +482,17 @@
             <property name="fullscreenInfoInclude" tag="property" attribute="name|list" value="WeatherHourly">HomeWidgetsWeatherInfo</property>
             <property name="fullscreenInfoInclude">HomeWidgetsFullscreenInfo</property>
 
+            <property name="showMore" propertyValue="true">
+                <match>all</match>
+                <rule tag="property" attribute="name|widgetLimit" />                
+                <rule tag="property" attribute="name|widgetTarget" />                
+            </property>
+            <property name="showMore">false</property>
+
+            <property name="showMoreFanart" tag="property" attribute="name|widgetTarget" value="videos">special://skin/extras/backgrounds/fallbacks/tv.jpg</property>
+            <property name="showMoreFanart" tag="property" attribute="name|widgetTarget" value="music">special://skin/extras/backgrounds/fallbacks/music.jpg</property>
+            <property name="showMoreFanart" tag="property" attribute="name|widgetTarget" value="pictures">special://skin/extras/backgrounds/fallbacks/pictures.jpg</property>
+                        
             <!-- Widget Container -->
             <property name="layoutHeight" tag="property" attribute="name|widgetFullscreen" value="yes">710</property>
             <property name="layoutHeight">325</property>
@@ -561,20 +549,19 @@
                        <param name="limit" value="$SKINSHORTCUTS[limit]" />
 	                   <param name="sortby" value="$SKINSHORTCUTS[sortby]" />
                        <param name="sortorder" value="$SKINSHORTCUTS[sortorder]" />
-                       <param name="browse" value="$SKINSHORTCUTS[browse]" />
                        <param name="content" value="$SKINSHORTCUTS[content]" />
                        <param name="is_autolimit" value="$SKINSHORTCUTS[isAutoLimit]" />
                        <param name="autolimit" value="$PYTHON[int(movement) + 1]" />
 	                </include>
                     <include content="Widget_ContentInclude" condition="!$SKINSHORTCUTS[isDynamicContent]">
-                       <param name="target" value="$SKINSHORTCUTS[target]" />
-                       <param name="limit" value="$SKINSHORTCUTS[limit]" />
-                       <param name="sortby" value="$SKINSHORTCUTS[sortby]" />
-                       <param name="sortorder" value="$SKINSHORTCUTS[sortorder]" />
-                       <param name="browse" value="never" />
                        <param name="include" value="$SKINSHORTCUTS[content]" />
-                       <param name="is_autolimit" value="$SKINSHORTCUTS[isAutoLimit]" />
-                       <param name="autolimit" value="$PYTHON[int(movement) + 1]" />
+                    </include>
+                    <include content="Widget_ContentItem" condition="$SKINSHORTCUTS[showMore] + $SKINSHORTCUTS[isDynamicContent] + !$SKINSHORTCUTS[isAutoLimit] + Skin.HasSetting(enable.morewidget)">
+                        <param name="label">31429</param>
+                        <param name="icon">misc/more-items.png</param>
+                        <param name="fanart">$SKINSHORTCUTS[showMoreFanart]</param>
+                        <param name="onclick">ActivateWindow($SKINSHORTCUTS[target],$SKINSHORTCUTS[content],return)</param>
+                        <param name="visible">Integer.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]).NumItems,$SKINSHORTCUTS[limit]) | Integer.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]).NumItems,$PYTHON[int(limitNumber) + 1])</param>
                     </include>
                 </control>
                 <control type="group" id="$PYTHON[int(mainmenuid) * 10000 + 7500 + int(id)]">
@@ -597,7 +584,7 @@
         <property name="content">$VAR[DefWidgetContent]</property>
         <property name="target">$VAR[DefWidgetTarget]</property>
         <property name="browse">$VAR[DefWidgetBrowse]</property>
-        <property name="limit">$NUMBER[25]</property>
+        <property name="limit">25</property>
 
         <controls>
             <control type="group">
@@ -647,9 +634,15 @@
                     </include>
                     <include content="Widget_ContentDynamic">
                        <param name="target" value="$SKINSHORTCUTS[target]" />
-                       <param name="browse" value="$SKINSHORTCUTS[browse]" />
                        <param name="content" value="$SKINSHORTCUTS[content]" />
                        <param name="limit" value="$SKINSHORTCUTS[limit]" />
+                    </include>
+                    <include content="Widget_ContentItem" condition="Skin.HasSetting(enable.morewidget)">
+                        <param name="label">31429</param>
+                        <param name="icon">misc/more-items.png</param>
+                        <param name="fanart">$VAR[DefWidgetFanart]</param>
+                        <param name="onclick">ActivateWindow($SKINSHORTCUTS[target],$SKINSHORTCUTS[content],return)</param>
+                        <param name="visible">Integer.IsEqual(Container(993100).NumItems,$SKINSHORTCUTS[limit]) | Integer.IsEqual(Container(993100).NumItems,$PYTHON[int(limit) + 1])</param>
                     </include>
                 </control>
                 <!-- InfoSub -->
