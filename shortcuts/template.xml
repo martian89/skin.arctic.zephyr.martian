@@ -555,7 +555,7 @@
                         <param name="icon">misc/more-items.png</param>
                         <param name="fanart">$SKINSHORTCUTS[showMoreFanart]</param>
                         <param name="onclick">ActivateWindow($SKINSHORTCUTS[target],$SKINSHORTCUTS[content],return)</param>
-                        <param name="visible">Integer.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]).NumItems,$SKINSHORTCUTS[limit]) | Integer.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]).NumItems,$PYTHON[int(limitNumber) + 1])</param>
+                        <param name="visible">[Integer.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]).NumItems,$SKINSHORTCUTS[limit]) | Integer.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]).NumItems,$PYTHON[int(limitNumber) + 1])] + !Container($PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]).IsUpdating</param>
                     </include>
                 </control>
                 <control type="group" id="$PYTHON[int(mainmenuid) * 10000 + 7500 + int(id)]">
@@ -577,7 +577,6 @@
         <!--- Widget Content -->
         <property name="content">$VAR[DefWidgetContent]</property>
         <property name="target">$VAR[DefWidgetTarget]</property>
-        <property name="browse">$VAR[DefWidgetBrowse]</property>
         <property name="limit">25</property>
 
         <controls>
@@ -636,7 +635,7 @@
                         <param name="icon">misc/more-items.png</param>
                         <param name="fanart">$VAR[DefWidgetFanart]</param>
                         <param name="onclick">ActivateWindow($SKINSHORTCUTS[target],$SKINSHORTCUTS[content],return)</param>
-                        <param name="visible">Integer.IsEqual(Container(993100).NumItems,$SKINSHORTCUTS[limit]) | Integer.IsEqual(Container(993100).NumItems,$PYTHON[int(limit) + 1])</param>
+                        <param name="visible">[Integer.IsEqual(Container(993100).NumItems,$SKINSHORTCUTS[limit]) | Integer.IsEqual(Container(993100).NumItems,$PYTHON[int(limit) + 1])]  + !Container(993100).IsUpdating</param>
                     </include>
                 </control>
                 <!-- InfoSub -->
