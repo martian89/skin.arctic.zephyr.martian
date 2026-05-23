@@ -1,6 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates>
 
+	<!-- Reusable property groups -->
+	<propertyGroups>
+	    <propertyGroup name="widgetContentProperties">
+	        <!--- Widget Content -->
+	        <property name="content" condition="widgetPath=Submenu">skinshortcuts-mainmenu-submenu</property>
+	        <property name="content" condition="widgetPath=Settings">SettingsInfoItems</property>
+	        <property name="content" condition="widgetPath=Systeminfo">SystemInfoItems</property>
+	        <property name="content" condition="widgetPath=Weather">WeatherDailyItems</property>
+	        <property name="content" condition="widgetPath" from="widgetPath"/>
+	        <property name="content">$VAR[DefWidgetContent]</property>
+	        
+	        <property name="target" condition="widgetTarget" from="widgetTarget"/>
+	        <property name="target" condition="!widgetPath">$VAR[DefWidgetTarget]</property>
+	        <property name="sortby" from="widgetSortby"/>
+	        <property name="sortorder" from="widgetSortorder"/>
+	        <property name="limit" from="widgetLimit"/>
+
+	        <property name="autoscroll" condition="widgetAutoscroll">true</property>
+	        <property name="autoscroll">false</property>
+
+			<property name="isDynamicContent" condition="widgetPath IN Submenu,Settings,Systeminfo,Weather">false</property>
+			<property name="isDynamicContent">true</property>
+	    </propertyGroup>
+
+	    <propertyGroup name="moreItemProperties">
+		    <!-- Show More Item -->
+		    <property name="showMore" condition="NOT widgetLimit EMPTY AND NOT widgetTarget EMPTY">true</property>
+		    <property name="showMore" condition="NOT widgetLimit EMPTY AND widgetPath EMPTY">true</property>
+		    <property name="showMore">false</property>
+	
+	        <property name="showMoreFanart" condition="widgetType=movies">special://skin/extras/backgrounds/fallbacks/film.jpg</property>
+	        <property name="showMoreFanart" condition="widgetType=sets">special://skin/extras/backgrounds/fallbacks/film.jpg</property>
+	        <property name="showMoreFanart" condition="widgetType=tvshows">special://skin/extras/backgrounds/fallbacks/tv.jpg</property>
+	        <property name="showMoreFanart" condition="widgetType=episodes">special://skin/extras/backgrounds/fallbacks/tv.jpg</property>
+	        <property name="showMoreFanart" condition="widgetType=musicvideos">special://skin/extras/backgrounds/fallbacks/music.jpg</property>
+	        <property name="showMoreFanart" condition="widgetType=artists">special://skin/extras/backgrounds/fallbacks/music.jpg</property>
+	        <property name="showMoreFanart" condition="widgetType=albums">special://skin/extras/backgrounds/fallbacks/music.jpg</property>
+	        <property name="showMoreFanart" condition="widgetType=songs">special://skin/extras/backgrounds/fallbacks/music.jpg</property>
+		    <property name="showMoreFanart" condition="widgetTarget=videos">special://skin/extras/backgrounds/fallbacks/tv.jpg</property>
+		    <property name="showMoreFanart" condition="widgetTarget=music">special://skin/extras/backgrounds/fallbacks/music.jpg</property>
+		
+		    <property name="limitNumber" condition="widgetLimit=10">10</property>
+		    <property name="limitNumber" condition="widgetLimit=25">25</property>
+		    <property name="limitNumber" condition="widgetLimit=50">50</property>
+		    <property name="limitNumber" condition="widgetLimit=100">100</property>
+		    <property name="limitNumber">99999</property>    
+	    </propertyGroup>   
+	</propertyGroups>
+  
+  	<!-- Variable definitions and groups -->
 	<variables>
         <variable name="widgetContainerParent" output="TMDBHelperWidgetContainer_Parent">
             <value condition="Control.IsVisible($MATH[$PROPERTY[mainmenuid] * 1000 + 301])">$VAR[TMDBHelperWidgetContainer_C$MATH[$PROPERTY[mainmenuid] * 1000 + 301]]</value>
@@ -47,23 +97,8 @@
     <template include="widget-classic" menu="mainmenu">
 		<property name="id" from="index" />
 
-        <!--- Widget Content -->
-        <property name="content" condition="widgetPath=Submenu">skinshortcuts-mainmenu-submenu</property>
-        <property name="content" condition="widgetPath=Settings">SettingsInfoItems</property>
-        <property name="content" condition="widgetPath=Systeminfo">SystemInfoItems</property>
-        <property name="content" condition="widgetPath=Weather">WeatherDailyItems</property>
-        <property name="content" condition="widgetPath" from="widgetPath"/>
-        <property name="content">$VAR[DefWidgetContent]</property>
-        
-        <property name="target" condition="widgetTarget" from="widgetTarget"/>
-        <property name="target" condition="!widgetPath">$VAR[DefWidgetTarget]</property>
-        <property name="browse">never</property>
-        <property name="sortby" from="widgetSortby"/>
-        <property name="sortorder" from="widgetSortorder"/>
-        <property name="limit" from="widgetLimit"/>
-
-        <property name="autoscroll" condition="widgetAutoscroll">true</property>
-        <property name="autoscroll">false</property>
+        <propertyGroup content="widgetContentProperties"/>
+        <propertyGroup content="moreItemProperties"/>
 
 		<property name="widgetAspect" condition="widgetPath IN Submenu,Settings,Systeminfo">Square</property>
 		<property name="widgetAspect" from="widgetAspect" condition="widgetAspect" />		
@@ -77,10 +112,7 @@
         <property name="isAutoLimit" condition="widgetLimit=Auto">true</property>
         <property name="isAutoLimit">false</property>
 
-		<property name="isDynamicContent" condition="widgetPath IN Submenu,Settings,Systeminfo,WeatherDaily,WeatherHourly">false</property>
-		<property name="isDynamicContent">true</property>
-
-         <controls>
+        <controls>
             <control type="list" id="301">
                 <skinshortcuts>visibility</skinshortcuts>
                 <description>Plugin Content Widget</description>
@@ -176,20 +208,19 @@
                    <param name="limit" value="$PROPERTY[limit]" />
                    <param name="sortby" value="$PROPERTY[sortby]" />
                    <param name="sortorder" value="$PROPERTY[sortorder]" />
-                   <param name="browse" value="$PROPERTY[browse]" />
                    <param name="content" value="$PROPERTY[content]" />
                    <param name="is_autolimit" value="$PROPERTY[isAutoLimit]" />
                    <param name="autolimit" value="$PROPERTY[autoLimit]" />
                 </include>
                 <include content="Widget_ContentInclude" condition="!$PROPERTY[isDynamicContent]">
-                   <param name="target" value="$PROPERTY[target]" />
-                   <param name="limit" value="$PROPERTY[limit]" />
-                   <param name="sortby" value="$PROPERTY[sortby]" />
-                   <param name="sortorder" value="$PROPERTY[sortorder]" />
-                   <param name="browse" value="never" />
                    <param name="include" value="$PROPERTY[content]" />
-                   <param name="is_autolimit" value="$PROPERTY[isAutoLimit]" />
-                   <param name="autolimit" value="$PROPERTY[autoLimit]" />
+                </include>
+                <include content="Widget_ContentItem" condition="$PROPERTY[showMore] + $PROPERTY[isDynamicContent] + !$PROPERTY[isAutoLimit] + Skin.HasSetting(enable.morewidget)">
+                    <param name="label">31429</param>
+                    <param name="icon">misc/more-items.png</param>
+                    <param name="fanart">$PROPERTY[showMoreFanart]</param>
+                    <param name="onclick">ActivateWindow($PROPERTY[target],$PROPERTY[content],return)</param>
+                    <param name="visible">[Integer.IsEqual(Container(301).NumItems,$PROPERTY[limitNumber]) | Integer.IsEqual(Container(301).NumItems,$MATH[limitNumber + 1])] + !Container(301).IsUpdating</param>
                 </include>
             </control>
         </controls>
@@ -198,28 +229,8 @@
     <template include="widget-featured" menu="mainmenu">
 		<property name="id" from="index" />
 
-        <!--- Widget Content -->
-        <property name="content" condition="widgetPath=Submenu">skinshortcuts-mainmenu-submenu</property>
-        <property name="content" condition="widgetPath=Settings">SettingsInfoItems</property>
-        <property name="content" condition="widgetPath=Systeminfo">SystemInfoItems</property>
-        <property name="content" condition="widgetPath=Weather">WeatherDailyItems</property>
-        <property name="content" condition="widgetPath" from="widgetPath"/>
-        <property name="content">$VAR[DefWidgetContent]</property>
-        
-        <property name="target" condition="widgetTarget" from="widgetTarget"/>
-        <property name="target" condition="!widgetPath">$VAR[DefWidgetTarget]</property>
-        <property name="browse">never</property>
-        <property name="sortby" from="widgetSortby"/>
-        <property name="sortorder" from="widgetSortorder"/>
-        <property name="limit" from="widgetLimit"/>
-
-        <property name="autoscroll" condition="widgetAutoscroll">true</property>
-        <property name="autoscroll">false</property>
-
-        <property name="isAutoLimit">false</property>
-
-		<property name="isDynamicContent" condition="widgetPath IN Submenu,Settings,Systeminfo,WeatherDaily,WeatherHourly">false</property>
-		<property name="isDynamicContent">true</property>
+        <propertyGroup content="widgetContentProperties"/>
+        <propertyGroup content="moreItemProperties"/>
 
         <controls>
             <control type="wraplist" id="301">
@@ -250,18 +261,17 @@
                    <param name="limit" value="$PROPERTY[limit]" />
                    <param name="sortby" value="$PROPERTY[sortby]" />
                    <param name="sortorder" value="$PROPERTY[sortorder]" />
-                   <param name="browse" value="$PROPERTY[browse]" />
                    <param name="content" value="$PROPERTY[content]" />
-                   <param name="is_autolimit" value="$PROPERTY[isAutoLimit]" />
                 </include>
                 <include content="Widget_ContentInclude" condition="!$PROPERTY[isDynamicContent]">
-                   <param name="target" value="$PROPERTY[target]" />
-                   <param name="limit" value="$PROPERTY[limit]" />
-                   <param name="sortby" value="$PROPERTY[sortby]" />
-                   <param name="sortorder" value="$PROPERTY[sortorder]" />
-                   <param name="browse" value="never" />
                    <param name="include" value="$PROPERTY[content]" />
-                   <param name="is_autolimit" value="$PROPERTY[isAutoLimit]" />
+                </include>
+                <include content="Widget_ContentItem" condition="$PROPERTY[showMore] + $PROPERTY[isDynamicContent] + Skin.HasSetting(enable.morewidget)">
+                    <param name="label">31429</param>
+                    <param name="icon">misc/more-items.png</param>
+                    <param name="fanart">$PROPERTY[showMoreFanart]</param>
+                    <param name="onclick">ActivateWindow($PROPERTY[target],$PROPERTY[content],return)</param>
+                    <param name="visible">[Integer.IsEqual(Container(301).NumItems,$PROPERTY[limitNumber]) | Integer.IsEqual(Container(301).NumItems,$MATH[limitNumber + 1])] + !Container(301).IsUpdating</param>
                 </include>
             </control>
         </controls>
@@ -270,23 +280,8 @@
     <template include="widget-vertical" menu="mainmenu">
 		<property name="id" from="index" />
 
-        <!--- Widget Content -->
-        <property name="content" condition="widgetPath=Submenu">skinshortcuts-mainmenu-submenu</property>
-        <property name="content" condition="widgetPath=Settings">SettingsInfoItems</property>
-        <property name="content" condition="widgetPath=Systeminfo">SystemInfoItems</property>
-        <property name="content" condition="widgetPath=Weather">WeatherDailyItems</property>
-        <property name="content" condition="widgetPath" from="widgetPath"/>
-        <property name="content">$VAR[DefWidgetContent]</property>
-        
-        <property name="target" condition="widgetTarget" from="widgetTarget"/>
-        <property name="target" condition="!widgetPath">$VAR[DefWidgetTarget]</property>
-        <property name="browse">never</property>
-        <property name="sortby" from="widgetSortby"/>
-        <property name="sortorder" from="widgetSortorder"/>
-        <property name="limit" from="widgetLimit"/>
-
-        <property name="autoscroll" condition="widgetAutoscroll">true</property>
-        <property name="autoscroll">false</property>
+        <propertyGroup content="widgetContentProperties"/>
+        <propertyGroup content="moreItemProperties"/>
 
 		<property name="widgetAspect" condition="widgetPath IN Submenu,Settings,Systeminfo">Square</property>
 		<property name="widgetAspect" from="widgetAspect" condition="widgetAspect" />		
@@ -299,9 +294,6 @@
 
         <property name="isAutoLimit" condition="widgetLimit=Auto">true</property>
         <property name="isAutoLimit">false</property>
-
-		<property name="isDynamicContent" condition="widgetPath IN Submenu,Settings,Systeminfo,WeatherDaily,WeatherHourly">false</property>
-		<property name="isDynamicContent">true</property>
 
         <controls>
             <control type="fixedlist" id="301">
@@ -324,7 +316,7 @@
                 <preloaditems>2</preloaditems>
                 <orientation>horizontal</orientation>
                 <pagecontrol>60</pagecontrol>
-                <movement>$PYTHON[int(autoLimit) - 1]</movement>
+                <movement>$MATH[autolimit - 1]</movement>
                 <include>ScrolltimeWidgetsList</include>
                 <include content="Widget_AutoScroll" condition="$PROPERTY[autoscroll]">
                     <param name="time" value="Skin.String(AutoScrollTime)" />
@@ -391,20 +383,19 @@
                    <param name="limit" value="$PROPERTY[limit]" />
                    <param name="sortby" value="$PROPERTY[sortby]" />
                    <param name="sortorder" value="$PROPERTY[sortorder]" />
-                   <param name="browse" value="$PROPERTY[browse]" />
                    <param name="content" value="$PROPERTY[content]" />
                    <param name="is_autolimit" value="$PROPERTY[isAutoLimit]" />
                    <param name="autolimit" value="$PROPERTY[autoLimit]" />
                 </include>
                 <include content="Widget_ContentInclude" condition="!$PROPERTY[isDynamicContent]">
-                   <param name="target" value="$PROPERTY[target]" />
-                   <param name="limit" value="$PROPERTY[limit]" />
-                   <param name="sortby" value="$PROPERTY[sortby]" />
-                   <param name="sortorder" value="$PROPERTY[sortorder]" />
-                   <param name="browse" value="never" />
                    <param name="include" value="$PROPERTY[content]" />
-                   <param name="is_autolimit" value="$PROPERTY[isAutoLimit]" />
-                   <param name="autolimit" value="$PROPERTY[autoLimit]" />
+                </include>
+                <include content="Widget_ContentItem" condition="$PROPERTY[showMore] + $PROPERTY[isDynamicContent] + !$PROPERTY[isAutoLimit] + Skin.HasSetting(enable.morewidget)">
+                    <param name="label">31429</param>
+                    <param name="icon">misc/more-items.png</param>
+                    <param name="fanart">$PROPERTY[showMoreFanart]</param>
+                    <param name="onclick">ActivateWindow($PROPERTY[target],$PROPERTY[content],return)</param>
+                    <param name="visible">[Integer.IsEqual(Container(301).NumItems,$PROPERTY[limitNumber]) | Integer.IsEqual(Container(301).NumItems,$MATH[limitNumber + 1])] + !Container(301).IsUpdating</param>
                 </include>
             </control>
         </controls>
@@ -431,12 +422,8 @@
         <property name="content" from="widgetPath"/>
         
         <property name="target" from="widgetTarget"/>
-        <property name="browse" condition="widgetType=tvguide">never</property>
-        <property name="browse" condition="widgetLimit=Auto">never</property>
-        <property name="browse">$VAR[DefWidgetBrowse]</property>
         <property name="sortby" from="widgetSortby"/>
         <property name="sortorder" from="widgetSortorder"/>
-        <property name="limit" condition="widgetType=tvguide">5</property>
         <property name="limit" from="widgetLimit"/>
 
         <property name="autoscroll" condition="widgetAutoscroll">true</property>
@@ -453,6 +440,7 @@
         <property name="movement" condition="widgetStyle=LandscapePosterSmall">2</property>
         <property name="movement">7</property>
 
+        <property name="autolimit" condition="widgetType=tvguide">5</property>
         <property name="autolimit" condition="widgetPath IN Submenu,Settings,Systeminfo">5</property>
         <property name="autolimit" condition="widgetStyle=Square">5</property>
         <property name="autolimit" condition="widgetStyle=Thumbnail">3</property>
@@ -462,6 +450,7 @@
         <property name="autolimit">8</property>
 
         <property name="isAutoLimit" condition="widgetLimit=Auto">true</property>
+        <property name="isAutoLimit" condition="widgetType=tvguide">true</property>
         <property name="isAutoLimit">false</property>
 
 		<property name="isDynamicContent" condition="widgetPath IN Submenu,Settings,Systeminfo,WeatherDaily,WeatherHourly">false</property>
@@ -482,6 +471,8 @@
         <property name="fullscreenInfoInclude" condition="widgetPath IN Settings,Systeminfo">HomeWidgetsSysteminfo</property>
         <property name="fullscreenInfoInclude" condition="widgetPath IN WeatherDaily,WeatherHourly">HomeWidgetsWeatherInfo</property>
         <property name="fullscreenInfoInclude">HomeWidgetsFullscreenInfo</property>
+
+        <propertyGroup content="moreItemProperties"/>
 
         <!-- Widget Container -->
         <property name="layoutHeight" condition="widgetFullscreen">710</property>
@@ -530,21 +521,20 @@
 					<param name="limit" value="$PROPERTY[limit]" />
 					<param name="sortby" value="$PROPERTY[sortby]" />
 					<param name="sortorder" value="$PROPERTY[sortorder]" />
-					<param name="browse" value="$PROPERTY[browse]" />
 					<param name="content" value="$PROPERTY[content]" />
 					<param name="is_autolimit" value="$PROPERTY[isAutoLimit]" />
 					<param name="autolimit" value="$PROPERTY[autolimit]" />
 				</include>
 				<include content="Widget_ContentInclude" condition="!$PROPERTY[isDynamicContent]">
-					<param name="target" value="$PROPERTY[target]" />
-					<param name="limit" value="$PROPERTY[limit]" />
-					<param name="sortby" value="$PROPERTY[sortby]" />
-					<param name="sortorder" value="$PROPERTY[sortorder]" />
-					<param name="browse" value="never" />
 					<param name="include" value="$PROPERTY[content]" />
-					<param name="is_autolimit" value="$PROPERTY[isAutoLimit]" />
-					<param name="autolimit" value="$PROPERTY[autolimit]" />
 				</include>
+                <include content="Widget_ContentItem" condition="$PROPERTY[showMore] + $PROPERTY[isDynamicContent] + !$PROPERTY[isAutoLimit] + Skin.HasSetting(enable.morewidget)">
+                    <param name="label">31429</param>
+                    <param name="icon">misc/more-items.png</param>
+                    <param name="fanart">$PROPERTY[showMoreFanart]</param>
+                    <param name="onclick">ActivateWindow($PROPERTY[target],$PROPERTY[content],return)</param>
+                    <param name="visible">[Integer.IsEqual(Container($MATH[$PARENT[index] * 10000 + 3100 + $PROPERTY[id]]).NumItems,$PROPERTY[limitNumber]) | Integer.IsEqual(Container($MATH[$PARENT[index] * 10000 + 3100 + $PROPERTY[id]]).NumItems,$MATH[limitNumber + 1])] + !Container($MATH[$PARENT[index] * 10000 + 3100 + $PROPERTY[id]]).IsUpdating</param>
+                </include>
 			</control>
 			<!-- InfoSub -->
 			<control type="group" id="$MATH[$PARENT[index] * 10000 + 5600 + $PROPERTY[id]]">
@@ -641,8 +631,7 @@
         <!--- Widget Content -->
         <property name="content">$VAR[DefWidgetContent]</property>
         <property name="target">$VAR[DefWidgetTarget]</property>
-        <property name="browse">$VAR[DefWidgetBrowse]</property>
-        <property name="limit">$NUMBER[25]</property>
+        <property name="limit">25</property>
 
         <controls>
             <control type="group">
@@ -692,9 +681,15 @@
                     </include>
                     <include content="Widget_ContentDynamic">
                        <param name="target" value="$PROPERTY[target]" />
-                       <param name="browse" value="$PROPERTY[browse]" />
                        <param name="content" value="$PROPERTY[content]" />
                        <param name="limit" value="$PROPERTY[limit]" />
+                    </include>
+                    <include content="Widget_ContentItem" condition="Skin.HasSetting(enable.morewidget)">
+                        <param name="label">31429</param>
+                        <param name="icon">misc/more-items.png</param>
+                        <param name="fanart">$VAR[DefWidgetFanart]</param>
+                        <param name="onclick">ActivateWindow($PROPERTY[target],$PROPERTY[content],return)</param>
+                        <param name="visible">[Integer.IsEqual(Container(993100).NumItems,$PROPERTY[limit]) | Integer.IsEqual(Container(993100).NumItems,$MATH[limit + 1])]  + !Container(993100).IsUpdating</param>
                     </include>
                 </control>
                 <!-- InfoSub -->
