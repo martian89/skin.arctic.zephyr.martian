@@ -138,17 +138,25 @@
     </include>
 
     <include name="Widget_ContentItem">
-        <content>
-	        <item>
-	            <label>$PARAM[label]</label>
-	            <icon>$PARAM[icon]</icon>
-	            <onclick>$PARAM[onclick]</onclick>
-	            <visible>$PARAM[visible]</visible>
-	            <property name="fanart">$PARAM[fanart]</property>
-	        </item>
-        </content>
+        <param name="fanart_fallback" default="false" />
+        <definition>
+	        <content>
+		        <item>
+		            <label>$PARAM[label]</label>
+		            <icon>$PARAM[icon]</icon>
+		            <onclick>$PARAM[onclick]</onclick>
+		            <visible>$PARAM[visible]</visible>
+		            <include condition="$PARAM[fanart_fallback]">Widget_ContentItem_Fallback_Property</include>
+		            <property name="fanart">$PARAM[fanart]</property>
+		        </item>
+	        </content>
+        </definition>
     </include>
 
+    <include name="Widget_ContentItem_Fallback_Property">
+        <property name="fanart">$VAR[DefWidgetFanart]</property>    
+    </include>
+    
     <include name="Widget_AutoScroll">
         <definition>
             <include content="def_autoscroll" condition="String.IsEqual(Skin.String(AutoScrollTime),5s)">

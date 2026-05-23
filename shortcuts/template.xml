@@ -58,8 +58,9 @@
 	    <property name="showMoreFanart" tag="property" attribute="name|widgetTarget" value="videos">special://skin/extras/backgrounds/fallbacks/tv.jpg</property>
 	    <property name="showMoreFanart" tag="property" attribute="name|widgetTarget" value="music">special://skin/extras/backgrounds/fallbacks/music.jpg</property>
 
-        <property name="showMoreFanartFallback">$VAR[DefWidgetFanart]</property>
-        	
+        <property name="showMoreFanartFallback" tag="property" attribute="name|widgetPath">false</property>
+        <property name="showMoreFanartFallback">true</property>
+
 	    <property name="limitNumber" tag="property" attribute="name|widgetLimit" value="$NUMBER[10]">10</property>
 	    <property name="limitNumber" tag="property" attribute="name|widgetLimit" value="$NUMBER[25]">25</property>
 	    <property name="limitNumber" tag="property" attribute="name|widgetLimit" value="$NUMBER[50]">50</property>
@@ -176,11 +177,12 @@
                    <param name="include" value="$SKINSHORTCUTS[content]" />
                 </include>
 		        <include content="Widget_ContentItem" condition="$SKINSHORTCUTS[showMore] + $SKINSHORTCUTS[isDynamicContent] + !$SKINSHORTCUTS[isAutoLimit] + Skin.HasSetting(enable.morewidget)">
-		            <param name="label">31429</param>
-		            <param name="icon">misc/more-items.png</param>
-		            <param name="fanart">$PYTHON[showMoreFanartFallback if 'DefWidgetContent' in content else showMoreFanart]</param>
-		            <param name="onclick">ActivateWindow($SKINSHORTCUTS[target],$SKINSHORTCUTS[content],return)</param>
-		            <param name="visible">Integer.IsEqual(Container(301).NumItems,$SKINSHORTCUTS[limitNumber]) | Integer.IsEqual(Container(301).NumItems,$PYTHON[int(limitNumber) + 1])</param>
+		            <param name="label" value="31429" />
+		            <param name="icon" value="misc/more-items.png" />
+		            <param name="fanart" value="$SKINSHORTCUTS[showMoreFanart]" />
+                    <param name="fanart_fallback" value="$SKINSHORTCUTS[showMoreFanartFallback]" />
+		            <param name="onclick" value="ActivateWindow($SKINSHORTCUTS[target],$SKINSHORTCUTS[content],return)" />
+		            <param name="visible" value="Integer.IsEqual(Container(301).NumItems,$SKINSHORTCUTS[limitNumber]) | Integer.IsEqual(Container(301).NumItems,$PYTHON[int(limitNumber) + 1])" />
 		        </include>
             </control>
         </controls>
@@ -225,11 +227,12 @@
                    <param name="include" value="$SKINSHORTCUTS[content]" />
                 </include>
                 <include content="Widget_ContentItem" condition="$SKINSHORTCUTS[showMore] + $SKINSHORTCUTS[isDynamicContent] + Skin.HasSetting(enable.morewidget)">
-                    <param name="label">31429</param>
-                    <param name="icon">misc/more-items.png</param>
-                    <param name="fanart">$PYTHON[showMoreFanartFallback if 'DefWidgetContent' in content else showMoreFanart]</param>
-                    <param name="onclick">ActivateWindow($SKINSHORTCUTS[target],$SKINSHORTCUTS[content],return)</param>
-                    <param name="visible">Integer.IsEqual(Container(301).NumItems,$SKINSHORTCUTS[limitNumber]) | Integer.IsEqual(Container(301).NumItems,$PYTHON[int(limitNumber) + 1])</param>
+                    <param name="label" value="31429" />
+                    <param name="icon" value="misc/more-items.png" />
+                    <param name="fanart" value="$SKINSHORTCUTS[showMoreFanart]" />
+                    <param name="fanart_fallback" value="$SKINSHORTCUTS[showMoreFanartFallback]" />
+                    <param name="onclick" value="ActivateWindow($SKINSHORTCUTS[target],$SKINSHORTCUTS[content],return)" />
+                    <param name="visible" value="Integer.IsEqual(Container(301).NumItems,$SKINSHORTCUTS[limitNumber]) | Integer.IsEqual(Container(301).NumItems,$PYTHON[int(limitNumber) + 1])" />
                 </include>
             </control>
         </controls>
@@ -298,11 +301,12 @@
                    <param name="include" value="$SKINSHORTCUTS[content]" />
                 </include>
                 <include content="Widget_ContentItem" condition="$SKINSHORTCUTS[showMore] + $SKINSHORTCUTS[isDynamicContent] + !$SKINSHORTCUTS[isAutoLimit] + Skin.HasSetting(enable.morewidget)">
-                    <param name="label">31429</param>
-                    <param name="icon">misc/more-items.png</param>
-                    <param name="fanart">$PYTHON[showMoreFanartFallback if 'DefWidgetContent' in content else showMoreFanart]</param>
-                    <param name="onclick">ActivateWindow($SKINSHORTCUTS[target],$SKINSHORTCUTS[content],return)</param>
-                    <param name="visible">Integer.IsEqual(Container(301).NumItems,$SKINSHORTCUTS[limitNumber]) | Integer.IsEqual(Container(301).NumItems,$PYTHON[int(limitNumber) + 1])</param>
+                    <param name="label" value="31429" />
+                    <param name="icon" value="misc/more-items.png" />
+                    <param name="fanart" value="$SKINSHORTCUTS[showMoreFanart]" />
+                    <param name="fanart_fallback" value="$SKINSHORTCUTS[showMoreFanartFallback]" />
+                    <param name="onclick" value="ActivateWindow($SKINSHORTCUTS[target],$SKINSHORTCUTS[content],return)" />
+                    <param name="visible" value="Integer.IsEqual(Container(301).NumItems,$SKINSHORTCUTS[limitNumber]) | Integer.IsEqual(Container(301).NumItems,$PYTHON[int(limitNumber) + 1])" />
                 </include>
             </control>
         </controls>
@@ -387,22 +391,22 @@
 	        <property name="limit" tag="property" attribute="name|widgetLimit"/>
 
             <property name="isAutoLimit" tag="property" attribute="name|widgetLimit" value="Auto">true</property>
-            <property name="isAutolimit" tag="label2" value="tvguide">true</property>
+            <property name="isAutoLimit" tag="label2" value="tvguide">true</property>
             <property name="isAutoLimit">false</property>
 
             <property name="label" tag="label" />
             <property name="label">$LOCALIZE[31105]</property>
 
-            <property name="autolimit" tag="label2" value="tvguide">5</property>
-            <property name="autolimit" tag="property" attribute="name|list" value="Submenu">5</property>
-            <property name="autolimit" tag="property" attribute="name|list" value="Settings">5</property>
-            <property name="autolimit" tag="property" attribute="name|list" value="Systeminfo">5</property>
-            <property name="autolimit" tag="property" attribute="name|widgetAspect" value="Square">5</property>
-            <property name="autolimit" tag="property" attribute="name|widgetAspect" value="Thumbnail">3</property>
-            <property name="autolimit" tag="property" attribute="name|widgetAspect" value="Landscape">3</property>
-            <property name="autolimit" tag="property" attribute="name|widgetAspect" value="LandscapeSmall">4</property>
-            <property name="autolimit" tag="property" attribute="name|widgetAspect" value="LandscapePosterSmall">3</property>
-            <property name="autolimit">8</property>
+            <property name="autoLimit" tag="label2" value="tvguide">5</property>
+            <property name="autoLimit" tag="property" attribute="name|list" value="Submenu">5</property>
+            <property name="autoLimit" tag="property" attribute="name|list" value="Settings">5</property>
+            <property name="autoLimit" tag="property" attribute="name|list" value="Systeminfo">5</property>
+            <property name="autoLimit" tag="property" attribute="name|widgetAspect" value="Square">5</property>
+            <property name="autoLimit" tag="property" attribute="name|widgetAspect" value="Thumbnail">3</property>
+            <property name="autoLimit" tag="property" attribute="name|widgetAspect" value="Landscape">3</property>
+            <property name="autoLimit" tag="property" attribute="name|widgetAspect" value="LandscapeSmall">4</property>
+            <property name="autoLimit" tag="property" attribute="name|widgetAspect" value="LandscapePosterSmall">3</property>
+            <property name="autoLimit">8</property>
 
             <property name="isSubmenu" tag="property" attribute="name|list" value="Submenu">true</property>
             <property name="isSubmenu">false</property>
@@ -480,7 +484,7 @@
 	                    <param name="height" value="$SKINSHORTCUTS[layoutHeight]"/>
 	                    <param name="height2" value="$SKINSHORTCUTS[layoutHeight2]"/>
 	                    <param name="orientation" value="$SKINSHORTCUTS[orientation]"/>
-                        <param name="movement" value="$PYTHON[int(autolimit) - 1]"/>
+                        <param name="movement" value="$PYTHON[int(autoLimit) - 1]"/>
                         <param name="autoscroll" value="$SKINSHORTCUTS[autoscroll]"/>
                     </include>
                     <!-- ItemLayout -->
@@ -500,17 +504,17 @@
                        <param name="sortorder" value="$SKINSHORTCUTS[sortorder]" />
                        <param name="content" value="$SKINSHORTCUTS[content]" />
                        <param name="is_autolimit" value="$SKINSHORTCUTS[isAutoLimit]" />
-                       <param name="autolimit" value="$SKINSHORTCUTS[autolimit]" />
+                       <param name="autolimit" value="$SKINSHORTCUTS[autoLimit]" />
 	                </include>
                     <include content="Widget_ContentInclude" condition="!$SKINSHORTCUTS[isDynamicContent]">
                        <param name="include" value="$SKINSHORTCUTS[content]" />
                     </include>
                     <include content="Widget_ContentItem" condition="$SKINSHORTCUTS[showMore] + $SKINSHORTCUTS[isDynamicContent] + !$SKINSHORTCUTS[isAutoLimit] + Skin.HasSetting(enable.morewidget)">
-                        <param name="label">31429</param>
-                        <param name="icon">misc/more-items.png</param>
-                        <param name="fanart">$SKINSHORTCUTS[showMoreFanart]</param>
-                        <param name="onclick">ActivateWindow($SKINSHORTCUTS[target],$SKINSHORTCUTS[content],return)</param>
-                        <param name="visible">[Integer.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]).NumItems,$SKINSHORTCUTS[limitNumber]) | Integer.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]).NumItems,$PYTHON[int(limitNumber) + 1])] + !Container($PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]).IsUpdating</param>
+                        <param name="label" value="31429" />
+                        <param name="icon" value="misc/more-items.png" />
+                        <param name="fanart" value="$SKINSHORTCUTS[showMoreFanart]" />
+                        <param name="onclick" value="ActivateWindow($SKINSHORTCUTS[target],$SKINSHORTCUTS[content],return)" />
+                        <param name="visible" value="[Integer.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]).NumItems,$SKINSHORTCUTS[limitNumber]) | Integer.IsEqual(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]).NumItems,$PYTHON[int(limitNumber) + 1])] + !Container($PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]).IsUpdating" />
                     </include>
                 </control>
                 <control type="group" id="$PYTHON[int(mainmenuid) * 10000 + 7500 + int(id)]">
@@ -586,11 +590,11 @@
                        <param name="limit" value="$SKINSHORTCUTS[limit]" />
                     </include>
                     <include content="Widget_ContentItem" condition="Skin.HasSetting(enable.morewidget)">
-                        <param name="label">31429</param>
-                        <param name="icon">misc/more-items.png</param>
-                        <param name="fanart">$VAR[DefWidgetFanart]</param>
-                        <param name="onclick">ActivateWindow($SKINSHORTCUTS[target],$SKINSHORTCUTS[content],return)</param>
-                        <param name="visible">[Integer.IsEqual(Container(993100).NumItems,$SKINSHORTCUTS[limit]) | Integer.IsEqual(Container(993100).NumItems,$PYTHON[int(limit) + 1])]  + !Container(993100).IsUpdating</param>
+                        <param name="label" value="31429" />
+                        <param name="icon" value="misc/more-items.png" />
+                        <param name="fanart_fallback">true</param>
+                        <param name="onclick" value="ActivateWindow($SKINSHORTCUTS[target],$SKINSHORTCUTS[content],return)" />
+                        <param name="visible" value="[Integer.IsEqual(Container(993100).NumItems,$SKINSHORTCUTS[limit]) | Integer.IsEqual(Container(993100).NumItems,$PYTHON[int(limit) + 1])]  + !Container(993100).IsUpdating" />
                     </include>
                 </control>
                 <!-- InfoSub -->
