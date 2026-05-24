@@ -37,15 +37,13 @@
     
     <propertyGroup name="moreItemProperties">
 	    <!-- Show More Item -->
-	    <property name="showMore" propertyValue="true">
-	        <match>all</match>
-	        <rule tag="property" attribute="name|widgetLimit" />                
-	        <rule tag="property" attribute="name|widgetTarget" />                
-	    </property>
-        <property name="showMore" tag="isSubmenu" value="true">false</property>
-        <property name="showMore" tag="property" attribute="name|widgetPath">false</property>
         <property name="showMore" tag="property" attribute="name|widgetLimit">true</property>
 	    <property name="showMore">false</property>
+
+        <property name="hasTarget" tag="property" attribute="name|widgetTarget">true</property>
+        <property name="hasTarget" tag="property" attribute="name|widgetPath">false</property>
+        <property name="hasTarget" tag="property" attribute="name|isSubmenu" value="True">false</property>
+        <property name="hasTarget">true</property>
 
         <property name="showMoreFanart" tag="property" attribute="name|widgetType" value="movies">special://skin/extras/backgrounds/fallbacks/film.jpg</property>
         <property name="showMoreFanart" tag="property" attribute="name|widgetType" value="sets">special://skin/extras/backgrounds/fallbacks/film.jpg</property>
@@ -176,7 +174,7 @@
                 <include content="Widget_ContentInclude" condition="!$SKINSHORTCUTS[isDynamicContent]">
                    <param name="include" value="$SKINSHORTCUTS[content]" />
                 </include>
-		        <include content="Widget_ContentItem" condition="$SKINSHORTCUTS[showMore] + $SKINSHORTCUTS[isDynamicContent] + !$SKINSHORTCUTS[isAutoLimit] + Skin.HasSetting(enable.morewidget)">
+		        <include content="Widget_ContentItem" condition="$SKINSHORTCUTS[showMore] + $SKINSHORTCUTS[hasTarget] + $SKINSHORTCUTS[isDynamicContent] + !$SKINSHORTCUTS[isAutoLimit] + Skin.HasSetting(enable.morewidget)">
 		            <param name="label" value="31429" />
 		            <param name="icon" value="misc/more-items.png" />
 		            <param name="fanart" value="$SKINSHORTCUTS[showMoreFanart]" />
@@ -226,7 +224,7 @@
                 <include content="Widget_ContentInclude" condition="!$SKINSHORTCUTS[isDynamicContent]">
                    <param name="include" value="$SKINSHORTCUTS[content]" />
                 </include>
-                <include content="Widget_ContentItem" condition="$SKINSHORTCUTS[showMore] + $SKINSHORTCUTS[isDynamicContent] + Skin.HasSetting(enable.morewidget)">
+                <include content="Widget_ContentItem" condition="$SKINSHORTCUTS[showMore] + $SKINSHORTCUTS[hasTarget] + $SKINSHORTCUTS[isDynamicContent] + Skin.HasSetting(enable.morewidget)">
                     <param name="label" value="31429" />
                     <param name="icon" value="misc/more-items.png" />
                     <param name="fanart" value="$SKINSHORTCUTS[showMoreFanart]" />
@@ -300,7 +298,7 @@
                 <include content="Widget_ContentInclude" condition="!$SKINSHORTCUTS[isDynamicContent]">
                    <param name="include" value="$SKINSHORTCUTS[content]" />
                 </include>
-                <include content="Widget_ContentItem" condition="$SKINSHORTCUTS[showMore] + $SKINSHORTCUTS[isDynamicContent] + !$SKINSHORTCUTS[isAutoLimit] + Skin.HasSetting(enable.morewidget)">
+                <include content="Widget_ContentItem" condition="$SKINSHORTCUTS[showMore] + $SKINSHORTCUTS[hasTarget] + $SKINSHORTCUTS[isDynamicContent] + !$SKINSHORTCUTS[isAutoLimit] + Skin.HasSetting(enable.morewidget)">
                     <param name="label" value="31429" />
                     <param name="icon" value="misc/more-items.png" />
                     <param name="fanart" value="$SKINSHORTCUTS[showMoreFanart]" />
@@ -509,7 +507,7 @@
                     <include content="Widget_ContentInclude" condition="!$SKINSHORTCUTS[isDynamicContent]">
                        <param name="include" value="$SKINSHORTCUTS[content]" />
                     </include>
-                    <include content="Widget_ContentItem" condition="$SKINSHORTCUTS[showMore] + $SKINSHORTCUTS[isDynamicContent] + !$SKINSHORTCUTS[isAutoLimit] + Skin.HasSetting(enable.morewidget)">
+                    <include content="Widget_ContentItem" condition="$SKINSHORTCUTS[showMore] + $SKINSHORTCUTS[hasTarget] + $SKINSHORTCUTS[isDynamicContent] + !$SKINSHORTCUTS[isAutoLimit] + Skin.HasSetting(enable.morewidget)">
                         <param name="label" value="31429" />
                         <param name="icon" value="misc/more-items.png" />
                         <param name="fanart" value="$SKINSHORTCUTS[showMoreFanart]" />
