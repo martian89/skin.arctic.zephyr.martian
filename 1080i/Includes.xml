@@ -1970,7 +1970,7 @@
           | String.IsEqual(Container(211).ListItem.Property(widget),systeminfo)
           | String.IsEqual(Container(211).ListItem.Property(widget),settings) ]
         | !$EXP[Skinshortcuts_Mainmenu_Active]
-        + [ String.IsEqual(Container(211).ListItem.Label2,tvguide)
+        + [ String.IsEqual(Container(211).ListItem.Label2,epg)
           | String.IsEqual(Container(211).ListItem.Property(Path),submenu)
           | String.IsEqual(Container(211).ListItem.Property(Path),systeminfo)
           | String.IsEqual(Container(211).ListItem.Property(Path),settings) ]
@@ -2010,6 +2010,12 @@
         <value condition="String.Contains(Container(211).ListItem.Property(path),Programs)">programs</value>
         <value condition="String.Contains(Container(211).ListItem.Property(path),Pictures)">pictures</value>
         <value condition="String.Contains(Container(211).ListItem.Property(path),favourites)">favouritesbrowser</value>
+        <value condition="String.StartsWith(Container(211).ListItem.Property(path),pvr://channels/tv)">tvchannels</value>
+        <value condition="String.StartsWith(Container(211).ListItem.Property(path),pvr://recordings/tv)">tvrecordings</value>
+        <value condition="String.StartsWith(Container(211).ListItem.Property(path),pvr://timers/tv)">tvtimers</value>
+        <value condition="String.StartsWith(Container(211).ListItem.Property(path),pvr://channels/radio)">radiochannels</value>
+        <value condition="String.StartsWith(Container(211).ListItem.Property(path),pvr://recordings/radio)">radiorecordings</value>
+        <value condition="String.StartsWith(Container(211).ListItem.Property(path),pvr://timers/radio)">radiotimers</value>
     </variable>
     
 </includes>
