@@ -1962,7 +1962,8 @@
           | String.IsEqual(Container(211).ListItem.Property(widgetPath),systeminfo)
           | String.IsEqual(Container(211).ListItem.Property(widgetPath),settings) ]
         | !String.IsEqual(Window.Property(menuname),mainmenu)
-        + [ String.IsEqual(Container(211).ListItem.Property(widgetType),tvguide)
+        + [ String.IsEqual(Container(211).ListItem.Property(widgetTarget),tvguide)
+          | String.IsEqual(Container(211).ListItem.Property(widgetTarget),radioguide)            
           | String.IsEqual(Container(211).ListItem.Property(widgetPath),submenu)
           | String.IsEqual(Container(211).ListItem.Property(widgetPath),systeminfo)
           | String.IsEqual(Container(211).ListItem.Property(widgetPath),settings) ]
@@ -1972,5 +1973,6 @@
 
     <expression name="Skinshortcuts_Mainmenu_Active">String.IsEqual(Window.Property(menuname),mainmenu) + String.IsEmpty(Window.Property(skinshortcuts-dialog))</expression>
     <expression name="Skinshortcuts_Widgets_Active">String.EndsWith(Window.Property(menuname),.widgets) | String.IsEqual(Window.Property(skinshortcuts-dialog),widget)</expression>
+
 
 </includes>
