@@ -3,7 +3,7 @@
 
 	<!-- Reusable property groups -->
 	<propertyGroups>
-	    <propertyGroup name="widgetContentProperties">
+	    <propertyGroup name="widgetProperties">
 	        <!--- Widget Content -->
 	        <property name="content" condition="widgetPath=Submenu">skinshortcuts-mainmenu-submenu</property>
 	        <property name="content" condition="widgetPath=Settings">SettingsInfoItems</property>
@@ -50,7 +50,17 @@
 		    <property name="limitNumber">99999</property>    
 	    </propertyGroup>   
 	</propertyGroups>
-  
+
+	<!-- Presets (lookup tables) -->
+	<presets>
+		<preset name="widgetLayout">
+			<values condition="widgetAspect=Square OR widgetPath IN Submenu,Settings,Systeminfo" top="238" width="254" height="257" include="include.widget.square"/>
+			<values condition="widgetAspect=Landscape" top="238" width="445" height="257" include="include.widget.landscape"/>
+			<values condition="widgetAspect=Thumbnail" top="238" width="445" height="257" include="include.widget.thumb"/>
+			<values top="238" width="178" height="257" include="include.widget.poster"/>
+		</preset>
+	</presets>
+    
   	<!-- Variable definitions and groups -->
 	<variables>
         <variable name="widgetContainerParent" output="TMDBHelperWidgetContainer_Parent">
@@ -98,9 +108,11 @@
     <template include="widget-classic" menu="mainmenu">
 		<property name="id" from="index" />
 
-        <propertyGroup content="widgetContentProperties"/>
+        <propertyGroup content="widgetProperties"/>
         <propertyGroup content="moreItemProperties"/>
 
+		<preset content="widgetLayout" />
+		
 		<property name="widgetAspect" condition="widgetPath IN Submenu,Settings,Systeminfo">Square</property>
 		<property name="widgetAspect" from="widgetAspect" condition="widgetAspect" />		
 		<property name="widgetAspect">Poster</property>		
@@ -132,74 +144,18 @@
                     <param name="time" value="Skin.String(AutoScrollTime)" />
                     <param name="condition" value="!Control.HasFocus(301) + !System.ScreenSaverActive + System.IdleTime(1)" />
                 </include>
-                <itemlayout width="178" height="257" condition="$IF[widgetAspect=Poster THEN true ELSE false]">
-                    <include content="include.widget.poster">
-                        <param name="height" value="257"/>
-                        <param name="height_reflection" value="257"/>
-                        <param name="top" value="238"/>
+                <itemlayout width="$PROPERTY[width]" height="$PROPERTY[height]">
+                    <include content="$PROPERTY[include]">
+                        <param name="height" value="$PROPERTY[height]"/>
+                        <param name="top" value="$PROPERTY[top]"/>
                         <param name="reflections" value="Skin.HasSetting(show.reflections)"/>
                     </include>
                 </itemlayout>
-                <focusedlayout width="178" height="257" condition="$IF[widgetAspect=Poster THEN true ELSE false]">
-                    <include content="include.widget.poster">
+                <focusedlayout width="$PROPERTY[width]" height="$PROPERTY[height]">
+                    <include content="$PROPERTY[include]">
                         <param name="id" value="301"/>
-                        <param name="height" value="257"/>
-                        <param name="height_reflection" value="257"/>
-                        <param name="top" value="238"/>
-                        <param name="reflections" value="Skin.HasSetting(show.reflections)"/>
-                        <param name="focused" value="true" />
-                    </include>
-                </focusedlayout>
-                <itemlayout width="254" height="257" condition="$IF[widgetAspect=Square THEN true ELSE false]">
-                    <include content="include.widget.square">
-                        <param name="height" value="257"/>
-                        <param name="height_reflection" value="257"/>
-                        <param name="top" value="238"/>
-                        <param name="reflections" value="Skin.HasSetting(show.reflections)"/>
-                    </include>
-                </itemlayout>
-                <focusedlayout width="254" height="257" condition="$IF[widgetAspect=Square THEN true ELSE false]">
-                    <include content="include.widget.square">
-                        <param name="id" value="301"/>
-                        <param name="height" value="257"/>
-                        <param name="height_reflection" value="257"/>
-                        <param name="top" value="238"/>
-                        <param name="reflections" value="Skin.HasSetting(show.reflections)"/>
-                        <param name="focused" value="true" />
-                    </include>
-                </focusedlayout>
-                <itemlayout width="445" height="257" condition="$IF[widgetAspect=Landscape THEN true ELSE false]">
-                    <include content="include.widget.landscape">
-                        <param name="height" value="257"/>
-                        <param name="height_reflection" value="257"/>
-                        <param name="top" value="238"/>
-                        <param name="reflections" value="Skin.HasSetting(show.reflections)"/>
-                    </include>
-                </itemlayout>
-                <focusedlayout width="445" height="257" condition="$IF[widgetAspect=Landscape THEN true ELSE false]">
-                    <include content="include.widget.landscape">
-                        <param name="id" value="301"/>
-                        <param name="height" value="257"/>
-                        <param name="height_reflection" value="257"/>
-                        <param name="top" value="238"/>
-                        <param name="reflections" value="Skin.HasSetting(show.reflections)"/>
-                        <param name="focused" value="true" />
-                    </include>
-                </focusedlayout>
-                <itemlayout width="445" height="257" condition="$IF[widgetAspect=Thumbnail THEN true ELSE false]">
-                    <include content="include.widget.thumb">
-                        <param name="height" value="257"/>
-                        <param name="height_reflection" value="257"/>
-                        <param name="top" value="238"/>
-                        <param name="reflections" value="Skin.HasSetting(show.reflections)"/>
-                    </include>
-                </itemlayout>
-                <focusedlayout width="445" height="257" condition="$IF[widgetAspect=Thumbnail THEN true ELSE false]">
-                    <include content="include.widget.thumb">
-                        <param name="id" value="301"/>
-                        <param name="height" value="257"/>
-                        <param name="height_reflection" value="257"/>
-                        <param name="top" value="238"/>
+                        <param name="height" value="$PROPERTY[height]"/>
+                        <param name="top" value="$PROPERTY[top]"/>
                         <param name="reflections" value="Skin.HasSetting(show.reflections)"/>
                         <param name="focused" value="true" />
                     </include>
@@ -230,7 +186,7 @@
     <template include="widget-featured" menu="mainmenu">
 		<property name="id" from="index" />
 
-        <propertyGroup content="widgetContentProperties"/>
+        <propertyGroup content="widgetProperties"/>
         <propertyGroup content="moreItemProperties"/>
 
         <controls>
@@ -281,7 +237,7 @@
     <template include="widget-vertical" menu="mainmenu">
 		<property name="id" from="index" />
 
-        <propertyGroup content="widgetContentProperties"/>
+        <propertyGroup content="widgetProperties"/>
         <propertyGroup content="moreItemProperties"/>
 
 		<property name="widgetAspect" condition="widgetPath IN Submenu,Settings,Systeminfo">Square</property>
