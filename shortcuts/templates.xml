@@ -105,10 +105,10 @@
 		<property name="widgetAspect" from="widgetAspect" condition="widgetAspect" />		
 		<property name="widgetAspect">Poster</property>		
 		
-        <property name="autolimit" condition="widgetAspect=Square">7</property>
-        <property name="autolimit" condition="widgetAspect=Thumbnail">4</property>
-        <property name="autolimit" condition="widgetAspect=Landscape">4</property>
-        <property name="autolimit">10</property>
+        <property name="autoLimit" condition="widgetAspect=Square">7</property>
+        <property name="autoLimit" condition="widgetAspect=Thumbnail">4</property>
+        <property name="autoLimit" condition="widgetAspect=Landscape">4</property>
+        <property name="autoLimit">10</property>
 
         <property name="isAutoLimit" condition="widgetLimit=Auto">true</property>
         <property name="isAutoLimit">false</property>
@@ -288,10 +288,10 @@
 		<property name="widgetAspect" from="widgetAspect" condition="widgetAspect" />		
 		<property name="widgetAspect">Poster</property>		
 		
-        <property name="autolimit" condition="widgetAspect=Square">5</property>
-        <property name="autolimit" condition="widgetAspect=Thumbnail">3</property>
-        <property name="autolimit" condition="widgetAspect=Landscape">3</property>
-        <property name="autolimit">8</property>
+        <property name="autoLimit" condition="widgetAspect=Square">5</property>
+        <property name="autoLimit" condition="widgetAspect=Thumbnail">3</property>
+        <property name="autoLimit" condition="widgetAspect=Landscape">3</property>
+        <property name="autoLimit">8</property>
 
         <property name="isAutoLimit" condition="widgetLimit=Auto">true</property>
         <property name="isAutoLimit">false</property>
@@ -317,7 +317,7 @@
                 <preloaditems>2</preloaditems>
                 <orientation>horizontal</orientation>
                 <pagecontrol>60</pagecontrol>
-                <movement>$MATH[autolimit - 1]</movement>
+                <movement>$MATH[autoLimit - 1]</movement>
                 <include>ScrolltimeWidgetsList</include>
                 <include content="Widget_AutoScroll" condition="$PROPERTY[autoscroll]">
                     <param name="time" value="Skin.String(AutoScrollTime)" />
@@ -391,14 +391,14 @@
         <property name="movement" condition="widgetStyle=LandscapePosterSmall">2</property>
         <property name="movement">7</property>
 
-        <property name="autolimit" condition="widgetType=tvguide">5</property>
-        <property name="autolimit" condition="widgetPath IN Submenu,Settings,Systeminfo">5</property>
-        <property name="autolimit" condition="widgetStyle=Square">5</property>
-        <property name="autolimit" condition="widgetStyle=Thumbnail">3</property>
-        <property name="autolimit" condition="widgetStyle=Landscape">3</property>
-        <property name="autolimit" condition="widgetStyle=LandscapeSmall">4</property>
-        <property name="autolimit" condition="widgetStyle=LandscapePosterSmall">3</property>
-        <property name="autolimit">8</property>
+        <property name="autoLimit" condition="widgetType=tvguide">5</property>
+        <property name="autoLimit" condition="widgetPath IN Submenu,Settings,Systeminfo">5</property>
+        <property name="autoLimit" condition="widgetStyle=Square">5</property>
+        <property name="autoLimit" condition="widgetStyle=Thumbnail">3</property>
+        <property name="autoLimit" condition="widgetStyle=Landscape">3</property>
+        <property name="autoLimit" condition="widgetStyle=LandscapeSmall">4</property>
+        <property name="autoLimit" condition="widgetStyle=LandscapePosterSmall">3</property>
+        <property name="autoLimit">8</property>
 
         <property name="isAutoLimit" condition="widgetLimit=Auto">true</property>
         <property name="isAutoLimit" condition="widgetType=tvguide">true</property>
@@ -474,7 +474,7 @@
 					<param name="sortorder" value="$PROPERTY[sortorder]" />
 					<param name="content" value="$PROPERTY[content]" />
 					<param name="is_autolimit" value="$PROPERTY[isAutoLimit]" />
-					<param name="autolimit" value="$PROPERTY[autolimit]" />
+					<param name="autolimit" value="$PROPERTY[autoLimit]" />
 				</include>
 				<include content="Widget_ContentInclude" condition="!$PROPERTY[isDynamicContent]">
 					<param name="include" value="$PROPERTY[content]" />
