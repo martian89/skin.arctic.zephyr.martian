@@ -1,4 +1,5 @@
 <properties>
+    <!-- Property definitions -->
     <!-- Widget Aspect -->
 	<property name="widgetAspect" type="options">
 		<options>
@@ -60,7 +61,7 @@
 		    <option value="time" label="$LOCALIZE[555]" condition="widgetType=movies | widgetType=tvshows | widgetType=episodes | widgetType=musicvideos | widgetType=albums | widgetType=songs" />
 		    <option value="artist" label="$LOCALIZE[557]" condition="widgetType=musicvideos | widgetType=artists | widgetType=albums | widgetType=songs" />
 		    <option value="album" label="$LOCALIZE[558]"  condition="widgetType=musicvideos | widgetType=albums | widgetType=songs" />
-		    <option value="channelnumber" label="$LOCALIZE[19029]" condition="widgetType=pvr | widgetType=tvguide" />
+		    <option value="channelnumber" label="$LOCALIZE[19029]" condition="widgetType=pvr" />
 		    <option value="lastupdated" label="$LOCALIZE[12014]" condition="widgetType=addons" />
 		    <option value="lastused" label="$LOCALIZE[12012]" condition="widgetType=addons" />
 		    <option value="date" label="$LOCALIZE[552]" condition="widgetType=episodes" />
@@ -89,7 +90,8 @@
 	
 	<property name="widgetAutoscroll" type="toggle" />
     <property name="widgetFullscreen" type="toggle" />
-					
+
+    <!-- Button mappings -->					
 	<buttons suffix="true">
 		<button id="4001" property="widget" type="widget" />
 		<button id="3007" property="widgetPath" type="text" title="Enter action"/>
@@ -106,12 +108,13 @@
         <button id="358" property="widgetSortby" type="toggle" />
 	</buttons>
 
+    <!-- Fallback values -->
     <fallbacks>
         <fallback property="widgetAspect">
             <when condition="widgetType=movies">Poster</when>
             <when condition="widgetType=sets">Poster</when>
             <when condition="widgetType=tvshows">Poster</when>
-            <when condition="widgetType=episodes">Poster</when>
+            <when condition="widgetType=episodes">Thumbnail</when>
             <when condition="widgetType=games">Poster</when>
             <!-- Spotlight widget -->
             <when condition="!widgetPath">Poster</when>
@@ -121,7 +124,7 @@
             <when condition="widgetType=movies">Poster</when>
             <when condition="widgetType=sets">Poster</when>
             <when condition="widgetType=tvshows">Poster</when>
-            <when condition="widgetType=episodes">Poster</when>
+            <when condition="widgetType=episodes">Thumbnail</when>
             <when condition="widgetType=games">Poster</when>
             <default>Square</default>
         </fallback>

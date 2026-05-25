@@ -105,6 +105,7 @@
   		</variableGroup>
 	</variables>
 
+    <!-- Template definitions -->
     <template include="widget-classic" menu="mainmenu">
 		<property name="id" from="index" />
 
@@ -308,14 +309,41 @@
         </controls>
     </template>
 
-	<template items="menuitems" source="widgets" filter="widgetPath">
-		<property name="id" from="index" />
-		<controls>
-			<item id="$PARENT[index]$PROPERTY[id]">
-				<visible>String.IsEqual(Container(300).ListItem.Property(submenuVisibility),$PARENT[submenuVisibility])</visible>
-			</item>
-		</controls>
-	</template>
+    <template include="widgets" menu="mainmenu">
+        <property name="mainmenuid" from="index" />     
+
+        <controls>
+            <control type="group">
+                <skinshortcuts>visibility</skinshortcuts>
+                <include condition="!Skin.HasSetting(widgets.fade)">Animation.Vertical.Widgets.Label</include>
+                <animation effect="slide" start="0" end="0,342" time="0" condition="Skin.HasSetting(homemenu.clean.flix) + Skin.HasSetting(homemenu.clean.flix.no.slide)">Conditional</animation>
+                <animation effect="slide" start="0" end="0,335" time="0" condition="Skin.HasSetting(homemenu.clean.flix) + !Skin.HasSetting(homemenu.clean.flix.no.slide)">Conditional</animation>
+                <animation effect="slide" start="0" end="0,40" time="0" condition="!Skin.HasSetting(homemenu.clean.flix) + !Skin.HasSetting(show.reflections)">Conditional</animation>
+                <include content="Widget_Navigation_Arrows">
+                    <param name="groupid" value="$MATH[mainmenuid * 1000 + 301]" />
+                </include>
+                <include content="Widget_Items_Count" condition="Skin.HasSetting(homemenu.clean.flix)">
+                    <param name="groupid" value="$MATH[mainmenuid * 1000 + 301]" />
+                </include>
+            </control>
+            <control type="grouplist" id="$MATH[mainmenuid * 1000 + 301]">
+                <skinshortcuts>visibility</skinshortcuts>
+                <usecontrolcoords>true</usecontrolcoords>
+                <itemgap>0</itemgap>
+                <orientation>vertical</orientation>
+                <include>ScrolltimeWidgetsContainer</include>
+ 
+                <include>Widget_Navigation_Actions</include>
+                
+                <skinshortcuts insert="widgets">items</skinshortcuts>
+             </control>
+             <control type="group">
+                 <skinshortcuts>visibility</skinshortcuts>
+                 <skinshortcuts insert="hidden-lists">items</skinshortcuts>
+             </control>       
+        </controls>     
+        <variableGroup content="widgetVars" />
+    </template>
 
 	<template items="widgets" source="widgets" filter="widgetPath">
 		<property name="id" from="index" />
@@ -492,48 +520,23 @@
          </controls>
     </template>
 
-	<template include="widgets-submenu" menu="mainmenu">
-		<controls>
-			<skinshortcuts insert="menuitems" />
-		</controls>
-	</template>
-
-	<template include="widgets" menu="mainmenu">
-		<property name="mainmenuid" from="index" />		
-
+    <!-- Pseudo submenu to count widgets -->
+    <template include="widgets-submenu" menu="mainmenu">
         <controls>
-            <control type="group">
-                <skinshortcuts>visibility</skinshortcuts>
-	            <include condition="!Skin.HasSetting(widgets.fade)">Animation.Vertical.Widgets.Label</include>
-	            <animation effect="slide" start="0" end="0,342" time="0" condition="Skin.HasSetting(homemenu.clean.flix) + Skin.HasSetting(homemenu.clean.flix.no.slide)">Conditional</animation>
-	            <animation effect="slide" start="0" end="0,335" time="0" condition="Skin.HasSetting(homemenu.clean.flix) + !Skin.HasSetting(homemenu.clean.flix.no.slide)">Conditional</animation>
-	            <animation effect="slide" start="0" end="0,40" time="0" condition="!Skin.HasSetting(homemenu.clean.flix) + !Skin.HasSetting(show.reflections)">Conditional</animation>
-	            <include content="Widget_Navigation_Arrows">
-	                <param name="groupid" value="$MATH[mainmenuid * 1000 + 301]" />
-	            </include>
-                <include content="Widget_Items_Count" condition="Skin.HasSetting(homemenu.clean.flix)">
-                    <param name="groupid" value="$MATH[mainmenuid * 1000 + 301]" />
-                </include>
-            </control>
-            <control type="grouplist" id="$MATH[mainmenuid * 1000 + 301]">
-                <skinshortcuts>visibility</skinshortcuts>
-                <usecontrolcoords>true</usecontrolcoords>
-                <itemgap>0</itemgap>
-                <orientation>vertical</orientation>
-                <include>ScrolltimeWidgetsContainer</include>
- 
-                <include>Widget_Navigation_Actions</include>
-                
-                <skinshortcuts insert="widgets">items</skinshortcuts>
-             </control>
-             <control type="group">
-                 <skinshortcuts>visibility</skinshortcuts>
-                 <skinshortcuts insert="hidden-lists">items</skinshortcuts>
-             </control>       
-		</controls>		
-		<variableGroup content="widgetVars" />
-	</template>
+            <skinshortcuts insert="menuitems" />
+        </controls>
+    </template>
 
+    <template items="menuitems" source="widgets" filter="widgetPath">
+        <property name="id" from="index" />
+        <controls>
+            <item id="$PARENT[index]$PROPERTY[id]">
+                <visible>String.IsEqual(Container(300).ListItem.Property(submenuVisibility),$PARENT[submenuVisibility])</visible>
+            </item>
+        </controls>
+    </template>
+
+    <!-- Fallback widget -->
     <template include="global" build="true">
         <!--- Widget Content -->
         <property name="content">$VAR[DefWidgetContent]</property>
