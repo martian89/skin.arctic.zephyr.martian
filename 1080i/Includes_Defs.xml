@@ -75,8 +75,8 @@
     <variable name="DefWidgetContent">
         <value condition="!String.IsEmpty(Skin.String(home.slideshowpath)) | !String.IsEmpty(Container(300).ListItem.Property(Background))">special://skin/extras/Null.xsp</value>
         <value condition="!String.IsEmpty(Skin.String(home.fallbackwidget))">$INFO[Skin.String(home.fallbackwidget)]</value>
-        <value condition="!Library.HasContent(Movies) + !Library.HasContent(TVShows)">plugin://plugin.video.themoviedb.helper/?info=trending_day&amp;tmdb_type=movie&amp;widget=true&amp;cacheonly=true&amp;reload=$INFO[Window(Home).Property(TMDbHelper.Widgets.Reload)]</value>
-        <value>$VAR[RandomMovies]</value>
+        <value condition="Library.HasContent(Movies)">special://skin/extras/playlists/Spotlight.xsp</value>
+        <value>plugin://plugin.video.themoviedb.helper/?info=trending_day&amp;tmdb_type=movie&amp;widget=true&amp;cacheonly=true&amp;reload=$INFO[Window(Home).Property(TMDbHelper.Widgets.Reload)]</value>
     </variable>
 
     <variable name="DefWidgetTarget">

@@ -2085,35 +2085,25 @@
                                 <label>31078</label>
                             </control>
                         </control>
-                        <control type="radiobutton" id="120140" description="Startup Video">
+                        <control type="button" id="12014" description="Set Fallback Image">
                             <width>1360</width>
                             <visible>String.IsEqual(Window.Property(content),6)</visible>
                             <include>DefSettingsButtonGradientSkinSettings</include>
-                            <label>512</label>
-                            <selected>!Skin.HasSetting(disable.startup.window)</selected>
-                            <onclick>Skin.ToggleSetting(disable.startup.window)</onclick>
-                        </control>
-                        <control type="button" id="12014" description="Startup Video">
-                            <width>1360</width>
-                            <visible>String.IsEqual(Window.Property(content),6)</visible>
-                            <include>DefSettingsButtonGradientSkinSettings</include>
-                            <label>$LOCALIZE[31297]$LOCALIZE[31168]</label>
-                            <label2>$INFO[Skin.String(StartupPlaylist)]</label2>
-                            <onclick condition="String.IsEmpty(Skin.String(StartupPlaylist))">Skin.SetFile(StartupPlaylist,.mp4|.avi|.mkv|.xvid|.wmv|.mov|.xsp|.mp3|.wma|.flac|.m3u)</onclick>
-                            <onclick condition="!String.IsEmpty(Skin.String(StartupPlaylist))">Skin.Reset(StartupPlaylist)</onclick>
-                            <visible>!Skin.HasSetting(disable.startup.window)</visible>
-                        </control>
-                        <control type="button" id="12015" description="Set Fallback Image">
-                            <width>1360</width>
-                            <visible>String.IsEqual(Window.Property(content),6)</visible>
-                            <include>DefSettingsButtonGradientSkinSettings</include>
-                            <label>$LOCALIZE[31297]$LOCALIZE[31245]</label>
-                            <label2>$INFO[Skin.String(startupfanart.fallback)]</label2>
+                            <label>$LOCALIZE[31245]</label>
+                            <label2>$VAR[Label_StartupImage]</label2>
                             <include content="Def_SelectImage_Actions">
                                 <param name="header" value="$LOCALIZE[31245]" />
                                 <param name="property" value="startupfanart.fallback" />
                             </include>
-                            <visible>!Skin.HasSetting(disable.startup.window)</visible>
+                        </control>
+                        <control type="button" id="12015" description="Startup Video">
+                            <width>1360</width>
+                            <visible>String.IsEqual(Window.Property(content),6)</visible>
+                            <include>DefSettingsButtonGradientSkinSettings</include>
+                            <label>$LOCALIZE[31168]</label>
+                            <label2>$INFO[Skin.String(StartupPlaylist)]</label2>
+                            <onclick condition="String.IsEmpty(Skin.String(StartupPlaylist))">Skin.SetFile(StartupPlaylist,.mp4|.avi|.mkv|.xvid|.wmv|.mov|.xsp|.mp3|.wma|.flac|.m3u)</onclick>
+                            <onclick condition="!String.IsEmpty(Skin.String(StartupPlaylist))">Skin.Reset(StartupPlaylist)</onclick>
                         </control>
                         <control type="radiobutton" id="12018" description="Kiosk Mode">
                             <width>1360</width>
