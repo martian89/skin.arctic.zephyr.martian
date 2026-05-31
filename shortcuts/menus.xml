@@ -921,7 +921,10 @@
 
         <!-- Video Library -->
         <group name="video-library" label="$ADDON[script.skinshortcuts 32030]" icon="special://skin/extras/icons/video.png">
-            <content source="nodes" target="video" />
+            <content source="nodes" target="videos" />
+            <group name="video-playlists" label="31514" icon="special://skin/extras/icons/playlist.png">
+ 	          <content source="playlists" target="videos" path="special://skin/extras/playlists/"/>
+            </group>            
             <shortcut name="search-video" label="137" icon="special://skin/extras/icons/search.png" visible="System.AddonIsEnabled(script.globalsearch)">
                 <action>RunScript(script.globalsearch,tvshows=true&amp;episodes=true&amp;movies=true&amp;actors=true&amp;directors=true)</action>
                 <visible>System.AddonIsEnabled(script.globalsearch)</visible>
@@ -937,6 +940,9 @@
         <!-- Music Library -->
         <group name="music-library" label="$ADDON[script.skinshortcuts 32031]" icon="special://skin/extras/icons/songs.png">
             <content source="nodes" target="music" />
+         	<group name="music-playlists" label="31514" icon="special://skin/extras/icons/playlist.png">
+	            <content source="playlists" target="music" path="special://skin/extras/playlists/"/>
+            </group>
             <shortcut name="search-music" label="137" icon="special://skin/extras/icons/search.png" visible="System.AddonIsEnabled(script.globalsearch)">
                 <action>RunScript(script.globalsearch,artists=true&amp;albums=true&amp;songs=true&amp;musicvideos=true)</action>
                 <visible>System.AddonIsEnabled(script.globalsearch)</visible>
@@ -950,83 +956,96 @@
         </group>
  
          <!-- Live TV  -->
-        <group name="livetv" label="$ADDON[script.skinshortcuts 32017]" icon="special://skin/extras/icons/livetv.png" visible="PVR.HasTVChannels">
-            <shortcut name="tv-channels" label="10700" type="32017" icon="special://skin/extras/icons/tvguide.png">
+        <group name="livetv" label="31103" icon="special://skin/extras/icons/livetv.png" visible="PVR.HasTVChannels">
+            <shortcut name="tv-channels" label="14301" icon="special://skin/extras/icons/tvguide.png">
                 <action>ActivateWindow(TVChannels)</action>
             </shortcut>
-            <shortcut name="tv-guide" label="10702" type="32017" icon="special://skin/extras/icons/playlist.png">
+            <shortcut name="tv-guide" label="22020" icon="special://skin/extras/icons/playlist.png">
                 <action>ActivateWindow(TVGuide)</action>
             </shortcut>
-            <shortcut name="tv-providers" label="19334" type="32017" icon="special://skin/extras/icons/wifi.png">
+            <shortcut name="tv-providers" label="19334" icon="special://skin/extras/icons/wifi.png">
                 <action>ActivateWindow(TVProviders)</action>
             </shortcut>
-            <shortcut name="tv-recordings" label="10701" type="32017" icon="special://skin/extras/icons/folder-closed.png">
+            <shortcut name="tv-recordings" label="19163" icon="special://skin/extras/icons/bookmark-star.png">
                 <action>ActivateWindow(TVRecordings)</action>
             </shortcut>
-            <shortcut name="tv-tvtimers" label="10703" type="32017" icon="special://skin/extras/icons/timer.png">
+            <shortcut name="tv-timers" label="19040" icon="special://skin/extras/icons/timer.png">
                 <action>ActivateWindow(TVTimers)</action>
             </shortcut>
-            <shortcut name="tv-tvtimerrules" label="10710" type="32017" icon="special://skin/extras/icons/recent.png">
+            <shortcut name="tv-timerrules" label="19138" icon="special://skin/extras/icons/recent.png">
                 <action>ActivateWindow(TVTimerRules)</action>
             </shortcut>
-            <shortcut name="tv-tvsearch" label="10704" type="32017" icon="special://skin/extras/icons/search.png">
-                <action>ActivateWindow(TVSerch)</action>
+            <shortcut name="tv-search" label="137" icon="special://skin/extras/icons/search.png">
+                <action>ActivateWindow(TVSearch)</action>
             </shortcut>
-            <shortcut name="tv-lastchannelview" label="31024" type="32017" icon="special://skin/extras/icons/livetv.png">
+            <shortcut name="tv-lastchannel" label="19324" icon="special://skin/extras/icons/livetv.png">
                 <action>PlayPvrTV</action>
             </shortcut>
-            <group name="tv-channels" label="14301" icon="special://skin/extras/icons/tv.png">
+            <group name="tv-channels-group" label="10700" icon="special://skin/extras/icons/files.png">
                 <content source="pvr" target="tv" />
             </group>
         </group>       
 
         <!-- Radio -->
-        <group name="radio" label="$ADDON[script.skinshortcuts 32087]" icon="special://skin/extras/icons/livetv.png" visible="PVR.HasRadioChannels">
-            <content source="pvr-radio" target="radio" />
-            <group name="radio-channels" label="19024" icon="special://skin/extras/icons/livetv.png">
+        <group name="radio" label="19021" icon="special://skin/extras/icons/radio.png" visible="PVR.HasRadioChannels">
+            <shortcut name="radio-channels" label="14301" icon="special://skin/extras/icons/tvguide.png">
+                <action>ActivateWindow(RadioChannels)</action>
+            </shortcut>
+            <shortcut name="radio-guide" label="22020" icon="special://skin/extras/icons/playlist.png">
+                <action>ActivateWindow(RadioGuide)</action>
+            </shortcut>
+            <shortcut name="radio-providers" label="19334" icon="special://skin/extras/icons/wifi.png">
+                <action>ActivateWindow(RadioProviders)</action>
+            </shortcut>
+            <shortcut name="radio-recordings" label="19163" icon="special://skin/extras/icons/bookmark-star.png">
+                <action>ActivateWindow(RadioRecordings)</action>
+            </shortcut>
+            <shortcut name="radio-timers" label="19040" icon="special://skin/extras/icons/timer.png">
+                <action>ActivateWindow(RadioTimers)</action>
+            </shortcut>
+            <shortcut name="radio-timerrules" label="19138" icon="special://skin/extras/icons/recent.png">
+                <action>ActivateWindow(RadioTimerRules)</action>
+            </shortcut>
+            <shortcut name="radio-search" label="137" icon="special://skin/extras/icons/search.png">
+                <action>ActivateWindow(RadioSearch)</action>
+            </shortcut>
+            <shortcut name="radio-lastchannel" label="19324" icon="special://skin/extras/icons/livetv.png">
+                <action>PlayPvrRadio</action>
+            </shortcut>
+            <group name="radio-channels-group" label="19024" icon="special://skin/extras/icons/files.png">
                 <content source="pvr" target="radio" />
             </group>
         </group>
 
         <!-- Pictures -->
-        <group name="pictures-sources" label="$ADDON[script.skinshortcuts 32020]" icon="special://skin/extras/icons/pictures.png">
-            <content source="sources" target="pictures" />
+        <group name="picture" label="10002" icon="special://skin/extras/icons/pictures.png">
+            <group name="picture-addons" label="1039" icon="special://skin/extras/icons/pictures.png">
+                <content source="addons" target="pictures" />
+            </group>
         </group>
 
         <!-- Add-ons -->
-        <group name="addons-all" label="$ADDON[script.skinshortcuts 32007]" icon="special://skin/extras/icons/addons.png">
-            <group name="addon-programs" label="$ADDON[script.skinshortcuts 32009]" icon="special://skin/extras/icons/addons.png">
-                <shortcut name="programs-browse" label="10001" type="32021" icon="special://skin/extras/icons/addons.png">
-                    <action>ActivateWindow(Programs,Addons,return)</action>
-                </shortcut>
-	            <shortcut name="apps" label="20244" type="program" icon="special://skin/extras/icons/addons.png" visible="System.Platform.Android">
+        <group name="addons" label="24001" icon="special://skin/extras/icons/addons.png">
+            <group name="program-addons" label="10001" icon="special://skin/extras/icons/addons.png">
+                <content source="addons" target="programs" />
+	            <shortcut name="apps" label="20244" icon="special://skin/extras/icons/addons.png" visible="System.Platform.Android">
 	                <action>ActivateWindow(programs,androidapp://sources/apps/,return)</action>
 	             </shortcut>
-                <content source="addons" target="programs" />
             </group>
-            <group name="addon-video-grp" label="$ADDON[script.skinshortcuts 32010]" icon="special://skin/extras/icons/video-addons.png">
-                <shortcut name="video-addons-all" label="1037" type="32014" icon="special://skin/extras/icons/video-addons.png">
-                    <action>ActivateWindow(Videos,Addons,return)</action>
-                </shortcut>
-                <content source="addons" target="video" />
+            <group name="video-addons" label="1037" icon="special://skin/extras/icons/video-addons.png">
+                <content source="addons" target="videos" />
             </group>
-            <group name="addon-audio-grp" label="$ADDON[script.skinshortcuts 32011]" icon="special://skin/extras/icons/songs.png">
-                <shortcut name="music-addons-all" label="1038" type="32019" icon="special://skin/extras/icons/songs.png">
-                    <action>ActivateWindow(Music,Addons,return)</action>
-                </shortcut>
+            <group name="music-addons" label="1038" icon="special://skin/extras/icons/songs.png">
                 <content source="addons" target="music" />
             </group>
-            <group name="addon-image-grp" label="$ADDON[script.skinshortcuts 32012]" icon="special://skin/extras/icons/pictures.png">
-                <shortcut name="picture-addons" label="1039" type="32020" icon="special://skin/extras/icons/pictures.png">
-                    <action>ActivateWindow(Pictures,Addons,return)</action>
-                </shortcut>
+            <group name="picture-addons" label="1039" icon="special://skin/extras/icons/pictures.png">
                 <content source="addons" target="pictures" />
             </group>
-            <shortcut name="game-addons" label="35049" type="games" icon="special://skin/extras/icons/xbox.png">
+            <shortcut name="game-addons" label="35049" icon="special://skin/extras/icons/xbox.png">
                 <action>ActivateWindow(Games,Addons,return)</action>
             </shortcut>
         </group>
-
+		        
         <!-- Favourites -->
         <group name="favourites" label="1036" icon="special://skin/extras/icons/favourites2.png">
             <shortcut name="favouritesbrowser" label="1036" type="1036" icon="special://skin/extras/icons/favourites2.png">
