@@ -146,7 +146,6 @@
     <icon labelID="moviehub">special://skin/extras/icons/film.png</icon>
     <icon labelID="livetv">special://skin/extras/icons/livetv.png</icon>
     <icon labelID="radio">special://skin/extras/icons/radio.png</icon>
-    <icon labelID="32087">special://skin/extras/icons/radio.png</icon>
     <icon labelID="weather">special://skin/extras/icons/sun.png</icon>
     <icon labelID="12600">special://skin/extras/icons/sun.png</icon>
     <icon labelID="settings">special://skin/extras/icons/settings.png</icon>
@@ -394,7 +393,7 @@
             <shortcut label="$LOCALIZE[3]" icon="DefaultVideo.png">ActivateWindow(Videos)</shortcut>
             <shortcut label="$LOCALIZE[342]" icon="DefaultMovies.png">ActivateWindow(Videos,videodb://movies/titles/,return)</shortcut>
             <shortcut label="$LOCALIZE[20343]" icon="DefaultTVShows.png">ActivateWindow(Videos,videodb://tvshows/titles/,return)</shortcut>
-            <shortcut label="$LOCALIZE[31103]" icon="DefaultTVShows.png">ActivateWindow(Tvchannels)</shortcut>
+            <shortcut label="$LOCALIZE[31103]" icon="special://skin/extras/icons/livetv.png">ActivateWindow(Tvchannels)</shortcut>
             <shortcut label="$LOCALIZE[32087]" icon="DefaultAudio.png">ActivateWindow(RadioChannels)</shortcut>
             <shortcut label="$LOCALIZE[2]" icon="DefaultMusicAlbums.png">ActivateWindow(Music)</shortcut>
             <shortcut label="$LOCALIZE[589]" icon="DefaultMusicAlbums.png">PlayerControl(PartyMode)</shortcut>
@@ -455,22 +454,13 @@
                 <content>upnp-music</content>
             </node>
         </node>
-        <node label="$LOCALIZE[32017]" condition="System.GetBool(pvrmanager.enabled)" version="13">
-            <content>pvr</content>
-            <node label="$LOCALIZE[19023]">
-                <content>pvr-tv</content>
-            </node>
-            <node label="$LOCALIZE[19024]">
-                <content>pvr-radio</content>
-            </node>
-        </node>
-        <node label="$LOCALIZE[32017]" condition="PVR.HasTVChannels" version="14">
+        <node label="$LOCALIZE[31103]" condition="PVR.HasTVChannels">
             <content>pvr</content>
             <node label="$LOCALIZE[19023]">
                 <content>pvr-tv</content>
             </node>
         </node>
-        <node label="$LOCALIZE[32087]" condition="PVR.HasRadioChannels" version="14">
+        <node label="$LOCALIZE[32087]" condition="PVR.HasRadioChannels">
             <content>radio</content>
             <node label="$LOCALIZE[19024]">
                 <content>pvr-radio</content>
