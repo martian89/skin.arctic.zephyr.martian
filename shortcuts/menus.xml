@@ -799,6 +799,7 @@
 	
 	<!-- Shortcut picker groupings -->
 	<groupings>
+        <!-- Common Shortcuts -->
 		<group name="common" label="$ADDON[script.skinshortcuts 32029]">
             <shortcut name="tmdbhelper-movies" label="31208" icon="special://skin/extras/icons/director.png">
                 <action>ActivateWindow(1124)</action>
@@ -871,6 +872,7 @@
 			</shortcut>
 		</group>
 
+        <!-- Hubs -->
         <group name="hubs" label="31305" visible="String.IsEqual(Window.Property(menuname),mainmenu)">
             <shortcut name="moviehub" label="31192" icon="special://skin/extras/icons/film.png">
                 <action>SetProperty(WindowTitle,$VAR[HubWindowTitle],Home)</action>
@@ -922,9 +924,6 @@
         <!-- Video Library -->
         <group name="video-library" label="$ADDON[script.skinshortcuts 32030]" icon="special://skin/extras/icons/video.png">
             <content source="nodes" target="videos" />
-            <group name="video-playlists" label="31514" icon="special://skin/extras/icons/playlist.png">
- 	          <content source="playlists" target="videos" path="special://skin/extras/playlists/"/>
-            </group>            
             <shortcut name="search-video" label="137" icon="special://skin/extras/icons/search.png" visible="System.AddonIsEnabled(script.globalsearch)">
                 <action>RunScript(script.globalsearch,tvshows=true&amp;episodes=true&amp;movies=true&amp;actors=true&amp;directors=true)</action>
                 <visible>System.AddonIsEnabled(script.globalsearch)</visible>
@@ -940,10 +939,7 @@
         <!-- Music Library -->
         <group name="music-library" label="$ADDON[script.skinshortcuts 32031]" icon="special://skin/extras/icons/songs.png">
             <content source="nodes" target="music" />
-         	<group name="music-playlists" label="31514" icon="special://skin/extras/icons/playlist.png">
-	            <content source="playlists" target="music" path="special://skin/extras/playlists/"/>
-            </group>
-            <shortcut name="search-music" label="137" icon="special://skin/extras/icons/search.png" visible="System.AddonIsEnabled(script.globalsearch)">
+             <shortcut name="search-music" label="137" icon="special://skin/extras/icons/search.png" visible="System.AddonIsEnabled(script.globalsearch)">
                 <action>RunScript(script.globalsearch,artists=true&amp;albums=true&amp;songs=true&amp;musicvideos=true)</action>
                 <visible>System.AddonIsEnabled(script.globalsearch)</visible>
             </shortcut>
@@ -957,10 +953,10 @@
  
          <!-- Live TV  -->
         <group name="livetv" label="31103" icon="special://skin/extras/icons/livetv.png" visible="PVR.HasTVChannels">
-            <shortcut name="tv-channels" label="14301" icon="special://skin/extras/icons/tvguide.png">
+            <shortcut name="tv-channels" label="14301" icon="special://skin/extras/icons/livetv.png">
                 <action>ActivateWindow(TVChannels)</action>
             </shortcut>
-            <shortcut name="tv-guide" label="22020" icon="special://skin/extras/icons/playlist.png">
+            <shortcut name="tv-guide" label="22020" icon="special://skin/extras/icons/tvguide.png">
                 <action>ActivateWindow(TVGuide)</action>
             </shortcut>
             <shortcut name="tv-providers" label="19334" icon="special://skin/extras/icons/wifi.png">
@@ -988,10 +984,10 @@
 
         <!-- Radio -->
         <group name="radio" label="19021" icon="special://skin/extras/icons/radio.png" visible="PVR.HasRadioChannels">
-            <shortcut name="radio-channels" label="14301" icon="special://skin/extras/icons/tvguide.png">
+            <shortcut name="radio-channels" label="14301" icon="special://skin/extras/icons/radio.png">
                 <action>ActivateWindow(RadioChannels)</action>
             </shortcut>
-            <shortcut name="radio-guide" label="22020" icon="special://skin/extras/icons/playlist.png">
+            <shortcut name="radio-guide" label="22020" icon="special://skin/extras/icons/tvguide.png">
                 <action>ActivateWindow(RadioGuide)</action>
             </shortcut>
             <shortcut name="radio-providers" label="19334" icon="special://skin/extras/icons/wifi.png">
@@ -1009,7 +1005,7 @@
             <shortcut name="radio-search" label="137" icon="special://skin/extras/icons/search.png">
                 <action>ActivateWindow(RadioSearch)</action>
             </shortcut>
-            <shortcut name="radio-lastchannel" label="19324" icon="special://skin/extras/icons/livetv.png">
+            <shortcut name="radio-lastchannel" label="19324" icon="special://skin/extras/icons/radio.png">
                 <action>PlayPvrRadio</action>
             </shortcut>
             <group name="radio-channels-group" label="19024" icon="special://skin/extras/icons/files.png">
@@ -1045,7 +1041,20 @@
                 <action>ActivateWindow(Games,Addons,return)</action>
             </shortcut>
         </group>
-		        
+		       
+		<!-- Playlists -->
+		<group name="playlists" label="136" icon="special://skin/extras/icons/playlist.png">
+            <group name="video-playlists" label="20012" icon="special://skin/extras/icons/playlist.png">
+                <content source="playlists" target="videos" />
+            </group>
+            <group name="skin-playlists" label="20011" icon="special://skin/extras/icons/playlist.png">
+                <content source="playlists" target="music" />
+            </group>
+            <group name="skin-playlists" label="31514" icon="special://skin/extras/icons/playlist.png">
+                <content source="playlists" path="special://skin/extras/playlists/" />
+            </group>
+		</group> 
+		
         <!-- Favourites -->
         <group name="favourites" label="1036" icon="special://skin/extras/icons/favourites2.png">
             <shortcut name="favouritesbrowser" label="1036" type="1036" icon="special://skin/extras/icons/favourites2.png">
