@@ -1431,23 +1431,6 @@
   		<value>$LOCALIZE[31936]</value>
   	</variable>
 
-  	<variable name="Label_StreamList_Default">
-  		<value condition="ListItem.Property(Stream.IsDefault)">$LOCALIZE[13278]</value>
-  	</variable>
-
-  	<variable name="Label_StreamList_Title">
-  		<value condition="Window.IsVisible(dialogselectvideo)">$VAR[Label_Stream_Codec]$VAR[Label_Stream_HDRType,  •  ]$VAR[Label_StreamList_Default, [,]]</value>
-  		<value condition="ListItem.Property(Stream.IsForced)">$INFO[ListItem.Label] - $LOCALIZE[39106]$VAR[Label_StreamList_Default, [,]]</value>
-  		<value>$INFO[ListItem.Label]$VAR[Label_StreamList_Default, [,]</value>
-  	</variable>
-
-  	<variable name="Label_StreamList_Label2">
-  		<value condition="String.IsEqual(ListItem.Label,$LOCALIZE[24021])">$LOCALIZE[31937]</value>
-  		<value condition="Window.IsVisible(dialogselectvideo)">$INFO[ListItem.Property(stream.resolution)]$VAR[Label_Stream_Bitrate,  •  , kbps]$INFO[ListItem.Property(stream.fps),  •  , fps]$INFO[ListItem.Property(stream.description),  •  , ]$INFO[ListItem.Property(stream.language),(,)]</value>
-  		<value condition="Window.IsVisible(dialogselectaudio)">$VAR[Label_Stream_Codec]$VAR[Label_Stream_AudioChannels, ,]</value>
-  		<value>$INFO[ListItem.Property(Stream.Description)]</value>
-  	</variable>
-    
     <variable name="Label_Video_3D">
         <value condition="$EXP[IsVideo3D]">3D</value>        
     </variable>
@@ -1783,19 +1766,7 @@
     </variable>
 
 	<variable name="Label_Stream_AudioChannels">
-		<value condition="String.IsEqual(ListItem.Property(stream.channels),0)">0.0</value>
-		<value condition="String.IsEqual(ListItem.Property(stream.channels),1)">1.0</value>
-		<value condition="String.IsEqual(ListItem.Property(stream.channels),2)">2.0</value>
-		<value condition="String.IsEqual(ListItem.Property(stream.channels),3)">2.1</value>
-		<value condition="String.IsEqual(ListItem.Property(stream.channels),4)">4.0</value>
-		<value condition="String.IsEqual(ListItem.Property(stream.channels),5)">4.1</value>
-		<value condition="String.IsEqual(ListItem.Property(stream.channels),6)">5.1</value>
-		<value condition="String.IsEqual(ListItem.Property(stream.channels),7)">6.1</value>
-		<value condition="String.IsEqual(ListItem.Property(stream.channels),8)">7.1</value>
-		<value condition="String.IsEqual(ListItem.Property(stream.channels),10)">9.1</value>
-		<value condition="String.IsEqual(ListItem.Property(stream.channels),12)">7.1.4</value>
-		<value condition="String.IsEqual(ListItem.Property(stream.channels),16)">9.1.6</value>
-		<value>$INFO[ListItem.Property(stream.channels)]</value>
+        <value>$INFO[ListItem.Property(stream.channels)]</value>
 	</variable>
 
 	<variable name="Label_Stream_HDRType">
@@ -1805,9 +1776,44 @@
 		<value>$INFO[ListItem.Property(stream.hdrtype)]</value>
 	</variable>
 	
+	<variable name="Label_Stream_3D">
+		<value condition="!String.IsEmpty(ListItem.Property(stream.stereomode))">3D</value>
+	</variable>
+	
 	<variable name="Label_Stream_Bitrate">
 		<value condition="!String.IsEqual(ListItem.Property(stream.bitrate),0)">$INFO[ListItem.Property(stream.bitrate)]</value>
 	</variable>
+
+  	<variable name="Label_StreamList_Default">
+  		<value condition="ListItem.Property(Stream.IsDefault)">$LOCALIZE[13278], </value>
+  	</variable>
+
+	<variable name="Label_StreamList_Flags">
+		<value condition="String.IsEqual(ListItem.Property(stream.isoriginal),true) + String.IsEqual(ListItem.Property(stream.isforced),true)+String.IsEqual(ListItem.Property(stream.ishearingimpaired),true)">$VAR[Label_StreamList_Default]$LOCALIZE[39111], $LOCALIZE[39106], $LOCALIZE[39107]</value>
+		<value condition="String.IsEqual(ListItem.Property(stream.isoriginal),true) + String.IsEqual(ListItem.Property(stream.isforced),true)+String.IsEqual(ListItem.Property(stream.isvisualimpaired),true)">$VAR[Label_StreamList_Default]$LOCALIZE[39111], $LOCALIZE[39106], $LOCALIZE[39108]</value>
+		<value condition="String.IsEqual(ListItem.Property(stream.isoriginal),true) + String.IsEqual(ListItem.Property(stream.isforced),true)">$VAR[Label_StreamList_Default]$LOCALIZE[39111], $LOCALIZE[39106]</value>
+		<value condition="String.IsEqual(ListItem.Property(stream.isoriginal),true) + String.IsEqual(ListItem.Property(stream.ishearingimpaired),true)">$VAR[Label_StreamList_Default]$LOCALIZE[39111], $LOCALIZE[39107]</value>
+		<value condition="String.IsEqual(ListItem.Property(stream.isoriginal),true) + String.IsEqual(ListItem.Property(stream.isvisualimpaired),true)">$VAR[Label_StreamList_Default]$LOCALIZE[39111], $LOCALIZE[39108]</value>
+		<value condition="String.IsEqual(ListItem.Property(stream.isforced),true) + String.IsEqual(ListItem.Property(stream.ishearingimpaired),true)">$VAR[Label_StreamList_Default]$LOCALIZE[39106], $LOCALIZE[39107]</value>
+		<value condition="String.IsEqual(ListItem.Property(stream.isforced),true) + String.IsEqual(ListItem.Property(stream.isvisualimpaired),true)">$VAR[Label_StreamList_Default]$LOCALIZE[39106], $LOCALIZE[39108]</value>
+		<value condition="String.IsEqual(ListItem.Property(stream.ishearingimpaired),true)">$VAR[Label_StreamList_Default]$LOCALIZE[39107]</value>
+		<value condition="String.IsEqual(ListItem.Property(stream.isvisualimpaired),true)">$VAR[Label_StreamList_Default]$LOCALIZE[39108]</value>
+		<value condition="String.IsEqual(ListItem.Property(stream.isforced),true)">$VAR[Label_StreamList_Default]$LOCALIZE[39106]</value>
+		<value condition="String.IsEqual(ListItem.Property(stream.isoriginal),true)">$VAR[Label_StreamList_Default]$LOCALIZE[39111]</value>
+		<value condition="String.IsEqual(ListItem.Property(stream.isdefault),true)">$LOCALIZE[13278]</value>
+	</variable>
+
+  	<variable name="Label_StreamList_Title">
+  		<value condition="Window.IsVisible(dialogselectvideo)">$VAR[Label_Stream_Codec]$VAR[Label_Stream_HDRType,  •  ]$VAR[Label_Stream_3D,  •  ]$VAR[Label_StreamList_Flags,  [,]]</value>
+  		<value>$INFO[ListItem.Label]$VAR[Label_StreamList_Flags,  [,]]</value>
+  	</variable>
+
+  	<variable name="Label_StreamList_Label2">
+  		<value condition="String.IsEqual(ListItem.Label,$LOCALIZE[24021])">$LOCALIZE[31937]</value>
+  		<value condition="Window.IsVisible(dialogselectvideo)">$INFO[ListItem.Property(stream.resolution)]$INFO[ListItem.Property(stream.stereomode),  •  ]$VAR[Label_Stream_Bitrate,  •  , kbps]$INFO[ListItem.Property(stream.fps),  •  , fps]$INFO[ListItem.Property(stream.description),  •  ]$INFO[ListItem.Property(stream.language), (,)]</value>
+  		<value condition="Window.IsVisible(dialogselectaudio)">$VAR[Label_Stream_Codec]$VAR[Label_Stream_AudioChannels, ,]$INFO[ListItem.Property(stream.language), (,)]</value>
+  		<value>$INFO[ListItem.Property(stream.description),, ]$INFO[ListItem.Property(stream.language),(,)]</value>
+  	</variable>
 
     <variable name="Label_Furniture_VideoInfo">
         <value>$INFO[ListItem.VideoResolution]$VAR[Label_Video_Codec,  •  ,]$VAR[Label_Video_Aspect,  •  ,]$VAR[Label_Video_3D,  •  ,]$VAR[Label_Video_HdrType,  •  ,]</value>
