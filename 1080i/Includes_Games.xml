@@ -7,26 +7,32 @@
 		<value condition="!String.IsEmpty(ListItem.Title)">$INFO[ListItem.Title]</value>
 		<value>$INFO[ListItem.Label]</value>
 	</variable>
+	
 	<variable name="GamePlot">
 		<value condition="!String.IsEmpty(Game.Overview)">$INFO[Game.Overview]</value>
 		<value condition="!String.IsEmpty(ListItem.Plot)">$INFO[ListItem.Plot]</value>
 		<value>$INFO[ListItem.AddonSummary]</value>
 	</variable>
+	
 	<variable name="GameStudio">
 		<value condition="!String.IsEmpty(Game.Developer)">$INFO[Game.Developer]</value>
 		<value>$INFO[ListItem.Studio]</value>
 	</variable>
+	
 	<variable name="GameGenre">
 		<value condition="!String.IsEmpty(Game.Genres)">$INFO[Game.Genres]</value>
 		<value>$INFO[ListItem.Genre]</value>
 	</variable>
+	
 	<variable name="GameYear">
 		<value condition="!String.IsEmpty(Game.Year)">$INFO[Game.Year]</value>
 		<value>$INFO[ListItem.Year]</value>
 	</variable>
+	
 	<variable name="GameRating">
 		<value>$INFO[ListItem.Rating]</value>
 	</variable>
+	
 	<variable name="GameESRB">
 		<value>$INFO[ListItem.Property(esrb)]</value>
 	</variable>
@@ -53,29 +59,6 @@
 		<value>DefaultAddonGame.png</value>
 	</variable>
 
-    <include name="Game_NumberOfPlayers_Furniture">
-	    <control type="image">
-	        <width>48</width>
-	        <centertop>50%</centertop>
-	        <height>64</height>
-	        <texture colordiffuse="Dark1">DefaultActor.png</texture>
-	        <aspectratio align="left">scale</aspectratio>
-            <visible>!String.IsEmpty(ListItem.Property($PARAM[nplayerfield]))</visible>
-	    </control>
-        <control type="label">
-            <width>auto</width>
-            <centertop>50%</centertop>
-            <height>64</height>
-            <left>10</left>
-            <align>left</align>
-            <aligny>center</aligny>
-            <label>$INFO[ListItem.Property($PARAM[nplayerfield])]  •  $LOCALIZE[$PARAM[textid]]</label>
-            <font>Flag</font>
-            <textcolor>Dark1</textcolor>
-            <visible>!String.IsEmpty(ListItem.Property($PARAM[nplayerfield]))</visible>
-        </control>
-    </include>
-    
 	<include name="GameDialogControllers">
 		<include content="DefDialog">
 			<param name="header_id" value="2" />
