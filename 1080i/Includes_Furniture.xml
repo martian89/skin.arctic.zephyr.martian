@@ -3229,8 +3229,7 @@
         <control type="grouplist">
             <include>Animation.FurnitureVisible</include>
             <visible>!Skin.HasSetting(furniture.flags)</visible>
-            <visible>$EXP[InGameMode]</visible>
-            <visible>!String.IsEqual(ListItem.Label,..)</visible>
+            <visible>!ListItem.IsFolder + !String.IsEmpty(Container.PluginName) + $EXP[InGameMode]</visible>
             <left>70</left>
             <centerbottom>NavBarPad</centerbottom>
             <include content="def_right" condition="Skin.HasSetting(furniture.clock)">
@@ -3324,14 +3323,38 @@
                 <visible>!String.IsEmpty(Control.GetLabel(6602))</visible>
                 <visible>!Skin.HasSetting(furniture.flagicons)</visible>
             </control>
-            <include content="Game_NumberOfPlayers_Furniture" description="NumberOfPlayers">
-                <param name="nplayerfield" value="nplayers" />
-                <param name="textid" value="31692" />
-            </include>
-            <include content="Game_NumberOfPlayers_Furniture" description="NumberOfPlayersOnline">
-                <param name="nplayerfield" value="nplayers_online" />
-                <param name="textid" value="31693" />
-            </include>
+	        <control type="image">
+	            <width>48</width>
+	            <centertop>50%</centertop>
+	            <height>64</height>
+	            <texture colordiffuse="Dark1">DefaultActor.png</texture>
+	            <aspectratio align="left">scale</aspectratio>
+	            <visible>!String.IsEmpty(ListItem.Property(nplayers)) | !String.IsEmpty(ListItem.Property(nplayers_online))</visible>
+	        </control>
+	        <control type="label">
+	            <width>auto</width>
+	            <centertop>50%</centertop>
+	            <height>64</height>
+	            <left>12</left>
+	            <align>left</align>
+	            <aligny>center</aligny>
+	            <label>$INFO[ListItem.Property(nplayers)]  •  $LOCALIZE[31692]</label>
+	            <font>Flag</font>
+	            <textcolor>Dark1</textcolor>
+	            <visible>!String.IsEmpty(ListItem.Property(nplayers))</visible>
+	        </control>
+            <control type="label">
+                <width>auto</width>
+                <centertop>50%</centertop>
+                <height>64</height>
+                <left>12</left>
+                <align>left</align>
+                <aligny>center</aligny>
+                <label>$INFO[ListItem.Property(nplayers_online)]  •  $LOCALIZE[31693]</label>
+                <font>Flag</font>
+                <textcolor>Dark1</textcolor>
+                <visible>!String.IsEmpty(ListItem.Property(nplayers_online))</visible>
+            </control>
         </control>
     </include>
 
