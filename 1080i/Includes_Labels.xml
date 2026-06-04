@@ -1422,8 +1422,8 @@
   	<variable name="Label_Player_SubtitlesLanguage">
   		<value condition="!VideoPlayer.HasSubtitles">$LOCALIZE[31604]</value>
   		<value condition="!VideoPlayer.SubtitlesEnabled">$LOCALIZE[13106]</value>
-  		<value condition="!String.IsEmpty(VideoPlayer.SubtitlesLanguage)">$LOCALIZE[305]  •  [UPPERCASE]$INFO[VideoPlayer.SubtitlesLanguage][/UPPERCASE]</value>
-  		<value>$LOCALIZE[305]  •  $LOCALIZE[31936]</value>
+  		<value condition="!String.IsEmpty(VideoPlayer.SubtitlesLanguage)">$VAR[Label_Subtitles_Codec,,  •  ][UPPERCASE]$INFO[VideoPlayer.SubtitlesLanguage][/UPPERCASE]</value>
+  		<value>$VAR[Label_Subtitles_Codec,,  •  ]$LOCALIZE[31936]</value>
   	</variable>
 
   	<variable name="Label_Player_AudioLanguage">
@@ -1508,8 +1508,8 @@
     </variable>
 
     <variable name="Label_Video_HdrType">
-        <value condition="$EXP[IsVideoHDR10Plus]">HDR10+</value>
         <value condition="String.IsEqual(ListItem.HdrType,dolbyvision) | [VideoPlayer.IsFullscreen + String.IsEqual(VideoPlayer.HdrType,dolbyvision)]">Dolby Vision</value>
+        <value condition="String.IsEqual(ListItem.HdrType,hdr10plus) | [VideoPlayer.IsFullscreen + String.IsEqual(VideoPlayer.HdrType,hdr10plus)] | $EXP[IsVideoHDR10Plus]">HDR10+</value>
         <value condition="String.IsEqual(ListItem.HdrType,hlg) | [VideoPlayer.IsFullscreen + String.IsEqual(VideoPlayer.HdrType,hlg)]">HLG</value>
         <value condition="String.IsEqual(ListItem.HdrType,hdr10) | [VideoPlayer.IsFullscreen + String.IsEqual(VideoPlayer.HdrType,hdr10)]">HDR10</value>
         <value condition="VideoPlayer.IsFullscreen">$INFO[VideoPlayer.HdrType]</value>
@@ -1517,11 +1517,16 @@
     </variable>
 
     <variable name="Label_Video_HdrType_Hub">
-        <value condition="$EXP[IsVideoHDR10PlusHub]">HDR10+</value>
         <value condition="String.IsEqual(Container(9500).ListItem.HdrType,dolbyvision)">Dolby Vision</value>
+        <value condition="String.IsEqual(Container(9500).ListItem.HdrType,hdr10plus) | $EXP[IsVideoHDR10PlusHub]">HDR10+</value>
         <value condition="String.IsEqual(Container(9500).ListItem.HdrType,hlg)">HLG</value>
         <value condition="String.IsEqual(Container(9500).ListItem.HdrType,hdr10)">HDR10</value>
         <value>$INFO[Container(9500).ListItem.HdrType]</value>
+    </variable>
+
+    <variable name="Label_Video_HdrType_Detailed">
+        <value condition="Window.IsActive(fullscreenvideo)">$VAR[Label_Video_HdrType]$INFO[VideoPlayer.HdrDetail, P]</value>
+        <value>$VAR[Label_Video_HdrType]$INFO[ListItem.HdrDetail, P]</value>
     </variable>
 
     <variable name="Label_Audio_Codec">
@@ -1689,6 +1694,28 @@
         <value>$INFO[Container(9500).ListItem.AudioCodec]</value>
     </variable>
 
+	<variable name="Label_Subtitles_Codec">
+		<value condition="Window.IsActive(fullscreenvideo) + String.IsEqual(VideoPlayer.SubtitleCodec, ass)">ASS</value>
+		<value condition="Window.IsActive(fullscreenvideo) + String.IsEqual(VideoPlayer.SubtitleCodec, dvb_subtitle)">DVB-SUB</value>
+		<value condition="Window.IsActive(fullscreenvideo) + String.IsEqual(VideoPlayer.SubtitleCodec, dvb_teletext)">DVB-Text</value>
+		<value condition="Window.IsActive(fullscreenvideo) + String.IsEqual(VideoPlayer.SubtitleCodec, dvd_subtitle)">VobSub</value>
+		<value condition="Window.IsActive(fullscreenvideo) + String.IsEqual(VideoPlayer.SubtitleCodec, hdmv_pgs_subtitle)">PGS</value>
+		<value condition="Window.IsActive(fullscreenvideo) + String.IsEqual(VideoPlayer.SubtitleCodec, microdvd)">MicroDVD</value>
+		<value condition="Window.IsActive(fullscreenvideo) + String.IsEqual(VideoPlayer.SubtitleCodec, mov_text)">Timed Text</value>
+		<value condition="Window.IsActive(fullscreenvideo) + String.IsEqual(VideoPlayer.SubtitleCodec, mpl2)">MPL2</value>
+		<value condition="Window.IsActive(fullscreenvideo) + String.IsEqual(VideoPlayer.SubtitleCodec, realtext)">RealText</value>
+		<value condition="Window.IsActive(fullscreenvideo) + String.IsEqual(VideoPlayer.SubtitleCodec, sami)">SAMI</value>
+		<value condition="Window.IsActive(fullscreenvideo) + String.IsEqual(VideoPlayer.SubtitleCodec, srt)">SubRip</value>
+		<value condition="Window.IsActive(fullscreenvideo) + String.IsEqual(VideoPlayer.SubtitleCodec, ssa)">SSA</value>
+		<value condition="Window.IsActive(fullscreenvideo) + String.IsEqual(VideoPlayer.SubtitleCodec, subrip)">Subrip</value>
+		<value condition="Window.IsActive(fullscreenvideo) + String.IsEqual(VideoPlayer.SubtitleCodec, text)">Text</value>
+		<value condition="Window.IsActive(fullscreenvideo) + String.IsEqual(VideoPlayer.SubtitleCodec, ttml)">TTML</value>
+		<value condition="Window.IsActive(fullscreenvideo) + String.IsEqual(VideoPlayer.SubtitleCodec, vplayer)">VPlayer</value>
+		<value condition="Window.IsActive(fullscreenvideo) + String.IsEqual(VideoPlayer.SubtitleCodec, webvtt)">WebVTT</value>
+		<value condition="Window.IsActive(fullscreenvideo) + String.IsEqual(VideoPlayer.SubtitleCodec, xsub)">XSUB</value>
+		<value condition="Window.IsActive(fullscreenvideo)">$INFO[VideoPlayer.SubtitleCodec]</value>
+	</variable>
+
     <variable name="Label_Stream_Codec">
         <value condition="Window.IsVisible(dialogselectvideo) + String.IsEqual(ListItem.Property(stream.codec),av1)">AV1</value>
         <value condition="Window.IsVisible(dialogselectvideo) + String.IsEqual(ListItem.Property(stream.codec),avc1)">AVC-1</value>
@@ -1762,6 +1789,24 @@
         <value condition="Window.IsVisible(dialogselectaudio) + String.IsEqual(ListItem.Property(stream.codec),wavpack)">WAVP</value>
         <value condition="Window.IsVisible(dialogselectaudio) + String.IsEqual(ListItem.Property(stream.codec),wmapro)">WMA-PRO</value>
         <value condition="Window.IsVisible(dialogselectaudio) + String.IsEqual(ListItem.Property(stream.codec),wmav2)">WMA</value>
+		<value condition="Window.IsVisible(dialogselectsubtitle) + String.IsEqual(ListItem.Property(stream.codec),ass)">ASS</value>
+		<value condition="Window.IsVisible(dialogselectsubtitle) + String.IsEqual(ListItem.Property(stream.codec),dvb_subtitle)">DVB-SUB</value>
+		<value condition="Window.IsVisible(dialogselectsubtitle) + String.IsEqual(ListItem.Property(stream.codec),dvb_teletext)">DVB-Text</value>
+		<value condition="Window.IsVisible(dialogselectsubtitle) + String.IsEqual(ListItem.Property(stream.codec),dvd_subtitle)">VobSub</value>
+		<value condition="Window.IsVisible(dialogselectsubtitle) + String.IsEqual(ListItem.Property(stream.codec),hdmv_pgs_subtitle)">PGS</value>
+		<value condition="Window.IsVisible(dialogselectsubtitle) + String.IsEqual(ListItem.Property(stream.codec),microdvd)">MicroDVD</value>
+		<value condition="Window.IsVisible(dialogselectsubtitle) + String.IsEqual(ListItem.Property(stream.codec),mov_text)">Timed Text</value>
+		<value condition="Window.IsVisible(dialogselectsubtitle) + String.IsEqual(ListItem.Property(stream.codec),mpl2)">MPL2</value>
+		<value condition="Window.IsVisible(dialogselectsubtitle) + String.IsEqual(ListItem.Property(stream.codec),realtext)">RealText</value>
+		<value condition="Window.IsVisible(dialogselectsubtitle) + String.IsEqual(ListItem.Property(stream.codec),sami)">SAMI</value>
+		<value condition="Window.IsVisible(dialogselectsubtitle) + String.IsEqual(ListItem.Property(stream.codec),srt)">SubRip</value>
+		<value condition="Window.IsVisible(dialogselectsubtitle) + String.IsEqual(ListItem.Property(stream.codec),ssa)">SSA</value>
+		<value condition="Window.IsVisible(dialogselectsubtitle) + String.IsEqual(ListItem.Property(stream.codec),subrip)">Subrip</value>
+		<value condition="Window.IsVisible(dialogselectsubtitle) + String.IsEqual(ListItem.Property(stream.codec),text)">Text</value>
+		<value condition="Window.IsVisible(dialogselectsubtitle) + String.IsEqual(ListItem.Property(stream.codec),ttml)">TTML</value>
+		<value condition="Window.IsVisible(dialogselectsubtitle) + String.IsEqual(ListItem.Property(stream.codec),vplayer)">VPlayer</value>
+		<value condition="Window.IsVisible(dialogselectsubtitle) + String.IsEqual(ListItem.Property(stream.codec),webvtt)">WebVTT</value>
+		<value condition="Window.IsVisible(dialogselectsubtitle) + String.IsEqual(ListItem.Property(stream.codec),xsub)">XSUB</value>
         <value>$INFO[ListItem.Property(stream.codec)]</value>
     </variable>
 
@@ -1804,15 +1849,15 @@
 	</variable>
 
   	<variable name="Label_StreamList_Title">
-  		<value condition="Window.IsVisible(dialogselectvideo)">$VAR[Label_Stream_Codec]$VAR[Label_Stream_HDRType,  •  ]$VAR[Label_Stream_3D,  •  ]$VAR[Label_StreamList_Flags,  [,]]</value>
-  		<value>$INFO[ListItem.Label]$VAR[Label_StreamList_Flags,  [,]]</value>
+  		<value condition="Window.IsVisible(dialogselectvideo)">$VAR[Label_Stream_Codec]$VAR[Label_Stream_HDRType,  •  ]$VAR[Label_Stream_3D,  •  ]$VAR[Label_StreamList_Flags,  [LIGHT][,][/LIGHT]]</value>
+  		<value>$INFO[ListItem.Label]$VAR[Label_StreamList_Flags,  [LIGHT][,][/LIGHT]]</value>
   	</variable>
 
   	<variable name="Label_StreamList_Label2">
   		<value condition="String.IsEqual(ListItem.Label,$LOCALIZE[24021])">$LOCALIZE[31937]</value>
   		<value condition="Window.IsVisible(dialogselectvideo)">$INFO[ListItem.Property(stream.resolution)]$INFO[ListItem.Property(stream.stereomode),  •  ]$VAR[Label_Stream_Bitrate,  •  , kbps]$INFO[ListItem.Property(stream.fps),  •  , fps]$INFO[ListItem.Property(stream.description),  •  ]$INFO[ListItem.Property(stream.language), (,)]</value>
   		<value condition="Window.IsVisible(dialogselectaudio)">$VAR[Label_Stream_Codec]$VAR[Label_Stream_AudioChannels, ,]$INFO[ListItem.Property(stream.language), (,)]</value>
-  		<value>$INFO[ListItem.Property(stream.description),, ]$INFO[ListItem.Property(stream.language),(,)]</value>
+  		<value>$VAR[Label_Stream_Codec,, ]$INFO[ListItem.Property(stream.description), •  , ]$INFO[ListItem.Property(stream.language),(,)]</value>
   	</variable>
 
     <variable name="Label_Furniture_VideoInfo">
@@ -1840,6 +1885,6 @@
     </variable>
  
     <variable name="Label_List_MediaInfo_Label2">
-        <value condition="[!String.IsEmpty(ListItem.VideoCodec) | !String.IsEmpty(ListItem.AudioCodec)]">$INFO[ListItem.VideoResolution,, ]$VAR[HDSD]$VAR[Label_Video_Codec,  •  ,]$VAR[Label_Video_Aspect,  •  ,]$VAR[Label_Video_3D,  •  ,]$VAR[Label_Video_HdrType,  •  ,]$VAR[Label_Audio_Codec,  •  ,]$VAR[LabelAudioChannels, ,]</value>
+        <value condition="[!String.IsEmpty(ListItem.VideoCodec) | !String.IsEmpty(ListItem.AudioCodec)]">$INFO[ListItem.VideoResolution,, ]$VAR[HDSD]$VAR[Label_Video_Codec,  •  ,]$VAR[Label_Video_Aspect,  •  ,]$VAR[Label_Video_3D,  •  ,]$VAR[Label_Video_HdrType_Detailed,  •  ,]$VAR[Label_Audio_Codec,  •  ,]$VAR[LabelAudioChannels, ,]</value>
     </variable>
 </includes>
