@@ -391,13 +391,6 @@
        [VideoPlayer.IsFullscreen + !String.IsEmpty(VideoPlayer.IMDBNumber) + String.StartsWith(VideoPlayer.IMDBNumber,tt)]
     </expression>
 
-	<expression name="IsUpdatingMultiWidgets">
-		[ Control.IsVisible(30111) + Container(30111).IsUpdating + Integer.IsEqual(Container(30111).NumItems,0) | Control.IsVisible(30121) + Container(30121).IsUpdating + Integer.IsEqual(Container(30121).NumItems,0) | Control.IsVisible(30131) + Container(30131).IsUpdating + Integer.IsEqual(Container(30131).NumItems,0) | Control.IsVisible(30141) + Container(30141).IsUpdating + Integer.IsEqual(Container(30141).NumItems,0) 
-		| Control.IsVisible(30151) + Container(30151).IsUpdating + Integer.IsEqual(Container(30151).NumItems,0) | Control.IsVisible(30161) + Container(30161).IsUpdating + Integer.IsEqual(Container(30161).NumItems,0) | Control.IsVisible(30171) + Container(30171).IsUpdating + Integer.IsEqual(Container(30171).NumItems,0) | Control.IsVisible(30181) + Container(30181).IsUpdating + Integer.IsEqual(Container(30181).NumItems,0)
-		| Control.IsVisible(30191) + Container(30191).IsUpdating + Integer.IsEqual(Container(30191).NumItems,0) | Control.IsVisible(301101) + Container(301101).IsUpdating + Integer.IsEqual(Container(301101).NumItems,0) | Control.IsVisible(301111) + Container(301111).IsUpdating | Control.IsVisible(301121) + Container(301121).IsUpdating + Integer.IsEqual(Container(301121).NumItems,0) | Control.IsVisible(301131) + Container(301131).IsUpdating + Integer.IsEqual(Container(301131).NumItems,0)
-		| Control.IsVisible(301141) + Container(301141).IsUpdating + Integer.IsEqual(Container(301141).NumItems,0) | Control.IsVisible(301151) + Container(301151).IsUpdating + Integer.IsEqual(Container(301151).NumItems,0) | Control.IsVisible(301161) + Container(301161).IsUpdating + Integer.IsEqual(Container(301161).NumItems,0)]
-	</expression>
-
     <expression name="Visualisation_ShowFanart">!Skin.HasSetting(musicosd.hidefanart)</expression>
     <expression name="Visualisation_ShowSlideshow">!Skin.HasSetting(musicosd.hidefanart) + System.AddonIsEnabled(script.artistslideshow) + !Skin.HasSetting(ArtistSlideShow.Disabled)</expression>
     <expression name="Visualisation_AnimateFanart">!Skin.HasSetting(musicosd.hidefanart) + Skin.HasSetting(ArtistSlideshow.Animate)</expression>
@@ -922,7 +915,7 @@
 
         <!-- Global Fanart -->
         <control type="group">
-            <visible>![Window.IsVisible(Home.xml) + Skin.HasSetting(homemenu.netflix) + !Skin.HasSetting(hide.homemenu.netflix.preview) + !$EXP[IsUpdatingMultiWidgets] | [Control.IsVisible(521) | Control.IsVisible(522) | Control.IsVisible(523) | Control.IsVisible(524)] + !Skin.HasSetting(hide.views.netflix.preview) + !Skin.HasSetting(TMDbHelper.EnableBlur)] | $EXP[InfoDialogsActive] + [!Window.IsVisible(home) | !$EXP[InfoDialogsExtendedBackground]]</visible>
+            <visible>![Window.IsVisible(Home.xml) + Skin.HasSetting(homemenu.netflix) + !Skin.HasSetting(hide.homemenu.netflix.preview) | [Control.IsVisible(521) | Control.IsVisible(522) | Control.IsVisible(523) | Control.IsVisible(524)] + !Skin.HasSetting(hide.views.netflix.preview) + !Skin.HasSetting(TMDbHelper.EnableBlur)] | $EXP[InfoDialogsActive] + [!Window.IsVisible(home) | !$EXP[InfoDialogsExtendedBackground]]</visible>
 			<include>Animation.BackgroundHideView</include>
  	        <control type="multiimage" description="Fanart">
 	            <visible>!Skin.HasSetting(TMDbHelper.EnableBlur) | [Window.IsVisible(home) + !$EXP[InfoDialogsActive]]</visible>
@@ -983,7 +976,7 @@
         
         <!-- Netflix Preview Window -->
         <control type="multiimage" description="Fanart">
-            <visible>[Window.IsVisible(Home.xml) + Skin.HasSetting(homemenu.netflix) + !Skin.HasSetting(homemenu.clean.flix) + !Skin.HasSetting(hide.homemenu.netflix.preview) + !$EXP[IsUpdatingMultiWidgets] | [Control.IsVisible(521) | Control.IsVisible(522) | Control.IsVisible(523) | Control.IsVisible(524)] + !Skin.HasSetting(hide.views.netflix.preview) + !Skin.HasSetting(TMDbHelper.EnableBlur)] + !$EXP[InfoDialogsActive] + String.IsEmpty(Window(Home).Property(TMDbHelper.HideView))</visible>
+            <visible>[Window.IsVisible(Home.xml) + Skin.HasSetting(homemenu.netflix) + !Skin.HasSetting(homemenu.clean.flix) + !Skin.HasSetting(hide.homemenu.netflix.preview) | [Control.IsVisible(521) | Control.IsVisible(522) | Control.IsVisible(523) | Control.IsVisible(524)] + !Skin.HasSetting(hide.views.netflix.preview) + !Skin.HasSetting(TMDbHelper.EnableBlur)] + !$EXP[InfoDialogsActive] + String.IsEmpty(Window(Home).Property(TMDbHelper.HideView))</visible>
             <visible>!Player.HasMedia | [!Skin.HasSetting(global.showvideo) + Player.HasVideo] | [!Skin.HasSetting(global.showvisualisation) + Player.HasAudio] | [Skin.HasSetting(global.showvisualisation) + String.IsEmpty(Visualisation.Name) + Player.HasAudio]</visible>
             <include>Animation.Background.OpenClose</include>
             <include>Dimensions_Fullscreen</include>
