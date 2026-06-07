@@ -1725,118 +1725,114 @@
         </definition>
     </include>
 
-    <include name="Def_Context_Tempo_Gradient">
-        <include content="Def_Gradient_Settings_Image">
-            <param name="controlid" value="$PARAM[controlid]"/>
-            <param name="left" value="8"/>
-            <param name="top" value="16"/>
-            <param name="width" value="300"/>
-            <param name="height" value="60"/>
-            <param name="slide" value="60"/>
-        </include>
-        <control type="grouplist" id="$PARAM[controlid]">
-            <include>Animation.FadeIn.Delay</include>
-            <include>Animation.FadeOut</include>
-            <top>16</top>
-            <bottom>16</bottom>
-            <left>8</left>
-            <right>8</right>
-            <onup>20</onup>
-            <ondown>20</ondown>
-            <onleft>20</onleft>
-            <onright>20</onright>
-            <itemgap>0</itemgap>
-            <orientation>vertical</orientation>
-            <scrolltime>200</scrolltime>
-            <control type="button" id="9901">
-                <width>100%</width>
-                <height>60</height>
-                <textcolor>$VAR[OSDPanelWhite70]</textcolor>
-                <include>DefContextButtonGradient</include>
-                <label>1.50</label>
-                <onclick>PlayerControl(Tempo(1.5))</onclick>
-                <oninfo>noop</oninfo>
-            </control>
-            <control type="button" id="9902">
-                <width>100%</width>
-                <height>60</height>
-                <textcolor>$VAR[OSDPanelWhite70]</textcolor>
-                <include>DefContextButtonGradient</include>
-                <label>1.40</label>
-                <onclick>PlayerControl(Tempo(1.4))</onclick>
-                <oninfo>noop</oninfo>
-            </control>
-            <control type="button" id="9903">
-                <width>100%</width>
-                <height>60</height>
-                <textcolor>$VAR[OSDPanelWhite70]</textcolor>
-                <include>DefContextButtonGradient</include>
-                <label>1.30</label>
-                <onclick>PlayerControl(Tempo(1.3))</onclick>
-                <oninfo>noop</oninfo>
-            </control>
-            <control type="button" id="9904">
-                <width>100%</width>
-                <height>60</height>
-                <textcolor>$VAR[OSDPanelWhite70]</textcolor>
-                <include>DefContextButtonGradient</include>
-                <label>1.20</label>
-                <onclick>PlayerControl(Tempo(1.2))</onclick>
-                <oninfo>noop</oninfo>
-            </control>
-            <control type="button" id="9905">
-                <width>100%</width>
-                <height>60</height>
-                <textcolor>$VAR[OSDPanelWhite70]</textcolor>
-                <include>DefContextButtonGradient</include>
-                <label>1.10</label>
-                <onclick>PlayerControl(Tempo(1.1))</onclick>
-                <oninfo>noop</oninfo>
-            </control>
-            <control type="button" id="9906">
-                <width>100%</width>
-                <height>60</height>
-                <textcolor>$VAR[OSDPanelWhite70]</textcolor>
-                <include>DefContextButtonGradient</include>
-                <label>630</label>
-                <onclick>PlayerControl(Tempo(1.0))</onclick>
-                <oninfo>noop</oninfo>
-            </control>
-            <control type="button" id="9907">
-                <width>100%</width>
-                <height>60</height>
-                <textcolor>$VAR[OSDPanelWhite70]</textcolor>
-                <include>DefContextButtonGradient</include>
-                <label>0.90</label>
-                <onclick>PlayerControl(Tempo(0.9))</onclick>
-                <oninfo>noop</oninfo>
-            </control>
-            <control type="button" id="9908">
-                <width>100%</width>
-                <height>60</height>
-                <textcolor>$VAR[OSDPanelWhite70]</textcolor>
-                <include>DefContextButtonGradient</include>
-                <label>0.80</label>
-                <onclick>PlayerControl(Tempo(0.8))</onclick>
-                <oninfo>noop</oninfo>
-            </control>
-        </control>
-        <control type="image">
-            <top>38</top>
-            <right>30</right>
-            <width>20</width>
-            <height>20</height>
-            <texture colordiffuse="Dark1">osd/minicheck_big.png</texture>
-            <animation effect="slide" end="0,60" time="0" condition="Player.IsTempo + String.IsEqual(Player.PlaySpeed,1.40)">Conditional</animation>
-            <animation effect="slide" end="0,120" time="0" condition="Player.IsTempo + String.IsEqual(Player.PlaySpeed,1.30)">Conditional</animation>
-            <animation effect="slide" end="0,180" time="0" condition="Player.IsTempo + String.IsEqual(Player.PlaySpeed,1.20)">Conditional</animation>
-            <animation effect="slide" end="0,240" time="0" condition="Player.IsTempo + String.IsEqual(Player.PlaySpeed,1.10)">Conditional</animation>
-            <animation effect="slide" end="0,300" time="0" condition="!Player.IsTempo + String.IsEqual(Player.PlaySpeed,1.00)">Conditional</animation>
-            <animation effect="slide" end="0,360" time="0" condition="Player.IsTempo + String.IsEqual(Player.PlaySpeed,0.90)">Conditional</animation>
-            <animation effect="slide" end="0,420" time="0" condition="Player.IsTempo + String.IsEqual(Player.PlaySpeed,0.80)">Conditional</animation>
-        </control>
+    <include name="Def_Tempo_Setting">
+        <param name="textcolor" default="Black70" />
+        <param name="slidercolor" default="Black12" />
+        <param name="visible" default="true" />
+        <definition>
+	        <control type="group">
+	            <width>340</width>
+	            <height>70</height>
+	            <right>30</right>
+	            <visible>$PARAM[visible]</visible>
+	            <control type="group">
+	                <top>14</top>
+	                <height>18</height>
+	                <width>100%</width>
+	                <control type="image">
+	                    <width>6</width>
+	                    <height>6</height>
+	                    <left>0</left>
+	                    <centertop>50%</centertop>
+	                    <texture colordiffuse="$PARAM[slidercolor]">scrollbar/left.png</texture>
+	                </control>
+	                <control type="image">
+	                    <left>6</left>
+	                    <right>6</right>
+	                    <height>6</height>
+	                    <centertop>50%</centertop>
+	                    <texture colordiffuse="$PARAM[slidercolor]">scrollbar/mid.png</texture>
+	                </control>
+	                <control type="image">
+	                    <width>6</width>
+	                    <height>6</height>
+	                    <right>0</right>
+	                    <centertop>50%</centertop>
+	                    <texture colordiffuse="$PARAM[slidercolor]">scrollbar/right.png</texture>
+	                </control>
+	                <control type="image">
+	                    <width>18</width>
+	                    <height>18</height>
+	                    <left>5</left>
+	                    <centertop>50%</centertop>
+	                    <texture colordiffuse="$PARAM[textcolor]">common/circle.png</texture>
+	                    <animation effect="slide" end="0" condition="String.IsEqual(Player.PlaySpeed,0.80)">Conditional</animation>
+	                    <animation effect="slide" end="45" condition="String.IsEqual(Player.PlaySpeed,0.90)">Conditional</animation>
+	                    <animation effect="slide" end="90" condition="[String.IsEqual(Player.PlaySpeed,1.00) | String.IsEqual(Player.PlaySpeed,0.00)]">Conditional</animation>
+	                    <animation effect="slide" end="135" condition="String.IsEqual(Player.PlaySpeed,1.10)">Conditional</animation>
+	                    <animation effect="slide" end="180" condition="String.IsEqual(Player.PlaySpeed,1.20)">Conditional</animation>
+	                    <animation effect="slide" end="225" condition="String.IsEqual(Player.PlaySpeed,1.30)">Conditional</animation>
+	                    <animation effect="slide" end="270" condition="String.IsEqual(Player.PlaySpeed,1.40)">Conditional</animation>
+	                    <animation effect="slide" end="315" condition="String.IsEqual(Player.PlaySpeed,1.50)">Conditional</animation>
+	                </control>
+	            </control>
+	            <control type="grouplist">
+	                <height>55</height>
+	                <width>100%</width>
+	                <bottom>0</bottom>
+	                <align>center</align>
+	                <orientation>horizontal</orientation>
+	                <include content="Def_Tempo_Setting_Label">
+	                   <param name="label" value="0.8" />
+                       <param name="textcolor" value="$PARAM[textcolor]" />
+	                </include>
+                    <include content="Def_Tempo_Setting_Label">
+                       <param name="label" value="0.9" />
+                       <param name="textcolor" value="$PARAM[textcolor]" />
+                    </include>
+                    <include content="Def_Tempo_Setting_Label">
+                       <param name="label" value="1.0" />
+                       <param name="textcolor" value="$PARAM[textcolor]" />
+                    </include>
+                    <include content="Def_Tempo_Setting_Label">
+                       <param name="label" value="1.1" />
+                       <param name="textcolor" value="$PARAM[textcolor]" />
+                    </include>
+                    <include content="Def_Tempo_Setting_Label">
+                       <param name="label" value="1.2" />
+                       <param name="textcolor" value="$PARAM[textcolor]" />
+                    </include>
+                    <include content="Def_Tempo_Setting_Label">
+                       <param name="label" value="1.3" />
+                       <param name="textcolor" value="$PARAM[textcolor]" />
+                    </include>
+                    <include content="Def_Tempo_Setting_Label">
+                       <param name="label" value="1.4" />
+                       <param name="textcolor" value="$PARAM[textcolor]" />
+                    </include>
+                    <include content="Def_Tempo_Setting_Label">
+                       <param name="label" value="1.5" />
+                       <param name="textcolor" value="$PARAM[textcolor]" />
+                    </include>
+	            </control>
+	        </control>
+        </definition>
     </include>
-
+    
+    <include name="Def_Tempo_Setting_Label">
+        <param name="label" />
+        <param name="textcolor" default="Black70" />
+        <definition>        
+	 	    <control type="label">
+		        <textcolor>$PARAM[textcolor]</textcolor>
+		        <align>left</align>
+		        <label>$PARAM[label]</label>
+		        <font>Hint</font>
+		        <width>40</width>
+		    </control>
+	    </definition>  
+    </include>
+    
     <include name="Kodi_Logo">
         <param name="top" value="$PARAM[top]" default="15"/>
         <param name="left" value="$PARAM[left]" default="15"/>

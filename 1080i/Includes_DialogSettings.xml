@@ -54,7 +54,7 @@
 		</definition>
 	</include>
 
-	<include name="DialogStreamSettingsContent">
+	<include name="DialogSubtitleSettingsContent">
 		<control type="group" id="101">
 			<height>70</height>
 			<width>100%</width>
@@ -62,13 +62,13 @@
 				<onright>Dialog.Close(1101)</onright>
 				<onleft>Dialog.Close(1101)</onleft>
 				<onup>103</onup>
-				<ondown>1002</ondown>
+				<ondown>102</ondown>
 				<align>left</align>
 				<width>800</width>
 				<textwidth>580</textwidth>
 				<include>DefContextButtonGradient</include>
-				<label>24012</label>
-				<label2>$VAR[Label_Player_SubtitlesLanguage]          </label2>
+				<label>462</label>
+				<label2>$VAR[Label_Player_SubtitlesLanguage]</label2>
 				<onclick>DialogSelectSubtitle</onclick>
 				<enable>VideoPlayer.HasSubtitles</enable>
 			</control>
@@ -82,19 +82,43 @@
 				<visible>!String.IsEmpty(VideoPlayer.SubtitlesLanguage) + VideoPlayer.SubtitlesEnabled</visible>
 			</control>
 		</control>
-		<control type="group" id="102">
+		<control type="button" id="102">
+			<onright>Dialog.Close(1101)</onright>
+			<onleft>Dialog.Close(1101)</onleft>
+			<align>left</align>
+			<width>800</width>
+			<textwidth>580</textwidth>
+			<include>DefContextButtonGradient</include>
+			<label>$LOCALIZE[22006]</label>
+			<onclick>subtitledelay</onclick>
+			<enable>VideoPlayer.HasSubtitles + VideoPlayer.SubtitlesEnabled</enable>
+		</control>
+		<control type="button" id="103">
+			<onright>Dialog.Close(1101)</onright>
+			<onleft>Dialog.Close(1101)</onleft>
+			<align>left</align>
+			<width>800</width>
+			<textwidth>580</textwidth>
+			<include>DefContextButtonGradient</include>
+			<label>$LOCALIZE[24133]</label>
+			<onclick>ActivateWindow(osdsubtitlesettings)</onclick>
+		</control>
+	</include>
+
+	<include name="DialogAudioSettingsContent">
+		<control type="group" id="101">
 			<height>70</height>
 			<width>100%</width>
-			<control type="button" id="1002">
+			<control type="button" id="1001">
 				<onright>Dialog.Close(1101)</onright>
 				<onleft>Dialog.Close(1101)</onleft>
-				<onup>1001</onup>
-				<ondown>103</ondown>
+				<onup>103</onup>
+				<ondown>102</ondown>
 				<align>left</align>
 				<width>800</width>
 				<textwidth>580</textwidth>
 				<include>DefContextButtonGradient</include>
-				<label>292</label>
+				<label>460</label>
 				<label2>$VAR[Label_Audio_Codec]$VAR[LabelAudioChannels, ,  •  ]$VAR[Label_Player_AudioLanguage]          </label2>
 				<onclick>DialogSelectAudio</onclick>
 				<enable>Integer.IsGreater(VideoPlayer.AudioStreamCount,1)</enable>
@@ -108,71 +132,85 @@
 				<align>center</align>
 				<visible>!String.IsEmpty(VideoPlayer.AudioLanguage)</visible>
 			</control>
-		</control>
-		<control type="button" id="103">
+		</control>	
+		<control type="button" id="102">
+			<onright>Dialog.Close(1101)</onright>
+			<onleft>Dialog.Close(1101)</onleft>
 			<align>left</align>
 			<width>800</width>
 			<textwidth>580</textwidth>
 			<include>DefContextButtonGradient</include>
-			<label>291</label>
-			<label2>$INFO[VideoPlayer.VideoResolution,, ]$VAR[HDSD]$VAR[Label_Video_Codec,  •  ,]$VAR[Label_Video_Aspect,  •  ,]$VAR[Label_Video_3D,  •  ,]$VAR[Label_Video_HdrType_Detailed,  •  ,]          </label2>
-			<onclick>DialogSelectVideo</onclick>
-			<enable>Integer.IsGreater(VideoPlayer.VideoStreamCount,1)</enable>
+			<label>$LOCALIZE[297]</label>
+			<onclick>audiodelay</onclick>
+		</control>
+		<control type="button" id="103">
+			<onright>Dialog.Close(1101)</onright>
+			<onleft>Dialog.Close(1101)</onleft>
+			<align>left</align>
+			<width>800</width>
+			<textwidth>580</textwidth>
+			<include>DefContextButtonGradient</include>
+			<label>$LOCALIZE[13396]</label>
+			<onclick>ActivateWindow(osdaudiosettings)</onclick>
 		</control>
 	</include>
 	
 	<include name="DialogVideoSettingsContent">
 		<control type="button" id="101">
 			<align>left</align>
+			<width>800</width>
+			<textwidth>580</textwidth>
 			<include>DefContextButtonGradient</include>
-			<label>$LOCALIZE[298]</label>
-			<onclick>Close</onclick>
-			<onclick>ActivateWindow(125)</onclick>
+			<label>38031</label>
+			<label2>$INFO[VideoPlayer.VideoResolution,, ]$VAR[HDSD]$VAR[Label_Video_Codec,  •  ,]$VAR[Label_Video_Aspect,  •  ,]$VAR[Label_Video_3D,  •  ,]$VAR[Label_Video_HdrType_Detailed,  •  ,]</label2>
+			<onclick>DialogSelectVideo</onclick>
+			<enable>Integer.IsGreater(VideoPlayer.VideoStreamCount,1)</enable>
 		</control>
-		<control type="button" id="102">
+		<control type="group" id="102">
+			<height>70</height>
+			<width>100%</width>
+			<visible>Player.TempoEnabled</visible>
+			<control type="button" id="1002">
+				<onup>101</onup>
+				<ondown>103</ondown>
+                <onfocus condition="Player.Rewinding | Player.Forwarding">PlayerControl(Play)</onfocus>
+                <onleft condition="Player.Paused">PlayerControl(Play)</onleft>
+                <onright condition="Player.Paused">PlayerControl(Play)</onright>
+                <onleft>PlayerControl(TempoDown)</onleft>
+                <onright>PlayerControl(TempoUp)</onright>
+				<width>800</width>
+				<height>70</height>
+				<align>left</align>
+				<include>DefContextButtonGradient</include>
+				<label>31907</label>
+			</control>
+			<include content="Def_Tempo_Setting">
+				<param name="textcolor" value="Black70" />
+				<param name="slidercolor" value="Black12" />
+				<param name="visible" value="!Control.HasFocus(1002)" />
+			</include>
+			<include content="Def_Tempo_Setting">
+				<param name="textcolor" value="Selected" />
+				<param name="slidercolor" value="Dark2" />
+				<param name="visible" value="Control.HasFocus(1002)" />
+			</include>
+		</control>
+        <control type="button" id="103">
+            <align>left</align>
+            <width>800</width>
+            <textwidth>580</textwidth>
+            <include>DefContextButtonGradient</include>
+            <label>31290</label>
+            <onclick>Dialog.Close(1101)</onclick>
+            <onclick>ActivateWindow(playerprocessinfo)</onclick>
+        </control>
+		<control type="button" id="104">
 			<align>left</align>
+			<width>800</width>
+			<textwidth>580</textwidth>
 			<include>DefContextButtonGradient</include>
 			<label>$LOCALIZE[13395]</label>
 			<onclick>ActivateWindow(osdvideosettings)</onclick>
-		</control>
-		<control type="button" id="103">
-			<align>left</align>
-			<include>DefContextButtonGradient</include>
-			<label>$LOCALIZE[13396]</label>
-			<onclick>ActivateWindow(osdaudiosettings)</onclick>
-		</control>
-		<control type="button" id="104">
-			<align>left</align>
-			<include>DefContextButtonGradient</include>
-			<label>$LOCALIZE[24133]</label>
-			<onclick>ActivateWindow(osdsubtitlesettings)</onclick>
-		</control>
-		<control type="button" id="105">
-			<align>left</align>
-			<include>DefContextButtonGradient</include>
-			<label>297</label>
-			<onclick>audiodelay</onclick>
-		</control>
-		<control type="button" id="106">
-			<align>left</align>
-			<include>DefContextButtonGradient</include>
-			<label>22006</label>
-			<onclick>subtitledelay</onclick>
-		</control>
-		<control type="button" id="107">
-			<align>left</align>
-			<include>DefContextButtonGradient</include>
-			<label>$LOCALIZE[169]/$LOCALIZE[170]</label>
-			<onclick>PlayerResolutionSelect</onclick>
-			<visible>Player.HasResolutions</visible>
-		</control>
-		<control type="button" id="108">
-			<description>Filter</description>
-			<include>DefContextButtonGradient</include>
-			<label>31290</label>
-			<align>left</align>
-			<onclick>Dialog.Close(1101)</onclick>
-			<onclick>ActivateWindow(playerprocessinfo)</onclick>
 		</control>
 	</include>
 
