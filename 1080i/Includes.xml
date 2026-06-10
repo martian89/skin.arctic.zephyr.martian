@@ -163,6 +163,7 @@
 
     <expression name="IsVideoHDR10Plus">
         String.IsEqual(ListItem.HdrType,hdr10) + String.Contains(ListItem.FileNameAndPath,hdr10plus)
+        | [VideoPlayer.IsFullscreen + String.IsEqual(VideoPlayer.HdrType,hdr10) + String.Contains(Player.FileNameAndPath,hdr10plus)]
     </expression>
 
     <expression name="IsVideoHDR10PlusHub">
