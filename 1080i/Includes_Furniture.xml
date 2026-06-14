@@ -663,6 +663,57 @@
         <value condition="!String.IsEmpty(Container(9500).ListItem.Art(artist.clearlogo))">$INFO[Container(9500).ListItem.Art(artist.clearlogo)]</value>
         <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.clearlogo)) + String.StartsWith(Container(9500).ListItem.FolderPath,pvr://)">$INFO[Window(Home).Property(TMDbHelper.ListItem.clearlogo)]</value>
     </variable>
+
+    <include name="Furniture_Flagstar">
+        <param name="left" value="$PARAM[left]" default="0"/>
+        <param name="visible" value="$PARAM[visible]" default="true"/>
+        <param name="color" value="$PARAM[color]" default="$VAR[ColorStars]"/>
+        <definition>
+        <control type="image">
+            <left>$PARAM[left]</left>
+            <width>64</width>
+            <height>36</height>
+            <centertop>48%</centertop>
+            <aspectratio>keep</aspectratio>
+            <texture colordiffuse="$PARAM[color]">flags/$VAR[$PARAM[Star]].png</texture>
+            <visible>$PARAM[visible]</visible>
+        </control>
+        </definition>
+    </include>
+
+    <include name="Furniture_RatingFlags">
+        <param name="visible" value="$PARAM[visible]" default="true"/>
+        <definition>
+        <include content="Furniture_Flagstar">
+            <param name="Star" value="$PARAM[Star]1" />
+            <param name="color" value="$PARAM[color]" />
+        </include>
+        <include content="Furniture_Flagstar">
+            <param name="Star" value="$PARAM[Star]2" />
+            <param name="left" value="-20" />
+            <param name="visible" value="$PARAM[visible]" />
+            <param name="color" value="$PARAM[color]" />
+        </include>
+        <include content="Furniture_Flagstar">
+            <param name="Star" value="$PARAM[Star]3" />
+            <param name="left" value="-20" />
+            <param name="visible" value="$PARAM[visible]" />
+            <param name="color" value="$PARAM[color]" />
+        </include>
+        <include content="Furniture_Flagstar">
+            <param name="Star" value="$PARAM[Star]4" />
+            <param name="left" value="-20" />
+            <param name="visible" value="$PARAM[visible]" />
+            <param name="color" value="$PARAM[color]" />
+        </include>
+        <include content="Furniture_Flagstar">
+            <param name="Star" value="$PARAM[Star]5" />
+            <param name="left" value="-20" />
+            <param name="visible" value="$PARAM[visible]" />
+            <param name="color" value="$PARAM[color]" />
+        </include>
+        </definition>
+    </include>
  
     <include name="Furniture_Flags_DialogInfo">
         <control type="group">
@@ -756,7 +807,7 @@
                 <aspectratio align="left">keep</aspectratio>
                 <visible>Skin.HasSetting(furniture.flagicons) + !Skin.HasSetting(furniture.flags.resolution) + !String.IsEmpty(ListItem.VideoResolution) + !ListItem.IsCollection</visible>
             </control>
-            <include content="Def_Flags_Furniture_Small" condition="!Skin.HasSetting(furniture.flags.rating)">
+            <include content="Furniture_RatingFlags" condition="!Skin.HasSetting(furniture.flags.rating)">
                 <param name="Star" value="Flagstar" />
                 <param name="visible" value="!Skin.HasSetting(furniture.numericrating)" />
             </include>
@@ -1086,7 +1137,7 @@
                 <aspectratio align="left">scale</aspectratio>
                 <visible>!Skin.HasSetting(furniture.flags.resolution) + !String.IsEmpty(ListItem.VideoResolution) + !ListItem.IsCollection</visible>
             </control>
-            <include content="Def_Flags_Furniture_Small" condition="!Skin.HasSetting(furniture.flags.rating)">
+            <include content="Furniture_RatingFlags" condition="!Skin.HasSetting(furniture.flags.rating)">
                 <param name="Star" value="Flagstar" />
                 <param name="visible" value="!Skin.HasSetting(furniture.numericrating)" />
             </include>
@@ -1428,7 +1479,7 @@
                 <aspectratio align="left">keep</aspectratio>
                 <visible>Skin.HasSetting(furniture.flagicons) + !Skin.HasSetting(furniture.flags.resolution) + !String.IsEmpty(Container(9500).ListItem.VideoResolution) + !Container(9500).ListItem.IsCollection</visible>
             </control>
-            <include content="Def_Flags_Furniture_Small" condition="!Skin.HasSetting(furniture.flags.rating)">
+            <include content="Furniture_RatingFlags" condition="!Skin.HasSetting(furniture.flags.rating)">
                 <param name="Star" value="HubFlagstar" />
                 <param name="visible" value="!Skin.HasSetting(furniture.numericrating)" />
             </include>
@@ -1713,7 +1764,7 @@
                 <aspectratio align="left">scale</aspectratio>
                 <visible>!Skin.HasSetting(furniture.flags.resolution) + !String.IsEmpty(Container(9500).ListItem.VideoResolution) + !Container(9500).ListItem.IsCollection</visible>
             </control>
-            <include content="Def_Flags_Furniture_Small" condition="!Skin.HasSetting(furniture.flags.rating)">
+            <include content="Furniture_RatingFlags" condition="!Skin.HasSetting(furniture.flags.rating)">
                 <param name="Star" value="HubFlagstar" />
                 <param name="visible" value="!Skin.HasSetting(furniture.numericrating)" />
             </include>
@@ -2559,7 +2610,7 @@
             <itemgap>0</itemgap>
             <usecontrolcoords>true</usecontrolcoords>
             <include>AlbumCount</include>
-            <include content="Def_Flags_Furniture_Small" condition="!Skin.HasSetting(furniture.hide.musicrating)">
+            <include content="Furniture_RatingFlags" condition="!Skin.HasSetting(furniture.hide.musicrating)">
                 <param name="Star" value="FlagstarSong" />
                 <param name="visible" value="!Skin.HasSetting(furniture.numericrating)" />
             </include>
@@ -2766,7 +2817,7 @@
             <itemgap>0</itemgap>
             <usecontrolcoords>true</usecontrolcoords>
             <include>AlbumCount</include>
-            <include content="Def_Flags_Furniture_Small" condition="!Skin.HasSetting(furniture.hide.musicrating)">
+            <include content="Furniture_RatingFlags" condition="!Skin.HasSetting(furniture.hide.musicrating)">
                 <param name="Star" value="FlagstarSong" />
                 <param name="visible" value="!Skin.HasSetting(furniture.numericrating)" />
             </include>
@@ -2925,7 +2976,7 @@
             <itemgap>0</itemgap>
             <usecontrolcoords>true</usecontrolcoords>
             <include>AlbumCount</include>
-            <include content="Def_Flags_Furniture_Small" condition="!Skin.HasSetting(furniture.hide.musicrating)">
+            <include content="Furniture_RatingFlags" condition="!Skin.HasSetting(furniture.hide.musicrating)">
                 <param name="Star" value="HubFlagstar" />
                 <param name="visible" value="!Skin.HasSetting(furniture.numericrating)" />
             </include>
@@ -3104,7 +3155,7 @@
             <itemgap>0</itemgap>
             <usecontrolcoords>true</usecontrolcoords>
             <include>AlbumCount</include>
-            <include content="Def_Flags_Furniture_Small" condition="!Skin.HasSetting(furniture.hide.musicrating)">
+            <include content="Furniture_RatingFlags" condition="!Skin.HasSetting(furniture.hide.musicrating)">
                 <param name="Star" value="HubFlagstar" />
                 <param name="visible" value="!Skin.HasSetting(furniture.numericrating)" />
             </include>
@@ -3274,7 +3325,7 @@
                 <visible>!String.IsEmpty(Control.GetLabel(6601))</visible>
                 <visible>Skin.HasSetting(furniture.flagicons) + !Skin.HasSetting(furniture.flags.resolution)</visible>
             </control>
-            <include content="Def_Flags_Furniture_Small" condition="!Skin.HasSetting(furniture.flags.rating)">
+            <include content="Furniture_RatingFlags" condition="!Skin.HasSetting(furniture.flags.rating)">
                 <param name="Star" value="Flagstar" />
                 <param name="visible" value="!Skin.HasSetting(furniture.numericrating)" />
             </include>
