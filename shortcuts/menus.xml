@@ -49,7 +49,7 @@
 	</overrides>
 
 	<!-- Main menus -->
-	<menu name="mainmenu" container="300">
+	<menu name="mainmenu" container="300" submenuPath="all">
 		<item name="movies" submenu="movies" visible="Library.HasContent(Movies)">
 			<label>20342</label>
 			<label2>$ADDON[script.skinshortcuts 32034]</label2>
@@ -1020,19 +1020,8 @@
             </group>
         </group>
 
-        <!-- Pictures -->
-        <group name="picture" label="10002" icon="special://skin/extras/icons/pictures.png">
-            <content source="sources" target="pictures" />
-        </group>
-
         <!-- Add-ons -->
         <group name="addons" label="24001" icon="special://skin/extras/icons/addons.png">
-            <group name="program-addons" label="10001" icon="special://skin/extras/icons/addons.png">
-                <content source="addons" target="programs" label="10001" />
-	            <shortcut name="apps" label="20244" icon="special://skin/extras/icons/addons.png" visible="System.Platform.Android">
-	                <action>ActivateWindow(programs,androidapp://sources/apps/,return)</action>
-	             </shortcut>
-            </group>
             <group name="video-addons" label="1037" icon="special://skin/extras/icons/video-addons.png">
                 <content source="addons" target="videos" label="1037" />
             </group>
@@ -1041,6 +1030,12 @@
             </group>
             <group name="picture-addons" label="1039" icon="special://skin/extras/icons/pictures.png">
                 <content source="addons" target="pictures" label="1039" />
+            </group>
+            <group name="program-addons" label="10001" icon="special://skin/extras/icons/addons.png">
+                <content source="addons" target="programs" label="10001" />
+	            <shortcut name="apps" label="20244" icon="special://skin/extras/icons/addons.png" visible="System.Platform.Android">
+	                <action>ActivateWindow(programs,androidapp://sources/apps/,return)</action>
+	             </shortcut>
             </group>
             <shortcut name="game-addons" label="35049" icon="special://skin/extras/icons/xbox.png">
                 <action>ActivateWindow(Games,Addons,return)</action>
@@ -1058,6 +1053,22 @@
             <group name="skin-playlists" label="31514" icon="special://skin/extras/icons/playlist.png">
                 <content source="playlists" path="special://skin/extras/playlists/" />
             </group>
+		</group> 
+
+		<!-- Sources -->
+		<group name="sources" label="39031" icon="special://skin/extras/icons/files.png">
+	        <group name="video-sources" label="31127" icon="special://skin/extras/icons/files.png">
+	            <content source="sources" target="videos" />
+	        </group>
+	        <group name="music-sources" label="31128" icon="special://skin/extras/icons/files.png">
+	            <content source="sources" target="music" />
+	        </group>
+	        <group name="picture-sources" label="31129" icon="special://skin/extras/icons/files.png">
+	            <content source="sources" target="pictures" />
+	        </group>
+	        <group name="file-sources" label="31130" icon="special://skin/extras/icons/files.png">
+	            <content source="sources" target="files" />
+	        </group>
 		</group> 
 		
         <!-- Favourites -->

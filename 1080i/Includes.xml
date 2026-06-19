@@ -611,7 +611,7 @@
         <value condition="String.IsEqual(ListItem.DBtype,artist) | String.IsEqual(ListItem.DBtype,album) | String.IsEqual(ListItem.DBtype,song) | String.IsEqual(ListItem.DBtype,musicvideo)">special://skin/extras/backgrounds/fallbacks/music.jpg</value>
         <value condition="String.IsEqual(ListItem.DBtype,tvshow) | String.IsEqual(ListItem.DBtype,season) | String.IsEqual(ListItem.DBtype,episode) | String.IsEqual(ListItem.DBtype,video)">special://skin/extras/backgrounds/fallbacks/tv.jpg</value>
 
-        <value condition="!ControlGroup(301).HasFocus() + !Skin.HasSetting(home.dontshowfanart) + Integer.IsGreater(Container(9989).NumItems,0)">$VAR[GlobalFanart_MultiWidgets_Parent]</value>
+        <value condition="!ControlGroup(301).HasFocus() + !Skin.HasSetting(home.dontshowfanart) + !String.IsEmpty(Container(300).ListItem.Property(submenuPath))">$VAR[GlobalFanart_MultiWidgets_Parent]</value>
         <value condition="!ControlGroup(301).HasFocus() + !Skin.HasSetting(home.dontshowfanart) + Control.IsVisible(993100)">$VAR[GlobalFanart_MultiWidgets_Spotlight]</value>
 
 		<value>$VAR[GlobalFanart_Fallback]</value>
@@ -637,8 +637,8 @@
 	<variable name="GlobalFanart_Fallback">
 	    <value condition="String.EndsWith(Container(300).ListItem.Property(backgroundType),playlist)">$INFO[Container(9988).ListItem.Art(fanart)]</value>
         <value condition="!String.IsEmpty(Container(300).ListItem.Property(backgroundPath))">$INFO[Container(300).ListItem.Property(backgroundPath)]</value>
-       	<value condition="![String.IsEmpty(Skin.String(home.slideshowpath)) | String.IsEqual(Skin.String(home.slideshowpath),none)] + [!Skin.HasSetting(home.vertical.widgets) + [String.IsEmpty(Container(300).ListItem.Property(widget)) | Container(301).IsUpdating] | [Skin.HasSetting(home.vertical.widgets) + Integer.IsEqual(Container(9989).NumItems,0)] | Skin.HasSetting(home.dontshowfanart)]">$INFO[Skin.String(home.slideshowpath)]</value>
-        <value condition="!String.IsEmpty(Weather.Plugin) + [$EXP[HasWeatherFanartSingle] | $EXP[HasWeatherFanartMulti]] + Skin.HasSetting(home.showweatherfanart) + !$EXP[HomeShowHeader] + !Skin.HasSetting(furniture.weather) + !Skin.HasSetting(furniture.weatherleft) + !Skin.HasSetting(home.vertical) + [!Skin.HasSetting(home.vertical.widgets) | Skin.HasSetting(homemenu.netflix)] + [!Skin.HasSetting(home.vertical.widgets) + [String.IsEmpty(Container(300).ListItem.Property(widget)) | Container(301).IsUpdating] | Skin.HasSetting(homemenu.netflix) + Integer.IsEqual(Container(9989).NumItems,0) | Skin.HasSetting(home.dontshowfanart)]">$VAR[Image_WeatherCurrent]/</value>
+       	<value condition="![String.IsEmpty(Skin.String(home.slideshowpath)) | String.IsEqual(Skin.String(home.slideshowpath),none)] + [!Skin.HasSetting(home.vertical.widgets) + [String.IsEmpty(Container(300).ListItem.Property(widget)) | Container(301).IsUpdating] | [Skin.HasSetting(home.vertical.widgets) + String.IsEmpty(Container(300).ListItem.Property(submenuPath))] | Skin.HasSetting(home.dontshowfanart)]">$INFO[Skin.String(home.slideshowpath)]</value>
+        <value condition="!String.IsEmpty(Weather.Plugin) + [$EXP[HasWeatherFanartSingle] | $EXP[HasWeatherFanartMulti]] + Skin.HasSetting(home.showweatherfanart) + !$EXP[HomeShowHeader] + !Skin.HasSetting(furniture.weather) + !Skin.HasSetting(furniture.weatherleft) + !Skin.HasSetting(home.vertical) + [!Skin.HasSetting(home.vertical.widgets) | Skin.HasSetting(homemenu.netflix)] + [!Skin.HasSetting(home.vertical.widgets) + [String.IsEmpty(Container(300).ListItem.Property(widget)) | Container(301).IsUpdating] | Skin.HasSetting(homemenu.netflix) + String.IsEmpty(Container(300).ListItem.Property(submenuPath)) | Skin.HasSetting(home.dontshowfanart)]">$VAR[Image_WeatherCurrent]/</value>
         <value condition="!Container(301).IsUpdating + !Skin.HasSetting(home.vertical.widgets) + String.IsEmpty(Skin.String(fanart.fallback))">special://skin/extras/backgrounds/default.jpg</value>
         <value condition="!Container(301).IsUpdating ">$VAR[Image_SimpleBackground]</value>
 	</variable>
@@ -1472,7 +1472,7 @@
     </include>
 
     <variable name="TMDBHelperWidgetContainer">
-        <value condition="Integer.IsGreater(Container(9989).NumItems,0)">$VAR[TMDBHelperWidgetContainer_Parent]</value>
+        <value condition="!String.IsEmpty(Container(300).ListItem.Property(submenuPath))">$VAR[TMDBHelperWidgetContainer_Parent]</value>
         <value condition="Control.IsVisible(993100)">$NUMBER[993100]</value>
     </variable>
 
