@@ -8,8 +8,6 @@
     <onload>RunScript(script.skinshortcuts,type=buildxml)</onload>
     <onload condition="[!$EXP[HomeIsModernMultiWidgets] + !$EXP[HomeIsVerticalMultiWidgets] | $EXP[HomeIsCleanMinimal]] + !Window.Previous(1190)">SetFocus(300)</onload>
     <onload condition="!$EXP[HomeIsModernMultiWidgets] + !$EXP[HomeIsVerticalMultiWidgets]">SetProperty(TMDbHelper.WidgetContainer,301,home)</onload>
-    <onload condition="System.AddonIsEnabled(script.favourites)">RunScript(script.favourites)</onload>
-    <onload condition="System.AddonIsEnabled(script.wikipedia) + String.IsEmpty(Skin.String(Wikipedia.Format.Link))">Skin.SetString(Wikipedia.Format.Link,[COLOR=Dark2]{}[/COLOR])</onload>
     <onload>ClearProperty(TMDbHelper.HideView,Home)</onload>
     <onunload>ClearProperty(TMDbHelper.WidgetContainer,home)</onunload>
     <onunload condition="Skin.HasSetting(home.netflix.autoplay.trailer)">ClearProperty(listitem.trailer,home)</onunload>
