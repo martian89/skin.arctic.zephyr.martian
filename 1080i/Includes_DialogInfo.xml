@@ -1,0 +1,1346 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+
+    <include name="DialogInfo_List_Header">
+        <left>30</left>
+        <right>320</right>
+        <posy>18</posy>
+        <font>MediumBold</font>
+        <align>left</align>
+        <textcolor>Black70</textcolor>
+    </include>
+
+    <include name="DialogInfo_List_Arrows">
+        <control type="group">
+            <visible>$PARAM[visi]</visible>
+            <top>$PARAM[arrowtop]</top>
+            <visible>Control.HasFocus($PARAM[controlid]) + !Container($PARAM[controlid]).OnNext + !Container($PARAM[controlid]).OnPrevious + Integer.IsGreater(Container($PARAM[controlid]).NumItems,1)</visible>
+            <include>Animation.DelayFadeIn</include>
+            <control type="image">
+                <left>$PARAM[arrowleft]</left>
+                <include>arrowdimensions</include>
+                <texture colordiffuse="Dark1" flipx="true">common/arrow-small-right.png</texture>
+                <animation effect="slide" start="0,0" end="210,0" time="0" condition="String.IsEqual(Container($PARAM[controlid]).CurrentItem,1)">Conditional</animation>
+            </control>
+            <control type="image">
+                <right>$PARAM[arrowright]</right>
+                <include>arrowdimensions</include>
+                <texture colordiffuse="Dark1">common/arrow-small-right.png</texture>
+            </control>
+        </control>
+    </include>
+
+    <include name="DialogInfo_List_Updating">
+        <definition>
+        <control type="group">
+            <visible>$PARAM[visi]</visible>
+            <include>Animation.FadeOut</include>
+            <include>Animation.FadeIn</include>
+            <top>$PARAM[top]</top>
+            <left>$PARAM[left]</left>
+            <height>$PARAM[height]</height>
+            <width>$PARAM[width]</width>
+            <control type="group">
+                <centerleft>50%</centerleft>
+                <centertop>50%</centertop>
+                <width>450</width>
+                <height>100</height>
+                <visible>Container($PARAM[controlid]).IsUpdating</visible>
+                <include>Animation.DelayFadeIn</include>
+                <include>Animation.FadeOut</include>
+                <include>BusySpinner</include>
+            </control>
+            <control type="group">
+                <visible>[!Container($PARAM[controlid]).IsUpdating + !Integer.IsGreater(Container($PARAM[controlid]).NumItems,0)]</visible>
+                <include>Animation.DelayFadeIn</include>
+                <include>Animation.FadeOut2</include>
+                <control type="label">
+                    <centertop>50%</centertop>
+                    <centerleft>50%</centerleft>
+                    <width>1000</width>
+                    <height>48</height>
+                    <align>center</align>
+                    <textcolor>Dark1</textcolor>
+                    <label>$LOCALIZE[31222]</label>
+                </control>
+            </control>
+        </control>
+        </definition>
+    </include>
+
+    <include name="DialogInfo_ItemContent">
+        <param name="aspect" value="$PARAM[aspect]" default="scale"/>
+        <param name="fallbackpicture" value="$PARAM[fallbackpicture]" default="DefaultPicture.png"/>
+        <param name="poster" value="$PARAM[poster]" default="false"/>
+        <param name="thumb" value="$PARAM[thumb]" default="true"/>
+        <definition>
+            <control type="image">
+                <left>0</left>
+                <top>0</top>
+                <right>20</right>
+                <bottom>0</bottom>
+                <texture border="10" background="true" infill="false">common/$VAR[nofocus-shadow10]</texture>
+            </control>
+            <control type="image">
+                <left>10</left>
+                <top>10</top>
+                <right>30</right>
+                <bottom>10</bottom>
+                <texture colordiffuse="Fallback" border="4" background="true">common/box.png</texture>
+            </control>
+            <control type="image">
+                <left>10</left>
+                <top>10</top>
+                <right>30</right>
+                <bottom>10</bottom>
+                <aspectratio scalediffuse="false">$PARAM[aspect]</aspectratio>
+                <texture diffuse="diffuse/wall.png" background="true" fallback="$PARAM[fallbackpicture]">$INFO[ListItem.Art(thumb)]</texture>
+                <visible>$PARAM[thumb]</visible>
+            </control>
+            <control type="image">
+                <left>10</left>
+                <top>10</top>
+                <right>30</right>
+                <bottom>10</bottom>
+                <aspectratio scalediffuse="false">scale</aspectratio>
+                <texture diffuse="diffuse/wall.png" background="true" fallback="$PARAM[fallbackpicture]">$VAR[PosterImage]</texture>
+                <visible>$PARAM[poster]</visible>
+            </control>
+            <control type="image">
+                <left>10</left>
+                <right>30</right>
+                <bottom>10</bottom>
+                <top>10</top>
+                <visible>Skin.HasSetting(global.showborders)</visible>
+                <texture colordiffuse="Box2" border="4" infill="false">common/box21.png</texture>
+            </control>
+            <control type="group">
+                <right>20</right>
+                <include condition="!Skin.HasSetting(hide.markers)">IndicatorPoster</include>
+            </control>
+        </definition>
+    </include>
+
+    <include name="DialogInfo_ItemContent_Focus">
+        <param name="aspect" value="$PARAM[aspect]" default="scale"/>
+        <param name="fallbackpicture" default="DefaultMovieTitle.png" />
+        <param name="poster" value="$PARAM[poster]" default="false"/>
+        <param name="thumb" value="$PARAM[thumb]" default="true"/>
+        <param name="labeltwovisible" default="true"/>
+        <definition>
+            <control type="group">
+                <animation center="auto" easing="inout" effect="zoom" end="$PARAM[zoom]" start="100" time="200" tween="sine">Focus</animation>
+                <animation center="auto" easing="inout" effect="zoom" end="100" start="$PARAM[zoom]" time="200" tween="sine">UnFocus</animation>
+                <control type="image">
+                    <left>0</left>
+                    <top>0</top>
+                    <right>20</right>
+                    <bottom>0</bottom>
+                    <texture border="10" background="true" infill="false">common/$VAR[nofocus-shadow10]</texture>
+                </control>
+                <control type="image">
+                    <left>10</left>
+                    <top>10</top>
+                    <right>30</right>
+                    <bottom>10</bottom>
+                    <texture colordiffuse="Fallback" border="4" background="true">common/box.png</texture>
+                </control>
+                <control type="image">
+                    <left>10</left>
+                    <top>10</top>
+                    <right>30</right>
+                    <bottom>10</bottom>
+                    <aspectratio scalediffuse="false">$PARAM[aspect]</aspectratio>
+                    <texture diffuse="diffuse/wall.png" background="true" fallback="$PARAM[fallbackpicture]">$INFO[ListItem.Art(thumb)]</texture>
+                    <visible>$PARAM[thumb]</visible>
+                </control>
+                <control type="image">
+                    <left>10</left>
+                    <top>10</top>
+                    <right>30</right>
+                    <bottom>10</bottom>
+                    <aspectratio scalediffuse="false">scale</aspectratio>
+                    <texture diffuse="diffuse/wall.png" background="true" fallback="$PARAM[fallbackpicture]">$VAR[PosterImage]</texture>
+                    <visible>$PARAM[poster]</visible>
+                </control>
+                <control type="image">
+                    <left>10</left>
+                    <top>10</top>
+                    <right>30</right>
+                    <bottom>10</bottom>
+                    <visible>Skin.HasSetting(global.showborders)</visible>
+                    <texture colordiffuse="BoxNotification" border="4" infill="false">common/box21.png</texture>
+                </control>
+                <control type="group">
+                    <right>20</right>
+                    <include condition="!Skin.HasSetting(hide.markers)">IndicatorPoster</include>
+                </control>
+            </control>
+            <control type="label">
+                <left>$PARAM[labelleft]</left>
+                <bottom>$PARAM[labelbottom]</bottom>
+                <width>1300</width>
+                <height>42</height>
+                <font>Small</font>
+                <visible>Control.HasFocus($PARAM[controlid])</visible>
+                <textcolor>Dark1</textcolor>
+                <selectedcolor>Dark1</selectedcolor>
+                <label>$INFO[ListItem.Label] $INFO[ListItem.Year,(,)]</label>
+                <animation effect="fade" start="0" end="100" time="350" tween="sine" delay="200" reversible="false">Focus</animation>
+                <animation effect="fade" start="100" end="0" time="0" delay="0">UnFocus</animation>
+            </control>
+            <control type="label">
+                <left>$PARAM[labeltwoleft]</left>
+                <bottom>$PARAM[labeltwobottom]</bottom>
+                <width>1300</width>
+                <height>42</height>
+                <font>Tiny</font>
+                <visible>Control.HasFocus($PARAM[controlid]) + $PARAM[labeltwovisible]</visible>
+                <textcolor>Dark1</textcolor>
+                <selectedcolor>Dark1</selectedcolor>
+                <label>$VAR[LabelExtendedVideoInfoLabel2]</label>
+                <animation effect="fade" start="0" end="100" time="350" tween="sine" delay="200" reversible="false">Focus</animation>
+                <animation effect="fade" start="100" end="0" time="0" delay="0">UnFocus</animation>
+            </control>
+        </definition>
+    </include>
+
+    <include name="DialogInfo_Sets_ItemContent">
+        <param name="aspect" value="$PARAM[aspect]" default="scale"/>
+        <param name="fallbackpicture" value="$PARAM[fallbackpicture]" default="DefaultPicture.png"/>
+        <definition>
+            <control type="image">
+                <left>0</left>
+                <top>0</top>
+                <right>20</right>
+                <bottom>0</bottom>
+                <texture border="10" background="true" infill="false">common/$VAR[nofocus-shadow10]</texture>
+            </control>
+            <control type="image">
+                <left>10</left>
+                <top>10</top>
+                <right>30</right>
+                <bottom>10</bottom>
+                <texture colordiffuse="Fallback" border="4" background="true">common/box.png</texture>
+            </control>
+            <control type="image">
+                <left>10</left>
+                <top>10</top>
+                <right>30</right>
+                <bottom>10</bottom>
+                <aspectratio scalediffuse="false">$PARAM[aspect]</aspectratio>
+                <texture diffuse="diffuse/wall.png" background="true" fallback="$PARAM[fallbackpicture]">$VAR[PosterImage]</texture>
+            </control>
+            <control type="image">
+                <left>10</left>
+                <right>30</right>
+                <bottom>10</bottom>
+                <top>10</top>
+                <visible>Skin.HasSetting(global.showborders)</visible>
+                <texture colordiffuse="Box2" border="4" infill="false">common/box21.png</texture>
+            </control>
+            <control type="group">
+                <right>20</right>
+                <include condition="!Skin.HasSetting(hide.markers)">IndicatorPoster</include>
+            </control>
+        </definition>
+    </include>
+
+    <include name="DialogInfo_Sets_ItemContent_Focus">
+        <param name="aspect" value="$PARAM[aspect]" default="scale"/>
+        <param name="fallbackpicture" default="DefaultSets.png" />
+        <definition>
+            <control type="group">
+                <animation center="auto" easing="inout" effect="zoom" end="$PARAM[zoom]" start="100" time="200" tween="sine">Focus</animation>
+                <animation center="auto" easing="inout" effect="zoom" end="100" start="$PARAM[zoom]" time="200" tween="sine">UnFocus</animation>
+                <control type="image">
+                    <left>0</left>
+                    <top>0</top>
+                    <right>20</right>
+                    <bottom>0</bottom>
+                    <texture border="10" background="true" infill="false">common/$VAR[nofocus-shadow10]</texture>
+                </control>
+                <control type="image">
+                    <left>10</left>
+                    <top>10</top>
+                    <right>30</right>
+                    <bottom>10</bottom>
+                    <texture colordiffuse="Fallback" border="4" background="true">common/box.png</texture>
+                </control>
+                <control type="image">
+                    <left>10</left>
+                    <top>10</top>
+                    <right>30</right>
+                    <bottom>10</bottom>
+                    <aspectratio scalediffuse="false">$PARAM[aspect]</aspectratio>
+                    <texture diffuse="diffuse/wall.png" background="true" fallback="$PARAM[fallbackpicture]">$VAR[PosterImage]</texture>
+                </control>
+                <control type="image">
+                    <left>10</left>
+                    <top>10</top>
+                    <right>30</right>
+                    <bottom>10</bottom>
+                    <visible>Skin.HasSetting(global.showborders)</visible>
+                    <texture colordiffuse="BoxNotification" border="4" infill="false">common/box21.png</texture>
+                </control>
+                <control type="group">
+                    <right>20</right>
+                    <include condition="!Skin.HasSetting(hide.markers)">IndicatorPoster</include>
+                </control>
+            </control>
+            <control type="label">
+                <left>$PARAM[labelleft]</left>
+                <bottom>$PARAM[labelbottom]</bottom>
+                <width>1300</width>
+                <height>42</height>
+                <font>Small</font>
+                <visible>Control.HasFocus($PARAM[controlid])</visible>
+                <textcolor>Dark1</textcolor>
+                <selectedcolor>Dark1</selectedcolor>
+                <label>$INFO[ListItem.Label] $INFO[ListItem.Year,(,)]</label>
+                <animation effect="fade" start="0" end="100" time="350" tween="sine" delay="200" reversible="false">Focus</animation>
+                <animation effect="fade" start="100" end="0" time="0" delay="0">UnFocus</animation>
+            </control>
+            <control type="label">
+                <left>$PARAM[labeltwoleft]</left>
+                <bottom>$PARAM[labeltwobottom]</bottom>
+                <width>1300</width>
+                <height>42</height>
+                <font>Tiny</font>
+                <visible>Control.HasFocus($PARAM[controlid]) + !Control.HasFocus(10054)</visible>
+                <textcolor>Dark1</textcolor>
+                <selectedcolor>Dark1</selectedcolor>
+                <label>$VAR[LabelExtendedVideoInfoLabel2]</label>
+                <animation effect="fade" start="0" end="100" time="350" tween="sine" delay="200" reversible="false">Focus</animation>
+                <animation effect="fade" start="100" end="0" time="0" delay="0">UnFocus</animation>
+            </control>
+        </definition>
+    </include>
+
+    <include name="DialogInfo_List_Poster">
+        <param name="fallbackpicture" value="$PARAM[fallbackpicture]" default="DefaultPicture.png"/>
+        <param name="zoom" value="$PARAM[zoom]" default="140"/>
+        <param name="height" value="$PARAM[height]" default="349"/>
+        <param name="focusposition" value="$PARAM[focusposition]" default="2"/>
+        <param name="width" value="$PARAM[width]" default="260"/>
+        <param name="headerbottom" value="$PARAM[headerbottom]" default="710"/>
+        <param name="listbottom" value="$PARAM[listbottom]" default="30"/>
+        <param name="listleft" value="$PARAM[listleft]" default="-840"/>
+        <param name="width" value="$PARAM[width]" default="260"/>
+        <param name="arrowleft" default="-598"/>
+        <param name="arrowtop" default="342"/>
+        <param name="arrowright" default="155"/>
+        <param name="headerleft" value="$PARAM[headerleft]" default="-15"/>
+        <param name="labelbottom" value="$PARAM[labelbottom]" default="-110"/>
+        <param name="labeltwobottom" value="$PARAM[labeltwobottom]" default="-150"/>
+        <param name="labelleft" value="$PARAM[labelleft]" default="-20"/>
+        <param name="labeltwoleft" value="$PARAM[labeltwoleft]" default="130"/>
+        <param name="labeltwovisible" default="true"/>
+        <param name="issets" value="$PARAM[issets]" default="false"/>
+        <param name="uparrow" default="false"/>
+        <param name="includecontent" default="true"/>
+        
+        <definition>
+            <control type="group"> 
+                <top>-200</top>
+                <left>-788</left>
+                <width>1920</width>
+                <height>1080</height>
+                <control type="group">
+                    <visible>$PARAM[visi]</visible>
+                    <visible>Container($PARAM[controlid]).IsUpdating</visible>
+                    <centertop>50%</centertop>
+                    <centerleft>50%</centerleft>
+                    <width>450</width>
+                    <height>100</height>
+                    <include>Animation.DelayFadeIn</include>
+                    <control type="group">
+                        <include>BusySpinner</include>
+                    </control>
+                </control>
+                <control type="label">
+                    <visible>$PARAM[visi]</visible>
+                    <visible>!Container($PARAM[controlid]).IsUpdating</visible>
+                    <visible>Integer.IsEqual(Container($PARAM[controlid]).NumItems,0)</visible>
+                    <include>Animation.DelayFadeIn</include>
+                    <centertop>50%</centertop>
+                    <centerleft>50%</centerleft>
+                    <width>600</width>
+                    <height>48</height>
+                    <align>center</align>
+                    <textcolor>Dark1</textcolor>
+                    <label>$LOCALIZE[31222]</label>
+                </control>
+            </control>
+
+            <!-- INFOCONTENT -->
+            <control type="label">
+                <visible>$PARAM[visi]</visible>
+                <visible>Integer.IsGreater(Container($PARAM[controlid]).NumItems,0)</visible>
+                <visible>!Container($PARAM[controlid]).IsUpdating</visible>
+                <width>1020</width>
+                <bottom>$PARAM[headerbottom]</bottom>
+                <left>$PARAM[headerleft]</left>
+                <description>Header Label</description>
+                <textcolor>Dark1</textcolor>
+                <include>DialogInfo_List_Header</include>
+                <label>$VAR[VideoListLabelHeader] ($INFO[Container($PARAM[controlid]).NumItems])</label>
+                <include>Animation.DelayFadeIn</include>
+            </control>
+
+            <control type="group">
+                <visible>$PARAM[visi]</visible>
+                <left>-211</left>
+                <top>82</top>
+                <visible>$PARAM[uparrow] + !$PARAM[issets] + Control.HasFocus($PARAM[controlid]) + !Container($PARAM[controlid]).OnNext + !Container($PARAM[controlid]).OnPrevious</visible>
+                <include>Animation.DelayFadeIn</include>
+                <control type="image">
+                    <include>arrowdimensions</include>
+                    <texture colordiffuse="Dark1" flipy="true">common/arrow-small.png</texture>
+                </control>
+                <control type="image">
+                    <top>12</top>
+                    <include>arrowdimensions</include>
+                    <texture colordiffuse="Dark1" flipy="true">common/arrow-small.png</texture>
+                </control>
+            </control>
+
+            <include content="DialogInfo_List_Arrows">
+                <param name="controlid" value="$PARAM[controlid]"/>
+                <param name="arrowleft" value="$PARAM[arrowleft]"/>
+                <param name="arrowtop" value="$PARAM[arrowtop]"/>
+                <param name="arrowright" value="$PARAM[arrowright]"/>
+                <param name="visi" value="$PARAM[visi] + !Container($PARAM[controlid]).IsUpdating"/>
+            </include>
+
+            <control type="group" id="100$PARAM[controlid]">
+                <defaultcontrol>110$PARAM[controlid]</defaultcontrol>               
+                <control type="button" id="110$PARAM[controlid]">
+                    <visible allowhiddenfocus="true">$PARAM[visi]</visible>
+                    <onfocus condition="Container($PARAM[controlid]).IsUpdating">SetFocus($PARAM[controlid])</onfocus>
+                    <onfocus condition="!Container($PARAM[controlid]).IsUpdating + Integer.IsGreater(Container($PARAM[controlid]).NumItems,0)">SetFocus($PARAM[controlid])</onfocus>
+                    <ondown>9000</ondown>
+                    <onback>9000</onback>
+                    <left>-2000</left>
+                    <top>-2000</top>
+                </control>
+            
+                <!-- Focused List -->
+                <control type="fixedlist" id="$PARAM[controlid]">
+                    <visible allowhiddenfocus="true">!Container($PARAM[controlid]).IsUpdating</visible>
+                    <visible>$PARAM[visi]</visible>
+                    <animation effect="slide" start="0,0" end="-3000,-3000" time="0" condition="!$PARAM[visi]">Conditional</animation>
+                    <include>Animation.FadeOutDialogInfo</include>
+                    <include>Animation.FadeInDialogInfo</include>
+                    <bottom>$PARAM[listbottom]</bottom>
+                    <left>$PARAM[listleft]</left>
+                    <width>2288</width>
+                    <height>670</height>
+                    <onunfocus condition="Integer.IsEqual(Container($PARAM[controlid]).NumItems,0)">SetFocus(110$PARAM[controlid])</onunfocus>
+                    <onleft>$PARAM[controlid]</onleft>
+                    <onright>$PARAM[controlid]</onright>
+                    <ondown>9000</ondown>
+                    <onback>9000</onback>
+                    <onclick>$PARAM[onclick1]</onclick>
+                    <onclick>$PARAM[onclick2]</onclick>
+                    <onclick>$PARAM[onclick3]</onclick>
+                    <onup condition="!$PARAM[issets]">$PARAM[onup1]</onup>
+                    <onup condition="!$PARAM[issets]">$PARAM[onup2]</onup>
+                    <onup condition="!$PARAM[issets]">$PARAM[onup3]</onup>
+                    <include>ScrolltimeDetailsList</include>
+                    <focusposition>$PARAM[focusposition]</focusposition>
+                    <orientation>horizontal</orientation>
+                    <preloaditems>2</preloaditems>
+                    <viewtype label="536">list</viewtype>
+                    <itemlayout height="$PARAM[height]" width="$PARAM[width]">
+                        <control type="group">
+                            <animation effect="fade" tween="sine" easing="inout" start="0" end="100" time="450" delay="50">Visible</animation>
+                            <include content="DialogInfo_ItemContent" condition="!$PARAM[issets]">
+                                <param name="aspect" value="$PARAM[aspect]" default="scale"/>
+                                <param name="fallbackpicture" value="$PARAM[fallbackpicture]"/>
+                                <param name="poster" value="true"/>
+                                <param name="thumb" value="false"/>
+                            </include>
+                            <include content="DialogInfo_Sets_ItemContent" condition="$PARAM[issets]">
+                                <param name="aspect" value="$PARAM[aspect]" default="scale"/>
+                                <param name="fallbackpicture" value="$PARAM[fallbackpicture]"/>
+                            </include>
+                        </control>
+                    </itemlayout>
+                    <focusedlayout height="$PARAM[height]" width="$PARAM[width]">
+                        <control type="group">
+                            <animation effect="fade" start="0" end="100" time="0" delay="150">Visible</animation>
+                            <include content="DialogInfo_ItemContent_Focus" condition="!$PARAM[issets]">
+                                <param name="fallbackpicture" value="$PARAM[fallbackpicture]"/>
+                                <param name="aspect" value="$PARAM[aspect]" default="scale"/>
+                                <param name="controlid" value="$PARAM[controlid]"/>
+                                <param name="zoom" value="$PARAM[zoom]"/>
+                                <param name="labelbottom" value="$PARAM[labelbottom]"/>
+                                <param name="labelleft" value="$PARAM[labelleft]"/>
+                                <param name="labeltwovisible" value="$PARAM[labeltwovisible]"/>
+                                <param name="labeltwobottom" value="$PARAM[labeltwobottom]"/>
+                                <param name="labeltwoleft" value="$PARAM[labeltwoleft]"/>
+                                <param name="poster" value="true"/>
+                                <param name="thumb" value="false"/>
+                            </include>
+                            <include content="DialogInfo_Sets_ItemContent_Focus" condition="$PARAM[issets]">
+                                <param name="fallbackpicture" value="$PARAM[fallbackpicture]"/>
+                                <param name="aspect" value="$PARAM[aspect]" default="scale"/>
+                                <param name="controlid" value="$PARAM[controlid]"/>
+                                <param name="zoom" value="$PARAM[zoom]"/>
+                                <param name="labelbottom" value="$PARAM[labelbottom]"/>
+                                <param name="labelleft" value="$PARAM[labelleft]"/>
+                                <param name="labeltwovisible" value="$PARAM[labeltwovisible]"/>
+                                <param name="labeltwobottom" value="$PARAM[labeltwobottom]"/>
+                                <param name="labeltwoleft" value="$PARAM[labeltwoleft]"/>
+                            </include>
+                        </control>
+                    </focusedlayout>
+                    <include content="Def_ContentDynamic" condition="$PARAM[includecontent]">
+                        <param name="target" value="$PARAM[target]" />
+                        <param name="sortby" value="$PARAM[sortby]" />
+                        <param name="sortorder" value="$PARAM[sortorder]" />
+                        <param name="limit" value="$PARAM[limit]" />
+                        <param name="browse" value="never" />
+                        <param name="content" value="$PARAM[ContentToLoad]" />
+                    </include>
+                </control>
+            </control>
+        </definition>
+    </include>
+
+    <include name="DialogInfo_List_Square">
+        <param name="zoom" value="$PARAM[zoom]" default="140"/>
+        <param name="height" value="$PARAM[height]" default="355"/>
+        <param name="width" value="$PARAM[width]" default="370"/>
+        <param name="aspectposter" value="$PARAM[aspectposter]" default="false"/>
+        <param name="aspectbox" value="$PARAM[aspectbox]" default="true"/>
+        <param name="listtype" value="$PARAM[listtype]" default="fixedlist"/>
+        <param name="focusposition" value="$PARAM[focusposition]" default="2"/>
+        <param name="listbottom" value="$PARAM[listbottom]" default="30"/>
+        <param name="listleft" value="$PARAM[listleft]" default="-1100"/>
+        <param name="headerbottom" value="$PARAM[headerbottom]" default="710"/>
+        <param name="headerleft" value="$PARAM[headerleft]" default="80"/>
+        <param name="labelbottom" value="$PARAM[labelbottom]" default="-115"/>
+        <param name="labelleft" value="$PARAM[labelleft]" default="-40"/>
+        <param name="labeltwobottom" value="$PARAM[labeltwobottom]" default="-155"/>
+        <param name="labeltwoleft" value="$PARAM[labeltwoleft]" default="130"/>
+        <param name="labeltwovisible" value="$PARAM[labeltwovisible]" default="true"/>
+        <param name="arrowtop" value="$PARAM[arrowtop]" default="342"/>
+        <param name="arrowright" value="$PARAM[arrowright]" default="387"/>
+        <param name="arrowleft" value="$PARAM[arrowleft]" default="-658"/>
+        <param name="alignleft" value="$PARAM[alignleft]" default="500"/>
+        <definition>
+
+            <control type="group"> 
+                <top>-200</top>
+                <left>-788</left>
+                <width>1920</width>
+                <height>1080</height>
+                <control type="group">
+                    <visible>$PARAM[visi]</visible>
+                    <visible>Container($PARAM[controlid]).IsUpdating</visible>
+                    <centertop>50%</centertop>
+                    <centerleft>50%</centerleft>
+                    <width>450</width>
+                    <height>100</height>
+                    <include>Animation.DelayFadeIn</include>
+                    <control type="group">
+                        <include>BusySpinner</include>
+                    </control>
+                </control>
+                <control type="label">
+                    <visible>$PARAM[visi]</visible>
+                    <visible>!Container($PARAM[controlid]).IsUpdating</visible>
+                    <visible>Integer.IsEqual(Container($PARAM[controlid]).NumItems,0)</visible>
+                    <include>Animation.DelayFadeIn</include>
+                    <centertop>50%</centertop>
+                    <centerleft>50%</centerleft>
+                    <width>600</width>
+                    <height>48</height>
+                    <align>center</align>
+                    <textcolor>Dark1</textcolor>
+                    <label>$LOCALIZE[31222]</label>
+                </control>
+            </control>
+
+            <!-- INFOCONTENT -->
+            <control type="label">
+                <visible>$PARAM[visi]</visible>
+                <visible>!Container($PARAM[controlid]).IsUpdating</visible>
+                <visible>Integer.IsGreater(Container($PARAM[controlid]).NumItems,0)</visible>
+                <width>1020</width>
+                <bottom>$PARAM[headerbottom]</bottom>
+                <left>$PARAM[headerleft]</left>
+                <description>Header Label</description>
+                <textcolor>Dark1</textcolor>
+                <include>DialogInfo_List_Header</include>
+                <label>$VAR[VideoListLabelHeader] ($INFO[Container($PARAM[controlid]).NumItems])</label>
+                <include>Animation.DelayFadeIn</include>
+            </control>
+            <include content="DialogInfo_List_Arrows">
+                <param name="controlid" value="$PARAM[controlid]"/>
+                <param name="arrowleft" value="$PARAM[arrowleft]"/>
+                <param name="arrowtop" value="$PARAM[arrowtop]"/>
+                <param name="arrowright" value="$PARAM[arrowright]"/>
+                <param name="visi" value="$PARAM[visi] + !Container($PARAM[controlid]).IsUpdating"/>
+            </include>
+
+            <control type="group" id="100$PARAM[controlid]">
+                <defaultcontrol>110$PARAM[controlid]</defaultcontrol>               
+                <control type="button" id="110$PARAM[controlid]">
+                    <visible>$PARAM[visi]</visible>
+                    <onfocus condition="Container($PARAM[controlid]).IsUpdating">SetFocus($PARAM[controlid])</onfocus>
+                    <onfocus condition="!Container($PARAM[controlid]).IsUpdating + Integer.IsGreater(Container($PARAM[controlid]).NumItems,0)">SetFocus($PARAM[controlid])</onfocus>
+                    <ondown>9000</ondown>
+                    <onback>9000</onback>
+                    <top>-2000</top>
+                    <left>-2000</left>
+                </control>
+
+                <!-- Focused List -->
+                <control type="$PARAM[listtype]" id="$PARAM[controlid]">
+                    <visible allowhiddenfocus="true">!Container($PARAM[controlid]).IsUpdating</visible>
+                    <visible>$PARAM[visi]</visible>
+                    <animation effect="slide" start="0,0" end="-3000,-3000" time="0" condition="!$PARAM[visi]">Conditional</animation>
+                    <include>Animation.FadeOutDialogInfo</include>
+                    <include>Animation.FadeInDialogInfo</include>
+                    <include>Animation.DelayFadeIn</include>
+                    <bottom>$PARAM[listbottom]</bottom>
+                    <left>$PARAM[listleft]</left>
+                    <focusposition>$PARAM[focusposition]</focusposition>
+                    <width>2488</width>
+                    <height>670</height>
+                    <onunfocus condition="Integer.IsEqual(Container($PARAM[controlid]).NumItems,0)">SetFocus(110$PARAM[controlid])</onunfocus>
+                    <onup>$PARAM[onup1]</onup>
+                    <onleft>$PARAM[controlid]</onleft>
+                    <onright>$PARAM[controlid]</onright>
+                    <ondown>9000</ondown>
+                    <onback>9000</onback>
+                    <onclick>$PARAM[onclick1]</onclick>
+                    <onclick>$PARAM[onclick2]</onclick>
+                    <onclick>$PARAM[onclick3]</onclick>
+                    <include>ScrolltimeDetailsList</include>
+                    <orientation>horizontal</orientation>
+                    <preloaditems>2</preloaditems>
+                    <viewtype label="536">list</viewtype>
+                    <itemlayout height="$PARAM[height]" width="$PARAM[width]">
+                        <control type="group">
+                            <animation effect="fade" tween="sine" easing="inout" start="0" end="100" time="450" delay="50">Visible</animation>
+                            <include content="DialogInfo_ItemContent">
+                                <param name="aspect" value="$PARAM[aspect]" default="scale"/>
+                                <param name="fallbackpicture" value="$PARAM[fallbackpicture]"/>
+                            </include>
+                        </control>
+                    </itemlayout>
+                    <focusedlayout height="$PARAM[height]" width="$PARAM[width]">
+                        <control type="group">
+                            <animation effect="fade" start="0" end="100" time="0" delay="150">Visible</animation>
+                            <include content="DialogInfo_ItemContent_Focus">
+                                <param name="aspect" value="$PARAM[aspect]" default="scale"/>
+                                <param name="fallbackpicture" value="$PARAM[fallbackpicture]"/>
+                                <param name="controlid" value="$PARAM[controlid]"/>
+                                <param name="zoom" value="$PARAM[zoom]"/>
+                                <param name="labelbottom" value="$PARAM[labelbottom]"/>
+                                <param name="labelleft" value="$PARAM[labelleft]"/>
+                                <param name="labeltwovisible" value="$PARAM[labeltwovisible]"/>
+                                <param name="labeltwobottom" value="$PARAM[labeltwobottom]"/>
+                                <param name="labeltwoleft" value="$PARAM[labeltwoleft]"/>
+                            </include>
+                        </control>
+                    </focusedlayout>
+                    <content target="$PARAM[target]" sortby="$PARAM[sortby]" limit="$PARAM[limit]">$PARAM[ContentToLoad]</content>
+                </control>
+            </control>        
+        </definition>
+    </include>
+
+    <include name="AddonImageList">
+        <definition>
+            <control type="list" id="$PARAM[controlid]">
+                <visible>!Container($PARAM[controlid]).IsUpdating</visible>
+                <include>Animation.FadeOutDialogInfo</include>
+                <include>Animation.FadeInDialogInfo</include>
+                <left>20</left>
+                <right>0</right>
+                <bottom>30</bottom>
+                <height>210</height>
+                <onleft>$PARAM[controlid]</onleft>
+                <onright>$PARAM[controlid]</onright>
+                <onup>9000</onup>
+                <onback>9000</onback>
+                <ondown>9000</ondown>
+                <include>ScrolltimeDetailsList</include>
+                <orientation>horizontal</orientation>
+                <preloaditems>2</preloaditems>
+                <itemlayout height="210" width="359">
+                    <control type="group">
+                        <include content="include.widget.fanart">
+                            <param name="id" value="$PARAM[controlid]"/>
+                            <param name="height" value="210"/>
+                        </include>
+                    </control>
+                </itemlayout>
+                <focusedlayout height="210" width="359">
+                    <control type="group">
+                        <include content="include.widget.fanart">
+                            <param name="id" value="$PARAM[controlid]"/>
+                            <param name="height" value="210"/>
+                            <param name="focused" value="true" />
+                        </include>
+                    </control>
+                </focusedlayout>
+            </control>
+        </definition>
+    </include>
+
+    <include name="most_played_song">
+        <control type="button" id="9010">
+            <left>-2000</left>
+            <width>1</width>
+            <visible allowhiddenfocus="true">false</visible>
+            <onup>SetFocus(9000)</onup>
+            <ondown>SetFocus(9000)</ondown>
+            <onleft>SetFocus(9000)</onleft>
+            <onright>SetFocus(9000)</onright>
+            <onclick>PlayMedia($ESCINFO[Container(9551).ListItem.FileNameAndPath])</onclick>
+        </control>
+        <control type="list" id="9551">
+            <left>280</left>
+            <top>0</top>
+            <right>SidePad</right>
+            <width>1000</width>
+            <height>50</height>
+            <onleft>9000</onleft>
+            <onright>62</onright>
+            <onup>9551</onup>
+            <ondown>9551</ondown>
+            <viewtype label="">list</viewtype>
+            <pagecontrol>62</pagecontrol>
+            <orientation>vertical</orientation>
+            <itemlayout height="36" width="1000">
+                <control type="group">
+                    <control type="label">
+                        <textcolor>Dark2</textcolor>
+                        <selectedcolor>Dark2</selectedcolor>
+                        <height>auto</height>
+                        <width>660</width>
+                        <font>Tiny</font>
+                        <label>$INFO[ListItem.Label] $INFO[ListItem.Year,(,)]</label>
+                    </control>
+                </control>
+            </itemlayout>
+            <focusedlayout height="36" width="1000">
+                <control type="group">
+                    <visible>Control.HasFocus(9010)</visible>
+                    <control type="label">
+                        <textcolor>$VAR[ColorHighlight]</textcolor>
+                        <selectedcolor>$VAR[ColorHighlight]</selectedcolor>
+                        <height>auto</height>
+                        <width>660</width>
+                        <font>Tiny</font>
+                        <label>$INFO[ListItem.Label] $INFO[ListItem.Year,(,)]</label>
+                    </control>
+                </control>
+                <control type="group">
+                    <visible>!Control.HasFocus(9010)</visible>
+                    <control type="label">
+                        <textcolor>Dark2</textcolor>
+                        <selectedcolor>Dark2</selectedcolor>
+                        <height>auto</height>
+                        <width>660</width>
+                        <font>Tiny</font>
+                        <label>$INFO[ListItem.Label] $INFO[ListItem.Year,(,)]</label>
+                    </control>
+                </control>
+            </focusedlayout>
+            <content sortorder="descending" limit="1" sortby="playcount" browse="never">musicdb://songs/?xsp=%7B%22order%22%3A%7B%22direction%22%3A%22ascending%22%2C%22ignorefolders%22%3A0%2C%22method%22%3A%22songs%22%7D%2C%22rules%22%3A%7B%22and%22%3A%5B%7B%22field%22%3A%22artist%22%2C%22operator%22%3A%22contains%22%2C%22value%22%3A%5B%22$INFO[ListItem.Artist]%22%5D%7D%5D%7D%2C%22type%22%3A%22songs%22%7D</content>
+        </control>
+    </include>
+
+    <include name="DialogInfo_Buttons">
+        <onfocus>ClearProperty(content)</onfocus>
+        <width>126</width>
+        <height>88</height>
+        <radioposx>40</radioposx>
+        <radioposy>18</radioposy>
+        <radiowidth>48</radiowidth>
+        <include content="buttontextures">
+            <param name="icon" value="$PARAM[icon]"/>
+        </include>
+     </include>
+
+    <include name="DialogVideoInfoButtons">
+        <onfocus>ClearProperty(TMDbHelper.HideView,Home)</onfocus>
+        <width>134</width>
+        <include content="DialogInfo_Buttons">
+            <param name="icon" value="$PARAM[icon]" />
+        </include>    
+    </include>
+    
+    <include name="DialogVideoInfoNavigation">
+        <control type="grouplist" id="9000">
+            <bottom>224</bottom>
+            <left>570</left>
+            <right>81</right>
+            <include>listdimensions</include>
+            <onleft>SetFocus($VAR[VideoInfoNavigation_onleft_control_id])</onleft>
+            <onright>SetFocus($VAR[VideoInfoNavigation_onright_control_id])</onright>
+            <ondown>9601</ondown>
+            <onup>9601</onup>
+            <orientation>horizontal</orientation>
+            <control type="radiobutton" id="8">
+                <textureradioonfocus colordiffuse="FFFFFFFF">buttonsdialogs/continue.png</textureradioonfocus>
+                <textureradioonnofocus colordiffuse="FFFFFFFF">buttonsdialogs/continue.png</textureradioonnofocus>
+                <include content="DialogVideoInfoButtons">
+                    <param name="icon" value="buttonsdialogs/play.png" />
+                </include>
+                <selected>ListItem.IsResumable</selected>
+                <visible>!ListItem.IsPlaying</visible>
+                <visible>!ListItem.IsFolder</visible>
+                <visible>!Window.IsVisible(1190)</visible>
+                <visible>$EXP[IsVideoInfo]</visible>
+            </control>
+            
+            <control type="radiobutton" id="10001">
+                <onclick condition="!ListItem.IsFolder + !String.IsEmpty(ListItem.FileNameAndPath)">RunScript(plugin.video.themoviedb.helper,close_dialog=1190,"playmedia=$INFO[ListItem.FileNameAndPath]")</onclick>
+                <onclick condition="!ListItem.IsFolder + String.IsEmpty(ListItem.FileNameAndPath)">RunScript(plugin.video.themoviedb.helper,close_dialog=1190,"playmedia=$INFO[ListItem.FolderPath]")</onclick>
+                <textureradioonfocus colordiffuse="FFFFFFFF">buttonsdialogs/continue.png</textureradioonfocus>
+                <textureradioonnofocus colordiffuse="FFFFFFFF">buttonsdialogs/continue.png</textureradioonnofocus>
+                <include content="DialogVideoInfoButtons">
+                    <param name="icon" value="buttonsdialogs/play.png" />
+                </include>
+                <selected>ListItem.IsResumable</selected>
+                <visible>!ListItem.IsPlaying</visible>
+                <visible>!ListItem.IsFolder</visible>
+                <visible>Window.IsVisible(1190)</visible>
+                <visible>$EXP[IsVideoInfo]</visible>
+            </control>
+
+            <control type="radiobutton" id="10002">
+                <onclick condition="Skin.HasSetting(home.netflix.autoplay.trailer) + $EXP[TrailerIsPlaying] + !Skin.HasSetting(trailer.dont.stop.on.unfocus)">Stop</onclick>
+                <onclick condition="Skin.HasSetting(home.netflix.autoplay.trailer) + $EXP[TrailerIsPlaying] + !Skin.HasSetting(trailer.dont.stop.on.unfocus)">ClearProperty(TrailerPath,home)</onclick>
+                <onclick>SendClick(8)</onclick>
+                <include content="DialogVideoInfoButtons">
+                    <param name="icon" value="buttonsdialogs/folder.png" />
+                </include>
+                <visible>ListItem.IsFolder</visible>
+            </control>
+
+            <control type="radiobutton" id="10003">
+                <onclick condition="Player.Playing">Pause</onclick>
+                <onclick condition="!Player.Playing">Play</onclick>
+                <textureradioonfocus colordiffuse="FFFFFFFF">buttonsdialogs/pause.png</textureradioonfocus>
+                <textureradioonnofocus colordiffuse="FFFFFFFF">buttonsdialogs/pause.png</textureradioonnofocus>
+                <include content="DialogVideoInfoButtons">
+                    <param name="icon" value="buttonsdialogs/continue.png" />
+                </include>
+                <selected>Player.Playing</selected>
+                <visible>ListItem.IsPlaying</visible>
+            </control>
+
+            <control type="radiobutton" id="10004">
+                <visible>String.IsEqual(ListItem.DBType,tvshow) + Integer.IsGreater(ListItem.Property(UnwatchedEpisodes),0) + !String.IsEmpty(ListItem.DBID) + !Skin.HasSetting(HideNextUpEpisodeButton) + !String.IsEmpty(Container(9911).ListItem.FileNameAndPath)</visible>
+                <onclick condition="!Window.IsVisible(1190)">Dialog.Close(all)</onclick>
+                <onclick condition="!Window.IsVisible(1190)">PlayMedia($ESCINFO[Container(9911).ListItem.FileNameAndPath])</onclick>
+                <onclick condition="Window.IsVisible(1190)">RunScript(plugin.video.themoviedb.helper,close_dialog=1190,"playmedia=$INFO[Container(9911).ListItem.FileNameAndPath]")</onclick>
+                <include content="DialogVideoInfoButtons">
+                    <param name="icon" value="buttonsdialogs/upnext.png" />
+                </include>
+            </control>
+
+            <!-- Trailer - ListItem.Trailer | IMDB.Trailer -->
+            <control type="radiobutton" id="10005">
+                <onclick condition="Skin.HasSetting(PlayTrailerWindowed)">SetProperty(content,6)</onclick>
+                <onclick condition="Skin.HasSetting(PlayTrailerWindowed)">SetProperty(dontslide,1,home)</onclick>
+                <onclick condition="Skin.HasSetting(PlayTrailerWindowed)">SetFocus(7011)</onclick>
+                <include content="DialogVideoInfoButtons">
+                    <param name="icon" value="buttonsdialogs/trailer.png" />
+                </include>
+                <include>DialogVideoInfo_Trailer_Click_Action</include>
+                <visible>!Skin.HasSetting(hidebutton.video.trailer)</visible>
+                <visible>[Skin.HasSetting(Use.IMDB.Trailer) + System.AddonIsEnabled(plugin.video.imdb.trailers) + [!String.IsEmpty(Window(home).Property(TMDbHelper.ListItem.imdb_id)) | $EXP[IMDBNumberIsIMDbId]]] | [!Skin.HasSetting(Use.IMDB.Trailer) + !String.IsEmpty(ListItem.Trailer)]</visible>
+                <visible>$EXP[IsVideoInfo]</visible>
+            </control>
+
+            <!-- Cinema -->
+            <control type="radiobutton" id="10006">
+                <description>Home Theatre</description>
+                <include content="DialogVideoInfoButtons">
+                    <param name="icon" value="buttonsdialogs/playcinema.png" />
+                </include>
+                <onclick>RunScript(script.preshowexperience,dbtype=$INFO[ListItem.DBType],dbid=$INFO[ListItem.DBID])</onclick>
+                <visible>String.IsEqual(ListItem.DBTYPE,movie) | String.IsEqual(ListItem.DBTYPE,episode)</visible>
+                <visible>!Skin.HasSetting(hidebutton.video.cinema) + System.AddonIsEnabled(script.preshowexperience)</visible>
+            </control>
+            <control type="radiobutton" id="7">
+                <include>OnFocusOnClick</include>
+                <include>ClearOnFocusOnClick</include>
+                <textureradioonfocus colordiffuse="FFFFFFFF">buttonsdialogs/rating.png</textureradioonfocus>
+                <textureradioonnofocus colordiffuse="FFFFFFFF">buttonsdialogs/rating.png</textureradioonnofocus>
+                <include content="DialogVideoInfoButtons">
+                    <param name="icon" value="buttonsdialogs/rating_new.png" />
+                </include>
+                <selected>String.IsEmpty(ListItem.UserRating)</selected>
+                <visible>Control.IsEnabled(7)</visible>
+                <visible>!Skin.HasSetting(hidebutton.video.rating)</visible>
+                <visible>$EXP[IsVideoInfo]</visible>
+            </control>
+
+            <!-- Person Info -->
+            <control type="radiobutton" id="11001">
+                <onfocus>SetProperty(actormovies,1)</onfocus>
+                <onclick>SetProperty(content,11)</onclick>
+                <onclick>SetFocus(10070)</onclick>
+                <include content="DialogVideoInfoButtons">
+                    <param name="icon" value="buttonsdialogs/trailer.png" />
+                </include>
+                <visible>$EXP[ShowTmdbActorMovies]</visible>
+                <visible>$EXP[IsPersonInfo]</visible>
+            </control>
+            <control type="radiobutton" id="11002">
+                <onfocus>SetProperty(actortvshows,1)</onfocus>
+                <onclick>SetProperty(content,12)</onclick>
+                <onclick>SetFocus(10071)</onclick>
+                <include content="DialogVideoInfoButtons">
+                    <param name="icon" value="buttonsdialogs/tvshows.png" />
+                </include>
+                <visible>$EXP[ShowTmdbActorTvShows]</visible>
+                <visible>$EXP[IsPersonInfo]</visible>
+            </control>
+            <control type="radiobutton" id="11003">
+                <onfocus>SetProperty(videocrew,1)</onfocus>
+                <onclick>SetProperty(content,13)</onclick>
+                <onclick>SetFocus(10072)</onclick>
+                <include content="DialogVideoInfoButtons">
+                    <param name="icon" value="buttonsdialogs/crew.png" />
+                </include>
+                <visible>$EXP[ShowTmdbActorInCrew]</visible>
+                <visible>$EXP[IsPersonInfo]</visible>
+            </control>
+
+            <control type="radiobutton" id="10008">
+                <onfocus>ClearProperty(dontslide,home)</onfocus>
+                <onclick>SetProperty(dontslide,1,home)</onclick>
+                <onclick condition="String.IsEqual(ListItem.DBType,movie)">RunScript(script.wikipedia,wikipedia=$VAR[Wiki_Label],tmdb_type=movie,language=$VAR[LanguageCheck])</onclick>
+                <onclick condition="String.IsEqual(ListItem.DBType,tvshow)">RunScript(script.wikipedia,wikipedia=$VAR[Wiki_Label],tmdb_type=tv,language=$VAR[LanguageCheck])</onclick>
+                <onclick condition="$EXP[IsPersonInfo]">RunScript(script.wikipedia,wikipedia=$VAR[Wiki_Label],language=$VAR[LanguageCheck])</onclick>
+                <include content="DialogVideoInfoButtons">
+                    <param name="icon" value="buttonsdialogs/wiki.png" />
+                </include>
+                <visible>!Skin.HasSetting(hidebutton.video.wiki) + [String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow)] | !Skin.HasSetting(hidebutton.person.wiki) + $EXP[IsPersonInfo]</visible>
+                <visible>System.AddonIsEnabled(script.wikipedia)</visible>
+            </control>
+
+            <!-- Cast -->
+            <control type="radiobutton" id="10009">
+                <visible>String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,episode)</visible>
+                <onfocus>ClearProperty(dontslide,home)</onfocus>
+                <onclick>SetProperty(content,1)</onclick>
+                <onclick condition="Skin.HasSetting(extended.info.local.cast)">SetProperty(dontslide,1,home)</onclick>
+                <onclick condition="Skin.HasSetting(extended.info.local.cast)">SetFocus(10050)</onclick>
+                <onclick condition="!Skin.HasSetting(extended.info.local.cast)">SetFocus(10052)</onclick>
+                <include>DialogVideoInfo_List_Click_Action</include>
+                <include content="DialogVideoInfoButtons">
+                    <param name="icon" value="buttonsdialogs/cast.png" />
+                </include>
+                <visible>!Skin.HasSetting(hidebutton.video.cast)</visible>
+            </control>
+
+            <control type="radiobutton" id="10010">
+                <visible>String.IsEqual(ListItem.DBType,set)</visible>
+                <onclick>SetProperty(content,1)</onclick>
+                <onclick>SetFocus(10050)</onclick>
+                <include>DialogVideoInfo_List_Click_Action</include>
+                <include content="DialogVideoInfoButtons">
+                    <param name="icon" value="buttonsdialogs/set.png" />
+                </include>
+                <visible>Skin.HasSetting(extended.info.local.collections)</visible>
+            </control>
+
+            <!-- Crew -->
+            <control type="radiobutton" id="10011">
+                <visible>$EXP[ShowTmdbCrew]</visible>
+                <onfocus>SetProperty(videocrew,1)</onfocus>
+                <onclick>SetProperty(content,9)</onclick>
+                <onclick>SetFocus(10056)</onclick>
+                <include>DialogVideoInfo_List_Click_Action</include>
+                <include content="DialogVideoInfoButtons">
+                    <param name="icon" value="buttonsdialogs/crew.png" />
+                </include>
+                <visible>$EXP[IsVideoInfo]</visible>
+            </control>
+
+             <control type="radiobutton" id="10012">
+                <visible>$EXP[ShowTmdbSimilar]</visible>
+                <onfocus>SetProperty(videosimilar,1)</onfocus>
+                <onclick>SetProperty(content,2)</onclick>
+                <onclick>SetFocus(10053)</onclick>
+                <include>DialogVideoInfo_List_Click_Action</include>
+                <include content="DialogVideoInfoButtons">
+                    <param name="icon" value="buttonsdialogs/similar.png" />
+                </include>
+                <visible>$EXP[IsVideoInfo]</visible>
+            </control>
+            <control type="radiobutton" id="10013">
+                <visible>$EXP[ShowTmdbStudio]</visible>
+                <onfocus>SetProperty(videostudio,1)</onfocus>
+                <onclick>SetProperty(content,3)</onclick>
+                <onclick>SetFocus(10060)</onclick>
+                <include>DialogVideoInfo_List_Click_Action</include>
+                <include content="DialogVideoInfoButtons">
+                    <param name="icon" value="buttonsdialogs/studio.png" />
+                </include>
+                <visible>$EXP[IsVideoInfo]</visible>
+            </control>
+
+            <control type="radiobutton" id="10014">
+                <visible>$EXP[ShowTmdbDirector]</visible>
+                <onfocus>SetProperty(videodirector,1)</onfocus>
+                <onclick>SetProperty(content,7)</onclick>
+                <onclick>SetFocus(10062)</onclick>
+                <include>DialogVideoInfo_List_Click_Action</include>
+                <include content="DialogVideoInfoButtons">
+                    <param name="icon" value="buttonsdialogs/director.png" />
+                </include>
+                <visible>$EXP[IsVideoInfo]</visible>
+            </control>
+
+            <control type="radiobutton" id="10015">
+                <onfocus>SetProperty(videoyoutube,1)</onfocus>
+                <onclick>SetProperty(content,4)</onclick>
+                <onclick>SetFocus(10054)</onclick>
+                <include content="DialogVideoInfoButtons">
+                    <param name="icon" value="buttonsdialogs/youtube.png" />
+                </include>
+                <visible>Skin.HasSetting(showbutton.video.youtube) + [String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow)] | Skin.HasSetting(showbutton.person.youtube) + $EXP[IsPersonInfo]</visible>
+                <visible>System.AddonIsEnabled(plugin.video.youtube)</visible>
+            </control>
+
+            <control type="radiobutton" id="10016">
+                <visible>$EXP[ShowTmdbSet] | Skin.HasSetting(extended.info.local.collections) + !String.IsEmpty(ListItem.SetId) + !Skin.HasSetting(hidebutton.video.set)</visible>
+                <onfocus>SetProperty(videoset,1)</onfocus>
+                <onclick condition="!Skin.HasSetting(extended.info.local.collections)">SetProperty(content,8)</onclick>
+                <onclick condition="!Skin.HasSetting(extended.info.local.collections)">SetFocus(10057)</onclick>
+                <onclick condition="Skin.HasSetting(extended.info.local.collections) + Window.IsVisible(1190)">RunScript(plugin.video.themoviedb.helper,close_dialog=1190,call_path=videodb://movies/sets/$INFO[ListItem.SetId]/?setid=$INFO[ListItem.SetId])</onclick>
+                <onclick condition="Skin.HasSetting(extended.info.local.collections) + !Window.IsVisible(1190)">Dialog.Close(all,true)</onclick>
+                <onclick condition="Skin.HasSetting(extended.info.local.collections) + !Window.IsVisible(1190)">ActivateWindow(Videos,videodb://movies/sets/$INFO[ListItem.SetId]/?setid=$INFO[ListItem.SetId])</onclick>
+                <include>DialogVideoInfo_List_Click_Action</include>
+                <include content="DialogVideoInfoButtons">
+                    <param name="icon" value="buttonsdialogs/set.png" />
+                </include>
+                <visible>$EXP[IsVideoInfo]</visible>
+            </control>
+            <control type="radiobutton" id="10017">
+                <onclick>SetProperty(content,5)</onclick>
+                <onclick>SetFocus(10055)</onclick>
+                <include content="DialogVideoInfoButtons">
+                    <param name="icon" value="buttonsdialogs/image.png" />
+                </include>
+                <visible>!Skin.HasSetting(hidebutton.video.fanart) + !String.IsEqual(ListItem.DBType,musicvideo)</visible>
+                <visible>$EXP[IsVideoInfo]</visible>
+            </control>
+            <control type="radiobutton" id="10018">
+                <include content="DialogVideoInfoButtons">
+                    <param name="icon" value="buttonsdialogs/trakt.png" />
+                </include>
+                <onclick condition="!String.IsEmpty(ListItem.Property(tmdb_id))">RunScript(plugin.video.themoviedb.helper,sync_trakt=watchlist,tmdb_id=$INFO[ListItem.Property(tmdb_id)],cache_refresh)</onclick>
+                <onclick condition="String.IsEmpty(ListItem.Property(tmdb_id))">RunScript(plugin.video.themoviedb.helper,sync_trakt=watchlist,tmdb_id=$INFO[window(home).property(tmdbhelper.listitem.tmdb_id)],$VAR[DB_type],cache_refresh)</onclick>
+                <visible>!Skin.HasSetting(hidebutton.video.trakt) + [!String.IsEmpty(ListItem.Property(tmdb_id)) | !String.IsEmpty(window(home).property(tmdbhelper.listitem.tmdb_id))] + [String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow)] + !String.IsEmpty(Window(Home).Property(TMDbHelper.TraktIsAuth))</visible>
+            </control>
+
+            <control type="radiobutton" id="11005">
+                <onclick>SetProperty(content,14)</onclick>
+                <onclick>SetFocus(10073)</onclick>
+                <include content="DialogVideoInfoButtons">
+                    <param name="icon" value="buttonsdialogs/thumb.png" />
+                </include>
+                <visible>$EXP[ShowTmdbActorFanart]</visible>
+                <visible>$EXP[IsPersonInfo]</visible>
+            </control>
+
+            <control type="radiobutton" id="10019">
+                <include content="DialogVideoInfoButtons">
+                    <param name="icon" value="buttonsdialogs/manage.png" />
+                </include>
+                <onclick>SetFocus(9400)</onclick>
+                <visible>!Skin.HasSetting(global.kioskmode) + ![String.IsEmpty(ListItem.DBID) | String.StartsWith(ListItem.Path,plugin://)]</visible>
+            </control>
+            <control type="radiobutton" id="10020">
+                <include content="DialogVideoInfoButtons">
+                    <param name="icon" value="buttonsdialogs/settings.png" />
+                </include>
+                <visible>!Skin.HasSetting(global.kioskmode) + [String.IsEmpty(ListItem.DBID) | String.StartsWith(ListItem.Path,plugin://)]</visible>
+                <onclick condition="$EXP[IsPersonInfo]">SetProperty(personinformation,1)</onclick>
+                <onclick>ActivateWindow(1123)</onclick>
+            </control>
+        </control>
+    </include>
+
+    <include name="DialogMusicInfoNavigation">
+        <control type="grouplist" id="9000">
+            <bottom>144</bottom>
+            <left>783</left>
+            <right>SidePad</right>
+            <include>listdimensions</include>
+            <orientation>horizontal</orientation>
+            <onleft>SetFocus($VAR[MusicInfoNavigation_onleft_control_id])</onleft>
+            <onright>SetFocus($VAR[MusicInfoNavigation_onright_control_id])</onright>
+            <ondown>9601</ondown>
+            <onup>9601</onup>
+            <control type="radiobutton" id="9001">
+                <visible>[String.IsEqual(ListItem.DBType,album) | String.IsEqual(ListItem.DBType,song)] + ![ListItem.IsPlaying | [!String.IsEmpty(ListItem.FolderPath) + String.IsEqual(ListItem.FileNameAndPath,Player.Folderpath)]]</visible>
+                <onclick condition="String.IsEmpty(ListItem.DBID)">PlayMedia($INFO[ListItem.FilenameAndPath])</onclick>
+                <onclick condition="System.HasAddon(script.playalbum) + String.IsEqual(ListItem.DBType,song) + !String.IsEmpty(ListItem.DBID)">RunScript(script.playalbum,songid=$INFO[ListItem.DBID])</onclick>
+                <onclick condition="System.HasAddon(script.playalbum) + String.IsEqual(ListItem.DBType,album) + !String.IsEmpty(ListItem.DBID)">RunScript(script.playalbum,albumid=$INFO[ListItem.DBID])</onclick>
+                <onclick condition="!System.HasAddon(script.playalbum) + !String.IsEmpty(ListItem.DBID)">InstallAddon(script.playalbum)</onclick>
+                <include content="DialogInfo_Buttons">
+                    <param name="icon" value="buttonsdialogs/play.png" />
+                </include>
+            </control>
+            <control type="radiobutton" id="9201">
+                <visible>[String.IsEqual(ListItem.DBType,album) | String.IsEqual(ListItem.DBType,song)] + [ListItem.IsPlaying | [!String.IsEmpty(ListItem.FolderPath) + String.IsEqual(ListItem.FileNameAndPath,Player.Folderpath)]]</visible>
+                <onclick condition="Player.Playing">Pause</onclick>
+                <onclick condition="!Player.Playing">Play</onclick>
+                <textureradioonfocus colordiffuse="FFFFFFFF">buttonsdialogs/pause.png</textureradioonfocus>
+                <textureradioonnofocus colordiffuse="FFFFFFFF">buttonsdialogs/pause.png</textureradioonnofocus>
+                <include content="DialogInfo_Buttons">
+                    <param name="icon" value="buttonsdialogs/continue.png" />
+                </include>
+                <selected>Player.Playing</selected>
+            </control>
+
+            <!-- Rating Button -->
+            <control type="radiobutton" id="9007">
+                <visible>!String.IsEqual(ListItem.DBType,artist)</visible>
+                <include>OnFocusOnClick</include>
+                <include>ClearOnFocusOnClick</include>
+                <onclick>SendClick(7)</onclick>
+                <textureradioonfocus colordiffuse="FFFFFFFF">buttonsdialogs/rating.png</textureradioonfocus>
+                <textureradioonnofocus colordiffuse="FFFFFFFF">buttonsdialogs/rating.png</textureradioonnofocus>
+                <include content="DialogInfo_Buttons">
+                    <param name="icon" value="buttonsdialogs/rating_new.png" />
+                </include>
+                <selected>String.IsEmpty(ListItem.UserRating)</selected>
+                <visible>!Skin.HasSetting(hidebutton.music.rating)</visible>
+            </control>
+            
+            <!-- Wikipedia Button -->
+            <control type="radiobutton" id="9030">
+                <onclick>RunScript(script.wikipedia,wikipedia=$VAR[Wiki_Label],language=$VAR[LanguageCheck])</onclick>
+                <include content="DialogInfo_Buttons">
+                    <param name="icon" value="buttonsdialogs/wiki.png" />
+                </include>
+                <visible>!Skin.HasSetting(hidebutton.music.wiki) + System.AddonIsEnabled(script.wikipedia)</visible>
+            </control>
+
+            <!-- Tracklist Button -->
+            <control type="radiobutton" id="9003">
+                <visible>String.IsEqual(ListItem.DBType,album)</visible>
+                <onclick>SetProperty(content,1)</onclick>
+                <onclick>SetFocus(9009)</onclick>
+                <include content="DialogInfo_Buttons">
+                    <param name="icon" value="buttonsdialogs/musictracklist.png" />
+                </include>
+            </control>
+
+            <!-- Discography Button -->
+            <control type="radiobutton" id="9004">
+                <visible>String.IsEqual(ListItem.DBType,artist)</visible>
+                <onclick>SetProperty(content,2)</onclick>
+                <onclick>SetFocus(10051)</onclick>
+                <include content="DialogInfo_Buttons">
+                    <param name="icon" value="buttonsdialogs/set.png" />
+                </include>
+                <visible>!Skin.HasSetting(hidebutton.music.sets)</visible>
+                <visible>Integer.IsGreater(Container(51).NumItems,0)</visible>
+            </control>
+
+            <!-- Youtube Button -->
+            <control type="radiobutton" id="9005">
+                <onfocus>SetProperty(musicyoutube,1)</onfocus>
+                <onclick>SetProperty(content,3)</onclick>
+                <onclick>SetFocus(10052)</onclick>
+                <include content="DialogInfo_Buttons">
+                    <param name="icon" value="buttonsdialogs/youtube.png" />
+                </include>
+                <visible>Skin.HasSetting(showbutton.music.youtube) + System.AddonIsEnabled(plugin.video.youtube)</visible>
+            </control>
+
+            <!-- Fanart Button -->
+            <control type="radiobutton" id="9006">
+                <onclick>SetProperty(content,4)</onclick>
+                <onclick>SetFocus(10053)</onclick>
+                <include content="DialogInfo_Buttons">
+                    <param name="icon" value="buttonsdialogs/image.png" />
+                </include>
+                <visible>!Skin.HasSetting(hidebutton.music.fanart)</visible>
+                <visible>Integer.IsGreater(Container(53).NumItems,0)</visible>
+            </control>
+
+            <!-- More Of Artist Button -->
+            <control type="radiobutton" id="9029">
+                <visible>String.IsEqual(ListItem.DBType,song)</visible>
+                <onclick>SetProperty(content,8)</onclick>
+                <onclick>SetFocus(10054)</onclick>
+                <include content="DialogInfo_Buttons">
+                    <param name="icon" value="buttonsdialogs/more.png" />
+                </include>
+                <visible>!Skin.HasSetting(hidebutton.music.more)</visible>
+                <visible>Integer.IsGreater(Container(54).NumItems,1)</visible>
+            </control>
+
+            <!-- Setting Button -->
+            <control type="radiobutton" id="9008">
+                <include content="DialogInfo_Buttons">
+                    <param name="icon" value="buttonsdialogs/manage.png" />
+                </include>
+                <onclick>SetFocus(9400)</onclick>
+                <visible>!Skin.HasSetting(global.kioskmode)</visible>
+            </control>
+        </control>
+    </include>
+
+    <include name="DialogAddonInfoNavigation">
+        <control type="grouplist" id="9000">
+            <bottom>224</bottom>
+            <left>783</left>
+            <right>SidePad</right>
+            <include>listdimensions</include>
+            <ondown>9601</ondown>
+            <onup condition="Integer.IsEqual(Container(50).NumItems,0)">9601</onup>
+            <onup condition="Integer.IsGreater(Container(50).NumItems,0)">50</onup>
+            <orientation>horizontal</orientation>
+            <control type="radiobutton" id="12">
+                <include content="DialogInfo_Buttons">
+                    <param name="icon" value="buttonsdialogs/launch.png" />
+                </include>
+                <visible>Control.IsEnabled(12)</visible>
+            </control>
+            <control type="radiobutton" id="6">
+                <textureradioonfocus colordiffuse="FFFFFFFF">buttonsdialogs/uninstall.png</textureradioonfocus>
+                <textureradioonnofocus colordiffuse="FFFFFFFF">buttonsdialogs/uninstall.png</textureradioonnofocus>
+                <include content="DialogInfo_Buttons">
+                    <param name="icon" value="buttonsdialogs/install.png" />
+                </include>
+                <visible>!Skin.HasSetting(global.kioskmode)</visible>
+                <visible>Control.IsEnabled(6)</visible>
+                <selected>ListItem.Property(addon.isinstalled) | !Window.IsActive(addonbrowser)</selected>
+            </control>
+            <control type="radiobutton" id="7">
+                <textureradioonfocus colordiffuse="FFFFFFFF">buttonsdialogs/disable.png</textureradioonfocus>
+                <textureradioonnofocus colordiffuse="FFFFFFFF">buttonsdialogs/disable.png</textureradioonnofocus>
+                <include content="DialogInfo_Buttons">
+                    <param name="icon" value="buttonsdialogs/enabled.png" />
+                </include>
+                <visible>!Skin.HasSetting(global.kioskmode)</visible>
+                <visible>Control.IsEnabled(7)</visible>
+                <selected>!String.StartsWith(Control.GetLabel(7),$LOCALIZE[24022]) | !Window.IsActive(addonbrowser)</selected>
+            </control>
+            <control type="radiobutton" id="9">
+                <include content="DialogInfo_Buttons">
+                    <param name="icon" value="buttonsdialogs/configure.png" />
+                </include>
+                <visible allowhiddenfocus="true">Control.IsEnabled(9)</visible>
+            </control>
+            <control type="radiobutton" id="8">
+                <include content="DialogInfo_Buttons">
+                    <param name="icon" value="buttonsdialogs/install.png" />
+                </include>
+                <visible>Control.IsEnabled(8)</visible>
+            </control>
+            <control type="radiobutton" id="14">
+                <include content="DialogInfo_Buttons">
+                    <param name="icon" value="buttonsdialogs/update.png" />
+                </include>
+                <visible>Control.IsEnabled(14)</visible>
+            </control>
+            <control type="radiobutton" id="13">
+                <textureradioonfocus colordiffuse="FFFFFFFF">buttonsdialogs/autoupdateon.png</textureradioonfocus>
+                <textureradioonnofocus colordiffuse="FFFFFFFF">buttonsdialogs/autoupdateon.png</textureradioonnofocus>
+                <include content="DialogInfo_Buttons">
+                    <param name="icon" value="buttonsdialogs/autoupdate.png" />
+                </include>
+                <visible>!Skin.HasSetting(global.kioskmode)</visible>
+                <visible>Control.IsEnabled(13)</visible>
+            </control>
+            <control type="radiobutton" id="10">
+                <include content="DialogInfo_Buttons">
+                    <param name="icon" value="buttonsdialogs/dependency.png" />
+                </include>
+                <visible>Control.IsEnabled(10)</visible>
+            </control>
+        </control>
+    </include>
+
+    <include name="DialogPVRInfoNavigation">
+        <control type="grouplist" id="9000">
+            <bottom>224</bottom>
+            <left>783</left>
+            <right>SidePad</right>
+            <include>listdimensions</include>
+            <onup>9601</onup>
+            <ondown>9601</ondown>
+            <orientation>horizontal</orientation>
+            <control type="radiobutton" id="5">
+                <include content="DialogInfo_Buttons">
+                    <param name="icon" value="buttonsdialogs/launch.png" />
+                </include>
+                <visible>Window.IsVisible(PVRGuideInfo)</visible>
+            </control>
+            <control type="radiobutton" id="4">
+                <include content="DialogInfo_Buttons">
+                    <param name="icon" value="buttonsdialogs/similar.png" />
+                </include>
+                <visible>Window.IsVisible(PVRGuideInfo)</visible>
+            </control>
+            <control type="radiobutton" id="6">
+                <include content="DialogInfo_Buttons">
+                    <param name="icon" value="buttonsdialogs/record2.png" />
+                </include>
+                <visible>Window.IsVisible(PVRGuideInfo)</visible>
+            </control>
+            <control type="radiobutton" id="8">
+                <include content="DialogInfo_Buttons">
+                    <param name="icon" value="buttonsdialogs/play_record.png" />
+                </include>
+                <visible>Window.IsVisible(PVRGuideInfo) | Window.IsVisible(PVRRecordingInfo)</visible>
+            </control>
+            <control type="radiobutton" id="9">
+                <include content="DialogInfo_Buttons">
+                    <param name="icon" value="buttonsdialogs/timer.png" />
+                </include>
+                <visible>Window.IsVisible(PVRGuideInfo)</visible>
+            </control>
+            <control type="radiobutton" id="11">
+                <include content="DialogInfo_Buttons">
+                    <param name="icon" value="buttonsdialogs/ring.png" />
+                </include>
+                <visible>Window.IsVisible(PVRGuideInfo)</visible>
+            </control>
+            <control type="radiobutton" id="666">
+                <include content="DialogInfo_Buttons">
+                    <param name="icon" value="buttonsdialogs/record2.png" />
+                </include>
+                <onclick>Action(close)</onclick>
+                <onclick>RunScript(plugin.video.iptv.recorder,$ESCINFO[ListItem.ChannelName],$ESCINFO[ListItem.Title],$ESCINFO[ListItem.Date],$ESCINFO[ListItem.Duration],$ESCINFO[ListItem.Plot])</onclick>
+                <visible>System.AddonIsEnabled(plugin.video.iptv.recorder)</visible>
+            </control>
+            <control type="radiobutton" id="667">
+                <include content="DialogInfo_Buttons">
+                    <param name="icon" value="buttonsdialogs/play_record.png" />
+                </include>
+                <onclick>Action(close)</onclick>
+                <onclick>ActivateWindow(10025,&quot;plugin://plugin.video.iptv.recorder/recordings&quot;,return)</onclick>
+                <visible>System.AddonIsEnabled(plugin.video.iptv.recorder)</visible>
+            </control>
+            <control type="radiobutton" id="10">
+                <include content="DialogInfo_Buttons">
+                    <param name="icon" value="buttonsdialogs/play.png" />
+                </include>
+                <visible>Window.IsVisible(PVRGuideInfo)</visible>
+            </control>
+        </control>
+    </include>
+    
+</includes>
