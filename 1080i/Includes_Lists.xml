@@ -61,61 +61,39 @@
     </include>
 
     <include name="AddonImageList">
-        <param name="zoom" value="$PARAM[zoom]" default="140"/>
-        <param name="height" value="$PARAM[height]" default="349"/>
         <definition>
-
-            <!-- INFOCONTENT -->
-            <control type="label">
-                <visible>$PARAM[visi]</visible>
-                <width>1020</width>
-                <bottom>$PARAM[headerbottom]</bottom>
-                <left>$PARAM[headerleft]</left>
-                <description>Header Label</description>
-                <textcolor>Dark1</textcolor>
-                <include>DefDialogInfoHeader</include>
-                <label>$VAR[VideoListLabelHeader] ($INFO[Container($PARAM[controlid]).NumItems])</label>
-                <include>Animation.DelayFadeIn</include>
-            </control>
-            <control type="wraplist" id="$PARAM[controlid]">
+            <control type="list" id="$PARAM[controlid]">
                 <visible>!Container($PARAM[controlid]).IsUpdating</visible>
                 <include>Animation.FadeOutDialogInfo</include>
                 <include>Animation.FadeInDialogWIP</include>
-                <include>$PARAM[animation]</include>
-                <bottom>$PARAM[listbottom]</bottom>
-                <left>$PARAM[listleft]</left>
-                <focusposition>$PARAM[focusposition]</focusposition>
-                <width>2088</width>
-                <height>670</height>
-                <onup>$PARAM[onup1]</onup>
+                <left>20</left>
+                <right>0</right>
+                <bottom>30</bottom>
+                <height>210</height>
                 <onleft>$PARAM[controlid]</onleft>
                 <onright>$PARAM[controlid]</onright>
+                <onup>9000</onup>
                 <onback>9000</onback>
                 <ondown>9000</ondown>
-                <onclick>$PARAM[onclick1]</onclick>
-                <onclick>$PARAM[onclick2]</onclick>
                 <include>ScrolltimeDetailsList</include>
                 <orientation>horizontal</orientation>
                 <preloaditems>2</preloaditems>
-                <viewtype label="536">list</viewtype>
-                <itemlayout height="$PARAM[height]" width="$PARAM[width]">
-                    <include content="DefExtendedInfoItemContentWIP">
-                        <param name="aspect" value="$PARAM[aspect]" default="scale"/>
-                        <param name="fallbackpicture" value="$PARAM[fallbackpicture]"/>
-                    </include>
+                <itemlayout height="210" width="359">
+	                <control type="group">
+	                    <include content="include.widget.fanart">
+	                        <param name="id" value="$PARAM[controlid]"/>
+	                        <param name="height" value="210"/>
+	                    </include>
+	                </control>
                 </itemlayout>
-                <focusedlayout height="$PARAM[height]" width="$PARAM[width]">
-                    <include content="DefExtendedInfoFocusContentWIP">
-                        <param name="fallbackpicture" value="$PARAM[fallbackpicture]"/>
-                        <param name="aspect" value="$PARAM[aspect]" default="scale"/>
-                        <param name="controlid" value="$PARAM[controlid]"/>
-                        <param name="zoom" value="$PARAM[zoom]"/>
-                        <param name="labelbottom" value="$PARAM[labelbottom]"/>
-                        <param name="labelleft" value="$PARAM[labelleft]"/>
-                        <param name="labeltwovisible" value="$PARAM[labeltwovisible]"/>
-                        <param name="labeltwobottom" value="$PARAM[labeltwobottom]"/>
-                        <param name="labeltwoleft" value="$PARAM[labeltwoleft]"/>
-                    </include>
+                <focusedlayout height="210" width="359">
+                    <control type="group">
+                        <include content="include.widget.fanart">
+                            <param name="id" value="$PARAM[controlid]"/>
+                            <param name="height" value="210"/>
+                            <param name="focused" value="true" />
+                        </include>
+                    </control>
                 </focusedlayout>
             </control>
         </definition>

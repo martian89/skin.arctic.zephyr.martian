@@ -51,10 +51,10 @@
                 <control type="group">
                     <left>ListSquareX</left>
                     <right>SidePad</right>
-                    <bottom>224</bottom>
+                    <bottom>204</bottom>
                     <top>DialogInfoTop</top>
+                    <include>Animation.AddonFadeOut</include>
                     <control type="grouplist">
-                        <include>Animation.AddonFadeOut</include>
                         <left>30</left>
                         <itemgap>0</itemgap>
                         <usecontrolcoords>true</usecontrolcoords>
@@ -84,7 +84,7 @@
                         </include>
                         <control type="textbox">
                         	<top>15</top>
-                            <height>113</height>
+                            <height>185</height>
                             <font>TinyPlot</font>
                             <textcolor>Dark2</textcolor>
                             <align>justify</align>
@@ -102,29 +102,12 @@
                         </control>
                     </control>
                     <control type="group">
-                        <top>865</top>
-                        <left>33</left>
+                        <bottom>0</bottom>
+	                    <left>0</left>
+	                    <right>0</right>	                    
                         <include content="AddonImageList">
-                            <param name="arrowleft" value="-12"/>
-                            <param name="arrowtop" value="342"/>
-                            <param name="arrowright" value="87"/>
-                            <param name="visi" value="String.IsEqual(Window.Property(content),1)"/>
-                            <param name="animation" value="Animation.addoninfo"/>
                             <param name="fallbackpicture" value="DefaultAddonImages.png"/>
                             <param name="controlid" value="50"/>
-                            <param name="focusposition" value="1"/>
-                            <param name="listbottom" value="30"/>
-                            <param name="listleft" value="-800"/>
-                            <param name="height" value="349"/>
-                            <param name="width" value="370"/>
-                            <param name="headerbottom" value="710"/>
-                            <param name="headerleft" value="-10"/>
-                            <param name="zoom" value="130"/>
-                            <param name="labelbottom" value="-90"/>
-                            <param name="labelleft" value="-20"/>
-                            <param name="labeltwovisible" value="false"/>
-                            <param name="labeltwobottom" value="-90"/>
-                            <param name="labeltwoleft" value="-30"/>
                         </include>
                     </control>
                 </control>
@@ -154,7 +137,6 @@
             <include>listdimensions</include>
             <ondown>9601</ondown>
             <onup condition="Integer.IsEqual(Container(50).NumItems,0)">9601</onup>
-            <onup condition="Integer.IsGreater(Container(50).NumItems,0)">SetProperty(content,1)</onup>
             <onup condition="Integer.IsGreater(Container(50).NumItems,0)">50</onup>
             <orientation>horizontal</orientation>
             <control type="radiobutton" id="12">
