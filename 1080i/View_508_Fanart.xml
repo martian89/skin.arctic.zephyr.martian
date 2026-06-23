@@ -3,13 +3,10 @@
 <includes>
 
     <include name="ProgressCircle">
-        <param name="progresstvshowvisible" value="$PARAM[progresstvshowvisible]" default="true"/>
-        <param name="top" value="$PARAM[top]" default="500"/>
-        <param name="left" value="$PARAM[left]" default="410"/>
-        <definition>
+s        <definition>
             <control type="group">
-                <top>$PARAM[top]</top>
-                <left>$PARAM[left]</left>
+                <top>495</top>
+                <left>415</left>
                 <width>159</width>
                 <height>159</height>
                 <visible>$EXP[ShowProgressInfo]</visible>
@@ -31,14 +28,13 @@
                         <visible>String.Contains(ListItem.Overlay,OverlayWatched.png) + !ListItem.IsResumable</visible>
                         <width>159</width>
                         <height>159</height>
-                        <texture diffuse="diffuse/diffuse_progress_big.png" colordiffuse="$VAR[ColorHighlight]">progress/tvshows/p100.png</texture>
+                        <texture diffuse="diffuse/diffuse_progress_big.png" colordiffuse="$VAR[ColorHighlight]">progress/circle/p100.png</texture>
                     </control>
                 </control>
                 <control type="image">
-                    <visible>$PARAM[progresstvshowvisible]</visible>
                     <width>159</width>
                     <height>159</height>
-                    <texture diffuse="diffuse/diffuse_progress_big.png" colordiffuse="$VAR[ColorHighlight]">progress/tvshows/p$INFO[ListItem.Property(WatchedEpisodePercent)].png</texture>
+                    <texture diffuse="diffuse/diffuse_progress_big.png" colordiffuse="$VAR[ColorHighlight]">$VAR[Def_PercentWatched,progress/circle/p,.png]</texture>
                     <visible>String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)</visible>
                     <include>Animation.SwitchText</include>
                 </control>
@@ -107,11 +103,7 @@
                 <selectedcolor>Dark2</selectedcolor>
                 <visible>!String.IsEqual(ListItem.Label,..)</visible>
             </control>
-            <include content="ProgressCircle">
-                <param name="progresstvshowvisible" value="false"/>
-                <param name="left" value="415"/>
-                <param name="top" value="495"/>
-            </include>
+            <include>ProgressCircle</include>
             <control type="group">
                 <control type="group">
                     <top>460</top>
@@ -288,10 +280,7 @@
                             <selectedcolor>Dark2</selectedcolor>
                             <visible>!String.IsEqual(ListItem.Label,..)</visible>
                         </control>
-                        <include condition="$EXP[ShowProgressInfo]" content="ProgressCircle">
-                            <param name="left" value="415"/>
-                            <param name="top" value="495"/>
-                        </include>
+                        <include>ProgressCircle</include>
                         <control type="group">
                             <control type="group">
                                 <top>460</top>

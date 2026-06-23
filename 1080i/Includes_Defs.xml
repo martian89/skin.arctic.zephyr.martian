@@ -790,6 +790,11 @@
         <value condition="Control.HasFocus(56) + !String.IsEmpty(Container(56).ListItem.Property(tmdb_id))">RunScript(plugin.video.themoviedb.helper,add_path=$INFO[Container(56).ListItem.Property(tmdb_id),plugin://plugin.video.themoviedb.helper/?info=details&amp;tmdb_type=person&amp;tmdb_id=,],origin_tmdb_type=$INFO[Window.Property(origin_tmdb_type)],origin_dbid=$INFO[Window.Property(origin_dbid)],call_auto=1190)</value>    
         <value condition="Control.HasFocus(56)">RunScript(plugin.video.themoviedb.helper,add_query=$INFO[Container(56).ListItem.Label],tmdb_type=person,origin_tmdb_type=$INFO[Window.Property(origin_tmdb_type)],origin_dbid=$INFO[Window.Property(origin_dbid)],call_auto=1190)</value>    
     </variable>
+    
+    <variable name="Def_PercentWatched">
+        <value condition="!String.IsEmpty(ListItem.Property(WatchedEpisodePercent))">$INFO[ListItem.Property(WatchedEpisodePercent)]</value>
+        <value condition="!String.IsEmpty(ListItem.Property(WatchedProgress))">$INFO[ListItem.Property(WatchedProgress)]</value>
+    </variable>
 
     <include name="DefHubWindow">
         <include>GlobalBackground</include>
