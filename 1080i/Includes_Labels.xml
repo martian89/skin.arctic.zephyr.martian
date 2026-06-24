@@ -472,10 +472,14 @@
         <value condition="Skin.HasSetting(home.classicwidgets)">$LOCALIZE[31249]</value>
     </variable>
 
+    <variable name="OSDChapterLabel" description="Chapter label in  DialogSeekBar">
+        <value condition="Player.ChapterCount">$INFO[Player.Chapter]$INFO[Player.ChapterCount, / ,]</value>
+    </variable>
+
     <variable name="LabelOSDPlayerTime">
-        <value condition="VideoPlayer.Content(LiveTV)">$INFO[PVR.EpgEventElapsedTime]$INFO[PVR.EpgEventDuration,  /  ]</value>
-        <value condition="String.IsEmpty(Player.SeekNumeric)">$INFO[Player.Time]$INFO[Player.Duration,  /  ]</value>
-        <value condition="!String.IsEmpty(Player.SeekNumeric)">$INFO[Player.SeekNumeric(hh:mm:ss)]$INFO[Player.Duration,  /  ]</value>
+        <value condition="VideoPlayer.Content(LiveTV)">$INFO[PVR.EpgEventElapsedTime]$INFO[PVR.EpgEventDuration, / ]</value>
+        <value condition="String.IsEmpty(Player.SeekNumeric)">$INFO[Player.Time]$INFO[Player.Duration, / ]</value>
+        <value condition="!String.IsEmpty(Player.SeekNumeric)">$INFO[Player.SeekNumeric(hh:mm:ss)]$INFO[Player.Duration, / ]</value>
     </variable>
 
     <variable name="LabelOSDPlayerEndTime">
