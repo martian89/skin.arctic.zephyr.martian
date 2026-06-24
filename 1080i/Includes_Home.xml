@@ -1692,6 +1692,9 @@
                     <visible>Skin.HasSetting(home.showicons)</visible>
                 </control>
                 <control type="image">
+                    <include content="def_right" condition="$PARAM[iconsOnly]">
+                        <param name="right" value="40" />
+                    </include>
                     <right>10</right>
                     <top>1</top>
                     <width>$PARAM[height]</width>
@@ -1727,6 +1730,9 @@
                     <animation effect="fade" start="100" end="50" delay="0" time="150" condition="!Control.HasFocus(300) + !Control.HasFocus(302)">Conditional</animation>
                 </control>
                 <control type="image">
+                    <include content="def_right" condition="$PARAM[iconsOnly]">
+                        <param name="right" value="40" />
+                    </include>
                     <right>10</right>
                     <width>$PARAM[height]</width>
                     <top>1</top>
@@ -1747,7 +1753,7 @@
 	</include>
 	
 	<include name="HomeVerticalSubmenuListLayout">
-		<param name="height" default="80" />
+        <param name="height" default="80" />
 		<param name="iconsOnly" default="false" />
 		<definition>
             <itemlayout width="427" height="$PARAM[height]">
@@ -1763,7 +1769,7 @@
                     <visible>![$PARAM[iconsOnly] + Skin.HasSetting(home.showicons)]</visible>
                 </control>
                 <control type="image">
-                    <right>10</right>
+                    <right>40</right>
                     <top>1</top>
                     <width>$PARAM[height]</width>
                     <height>$PARAM[height]</height>
@@ -1784,7 +1790,7 @@
                     <visible>![$PARAM[iconsOnly] + Skin.HasSetting(home.showicons)]</visible>
                 </control>
                <control type="image">
-                    <right>10</right>
+                    <right>40</right>
                     <width>$PARAM[height]</width>
                     <top>1</top>
                     <height>$PARAM[height]</height>
@@ -1881,7 +1887,9 @@
         <include>Furniture_Weather</include>
         <include>Furniture_Home_Flags</include>
         <control type="group">
-            <animation effect="slide" start="0" end="-450" time="300" delay="0" center="auto" tween="sine" easing="out" condition="Control.HasFocus(301)">Conditional</animation>
+            <animation effect="slide" start="0" end="-30" time="0" delay="0" condition="Skin.HasSetting(homemenu.only.icons) + Skin.HasSetting(home.showicons)">Conditional</animation>
+            <animation effect="slide" start="0" end="-120" time="300" delay="0" center="auto" tween="sine" easing="out" condition="Control.HasFocus(301) + [Skin.HasSetting(homemenu.only.icons) + Skin.HasSetting(home.showicons)]">Conditional</animation>
+            <animation effect="slide" start="0" end="-450" time="300" delay="0" center="auto" tween="sine" easing="out" condition="Control.HasFocus(301) + ![Skin.HasSetting(homemenu.only.icons) + Skin.HasSetting(home.showicons)]">Conditional</animation>
 
             <!-- LEFT SIDE -->
             <control type="group">
@@ -1889,6 +1897,7 @@
 				
                 <!-- Home List -->
                 <control type="panel" id="300">
+                    <animation effect="slide" start="0,0" end="-296,0" time="0" condition="Skin.HasSetting(homemenu.only.icons) + Skin.HasSetting(home.showicons)">Conditional</animation>
                     <animation effect="fade" start="100" end="0" time="300" condition="Control.HasFocus(301)">Conditional</animation>
 	            	<animation effect="slide" start="0,0" end="0,40" time="0" condition="Integer.IsLess(Container(300).NumItems,9)">Conditional</animation>
 	            	<animation effect="slide" start="0,0" end="0,40" time="0" condition="Integer.IsLess(Container(300).NumItems,8)">Conditional</animation>
@@ -1898,7 +1907,10 @@
 		           	<animation effect="slide" start="0,0" end="0,40" time="0" condition="Integer.IsLess(Container(300).NumItems,4)">Conditional</animation>
 		           	<animation effect="slide" start="0,0" end="0,40" time="0" condition="Integer.IsLess(Container(300).NumItems,3)">Conditional</animation>
 		           	<animation effect="slide" start="0,0" end="0,40" time="0" condition="Integer.IsLess(Container(300).NumItems,2)">Conditional</animation>
-                    <include>Animation.Slide.Vertical.Menu</include>
+                    <include condition="![Skin.HasSetting(home.showicons) + Skin.HasSetting(homemenu.only.icons)]">Animation.Slide.Vertical.Menu</include>
+                    <include condition="[Skin.HasSetting(home.showicons) + Skin.HasSetting(homemenu.only.icons)]" content="Animation.Slide.Vertical.Menu">
+                        <param name="left" value="-50" />
+                    </include>                    
                     <visible allowhiddenfocus="true">!Control.HasFocus(302)</visible>
                     <include>Animation.FadeIn</include>
                     <include>Animation.FadeOut</include>
@@ -1911,7 +1923,9 @@
                     <onright>301</onright>
                     <onleft>302</onleft>
                     <scrolltime>200</scrolltime>
-                    <include>HomeVerticalMenuListLayout</include>
+                    <include content="HomeVerticalMenuListLayout">
+                        <param name="iconsOnly" value="Skin.HasSetting(homemenu.only.icons)" />
+                    </include>
                     <content>
                         <include>skinshortcuts-mainmenu</include>
                     </content>
@@ -1929,7 +1943,11 @@
 		           	<animation effect="slide" start="0,0" end="0,40" time="0" condition="Integer.IsLess(Container(302).NumItems,4)">Conditional</animation>
 		           	<animation effect="slide" start="0,0" end="0,40" time="0" condition="Integer.IsLess(Container(302).NumItems,3)">Conditional</animation>
 		           	<animation effect="slide" start="0,0" end="0,40" time="0" condition="Integer.IsLess(Container(302).NumItems,2)">Conditional</animation>
-                    <include>Animation.Slide.Vertical.Submenu</include>
+                    <include condition="![Skin.HasSetting(home.showicons) + Skin.HasSetting(homemenu.only.icons)]">Animation.Slide.Vertical.Submenu</include>
+                    <include condition="[Skin.HasSetting(home.showicons) + Skin.HasSetting(homemenu.only.icons)]" content="Animation.Slide.Vertical.Submenu">
+                        <param name="left" value="-50" />
+                    </include>
+                    <animation effect="slide" start="0" end="-296" time="0" condition="[Skin.HasSetting(homemenu.only.icons) + Skin.HasSetting(home.showicons)]">Conditional</animation>
                     <include>Animation.FadeIn</include>
                     <include>Animation.FadeOut</include>
                     <description>Home Wraplist</description>
@@ -1947,7 +1965,9 @@
                     <onup>302</onup>
                     <onback>300</onback>
                     <scrolltime>200</scrolltime>
-                    <include>HomeVerticalSubmenuListLayout</include>
+                    <include content="HomeVerticalSubmenuListLayout">
+                        <param name="iconsOnly" value="Skin.HasSetting(homemenu.only.icons)" />
+                    </include>
                     <content>
                         <include>skinshortcuts-submenu</include>
                     </content>
@@ -2144,7 +2164,8 @@
         <include>Furniture_Clock</include>
         <include>Furniture_Home_Flags</include>
         <control type="group">
-            <animation effect="slide" start="0" end="-100" time="0" delay="0" condition="Skin.HasSetting(homemenu.only.icons) + Skin.HasSetting(home.showicons)">Conditional</animation>
+            <animation effect="slide" start="0" end="-30" time="0" delay="0" condition="Skin.HasSetting(homemenu.only.icons) + Skin.HasSetting(home.showicons)">Conditional</animation>
+            <animation effect="slide" start="0" end="-120" time="300" delay="0" center="auto" tween="sine" easing="out" condition="ControlGroup(301).HasFocus + [Skin.HasSetting(homemenu.only.icons) + Skin.HasSetting(home.showicons)]">Conditional</animation>
             <animation effect="slide" start="0" end="-450" time="300" delay="0" center="auto" tween="sine" easing="out" condition="ControlGroup(301).HasFocus + ![Skin.HasSetting(homemenu.only.icons) + Skin.HasSetting(home.showicons)]">Conditional</animation>
 
             <!-- LEFT SIDE -->
@@ -2154,7 +2175,7 @@
                 <!-- Home List -->
                 <control type="list" id="300">
                     <animation effect="slide" start="0,0" end="-296,0" time="0" condition="Skin.HasSetting(homemenu.only.icons) + Skin.HasSetting(home.showicons)">Conditional</animation>
-                    <animation effect="fade" start="100" end="0" time="300" condition="ControlGroup(301).HasFocus + ![Skin.HasSetting(homemenu.only.icons) + Skin.HasSetting(home.showicons)]">Conditional</animation>
+                    <animation effect="fade" start="100" end="0" time="300" condition="ControlGroup(301).HasFocus">Conditional</animation>
                     <include condition="![Skin.HasSetting(home.showicons) + Skin.HasSetting(homemenu.only.icons)]">Animation.Slide.Vertical.Menu</include>
                     <include condition="[Skin.HasSetting(home.showicons) + Skin.HasSetting(homemenu.only.icons)]" content="Animation.Slide.Vertical.Menu">
                         <param name="left" value="-50" />
@@ -2177,7 +2198,6 @@
                     <scrolltime>200</scrolltime>
                     <onfocus>ClearProperty(listitem.trailer,home)</onfocus>
                     <include content="HomeVerticalMenuListLayout">
-						<param name="height" value="80" />
 						<param name="iconsOnly" value="Skin.HasSetting(homemenu.only.icons)" />
 					</include>
                    <content>
