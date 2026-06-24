@@ -2501,7 +2501,7 @@
                 <control type="label">
                     <include>MultiWidgetsSubLabelDefinition</include>
                     <label>  •  </label>
-                    <visible>!String.IsEmpty(Container($PARAM[id]).ListItem.Year) + [!String.IsEmpty(Container($PARAM[id]).ListItem.Property(TotalEpisodes)) | !String.IsEmpty(Window(home).Property(TMDbHelper.ListItem.TotalEpisodes)) | !String.IsEmpty(Container($PARAM[id]).ListItem.Episode) | !String.IsEmpty(Window(home).Property(TMDbHelper.ListItem.Episode))]</visible>
+                    <visible>!String.IsEmpty(Container($PARAM[id]).ListItem.Year) + [!String.IsEmpty(Container($PARAM[id]).ListItem.Property(TotalEpisodes)) | !String.IsEmpty(Container($PARAM[id]).ListItem.Episode)]</visible>
                 </control>
                 <control type="label">
                     <include>MultiWidgetsSubLabelDefinition</include>
@@ -2510,28 +2510,13 @@
                 </control>
                 <control type="label">
                     <include>MultiWidgetsSubLabelDefinition</include>
-                    <label>$INFO[Window(home).Property(TMDbHelper.ListItem.TotalEpisodes),, $LOCALIZE[20360]]</label>
-                    <visible>String.IsEmpty(Container($PARAM[id]).ListItem.Property(TotalEpisodes)) + !String.IsEmpty(Window(home).Property(TMDbHelper.ListItem.TotalEpisodes))</visible>
-                </control>
-                <control type="label">
-                    <include>MultiWidgetsSubLabelDefinition</include>
                     <label>$INFO[Container($PARAM[id]).ListItem.Episode,, $LOCALIZE[20360]]</label>
-                    <visible>String.IsEmpty(Container($PARAM[id]).ListItem.Property(TotalEpisodes)) + String.IsEmpty(Window(home).Property(TMDbHelper.ListItem.TotalEpisodes)) + !String.IsEmpty(Container($PARAM[id]).ListItem.Episode)</visible>
-                </control>
-                <control type="label">
-                    <include>MultiWidgetsSubLabelDefinition</include>
-                    <label>$INFO[Window(home).Property(TMDbHelper.ListItem.Episode),, $LOCALIZE[20360]]</label>
-                    <visible>String.IsEmpty(Container($PARAM[id]).ListItem.Property(TotalEpisodes)) + String.IsEmpty(Window(home).Property(TMDbHelper.ListItem.TotalEpisodes)) + String.IsEmpty(Container($PARAM[id]).ListItem.Episode) + !String.IsEmpty(Window(home).Property(TMDbHelper.ListItem.Episode))</visible>
+                    <visible>String.IsEmpty(Container($PARAM[id]).ListItem.Property(TotalEpisodes)) + !String.IsEmpty(Container($PARAM[id]).ListItem.Episode)</visible>
                 </control>
                 <control type="label">
                     <include>MultiWidgetsSubLabelDefinition</include>
                     <label>$INFO[Container($PARAM[id]).ListItem.Property(UnWatchedEpisodes),  •  , $LOCALIZE[16101]]</label>
                     <visible>!String.IsEmpty(Container($PARAM[id]).ListItem.Property(UnWatchedEpisodes))</visible>
-                </control>
-                <control type="label">
-                    <include>MultiWidgetsSubLabelDefinition</include>
-                    <label>$INFO[Window(home).Property(TMDbHelper.ListItem.UnWatchedEpisodes),  •  , $LOCALIZE[16101]]</label>
-                    <visible>String.IsEmpty(Container($PARAM[id]).ListItem.Property(UnWatchedEpisodes)) + !String.IsEmpty(Window(home).Property(TMDbHelper.ListItem.UnWatchedEpisodes))</visible>
                 </control>
                 <control type="label">
                     <include>MultiWidgetsSubLabelDefinition</include>
