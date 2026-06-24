@@ -253,14 +253,11 @@
 
     <variable name="WidgetSublabelTotalEpisodes">
     	<value condition="!String.IsEmpty(Container(301).ListItem.Property(TotalEpisodes))">$INFO[Container(301).ListItem.Property(TotalEpisodes)]</value>
-    	<value condition="!String.IsEmpty(Window(home).Property(TMDbHelper.ListItem.TotalEpisodes))">$INFO[Window(home).Property(TMDbHelper.ListItem.TotalEpisodes)]</value>
     	<value condition="!String.IsEmpty(Container(301).ListItem.Episode)">$INFO[Container(301).ListItem.Episode]</value>
-    	<value condition="!String.IsEmpty(Window(home).Property(TMDbHelper.ListItem.Episode))">$INFO[Window(home).Property(TMDbHelper.ListItem.Episode)]</value>
     </variable>
     
     <variable name="WidgetSublabelUnwatchedEpisodes">
     	<value condition="!String.IsEmpty(Container(301).ListItem.Property(UnwatchedEpisodes))">$INFO[Container(301).ListItem.Property(UnwatchedEpisodes)]</value>
-    	<value>$INFO[Window(home).Property(TMDbHelper.ListItem.UnWatchedEpisodes)]</value>
     </variable>
     
     <variable name="WidgetSublabelSeasonsEpisodes">
@@ -371,23 +368,21 @@
     </variable>
 
     <variable name="HDSD">
-        <value condition="$EXP[InGameMode] + [String.Contains(ListItem.Property(tags),4K) | String.Contains(ListItem.Property(tags),8K)]">UHD</value>
-        <value condition="$EXP[InGameMode] + String.Contains(ListItem.Property(tags),HD)">HD</value>
-        <value condition="$EXP[InGameMode] + String.Contains(ListItem.Property(tags),SD)">SD</value>
-        <value condition="[Container.Content(tvshows) | Container.Content(seasons) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)] + !String.IsEmpty(ListItem.Property(TotalEpisodes))">$INFO[ListItem.Property(TotalEpisodes)]</value>
-        <value condition="[Container.Content(tvshows) | Container.Content(seasons) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)] + !String.IsEmpty(Window(home).Property(TMDbHelper.ListItem.TotalEpisodes))">$INFO[Window(home).Property(TMDbHelper.ListItem.TotalEpisodes)]</value>
-        <value condition="[Container.Content(tvshows) | Container.Content(seasons) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)] + !String.IsEmpty(ListItem.Episode)">$INFO[ListItem.Episode]</value>
-        <value condition="[Container.Content(tvshows) | Container.Content(seasons) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)] + !String.IsEmpty(Window(home).Property(TMDbHelper.ListItem.Episode))">$INFO[Window(home).Property(TMDbHelper.ListItem.Episode)]</value>
+        <value condition="[Container.Content(tvshows) | Container.Content(seasons) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)] + !String.IsEmpty(ListItem.Property(TotalEpisodes)) + !Skin.HasSetting(ShowUnwatchedEpisodes)">$INFO[ListItem.Property(TotalEpisodes)]</value>
+        <value condition="[Container.Content(tvshows) | Container.Content(seasons) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)] + !String.IsEmpty(ListItem.Episode) + !Skin.HasSetting(ShowUnwatchedEpisodes)">$INFO[ListItem.Episode]</value>
+        <value condition="[Container.Content(tvshows) | Container.Content(seasons) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)] + !String.IsEmpty(ListItem.Property(UnwatchedEpisodes)) + Skin.HasSetting(ShowUnwatchedEpisodes)">$INFO[ListItem.Property(UnwatchedEpisodes)]</value>
         <value condition="String.IsEqual(ListItem.VideoResolution,4K) | String.IsEqual(ListItem.VideoResolution,8K) | [VideoPlayer.isFullscreen + [String.IsEqual(VideoPlayer.VideoResolution,4K) | String.IsEqual(VideoPlayer.VideoResolution,8K)]]">UHD</value>
         <value condition="Integer.IsGreaterOrEqual(ListItem.VideoResolution,720) | [VideoPlayer.isFullscreen + Integer.IsGreaterOrEqual(VideoPlayer.VideoResolution,720)]">HD</value>
         <value condition="!String.IsEmpty(ListItem.VideoResolution) | [VideoPlayer.isFullscreen + !String.IsEmpty(VideoPlayer.VideoResolution)]">SD</value>
+        <value condition="$EXP[InGameMode] + [String.Contains(ListItem.Property(tags),4K) | String.Contains(ListItem.Property(tags),8K)]">UHD</value>
+        <value condition="$EXP[InGameMode] + String.Contains(ListItem.Property(tags),HD)">HD</value>
+        <value condition="$EXP[InGameMode] + String.Contains(ListItem.Property(tags),SD)">SD</value>
     </variable>
 
     <variable name="HDSD_Hub">
-        <value condition="[String.IsEqual(Container(9500).ListItem.DBType,tvshow) | String.IsEqual(Container(9500).ListItem.DBType,season)] + !String.IsEmpty(Container(9500).ListItem.Property(TotalEpisodes))">$INFO[Container(9500).ListItem.Property(TotalEpisodes)]</value>
-        <value condition="[String.IsEqual(Container(9500).ListItem.DBType,tvshow) | String.IsEqual(Container(9500).ListItem.DBType,season)] + !String.IsEmpty(Window(home).Property(TMDbHelper.ListItem.TotalEpisodes))">$INFO[Window(home).Property(TMDbHelper.ListItem.TotalEpisodes)]</value>
-        <value condition="[String.IsEqual(Container(9500).ListItem.DBType,tvshow) | String.IsEqual(Container(9500).ListItem.DBType,season)] + !String.IsEmpty(Container(9500).ListItem.Episode)">$INFO[Container(9500).ListItem.Episode]</value>
-        <value condition="[String.IsEqual(Container(9500).ListItem.DBType,tvshow) | String.IsEqual(Container(9500).ListItem.DBType,season)] + !String.IsEmpty(Window(home).Property(TMDbHelper.ListItem.Episode))">$INFO[Window(home).Property(TMDbHelper.ListItem.Episode)]</value>
+        <value condition="[String.IsEqual(Container(9500).ListItem.DBType,tvshow) | String.IsEqual(Container(9500).ListItem.DBType,season)] + !String.IsEmpty(Container(9500).ListItem.Property(TotalEpisodes)) + !Skin.HasSetting(ShowUnwatchedEpisodes)">$INFO[Container(9500).ListItem.Property(TotalEpisodes)]</value>
+        <value condition="[String.IsEqual(Container(9500).ListItem.DBType,tvshow) | String.IsEqual(Container(9500).ListItem.DBType,season)] + !String.IsEmpty(Container(9500).ListItem.Episode) + !Skin.HasSetting(ShowUnwatchedEpisodes)">$INFO[Container(9500).ListItem.Episode]</value>
+        <value condition="[String.IsEqual(Container(9500).ListItem.DBType,tvshow) | String.IsEqual(Container(9500).ListItem.DBType,season)] + !String.IsEmpty(Container(9500).ListItem.Property(UnwatchedEpisodes)) + Skin.HasSetting(ShowUnwatchedEpisodes)">$INFO[Container(9500).ListItem.Property(UnwatchedEpisodes)]</value>
         <value condition="String.IsEqual(Container(9500).ListItem.VideoResolution,4K) | String.IsEqual(Container(9500).ListItem.VideoResolution,8K)">UHD</value>
         <value condition="Integer.IsGreaterOrEqual(Container(9500).ListItem.VideoResolution,720)">HD</value>
         <value condition="!String.IsEmpty(Container(9500).ListItem.VideoResolution)">SD</value>
