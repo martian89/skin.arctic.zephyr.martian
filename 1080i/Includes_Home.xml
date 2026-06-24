@@ -2480,7 +2480,7 @@
                 + [
                     [!String.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedEpisodes),Container($PARAM[id]).ListItem.Property(TotalEpisodes)) + !String.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedEpisodes),0) + !String.IsEmpty(Container($PARAM[id]).ListItem.Property(WatchedEpisodes))] 
                     | !String.IsEmpty(Container($PARAM[id]).ListItem.Property(WatchedEpisodePercent)) + !Integer.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedEpisodePercent),0) + !Integer.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedEpisodePercent),100)
-                    | Integer.IsGreater(Window(home).Property(TMDbHelper.ListItem.UnwatchedEpisodes),0) + Integer.IsGreater(Window(home).Property(TMDbHelper.ListItem.TotalEpisodes),Window(home).Property(TMDbHelper.ListItem.UnwatchedEpisodes))
+                    | !String.IsEmpty(Container($PARAM[id]).ListItem.Property(WatchedProgress)) + !Integer.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedProgress),0) + !Integer.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedProgress),100)
                   ]
                 ]
             </visible>
@@ -2492,17 +2492,17 @@
             <control type="label">
                 <include>Def_Watched_Indicators_Clean</include>
                 <label>[COLOR=Dark2]&#62597;[/COLOR]</label>
-                <visible>Integer.IsGreater(Container($PARAM[id]).ListItem.PercentPlayed,66) | Integer.IsGreater(Container($PARAM[id]).ListItem.Property(WatchedEpisodePercent),66)</visible>
+                <visible>Integer.IsGreater(Container($PARAM[id]).ListItem.Property(WatchedEpisodePercent),66) | Integer.IsGreater(Container($PARAM[id]).ListItem.PercentPlayed,66) | Integer.IsGreater(Container($PARAM[id]).ListItem.Property(WatchedProgress),66)</visible>
             </control>
             <control type="label">
                 <include>Def_Watched_Indicators_Clean</include>
                 <label>[COLOR=Dark2]&#62596;[/COLOR]</label>
-                <visible>Integer.IsLessOrEqual(Container($PARAM[id]).ListItem.PercentPlayed,66) + Integer.IsGreater(Container($PARAM[id]).ListItem.PercentPlayed,33) | Integer.IsLessOrEqual(Container($PARAM[id]).ListItem.Property(WatchedEpisodePercent),66) + Integer.IsGreater(Container($PARAM[id]).ListItem.Property(WatchedEpisodePercent),33)</visible>
+                <visible> | Integer.IsLessOrEqual(Container($PARAM[id]).ListItem.Property(WatchedEpisodePercent),66) + Integer.IsGreater(Container($PARAM[id]).ListItem.Property(WatchedEpisodePercent),33) | Integer.IsLessOrEqual(Container($PARAM[id]).ListItem.PercentPlayed,66) + Integer.IsGreater(Container($PARAM[id]).ListItem.PercentPlayed,33) | Integer.IsLessOrEqual(Container($PARAM[id]).ListItem.Property(WatchedProgress),66) + Integer.IsGreater(Container($PARAM[id]).ListItem.Property(WatchedProgress),33)</visible>
             </control>
             <control type="label">
                 <include>Def_Watched_Indicators_Clean</include>
                 <label>[COLOR=Dark2]&#62595;[/COLOR]</label>
-                <visible>Integer.IsLessOrEqual(Container($PARAM[id]).ListItem.PercentPlayed,33) + Integer.IsGreater(Container($PARAM[id]).ListItem.PercentPlayed,0) | Integer.IsLessOrEqual(Container($PARAM[id]).ListItem.Property(WatchedEpisodePercent),33) + Integer.IsGreater(Container($PARAM[id]).ListItem.Property(WatchedEpisodePercent),0) | Integer.IsEqual(Container($PARAM[id]).ListItem.PercentPlayed,0) + Integer.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedEpisodePercent),0)</visible>
+                <visible>Integer.IsLessOrEqual(Container($PARAM[id]).ListItem.Property(WatchedEpisodePercent),33) + Integer.IsGreater(Container($PARAM[id]).ListItem.Property(WatchedEpisodePercent),0) | Integer.IsLessOrEqual(Container($PARAM[id]).ListItem.PercentPlayed,33) + Integer.IsGreater(Container($PARAM[id]).ListItem.PercentPlayed,0) | Integer.IsLessOrEqual(Container($PARAM[id]).ListItem.Property(WatchedProgress),33) + Integer.IsGreater(Container($PARAM[id]).ListItem.Property(WatchedProgress),0) | Integer.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedEpisodePercent),0) + Integer.IsEqual(Container($PARAM[id]).ListItem.PercentPlayed,0) + Integer.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedProgress),0)</visible>
             </control>
         </control>
         
@@ -2531,7 +2531,7 @@
                    + [
                        [!String.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedEpisodes),Container($PARAM[id]).ListItem.Property(TotalEpisodes)) + !String.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedEpisodes),0) + !String.IsEmpty(Container($PARAM[id]).ListItem.Property(WatchedEpisodes))] 
                        | !String.IsEmpty(Container($PARAM[id]).ListItem.Property(WatchedEpisodePercent)) + !Integer.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedEpisodePercent),0) + !Integer.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedEpisodePercent),100)
-                       | Integer.IsGreater(Window(home).Property(TMDbHelper.ListItem.UnwatchedEpisodes),0) + Integer.IsGreater(Window(home).Property(TMDbHelper.ListItem.TotalEpisodes),Window(home).Property(TMDbHelper.ListItem.UnwatchedEpisodes))
+                       | !String.IsEmpty(Container($PARAM[id]).ListItem.Property(WatchedProgress)) + !Integer.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedProgress),0) + !Integer.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedProgress),100)
                    ]
               ]
             </visible>
@@ -2571,7 +2571,7 @@
                    + [
                        [!String.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedEpisodes),Container($PARAM[id]).ListItem.Property(TotalEpisodes)) + !String.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedEpisodes),0) + !String.IsEmpty(Container($PARAM[id]).ListItem.Property(WatchedEpisodes))] 
                        | !String.IsEmpty(Container($PARAM[id]).ListItem.Property(WatchedEpisodePercent)) + !Integer.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedEpisodePercent),0) + !Integer.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedEpisodePercent),100)
-                       | Integer.IsGreater(Window(home).Property(TMDbHelper.ListItem.UnwatchedEpisodes),0) + Integer.IsGreater(Window(home).Property(TMDbHelper.ListItem.TotalEpisodes),Window(home).Property(TMDbHelper.ListItem.UnwatchedEpisodes))
+                       | !String.IsEmpty(Container($PARAM[id]).ListItem.Property(WatchedProgress)) + !Integer.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedProgress),0) + !Integer.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedProgress),100)
                    ]
               ] + [
                 String.IsEqual(Container($PARAM[id]).ListItem.DBTYPE,movie)
@@ -2651,7 +2651,7 @@
                    + [
                        [!String.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedEpisodes),Container($PARAM[id]).ListItem.Property(TotalEpisodes)) + !String.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedEpisodes),0) + !String.IsEmpty(Container($PARAM[id]).ListItem.Property(WatchedEpisodes))] 
                        | !String.IsEmpty(Container($PARAM[id]).ListItem.Property(WatchedEpisodePercent)) + !Integer.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedEpisodePercent),0) + !Integer.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedEpisodePercent),100)
-                       | Integer.IsGreater(Window(home).Property(TMDbHelper.ListItem.UnwatchedEpisodes),0) + Integer.IsGreater(Window(home).Property(TMDbHelper.ListItem.TotalEpisodes),Window(home).Property(TMDbHelper.ListItem.UnwatchedEpisodes))
+                       | !String.IsEmpty(Container($PARAM[id]).ListItem.Property(WatchedProgress)) + !Integer.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedProgress),0) + !Integer.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedProgress),100)
                    ]
               ] + ![
                 String.IsEqual(Container($PARAM[id]).ListItem.DBTYPE,movie)
@@ -2762,7 +2762,7 @@
                       + [
                           [!String.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedEpisodes),Container($PARAM[id]).ListItem.Property(TotalEpisodes)) + !String.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedEpisodes),0) + !String.IsEmpty(Container($PARAM[id]).ListItem.Property(WatchedEpisodes))] 
                           | !String.IsEmpty(Container($PARAM[id]).ListItem.Property(WatchedEpisodePercent)) + !Integer.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedEpisodePercent),0) + !Integer.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedEpisodePercent),100)
-                          | Integer.IsGreater(Window(home).Property(TMDbHelper.ListItem.UnwatchedEpisodes),0) + Integer.IsGreater(Window(home).Property(TMDbHelper.ListItem.TotalEpisodes),Window(home).Property(TMDbHelper.ListItem.UnwatchedEpisodes))
+                          | !String.IsEmpty(Container($PARAM[id]).ListItem.Property(WatchedProgress)) + !Integer.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedProgress),0) + !Integer.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedProgress),100)
                         ]
                     ]
                 ]]            

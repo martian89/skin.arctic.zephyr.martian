@@ -16,8 +16,8 @@
     </variable>
 
     <variable name="LabelInProgressPercentage" containers="9500" start="-3" end="3">
-        <value condition="Integer.IsGreater({listitem}.PercentPlayed,66) | Integer.IsGreater({listitem}.Property(WatchedEpisodePercent),66)">&#62597;</value>
-        <value condition="Integer.IsGreater({listitem}.PercentPlayed,33) | Integer.IsGreater({listitem}.Property(WatchedEpisodePercent),33)">&#62596;</value>
+        <value condition="Integer.IsGreater({listitem}.Property(WatchedEpisodePercent),66) | Integer.IsGreater({listitem}.PercentPlayed,66) | Integer.IsGreater({listitem}.Property(WatchedProgress),66)">&#62597;</value>
+        <value condition="Integer.IsGreater({listitem}.Property(WatchedEpisodePercent),33) | Integer.IsGreater({listitem}.PercentPlayed,33) | Integer.IsGreater({listitem}.Property(WatchedProgress),33)">&#62596;</value>
         <value>&#62595;</value>    
     </variable>
 
@@ -48,8 +48,8 @@
     </variable>
 
     <variable name="PosterInProgressIndicator" containers="301">
-        <value condition="Integer.IsGreater({listitem}.PercentPlayed,66) | Integer.IsGreater({listitem}.Property(WatchedEpisodePercent),66)">indicator/poster-inprogress-75.png</value>
-        <value condition="Integer.IsGreater({listitem}.PercentPlayed,33) | Integer.IsGreater({listitem}.Property(WatchedEpisodePercent),33)">indicator/poster-inprogress-50.png</value>
+        <value condition="Integer.IsGreater({listitem}.Property(WatchedEpisodePercent),66) | Integer.IsGreater({listitem}.PercentPlayed,66) | Integer.IsGreater({listitem}.Property(WatchedProgress),66)">indicator/poster-inprogress-75.png</value>
+        <value condition="Integer.IsGreater({listitem}.Property(WatchedEpisodePercent),33) | Integer.IsGreater({listitem}.PercentPlayed,33) | Integer.IsGreater({listitem}.Property(WatchedProgress),33)">indicator/poster-inprogress-50.png</value>
         <value>indicator/poster-inprogress-25.png</value>    
     </variable>
 
@@ -72,6 +72,7 @@
     
     <variable name="IndicatorFlagLabelIsTVShowInProgress" containers="301">
         <value condition="Skin.HasSetting(markers.inprogress.percentage) + !String.IsEmpty({listitem}.Property(WatchedEpisodePercent)) + !String.IsEqual({listitem}.Property(WatchedEpisodePercent),0)">$INFO[{listitem}.Property(WatchedEpisodePercent),,%]</value>
+        <value condition="Skin.HasSetting(markers.inprogress.percentage) + !String.IsEmpty({listitem}.Property(WatchedProgress)) + !String.IsEqual({listitem}.Property(WatchedProgress),0)">$INFO[{listitem}.Property(WatchedProgress),,%]</value>
         <value condition="Skin.HasSetting(markers.inprogress.tvshow.label)">$LOCALIZE[31492]</value>
         <value condition="!Skin.HasSetting(markers.inprogress.tvshow.label) + !String.IsEqual({listitem}.Property(WatchedEpisodes),0)">$INFO[{listitem}.Property(WatchedEpisodes)]/$INFO[{listitem}.Property(TotalEpisodes)]</value>
         <value>$LOCALIZE[31492]</value>
@@ -92,6 +93,7 @@
         + [
             [!String.IsEqual({listitem}.Property(WatchedEpisodes),{listitem}.Property(TotalEpisodes)) + !String.IsEqual({listitem}.Property(WatchedEpisodes),0) + !String.IsEmpty({listitem}.Property(WatchedEpisodes))] 
             | !String.IsEmpty({listitem}.Property(WatchedEpisodePercent)) + !Integer.IsEqual({listitem}.Property(WatchedEpisodePercent),0) + !Integer.IsEqual({listitem}.Property(WatchedEpisodePercent),100)
+            | !String.IsEmpty({listitem}.Property(WatchedProgress)) + !Integer.IsEqual({listitem}.Property(WatchedProgress),0) + !Integer.IsEqual({listitem}.Property(WatchedProgress),100)
           ]
     </expression>
     <expression name="IsNewMovie" containers="301,9500" start="-3" end="3">
