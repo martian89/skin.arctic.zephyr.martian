@@ -46,24 +46,10 @@
                             <height>52</height>
                             <align>center</align>
                             <aligny>center</aligny>
-                            <label>$VAR[LabelYear,,  •  ]$VAR[LabelDuration,,  •  ]$VAR[RatingLabel]</label>
+                            <label>$VAR[LabelYear]$VAR[LabelDuration,  •  ]$VAR[RatingLabel,  •  ]</label>
                             <font>Tiny</font>
                             <textcolor>Dark3</textcolor>
                             <selectedcolor>Dark3</selectedcolor>
-                            <visible>!Container.Content(seasons)</visible>
-                        </control>
-                        <control type="label">
-                            <centerbottom>34</centerbottom>
-                            <left>0</left>
-                            <width>100%</width>
-                            <height>52</height>
-                            <align>center</align>
-                            <aligny>center</aligny>
-                            <label>$INFO[ListItem.Property(UnWatchedEpisodes),, $LOCALIZE[31215]]</label>
-                            <font>Flag</font>
-                            <textcolor>Dark3</textcolor>
-                            <selectedcolor>Dark3</selectedcolor>
-                            <visible>Container.Content(seasons)</visible>
                         </control>
                     </itemlayout>
                     <itemlayout width="1288" height="106" condition="Container.Content(episodes)">
@@ -114,7 +100,7 @@
                                 <height>40</height>
                                 <align>left</align>
                                 <aligny>center</aligny>
-                                <label fallback="19055">$VAR[LabelYear,,  •  ]$VAR[LabelDuration,,  •  ]$VAR[RatingLabel]</label>
+                                <label fallback="19055">$VAR[LabelYear]$VAR[LabelDuration,  •  ]$VAR[RatingLabel,  •  ]</label>
                                 <font>Tiny</font>
                                 <textcolor>Dark2</textcolor>
                                 <selectedcolor>Dark2</selectedcolor>
@@ -303,21 +289,7 @@
                             <font>Tiny</font>
                             <textcolor>Light1</textcolor>
                             <selectedcolor>Light1</selectedcolor>
-                            <visible>!Container.Content(seasons)</visible>
-                            <label fallback="19055">$VAR[LabelYear,,  •  ]$VAR[LabelDuration,,  •  ]$VAR[RatingLabel]</label>
-                        </control>
-                        <control type="label">
-                            <left>337</left>
-                            <right>140</right>
-                            <bottom>35</bottom>
-                            <aligny>center</aligny>
-                            <height>38</height>
-                            <align>right</align>
-                            <font>Tiny</font>
-                            <textcolor>Light1</textcolor>
-                            <selectedcolor>Light1</selectedcolor>
-                            <visible>Container.Content(seasons)</visible>
-                            <label fallback="19055">$INFO[ListItem.Property(UnWatchedEpisodes),, $LOCALIZE[31215]]</label>
+                            <label fallback="19055">$VAR[LabelYear]$VAR[LabelDuration,  •  ]$VAR[RatingLabel,  •  ]</label>
                         </control>
                     </focusedlayout>
                     <focusedlayout width="1288" height="322" condition="!Container.Content(episodes) + !Container.Content(albums) + !Container.Content(songs) + !Skin.HasSetting(54banner.showinfo)">
@@ -352,7 +324,7 @@
                             <visible>Skin.HasSetting(global.showborders)</visible>
                         </control>
                         <control type="group">
-                            <visible>Integer.IsGreater(ListItem.Property(UnwatchedEpisodes),0)</visible>
+                            <visible>[!String.IsEmpty(ListItem.Property(TotalEpisodes)) | !String.IsEmpty(ListItem.Episode)] + !Skin.HasSetting(ShowUnwatchedEpisodes) | Integer.IsGreater(ListItem.Property(UnwatchedEpisodes),0) + Skin.HasSetting(ShowUnwatchedEpisodes)</visible>
                             <right>32</right>
                             <top>32</top>
                             <height>40</height>
@@ -368,7 +340,7 @@
                                 <height>40</height>
                                 <width>40</width>
                                 <align>center</align>
-                                <label>$INFO[ListItem.Property(UnwatchedEpisodes)]</label>
+                                <label>$VAR[Label_View_54_EpisodesCount]</label>
                                 <font>HintBold</font>
                                 <textcolor>Light1</textcolor>
                             </control>
@@ -392,24 +364,10 @@
                             <height>40</height>
                             <align>right</align>
                             <aligny>center</aligny>
-                            <label>$VAR[LabelYear,,  •  ]$VAR[LabelDuration,,  •  ]$VAR[RatingLabel]</label>
+                            <label>$VAR[LabelYear]$VAR[LabelDuration,  •  ]$VAR[RatingLabel,  •  ]</label>
                             <font>Flag</font>
                             <textcolor>Light1</textcolor>
                             <selectedcolor>Light1</selectedcolor>
-                            <visible>!Container.Content(seasons)</visible>
-                        </control>
-                        <control type="label">
-                            <centerbottom>50</centerbottom>
-                            <right>44</right>
-                            <width>1220</width>
-                            <height>40</height>
-                            <align>right</align>
-                            <aligny>center</aligny>
-                            <label>$VAR[LabelYear]</label>
-                            <font>Flag</font>
-                            <textcolor>Light1</textcolor>
-                            <selectedcolor>Light1</selectedcolor>
-                            <visible>Container.Content(seasons)</visible>
                         </control>
                     </focusedlayout>
                     <focusedlayout width="1560" height="322" condition="Container.Content(episodes)">
@@ -490,7 +448,7 @@
                                     <height>40</height>
                                     <align>left</align>
                                     <aligny>center</aligny>
-                                    <label fallback="19055">$VAR[LabelYear,,  •  ]$VAR[LabelDuration,,  •  ]$VAR[RatingLabel]</label>
+                                    <label fallback="19055">$VAR[LabelYear]$VAR[LabelDuration,  •  ]$VAR[RatingLabel,  •  ]</label>
                                     <font>Tiny</font>
                                     <textcolor>Light1</textcolor>
                                     <selectedcolor>Light1</selectedcolor>

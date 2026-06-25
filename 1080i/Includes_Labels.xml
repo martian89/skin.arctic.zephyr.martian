@@ -1305,6 +1305,12 @@
         <value>$INFO[ListItem.Label]</value>
     </variable>
 
+    <variable name="Label_View_54_EpisodesCount">
+        <value condition="!String.IsEmpty(ListItem.Property(TotalEpisodes)) + !Skin.HasSetting(ShowUnwatchedEpisodes)">$INFO[ListItem.Property(TotalEpisodes)]</value>
+        <value condition="!String.IsEmpty(ListItem.Episode) + !Skin.HasSetting(ShowUnwatchedEpisodes)">$INFO[ListItem.Episode]</value>
+        <value condition="!String.IsEmpty(ListItem.Property(UnwatchedEpisodes)) + Skin.HasSetting(ShowUnwatchedEpisodes)">$INFO[ListItem.Property(UnwatchedEpisodes)]</value>
+    </variable>
+
     <variable name="Label_View_55_Info_SubLabel">
         <value condition="$EXP[InGameMode]">$VAR[GameYear]$VAR[GameRating,  •  ]</value>
         <value condition="String.IsEqual(ListItem.DBType,movie)">$INFO[ListItem.Year]$VAR[LabelDurationTimeCheck,  •  ]$VAR[RatingLabel,  •  ]</value>
