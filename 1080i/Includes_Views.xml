@@ -94,7 +94,7 @@
 		<!-- View Options -->
 		<control type="button" id="9001">
             <visible>
-                Control.IsVisible(50) | Control.IsVisible(51) | Control.IsVisible(52)
+                Control.IsVisible(50) | Control.IsVisible(51) | Control.IsVisible(52) | Control.IsVisible(53)
 				| Control.IsVisible(54) + !Container.Content(episodes) + !Container.Content(albums) + !Container.Content(songs)
 				| Control.IsVisible(55) | Control.IsVisible(56) | Control.IsVisible(57) | Control.IsVisible(508)
 				| Control.IsVisible(509) | Control.IsVisible(511) | Control.IsVisible(512) | Control.IsVisible(514)
@@ -106,7 +106,7 @@
 			<label>31076</label>
 		</control>
 
-		<control type="radiobutton" id="9004" description="Extended List (50)">
+		<control type="radiobutton" id="9002" description="Extended List (50)">
 			<include>DefContextButtonGradient</include>
 			<align>left</align>
 			<label>31264</label>
@@ -116,7 +116,7 @@
 			<visible>Control.IsVisible(50) + [Skin.HasSetting(50list.low) | $EXP[HasEnableExtendedListInfo]]</visible>
 		</control>
 
-        <control type="radiobutton" id="90041" description="Extended List (56)">
+        <control type="radiobutton" id="9003" description="Extended List (56)">
             <include>DefContextButtonGradient</include>
             <align>left</align>
             <label>31264</label>
@@ -126,7 +126,7 @@
             <visible>Control.IsVisible(56) + [Skin.HasSetting(56media.low) | $EXP[HasEnableExtendedListInfo]]</visible>
         </control>
 
-        <control type="radiobutton" id="90042" description="Extended List (57)">
+        <control type="radiobutton" id="9004" description="Extended List (57)">
             <include>DefContextButtonGradient</include>
             <align>left</align>
             <label>31264</label>
@@ -165,6 +165,16 @@
 			<visible>Control.IsVisible(50) | Control.IsVisible(57) | Control.IsVisible(56)</visible>
 			<visible>$EXP[HasEnableRatingInfo]</visible>
 		</control>
+
+        <control type="radiobutton" id="9008" description="No Wrap (53)">
+            <include>DefContextButtonGradient</include>
+            <align>left</align>
+            <label>31148</label>
+            <selected>!Skin.HasSetting(53poster.nowrap)</selected>
+            <onclick>Skin.ToggleSetting(53poster.nowrap)</onclick>
+            <onclick>ReloadSkin()</onclick>
+            <visible>Control.IsVisible(53)</visible>
+        </control>
 
 		<control type="radiobutton" id="9009" description="Info Wall (55)">
 			<include>DefContextButtonGradient</include>
@@ -510,6 +520,16 @@
 			<onclick>ReloadSkin()</onclick>
 		</control>
 
+        <control type="radiobutton" id="9043" description="No Wrap (521,522,523,524)">
+            <include>DefContextButtonGradient</include>
+            <align>left</align>
+            <label>31148</label>
+            <selected>!Skin.HasSetting(view.netflix.nowrap)</selected>
+            <onclick>Skin.ToggleSetting(view.netflix.nowrap)</onclick>
+            <onclick>ReloadSkin()</onclick>
+            <visible>Control.IsVisible(521) | Control.IsVisible(522) | Control.IsVisible(523) | Control.IsVisible(524)</visible>
+        </control>
+
 		<control type="radiobutton" id="9044" description="Netflix Clearlogo (521,522,524)">
 			<include>DefContextButtonGradient</include>
 			<align>left</align>
@@ -525,7 +545,7 @@
 			<label>31475</label>
 			<selected>!Skin.HasSetting(hide.views.netflix.preview)</selected>
 			<onclick>Skin.ToggleSetting(hide.views.netflix.preview)</onclick>
-			<visible>Control.IsVisible(521) | Control.IsVisible(522) | Control.IsVisible(523) |Control.IsVisible(524)</visible>
+			<visible>Control.IsVisible(521) | Control.IsVisible(522) | Control.IsVisible(523) | Control.IsVisible(524)</visible>
 			<visible>!Skin.HasSetting(TMDbHelper.EnableBlur)</visible>
 		</control>
 

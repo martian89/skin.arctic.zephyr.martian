@@ -699,6 +699,29 @@
         <right>64</right>
     </include>
 
+    <include name="_DefControl">
+        <control type="$PARAM[control]" id="$PARAM[id]">
+            <nested />
+        </control>
+    </include>
+
+    <include name="DefListControl">
+        <param name="id" />
+        <param name="nowrap" default="false" />
+        <definition>
+            <include content="_DefControl" condition="!$PARAM[nowrap]">
+                <param name="id" value="$PARAM[id]" />
+                <param name="control" value="wraplist" />
+                <nested />
+            </include>
+            <include content="_DefControl" condition="$PARAM[nowrap]">
+                <param name="id" value="$PARAM[id]" />
+                <param name="control" value="fixedlist" />
+                <nested />
+            </include>
+        </definition>
+    </include>
+    
     <variable name="ContentMusicYoutube">
         <value condition="Container.Content(artists) + String.IsEqual(Window.Property(musicyoutube),1)">plugin://plugin.video.youtube/search/?q=$INFO[ListItem.Artist]</value>
         <value condition="Container.Content(albums) + String.IsEqual(Window.Property(musicyoutube),1)">plugin://plugin.video.youtube/search/?q=$INFO[ListItem.Artist] $INFO[ListItem.Album] Album</value>

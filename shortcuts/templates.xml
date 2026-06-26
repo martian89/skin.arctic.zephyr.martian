@@ -27,6 +27,7 @@
 
 	    <propertyGroup name="moreItemProperties">
 		    <!-- Show More Item -->
+            <property name="showMore" condition="widgetListType=wraplist">false</property>
 		    <property name="showMore" condition="NOT widgetLimit EMPTY AND NOT widgetTarget EMPTY">true</property>
 		    <property name="showMore" condition="NOT widgetLimit EMPTY AND widgetPath EMPTY">true</property>
 		    <property name="showMore">false</property>
@@ -113,6 +114,9 @@
         <propertyGroup content="moreItemProperties"/>
 
 		<preset content="widgetLayout" />
+
+        <property name="widgetListType" from="widgetListType" condition="widgetListType" />
+        <property name="widgetListType">list</property>
 		
 		<property name="widgetAspect" condition="widgetPath IN Submenu,Settings,Systeminfo">Square</property>
 		<property name="widgetAspect" from="widgetAspect" condition="widgetAspect" />		
@@ -127,7 +131,7 @@
         <property name="isAutoLimit">false</property>
 
         <controls>
-            <control type="list" id="301">
+            <control type="$PROPERTY[widgetListType]" id="301">
                 <skinshortcuts>visibility</skinshortcuts>
                 <description>Plugin Content Widget</description>
                 <left>70</left>
@@ -241,6 +245,9 @@
         <propertyGroup content="widgetProperties"/>
         <propertyGroup content="moreItemProperties"/>
 
+        <property name="widgetListType" from="widgetListType" condition="widgetListType" />
+        <property name="widgetListType">fixedlist</property>
+
 		<property name="widgetAspect" condition="widgetPath IN Submenu,Settings,Systeminfo">Square</property>
 		<property name="widgetAspect" from="widgetAspect" condition="widgetAspect" />		
 		<property name="widgetAspect">Poster</property>		
@@ -254,7 +261,7 @@
         <property name="isAutoLimit">false</property>
 
         <controls>
-            <control type="fixedlist" id="301">
+            <control type="$PROPERTY[widgetListType]" id="301">
                 <skinshortcuts>visibility</skinshortcuts>
                 <visible>!String.Contains(Container(300).ListItem.Property(widget),weather)</visible>
                 <animation effect="fade" start="100" end="66" time="400" condition="!Control.HasFocus(301) + !Skin.HasSetting(widgets.fade)">Conditional</animation>
@@ -407,6 +414,9 @@
         <property name="fullscreenInfoInclude" condition="widgetPath IN WeatherDaily,WeatherHourly">HomeWidgetsWeatherInfo</property>
         <property name="fullscreenInfoInclude">HomeWidgetsFullscreenInfo</property>
 
+        <property name="widgetListType" from="widgetListType" condition="widgetListType"/>
+        <property name="widgetListType">fixedlist</property>
+
         <propertyGroup content="moreItemProperties"/>
 
         <!-- Widget Container -->
@@ -429,7 +439,7 @@
 					</include>
 				</control>
 			</control>
-			<control type="fixedlist" id="$MATH[$PARENT[index] * 10000 + 3100 + $PROPERTY[id]]">
+			<control type="$PROPERTY[widgetListType]" id="$MATH[$PARENT[index] * 10000 + 3100 + $PROPERTY[id]]">
 				<visible>String.IsEqual(Container(300).ListItem.Property(submenuVisibility),$PARENT[submenuVisibility])</visible>
 				<visible>Integer.IsGreater(Container($MATH[$PARENT[index] * 10000 + 3100 + $PROPERTY[id]]).NumItems,0) | Container($MATH[$PARENT[index] * 10000 + 3100 + $PROPERTY[id]]).IsUpdating | $PROPERTY[isSubmenu]</visible>
 				<include content="DefMultiWidgetContainer">
