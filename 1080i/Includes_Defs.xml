@@ -1254,6 +1254,12 @@
         </control>
     </include>
 
+    <include name="def_control">
+        <control type="$PARAM[control]" id="$PARAM[id]">
+            <nested />
+        </control>
+    </include>
+
     <include name="def_height">
         <height>$PARAM[height]</height>
     </include>
@@ -1314,6 +1320,23 @@
         <autoscroll time="$PARAM[time]" delay="1000">$PARAM[condition]</autoscroll>
     </include>
 
+    <include name="DefListControl">
+        <param name="id" />
+        <param name="nowrap" default="false" />
+        <definition>
+            <include content="def_control" condition="!$PARAM[nowrap]">
+                <param name="id" value="$PARAM[id]" />
+                <param name="control" value="wraplist" />
+                <nested />
+            </include>
+            <include content="def_control" condition="$PARAM[nowrap]">
+                <param name="id" value="$PARAM[id]" />
+                <param name="control" value="fixedlist" />
+                <nested />
+            </include>
+        </definition>
+    </include>
+    
     <include name="DefDiscArt">
         <control type="image">
             <visible>!Window.IsVisible(DialogBusy.xml)</visible>
@@ -2997,7 +3020,15 @@
                 <visible>!$EXP[Widget_HasStaticContent]</visible>
                 <visible>$PARAM[visible]</visible>
 		    </control>
-            <control type="radiobutton" id="$PARAM[baseid]15" description="Widget Autoscoll">
+            <control type="button" id="$PARAM[baseid]15">
+                <include>Def_Skinshortcuts_Buttons</include>
+                <label>$LOCALIZE[31822]</label>
+                <label2>$VAR[Label_Widget_Limit]</label2>
+                <visible>!$EXP[Widget_HasStaticContent]</visible>
+                <visible>!String.IsEqual(Container(211).ListItem.Label2,epg)</visible>
+                <visible>$PARAM[visible]</visible>
+            </control>
+            <control type="radiobutton" id="$PARAM[baseid]16" description="Widget Autoscoll">
                 <selected>String.IsEqual(Container(211).ListItem.Property(widgetAutoscroll),yes) + [!String.IsEqual(Container(211).ListItem.Property(widgetLimit),Auto) | $EXP[Widget_HasStaticContent] | $EXP[HomeIsCleanMinimal] | $EXP[HomeIsSpotlight]]</selected>
                 <label>$LOCALIZE[31340]</label>
                 <include>Def_Skinshortcuts_Buttons</include>
@@ -3010,15 +3041,18 @@
                 <visible>Skin.HasSetting(home.vertical.widgets) | !String.IsEqual(Container(211).ListItem.Property(widget),weather)</visible>
                 <visible>$PARAM[visible]</visible>
             </control>
-            <control type="button" id="$PARAM[baseid]16">
+            <control type="radiobutton" id="$PARAM[baseid]17" description="Widget List Type">
+                <selected>String.IsEqual(Container(211).ListItem.Property(widgetListType),wraplist)</selected>
+                <label>$LOCALIZE[31148]</label>
                 <include>Def_Skinshortcuts_Buttons</include>
-                <label>$LOCALIZE[31822]</label>
-                <label2>$VAR[Label_Widget_Limit]</label2>
-                <visible>!$EXP[Widget_HasStaticContent]</visible>
-                <visible>!String.IsEqual(Container(211).ListItem.Label2,epg)</visible>
+                <onclick>SetProperty(customProperty,widgetListType)</onclick>
+                <onclick condition="!String.IsEqual(Container(211).ListItem.Property(widgetListType),wraplist)">SetProperty(customValue,wraplist)</onclick>
+                <onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetListType),wraplist)">SetProperty(customValue,)</onclick>
+                <onclick>SendClick(404)</onclick>
+                <visible>!$EXP[HomeIsCleanMinimal] + !$EXP[HomeIsSpotlight] + !String.IsEqual(Container(211).ListItem.Property(widget),weather) + !String.IsEqual(Container(211).ListItem.label2,epg)</visible>
                 <visible>$PARAM[visible]</visible>
             </control>
-		    <control type="radiobutton" id="$PARAM[baseid]17" description="Prevent reload">
+		    <control type="radiobutton" id="$PARAM[baseid]18" description="Prevent reload">
 		        <selected>String.IsEqual(Container(211).ListItem.Property(widgetSortby),userpreference)</selected>
 		        <label>31820</label>
 		        <include>Def_Skinshortcuts_Buttons</include>

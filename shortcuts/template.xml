@@ -37,6 +37,7 @@
     
     <propertyGroup name="moreItemProperties">
 	    <!-- Show More Item -->
+        <property name="showMore" tag="property" attribute="name|widgetListType" value="wraplist">false</property>
         <property name="showMore" tag="property" attribute="name|widgetLimit">true</property>
 	    <property name="showMore">false</property>
 
@@ -71,6 +72,9 @@
         <propertyGroup>widgetLayoutProperties</propertyGroup>
         <propertyGroup>moreItemProperties</propertyGroup>
 
+        <property name="widgetListType" tag="property" attribute="name|widgetListType" />
+        <property name="widgetListType">list</property>
+
         <property name="autoLimit" tag="property" attribute="name|widgetAspect" value="Square">7</property>
         <property name="autoLimit" tag="property" attribute="name|widgetAspect" value="Thumbnail">4</property>
         <property name="autoLimit" tag="property" attribute="name|widgetAspect" value="Landscape">4</property>
@@ -80,7 +84,7 @@
         <property name="isAutoLimit">false</property>
 
         <controls>
-            <control type="list" id="301">
+            <control type="$SKINSHORTCUTS[widgetListType]" id="301">
                 <skinshortcuts>visibility</skinshortcuts>
                 <description>Plugin Content Widget</description>
                 <left>70</left>
@@ -91,6 +95,7 @@
                 <onback>300</onback>
                 <onleft>301</onleft>
                 <onright>301</onright>
+                <focusposition>0</focusposition>
                 <preloaditems>2</preloaditems>
                 <orientation>horizontal</orientation>
                 <include>ScrolltimeWidgetsList</include>
@@ -241,6 +246,9 @@
         <propertyGroup>widgetLayoutProperties</propertyGroup>
         <propertyGroup>moreItemProperties</propertyGroup>
 
+        <property name="widgetListType" tag="property" attribute="name|widgetListType" />
+        <property name="widgetListType">fixedlist</property>
+
         <property name="autoLimit" tag="property" attribute="name|widget" value="submenu">5</property>
         <property name="autoLimit" tag="property" attribute="name|widget" value="settings">5</property>
         <property name="autoLimit" tag="property" attribute="name|widget" value="systeminfo">5</property>
@@ -253,7 +261,7 @@
         <property name="isAutoLimit">false</property>
 
         <controls>
-            <control type="fixedlist" id="301">
+            <control type="$SKINSHORTCUTS[widgetListType]" id="301">
                 <skinshortcuts>visibility</skinshortcuts>
                 <visible>!String.Contains(Container(300).ListItem.Property(widget),weather)</visible>
                 <animation effect="fade" start="100" end="66" time="400" condition="!Control.HasFocus(301) + !Skin.HasSetting(widgets.fade)">Conditional</animation>
@@ -429,6 +437,10 @@
             <property name="widgetAspectCheck" tag="property" attribute="name|widgetAspect" />
             <property name="widgetAspectCheck">Poster</property>
 
+            <property name="widgetListType" tag="label2" value="epg">list</property>
+            <property name="widgetListType" tag="property" attribute="name|widgetListType" />
+            <property name="widgetListType">fixedlist</property>
+
             <property name="widgetInclude" tag="label2" value="epg">Widget_Layout_PVRGuide</property>
             <property name="widgetInclude" tag="property" attribute="name|list" value="Settings">Widget_Layout_System</property>
             <property name="widgetInclude" tag="property" attribute="name|list" value="Systeminfo">Widget_Layout_System</property>
@@ -473,7 +485,7 @@
                         </include>
                     </control>
                 </control>
-                <control type="fixedlist" id="$PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]">
+                <control type="$SKINSHORTCUTS[widgetListType]" id="$PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]">
                     <visible>String.IsEqual(Container(300).ListItem.Property(submenuVisibility),$SKINSHORTCUTS[submenuVisibility])</visible>
                     <visible>Integer.IsGreater(Container($PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]).NumItems,0) | Container($PYTHON[int(mainmenuid) * 10000 + 3100 + int(id)]).IsUpdating | $SKINSHORTCUTS[isSubmenu]</visible>
                     <include content="DefMultiWidgetContainer">
