@@ -57,6 +57,36 @@
         </definition>
     </include>
 
+    <include name="MusicOSDRatingFlags">
+        <param name="visible" default="true"/>
+        <definition>
+            <include content="Def_Flag">
+                <param name="Star" value="FlagstarMusic1" />
+                <param name="color" value="$VAR[OSDRatingFlagsColor]" />
+            </include>
+            <include content="Def_Flag">
+                <param name="Star" value="FlagstarMusic2" />
+                <param name="visible" value="$PARAM[visible]" />
+                <param name="color" value="$VAR[OSDRatingFlagsColor]" />
+            </include>
+            <include content="Def_Flag">
+                <param name="Star" value="FlagstarMusic3" />
+                <param name="visible" value="$PARAM[visible]" />
+                <param name="color" value="$VAR[OSDRatingFlagsColor]" />
+            </include>
+            <include content="Def_Flag">
+                <param name="Star" value="FlagstarMusic4" />
+                <param name="visible" value="$PARAM[visible]" />
+                <param name="color" value="$VAR[OSDRatingFlagsColor]" />
+            </include>
+            <include content="Def_Flag">
+                <param name="Star" value="FlagstarMusic5" />
+                <param name="visible" value="$PARAM[visible]" />
+                <param name="color" value="$VAR[OSDRatingFlagsColor]" />
+            </include>
+        </definition>
+    </include>
+
     <include name="ChannelNumberInput">
         <control type="label" description="Total Time">
             <width>auto</width>
@@ -3828,7 +3858,9 @@
                 <itemgap>12</itemgap>
                 <orientation>horizontal</orientation>
                 <usecontrolcoords>true</usecontrolcoords>
-                <include>MusicVisualisation_RatingStars</include>
+                <include content="MusicOSDRatingFlags">
+                    <param name="visible" value="Skin.HasSetting(musicosd.hideflags)" />
+                </include>
             </control>
             <control type="label">
             	<left>8</left>
