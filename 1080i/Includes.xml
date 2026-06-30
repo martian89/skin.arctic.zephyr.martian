@@ -1771,7 +1771,7 @@
     </include>
 
     <variable name="PlayListStatsPath">
-        <value condition="System.AddonIsEnabled(script.skin.info.service) + String.StartsWith(Container(300).ListItem.Property(path),ActivateWindow) + String.Contains(Container(300).ListItem.Property(path),Videos) + String.Contains(Container(300).ListItem.Property(path),playlists) + String.Contains(Container(300).ListItem.Property(path),.xsp)">plugin://script.skin.info.service/?action=path_stats&amp;path=$INFO[Container(300).ListItem.Property(list)]&amp;reload=$INFO[Window(Home).Property(SkinInfo.Library.Refreshed)]</value>
+        <value condition="System.AddonIsEnabled(script.skin.info.service) + String.StartsWith(Container(300).ListItem.Property(path),ActivateWindow) + String.Contains(Container(300).ListItem.Property(path),Videos) + String.StartsWith(Container(300).ListItem.Property(list),special://) + String.EndsWith(Container(300).ListItem.Property(list),.xsp)">plugin://script.skin.info.service/?action=path_stats&amp;path=$INFO[Container(300).ListItem.Property(list)]&amp;reload=$INFO[Window(Home).Property(SkinInfo.Library.Refreshed)]</value>
     </variable>
 
     <variable name="PlaylistsCountItemPath">
