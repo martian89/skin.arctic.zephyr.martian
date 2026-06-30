@@ -2191,9 +2191,9 @@
                 </control>
             </control>
             <control type="group">
-                <include condition="Window.IsVisible(home) + $EXP[HomeShowHeader]">Header_FavouritesCountItem</include>
-                <include condition="Window.IsVisible(home) + $EXP[HomeShowHeader]">Header_PlaylistsCountItem</include>
-                <include condition="Window.IsVisible(home) + $EXP[HomeShowHeader]">Header_PlayListStats</include>
+                <include condition="Window.IsVisible(home) + [$EXP[HomeShowHeader] | $EXP[HomeIsVertical]]">Header_FavouritesCountItem</include>
+                <include condition="Window.IsVisible(home) + [$EXP[HomeShowHeader] | $EXP[HomeIsVertical]]">Header_PlaylistsCountItem</include>
+                <include condition="Window.IsVisible(home) + [$EXP[HomeShowHeader] | $EXP[HomeIsVertical]]">Header_PlayListStats</include>
                 <control type="group">
 	                <visible>Skin.HasSetting(furniture.logo) + [!Window.IsVisible(home) | [$EXP[HomeIsVertical] | $EXP[HomeIsClassic]] + Control.HasFocus(301)] + !Window.IsVisible(settings) + !Window.IsVisible(skinsettings) + !Window.IsVisible(SettingsCategory.xml) + !Window.IsVisible(tvchannels) + !Window.IsVisible(tvrecordings) + !Window.IsVisible(tvguide) + !Window.IsVisible(tvsearch) + !Window.IsVisible(tvtimers)</visible>
 	                <control type="label">
