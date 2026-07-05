@@ -1,13 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
 
-    <include name="scrollbar_dialog">
+    <include name="Furniture_Scrollbar">
+        <param name="id" default="60"/>
+        <param name="jumpbar" default="false"/>
+        <param name="top" default="PosterPad"/>
+        <param name="height" default="PosterH"/>
+        <param name="onleft" default="50"/>
+        <param name="onright"/>
+        <definition>
+        <control type="scrollbar" id="$PARAM[id]">
+            <onback>50</onback>
+            <centerright>60</centerright>
+            <top>$PARAM[top]</top>
+            <height>$PARAM[height]</height>
+            <width>8</width>
+            <onleft>$PARAM[onleft]</onleft>
+            <showonepage>false</showonepage>
+            <orientation>vertical</orientation>
+            <onright condition="$PARAM[jumpbar] + $EXP[UseDefaultJumpbar]">290001</onright>
+            <onright condition="$PARAM[jumpbar] + !$EXP[UseDefaultJumpbar]">390000</onright>
+            <onright condition="!$PARAM[jumpbar]">$PARAM[onright]</onright>
+            <texturesliderbackground border="4" colordiffuse="Dark4">scrollbar/scrollv.png</texturesliderbackground>
+            <texturesliderbar border="4" colordiffuse="Dark3">scrollbar/scrollv.png</texturesliderbar>
+            <texturesliderbarfocus border="4" colordiffuse="Dark2">scrollbar/scrollv.png</texturesliderbarfocus>
+            <animation effect="fade" start="100" end="0" time="400" condition="[!Control.HasFocus($PARAM[id]) + !Container.Scrolling] | Control.HasFocus(290001)">Conditional</animation>
+        </control>
+        </definition>
+    </include>
+
+    <include name="Furniture_Scrollbar_Horizontal">
+        <param name="id" default="60"/>
+        <param name="jumpbar" default="false"/>
+        <param name="onup" default="50"/>
+        <param name="bottom" default="200"/>
+        <param name="left" default="SidePad"/>
+        <param name="width" default="1760"/>
+        <definition>
+        <control type="scrollbar" id="$PARAM[id]">
+	        <onback>50</onback>
+	        <left>$PARAM[left]</left>
+	        <width>$PARAM[width]</width>
+	        <bottom>$PARAM[bottom]</bottom>
+	        <orientation>horizontal</orientation>
+	        <height>8</height>
+	        <onup>$PARAM[onup]</onup>
+	        <ondown condition="$PARAM[jumpbar] + $EXP[UseDefaultJumpbar]">290001</ondown>
+	        <ondown condition="$PARAM[jumpbar] + !$EXP[UseDefaultJumpbar]">390000</ondown>
+	        <texturesliderbackground border="4" colordiffuse="Dark4">scrollbar/scrollv.png</texturesliderbackground>
+	        <texturesliderbar border="4" colordiffuse="Dark3">scrollbar/scrollv.png</texturesliderbar>
+	        <texturesliderbarfocus border="4" colordiffuse="Dark2">scrollbar/scrollv.png</texturesliderbarfocus>
+	        <animation effect="fade" start="100" end="0" time="400" condition="[!Control.HasFocus($PARAM[id]) + !Container.Scrolling] | Control.HasFocus(290001)">Conditional</animation>
+        </control>
+        </definition>
+    </include>
+    
+    <include name="Furniture_Scrollbar_Dialog">
         <param name="visible" value="$PARAM[visible]" default="true"/>
         <param name="height" value="$PARAM[height]" default="687"/>
         <param name="posy" value="$PARAM[posy]" default="116"/>
         <param name="centerright" value="$PARAM[centerright]" default="375"/>
         <definition>
-        <control type="scrollbar" id="$PARAM[scrollid]">
+        <control type="scrollbar" id="$PARAM[id]">
             <visible>$PARAM[visible]</visible>
             <centerright>$PARAM[centerright]</centerright>
             <posy>$PARAM[posy]</posy>
@@ -20,15 +74,15 @@
             <texturesliderbarfocus border="4" colordiffuse="Black70">scrollbar/scrollv.png</texturesliderbarfocus>
             <orientation>vertical</orientation>
             <showonepage>false</showonepage>
-            <animation effect="fade" start="100" end="0" time="400" condition="!Control.HasFocus($PARAM[scrollid]) + !Container.Scrolling">Conditional</animation>
+            <animation effect="fade" start="100" end="0" time="400" condition="!Control.HasFocus($PARAM[id]) + !Container.Scrolling">Conditional</animation>
         </control>
         </definition>
     </include>
 
-    <include name="scrollbar_filemanager">
+    <include name="Furniture_Scrollbar_Filemanager">
         <param name="left" value="$PARAM[left]" default="873"/>
         <definition>
-        <control type="scrollbar" id="$PARAM[scrollid]">
+        <control type="scrollbar" id="$PARAM[id]">
             <top>5</top>
             <left>$PARAM[left]</left>
             <height>590</height>
@@ -40,72 +94,25 @@
             <texturesliderbarfocus border="4" colordiffuse="Dark2">scrollbar/scrollv.png</texturesliderbarfocus>
             <orientation>vertical</orientation>
             <showonepage>false</showonepage>
-            <animation effect="fade" start="100" end="0" time="400" condition="!Control.HasFocus($PARAM[scrollid]) + !Container.Scrolling">Conditional</animation>
+            <animation effect="fade" start="100" end="0" time="400" condition="!Control.HasFocus($PARAM[id]) + !Container.Scrolling">Conditional</animation>
         </control>
         </definition>
     </include>
 
-    <include name="scrollbar_vertical">
-        <param name="jumpbar" default="true"/>
-        <param name="posy" default="PosterPad"/>
-        <param name="height" default="PosterH"/>
-        <definition>
-        <onback>50</onback>
-        <centerright>60</centerright>
-        <posy>$PARAM[posy]</posy>
-        <height>$PARAM[height]</height>
-        <width>8</width>
-        <onleft>50</onleft>
-        <onright condition="$PARAM[jumpbar] + $EXP[UseNewJumpbar]">290001</onright>
-        <onright condition="$PARAM[jumpbar] + !$EXP[UseNewJumpbar]">390000</onright>
-        <texturesliderbackground border="4" colordiffuse="Dark4">scrollbar/scrollv.png</texturesliderbackground>
-        <texturesliderbar border="4" colordiffuse="Dark3">scrollbar/scrollv.png</texturesliderbar>
-        <texturesliderbarfocus border="4" colordiffuse="Dark2">scrollbar/scrollv.png</texturesliderbarfocus>
-        <orientation>vertical</orientation>
-        <showonepage>false</showonepage>
-        <animation effect="fade" start="100" end="0" time="400" condition="[!Control.HasFocus($PARAM[scrollid]) + !Container.Scrolling] | Control.HasFocus(290001)">Conditional</animation>
-        </definition>
-    </include>
-
-    <include name="scrollbar_hor">
-        <param name="jumpbar" default="true"/>
-        <param name="onup" default="50"/>
-        <param name="bottom" default="200"/>
-        <param name="left" default="SidePad"/>
-        <param name="width" default="1760"/>
-        <definition>
-        <onback>50</onback>
-        <left>$PARAM[left]</left>
-        <width>$PARAM[width]</width>
-        <bottom>$PARAM[bottom]</bottom>
-        <orientation>horizontal</orientation>
-        <height>8</height>
-        <onup>$PARAM[onup]</onup>
-        <ondown condition="$PARAM[jumpbar] + $EXP[UseNewJumpbar]">290001</ondown>
-        <ondown condition="$PARAM[jumpbar] + !$EXP[UseNewJumpbar]">390000</ondown>
-        <texturesliderbackground border="4" colordiffuse="Dark4">scrollbar/scrollv.png</texturesliderbackground>
-        <texturesliderbar border="4" colordiffuse="Dark3">scrollbar/scrollv.png</texturesliderbar>
-        <texturesliderbarfocus border="4" colordiffuse="Dark2">scrollbar/scrollv.png</texturesliderbarfocus>
-        <animation effect="fade" start="100" end="0" time="400" condition="[!Control.HasFocus($PARAM[scrollid]) + !Container.Scrolling] | Control.HasFocus(290001)">Conditional</animation>
-        </definition>
-    </include>
-
-    <include name="Furniture_Scrollbar">
-        <control type="scrollbar" id="60">
-            <onback>50</onback>
-            <centerright>60</centerright>
-            <posy>PosterPad</posy>
-            <height>PosterH</height>
-            <width>8</width>
-            <onleft>50</onleft>
-            <onright>290001</onright>
-            <showonepage>false</showonepage>
-            <orientation>vertical</orientation>
-            <onright condition="!Skin.HasSetting(global.kioskmode)">9000</onright>
-            <texturesliderbackground border="4" colordiffuse="Dark4">scrollbar/scrollv.png</texturesliderbackground>
-            <texturesliderbar border="4" colordiffuse="Dark3">scrollbar/scrollv.png</texturesliderbar>
-            <texturesliderbarfocus border="4" colordiffuse="Dark2">scrollbar/scrollv.png</texturesliderbarfocus>
-            <animation effect="fade" start="100" end="0" time="400" condition="!Control.HasFocus(60) + !Container.Scrolling">Conditional</animation>
+    <include name="Furniture_Jumpbar">
+        <control type="group">
+            <visible>[[String.IsEqual(Container.SortMethod,$LOCALIZE[551]) | String.IsEqual(Container.SortMethod,$LOCALIZE[556]) | String.IsEqual(Container.SortMethod,$LOCALIZE[561]) | String.IsEqual(Container.SortMethod,$LOCALIZE[558]) | String.IsEqual(Container.SortMethod,$LOCALIZE[557])] + Integer.IsGreater(Container.NumPages,4) + $EXP[UseDefaultJumpbar]] | !$EXP[UseDefaultJumpbar]</visible>
+            <animation effect="slide" start="0,0" end="10,0" time="0" condition="Control.IsVisible(53) | Control.IsVisible(521) | Control.IsVisible(522) | Control.IsVisible(523) | Control.IsVisible(524)">Conditional</animation>
+            <animation effect="slide" start="0,0" end="-84,0" time="400" tween="quadratic" easing="out" condition="Control.HasFocus(290001)" reversible="false">Conditional</animation>
+            <animation effect="slide" start="-84,0" end="0,0" time="400" tween="quadratic" easing="in" condition="!Control.HasFocus(290001)" reversible="false">Conditional</animation>
+            <animation effect="slide" start="0,0" end="84,0" time="400" tween="quadratic" easing="in">WindowClose</animation>
+            <animation effect="fade" start="100" end="0" time="50" delay="400" condition="!Control.HasFocus(290001)">Conditional</animation>
+            <right>-84</right>
+            <top>-4</top>
+            <bottom>-4</bottom>
+            <width>SidePad</width>
+            <include condition="$EXP[UseDefaultJumpbar]">Jumpbar_Include</include>
+            <include condition="!$EXP[UseDefaultJumpbar]">Jumpbar_SkinInfoService_Include</include>
         </control>
     </include>
 
@@ -128,7 +135,7 @@
             <align>center</align>
             <aligny>center</aligny>
             <textcolor>$VAR[ColorHighlight]</textcolor>
-            <font>Small33</font>
+            <font>Tiny</font>
             <visible>String.IsEqual(ListItem.SortLetter,$PARAM[label])</visible>
         </control>
     </include>
@@ -140,7 +147,7 @@
             <label>#</label>
             <align>center</align>
             <aligny>center</aligny>
-            <textcolor>Dark1</textcolor>
+            <textcolor>Dark2</textcolor>
             <font>Tiny</font>
             <visible>!$EXP[SortLetterIsNumber]</visible>
         </control>
@@ -151,121 +158,18 @@
             <align>center</align>
             <aligny>center</aligny>
             <textcolor>$VAR[ColorHighlight]</textcolor>
-            <font>Small33</font>
+            <font>Tiny</font>
             <visible>$EXP[SortLetterIsNumber]</visible>
         </control>
     </include>
 
-    <include name="JumpBarHorizontal2">
-        <control type="group">
-            <visible>[[String.IsEqual(Container.SortMethod,$LOCALIZE[551]) | String.IsEqual(Container.SortMethod,$LOCALIZE[556]) | String.IsEqual(Container.SortMethod,$LOCALIZE[561]) | String.IsEqual(Container.SortMethod,$LOCALIZE[558]) | String.IsEqual(Container.SortMethod,$LOCALIZE[557])] + Integer.IsGreater(Container.NumPages,4) + $EXP[UseNewJumpbar]] | !$EXP[UseNewJumpbar]</visible>
-            <animation effect="slide" start="0,0" end="-84,0" time="400" tween="quadratic" easing="out" condition="Control.HasFocus(290001)" reversible="false">Conditional</animation>
-            <animation effect="slide" start="-84,0" end="0,0" time="400" tween="quadratic" easing="in" condition="!Control.HasFocus(290001)" reversible="false">Conditional</animation>
-            <animation effect="slide" start="0,0" end="84,0" time="400" tween="quadratic" easing="in">WindowClose</animation>
-            <animation effect="fade" start="100" end="0" time="50" delay="400" condition="!Control.HasFocus(290001)">Conditional</animation>
-            <right>-100</right>
-            <top>-4</top>
-            <bottom>-4</bottom>
-            <width>85</width>
-            <include condition="$EXP[UseNewJumpbar]">NewJumpbar</include>
-            <include condition="!$EXP[UseNewJumpbar]">OldJumpbar</include>
-        </control>
-    </include>
-
-    <include name="OldJumpbar">
-        <control type="group">
-            <visible>Container(290001).IsUpdating</visible>
-            <include>Animation.FadeIn</include>
-            <include>Animation.FadeOut</include>
-            <centerleft>47</centerleft>
-            <top>515</top>
-            <control type="image">
-                <width>50</width>
-                <height>50</height>
-                <texture>dialog/loading-back.png</texture>
-                <aspectratio>keep</aspectratio>
-            </control>
-            <control type="image">
-                <width>50</width>
-                <height>50</height>
-                <animation effect="rotate" condition="true" start="360" end="0" loop="true" time="1000" center="auto">Conditional</animation>
-                <texture colordiffuse="$VAR[ColorHighlight]">dialog/loading-spinner.png</texture>
-                <aspectratio>keep</aspectratio>
-            </control>
-        </control>
-        <control type="group">
-            <centerleft>47</centerleft>
-            <top>515</top>
-            <control type="image">
-                <visible>!Container(290001).IsUpdating + !Integer.IsGreater(Container(290001).NumItems,0)</visible>
-                <include>Animation.FadeIn</include>
-                <include>Animation.FadeOut</include>
-                <width>50</width>
-                <height>50</height>
-                <texture>buttons/delete.png</texture>
-            </control>
-        </control>
-        <control type="list" id="290001">
-            <width>42</width>
-            <top>14</top>
-            <bottom>9</bottom>
-            <left>21</left>
-            <onright>50</onright>
-            <scrolltime>100</scrolltime>
-            <focusposition>0</focusposition>
-            <onleft>50</onleft>
-            <animation effect="fade" start="0" end="100" time="400" delay="300" condition="!Container(290001).IsUpdating" reversible="false">Conditional</animation>
-            <animation effect="fade" start="100" end="0" time="0" condition="Container(290001).IsUpdating" reversible="false">Conditional</animation>
-            <itemlayout height="39" width="26">
-                <control type="label">
-                    <width>100%</width>
-                    <height>100%</height>
-                    <align>center</align>
-                    <aligny>center</aligny>
-                    <left>$PARAM[left]</left>
-                    <label>$INFO[ListItem.Label]</label>
-                    <font>Tiny</font>
-                    <textcolor>Black70</textcolor>
-                    <animation effect="fade" start="100" end="33" time="0" condition="!String.IsEmpty(ListItem.Property(NotAvailable))">Conditional</animation>
-                </control>
-            </itemlayout>
-            <focusedlayout height="39" width="26">
-                <control type="label">
-                    <visible>String.IsEmpty(ListItem.Property(NotAvailable))</visible>
-                    <width>100%</width>
-                    <top>1</top>
-                    <height>100%</height>
-                    <align>center</align>
-                    <aligny>center</aligny>
-                    <left>$PARAM[left]</left>
-                    <label>[B]$INFO[ListItem.Label][/B]</label>
-                    <font>Small33</font>
-                    <textcolor>$VAR[ColorHighlight]</textcolor>
-                </control>
-                <control type="label">
-                    <visible>!String.IsEmpty(ListItem.Property(NotAvailable))</visible>
-                    <width>100%</width>
-                    <top>1</top>
-                    <height>100%</height>
-                    <align>center</align>
-                    <aligny>center</aligny>
-                    <left>$PARAM[left]</left>
-                    <label>[B]$INFO[ListItem.Label][/B]</label>
-                    <font>Small33</font>
-                    <textcolor>Black70</textcolor>
-                    <animation effect="fade" start="100" end="33" time="0" condition="true">Conditional</animation>
-                </control>
-            </focusedlayout>
-            <content>plugin://script.embuary.helper/?info=jumptoletter&amp;showall=true&amp;reload=$INFO[Container.NumItems]</content>
-        </control>
-    </include>
-    
-    <include name="NewJumpbar">
+    <include name="Jumpbar_Include">
         <control type="grouplist">
+            <visible>Container.SortDirection(ascending)</visible>
             <width>42</width>
             <top>14</top>
             <bottom>9</bottom>
-            <left>14</left>
+            <centerleft>50%</centerleft>
             <itemgap>-3.2</itemgap>
             <orientation>vertical</orientation>
             <include>AlphabetNumber</include>
@@ -296,60 +200,202 @@
             <include content="AlphabetLetter"><param name="label" value="Y" /></include>
             <include content="AlphabetLetter"><param name="label" value="Z" /></include>
         </control>
+        <control type="grouplist">
+            <visible>Container.SortDirection(descending)</visible>
+            <width>42</width>
+            <top>14</top>
+            <bottom>9</bottom>
+            <centerleft>50%</centerleft>
+            <itemgap>-3.2</itemgap>
+            <orientation>vertical</orientation>
+            <include content="AlphabetLetter"><param name="label" value="Z" /></include>
+            <include content="AlphabetLetter"><param name="label" value="Y" /></include>
+            <include content="AlphabetLetter"><param name="label" value="X" /></include>
+            <include content="AlphabetLetter"><param name="label" value="W" /></include>
+            <include content="AlphabetLetter"><param name="label" value="V" /></include>
+            <include content="AlphabetLetter"><param name="label" value="U" /></include>
+            <include content="AlphabetLetter"><param name="label" value="T" /></include>
+            <include content="AlphabetLetter"><param name="label" value="S" /></include>
+            <include content="AlphabetLetter"><param name="label" value="R" /></include>
+            <include content="AlphabetLetter"><param name="label" value="Q" /></include>
+            <include content="AlphabetLetter"><param name="label" value="P" /></include>
+            <include content="AlphabetLetter"><param name="label" value="O" /></include>
+            <include content="AlphabetLetter"><param name="label" value="N" /></include>
+            <include content="AlphabetLetter"><param name="label" value="M" /></include>
+            <include content="AlphabetLetter"><param name="label" value="L" /></include>
+            <include content="AlphabetLetter"><param name="label" value="K" /></include>
+            <include content="AlphabetLetter"><param name="label" value="J" /></include>
+            <include content="AlphabetLetter"><param name="label" value="I" /></include>
+            <include content="AlphabetLetter"><param name="label" value="H" /></include>
+            <include content="AlphabetLetter"><param name="label" value="G" /></include>
+            <include content="AlphabetLetter"><param name="label" value="F" /></include>
+            <include content="AlphabetLetter"><param name="label" value="E" /></include>
+            <include content="AlphabetLetter"><param name="label" value="D" /></include>
+            <include content="AlphabetLetter"><param name="label" value="C" /></include>
+            <include content="AlphabetLetter"><param name="label" value="B" /></include>
+            <include content="AlphabetLetter"><param name="label" value="A" /></include>
+            <include>AlphabetNumber</include>
+        </control>
         <control type="button" id="290001">
             <include>HiddenButton</include>
-            <onleft>50</onleft>
-            <onright>50</onright>
-            <onback>50</onback>
-            <onclick>SetFocus(50)</onclick>
-            <ondown>SetFocus(50)</ondown>
+            <onleft>SetFocus($VAR[View_Current_ViewID])</onleft>
+            <onright>SetFocus($VAR[View_Current_ViewID])</onright>
+            <onback>SetFocus($VAR[View_Current_ViewID])</onback>
+            <onclick>SetFocus($VAR[View_Current_ViewID])</onclick>
+            <ondown>SetFocus($VAR[View_Current_ViewID])</ondown>
             <ondown>Action(nextletter)</ondown>
-            <ondown condition="!Container.HasNext | String.IsEqual(ListItem.SortLetter,Z)">Action(jumpsms2)</ondown>
-            <ondown condition="!Container.HasNext | String.IsEqual(ListItem.SortLetter,Z)">Action(prevletter)</ondown>
-            <ondown condition="!Container.HasNext | String.IsEqual(ListItem.SortLetter,Z)">Action(prevletter)</ondown>
-            <ondown condition="!Container.HasNext | String.IsEqual(ListItem.SortLetter,Z)">Action(prevletter)</ondown>
+            <ondown condition="Integer.IsEqual(Container.CurrentPage, Container.NumPages) | Container.SortDirection(ascending) + String.IsEqual(ListItem.SortLetter,Z) | Container.SortDirection(descending) + $EXP[SortLetterIsNumber]">Action(firstpage)</ondown>
+            <ondown condition="Container.SortDirection(ascending) + [Integer.IsEqual(Container.CurrentPage, Container.NumPages) | String.IsEqual(ListItem.SortLetter,Z)]">Action(jumpsms2)</ondown>
+            <ondown condition="Container.SortDirection(desscending) + [Integer.IsEqual(Container.CurrentPage, Container.NumPages) | $EXP[SortLetterIsNumber]]">Action(jumpsms9)</ondown>
+            <ondown condition="Integer.IsEqual(Container.CurrentPage, Container.NumPages) | Container.SortDirection(ascending) + String.IsEqual(ListItem.SortLetter,Z) | Container.SortDirection(descending) + $EXP[SortLetterIsNumber]">Action(prevletter)</ondown>
+            <ondown condition="Integer.IsEqual(Container.CurrentPage, Container.NumPages) | Container.SortDirection(ascending) + String.IsEqual(ListItem.SortLetter,Z) | Container.SortDirection(descending) + $EXP[SortLetterIsNumber]">Action(prevletter)</ondown>
+            <ondown condition="Integer.IsEqual(Container.CurrentPage, Container.NumPages) | Container.SortDirection(ascending) + String.IsEqual(ListItem.SortLetter,Z) | Container.SortDirection(descending) + $EXP[SortLetterIsNumber]">Action(prevletter)</ondown>
             <ondown>SetFocus(290001)</ondown>
-            <onup>SetFocus(50)</onup>
+            <onup>SetFocus($VAR[View_Current_ViewID])</onup>
             <onup>Action(prevletter)</onup>
-            <onup condition="!Container.HasPrevious | $EXP[SortLetterIsNumber]">Action(jumpsms9)</onup>
-            <onup condition="!Container.HasPrevious | $EXP[SortLetterIsNumber]">Action(nextletter)</onup>
-            <onup condition="!Container.HasPrevious | $EXP[SortLetterIsNumber]">Action(nextletter)</onup>
-            <onup condition="!Container.HasPrevious | $EXP[SortLetterIsNumber]">Action(nextletter)</onup>
+            <onup condition="Integer.IsEqual(Container.CurrentPage,1) | Container.SortDirection(ascending) + $EXP[SortLetterIsNumber] | Container.SortDirection(ascending) + String.IsEqual(ListItem.SortLetter,A)">Action(lastpage)</onup>
+            <onup condition="Container.SortDirection(ascending) + [Integer.IsEqual(Container.CurrentPage,1) | $EXP[SortLetterIsNumber]]">Action(jumpsms9)</onup>
+            <onup condition="Container.SortDirection(descending) + [Integer.IsEqual(Container.CurrentPage,1) | String.IsEqual(ListItem.SortLetter,Z)]">Action(jumpsms2)</onup>
+            <onup condition="Integer.IsEqual(Container.CurrentPage,1) | Container.SortDirection(ascending) + $EXP[SortLetterIsNumber] | Container.SortDirection(ascending) + String.IsEqual(ListItem.SortLetter,A)">Action(nextletter)</onup>
+            <onup condition="Integer.IsEqual(Container.CurrentPage,1) | Container.SortDirection(ascending) + $EXP[SortLetterIsNumber] | Container.SortDirection(ascending) + String.IsEqual(ListItem.SortLetter,A)">Action(nextletter)</onup>
+            <onup condition="Integer.IsEqual(Container.CurrentPage,1) | Container.SortDirection(ascending) + $EXP[SortLetterIsNumber] | Container.SortDirection(ascending) + String.IsEqual(ListItem.SortLetter,A)">Action(nextletter)</onup>
             <onup>SetFocus(290001)</onup>
+        </control>
+    </include>
+    
+    <include name="Jumpbar_SkinInfoService_Include">
+        <control type="group">
+            <visible>Control.HasFocus(290001) + Container(290001).IsUpdating</visible>
+            <include>Animation.FadeIn</include>
+            <include>Animation.FadeOut</include>
+            <width>50</width>
+            <centerleft>50%</centerleft>
+            <top>515</top>
+            <control type="image">
+                <width>50</width>
+                <height>50</height>
+                <texture>dialog/loading-back.png</texture>
+                <aspectratio>keep</aspectratio>
+            </control>
+            <control type="image">
+                <width>50</width>
+                <height>50</height>
+                <animation effect="rotate" condition="true" start="360" end="0" loop="true" time="1000" center="auto">Conditional</animation>
+                <texture colordiffuse="$VAR[ColorHighlight]">dialog/loading-spinner.png</texture>
+                <aspectratio>keep</aspectratio>
+            </control>
+        </control>
+        <control type="group">
+            <width>50</width>
+            <centerleft>50%</centerleft>
+            <top>515</top>
+            <control type="image">
+                <visible>!Container(290001).IsUpdating + !Integer.IsGreater(Container(290001).NumItems,0)</visible>
+                <include>Animation.FadeIn</include>
+                <include>Animation.FadeOut</include>
+                <width>50</width>
+                <height>50</height>
+                <texture>buttons/delete.png</texture>
+            </control>
+        </control>
+        <control type="list" id="290001">
+            <width>42</width>
+            <top>14</top>
+            <bottom>9</bottom>
+            <centerleft>50%</centerleft>
+            <onright>50</onright>
+            <scrolltime>100</scrolltime>
+            <focusposition>0</focusposition>
+            <onleft>50</onleft>
+            <animation effect="fade" start="0" end="100" time="400" delay="300" condition="!Container(290001).IsUpdating" reversible="false">Conditional</animation>
+            <animation effect="fade" start="100" end="0" time="0" condition="Container(290001).IsUpdating" reversible="false">Conditional</animation>
+            <itemlayout height="39" width="42">
+                <control type="label">
+                    <width>100%</width>
+                    <height>100%</height>
+                    <align>center</align>
+                    <aligny>center</aligny>
+                    <left>$PARAM[left]</left>
+                    <label>$INFO[ListItem.Label]</label>
+                    <font>Tiny</font>
+                    <textcolor>Dark2</textcolor>
+                    <animation effect="fade" start="100" end="33" time="0" condition="String.IsEmpty(ListItem.Property(IsAvailable))">Conditional</animation>
+                </control>
+            </itemlayout>
+            <focusedlayout height="39" width="42">
+                <control type="label">
+                    <width>100%</width>
+                    <top>1</top>
+                    <height>100%</height>
+                    <align>center</align>
+                    <aligny>center</aligny>
+                    <left>$PARAM[left]</left>
+                    <label>[B]$INFO[ListItem.Label][/B]</label>
+                    <font>Tiny</font>
+                    <textcolor>$VAR[ColorHighlight]</textcolor>
+                </control>
+            </focusedlayout>
+            <content>plugin://script.skin.info.service/?action=letter_jump&amp;target=$VAR[View_Current_ViewID]&amp;reload=$INFO[Container($VAR[View_Current_ViewID]).SortOrder]&amp;reload=$INFO[Container($VAR[View_Current_ViewID]).NumItems]</content>
         </control>
     </include>
     
     <include name="JumpbarHelper">
         <control type="button" id="390000">
             <include>HiddenButton</include>
-            <onfocus condition="!String.IsEqual(ListItem.SortLetter,A) + !String.IsEqual(ListItem.SortLetter,B) + !String.IsEqual(ListItem.SortLetter,C) + !String.IsEqual(ListItem.SortLetter,D) + !String.IsEqual(ListItem.SortLetter,E) + !String.IsEqual(ListItem.SortLetter,F) + !String.IsEqual(ListItem.SortLetter,G) + !String.IsEqual(ListItem.SortLetter,H) + !String.IsEqual(ListItem.SortLetter,I) + !String.IsEqual(ListItem.SortLetter,J) + !String.IsEqual(ListItem.SortLetter,K) + !String.IsEqual(ListItem.SortLetter,L) + !String.IsEqual(ListItem.SortLetter,M) + !String.IsEqual(ListItem.SortLetter,N) + !String.IsEqual(ListItem.SortLetter,O) + !String.IsEqual(ListItem.SortLetter,P) + !String.IsEqual(ListItem.SortLetter,Q) + !String.IsEqual(ListItem.SortLetter,R) + !String.IsEqual(ListItem.SortLetter,S) + !String.IsEqual(ListItem.SortLetter,T) + !String.IsEqual(ListItem.SortLetter,U) + !String.IsEqual(ListItem.SortLetter,V) + !String.IsEqual(ListItem.SortLetter,W) + !String.IsEqual(ListItem.SortLetter,X) + !String.IsEqual(ListItem.SortLetter,Y) + !String.IsEqual(ListItem.SortLetter,Z) + [Integer.IsGreater(Container(290001).NumItems,0) | Container(290001).IsUpdating]">SetFocus(290001,0,absolute)</onfocus>
-            <onfocus condition="!String.IsEqual(ListItem.SortLetter,A) + !String.IsEqual(ListItem.SortLetter,B) + !String.IsEqual(ListItem.SortLetter,C) + !String.IsEqual(ListItem.SortLetter,D) + !String.IsEqual(ListItem.SortLetter,E) + !String.IsEqual(ListItem.SortLetter,F) + !String.IsEqual(ListItem.SortLetter,G) + !String.IsEqual(ListItem.SortLetter,H) + !String.IsEqual(ListItem.SortLetter,I) + !String.IsEqual(ListItem.SortLetter,J) + !String.IsEqual(ListItem.SortLetter,K) + !String.IsEqual(ListItem.SortLetter,L) + !String.IsEqual(ListItem.SortLetter,M) + !String.IsEqual(ListItem.SortLetter,N) + !String.IsEqual(ListItem.SortLetter,O) + !String.IsEqual(ListItem.SortLetter,P) + !String.IsEqual(ListItem.SortLetter,Q) + !String.IsEqual(ListItem.SortLetter,R) + !String.IsEqual(ListItem.SortLetter,S) + !String.IsEqual(ListItem.SortLetter,T) + !String.IsEqual(ListItem.SortLetter,U) + !String.IsEqual(ListItem.SortLetter,V) + !String.IsEqual(ListItem.SortLetter,W) + !String.IsEqual(ListItem.SortLetter,X) + !String.IsEqual(ListItem.SortLetter,Y) + !String.IsEqual(ListItem.SortLetter,Z) + !Integer.IsGreater(Container(290001).NumItems,0) + !Container(290001).IsUpdating">SetFocus(50)</onfocus>
-            <onfocus condition="String.IsEqual(ListItem.SortLetter,A)">SetFocus(290001,1,absolute)</onfocus>
-            <onfocus condition="String.IsEqual(ListItem.SortLetter,B)">SetFocus(290001,2,absolute)</onfocus>
-            <onfocus condition="String.IsEqual(ListItem.SortLetter,C)">SetFocus(290001,3,absolute)</onfocus>
-            <onfocus condition="String.IsEqual(ListItem.SortLetter,D)">SetFocus(290001,4,absolute)</onfocus>
-            <onfocus condition="String.IsEqual(ListItem.SortLetter,E)">SetFocus(290001,5,absolute)</onfocus>
-            <onfocus condition="String.IsEqual(ListItem.SortLetter,F)">SetFocus(290001,6,absolute)</onfocus>
-            <onfocus condition="String.IsEqual(ListItem.SortLetter,G)">SetFocus(290001,7,absolute)</onfocus>
-            <onfocus condition="String.IsEqual(ListItem.SortLetter,H)">SetFocus(290001,8,absolute)</onfocus>
-            <onfocus condition="String.IsEqual(ListItem.SortLetter,I)">SetFocus(290001,9,absolute)</onfocus>
-            <onfocus condition="String.IsEqual(ListItem.SortLetter,J)">SetFocus(290001,10,absolute)</onfocus>
-            <onfocus condition="String.IsEqual(ListItem.SortLetter,K)">SetFocus(290001,11,absolute)</onfocus>
-            <onfocus condition="String.IsEqual(ListItem.SortLetter,L)">SetFocus(290001,12,absolute)</onfocus>
-            <onfocus condition="String.IsEqual(ListItem.SortLetter,M)">SetFocus(290001,13,absolute)</onfocus>
-            <onfocus condition="String.IsEqual(ListItem.SortLetter,N)">SetFocus(290001,14,absolute)</onfocus>
-            <onfocus condition="String.IsEqual(ListItem.SortLetter,O)">SetFocus(290001,15,absolute)</onfocus>
-            <onfocus condition="String.IsEqual(ListItem.SortLetter,P)">SetFocus(290001,16,absolute)</onfocus>
-            <onfocus condition="String.IsEqual(ListItem.SortLetter,Q)">SetFocus(290001,17,absolute)</onfocus>
-            <onfocus condition="String.IsEqual(ListItem.SortLetter,R)">SetFocus(290001,18,absolute)</onfocus>
-            <onfocus condition="String.IsEqual(ListItem.SortLetter,S)">SetFocus(290001,19,absolute)</onfocus>
-            <onfocus condition="String.IsEqual(ListItem.SortLetter,T)">SetFocus(290001,20,absolute)</onfocus>
-            <onfocus condition="String.IsEqual(ListItem.SortLetter,U)">SetFocus(290001,21,absolute)</onfocus>
-            <onfocus condition="String.IsEqual(ListItem.SortLetter,V)">SetFocus(290001,22,absolute)</onfocus>
-            <onfocus condition="String.IsEqual(ListItem.SortLetter,W)">SetFocus(290001,23,absolute)</onfocus>
-            <onfocus condition="String.IsEqual(ListItem.SortLetter,X)">SetFocus(290001,24,absolute)</onfocus>
-            <onfocus condition="String.IsEqual(ListItem.SortLetter,Y)">SetFocus(290001,25,absolute)</onfocus>
-            <onfocus condition="String.IsEqual(ListItem.SortLetter,Z)">SetFocus(290001,26,absolute)</onfocus>
+            <onfocus condition="!Integer.IsGreater(Container(290001).NumItems,0) + !Container(290001).IsUpdating">SetFocus(50)</onfocus>
+            <onfocus condition="!$EXP[SortLetterIsLetter] + [Integer.IsGreater(Container(290001).NumItems,0) | Container(290001).IsUpdating]">SetFocus(290001,26,absolute)</onfocus>
+            <onfocus condition="Container.SortDirection(ascending) + String.IsEqual(ListItem.SortLetter,A)">SetFocus(290001,0,absolute)</onfocus>
+            <onfocus condition="Container.SortDirection(ascending) + String.IsEqual(ListItem.SortLetter,B)">SetFocus(290001,1,absolute)</onfocus>
+            <onfocus condition="Container.SortDirection(ascending) + String.IsEqual(ListItem.SortLetter,C)">SetFocus(290001,2,absolute)</onfocus>
+            <onfocus condition="Container.SortDirection(ascending) + String.IsEqual(ListItem.SortLetter,D)">SetFocus(290001,3,absolute)</onfocus>
+            <onfocus condition="Container.SortDirection(ascending) + String.IsEqual(ListItem.SortLetter,E)">SetFocus(290001,4,absolute)</onfocus>
+            <onfocus condition="Container.SortDirection(ascending) + String.IsEqual(ListItem.SortLetter,F)">SetFocus(290001,5,absolute)</onfocus>
+            <onfocus condition="Container.SortDirection(ascending) + String.IsEqual(ListItem.SortLetter,G)">SetFocus(290001,6,absolute)</onfocus>
+            <onfocus condition="Container.SortDirection(ascending) + String.IsEqual(ListItem.SortLetter,H)">SetFocus(290001,7,absolute)</onfocus>
+            <onfocus condition="Container.SortDirection(ascending) + String.IsEqual(ListItem.SortLetter,I)">SetFocus(290001,8,absolute)</onfocus>
+            <onfocus condition="Container.SortDirection(ascending) + String.IsEqual(ListItem.SortLetter,J)">SetFocus(290001,9,absolute)</onfocus>
+            <onfocus condition="Container.SortDirection(ascending) + String.IsEqual(ListItem.SortLetter,K)">SetFocus(290001,10,absolute)</onfocus>
+            <onfocus condition="Container.SortDirection(ascending) + String.IsEqual(ListItem.SortLetter,L)">SetFocus(290001,11,absolute)</onfocus>
+            <onfocus condition="Container.SortDirection(ascending) + String.IsEqual(ListItem.SortLetter,M)">SetFocus(290001,12,absolute)</onfocus>
+            <onfocus condition="Container.SortDirection(ascending) + String.IsEqual(ListItem.SortLetter,N)">SetFocus(290001,13,absolute)</onfocus>
+            <onfocus condition="Container.SortDirection(ascending) + String.IsEqual(ListItem.SortLetter,O)">SetFocus(290001,14,absolute)</onfocus>
+            <onfocus condition="Container.SortDirection(ascending) + String.IsEqual(ListItem.SortLetter,P)">SetFocus(290001,15,absolute)</onfocus>
+            <onfocus condition="Container.SortDirection(ascending) + String.IsEqual(ListItem.SortLetter,Q)">SetFocus(290001,16,absolute)</onfocus>
+            <onfocus condition="Container.SortDirection(ascending) + String.IsEqual(ListItem.SortLetter,R)">SetFocus(290001,17,absolute)</onfocus>
+            <onfocus condition="Container.SortDirection(ascending) + String.IsEqual(ListItem.SortLetter,S)">SetFocus(290001,18,absolute)</onfocus>
+            <onfocus condition="Container.SortDirection(ascending) + String.IsEqual(ListItem.SortLetter,T)">SetFocus(290001,19,absolute)</onfocus>
+            <onfocus condition="Container.SortDirection(ascending) + String.IsEqual(ListItem.SortLetter,U)">SetFocus(290001,20,absolute)</onfocus>
+            <onfocus condition="Container.SortDirection(ascending) + String.IsEqual(ListItem.SortLetter,V)">SetFocus(290001,21,absolute)</onfocus>
+            <onfocus condition="Container.SortDirection(ascending) + String.IsEqual(ListItem.SortLetter,W)">SetFocus(290001,22,absolute)</onfocus>
+            <onfocus condition="Container.SortDirection(ascending) + String.IsEqual(ListItem.SortLetter,X)">SetFocus(290001,23,absolute)</onfocus>
+            <onfocus condition="Container.SortDirection(ascending) + String.IsEqual(ListItem.SortLetter,Y)">SetFocus(290001,24,absolute)</onfocus>
+            <onfocus condition="Container.SortDirection(ascending) + String.IsEqual(ListItem.SortLetter,Z)">SetFocus(290001,25,absolute)</onfocus>
+            <onfocus condition="Container.SortDirection(descending) + String.IsEqual(ListItem.SortLetter,Z)">SetFocus(290001,0,absolute)</onfocus>
+            <onfocus condition="Container.SortDirection(descending) + String.IsEqual(ListItem.SortLetter,Y)">SetFocus(290001,1,absolute)</onfocus>
+            <onfocus condition="Container.SortDirection(descending) + String.IsEqual(ListItem.SortLetter,X)">SetFocus(290001,2,absolute)</onfocus>
+            <onfocus condition="Container.SortDirection(descending) + String.IsEqual(ListItem.SortLetter,W)">SetFocus(290001,3,absolute)</onfocus>
+            <onfocus condition="Container.SortDirection(descending) + String.IsEqual(ListItem.SortLetter,V)">SetFocus(290001,4,absolute)</onfocus>
+            <onfocus condition="Container.SortDirection(descending) + String.IsEqual(ListItem.SortLetter,U)">SetFocus(290001,5,absolute)</onfocus>
+            <onfocus condition="Container.SortDirection(descending) + String.IsEqual(ListItem.SortLetter,T)">SetFocus(290001,6,absolute)</onfocus>
+            <onfocus condition="Container.SortDirection(descending) + String.IsEqual(ListItem.SortLetter,S)">SetFocus(290001,7,absolute)</onfocus>
+            <onfocus condition="Container.SortDirection(descending) + String.IsEqual(ListItem.SortLetter,R)">SetFocus(290001,8,absolute)</onfocus>
+            <onfocus condition="Container.SortDirection(descending) + String.IsEqual(ListItem.SortLetter,Q)">SetFocus(290001,9,absolute)</onfocus>
+            <onfocus condition="Container.SortDirection(descending) + String.IsEqual(ListItem.SortLetter,P)">SetFocus(290001,10,absolute)</onfocus>
+            <onfocus condition="Container.SortDirection(descending) + String.IsEqual(ListItem.SortLetter,O)">SetFocus(290001,11,absolute)</onfocus>
+            <onfocus condition="Container.SortDirection(descending) + String.IsEqual(ListItem.SortLetter,N)">SetFocus(290001,12,absolute)</onfocus>
+            <onfocus condition="Container.SortDirection(descending) + String.IsEqual(ListItem.SortLetter,M)">SetFocus(290001,13,absolute)</onfocus>
+            <onfocus condition="Container.SortDirection(descending) + String.IsEqual(ListItem.SortLetter,L)">SetFocus(290001,14,absolute)</onfocus>
+            <onfocus condition="Container.SortDirection(descending) + String.IsEqual(ListItem.SortLetter,K)">SetFocus(290001,15,absolute)</onfocus>
+            <onfocus condition="Container.SortDirection(descending) + String.IsEqual(ListItem.SortLetter,J)">SetFocus(290001,16,absolute)</onfocus>
+            <onfocus condition="Container.SortDirection(descending) + String.IsEqual(ListItem.SortLetter,I)">SetFocus(290001,17,absolute)</onfocus>
+            <onfocus condition="Container.SortDirection(descending) + String.IsEqual(ListItem.SortLetter,H)">SetFocus(290001,18,absolute)</onfocus>
+            <onfocus condition="Container.SortDirection(descending) + String.IsEqual(ListItem.SortLetter,G)">SetFocus(290001,19,absolute)</onfocus>
+            <onfocus condition="Container.SortDirection(descending) + String.IsEqual(ListItem.SortLetter,F)">SetFocus(290001,20,absolute)</onfocus>
+            <onfocus condition="Container.SortDirection(descending) + String.IsEqual(ListItem.SortLetter,E)">SetFocus(290001,21,absolute)</onfocus>
+            <onfocus condition="Container.SortDirection(descending) + String.IsEqual(ListItem.SortLetter,D)">SetFocus(290001,22,absolute)</onfocus>
+            <onfocus condition="Container.SortDirection(descending) + String.IsEqual(ListItem.SortLetter,C)">SetFocus(290001,23,absolute)</onfocus>
+            <onfocus condition="Container.SortDirection(descending) + String.IsEqual(ListItem.SortLetter,B)">SetFocus(290001,24,absolute)</onfocus>
+            <onfocus condition="Container.SortDirection(descending) + String.IsEqual(ListItem.SortLetter,A)">SetFocus(290001,25,absolute)</onfocus>
         </control>
     </include>
 
@@ -2111,7 +2157,7 @@
     </variable>
 
     <include name="Furniture_Header">
-        <include condition="!$EXP[UseNewJumpbar]">JumpbarHelper</include>
+        <include condition="!$EXP[UseDefaultJumpbar]">JumpbarHelper</include>
         <control type="image" description="clearlogo">
             <include>Animation.FadeIn</include>
             <include>Animation.FadeOut</include>

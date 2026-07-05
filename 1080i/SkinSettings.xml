@@ -2116,15 +2116,7 @@
                             <selected>Skin.HasSetting(hide.busydialog)</selected>
                             <onclick>Skin.ToggleSetting(hide.busydialog)</onclick>
                         </control>
-                        <control type="radiobutton" id="12003" description="Show borders">
-                            <width>1360</width>
-                            <visible>String.IsEqual(Window.Property(content),6)</visible>
-                            <include>DefSettingsButtonGradientSkinSettings</include>
-                            <label>31563</label>
-                            <selected>Skin.HasSetting(global.showborders)</selected>
-                            <onclick>Skin.ToggleSetting(global.showborders)</onclick>
-                        </control>
-                        <control type="radiobutton" id="12004">
+                        <control type="radiobutton" id="12003">
                             <width>1360</width>
                             <align>left</align>
                             <label>31090</label>
@@ -2133,16 +2125,23 @@
                             <selected>Skin.HasSetting(NewTime)</selected>
                             <onclick>Skin.ToggleSetting(NewTime)</onclick>
                         </control>
-                        <control type="radiobutton" id="12005">
+                        <control type="radiobutton" id="12004">
+                            <width>1360</width>
+                            <align>left</align>
+                            <label>31437</label>
+                            <visible>String.IsEqual(Window.Property(content),6)</visible>
+                            <include>DefSettingsButtonGradientSkinSettings</include>
+                            <selected>!$EXP[UseDefaultJumpbar]</selected>
+                            <onclick>Skin.ToggleSetting(DisableSkinInfoScrollbar)</onclick>
+                            <visible>System.AddonIsEnabled(script.skin.info.service)</visible>
+                        </control>
+                        <control type="radiobutton" id="12005" description="Show borders">
                             <width>1360</width>
                             <visible>String.IsEqual(Window.Property(content),6)</visible>
                             <include>DefSettingsButtonGradientSkinSettings</include>
-                            <label>31437</label>
-                            <selected>!$EXP[UseNewJumpbar]</selected>
-                            <onclick condition="!System.HasAddon(script.embuary.helper)">InstallAddon(script.embuary.helper)</onclick>
-                            <onclick condition="!System.AddonIsEnabled(script.embuary.helper)">EnableAddon(script.embuary.helper)</onclick>
-                            <onclick condition="!$EXP[UseNewJumpbar]">Skin.SetBool(use.new.jumpbar)</onclick>
-                            <onclick condition="$EXP[UseNewJumpbar]">Skin.Reset(use.new.jumpbar)</onclick>
+                            <label>31563</label>
+                            <selected>Skin.HasSetting(global.showborders)</selected>
+                            <onclick>Skin.ToggleSetting(global.showborders)</onclick>
                         </control>
                         <control type="radiobutton" id="12006">
                             <width>1360</width>
