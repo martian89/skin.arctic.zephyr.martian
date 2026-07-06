@@ -12,45 +12,48 @@
         <control type="group">
             <include>Animation.FadeIn.Slide</include>
             <include>Animation.FadeOut</include>
-            <right>64</right>
-            <bottom>64</bottom>
+            <right>SidePad</right>
+            <bottom>SidePad</bottom>
             <width>480</width>
-            <height>270</height>
+            <height>334</height>
+            <control type="image">
+                <description>background image</description>
+                <top>-8</top>
+                <bottom>-8</bottom>
+                <left>-8</left>
+                <right>-8</right>
+                <animation effect="fade" start="100" end="90" condition="true">Conditional</animation>
+                <texture border="16" diffuse="diffuse/wall-fanart.png" colordiffuse="$VAR[OSDPanel]">common/rounded-shadow8.png</texture>
+            </control>
             <control type="label" description="text">
-                <top>-64</top>
-                <left>0</left>
+                <left>20</left>
                 <right>20</right>
                 <height>64</height>
                 <aligny>center</aligny>
                 <font>Small</font>
                 <label>$ADDON[service.upnext 30008]...</label>
-                <textcolor>ffededed</textcolor>
-                <shadowcolor>bf000000</shadowcolor>
+                <textcolor>$VAR[OSDPanelWhite70]</textcolor>
             </control>
             <control type="image" description="fanart">
-                <width>100%</width>
-                <height>100%</height>
+                <top>64</top>
+                <bottom>64</bottom>
+                <left>0</left>
+                <right>0</right>
                 <fadetime>350</fadetime>
                 <aspectratio scalediffuse="false">scale</aspectratio>
-                <texture diffuse="diffuse/widgetfanart_new.png">$VAR[Image_UpNext]</texture>
-            </control>
-            <control type="image" description="blackline">
-                <width>100%</width>
-                <height>64</height>
-                <bottom>0</bottom>
-                <texture colordiffuse="df000000" border="4">diffuse/blackline_nextup.png</texture>
+                <texture>$VAR[Image_UpNext]</texture>
             </control>
             <control type="image" description="blackline">
                 <height>64</height>
                 <width>64</width>
-                <centertop>133</centertop>
+                <centertop>50%</centertop>
                 <centerleft>50%</centerleft>
                 <aspectratio scalediffuse="false">keep</aspectratio>
                 <texture colordiffuse="dfffffff">common/circle2.png</texture>
             </control>
             <control type="label">
                 <description>Remaining</description>
-                <centertop>132</centertop>
+                <centertop>50%</centertop>
                 <centerleft>50%</centerleft>
                 <width>885</width>
                 <font>SmallBold</font>
@@ -66,7 +69,7 @@
                 <aligny>center</aligny>
                 <font>Small</font>
                 <label>$INFO[Window.Property(season),S,]$INFO[Window.Property(episode),E, - ]$INFO[Window.Property(title)]</label>
-                <textcolor>PanelWhite100</textcolor>
+                <textcolor>$VAR[OSDPanelWhite70]</textcolor>
             </control>
             <control type="button" id="3012">
                 <description>Play</description>
@@ -94,7 +97,24 @@
                 <height>32</height>
                 <texture>indicator/playwhite.png</texture>
                 <aspectratio>keep</aspectratio>
-                <animation effect="fade" start="100" end="50" time="0" condition="!Control.HasFocus(3012)">Conditional</animation>
+                <visible>Control.HasFocus(3012)</visible>
+            </control>
+            <control type="image">
+                <description>Play</description>
+                <right>72</right>
+                <bottom>16</bottom>
+                <width>32</width>
+                <height>32</height>
+                <include content="def_texture" condition="Skin.HasSetting(osd.usetheme)">
+                    <param name="texture" value="indicator/playwhite.png" />
+                    <param name="colordiffuse" value="Dark2" />
+                </include>
+                <include content="def_texture" condition="!Skin.HasSetting(osd.usetheme)">
+                    <param name="texture" value="indicator/playwhite.png" />
+                    <param name="colordiffuse" value="PanelWhite70" />
+                </include>
+                <aspectratio>keep</aspectratio>
+                <visible>!Control.HasFocus(3012)</visible>
             </control>
             <control type="button" id="3013">
                 <description>Cancel</description>
@@ -122,7 +142,24 @@
                 <height>32</height>
                 <texture>buttons/close.png</texture>
                 <aspectratio>keep</aspectratio>
-                <animation effect="fade" start="100" end="50" time="0" condition="!Control.HasFocus(3013)">Conditional</animation>
+                <visible>Control.HasFocus(3013)</visible>
+            </control>
+            <control type="image">
+                <description>Play</description>
+                <right>16</right>
+                <bottom>16</bottom>
+                <width>32</width>
+                <height>32</height>
+                <include content="def_texture" condition="Skin.HasSetting(osd.usetheme)">
+                    <param name="texture" value="buttons/close.png" />
+                    <param name="colordiffuse" value="Dark2" />
+                </include>
+                <include content="def_texture" condition="!Skin.HasSetting(osd.usetheme)">
+                    <param name="texture" value="buttons/close.png" />
+                    <param name="colordiffuse" value="PanelWhite70" />
+                </include>
+                <aspectratio>keep</aspectratio>
+                <visible>!Control.HasFocus(3013)</visible>
             </control>
             <control type="image">
                 <texture colordiffuse="Box2" background="true" border="4" infill="false">common/box21.png</texture>
