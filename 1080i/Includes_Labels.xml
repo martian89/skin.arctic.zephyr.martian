@@ -22,6 +22,13 @@
         <value>$LOCALIZE[31105]</value>
     </variable>
 
+    <variable name="LabelPercentWatchedPVR">
+        <value condition="ListItem.IsPlaying + !Skin.HasSetting(hide.markers.isplaying)">&#62811;</value>
+        <value condition="$EXP[IsInProgress] + !Skin.HasSetting(hide.markers.inprogress)">$VAR[LabelInProgressPercentage]</value>
+        <value condition="$EXP[IsWatched] + !Skin.HasSetting(hide.markers.watched)">[COLOR=WatchedProgress]&#62078;[/COLOR]</value>
+        <value condition="$EXP[IsUnwatched] + Skin.HasSetting(markers.unwatched)">&#61833;</value>
+    </variable>
+
     <variable name="ProgressCircleLabel">
         <value condition="String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,episode)">$VAR[Percentagelabel]</value>
         <value condition="String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) + !String.IsEmpty(ListItem.Property(WatchedEpisodes))">$INFO[ListItem.Property(WatchedEpisodes)]/$INFO[ListItem.Property(TotalEpisodes)]</value>
