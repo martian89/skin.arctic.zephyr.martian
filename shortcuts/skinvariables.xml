@@ -99,31 +99,31 @@
     <expression name="IsNewMovie" containers="301,9500" start="-3" end="3">
         String.IsEqual({listitem}.DBTYPE,movie)
         + [
-            String.IsEqual(Window(Home).Property(LatestMovie.1.Title),{listitem}.Title)
-            | String.IsEqual(Window(Home).Property(LatestMovie.2.Title),{listitem}.Title)
-            | String.IsEqual(Window(Home).Property(LatestMovie.3.Title),{listitem}.Title)
-            | String.IsEqual(Window(Home).Property(LatestMovie.4.Title),{listitem}.Title)
-            | String.IsEqual(Window(Home).Property(LatestMovie.5.Title),{listitem}.Title)
-            | String.IsEqual(Window(Home).Property(LatestMovie.6.Title),{listitem}.Title)
-            | String.IsEqual(Window(Home).Property(LatestMovie.7.Title),{listitem}.Title)
-            | String.IsEqual(Window(Home).Property(LatestMovie.8.Title),{listitem}.Title)
-            | String.IsEqual(Window(Home).Property(LatestMovie.9.Title),{listitem}.Title)
-            | String.IsEqual(Window(Home).Property(LatestMovie.10.Title),{listitem}.Title)
+            String.IsEqual(Window(Home).Property(LatestMovie.1.Title),{listitem}.Title) + String.IsEqual(Window(Home).Property(LatestMovie.1.Year),{listitem}.Year)
+            | String.IsEqual(Window(Home).Property(LatestMovie.2.Title),{listitem}.Title) + String.IsEqual(Window(Home).Property(LatestMovie.2.Year),{listitem}.Year)
+            | String.IsEqual(Window(Home).Property(LatestMovie.3.Title),{listitem}.Title) + String.IsEqual(Window(Home).Property(LatestMovie.3.Year),{listitem}.Year)
+            | String.IsEqual(Window(Home).Property(LatestMovie.4.Title),{listitem}.Title) + String.IsEqual(Window(Home).Property(LatestMovie.4.Year),{listitem}.Year)
+            | String.IsEqual(Window(Home).Property(LatestMovie.5.Title),{listitem}.Title) + String.IsEqual(Window(Home).Property(LatestMovie.5.Year),{listitem}.Year)
+            | String.IsEqual(Window(Home).Property(LatestMovie.6.Title),{listitem}.Title) + String.IsEqual(Window(Home).Property(LatestMovie.6.Year),{listitem}.Year)
+            | String.IsEqual(Window(Home).Property(LatestMovie.7.Title),{listitem}.Title) + String.IsEqual(Window(Home).Property(LatestMovie.7.Year),{listitem}.Year)
+            | String.IsEqual(Window(Home).Property(LatestMovie.8.Title),{listitem}.Title) + String.IsEqual(Window(Home).Property(LatestMovie.8.Year),{listitem}.Year)
+            | String.IsEqual(Window(Home).Property(LatestMovie.9.Title),{listitem}.Title) + String.IsEqual(Window(Home).Property(LatestMovie.9.Year),{listitem}.Year)
+            | String.IsEqual(Window(Home).Property(LatestMovie.10.Title),{listitem}.Title) + String.IsEqual(Window(Home).Property(LatestMovie.10.Year),{listitem}.Year)
           ]
     </expression>
     <expression name="IsNewTVShow" containers="301,9500" start="-3" end="3">
         String.IsEqual({listitem}.DBTYPE,tvshow)
         + [
-            String.IsEqual(Window(Home).Property(LatestEpisode.1.ShowTitle),{listitem}.TvShowTitle)
-            | String.IsEqual(Window(Home).Property(LatestEpisode.2.ShowTitle),{listitem}.TvShowTitle)
-            | String.IsEqual(Window(Home).Property(LatestEpisode.3.ShowTitle),{listitem}.TvShowTitle)
-            | String.IsEqual(Window(Home).Property(LatestEpisode.4.ShowTitle),{listitem}.TvShowTitle)
-            | String.IsEqual(Window(Home).Property(LatestEpisode.5.ShowTitle),{listitem}.TvShowTitle)
-            | String.IsEqual(Window(Home).Property(LatestEpisode.6.ShowTitle),{listitem}.TvShowTitle)
-            | String.IsEqual(Window(Home).Property(LatestEpisode.7.ShowTitle),{listitem}.TvShowTitle)
-            | String.IsEqual(Window(Home).Property(LatestEpisode.8.ShowTitle),{listitem}.TvShowTitle)
-            | String.IsEqual(Window(Home).Property(LatestEpisode.9.ShowTitle),{listitem}.TvShowTitle)
-            | String.IsEqual(Window(Home).Property(LatestEpisode.10.ShowTitle),{listitem}.TvShowTitle)
+            String.IsEqual(Window(Home).Property(LatestEpisode.1.ShowTitle),{listitem}.Title)
+            | String.IsEqual(Window(Home).Property(LatestEpisode.2.ShowTitle),{listitem}.Title)
+            | String.IsEqual(Window(Home).Property(LatestEpisode.3.ShowTitle),{listitem}.Title)
+            | String.IsEqual(Window(Home).Property(LatestEpisode.4.ShowTitle),{listitem}.Title)
+            | String.IsEqual(Window(Home).Property(LatestEpisode.5.ShowTitle),{listitem}.Title)
+            | String.IsEqual(Window(Home).Property(LatestEpisode.6.ShowTitle),{listitem}.Title)
+            | String.IsEqual(Window(Home).Property(LatestEpisode.7.ShowTitle),{listitem}.Title)
+            | String.IsEqual(Window(Home).Property(LatestEpisode.8.ShowTitle),{listitem}.Title)
+            | String.IsEqual(Window(Home).Property(LatestEpisode.9.ShowTitle),{listitem}.Title)
+            | String.IsEqual(Window(Home).Property(LatestEpisode.10.ShowTitle),{listitem}.Title)
           ]
     </expression>
     <expression name="IsNewSeason" containers="301,9500" start="-3" end="3">
@@ -154,6 +154,21 @@
             | String.IsEqual(Window(Home).Property(LatestEpisode.8.ShowTitle),{listitem}.TvShowTitle) + String.IsEqual(Window(Home).Property(LatestEpisode.8.EpisodeSeason),{listitem}.Season) + String.IsEqual(Window(Home).Property(LatestEpisode.8.EpisodeTitle),{listitem}.Title)
             | String.IsEqual(Window(Home).Property(LatestEpisode.9.ShowTitle),{listitem}.TvShowTitle) + String.IsEqual(Window(Home).Property(LatestEpisode.9.EpisodeSeason),{listitem}.Season) + String.IsEqual(Window(Home).Property(LatestEpisode.9.EpisodeTitle),{listitem}.Title)
             | String.IsEqual(Window(Home).Property(LatestEpisode.10.ShowTitle),{listitem}.TvShowTitle) + String.IsEqual(Window(Home).Property(LatestEpisode.10.EpisodeSeason),{listitem}.Season) + String.IsEqual(Window(Home).Property(LatestEpisode.10.EpisodeTitle),{listitem}.Title)
+          ]
+    </expression>
+    <expression name="IsNewMusicVideo" containers="301,9500" start="-3" end="3">
+        String.IsEqual({listitem}.DBTYPE,musicvideo)
+        + [
+            String.IsEqual(Window(Home).Property(LatestMusicVideo.1.Title),{listitem}.Title) + String.IsEqual(Window(Home).Property(LatestMusicVideo.1.Year),{listitem}.Year) + String.IsEqual(Window(Home).Property(LatestMusicVideo.1.Artist),{listitem}.Artist)
+            | String.IsEqual(Window(Home).Property(LatestMusicVideo.2.Title),{listitem}.Title) + String.IsEqual(Window(Home).Property(LatestMusicVideo.2.Year),{listitem}.Year) + String.IsEqual(Window(Home).Property(LatestMusicVideo.2.Artist),{listitem}.Artist)
+            | String.IsEqual(Window(Home).Property(LatestMusicVideo.3.Title),{listitem}.Title) + String.IsEqual(Window(Home).Property(LatestMusicVideo.3.Year),{listitem}.Year) + String.IsEqual(Window(Home).Property(LatestMusicVideo.3.Artist),{listitem}.Artist)
+            | String.IsEqual(Window(Home).Property(LatestMusicVideo.4.Title),{listitem}.Title) + String.IsEqual(Window(Home).Property(LatestMusicVideo.4.Year),{listitem}.Year) + String.IsEqual(Window(Home).Property(LatestMusicVideo.4.Artist),{listitem}.Artist)
+            | String.IsEqual(Window(Home).Property(LatestMusicVideo.5.Title),{listitem}.Title) + String.IsEqual(Window(Home).Property(LatestMusicVideo.5.Year),{listitem}.Year) + String.IsEqual(Window(Home).Property(LatestMusicVideo.5.Artist),{listitem}.Artist)
+            | String.IsEqual(Window(Home).Property(LatestMusicVideo.6.Title),{listitem}.Title) + String.IsEqual(Window(Home).Property(LatestMusicVideo.6.Year),{listitem}.Year) + String.IsEqual(Window(Home).Property(LatestMusicVideo.6.Artist),{listitem}.Artist)
+            | String.IsEqual(Window(Home).Property(LatestMusicVideo.7.Title),{listitem}.Title) + String.IsEqual(Window(Home).Property(LatestMusicVideo.7.Year),{listitem}.Year) + String.IsEqual(Window(Home).Property(LatestMusicVideo.7.Artist),{listitem}.Artist)
+            | String.IsEqual(Window(Home).Property(LatestMusicVideo.8.Title),{listitem}.Title) + String.IsEqual(Window(Home).Property(LatestMusicVideo.8.Year),{listitem}.Year) + String.IsEqual(Window(Home).Property(LatestMusicVideo.8.Artist),{listitem}.Artist)
+            | String.IsEqual(Window(Home).Property(LatestMusicVideo.9.Title),{listitem}.Title) + String.IsEqual(Window(Home).Property(LatestMusicVideo.9.Year),{listitem}.Year) + String.IsEqual(Window(Home).Property(LatestMusicVideo.9.Artist),{listitem}.Artist)
+            | String.IsEqual(Window(Home).Property(LatestMusicVideo.10.Title),{listitem}.Title) + String.IsEqual(Window(Home).Property(LatestMusicVideo.10.Year),{listitem}.Year) + String.IsEqual(Window(Home).Property(LatestMusicVideo.10.Artist),{listitem}.Artist)
           ]
     </expression>
     
@@ -188,6 +203,6 @@
     </expression>
 
     <expression name="IsNewContent" containers="301,9500" start="-3" end="3">
-        !String.IsEmpty({listitem}.DBID) + $EXP[IsUnwatched{cid}{lid}] + [$EXP[IsNewMovie{cid}{lid}] | $EXP[IsNewTVShow{cid}{lid}] | $EXP[IsNewSeason{cid}{lid}] | $EXP[IsNewEpisode{cid}{lid}]]
+        !String.IsEmpty({listitem}.DBID) + $EXP[IsUnwatched{cid}{lid}] + [$EXP[IsNewMovie{cid}{lid}] | $EXP[IsNewTVShow{cid}{lid}] | $EXP[IsNewSeason{cid}{lid}] | $EXP[IsNewEpisode{cid}{lid}] | $EXP[IsNewMusicVideo{cid}{lid}]]
     </expression>
 </includes>
