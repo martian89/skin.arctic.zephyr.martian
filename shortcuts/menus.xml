@@ -188,13 +188,13 @@
 			<action>Reset()</action>
 			<visible>System.CanReboot</visible>
 		</item>
-		<item name="reboot to android" visible="System.Platform.Android">
+		<item name="reboot to android" visible="System.Platform.Linux">
 			<label2>Power Menu Shortcut</label2>
 			<label>31232</label>
-			<icon>special://skin/extras/icons/power.png</icon>
+			<icon>special://skin/extras/icons/android.png</icon>
 	        <action>System.ExecWait("/usr/sbin/rebootfromnand")</action>
-	        <action>Reset()</action>
-			<visible>System.Platform.Android</visible>
+	        <action>Reboot()</action>
+            <visible>System.PathExist("/dev/env")</visible>
 		</item>
 		<item name="settings">
 			<label>5</label>
@@ -1095,10 +1095,10 @@
 				<action>SystemLogOff</action>
                 <visible>[System.HasLoginScreen | Integer.IsGreater(System.ProfileCount,1)] + System.Loggedon</visible>
             </shortcut>
-            <shortcut name="reboot to android" label="31232" icon="special://skin/extras/icons/power.png" visible="System.Platform.Android">
+            <shortcut name="reboot to android" label="31232" icon="special://skin/extras/icons/android.png" visible="System.Platform.Linux">
 		        <action>System.ExecWait("/usr/sbin/rebootfromnand")</action>
-		        <action>Reset()</action>
-		        <visible>System.Platform.Android</visible>
+                <action>Reboot()</action>
+                <visible>System.PathExist("/dev/env")</visible>
             </shortcut>
             <shortcut name="mastermode" label="20045" icon="special://skin/extras/icons/artist.png">
                 <action>Mastermode</action>
