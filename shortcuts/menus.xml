@@ -50,14 +50,14 @@
 
 	<!-- Main menus -->
 	<menu name="mainmenu" container="300" submenuPath="all">
-		<item name="movies" submenu="movies" visible="Library.HasContent(Movies)">
+		<item name="movies" submenu="movies">
 			<label>20342</label>
 			<label2>$ADDON[script.skinshortcuts 32034]</label2>
 			<icon>special://skin/extras/icons/film.png</icon>
 			<action>ActivateWindow(videos,videodb://movies/titles/,return)</action>
 			<visible>Library.HasContent(Movies)</visible>
 		</item>
-		<item name="tvshows" submenu="tvshows" visible="Library.HasContent(TVShows)">
+		<item name="tvshows" submenu="tvshows">
 			<label>20343</label>
 			<label2>$ADDON[script.skinshortcuts 32034]</label2>
 			<icon>special://skin/extras/icons/tv.png</icon>
@@ -70,33 +70,19 @@
 			<icon>special://skin/extras/icons/songs.png</icon>
 			<action>ActivateWindow(Music,library://music/,return)</action>
 		</item>
-		<item name="livetv" submenu="livetv" visible="Pvr.HasTVChannels">
+		<item name="livetv" submenu="livetv">
 			<label>31103</label>
 			<label2>$ADDON[script.skinshortcuts 32034]</label2>
 			<icon>special://skin/extras/icons/livetv.png</icon>
 			<action>ActivateWindow(Tvchannels)</action>
 			<visible>Pvr.HasTVChannels</visible>
 		</item>
-        <item name="radio" submenu="radio" visible="Pvr.HasRadioChannels">
-            <label>19021</label>
-            <label2>$ADDON[script.skinshortcuts 32034]</label2>
-            <icon>special://skin/extras/icons/radio.png</icon>
-            <action>ActivateWindow(RadioChannels)</action>
-            <visible>Pvr.HasRadioChannels</visible>
-        </item>
-        <item name="videos" submenu="videos" visible="!Library.HasContent(Movies) + !Library.HasContent(TVShows)">
+        <item name="videos" submenu="videos">
             <label>3</label>
             <label2>$ADDON[script.skinshortcuts 32034]</label2>
             <icon>special://skin/extras/icons/video-addons.png</icon>
             <action>ActivateWindow(videos,library://video/,return)</action>
             <visible>!Library.HasContent(Movies) + !Library.HasContent(TVShows)</visible>
-        </item>
-        <item name="playdisc" submenu="playdisc" visible="System.HasMediaDVD | System.HasMediaAudioCD">
-            <label>341</label>
-            <label2>$ADDON[script.skinshortcuts 32034]</label2>
-            <icon>special://skin/extras/icons/cd.png</icon>
-            <action>PlayDisc</action>
-            <visible>System.HasMediaDVD | System.HasMediaAudioCD</visible>
         </item>
 		<item name="settings" submenu="settings">
 			<label>10004</label>
