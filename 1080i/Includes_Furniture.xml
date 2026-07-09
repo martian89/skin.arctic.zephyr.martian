@@ -319,7 +319,7 @@
                     <label>$INFO[ListItem.Label]</label>
                     <font>Tiny</font>
                     <textcolor>Dark2</textcolor>
-                    <animation effect="fade" start="100" end="33" time="0" condition="String.IsEmpty(ListItem.Property(IsAvailable))">Conditional</animation>
+                    <animation effect="fade" start="100" end="33" time="0" condition="!String.IsEmpty(ListItem.Property(IsNotAvailable))">Conditional</animation>
                 </control>
             </itemlayout>
             <focusedlayout height="39" width="42">
@@ -335,7 +335,7 @@
                     <textcolor>$VAR[ColorHighlight]</textcolor>
                 </control>
             </focusedlayout>
-            <content>plugin://script.skin.info.service/?action=letter_jump&amp;target=$VAR[View_Current_ViewID]&amp;reload=$INFO[Container($VAR[View_Current_ViewID]).SortOrder]&amp;reload=$INFO[Container($VAR[View_Current_ViewID]).NumItems]</content>
+            <content>plugin://script.skin.info.service/?action=letter_jump&amp;target=$VAR[View_Current_ViewID]&amp;available=true&amp;reload=$INFO[Container($VAR[View_Current_ViewID]).NumItems]$INFO[Container($VAR[View_Current_ViewID]).SortMethod]$INFO[Container($VAR[View_Current_ViewID]).SortOrder]$INFO[Container($VAR[View_Current_ViewID]).FolderPath]</content>
         </control>
     </include>
     
