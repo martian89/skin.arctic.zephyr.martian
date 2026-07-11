@@ -13,7 +13,7 @@ Kodi File Manager Source:
 https://martian89.github.io/repository.martian/
 
 Direct ZIP Install:
-https://martian89.github.io/repository.martian/repository.martian-1.0.0.zip
+https://martian89.github.io/repository.martian/repository.martian-1.1.0.zip
 
 Instructions:
 
@@ -21,6 +21,24 @@ Instructions:
 2. Install the repository using either the zip or file manager source linked above
 3. Install the latest version of Arctic: Zephyr (martian) from this repository
 
+
+## Media flags
+
+Media can be flagged with following media source flags in Arctic: Zephyr (martian):
+
+* **Bluray**, if the filename contains BLURAY, BDRIP or BLU-RAY.
+* **HDDVD**, if the filename contains HDDVD.
+* **DVD**, if the filename contains DVD.
+* **SDTV**, if the filename contains PDTV, SDTV or SD-TV.
+* **HDTV**, if the filename contains HDTV, HD-TV, or DSR.
+* **Web**, if the filename contains .WEB., WEB-DL, WEBDL or WEBRIP.
+
+On Kodi versions prior to Kodi 22 Piers HDR10+, Atmos and DTS:X could not be detected during scraping. To flag your media correctly on older versions of Kodi you can use the following flags:
+
+* **HDR10+**, if the filename contains HDR10PLUS.
+* **Atmos**, if the filename contains ATMOS. 
+* **DTS:X**, if the filename contains DTSX oder DTS-X.
+ 
 ## License 
 
 This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License.
