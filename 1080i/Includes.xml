@@ -93,7 +93,7 @@
     <expression name="ExtendedNowPlayingHelperAutoShow">!$EXP[TrailerIsReady] + !$EXP[TrailerIsPlaying] + !$EXP[TrailerWaitingForPlayer] + !$EXP[TrailerWindowIsActive] + [System.IdleTime(5) + !String.IsEmpty(Window(home).Property(nowplayingautoshowtimer)) + Skin.HasSetting(extended.nowplaying) + Window.IsVisible(Home) + [Player.HasMedia | Player.Playing] + Skin.HasSetting(home.nowplaying.info.auto.show) + !$EXP[InfoDialogsActive] + !Window.IsVisible(DialogContextMenu.xml) + !Window.IsVisible(DialogBusy.xml)]</expression>
     <expression name="ExtendedNowPlayingHelperAutoClose">!$EXP[TrailerIsReady] + !$EXP[TrailerIsPlaying] + !$EXP[TrailerWaitingForPlayer] + !$EXP[TrailerWindowIsActive] + [[!String.IsEmpty(Window(home).Property(controlsvisible)) | Control.HasFocus(25) | Control.HasFocus(778)] + Skin.HasSetting(extended.nowplaying) + Window.IsVisible(Home) + !Player.HasMedia + !Player.Playing + !Skin.HasSetting(hide.home.nowplaying.controls)]</expression>
     <expression name="TitleClearlogoAvailable">[!String.IsEmpty(ListItem.Art(clearlogo)) | !String.IsEmpty(ListItem.Art(artist.clearlogo)) | !String.IsEmpty(ListItem.Art(tvshow.clearlogo))]</expression>
-    <expression name="UseNewJumpbar">!System.AddonIsEnabled(script.embuary.helper) | Skin.HasSetting(use.new.jumpbar)</expression>
+    <expression name="UseDefaultJumpbar">!System.AddonIsEnabled(script.skin.info.service) | Skin.HasSetting(DisableSkinInfoScrollbar)</expression>
 	<expression name="IsVideoInfo">Window.IsVisible(DialogVideoInfo.xml) + ![String.IsEqual(ListItem.Property(item.type),person) | String.IsEqual(ListItem.Property(dbtype),person) | String.IsEqual(ListItem.Property(Param.Info),person)]</expression>
 	<expression name="IsPersonInfo">Window.IsVisible(DialogVideoInfo.xml) + [String.IsEqual(ListItem.Property(item.type),person) | String.IsEqual(ListItem.Property(dbtype),person) | String.IsEqual(ListItem.Property(Param.Info),person)]</expression>
 
@@ -367,6 +367,7 @@
     <expression name="IsBackgroundImageOrange">String.IsEmpty(Skin.String(fanart.fallback)) + String.IsEqual(Skin.String(Background.Image),special://skin/extras/backgrounds/blur/orange_blur.jpg)</expression>
     <expression name="IsBackgroundImageSlate">String.IsEmpty(Skin.String(fanart.fallback)) + String.IsEqual(Skin.String(Background.Image),special://skin/extras/backgrounds/blur/slate_blur.jpg)</expression>
     <expression name="IsBackgroundImageCoal">String.IsEmpty(Skin.String(fanart.fallback)) + String.IsEqual(Skin.String(Background.Image),special://skin/extras/backgrounds/blur/coal_blur.jpg)</expression>
+    <expression name="IsBackgroundImageOnyx">String.IsEmpty(Skin.String(fanart.fallback)) + String.IsEqual(Skin.String(Background.Image),special://skin/extras/backgrounds/blur/onyx_blur.jpg)</expression>
     <expression name="IsBackgroundImageCustom">!String.IsEmpty(Skin.String(fanart.fallback))</expression>
    
     <variable name="BackgroundImageDefaultSelected"><value condition="$EXP[IsBackgroundImageDefault]">selected</value></variable> 
@@ -377,6 +378,7 @@
     <variable name="BackgroundImageOrangeSelected"><value condition="$EXP[IsBackgroundImageOrange]">selected</value></variable> 
     <variable name="BackgroundImageSlateSelected"><value condition="$EXP[IsBackgroundImageSlate]">selected</value></variable> 
     <variable name="BackgroundImageCoalSelected"><value condition="$EXP[IsBackgroundImageCoal]">selected</value></variable> 
+    <variable name="BackgroundImageOnyxSelected"><value condition="$EXP[IsBackgroundImageOnyx]">selected</value></variable> 
     <variable name="BackgroundImageCustomSelected"><value condition="$EXP[IsBackgroundImageCustom]">selected</value></variable> 
     
     <expression name="IMDBNumberIsIMDbId">
@@ -393,7 +395,8 @@
 		<value>flags/monochrome</value>
 	</variable>
     
-    <expression name="SortLetterIsNumber">[String.IsEqual(ListItem.SortLetter,$NUMBER[0]) | String.IsEqual(ListItem.SortLetter,$NUMBER[1]) | String.IsEqual(ListItem.SortLetter,$NUMBER[2]) | String.IsEqual(ListItem.SortLetter,$NUMBER[3]) | String.IsEqual(ListItem.SortLetter,$NUMBER[4]) | String.IsEqual(ListItem.SortLetter,$NUMBER[5]) | String.IsEqual(ListItem.SortLetter,$NUMBER[6]) | String.IsEqual(ListItem.SortLetter,$NUMBER[7]) | String.IsEqual(ListItem.SortLetter,$NUMBER[8]) | String.IsEqual(ListItem.SortLetter,$NUMBER[9])]</expression>
+    <expression name="SortLetterIsNumber">[String.IsEqual(ListItem.SortLetter,$NUMBER[0]) | String.IsEqual(ListItem.SortLetter,$NUMBER[1]) | String.IsEqual(ListItem.SortLetter,$NUMBER[2]) | String.IsEqual(ListItem.SortLetter,$NUMBER[3]) | String.IsEqual(ListItem.SortLetter,$NUMBER[4]) | String.IsEqual(ListItem.SortLetter,$NUMBER[5]) | String.IsEqual(ListItem.SortLetter,$NUMBER[6]) | String.IsEqual(ListItem.SortLetter,$NUMBER[7]) | String.IsEqual(ListItem.SortLetter,$NUMBER[8]) | String.IsEqual(ListItem.SortLetter,$NUMBER[9])]</expression>    
+    <expression name="SortLetterIsLetter">[String.IsEqual(ListItem.SortLetter,A) | String.IsEqual(ListItem.SortLetter,B) | String.IsEqual(ListItem.SortLetter,C) | String.IsEqual(ListItem.SortLetter,D) | String.IsEqual(ListItem.SortLetter,E) | String.IsEqual(ListItem.SortLetter,F) | String.IsEqual(ListItem.SortLetter,G) | String.IsEqual(ListItem.SortLetter,H) | String.IsEqual(ListItem.SortLetter,I) | String.IsEqual(ListItem.SortLetter,J) | String.IsEqual(ListItem.SortLetter,K) | String.IsEqual(ListItem.SortLetter,L) | String.IsEqual(ListItem.SortLetter,M) | String.IsEqual(ListItem.SortLetter,N) | String.IsEqual(ListItem.SortLetter,O) | String.IsEqual(ListItem.SortLetter,P) | String.IsEqual(ListItem.SortLetter,Q) | String.IsEqual(ListItem.SortLetter,R) | String.IsEqual(ListItem.SortLetter,S) | String.IsEqual(ListItem.SortLetter,T) | String.IsEqual(ListItem.SortLetter,U) | String.IsEqual(ListItem.SortLetter,V) | String.IsEqual(ListItem.SortLetter,W) | String.IsEqual(ListItem.SortLetter,X) | String.IsEqual(ListItem.SortLetter,Y) | String.IsEqual(ListItem.SortLetter,Z)]</expression>
 
     <include name="ScrolltimeDetailsList">
         <scrolltime tween="quadratic">300</scrolltime>
@@ -1076,16 +1079,16 @@
     </include>
 
     <include name="buttondimensionsnumpad">
-    	<param name="height" default="90" />
-    	<param name="radioposy" default="29" />
-		<definition>
-	        <width>96</width>
-	        <height>$PARAM[height]</height>
-	        <radioposx>22</radioposx>
-	        <radioposy>$PARAM[radioposy]</radioposy>
-	        <radiowidth>48</radiowidth>
-	        <radioheight>34</radioheight>
-		</definition>
+        <param name="height" default="86" />
+        <param name="radioposy" default="27" />
+        <definition>
+            <width>92</width>
+            <height>$PARAM[height]</height>
+            <radioposx>21</radioposx>
+            <radioposy>$PARAM[radioposy]</radioposy>
+            <radiowidth>48</radiowidth>
+            <radioheight>34</radioheight>
+        </definition>
     </include>
 
     <include name="buttondimensionsblur">
@@ -1767,7 +1770,7 @@
     </include>
 
     <variable name="PlayListStatsPath">
-        <value condition="System.AddonIsEnabled(script.skin.info.service) + String.StartsWith(Container(300).ListItem.Property(action),ActivateWindow) + String.Contains(Container(300).ListItem.Property(action),Videos) + String.Contains(Container(300).ListItem.Property(path),playlists) + String.Contains(Container(300).ListItem.Property(path),.xsp)">plugin://script.skin.info.service/?action=path_stats&amp;path=$INFO[Container(300).ListItem.Property(path)]&amp;reload=$INFO[Window(Home).Property(SkinInfo.Library.Refreshed)]</value>
+        <value condition="System.AddonIsEnabled(script.skin.info.service) + String.StartsWith(Container(300).ListItem.Property(action),ActivateWindow) + String.Contains(Container(300).ListItem.Property(action),Videos) + String.StartsWith(Container(300).ListItem.Property(path),special://) + String.EndsWith(Container(300).ListItem.Property(path),.xsp)">plugin://script.skin.info.service/?action=path_stats&amp;path=$INFO[Container(300).ListItem.Property(path)]&amp;reload=$INFO[Window(Home).Property(SkinInfo.Library.Refreshed)]</value>
     </variable>
 
     <variable name="PlaylistsCountItemPath">
@@ -1971,6 +1974,5 @@
 
     <expression name="Skinshortcuts_Mainmenu_Active">String.IsEqual(Window.Property(menuname),mainmenu) + String.IsEmpty(Window.Property(skinshortcuts-dialog))</expression>
     <expression name="Skinshortcuts_Widgets_Active">String.EndsWith(Window.Property(menuname),.widgets) | String.IsEqual(Window.Property(skinshortcuts-dialog),widget)</expression>
-
 
 </includes>

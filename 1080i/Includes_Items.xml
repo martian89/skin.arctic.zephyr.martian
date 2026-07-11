@@ -380,6 +380,14 @@
             <property name="ItemSelected">$VAR[BackgroundImageCoalSelected]</property>
         </item>
         <item>
+            <label>$LOCALIZE[31902]</label>
+            <onclick>Skin.SetString(Background.Image,special://skin/extras/backgrounds/blur/onyx_blur.jpg)</onclick>
+            <onclick>Skin.Reset(fanart.fallback)</onclick>
+            <onclick condition="Skin.HasSetting(TMDbHelper.EnableBlur)">RunScript(plugin.video.themoviedb.helper,blur_image='"$VAR[Image_SimpleBackground]"')</onclick>
+            <onclick>Close</onclick>
+            <property name="ItemSelected">$VAR[BackgroundImageOnyxSelected]</property>
+        </item>
+        <item>
             <label>$LOCALIZE[636]</label>
             <onclick>Skin.SetImage(fanart.fallback)</onclick>
             <onclick condition="Skin.HasSetting(TMDbHelper.EnableBlur)">RunScript(plugin.video.themoviedb.helper,blur_image='"$VAR[Image_SimpleBackground]"')</onclick>
@@ -1076,7 +1084,7 @@
             <visible>!System.HasAddon(service.libreelec.settings) + !System.HasAddon(service.coreelec.settings)</visible>
         </item>
         <item id="11">
-            <label>LibreELEC $LOCALIZE[5]</label>
+            <label>LibreELEC</label>
             <label2>31373</label2>
             <icon>special://skin/extras/icons/libreelec.png</icon>
             <property name="Fanart">$VAR[Image_Systeminfo]</property>
@@ -1084,7 +1092,7 @@
             <visible>System.HasAddon(service.libreelec.settings)</visible>
         </item>
         <item id="12">
-            <label>CoreELEC $LOCALIZE[5]</label>
+            <label>CoreELEC</label>
             <label2>31374</label2>
             <icon>special://skin/extras/icons/coreelec.png</icon>
             <property name="Fanart">$VAR[Image_Systeminfo]</property>

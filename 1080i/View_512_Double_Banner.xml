@@ -77,7 +77,6 @@
         <description>List View (id=512)</description>
         <control type="group">
             <include>Animation.Common</include>
-            <include>ViewSlideForJumpBar</include>
             <visible>Control.IsVisible(512)</visible>
             <control type="group">
                 <width>1920</width>
@@ -178,13 +177,12 @@
             </control>
             <include condition="Skin.HasSetting(ListView511)">ListView512</include>
             <include condition="!Skin.HasSetting(ListView511)">DoubleBannerView512</include>
-            <control type="scrollbar" id="1692">
-                <include content="scrollbar_vertical">
-                    <param name="scrollid" value="1692"/>
-                    <param name="posy" value="315"/>
-                    <param name="height" value="534"/>
-                </include>
-            </control>
+            <include content="Furniture_Scrollbar">
+                <param name="id" value="1692" />
+                <param name="jumpbar" value="true" />
+                <param name="top" value="315" />
+                <param name="height" value="534"/>
+            </include>
         </control>
     </include>
 </includes>

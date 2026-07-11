@@ -236,8 +236,8 @@
 
 				<nested />
 
-				<include content="scrollbar_dialog">
-					<param name="scrollid" value="1600" />
+				<include content="Furniture_Scrollbar_Dialog">
+					<param name="id" value="1600" />
 					<param name="onleft" value="$PARAM[controlid]" />
 					<param name="onright" value="5" />
 					<param name="visible" value="true" />
@@ -291,7 +291,6 @@
         <param name="header_id"/>
         <param name="header_label"/>
         <param name="control_id" default="3" />
-        <param name="scrollid" default="1600" />
         <definition>
 	        <include content="DefDialog">
                 <param name="header_label" value="$PARAM[header_label]"/>
@@ -317,8 +316,8 @@
 	                <texture background="true">$PARAM[image]</texture>
 	            </control>
 
-	            <include content="scrollbar_dialog">
-	                <param name="scrollid" value="$PARAM[scrollid]"/>
+	            <include content="Furniture_Scrollbar_Dialog">
+	                <param name="id" value="1600"/>
 	                <param name="onleft" value="$PARAM[control_id]"/>
 	                <param name="onright" value="$PARAM[control_id]"/>
 	                <param name="height" value="550"/>
@@ -1341,6 +1340,10 @@
 
     <include name="def_autoscroll">
         <autoscroll time="$PARAM[time]" delay="1000">$PARAM[condition]</autoscroll>
+    </include>
+
+    <include name="def_texture">
+        <texture colordiffuse="$PARAM[colordiffuse]">$PARAM[texture]</texture>
     </include>
 
     <include name="DefListControl">
@@ -2713,56 +2716,40 @@
 
     <include name="Def_VideoManager_Buttons">
         <control type="button" id="21">
-            <width>300</width>
-            <align>center</align>
-            <texturefocus colordiffuse="$VAR[ColorHighlight]" border="5">common/box.png</texturefocus>
+            <include>DefDialogButtons</include>
             <label>$LOCALIZE[208]</label>
             <visible>!Window.IsVisible(1190)</visible>
         </control>
         <control type="button" id="22">
-            <width>300</width>
-            <align>center</align>
-            <texturefocus colordiffuse="$VAR[ColorHighlight]" border="5">common/box.png</texturefocus>
+            <include>DefDialogButtons</include>
             <label>$LOCALIZE[40014]</label>
             <visible>Window.IsVisible(managevideoversions)</visible>
         </control>
         <control type="button" id="23">
-            <width>300</width>
-            <align>center</align>
-            <texturefocus colordiffuse="$VAR[ColorHighlight]" border="5">common/box.png</texturefocus>
+            <include>DefDialogButtons</include>
             <label>$LOCALIZE[40015]</label>
             <visible>Window.IsVisible(managevideoextras)</visible>
         </control>
         <control type="button" id="27">
-            <width>300</width>
-            <align>center</align>
-            <texturefocus colordiffuse="$VAR[ColorHighlight]" border="5">common/box.png</texturefocus>
+            <include>DefDialogButtons</include>
             <label>$LOCALIZE[13511]</label>
         </control>
         <control type="button" id="24">
-            <width>300</width>
-            <align>center</align>
-            <texturefocus colordiffuse="$VAR[ColorHighlight]" border="5">common/box.png</texturefocus>
+            <include>DefDialogButtons</include>
             <label>$LOCALIZE[40004]</label>
             <visible>Window.IsVisible(managevideoversions)</visible>
         </control>
         <control type="button" id="28">
-            <width>300</width>
-            <align>center</align>
-            <texturefocus colordiffuse="$VAR[ColorHighlight]" border="5">common/box.png</texturefocus>
+            <include>DefDialogButtons</include>
             <label>$LOCALIZE[118]</label>
             <visible>Window.IsVisible(managevideoextras)</visible>
         </control>
         <control type="button" id="26">
-            <width>300</width>
-            <align>center</align>
-            <texturefocus colordiffuse="$VAR[ColorHighlight]" border="5">common/box.png</texturefocus>
+            <include>DefDialogButtons</include>
             <label>$LOCALIZE[15015]</label>
         </control>
         <control type="button" id="25">
-            <width>300</width>
-            <align>center</align>
-            <texturefocus colordiffuse="$VAR[ColorHighlight]" border="5">common/box.png</texturefocus>
+            <include>DefDialogButtons</include>
             <label>$LOCALIZE[40023]</label>
             <visible>Window.IsVisible(managevideoversions)</visible>
         </control>      
