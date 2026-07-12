@@ -537,7 +537,6 @@
                     <control type="group">
                         <visible>$EXP[IsVideoInfo]</visible>
                         <control type="group">
-                            <visible>![String.IsEmpty(ListItem.DBID) + ![String.IsEqual(ListItem.DBType,set) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)]]</visible>
                             <include>Furniture_Flags_DialogInfo</include>
                         </control>
                         <control type="group">
@@ -732,11 +731,11 @@
                                 </control>
                             </control>
                             <control type="textbox">
-                                <include content="def_top" condition="String.IsEmpty(ListItem.DBID) + ![String.IsEqual(ListItem.DBType,set) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)]">
+                                <include content="def_top" condition="Skin.HasSetting(furniture.flags)">
                                     <param name="top" value="102" />
                                 </include>
                                 <top>176</top>
-                                <include content="def_height" condition="String.IsEmpty(ListItem.DBID) + ![String.IsEqual(ListItem.DBType,set) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)]">
+                                <include content="def_height" condition="Skin.HasSetting(furniture.flags)">
                                     <param name="height" value="221" />
                                 </include>
                                 <height>148</height>
