@@ -101,7 +101,7 @@
 
     <include name="Furniture_Jumpbar">
         <control type="group">
-            <visible>[[String.IsEqual(Container.SortMethod,$LOCALIZE[551]) | String.IsEqual(Container.SortMethod,$LOCALIZE[556]) | String.IsEqual(Container.SortMethod,$LOCALIZE[561]) | String.IsEqual(Container.SortMethod,$LOCALIZE[558]) | String.IsEqual(Container.SortMethod,$LOCALIZE[557])] + Integer.IsGreater(Container.NumPages,4) + $EXP[UseDefaultJumpbar]] | !$EXP[UseDefaultJumpbar]</visible>
+            <visible>[String.IsEqual(Container.SortMethod,$LOCALIZE[551]) | String.IsEqual(Container.SortMethod,$LOCALIZE[556]) | String.IsEqual(Container.SortMethod,$LOCALIZE[561]) | String.IsEqual(Container.SortMethod,$LOCALIZE[558]) | String.IsEqual(Container.SortMethod,$LOCALIZE[557])] + Integer.IsGreater(Container.NumPages,1)</visible>
             <animation effect="slide" start="0,0" end="10,0" time="0" condition="Control.IsVisible(53) | Control.IsVisible(521) | Control.IsVisible(522) | Control.IsVisible(523) | Control.IsVisible(524)">Conditional</animation>
             <animation effect="slide" start="0,0" end="-84,0" time="400" tween="quadratic" easing="out" condition="Control.HasFocus(290001)" reversible="false">Conditional</animation>
             <animation effect="slide" start="-84,0" end="0,0" time="400" tween="quadratic" easing="in" condition="!Control.HasFocus(290001)" reversible="false">Conditional</animation>
@@ -113,6 +113,7 @@
             <width>SidePad</width>
             <include condition="$EXP[UseDefaultJumpbar]">Jumpbar_Include</include>
             <include condition="!$EXP[UseDefaultJumpbar]">Jumpbar_SkinInfoService_Include</include>
+            <include condition="!$EXP[UseDefaultJumpbar]">Jumpbar_Helper</include>
         </control>
     </include>
 
@@ -165,7 +166,7 @@
 
     <include name="Jumpbar_Include">
         <control type="grouplist">
-            <visible>Container.SortDirection(ascending)</visible>
+            <visible>!Container.SortDirection(descending)</visible>
             <width>42</width>
             <top>14</top>
             <bottom>9</bottom>
@@ -244,21 +245,21 @@
             <onclick>SetFocus($VAR[View_Current_ViewID])</onclick>
             <ondown>SetFocus($VAR[View_Current_ViewID])</ondown>
             <ondown>Action(nextletter)</ondown>
-            <ondown condition="Integer.IsEqual(Container.CurrentPage, Container.NumPages) | Container.SortDirection(ascending) + String.IsEqual(ListItem.SortLetter,Z) | Container.SortDirection(descending) + $EXP[SortLetterIsNumber]">Action(firstpage)</ondown>
-            <ondown condition="Container.SortDirection(ascending) + [Integer.IsEqual(Container.CurrentPage, Container.NumPages) | String.IsEqual(ListItem.SortLetter,Z)]">Action(jumpsms2)</ondown>
+            <ondown condition="Integer.IsEqual(Container.CurrentPage, Container.NumPages) | !Container.SortDirection(descending) + String.IsEqual(ListItem.SortLetter,Z) | Container.SortDirection(descending) + $EXP[SortLetterIsNumber]">Action(firstpage)</ondown>
+            <ondown condition="!Container.SortDirection(descending) + [Integer.IsEqual(Container.CurrentPage, Container.NumPages) | String.IsEqual(ListItem.SortLetter,Z)]">Action(jumpsms2)</ondown>
             <ondown condition="Container.SortDirection(desscending) + [Integer.IsEqual(Container.CurrentPage, Container.NumPages) | $EXP[SortLetterIsNumber]]">Action(jumpsms9)</ondown>
-            <ondown condition="Integer.IsEqual(Container.CurrentPage, Container.NumPages) | Container.SortDirection(ascending) + String.IsEqual(ListItem.SortLetter,Z) | Container.SortDirection(descending) + $EXP[SortLetterIsNumber]">Action(prevletter)</ondown>
-            <ondown condition="Integer.IsEqual(Container.CurrentPage, Container.NumPages) | Container.SortDirection(ascending) + String.IsEqual(ListItem.SortLetter,Z) | Container.SortDirection(descending) + $EXP[SortLetterIsNumber]">Action(prevletter)</ondown>
-            <ondown condition="Integer.IsEqual(Container.CurrentPage, Container.NumPages) | Container.SortDirection(ascending) + String.IsEqual(ListItem.SortLetter,Z) | Container.SortDirection(descending) + $EXP[SortLetterIsNumber]">Action(prevletter)</ondown>
+            <ondown condition="Integer.IsEqual(Container.CurrentPage, Container.NumPages) | !Container.SortDirection(descending) + String.IsEqual(ListItem.SortLetter,Z) | Container.SortDirection(descending) + $EXP[SortLetterIsNumber]">Action(prevletter)</ondown>
+            <ondown condition="Integer.IsEqual(Container.CurrentPage, Container.NumPages) | !Container.SortDirection(descending) + String.IsEqual(ListItem.SortLetter,Z) | Container.SortDirection(descending) + $EXP[SortLetterIsNumber]">Action(prevletter)</ondown>
+            <ondown condition="Integer.IsEqual(Container.CurrentPage, Container.NumPages) | !Container.SortDirection(descending) + String.IsEqual(ListItem.SortLetter,Z) | Container.SortDirection(descending) + $EXP[SortLetterIsNumber]">Action(prevletter)</ondown>
             <ondown>SetFocus(290001)</ondown>
             <onup>SetFocus($VAR[View_Current_ViewID])</onup>
             <onup>Action(prevletter)</onup>
-            <onup condition="Integer.IsEqual(Container.CurrentPage,1) | Container.SortDirection(ascending) + $EXP[SortLetterIsNumber] | Container.SortDirection(ascending) + String.IsEqual(ListItem.SortLetter,A)">Action(lastpage)</onup>
-            <onup condition="Container.SortDirection(ascending) + [Integer.IsEqual(Container.CurrentPage,1) | $EXP[SortLetterIsNumber]]">Action(jumpsms9)</onup>
+            <onup condition="Integer.IsEqual(Container.CurrentPage,1) | !Container.SortDirection(descending) + $EXP[SortLetterIsNumber] | !Container.SortDirection(descending) + String.IsEqual(ListItem.SortLetter,A)">Action(lastpage)</onup>
+            <onup condition="!Container.SortDirection(descending) + [Integer.IsEqual(Container.CurrentPage,1) | $EXP[SortLetterIsNumber]]">Action(jumpsms9)</onup>
             <onup condition="Container.SortDirection(descending) + [Integer.IsEqual(Container.CurrentPage,1) | String.IsEqual(ListItem.SortLetter,Z)]">Action(jumpsms2)</onup>
-            <onup condition="Integer.IsEqual(Container.CurrentPage,1) | Container.SortDirection(ascending) + $EXP[SortLetterIsNumber] | Container.SortDirection(ascending) + String.IsEqual(ListItem.SortLetter,A)">Action(nextletter)</onup>
-            <onup condition="Integer.IsEqual(Container.CurrentPage,1) | Container.SortDirection(ascending) + $EXP[SortLetterIsNumber] | Container.SortDirection(ascending) + String.IsEqual(ListItem.SortLetter,A)">Action(nextletter)</onup>
-            <onup condition="Integer.IsEqual(Container.CurrentPage,1) | Container.SortDirection(ascending) + $EXP[SortLetterIsNumber] | Container.SortDirection(ascending) + String.IsEqual(ListItem.SortLetter,A)">Action(nextletter)</onup>
+            <onup condition="Integer.IsEqual(Container.CurrentPage,1) | !Container.SortDirection(descending) + $EXP[SortLetterIsNumber] | !Container.SortDirection(descending) + String.IsEqual(ListItem.SortLetter,A)">Action(nextletter)</onup>
+            <onup condition="Integer.IsEqual(Container.CurrentPage,1) | !Container.SortDirection(descending) + $EXP[SortLetterIsNumber] | !Container.SortDirection(descending) + String.IsEqual(ListItem.SortLetter,A)">Action(nextletter)</onup>
+            <onup condition="Integer.IsEqual(Container.CurrentPage,1) | !Container.SortDirection(descending) + $EXP[SortLetterIsNumber] | !Container.SortDirection(descending) + String.IsEqual(ListItem.SortLetter,A)">Action(nextletter)</onup>
             <onup>SetFocus(290001)</onup>
         </control>
     </include>
@@ -303,10 +304,11 @@
             <top>14</top>
             <bottom>9</bottom>
             <centerleft>50%</centerleft>
-            <onright>50</onright>
             <scrolltime>100</scrolltime>
             <focusposition>0</focusposition>
             <onleft>50</onleft>
+            <onright>50</onright>
+            <onback>50</onback>
             <animation effect="fade" start="0" end="100" time="400" delay="300" condition="!Container(290001).IsUpdating" reversible="false">Conditional</animation>
             <animation effect="fade" start="100" end="0" time="0" condition="Container(290001).IsUpdating" reversible="false">Conditional</animation>
             <itemlayout height="39" width="42">
@@ -339,37 +341,38 @@
         </control>
     </include>
     
-    <include name="JumpbarHelper">
+    <include name="Jumpbar_Helper">
         <control type="button" id="390000">
             <include>HiddenButton</include>
+            <onright>50</onright>
             <onfocus condition="!Integer.IsGreater(Container(290001).NumItems,0) + !Container(290001).IsUpdating">SetFocus(50)</onfocus>
             <onfocus condition="!$EXP[SortLetterIsLetter] + [Integer.IsGreater(Container(290001).NumItems,0) | Container(290001).IsUpdating]">SetFocus(290001,26,absolute)</onfocus>
-            <onfocus condition="Container.SortDirection(ascending) + String.IsEqual(ListItem.SortLetter,A)">SetFocus(290001,0,absolute)</onfocus>
-            <onfocus condition="Container.SortDirection(ascending) + String.IsEqual(ListItem.SortLetter,B)">SetFocus(290001,1,absolute)</onfocus>
-            <onfocus condition="Container.SortDirection(ascending) + String.IsEqual(ListItem.SortLetter,C)">SetFocus(290001,2,absolute)</onfocus>
-            <onfocus condition="Container.SortDirection(ascending) + String.IsEqual(ListItem.SortLetter,D)">SetFocus(290001,3,absolute)</onfocus>
-            <onfocus condition="Container.SortDirection(ascending) + String.IsEqual(ListItem.SortLetter,E)">SetFocus(290001,4,absolute)</onfocus>
-            <onfocus condition="Container.SortDirection(ascending) + String.IsEqual(ListItem.SortLetter,F)">SetFocus(290001,5,absolute)</onfocus>
-            <onfocus condition="Container.SortDirection(ascending) + String.IsEqual(ListItem.SortLetter,G)">SetFocus(290001,6,absolute)</onfocus>
-            <onfocus condition="Container.SortDirection(ascending) + String.IsEqual(ListItem.SortLetter,H)">SetFocus(290001,7,absolute)</onfocus>
-            <onfocus condition="Container.SortDirection(ascending) + String.IsEqual(ListItem.SortLetter,I)">SetFocus(290001,8,absolute)</onfocus>
-            <onfocus condition="Container.SortDirection(ascending) + String.IsEqual(ListItem.SortLetter,J)">SetFocus(290001,9,absolute)</onfocus>
-            <onfocus condition="Container.SortDirection(ascending) + String.IsEqual(ListItem.SortLetter,K)">SetFocus(290001,10,absolute)</onfocus>
-            <onfocus condition="Container.SortDirection(ascending) + String.IsEqual(ListItem.SortLetter,L)">SetFocus(290001,11,absolute)</onfocus>
-            <onfocus condition="Container.SortDirection(ascending) + String.IsEqual(ListItem.SortLetter,M)">SetFocus(290001,12,absolute)</onfocus>
-            <onfocus condition="Container.SortDirection(ascending) + String.IsEqual(ListItem.SortLetter,N)">SetFocus(290001,13,absolute)</onfocus>
-            <onfocus condition="Container.SortDirection(ascending) + String.IsEqual(ListItem.SortLetter,O)">SetFocus(290001,14,absolute)</onfocus>
-            <onfocus condition="Container.SortDirection(ascending) + String.IsEqual(ListItem.SortLetter,P)">SetFocus(290001,15,absolute)</onfocus>
-            <onfocus condition="Container.SortDirection(ascending) + String.IsEqual(ListItem.SortLetter,Q)">SetFocus(290001,16,absolute)</onfocus>
-            <onfocus condition="Container.SortDirection(ascending) + String.IsEqual(ListItem.SortLetter,R)">SetFocus(290001,17,absolute)</onfocus>
-            <onfocus condition="Container.SortDirection(ascending) + String.IsEqual(ListItem.SortLetter,S)">SetFocus(290001,18,absolute)</onfocus>
-            <onfocus condition="Container.SortDirection(ascending) + String.IsEqual(ListItem.SortLetter,T)">SetFocus(290001,19,absolute)</onfocus>
-            <onfocus condition="Container.SortDirection(ascending) + String.IsEqual(ListItem.SortLetter,U)">SetFocus(290001,20,absolute)</onfocus>
-            <onfocus condition="Container.SortDirection(ascending) + String.IsEqual(ListItem.SortLetter,V)">SetFocus(290001,21,absolute)</onfocus>
-            <onfocus condition="Container.SortDirection(ascending) + String.IsEqual(ListItem.SortLetter,W)">SetFocus(290001,22,absolute)</onfocus>
-            <onfocus condition="Container.SortDirection(ascending) + String.IsEqual(ListItem.SortLetter,X)">SetFocus(290001,23,absolute)</onfocus>
-            <onfocus condition="Container.SortDirection(ascending) + String.IsEqual(ListItem.SortLetter,Y)">SetFocus(290001,24,absolute)</onfocus>
-            <onfocus condition="Container.SortDirection(ascending) + String.IsEqual(ListItem.SortLetter,Z)">SetFocus(290001,25,absolute)</onfocus>
+            <onfocus condition="!Container.SortDirection(descending) + String.IsEqual(ListItem.SortLetter,A)">SetFocus(290001,0,absolute)</onfocus>
+            <onfocus condition="!Container.SortDirection(descending) + String.IsEqual(ListItem.SortLetter,B)">SetFocus(290001,1,absolute)</onfocus>
+            <onfocus condition="!Container.SortDirection(descending) + String.IsEqual(ListItem.SortLetter,C)">SetFocus(290001,2,absolute)</onfocus>
+            <onfocus condition="!Container.SortDirection(descending) + String.IsEqual(ListItem.SortLetter,D)">SetFocus(290001,3,absolute)</onfocus>
+            <onfocus condition="!Container.SortDirection(descending) + String.IsEqual(ListItem.SortLetter,E)">SetFocus(290001,4,absolute)</onfocus>
+            <onfocus condition="!Container.SortDirection(descending) + String.IsEqual(ListItem.SortLetter,F)">SetFocus(290001,5,absolute)</onfocus>
+            <onfocus condition="!Container.SortDirection(descending) + String.IsEqual(ListItem.SortLetter,G)">SetFocus(290001,6,absolute)</onfocus>
+            <onfocus condition="!Container.SortDirection(descending) + String.IsEqual(ListItem.SortLetter,H)">SetFocus(290001,7,absolute)</onfocus>
+            <onfocus condition="!Container.SortDirection(descending) + String.IsEqual(ListItem.SortLetter,I)">SetFocus(290001,8,absolute)</onfocus>
+            <onfocus condition="!Container.SortDirection(descending) + String.IsEqual(ListItem.SortLetter,J)">SetFocus(290001,9,absolute)</onfocus>
+            <onfocus condition="!Container.SortDirection(descending) + String.IsEqual(ListItem.SortLetter,K)">SetFocus(290001,10,absolute)</onfocus>
+            <onfocus condition="!Container.SortDirection(descending) + String.IsEqual(ListItem.SortLetter,L)">SetFocus(290001,11,absolute)</onfocus>
+            <onfocus condition="!Container.SortDirection(descending) + String.IsEqual(ListItem.SortLetter,M)">SetFocus(290001,12,absolute)</onfocus>
+            <onfocus condition="!Container.SortDirection(descending) + String.IsEqual(ListItem.SortLetter,N)">SetFocus(290001,13,absolute)</onfocus>
+            <onfocus condition="!Container.SortDirection(descending) + String.IsEqual(ListItem.SortLetter,O)">SetFocus(290001,14,absolute)</onfocus>
+            <onfocus condition="!Container.SortDirection(descending) + String.IsEqual(ListItem.SortLetter,P)">SetFocus(290001,15,absolute)</onfocus>
+            <onfocus condition="!Container.SortDirection(descending) + String.IsEqual(ListItem.SortLetter,Q)">SetFocus(290001,16,absolute)</onfocus>
+            <onfocus condition="!Container.SortDirection(descending) + String.IsEqual(ListItem.SortLetter,R)">SetFocus(290001,17,absolute)</onfocus>
+            <onfocus condition="!Container.SortDirection(descending) + String.IsEqual(ListItem.SortLetter,S)">SetFocus(290001,18,absolute)</onfocus>
+            <onfocus condition="!Container.SortDirection(descending) + String.IsEqual(ListItem.SortLetter,T)">SetFocus(290001,19,absolute)</onfocus>
+            <onfocus condition="!Container.SortDirection(descending) + String.IsEqual(ListItem.SortLetter,U)">SetFocus(290001,20,absolute)</onfocus>
+            <onfocus condition="!Container.SortDirection(descending) + String.IsEqual(ListItem.SortLetter,V)">SetFocus(290001,21,absolute)</onfocus>
+            <onfocus condition="!Container.SortDirection(descending) + String.IsEqual(ListItem.SortLetter,W)">SetFocus(290001,22,absolute)</onfocus>
+            <onfocus condition="!Container.SortDirection(descending) + String.IsEqual(ListItem.SortLetter,X)">SetFocus(290001,23,absolute)</onfocus>
+            <onfocus condition="!Container.SortDirection(descending) + String.IsEqual(ListItem.SortLetter,Y)">SetFocus(290001,24,absolute)</onfocus>
+            <onfocus condition="!Container.SortDirection(descending) + String.IsEqual(ListItem.SortLetter,Z)">SetFocus(290001,25,absolute)</onfocus>
             <onfocus condition="Container.SortDirection(descending) + String.IsEqual(ListItem.SortLetter,Z)">SetFocus(290001,0,absolute)</onfocus>
             <onfocus condition="Container.SortDirection(descending) + String.IsEqual(ListItem.SortLetter,Y)">SetFocus(290001,1,absolute)</onfocus>
             <onfocus condition="Container.SortDirection(descending) + String.IsEqual(ListItem.SortLetter,X)">SetFocus(290001,2,absolute)</onfocus>
@@ -2152,7 +2155,6 @@
     </variable>
 
     <include name="Furniture_Header">
-        <include condition="!$EXP[UseDefaultJumpbar]">JumpbarHelper</include>
         <control type="image" description="clearlogo">
             <include>Animation.FadeIn</include>
             <include>Animation.FadeOut</include>
