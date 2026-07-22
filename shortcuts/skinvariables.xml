@@ -12,6 +12,12 @@
         <value condition="!String.IsEmpty({listitem}.Property(Item.Info)) + !String.IsEmpty({listitem}.DBID) + !Skin.HasSetting(hide.markers.library)">&#62698;</value>
         <value condition="{listitem}.IsCollection + !Skin.HasSetting(hide.markers.collection)">&#59649;</value>
         <value condition="{listitem}.IsFolder">&#59650;</value>
+        <value condition="Window.IsVisible(AddonBrowser.xml) + !String.IsEmpty({listitem}.AddonBroken)">&#59653;</value>
+        <value condition="Window.IsVisible(AddonBrowser.xml) + {listitem}.Property(addon.orphaned)">&#59655;</value>
+        <value condition="Window.IsVisible(AddonBrowser.xml) + {listitem}.Property(addon.downloading)">&#59651;</value>
+        <value condition="Window.IsVisible(AddonBrowser.xml) + {listitem}.Property(addon.isinstalled) + !{listitem}.Property(addon.isenabled)">&#59654;</value>
+        <value condition="Window.IsVisible(AddonBrowser.xml) + {listitem}.Property(addon.hasupdate)">&#59648;</value>
+        <value condition="Window.IsVisible(AddonBrowser.xml) + !{listitem}.Property(addon.isinstalled)"></value>
         <value>&#62698;</value>
     </variable>
 
