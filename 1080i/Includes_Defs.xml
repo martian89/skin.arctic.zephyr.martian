@@ -3013,4 +3013,189 @@
 		    </control>    
         </definition>
     </include>
+    
+    <include name="Def_Artwork_List_Label">
+        <param name="top" />
+        <param name="color1" default="Black100"/>
+        <param name="color2" default="Black70"/>
+        <definition>
+            <control type="group">
+                <visible>!String.IsEqual(ListItem.Property(is_current),true)</visible>
+                <top>$PARAM[top]</top>
+                <left>10</left>
+                <right>10</right>
+		        <control type="label">
+		            <top>0</top>
+	                <height>30</height>
+		            <align>center</align>
+		            <textcolor>$PARAM[color1]</textcolor>
+	                <font>Tiny</font>
+		            <label fallback="$LOCALIZE[13205]">$INFO[ListItem.Property(dimensions)]</label>
+		        </control>
+                <control type="label">
+                    <top>30</top>
+                    <height>30</height>
+                    <align>center</align>
+                    <textcolor>$PARAM[color2]</textcolor>
+                    <font>Mini</font>
+                    <label>$INFO[ListItem.Property(source)]</label>
+                </control>
+	        </control>
+	        <control type="group">
+                <visible>String.IsEqual(ListItem.Property(is_current),true)</visible>
+                <top>$PARAM[top]</top>
+                <left>10</left>
+                <right>10</right>
+                <control type="label">
+                    <top>0</top>
+                    <height>30</height>
+                    <align>center</align>
+                    <textcolor>Highlight2</textcolor>
+                    <font>Tiny</font>
+                    <label fallback="$LOCALIZE[13205]">$INFO[ListItem.Property(dimensions)]</label>
+                </control>
+                <control type="label">
+                    <top>30</top>
+                    <height>30</height>
+                    <align>center</align>
+                    <textcolor>Highlight2</textcolor>
+                    <font>Mini</font>
+                    <label>$INFO[ListItem.Property(source)]</label>
+                </control>
+            </control>
+        </definition>
+    </include>
+
+    <include name="Def_Artwork_List_Layout">
+        <param name="control_id" default="100" />
+        <param name="width" default="355" />
+        <param name="height" default="345" />
+        <param name="condition" default="true" />
+        <param name="title_overlay" default="false" />
+        <param name="bordersize" default="0" />
+        <param name="aspectratio" default="scale" />
+        <param name="diffuse" default="diffuse/widgetfanart_new.png" />
+        <param name="image_offset" default="0" />
+        <param name="image_width" default="100%"/>
+        <param name="image_height" />
+        <definition>
+	        <itemlayout height="$PARAM[height]" width="$PARAM[width]" condition="$PARAM[condition]">
+	            <control type="group">
+	                <width>$PARAM[image_width]</width>
+	                <left>$PARAM[image_offset]</left>
+	                <control type="group">
+	                    <height>$PARAM[image_height]</height>
+	                    <control type="image">
+	                        <texture border="11" background="true" infill="false">common/$VAR[nofocus-shadow10]</texture>
+	                    </control>
+	                    <control type="image">
+	                        <left>10</left>
+	                        <top>10</top>
+	                        <right>10</right>
+	                        <bottom>10</bottom>
+	                        <texture colordiffuse="Black12" border="4" background="true">common/diffuse_box.png</texture>
+	                    </control>
+	                    <control type="image">
+	                        <left>10</left>
+	                        <top>10</top>
+	                        <right>10</right>
+	                        <bottom>10</bottom>
+	                        <bordersize>$PARAM[bordersize]</bordersize>
+	                        <texture background="true" diffuse="$PARAM[diffuse]">$INFO[ListItem.Art(thumb)]</texture>
+	                        <aspectratio>$PARAM[aspectratio]</aspectratio>
+	                    </control>
+                        <control type="image">
+                            <bottom>10</bottom>
+                            <right>10</right>
+                            <height>75</height>
+                            <left>10</left>
+                            <texture colordiffuse="D9333333">common/black-back.png</texture>
+                            <visible>$PARAM[title_overlay]</visible>
+                        </control>
+				        <control type="image">
+				            <left>10</left>
+				            <top>10</top>
+				            <right>10</right>
+				            <bottom>10</bottom>
+				            <texture colordiffuse="BoxWidget" border="4" background="true" infill="false">common/box21.png</texture>
+				            <visible>Skin.HasSetting(global.showborders)</visible>
+				        </control>
+	                </control>
+	                <control type="group">
+                        <include content="def_top" condition="$PARAM[title_overlay]">
+                            <param name="top" value="-76" />
+                        </include>                   
+		                <include content="Def_Artwork_List_Label" condition="$PARAM[title_overlay]">
+		                    <param name="top" value="$PARAM[image_height]" />
+                            <param name="color1" value="PanelWhite100" />  
+                            <param name="color2" value="PanelWhite70" />  
+		                </include>
+                        <include content="Def_Artwork_List_Label" condition="!$PARAM[title_overlay]">
+                            <param name="top" value="$PARAM[image_height]" />
+                        </include>
+	                </control>
+	            </control>
+	        </itemlayout>
+	        <focusedlayout height="$PARAM[height]" width="$PARAM[width]" condition="$PARAM[condition]">
+	            <control type="group">
+	                <width>$PARAM[image_width]</width>
+	                <left>$PARAM[image_offset]</left>
+                    <control type="group">
+                        <height>$PARAM[image_height]</height>
+                        <control type="image">
+                            <texture border="11" background="true" infill="false">common/$VAR[nofocus-shadow10]</texture>
+                        </control>
+                        <control type="image">
+                            <left>10</left>
+                            <top>10</top>
+                            <right>10</right>
+                            <bottom>10</bottom>
+                            <texture colordiffuse="Black12" border="4" background="true">common/diffuse_box.png</texture>
+                        </control>
+                        <control type="image">
+                            <left>10</left>
+                            <top>10</top>
+                            <right>10</right>
+                            <bottom>10</bottom>
+                            <bordersize>$PARAM[bordersize]</bordersize>
+                            <texture background="true" diffuse="$PARAM[diffuse]">$INFO[ListItem.Art(thumb)]</texture>
+                            <aspectratio>$PARAM[aspectratio]</aspectratio>
+                        </control>
+                        <control type="image">
+                            <bottom>10</bottom>
+                            <right>10</right>
+                            <height>75</height>
+                            <left>10</left>
+                            <texture colordiffuse="D9333333">common/black-back.png</texture>
+                            <visible>$PARAM[title_overlay]</visible>
+                        </control>
+                        <control type="image">
+                            <left>10</left>
+                            <top>10</top>
+                            <right>10</right>
+                            <bottom>10</bottom>
+                            <texture colordiffuse="BoxWidget" border="4" background="true" infill="false">common/box21.png</texture>
+                            <visible>Skin.HasSetting(global.showborders)</visible>
+                        </control>
+			            <include content="def_widgetfocus">
+			                <param name="id" value="$PARAM[control_id]"/>
+			            </include>
+                    </control>
+                    <control type="group">
+                        <include content="def_top" condition="$PARAM[title_overlay]">
+                            <param name="top" value="-76" />
+                        </include>                   
+                        <include content="Def_Artwork_List_Label" condition="$PARAM[title_overlay]">
+                            <param name="top" value="$PARAM[image_height]" />
+                            <param name="color1" value="PanelWhite100" />  
+                            <param name="color2" value="PanelWhite70" />  
+                        </include>
+                        <include content="Def_Artwork_List_Label" condition="!$PARAM[title_overlay]">
+                            <param name="top" value="$PARAM[image_height]" />
+                        </include>
+                    </control>
+	            </control>
+	        </focusedlayout>
+        </definition>
+    </include>
 </includes>
