@@ -732,8 +732,8 @@
     </variable>
 
     <variable name="ContentIMDbTrailer">
+        <value condition="!String.IsEmpty(ListItem.UniqueId(imdb))">plugin://plugin.video.imdb.trailers/?action=play_id&amp;imdb=$INFO[ListItem.UniqueId(imdb)]</value>
         <value condition="!String.IsEmpty(Window(home).Property(TMDbHelper.ListItem.imdb_id))">plugin://plugin.video.imdb.trailers/?action=play_id&amp;imdb=$INFO[Window(home).Property(TMDbHelper.ListItem.imdb_id)]</value>
-        <value condition="$EXP[IMDBNumberIsIMDbId]">plugin://plugin.video.imdb.trailers/?action=play_id&amp;imdb=$INFO[ListItem.IMDBNumber]</value>
     </variable>
 
     <variable name="DefMovieDBMoviesContent">
@@ -800,7 +800,7 @@
     </variable>
 
     <variable name="Def_VideoList_Item">
-        <value condition="String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(ListItem.IMDBNumber) + String.StartsWith(ListItem.IMDBNumber,tt)">RunScript(plugin.video.themoviedb.helper,add_path=plugin://plugin.video.themoviedb.helper/?info=details&amp;tmdb_type=movie$INFO[ListItem.IMDBNumber,&amp;imdb_id=,],origin_tmdb_type=$INFO[Window.Property(origin_tmdb_type)],origin_dbid=$INFO[Window.Property(origin_dbid)],call_auto=1190)</value>
+        <value condition="String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(ListItem.UniqueId(tmdb))">RunScript(plugin.video.themoviedb.helper,add_path=plugin://plugin.video.themoviedb.helper/?info=details&amp;tmdb_type=movie$INFO[VideoPlayer.UniqueId(tmdb),&amp;tmdb_id=,],origin_tmdb_type=$INFO[Window.Property(origin_tmdb_type)],origin_dbid=$INFO[Window.Property(origin_dbid)],call_auto=1190)</value>
         <value condition="String.IsEqual(ListItem.DBType,movie)">RunScript(plugin.video.themoviedb.helper,add_path=plugin://plugin.video.themoviedb.helper/?info=details&amp;tmdb_type=movie$INFO[ListItem.Property(tmdb_id),&amp;tmdb_id=,]$INFO[ListItem.Title,&amp;query=,]$INFO[ListItem.Year,&amp;year=,],origin_tmdb_type=$INFO[Window.Property(origin_tmdb_type)],origin_dbid=$INFO[Window.Property(origin_dbid)],call_auto=1190)</value>
         <value condition="String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)">RunScript(plugin.video.themoviedb.helper,add_path=plugin://plugin.video.themoviedb.helper/?info=details&amp;tmdb_type=tv$INFO[ListItem.Property(tmdb_id),&amp;tmdb_id=,]$INFO[ListItem.TVShowTitle,&amp;query=,]$INFO[ListItem.Year,&amp;year=,],origin_tmdb_type=$INFO[Window.Property(origin_tmdb_type)],origin_dbid=$INFO[Window.Property(origin_dbid)],call_auto=1190)</value>
     </variable>
