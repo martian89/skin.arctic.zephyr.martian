@@ -384,11 +384,6 @@
     <variable name="BackgroundImageOnyxSelected"><value condition="$EXP[IsBackgroundImageOnyx]">selected</value></variable> 
     <variable name="BackgroundImageCustomSelected"><value condition="$EXP[IsBackgroundImageCustom]">selected</value></variable> 
     
-    <expression name="IMDBNumberIsIMDbId">
-       [!String.IsEmpty(ListItem.IMDBNumber) + String.StartsWith(ListItem.IMDBNumber,tt)] | 
-       [VideoPlayer.IsFullscreen + !String.IsEmpty(VideoPlayer.IMDBNumber) + String.StartsWith(VideoPlayer.IMDBNumber,tt)]
-    </expression>
-
     <expression name="Visualisation_ShowFanart">!Skin.HasSetting(musicosd.hidefanart)</expression>
     <expression name="Visualisation_ShowSlideshow">!Skin.HasSetting(musicosd.hidefanart) + System.AddonIsEnabled(script.artistslideshow) + !Skin.HasSetting(ArtistSlideShow.Disabled)</expression>
     <expression name="Visualisation_AnimateFanart">!Skin.HasSetting(musicosd.hidefanart) + Skin.HasSetting(ArtistSlideshow.Animate)</expression>
@@ -1580,7 +1575,7 @@
     </variable>
     
     <variable name="Info_Query">
-        <value condition="String.IsEqual(ListItem.DBType,movie) + $EXP[IMDBNumberIsIMDbId]">$INFO[ListItem.IMDBNumber,&amp;imdb_id=,]</value>
+        <value condition="String.IsEqual(ListItem.DBType,movie) + !String.isEmpty(ListItem.UniqueId(tmdb))">$INFO[ListItem.UniqueId(tmdb),&amp;tmdb_id=,]</value>
         <value condition="String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(ListItem.Property(imdb_id))">$INFO[ListItem.Property(imdb_id),&amp;imdb_id=,]</value>
         <value condition="String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow)">$INFO[Window(home).Property(TMDbHelper.ListItem.tmdb_id),&amp;tmdb_id=,]$INFO[ListItem.Title,&amp;query=,]$INFO[ListItem.Year,&amp;year=,]</value>        
         <value condition="String.IsEqual(ListItem.DBType,episode)">$INFO[Window(home).Property(TMDbHelper.ListItem.tvshow.tmdb_id),&amp;tmdb_id=,]$INFO[ListItem.TvShowTitle,&amp;query=,]$INFO[VideoPlayer.Season,&amp;season=,]$INFO[ListItem.Episode,&amp;episode=,]$INFO[ListItem.Year,&amp;episode_year=,]</value>
