@@ -14,28 +14,11 @@
         <include>Furniture_NowPlaying</include>
         <include>Furniture_Clock</include>
         <include>Furniture_Weather</include>
-        <control type="group">
-            <include>Animation.FadeIn</include>
-            <include>Animation.FadeOut</include>
-            <visible>ControlGroup(9000).HasFocus()</visible>
-            <include>GlobalOverlay</include>
-        </control>
-        <control type="group">
-            <height>340</height>
-            <include>Def9000Background</include>
-            <include content="Def9000Arrows"><param name="arrow_bottom" value="340" /></include>
-            <include>Def9000Header</include>
-            <include content="Def_Gradient_Settings_Image">
-                <param name="controlid" value="9000"/>
-                <param name="left" value="8"/>
-                <param name="top" value="110"/>
-                <param name="width" value="450"/>
-            </include>
+        <include content="View_SideBlade">
+            <param name="height" value="410" /> 
+            <param name="hidden_items_1" value="[!Player.HasMedia + !Player.Playing]" />
             <control type="grouplist" id="9000">
-                <height>210</height>
-                <scrolltime>0</scrolltime>
                 <include>Def9000GroupList</include>
-                <top>110</top>
                 <control type="button" id="2">
                     <description>View</description>
                     <include>DefContextButtonGradient</include>
@@ -53,7 +36,8 @@
                     <label>584</label>
                     <altlabel>585</altlabel>
                 </control>
+                <include>View_SideBlade_NowPlaying</include>                
             </control>
-        </control>
+        </include>
     </controls>
 </window>

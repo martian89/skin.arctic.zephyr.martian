@@ -14,30 +14,9 @@
         <include>Furniture_Clock</include>
         <include>Furniture_Flags</include>
         <include>Furniture_Weather</include>
-        <control type="group">
-            <include>Animation.FadeIn</include>
-            <include>Animation.FadeOut</include>
-            <visible>ControlGroup(9000).HasFocus()</visible>
-            <include>GlobalOverlay</include>
-        </control>
-        <control type="group">
-            <height>690</height>
-            <include>Def9000Background</include>
-            <include>Def9000Header</include>
-            <include>Def9000Arrows</include>
-            <include content="Def_Gradient_Settings_Image">
-                <param name="controlid" value="9000"/>
-                <param name="left" value="8"/>
-                <param name="top" value="112"/>
-                <param name="width" value="450"/>
-            </include>
-            <control type="grouplist" id="9000">
-                <onleft>50</onleft>
-                <onright>50</onright>
-                <onback>50</onback>
-                <include content="Def9000GroupList"><param name="height" value="560" /></include>
-                <top>112</top>
-                <scrolltime>0</scrolltime>
+        <include content="View_SideBlade">
+             <control type="grouplist" id="9000">
+                <include>Def9000GroupList</include>
                 <control type="button" id="3">
                     <description>Sort</description>
                     <include>DefContextButtonGradient</include>
@@ -80,7 +59,8 @@
                     <align>left</align>
                     <label>208</label>
                 </control>
+                <include>View_SideBlade_NowPlaying</include>                
             </control>
-        </control>
+        </include>
     </controls>
 </window>

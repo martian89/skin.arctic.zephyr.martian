@@ -12,7 +12,7 @@
             <centerleft>50%</centerleft>
             <width>466</width>
             <control type="group">
-                <visible>Integer.IsGreater(Container(3110).NumItems,0)</visible>
+                <visible>Container(3110).HasNext | Container(3110).HasPrevious</visible>
                 <control type="image">
                     <description>arrow image</description>
                     <centerleft>50%</centerleft>
@@ -23,16 +23,9 @@
                 <control type="image">
                     <description>arrow image</description>
                     <centerleft>50%</centerleft>
-                    <posy>680</posy>
+                    <posy>674</posy>
                     <include>arrowdimensions</include>
                     <texture colordiffuse="White70" flipy="false">common/arrow-small.png</texture>
-                    <animation effect="slide" end="0,-65" time="0" condition="Integer.IsEqual(Container(3110).NumItems,7)">Conditional</animation>
-                    <animation effect="slide" end="0,-135" time="0" condition="Integer.IsEqual(Container(3110).NumItems,6)">Conditional</animation>
-                    <animation effect="slide" end="0,-205" time="0" condition="Integer.IsEqual(Container(3110).NumItems,5)">Conditional</animation>
-                    <animation effect="slide" end="0,-275" time="0" condition="Integer.IsEqual(Container(3110).NumItems,4)">Conditional</animation>
-                    <animation effect="slide" end="0,-345" time="0" condition="Integer.IsEqual(Container(3110).NumItems,3)">Conditional</animation>
-                    <animation effect="slide" end="0,-415" time="0" condition="Integer.IsEqual(Container(3110).NumItems,2)">Conditional</animation>
-                    <animation effect="slide" end="0,-485" time="0" condition="Integer.IsEqual(Container(3110).NumItems,1)">Conditional</animation>
                 </control>
             </control>
             <control type="image">
@@ -40,7 +33,7 @@
                 <posx>0</posx>
                 <posy>-16</posy>
                 <width>466</width>
-                <height>210</height>
+                <height>200</height>
                 <texture border="16" colordiffuse="White100">common/rounded-shadow8.png</texture>
                 <visible>Integer.IsEqual(Container(3110).NumItems,1)</visible>
             </control>
@@ -49,7 +42,7 @@
                 <posx>0</posx>
                 <posy>-16</posy>
                 <width>466</width>
-                <height>280</height>
+                <height>270</height>
                 <texture border="16" colordiffuse="White100">common/rounded-shadow8.png</texture>
                 <visible>Integer.IsEqual(Container(3110).NumItems,2)</visible>
             </control>
@@ -58,7 +51,7 @@
                 <posx>0</posx>
                 <posy>-16</posy>
                 <width>466</width>
-                <height>350</height>
+                <height>340</height>
                 <texture border="16" colordiffuse="White100">common/rounded-shadow8.png</texture>
                 <visible>Integer.IsEqual(Container(3110).NumItems,3)</visible>
             </control>
@@ -67,7 +60,7 @@
                 <posx>0</posx>
                 <posy>-16</posy>
                 <width>466</width>
-                <height>420</height>
+                <height>410</height>
                 <texture border="16" colordiffuse="White100">common/rounded-shadow8.png</texture>
                 <visible>Integer.IsEqual(Container(3110).NumItems,4)</visible>
             </control>
@@ -76,7 +69,7 @@
                 <posx>0</posx>
                 <posy>-16</posy>
                 <width>466</width>
-                <height>490</height>
+                <height>480</height>
                 <texture border="16" colordiffuse="White100">common/rounded-shadow8.png</texture>
                 <visible>Integer.IsEqual(Container(3110).NumItems,5)</visible>
             </control>
@@ -85,7 +78,7 @@
                 <posx>0</posx>
                 <posy>-16</posy>
                 <width>466</width>
-                <height>560</height>
+                <height>550</height>
                 <texture border="16" colordiffuse="White100">common/rounded-shadow8.png</texture>
                 <visible>Integer.IsEqual(Container(3110).NumItems,6)</visible>
             </control>
@@ -94,7 +87,7 @@
                 <posx>0</posx>
                 <posy>-16</posy>
                 <width>466</width>
-                <height>630</height>
+                <height>620</height>
                 <texture border="16" colordiffuse="White100">common/rounded-shadow8.png</texture>
                 <visible>Integer.IsEqual(Container(3110).NumItems,7)</visible>
             </control>
@@ -103,13 +96,14 @@
                 <posx>0</posx>
                 <posy>-16</posy>
                 <width>466</width>
-                <height>695</height>
+                <height>690</height>
                 <texture border="16" colordiffuse="White100">common/rounded-shadow8.png</texture>
                 <visible>Integer.IsGreater(Container(3110).NumItems,7)</visible>
             </control>
             <control type="group">
-                <left>25</left>
-                <top>10</top>
+                <top>9</top>
+                <left>22</left>
+                <right>22</right>
                 <control type="label">
                     <description>Header Label</description>
                     <left>70</left>
@@ -125,7 +119,7 @@
                 <control type="image">
                     <top>70</top>
                     <left>17</left>
-                    <width>388</width>
+                    <right>17</right>
                     <height>1</height>
                     <bottom>10</bottom>
                     <colordiffuse>Black12</colordiffuse>
@@ -133,7 +127,7 @@
                 </control>
             </control>
             <control type="list" id="3110">
-                <top>100</top>
+                <top>99</top>
                 <height min="100" max="570">auto</height>
                 <bottom>16</bottom>
                 <left>8</left>

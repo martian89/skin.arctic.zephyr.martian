@@ -16,27 +16,10 @@
         <include>View_500_Thumbnails</include>
         <include>View_501_List_Squarepics</include>
         <include>View_502_Slider</include>
-        <control type="group">
-            <include>Animation.FadeIn</include>
-            <include>Animation.FadeOut</include>
-            <visible>ControlGroup(9000).HasFocus()</visible>
-            <include>GlobalOverlay</include>
-        </control>
-        <control type="group">
-            <height>480</height>
-            <include>Def9000Background</include>
-            <include content="Def9000Arrows"><param name="arrow_bottom" value="480" /></include>
-            <include>Def9000Header</include>
-            <include content="Def_Gradient_Settings_Image">
-                <param name="controlid" value="9000"/>
-                <param name="left" value="8"/>
-                <param name="top" value="112"/>
-                <param name="width" value="450"/>
-            </include>
+        <include content="View_SideBlade">
+            <param name="height" value="550" /> 
+            <param name="hidden_items_1" value="[!Player.HasMedia + !Player.Playing]" />
             <control type="grouplist" id="9000">
-                <top>112</top>
-                <height>350</height>
-                <scrolltime>0</scrolltime>
                 <include>Def9000GroupList</include>
                 <control type="button" id="2">
                     <description>View</description>
@@ -83,7 +66,8 @@
                     <align>left</align>
                     <label>13319</label>
                 </control>
+                <include>View_SideBlade_NowPlaying</include>                
             </control>
-        </control>
+        </include>
     </controls>
 </window>

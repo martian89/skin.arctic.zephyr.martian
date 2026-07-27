@@ -597,7 +597,7 @@
             <control type="group">
                 <left>22</left>
                 <right>22</right>
-                <top>22</top>
+                <top>25</top>
                 <control type="label">
                     <description>Header Label</description>
                     <left>70</left>
@@ -615,7 +615,6 @@
                     <left>17</left>
                     <right>17</right>
                     <height>1</height>
-                    <bottom>10</bottom>
                     <colordiffuse>Black12</colordiffuse>
                     <texture>common/white.png</texture>
                 </control>
@@ -624,72 +623,110 @@
     </include>
         
     <include name="Def9000GroupList">
-        <param name="height" default="350"/>
+        <param name="onback" default="50"/>
         <definition>
-        <visible allowhiddenfocus="true">ControlGroup(9000).HasFocus()</visible>
-        <onleft>50</onleft>
-        <onright>50</onright>
-        <onback>50</onback>
-        <posx>8</posx>
-        <posy>16</posy>
-        <width>510</width>
-        <height>$PARAM[height]</height>
-        <itemgap>0</itemgap>
+	        <visible allowhiddenfocus="true">ControlGroup(9000).HasFocus()</visible>
+	        <top>115</top>
+	        <left>8</left>
+	        <right>8</right>
+	        <bottom>15</bottom>
+	        <itemgap>0</itemgap>
+	        <usecontrolcoords>true</usecontrolcoords>
+	        <scrolltime>0</scrolltime>
+	        <onleft>$PARAM[onback]</onleft>
+	        <onright>$PARAM[onback]</onright>
+	        <onback>$PARAM[onback]</onback>
         </definition>
     </include>
 
-    <include name="Def9000GroupListHub">
-        <visible allowhiddenfocus="true">ControlGroup(9000).HasFocus()</visible>
-        <onleft>9500</onleft>
-        <onright>9500</onright>
-        <onback>9500</onback>
-        <posx>8</posx>
-        <posy>16</posy>
-        <width>510</width>
-        <height>350</height>
-        <itemgap>0</itemgap>
-    </include>
-
     <include name="Def9000Arrows">
-        <param name="arrow_top" default="-16"/>
-        <param name="arrow_bottom" default="690"/>
+        <param name="hidden_items_1" default="false" />    
+        <param name="hidden_items_2" default="false" />    
+        <param name="hidden_items_3" default="false" />    
         <definition>
-        <control type="group">
-            <control type="image">
-                <centerleft>50%</centerleft>
-                <posy>$PARAM[arrow_top]</posy>
-                <include>arrowdimensions</include>
-                <texture colordiffuse="White70" flipy="true">common/arrow-small.png</texture>
-            </control>
-            <control type="image">
-                <centerleft>50%</centerleft>
-                <posy>$PARAM[arrow_bottom]</posy>
-                <include>arrowdimensions</include>
-                <texture colordiffuse="White70" flipy="false">common/arrow-small.png</texture>
-            </control>
-        </control>
+	        <control type="group">
+	            <visible>Container(9000).HasNext | Container(9000).HasPrevious</visible>
+	            <control type="image">
+	                <centerleft>50%</centerleft>
+	                <top>-16</top>
+	                <include>arrowdimensions</include>
+	                <texture colordiffuse="White70" flipy="true">common/arrow-small.png</texture>
+	            </control>
+	            <control type="image">
+	                <centerleft>50%</centerleft>
+	                <top>0r</top>
+	                <include>arrowdimensions</include>
+	                <texture colordiffuse="White70" flipy="false">common/arrow-small.png</texture>
+                    <animation effect="slide" end="0,-70" time="0" condition="[$PARAM[hidden_items_3]]">Conditional</animation>
+                    <animation effect="slide" end="0,-70" time="0" condition="[$PARAM[hidden_items_3]] | [$PARAM[hidden_items_2]]">Conditional</animation>
+                    <animation effect="slide" end="0,-70" time="0" condition="[$PARAM[hidden_items_3]] | [$PARAM[hidden_items_2]]  | [$PARAM[hidden_items_1]]">Conditional</animation>
+	            </control>
+	        </control>
         </definition>
     </include>
 
     <include name="Def9000Background">
-        <visible allowhiddenfocus="true">ControlGroup(9000).HasFocus()</visible>
-        <animation effect="slide" start="0,0" end="-3000,-3000" time="0" condition="!ControlGroup(9000).HasFocus()">Conditional</animation>
-        <include>Animation.ZoomIn</include>
-        <include>Animation.FadeOut</include>
-        <top>184</top>
-        <centerleft>50%</centerleft>
-        <height>382</height>
-        <width>466</width>
-        <control type="image">
-            <description>background image</description>
-            <posx>0</posx>
-            <posy>0</posy>
-            <width>100%</width>
-            <height>100%</height>
-            <texture border="16" colordiffuse="White100">common/rounded-shadow8.png</texture>
-        </control>
+        <param name="hidden_items_1" default="false" />    
+        <param name="hidden_items_2" default="false" />    
+        <param name="hidden_items_3" default="false" />    
+        <definition>
+	        <visible allowhiddenfocus="true">ControlGroup(9000).HasFocus()</visible>
+	        <animation effect="slide" start="0,0" end="-3000,-3000" time="0" condition="!ControlGroup(9000).HasFocus()">Conditional</animation>
+	        <include>Animation.ZoomIn</include>
+	        <include>Animation.FadeOut</include>
+	        <top>184</top>
+	        <centerleft>50%</centerleft>
+	        <height>340</height>
+	        <width>466</width>
+            <control type="image">
+                <description>background image</description>
+                <top>0</top>
+                <left>0</left>
+                <right>0</right>
+                <bottom>210</bottom>
+                <texture border="16" colordiffuse="White100">common/rounded-shadow8.png</texture>
+                <visible>[$PARAM[hidden_items_3]]</visible>
+            </control>
+            <control type="image">
+                <description>background image</description>
+                <top>0</top>
+                <left>0</left>
+                <right>0</right>
+                <bottom>140</bottom>
+                <texture border="16" colordiffuse="White100">common/rounded-shadow8.png</texture>
+                <visible>[$PARAM[hidden_items_2]] + ![$PARAM[hidden_items_3]]</visible>
+            </control>
+            <control type="image">
+                <description>background image</description>
+                <top>0</top>
+                <left>0</left>
+                <right>0</right>
+                <bottom>70</bottom>
+                <texture border="16" colordiffuse="White100">common/rounded-shadow8.png</texture>
+                <visible>[$PARAM[hidden_items_1]] + ![$PARAM[hidden_items_2]] + ![$PARAM[hidden_items_3]]</visible>
+            </control>
+	        <control type="image">
+	            <description>background image</description>
+	            <top>0</top>
+	            <left>0</left>
+	            <right>0</right>
+	            <bottom>0</bottom>
+	            <texture border="16" colordiffuse="White100">common/rounded-shadow8.png</texture>
+	            <visible>![$PARAM[hidden_items_1]] + ![$PARAM[hidden_items_2]] + ![$PARAM[hidden_items_3]]</visible>
+	        </control>
+	        <include content="Def_Gradient_Settings_Image">
+	            <param name="controlid" value="9000"/>
+	            <param name="top" value="115"/>
+	            <param name="left" value="8"/>
+	            <param name="right" value="8"/>
+	            <param name="align_right" value="true"/>
+	            <param name="overlayfix" value="true"/>
+	            <param name="delay" value="20"/>
+	            <param name="visible" value="!ControlGroup(6150).HasFocus()"/>
+	        </include>
+        </definition>
     </include>
-   
+
     <include name="DefHomeRight520">
         <right>508</right>
     </include>
@@ -1088,37 +1125,13 @@
                 <animation effect="fade" start="100" end="0" time="400" condition="!Control.HasFocus(60) + !Container.Scrolling">Conditional</animation>
             </control>
         </control>
-        <control type="group">
-            <include>Animation.FadeIn</include>
-            <include>Animation.FadeOut</include>
-            <visible>ControlGroup(9000).HasFocus()</visible>
-            <include>GlobalOverlay</include>
-        </control>
-        <control type="group">
-            <height>203</height>
-            <include>Def9000Background</include>
-            <include>Def9000Header</include>
-            <control type="image">
-                <top>110</top>
-                <left>8</left>
-                <height>70</height>
-                <width>450</width>
-                <texture colordiffuse="$VAR[ColorHighlight]">common/white.png</texture>
-                <visible>ControlGroup(9000).HasFocus() + !ControlGroup(6150).HasFocus()</visible>
-                <animation effect="fade" start="100" end="100" delay="20" time="1">Visible</animation>
-                <animation effect="slide" end="0,70" time="0" condition="Integer.IsGreater(Container(9000).Position,0)">Conditional</animation>
-                <animation effect="slide" end="0,70" time="0" condition="Integer.IsGreater(Container(9000).Position,1)">Conditional</animation>
-                <animation effect="slide" end="0,70" time="0" condition="Integer.IsGreater(Container(9000).Position,2)">Conditional</animation>
-                <animation effect="slide" end="0,70" time="0" condition="Integer.IsGreater(Container(9000).Position,3)">Conditional</animation>
-                <animation effect="slide" end="0,70" time="0" condition="Integer.IsGreater(Container(9000).Position,4)">Conditional</animation>
-                <animation effect="slide" end="0,70" time="0" condition="Integer.IsGreater(Container(9000).Position,5)">Conditional</animation>
-            </control>
+        <include content="View_SideBlade">
+            <param name="height" value="270" /> 
+            <param name="hidden_items_1" value="[!Player.HasMedia + !Player.Playing]" />
             <control type="grouplist" id="9000">
-                <height>70</height>
-                <top>110</top>
-                <usecontrolcoords>true</usecontrolcoords>
-                <include>Def9000GroupListHub</include>
-                <scrolltime>0</scrolltime>
+                <include content="Def9000GroupList">
+                    <param name="onback" value="9500" /> 
+                </include>
                 <control type="radiobutton" id="9296">
                     <include>DefContextButtonGradient</include>
                     <align>left</align>
@@ -1126,8 +1139,11 @@
                     <selected>Skin.HasSetting(hub.showplot)</selected>
                     <onclick>Skin.ToggleSetting(hub.showplot)</onclick>
                 </control>
+                <include content="View_SideBlade_NowPlaying">
+                    <param name="onback" value="9500" />
+                </include>
             </control>
-        </control>
+        </include>
     </include>
 
     <variable name="DefHubLimit">

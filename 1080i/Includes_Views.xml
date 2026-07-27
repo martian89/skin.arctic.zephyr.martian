@@ -102,6 +102,36 @@
 		<value>none</value>
 	</variable>
 
+    <include name="View_SideBlade">
+        <param name="height" default="690" />
+        <param name="hidden_items_1" default="false" />
+        <param name="hidden_items_2" default="false" />
+        <param name="hidden_items_3" default="false" />
+        <definition>
+            <control type="group">
+                <include>Animation.FadeIn</include>
+                <include>Animation.FadeOut</include>
+                <visible>ControlGroup(9000).HasFocus()</visible>
+                <include>GlobalOverlay</include>
+            </control>
+            <control type="group">
+                <height>$PARAM[height]</height>
+	            <include content="Def9000Background">
+	                <param name="hidden_items_1" value="$PARAM[hidden_items_1]" />
+                    <param name="hidden_items_2" value="$PARAM[hidden_items_2]" />
+                    <param name="hidden_items_3" value="$PARAM[hidden_items_3]" />
+	            </include>
+	            <include content="Def9000Arrows">
+                    <param name="hidden_items_1" value="$PARAM[hidden_items_1]" />
+                    <param name="hidden_items_2" value="$PARAM[hidden_items_2]" />
+                    <param name="hidden_items_3" value="$PARAM[hidden_items_3]" />
+	            </include>
+	            <include>Def9000Header</include>
+	            <nested />
+            </control>
+        </definition>  
+    </include>
+    
 	<include name="View_Options">
 		<!-- Sort Options -->
 		<control type="button" id="9100">
@@ -617,4 +647,106 @@
 		</control>
 	</include>
 
+    <include name="View_SideBlade_Playlist">
+        <control type="button" id="6148">
+            <description>Music playlist</description>
+            <label>13350</label>
+            <include>DefContextButtonGradient</include>
+            <align>left</align>
+            <onclick>ActivateWindow(musicplaylist)</onclick>
+            <visible>!String.IsEqual(Playlist.Length(music),0) + Window.IsVisible(MyMusicNav.xml)</visible>
+        </control>
+        <control type="button" id="6149">
+            <description>Video playlist</description>
+            <label>13350</label>
+            <include>DefContextButtonGradient</include>
+            <align>left</align>
+            <onclick>ActivateWindow(videoplaylist)</onclick>
+            <visible>!String.IsEqual(Playlist.Length(video),0) + Window.IsVisible(MyVideoNav.xml)</visible>
+        </control>
+    </include>
+
+    <include name="View_SideBlade_NowPlaying">
+        <param name="onback" default="50" />
+        <definition>
+            <control type="grouplist" id="6150">
+                <visible>Player.HasMedia | Player.Playing</visible>
+                <usecontrolcoords>true</usecontrolcoords>
+                <top>16</top>
+                <left>8</left>
+                <right>8</right>
+                <height>54</height>
+                <align>center</align>
+                <itemgap>10</itemgap>
+                <include>ScrolltimeViewsList</include>
+                <orientation>horizontal</orientation>
+                <onup>9000</onup>
+                <ondown>9000</ondown>
+                <onleft>6150</onleft>
+                <onright>6150</onright>
+                <onback>$PARAM[onback]</onback>
+                <control type="button" id="6151">
+                    <texturefocus colordiffuse="$VAR[ColorHighlight]" flipx="true">osd/next.png</texturefocus>
+                    <texturenofocus colordiffuse="Black70" flipx="true">osd/next.png</texturenofocus>
+                    <width>48</width>
+                    <height>48</height>
+                    <onclick>PlayerControl(Previous)</onclick>
+                </control>
+                <control type="button" id="6152">
+                    <texturefocus colordiffuse="$VAR[ColorHighlight]" flipx="true">osd/ff.png</texturefocus>
+                    <texturenofocus colordiffuse="Black70" flipx="true">osd/ff.png</texturenofocus>
+                    <width>48</width>
+                    <height>48</height>
+                    <onclick>PlayerControl(Rewind)</onclick>
+                    <enable>Player.SeekEnabled</enable>
+                    <animation effect="fade" start="100" end="33" time="100" condition="!Player.SeekEnabled">Conditional</animation>
+                </control>
+                <control type="togglebutton" id="6153">
+                    <texturefocus colordiffuse="$VAR[ColorHighlight]">osd/pause.png</texturefocus>
+                    <texturenofocus colordiffuse="Black70">osd/pause.png</texturenofocus>
+                    <alttexturefocus colordiffuse="$VAR[ColorHighlight]">osd/play.png</alttexturefocus>
+                    <alttexturenofocus colordiffuse="Black70">osd/play.png</alttexturenofocus>
+                    <width>48</width>
+                    <height>48</height>
+                    <usealttexture>Player.Paused | Player.Forwarding | Player.Rewinding</usealttexture>
+                    <onclick>PlayerControl(Play)</onclick>
+                    <enable>Player.PauseEnabled</enable>
+                    <animation effect="fade" start="100" end="33" time="100" condition="!Player.PauseEnabled">Conditional</animation>
+                </control>
+                <control type="button" id="6154">
+                    <texturefocus colordiffuse="$VAR[ColorHighlight]">osd/stop.png</texturefocus>
+                    <texturenofocus colordiffuse="Black70">osd/stop.png</texturenofocus>
+                    <width>48</width>
+                    <height>48</height>
+                    <onclick>PlayerControl(Stop)</onclick>
+                    <onclick>AlarmClock(refocus,SetFocus(9000),00:00,silent)</onclick>
+                </control>
+                <control type="button" id="6155">
+                    <texturefocus colordiffuse="$VAR[ColorHighlight]">osd/ff.png</texturefocus>
+                    <texturenofocus colordiffuse="Black70">osd/ff.png</texturenofocus>
+                    <width>48</width>
+                    <height>48</height>
+                    <onclick>PlayerControl(Forward)</onclick>
+                    <enable>Player.SeekEnabled</enable>
+                    <animation effect="fade" start="100" end="33" time="100" condition="!Player.SeekEnabled">Conditional</animation>
+                </control>
+                <control type="button" id="6156">
+                    <texturefocus colordiffuse="$VAR[ColorHighlight]">osd/next.png</texturefocus>
+                    <texturenofocus colordiffuse="Black70">osd/next.png</texturenofocus>
+                    <width>48</width>
+                    <height>48</height>
+                    <onclick>PlayerControl(Next)</onclick>
+                </control>
+                <control type="button" id="6157">
+                    <texturefocus colordiffuse="$VAR[ColorHighlight]">osd/fullscreen.png</texturefocus>
+                    <texturenofocus colordiffuse="Black70">osd/fullscreen.png</texturenofocus>
+                    <width>48</width>
+                    <height>48</height>
+                    <onclick condition="Player.HasVideo">ActivateWindow(fullscreenvideo)</onclick>
+                    <onclick condition="Player.HasAudio">ActivateWindow(visualisation)</onclick>
+                </control>
+            </control>
+        </definition>
+    </include>
+   
 </includes>

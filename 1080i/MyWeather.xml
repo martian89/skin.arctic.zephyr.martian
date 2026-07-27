@@ -41,7 +41,7 @@
                 <width>1760</width>
                 <height>PosterH</height>
                 <orientation>vertical</orientation>
-                <onleft>9000</onleft>
+                <onleft condition="!Skin.HasSetting(global.kioskmode)">9000</onleft>
                 <onright>1675</onright>
                 <include>ScrolltimeViewsList</include>
                 <scroll>false</scroll>
@@ -138,29 +138,11 @@
             <description>Location Select</description>
             <visible allowhiddenfocus="true">false</visible>
         </control>
-        <control type="group">
-            <include>Animation.FadeIn</include>
-            <include>Animation.FadeOut</include>
-            <visible>ControlGroup(9000).HasFocus()</visible>
-            <include>GlobalOverlay</include>
-        </control>
-        <control type="group">
-            <height>550</height>
-            <include>Def9000Background</include>
-            <include>Def9000Header</include>
-            <include content="Def9000Arrows"><param name="arrow_bottom" value="550" /></include>
-            <include content="Def_Gradient_Settings_Image">
-                <param name="controlid" value="9000"/>
-                <param name="left" value="8"/>
-                <param name="top" value="112"/>
-                <param name="width" value="450"/>
-            </include>
+        <include content="View_SideBlade">
+            <param name="height" value="480" /> 
+            <param name="hidden_items_1" value="[!Player.HasMedia + !Player.Playing]" />
             <control type="grouplist" id="9000">
-                <top>112</top>
-                <usecontrolcoords>true</usecontrolcoords>
-                <include content="Def9000GroupList"><param name="height" value="420" /></include>
-                <scrolltime>0</scrolltime>
- 
+                <include>Def9000GroupList</include>
                 <!-- Weather Options -->
                 <control type="button" id="9001" description="Weather Location">
                     <include>DefContextButtonGradient</include>
@@ -177,31 +159,20 @@
                     <selected>!Skin.HasSetting(weather.hidefanart) + [$EXP[HasWeatherFanartSingle] | $EXP[HasWeatherFanartMulti]]</selected>
                     <onclick>Skin.ToggleSetting(weather.hidefanart)</onclick>
                 </control>
-                <control type="button" id="9003" description="Set Icons">
-                    <include>DefContextButtonGradient</include>
-                    <align>left</align>
-                    <label>31260</label>
-                    <onclick>RunScript(script.image.resource.select,property=weather.icons&amp;type=resource.images.weathericons)</onclick>
-                </control>
-                <control type="button" id="9004" description="Set Weather Fanart">
-                    <include>DefContextButtonGradient</include>
-                    <align>left</align>
-                    <label>31143</label>
-                    <onclick>RunScript(script.image.resource.select,property=weather.fanart&amp;type=resource.images.weatherfanart)</onclick>
-                </control>
-                <control type="button" id="9006">
+                <control type="button" id="9003">
                     <include>DefContextButtonGradient</include>
                     <align>left</align>
                     <label>$LOCALIZE[10140]</label>
                     <onclick>Addon.OpenSettings($INFO[Weather.Plugin])</onclick>
                 </control>
-                <control type="button" id="9007">
+                <control type="button" id="9004">
                     <include>DefContextButtonGradient</include>
                     <align>left</align>
                     <label>$LOCALIZE[5]</label>
                     <onclick>ActivateWindow(ServiceSettings,weather)</onclick>
                 </control>
+                <include>View_SideBlade_NowPlaying</include>                
             </control>
-        </control>
+        </include>
     </controls>
 </window>

@@ -4,7 +4,6 @@
 
 	<include name="DialogSettingsLayout">
 		<param name="header_label" default="5" />
-		<param name="top" default="184"/>
 		<param name="width" default="466"/>
         <param name="height" default="620"/>
 		<param name="content_include" />
@@ -20,33 +19,17 @@
 	            <visible>!Window.IsActive(GameVideoFilter) + !Window.IsActive(GameStretchMode) + !Window.IsActive(GameVideoRotation) + !Window.IsActive(DialogSlider.xml)</visible>
 	            <include>Animation.ZoomIn</include>
 	            <include>Animation.FadeOut</include>
-	            <top>$PARAM[top]</top>
 				<width>$PARAM[width]</width>
 				<height>$PARAM[height]</height>
 				<include>Def9000Background</include>
+                <include>Def9000Arrows</include>
 				<include content="Def9000Header">
 					<param name="header_label" value="$PARAM[header_label]" />
 				</include>
-				<include content="Def9000Arrows">
-					<param name="arrow_bottom" value="$PARAM[height]" />
-				</include>
-				<include content="Def_Gradient_Settings_Image">
-					<param name="controlid" value="9000" />
-					<param name="left" value="8" />
-					<param name="right" value="8" />
-					<param name="top" value="112" />
-					<param name="align_right" value="true" />
-				</include>
 				<control type="grouplist" id="9000">
-                    <top>112</top>
-                    <left>8</left>
-                    <right>8</right>
-                    <bottom>18</bottom>
-					<itemgap>0</itemgap>
-					<usecontrolcoords>true</usecontrolcoords>
-					<scrolltime>0</scrolltime>
-					<onright>Dialog.Close(1101)</onright>
-					<onleft>Dialog.Close(1101)</onleft>
+	                <include content="Def9000GroupList">
+	                    <param name="onback" value="Dialog.Close(1101)" /> 
+	                </include>
 					<defaultcontrol always="true">101</defaultcontrol>
 					<include>$PARAM[content_include]</include>
 				</control>
