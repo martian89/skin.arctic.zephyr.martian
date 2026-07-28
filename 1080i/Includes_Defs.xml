@@ -2659,50 +2659,19 @@
             </itemlayout>
             <focusedlayout height="138">
                 <control type="group">
-                    <visible>!$PARAM[focused]</visible> 
-                    <control type="label">
-                        <left>170</left>
-                        <include content="def_right" condition="$PARAM[indicators]">
-                            <param name="right" value="84" />
-                        </include>
-                        <right>30</right>
-                        <height>135</height>
-                        <font>SmallBold</font>
-                        <posy>-18</posy>
-                        <textcolor>Black70</textcolor>
-                        <selectedcolor>Black70</selectedcolor>
-                        <label>$VAR[Label_List_MediaInfo]</label>
-                    </control>
-                    <control type="label">
-                        <left>170</left>
-                        <include content="def_right" condition="$PARAM[indicators]">
-                            <param name="right" value="84" />
-                        </include>
-                        <right>30</right>
-                        <height>135</height>
-                        <font>Mini</font>
-                        <posy>18</posy>
-                        <textcolor>Black70</textcolor>
-                        <selectedcolor>Black70</selectedcolor>
-                        <label fallback="19055">$VAR[Label_List_MediaInfo_Label2]</label>
-                    </control>
-                    <include condition="$PARAM[indicators]" content="Def_IndicatorImage">
-                        <param name="selected" value="$PARAM[item_selected]" />
-                    </include>
-                </control>
-                <control type="group">
-                    <visible>$PARAM[focused]</visible> 
                     <control type="image">
                         <left>0</left>
                         <right>0</right>
                         <height>135</height>
                         <texture border="5" colordiffuse="$VAR[ColorHighlight]">common/white.png</texture>
+                        <animation effect="fade" start="100" end="50" condition="!$PARAM[focused]">Conditional</animation>
                     </control>
                     <control type="image">
                         <left>0</left>
                         <right>0</right>
                         <height>135</height>
                         <texture border="8" colordiffuse="$VAR[ColorGradient]">common/gradient-box-wide.png</texture>
+                        <animation effect="fade" start="100" end="50" condition="!$PARAM[focused]">Conditional</animation>
                     </control>
                     <control type="label">
                         <left>170</left>
