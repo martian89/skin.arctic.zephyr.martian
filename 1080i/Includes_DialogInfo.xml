@@ -863,7 +863,7 @@
                 </include>
                 <selected>ListItem.IsResumable</selected>
                 <visible>!ListItem.IsPlaying</visible>
-                <visible>!ListItem.IsFolder</visible>
+                <visible>![String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,set)]</visible>
                 <visible>!Window.IsVisible(1190)</visible>
                 <visible>$EXP[IsVideoInfo]</visible>
             </control>
@@ -878,7 +878,7 @@
                 </include>
                 <selected>ListItem.IsResumable</selected>
                 <visible>!ListItem.IsPlaying</visible>
-                <visible>!ListItem.IsFolder</visible>
+                <visible>![String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,set)]</visible>
                 <visible>Window.IsVisible(1190)</visible>
                 <visible>$EXP[IsVideoInfo]</visible>
             </control>
@@ -890,7 +890,7 @@
                 <include content="DialogVideoInfoButtons">
                     <param name="icon" value="buttonsdialogs/folder.png" />
                 </include>
-                <visible>ListItem.IsFolder</visible>
+                <visible>String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,set)</visible>
             </control>
 
             <control type="radiobutton" id="10003">
