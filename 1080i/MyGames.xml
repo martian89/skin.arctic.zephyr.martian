@@ -15,45 +15,17 @@
         <include>Furniture_Clock</include>
         <include>Furniture_Weather</include>
         <include>Furniture_Flags_Games</include>
-        <control type="group">
-            <include>Animation.FadeIn</include>
-            <include>Animation.FadeOut</include>
-            <visible>ControlGroup(9000).HasFocus()</visible>
-            <include>GlobalOverlay</include>
-        </control>
-        <control type="group">
-            <height>690</height>
-            <include>Def9000Background</include>
-            <include>Def9000Arrows</include>
-            <include>Def9000Header</include>
-            <include content="Def_Gradient_Settings_Image">
-                <param name="controlid" value="9000"/>
-                <param name="left" value="8"/>
-                <param name="top" value="112"/>
-                <param name="width" value="450"/>
-                <param name="overlayfix" value="true"/>
-                <param name="delay" value="20"/>
-                <param name="visible" value="!ControlGroup(6150).HasFocus()"/>
-            </include>
+        <include content="View_SideBlade">
+            <param name="hidden_items_1" value="[!Player.HasMedia + !Player.Playing] + Control.IsVisible(52)" />
+            <param name="hidden_items_2" value="[Player.HasMedia | Player.Playing] + [Control.IsVisible(58) | Control.IsVisible(500) | Control.IsVisible(513) | Control.IsVisible(515) | Control.IsVisible(555)]" />
+            <param name="hidden_items_3" value="[!Player.HasMedia + !Player.Playing] + [Control.IsVisible(58) | Control.IsVisible(500) | Control.IsVisible(513) | Control.IsVisible(515) | Control.IsVisible(555)]" />
             <control type="grouplist" id="9000">
-                <top>112</top>
-                <usecontrolcoords>true</usecontrolcoords>
-                <include content="Def9000GroupList"><param name="height" value="560" /></include>
-                <scrolltime>0</scrolltime>
+                <include>Def9000GroupList</include>
                 <include>View_Options</include>
                 <!-- Other Options -->
                 <control type="button" id="55553">
                     <include>DefContextMenuLabel</include>
                     <label>587</label>
-                </control>
-                <control type="radiobutton" id="11">
-                    <description>Unlock Shares</description>
-                    <include>DefContextButtonGradient</include>
-                    <align>left</align>
-                    <label>20336</label>
-                    <onclick>mastermode</onclick>
-                    <selected>system.ismaster</selected>
-                    <visible>system.haslocks</visible>
                 </control>
                 <control type="edit" id="19">
                     <label>587</label>
@@ -72,16 +44,9 @@
                     <onclick>Filter</onclick>
                     <selected>Container.Filtered</selected>
                 </control>
-                <control type="button" id="5555">
-                    <include>DefContextButtonGradient</include>
-                    <align>left</align>
-                    <label>31195</label>
-                    <onclick>ReloadSkin()</onclick>
-                    <visible>Skin.HasSetting(DebugInfo)</visible>
-                </control>
-                <include>ControlButtons</include>
+                <include>View_SideBlade_NowPlaying</include>
             </control>
-        </control>
+        </include>
 
         <control type="group">
             <!-- Hidden labels for Game VAR's string checks -->

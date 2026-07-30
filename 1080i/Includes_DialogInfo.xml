@@ -863,7 +863,7 @@
                 </include>
                 <selected>ListItem.IsResumable</selected>
                 <visible>!ListItem.IsPlaying</visible>
-                <visible>!ListItem.IsFolder</visible>
+                <visible>![String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,set)]</visible>
                 <visible>!Window.IsVisible(1190)</visible>
                 <visible>$EXP[IsVideoInfo]</visible>
             </control>
@@ -878,7 +878,7 @@
                 </include>
                 <selected>ListItem.IsResumable</selected>
                 <visible>!ListItem.IsPlaying</visible>
-                <visible>!ListItem.IsFolder</visible>
+                <visible>![String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,set)]</visible>
                 <visible>Window.IsVisible(1190)</visible>
                 <visible>$EXP[IsVideoInfo]</visible>
             </control>
@@ -890,7 +890,7 @@
                 <include content="DialogVideoInfoButtons">
                     <param name="icon" value="buttonsdialogs/folder.png" />
                 </include>
-                <visible>ListItem.IsFolder</visible>
+                <visible>String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,set)</visible>
             </control>
 
             <control type="radiobutton" id="10003">
@@ -1130,13 +1130,13 @@
                     <param name="icon" value="buttonsdialogs/manage.png" />
                 </include>
                 <onclick>SetFocus(9400)</onclick>
-                <visible>!Skin.HasSetting(global.kioskmode) + ![String.IsEmpty(ListItem.DBID) | String.StartsWith(ListItem.Path,plugin://)]</visible>
+                <visible>!Skin.HasSetting(global.kioskmode) + !String.IsEmpty(ListItem.DBID) + [!String.StartsWith(ListItem.Path,plugin://) | System.AddonIsEnabled(script.skin.info.service)]</visible>
             </control>
             <control type="radiobutton" id="10020">
                 <include content="DialogVideoInfoButtons">
                     <param name="icon" value="buttonsdialogs/settings.png" />
                 </include>
-                <visible>!Skin.HasSetting(global.kioskmode) + [String.IsEmpty(ListItem.DBID) | String.StartsWith(ListItem.Path,plugin://)]</visible>
+                <visible>!Skin.HasSetting(global.kioskmode) + [String.IsEmpty(ListItem.DBID) | [String.StartsWith(ListItem.Path,plugin://) + !System.AddonIsEnabled(script.skin.info.service)]]</visible>
                 <onclick condition="$EXP[IsPersonInfo]">SetProperty(personinformation,1)</onclick>
                 <onclick>ActivateWindow(1123)</onclick>
             </control>
@@ -1440,175 +1440,196 @@
             </control>
             <control type="group">
                 <centerleft>50%</centerleft>
-                <centertop>50%</centertop>
-                <width>468</width>
-                <top>200</top>
-                <height>370</height>
+                <width>466</width>
+                <top>184</top>
+                <height>690</height>
                 <control type="image">
-                    <visible>!Integer.IsGreater(Container(9400).NumItems,3)</visible>
-                    <left>-8</left>
-                    <top>-20</top>
-                    <right>10</right>
+                    <visible>!Integer.IsGreater(Container(9400).NumItems,2)</visible>
+                    <left>0</left>
+                    <top>0</top>
+                    <right>0</right>
+                    <height>270</height>
+                    <colordiffuse>White100</colordiffuse>
+                    <texture border="16">common/rounded-shadow8.png</texture>
+                </control>
+                <control type="image">
+                    <visible>Integer.IsEqual(Container(9400).NumItems,3)</visible>
+                    <left>0</left>
+                    <top>0</top>
+                    <right>0</right>
                     <height>340</height>
                     <colordiffuse>White100</colordiffuse>
                     <texture border="16">common/rounded-shadow8.png</texture>
                 </control>
                 <control type="image">
                     <visible>Integer.IsEqual(Container(9400).NumItems,4)</visible>
-                    <left>-8</left>
-                    <top>-20</top>
-                    <right>10</right>
+                    <left>0</left>
+                    <top>0</top>
+                    <right>0</right>
                     <height>410</height>
                     <colordiffuse>White100</colordiffuse>
                     <texture border="16">common/rounded-shadow8.png</texture>
                 </control>
                 <control type="image">
                     <visible>Integer.IsEqual(Container(9400).NumItems,5)</visible>
-                    <left>-8</left>
-                    <top>-20</top>
-                    <right>10</right>
+                    <left>0</left>
+                    <top>0</top>
+                    <right>0</right>
                     <height>480</height>
                     <colordiffuse>White100</colordiffuse>
                     <texture border="16">common/rounded-shadow8.png</texture>
                 </control>
                 <control type="image">
                     <visible>Integer.IsEqual(Container(9400).NumItems,6)</visible>
-                    <left>-8</left>
-                    <top>-20</top>
-                    <right>10</right>
+                    <left>0</left>
+                    <top>0</top>
+                    <right>0</right>
                     <height>550</height>
                     <colordiffuse>White100</colordiffuse>
                     <texture border="16">common/rounded-shadow8.png</texture>
                 </control>
                 <control type="image">
                     <visible>Integer.IsEqual(Container(9400).NumItems,7)</visible>
-                    <left>-8</left>
-                    <top>-20</top>
-                    <right>10</right>
+                    <left>0</left>
+                    <top>0</top>
+                    <right>0</right>
                     <height>620</height>
                     <colordiffuse>White100</colordiffuse>
                     <texture border="16">common/rounded-shadow8.png</texture>
                 </control>
                 <control type="image">
                     <visible>Integer.IsGreater(Container(9400).NumItems,7)</visible>
-                    <left>-8</left>
-                    <top>-20</top>
-                    <right>10</right>
+                    <left>0</left>
+                    <top>0</top>
+                    <right>0</right>
                     <height>690</height>
                     <colordiffuse>White100</colordiffuse>
                     <texture border="16">common/rounded-shadow8.png</texture>
                 </control>
                 <control type="group">
-                    <left>18</left>
-                    <top>0</top>
+                    <top>25</top>
+                    <left>22</left>
+                    <right>22</right>
                     <control type="label">
                         <description>Header Label</description>
                         <left>70</left>
                         <width>1000</width>
-                        <posy>0</posy>
-                        <include>FontTop</include>
+                        <font>MediumBold</font>
                         <textcolor>Black70</textcolor>
                         <label>16106</label>
                     </control>
-                    <include content="Kodi_Logo">
-                        <param name="dimensions" value="40"/>
-                        <param name="top" value="15"/>
-                        <param name="left" value="15"/>
-                    </include>
+                    <include>Kodi_Logo</include>
 
                     <!-- Lines -->
                     <control type="image">
                         <top>70</top>
                         <left>17</left>
-                        <width>385</width>
+                        <right>17</right>
                         <height>1</height>
-                        <bottom>10</bottom>
                         <colordiffuse>Black12</colordiffuse>
                         <texture>common/white.png</texture>
                     </control>
                 </control>
                 <control type="group">
-                    <height>350</height>
-                    <left>-48</left>
-                    <top>-22</top>
+                    <visible>Container(9400).HasNext | Container(9400).HasPrevious</visible>
                     <control type="image">
                         <description>arrow image</description>
                         <centerleft>50%</centerleft>
-                        <posy>-16</posy>
+                        <top>-16</top>
                         <include>arrowdimensions</include>
                         <texture colordiffuse="White70" flipy="true">common/arrow-small.png</texture>
                     </control>
                     <control type="image">
                         <description>arrow image</description>
                         <centerleft>50%</centerleft>
-                        <posy>342</posy>
+                        <top>0r</top>
                         <include>arrowdimensions</include>
                         <texture colordiffuse="White70" flipy="false">common/arrow-small.png</texture>
-                        <animation effect="slide" end="0,70" time="0" condition="Integer.IsGreater(Container(9400).NumItems,3)">Conditional</animation>
-                        <animation effect="slide" end="0,70" time="0" condition="Integer.IsGreater(Container(9400).NumItems,4)">Conditional</animation>
-                        <animation effect="slide" end="0,70" time="0" condition="Integer.IsGreater(Container(9400).NumItems,5)">Conditional</animation>
-                        <animation effect="slide" end="0,70" time="0" condition="Integer.IsGreater(Container(9400).NumItems,6)">Conditional</animation>
-                        <animation effect="slide" end="0,70" time="0" condition="Integer.IsGreater(Container(9400).NumItems,7)">Conditional</animation>
                     </control>
                 </control>
                 <include content="Def_Gradient_Settings_Image">
                     <param name="controlid" value="9400"/>
-                    <param name="left" value="0"/>
-                    <param name="top" value="90"/>
-                    <param name="width" value="450"/>
+	                <param name="top" value="114"/>
+	                <param name="left" value="8"/>
+	                <param name="right" value="8"/>
+	                <param name="align_right" value="true"/>
                 </include>
                 <control type="grouplist" id="9400">
-                    <top>90</top>
+                    <top>114</top>
+		            <left>8</left>
+		            <right>8</right>
+                    <bottom>15</bottom>
                     <onback>9000</onback>
                     <onleft>9000</onleft>
                     <onright>9000</onright>
                     <usecontrolcoords>true</usecontrolcoords>
                     <itemgap>0</itemgap>
                     <scrolltime>0</scrolltime>
-                    <height>560</height>
                     <control type="button" id="91">
                         <include>DefContextButtonGradient</include>
                         <label>40000</label>
                         <align>left</align>
                         <onclick>SendClick(14)</onclick>
-                        <visible>!String.IsEmpty(ListItem.DBID) + String.IsEqual(ListItem.DBTYPE,movie)</visible>
+                        <visible>!String.IsEmpty(ListItem.DBID) + !String.StartsWith(ListItem.Path,plugin://) + String.IsEqual(ListItem.DBTYPE,movie)</visible>
                      </control>
                     <control type="button" id="92">
                         <include>DefContextButtonGradient</include>
                         <label>40211</label>
                         <align>left</align>
                         <onclick>SendClick(15)</onclick>
-                        <visible>!String.IsEmpty(ListItem.DBID) + String.IsEqual(ListItem.DBTYPE,movie)</visible>
+                        <visible>!String.IsEmpty(ListItem.DBID) + !String.StartsWith(ListItem.Path,plugin://) + String.IsEqual(ListItem.DBTYPE,movie) + !String.StartsWith(ListItem.Path,plugin://)</visible>
                     </control>
                     <control type="button" id="93">
                         <include>DefContextButtonGradient</include>
                         <label>184</label>
                         <align>left</align>
                         <onclick>SendClick(6)</onclick>
+                        <visible>!String.IsEmpty(ListItem.DBID) + !String.StartsWith(ListItem.Path,plugin://)</visible>
                     </control>
                     <control type="button" id="94">
                         <include>DefContextButtonGradient</include>
                         <label>31283</label>
                         <align>left</align>
                         <onclick>SendClick(10)</onclick>
+                        <visible>!String.IsEmpty(ListItem.DBID) + !String.StartsWith(ListItem.Path,plugin://)</visible>
                     </control>
                     <control type="button" id="95">
                         <include>DefContextButtonGradient</include>
                         <label>$ADDON[script.skin.info.service 32100]</label>
                         <align>left</align>
                         <onclick>RunScript(script.skin.info.service,action=review_artwork,dbid=$INFO[ListItem.DBID],dbtype=$INFO[ListItem.DBType])</onclick>
-                        <visible>System.AddonIsEnabled(script.skin.info.service)</visible>
+                        <onclick>SetFocus(9000)</onclick>
                         <visible>String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,set) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode) | String.IsEqual(ListItem.DBType,musicvideo) | String.IsEqual(ListItem.DBType,artist) | String.IsEqual(ListItem.DBType,album)</visible>
+                        <visible>System.AddonIsEnabled(script.skin.info.service) + !String.IsEmpty(ListItem.DBID)</visible>
                     </control>
                     <control type="button" id="96">
+                        <include>DefContextButtonGradient</include>
+                        <label>$ADDON[script.skin.info.service 32290]</label>
+                        <align>left</align>
+                        <onclick>RunScript(script.skin.info.service,action=download_artwork,dbid=$INFO[ListItem.DBID],dbtype=$INFO[ListItem.DBType])</onclick>
+                        <onclick>SetFocus(9000)</onclick>
+                        <visible>String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,set) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode) | String.IsEqual(ListItem.DBType,musicvideo) | String.IsEqual(ListItem.DBType,artist) | String.IsEqual(ListItem.DBType,album)</visible>
+                        <visible>System.AddonIsEnabled(script.skin.info.service) + !String.IsEmpty(ListItem.DBID)</visible>
+                    </control>
+                    <control type="button" id="97">
+                        <include>DefContextButtonGradient</include>
+                        <label>$ADDON[script.skin.info.service 32101]</label>
+                        <align>left</align>
+                        <onclick>RunScript(script.skin.info.service,action=update_ratings,dbid=$INFO[ListItem.DBID],dbtype=$INFO[ListItem.DBType])</onclick>
+                        <onclick>SetFocus(9000)</onclick>
+                        <visible>String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,set) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,episode)</visible>
+                        <visible>System.AddonIsEnabled(script.skin.info.service) + !String.IsEmpty(ListItem.DBID)</visible>
+                    </control>
+                    <control type="button" id="98">
                         <include>DefContextButtonGradient</include>
                         <label>$ADDON[script.skin.info.service 32103]</label>
                         <align>left</align>
                         <onclick>RunScript(script.skin.info.service,action=edit,dbid=$INFO[ListItem.DBID],dbtype=$INFO[ListItem.DBType])</onclick>
-                        <visible>System.AddonIsEnabled(script.skin.info.service)</visible>
+                        <onclick>SetFocus(9000)</onclick>
                         <visible>String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,set) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode) | String.IsEqual(ListItem.DBType,musicvideo) | String.IsEqual(ListItem.DBType,artist) | String.IsEqual(ListItem.DBType,album) | String.IsEqual(ListItem.DBType,song)</visible>
+                        <visible>System.AddonIsEnabled(script.skin.info.service) + !String.IsEmpty(ListItem.DBID)</visible>
                     </control>
-                    <control type="button" id="97">
+                    <control type="button" id="99">
                         <include>DefContextButtonGradient</include>
                         <label>5</label>
                         <align>left</align>
@@ -1617,5 +1638,5 @@
                 </control>
             </control>
         </control>
-    </include>    
+    </include>
 </includes>

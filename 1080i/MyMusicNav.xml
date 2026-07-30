@@ -18,31 +18,9 @@
 
         <include>View_Includes</include>
 
-        <control type="group">
-            <include>Animation.FadeIn</include>
-            <include>Animation.FadeOut</include>
-            <visible>ControlGroup(9000).HasFocus()</visible>
-            <include>GlobalOverlay</include>
-        </control>
-        <control type="group">
-            <height>690</height>
-            <include>Def9000Background</include>
-            <include>Def9000Header</include>
-            <include>Def9000Arrows</include>
-            <include content="Def_Gradient_Settings_Image">
-                <param name="controlid" value="9000"/>
-                <param name="left" value="8"/>
-                <param name="top" value="112"/>
-                <param name="width" value="450"/>
-                <param name="overlayfix" value="true"/>
-                <param name="delay" value="20"/>
-                <param name="visible" value="!ControlGroup(6150).HasFocus()"/>
-            </include>
+        <include content="View_SideBlade">
             <control type="grouplist" id="9000">
-                <top>112</top>
-                <usecontrolcoords>true</usecontrolcoords>
-                <include content="Def9000GroupList"><param name="height" value="560" /></include>
-                <scrolltime>0</scrolltime>
+                <include>Def9000GroupList</include>
                 <include>View_Options</include>
                 <!-- Other Options -->
                 <control type="button" id="55553">
@@ -99,16 +77,9 @@
                     <include>DefContextButtonGradient</include>
                     <usealttexture>Library.IsScanningMusic</usealttexture>
                 </control>
-                <include>ButtonPlaylist</include>
-                <control type="button" id="5555">
-                    <include>DefContextButtonGradient</include>
-                    <align>left</align>
-                    <label>31195</label>
-                    <onclick>ReloadSkin()</onclick>
-                    <visible>Skin.HasSetting(DebugInfo)</visible>
-                </control>
-                <include>ControlButtons</include>
+                <include>View_SideBlade_Playlist</include>
+                <include>View_SideBlade_NowPlaying</include>
             </control>
-        </control>
+        </include>
     </controls>
 </window>

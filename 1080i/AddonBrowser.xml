@@ -16,29 +16,15 @@
         <include>Furniture_Weather</include>
         <include>Furniture_Jumpbar</include>
         <include>View_50_List_Square</include>
-        <control type="group">
-            <include>Animation.FadeIn</include>
-            <include>Animation.FadeOut</include>
-            <visible>ControlGroup(9000).HasFocus()</visible>
-            <include>GlobalOverlay</include>
-        </control>
-        <control type="group">
-            <height>550</height>
-            <include>Def9000Background</include>
-            <include content="Def9000Arrows"><param name="arrow_bottom" value="550" /></include>
-            <include>Def9000Header</include>
-            <include content="Def_Gradient_Settings_Image">
-                <param name="controlid" value="9000"/>
-                <param name="left" value="8"/>
-                <param name="top" value="112"/>
-                <param name="width" value="450"/>
-            </include>
+
+        <include content="View_SideBlade">
+            <param name="height" value="620" /> 
+            <param name="hidden_items_1" value="[!Player.HasMedia + !Player.Playing + Control.IsVisible(7) + Control.IsVisible(8)]" />
+            <param name="hidden_items_2" value="[[Player.HasMedia | Player.Playing] + !Control.IsVisible(7) + !Control.IsVisible(8)]" />
+            <param name="hidden_items_3" value="[!Player.HasMedia + !Player.Playing + !Control.IsVisible(7) + !Control.IsVisible(8)]" />
+
             <control type="grouplist" id="9000">
-                <top>112</top>
-                <scrolltime>0</scrolltime>
-                <include content="Def9000GroupList">
-                    <param name="height" value="490"/>
-                </include>
+                <include>Def9000GroupList</include>
                 <control type="button" id="3">
                     <description>Sort</description>
                     <include>DefContextButtonGradient</include>
@@ -56,12 +42,14 @@
                     <align>left</align>
                     <include>DefContextButtonGradient</include>
                     <label>$LOCALIZE[25001]</label>
+                    <visible>Control.IsEnabled(7)</visible>
                 </control>
                 <control type="radiobutton" id="8">
                     <description>Hide incompatible</description>
                     <align>left</align>
                     <include>DefContextButtonGradient</include>
                     <label>$LOCALIZE[24999]</label>
+                    <visible>Control.IsEnabled(8)</visible>
                 </control>
                 <control type="button" id="9">
                     <description>Check for updates</description>
@@ -75,7 +63,8 @@
                     <align>left</align>
                     <include>DefContextButtonGradient</include>
                 </control>
+                <include>View_SideBlade_NowPlaying</include>                
             </control>
-        </control>
+        </include>
     </controls>
 </window>
