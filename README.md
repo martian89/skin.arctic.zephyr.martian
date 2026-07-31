@@ -37,7 +37,7 @@ On Kodi versions prior to Kodi 22 Piers HDR10+, Atmos and DTS:X could not be det
 
 * **HDR10+**, if the filename contains HDR10PLUS.
 * **Atmos**, if the filename contains ATMOS. 
-* **DTS:X**, if the filename contains DTSX oder DTS-X.
+* **DTS:X**, if the filename contains DTSX or DTS-X.
  
 ## License 
 
