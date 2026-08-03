@@ -15,8 +15,6 @@
         <include>Furniture_Clock</include>
         <include>Furniture_Weather</include>
         <include content="View_SideBlade">
-            <param name="height" value="410" /> 
-            <param name="hidden_items_1" value="[!Player.HasMedia + !Player.Playing]" />
             <control type="grouplist" id="9000">
                 <include>Def9000GroupList</include>
                 <control type="button" id="2">
@@ -24,18 +22,19 @@
                     <include>DefContextButtonGradient</include>
                     <align>left</align>
                 </control>
-                <control type="button" id="3">
-                    <description>Sort</description>
+                <include>View_SideBlade_Common</include>
+                <control type="button" id="55554">
+                    <include>DefContextMenuLabel</include>
+                    <label>14230</label>
+                    <visible>!String.IsEmpty(Container.PluginName)</visible>
+                </control>
+                <control type="button" id="9098">
                     <include>DefContextButtonGradient</include>
                     <align>left</align>
-                </control>
-                <control type="togglebutton" id="4">
-                    <description>Ascending</description>
-                    <include>DefContextButtonGradient</include>
-                    <align>left</align>
-                    <label>584</label>
-                    <altlabel>585</altlabel>
-                </control>
+                    <label>10140</label>
+                    <onclick>Addon.OpenSettings($INFO[Container.PluginName])</onclick>
+                    <visible>!String.IsEmpty(Container.PluginName)</visible>
+                </control>    
                 <include>View_SideBlade_NowPlaying</include>                
             </control>
         </include>

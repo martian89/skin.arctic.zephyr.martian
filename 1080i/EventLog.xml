@@ -10,8 +10,16 @@
         <include>Furniture_NowPlaying</include>
         <include>Furniture_Clock</include>
         <include>Furniture_Weather</include>
-        <include content="View_SideBlade">
-            <param name="height" value="410" />            
+        <control type="group">
+            <include>Animation.FadeIn</include>
+            <include>Animation.FadeOut</include>
+            <visible>ControlGroup(9000).HasFocus()</visible>
+            <include>GlobalOverlay</include>
+        </control>
+        <control type="group">
+            <height>410</height>
+            <include>Def9000Background</include>
+            <include>Def9000Header</include>
             <control type="grouplist" id="9000">
                 <include>Def9000GroupList</include>
 		        <control type="togglebutton" id="4">
@@ -35,6 +43,6 @@
                     <label>192</label>
                 </control>
             </control>
-        </include>
+        </control>
     </controls>
 </window>

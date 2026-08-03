@@ -44,7 +44,7 @@
                         <effect type="slide" start="0,-120" end="0,0" delay="0" time="200" tween="quadratic" easing="out"/>
                     </animation>
                     <animation type="Conditional" condition="String.IsEqual(Window.Property(ShowDisc),1)">
-                        <effect type="slide" start="0,0" end="0,-220" delay="0" time="200" tween="quadratic" easing="out"/>
+                        <effect type="slide" start="0,0" end="0,-205" delay="0" time="200" tween="quadratic" easing="out"/>
                     </animation>
                     <visible>!String.IsEmpty(ListItem.Art(discart)) + Control.HasFocus(11100) + !Skin.HasSetting(hide.discart)</visible>
                     <top>225</top>
@@ -62,14 +62,14 @@
 
                 <!-- Control Buttons -->
                 <control type="group">
+                    <top>856</top>
                     <include>DialogMusicInfoNavigation</include>
                     <include>Animation.MusicFadeOut</include>
                 </control>
                 <control type="group">
+                    <top>950</top>
                     <left>785</left>
                     <right>SidePad</right>
-                    <bottom>100</bottom>
-                    <height>50</height>             
                     <control type="label">
                         <height>50</height>
                         <font>Mini</font>
@@ -132,9 +132,9 @@
                     <texture colordiffuse="Dark1">$VAR[Image_RecordlabelLogo]</texture>
                 </control>
 
-                <include content="ArrowsNavigation">
+                <include content="DialogInifo_Navigation_Arrows">
                     <param name="visible" value="Control.HasFocus(10053) + Integer.IsGreater(Container(53).NumItems,1)" />
-                    <param name="centerbottom" value="560" />
+                    <param name="top" value="500" />
                     <param name="centerleft" value="765" />
                 </include>
 
@@ -151,7 +151,6 @@
                     <control type="group">
                         <visible>Container.Content(albums)</visible>
                         <control type="group">
-                            <top>41</top>
                             <include>Furniture_Flags_AudioDialogInfo</include>
                         </control>
                         <left>785</left>
@@ -187,8 +186,8 @@
                             <include>Animation.FadeOutDialogInfo</include>
                             <include>Animation.FadeInDialogInfo</include>
                             <visible>String.IsEmpty(Window.Property(content))</visible>
-                            <top>318</top>
-                            <height>288</height>
+                            <top>330</top>
+                            <height>294</height>
                             <font>TinyPlot</font>
                             <textcolor>Dark2</textcolor>
                             <aligny>top</aligny>
@@ -248,7 +247,7 @@
                             <visible>String.IsEmpty(Window.Property(content))</visible>
                             <control type="textbox">
                                 <right>0</right>
-                                <top>310</top>
+                                <top>330</top>
                                 <height>294</height>
                                 <font>TinyPlot</font>
                                 <textcolor>Dark2</textcolor>
@@ -260,7 +259,6 @@
                     <control type="group">
                         <visible>Container.Content(songs)</visible>
                         <control type="group">
-                            <top>41</top>
                             <include>Furniture_Flags_AudioDialogInfo</include>
                         </control>
                         <left>785</left>
@@ -297,7 +295,7 @@
                             <include>Animation.FadeInDialogInfo</include>
                             <visible>String.IsEmpty(Window.Property(content))</visible>
                             <right>0</right>
-                            <top>310</top>
+                            <top>330</top>
                             <height>294</height>
                             <font>TinyPlot</font>
                             <textcolor>Dark2</textcolor>
@@ -349,23 +347,22 @@
                     <visible>String.IsEqual(Window.Property(content),4)</visible>
                     <include>Animation.FadeInDialogInfo</include>
                     <include>Animation.FadeOutDialogInfo</include>
-                    <left>571</left>
+                    <top>PosterPad</top>
+                    <left>785</left>
                     <right>SidePad</right>
-                    <bottom>184</bottom>
-                    <top>335</top>
+                    <height>PosterH</height>
                     <control type="image">
-                        <left>213</left>
-                        <top>-119</top>
-                        <right>0</right>
-                        <bottom>71</bottom>
+                        <width>100%</width>
+                        <height>100%</height>
                         <texture colordiffuse="Box2" border="4" diffuse="diffuse/bigwiderolodex.png" infill="false">common/box21.png</texture>
+                        <visible>Skin.HasSetting(global.showborders)</visible>
                     </control>
                     <control type="group">
                         <visible>Control.HasFocus(10053)</visible>
-                        <left>206</left>
-                        <top>-127</top>
-                        <right>-8</right>
-                        <bottom>64</bottom>
+                        <left>-7</left>
+                        <top>-7</top>
+                        <right>-7</right>
+                        <bottom>-7</bottom>
                         <control type="image">
                             <texture border="5" colordiffuse="$VAR[ColorHighlight]">common/box.png</texture>
                             <animation condition="Control.HasFocus(10053)" effect="fade" end="100" start="0" time="150">Conditional</animation>
@@ -378,39 +375,40 @@
                         </control>
                     </control>
                     <control type="image">
-                        <height>607</height>
-                        <width>1054</width>
-                        <left>214</left>
-                        <top>-118</top>
+                        <left>1</left>
+                        <top>1</top>
+                        <right>1</right>
+                        <bottom>1</bottom>
                         <texture colordiffuse="Background" diffuse="diffuse/bigwiderolodex.png">common/white.png</texture>
                     </control>
                     <include content="DialogInfo_List_Updating">
                         <param name="visi" value="String.IsEqual(Window.Property(content),4)"/>
                         <param name="controlid" value="53"/>
-                        <param name="top" value="-118"/>
-                        <param name="left" value="214"/>
+                        <param name="top" value="1"/>
+                        <param name="left" value="1"/>
                         <param name="width" value="1054"/>
-                        <param name="height" value="607"/>
+                        <param name="height" value="638"/>
                     </include>
                     <control type="fixedlist" id="53">
-                        <top>-118</top>
-                        <left>214</left>
+                        <top>1</top>
+                        <left>1</left>
+                        <right>1</right>
+                        <bottom>1</bottom>
                         <ondown>9000</ondown>
                         <onback>9000</onback>
                         <onup>9000</onup>
-                        <width>1054</width>
                         <preloaditems>2</preloaditems>
                         <autoscroll time="5000">ControlGroup(9000).HasFocus()</autoscroll>
                         <orientation>horizontal</orientation>
                         <viewtype>fixedlist</viewtype>
                         <include>ScrolltimeDetailsList</include>
-                        <itemlayout width="1054" height="607">
+                        <itemlayout width="1054" height="638">
                             <control type="image">
                                 <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
                                 <texture diffuse="diffuse/bigwiderolodex.png" fallback="DefaultBrokenImage.png">$INFO[ListItem.Label]</texture>
                             </control>
                         </itemlayout>
-                        <focusedlayout width="1054" height="607">
+                        <focusedlayout width="1054" height="638">
                             <control type="image">
                                 <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
                                 <texture diffuse="diffuse/bigwiderolodex.png" fallback="DefaultBrokenImage.png">$INFO[ListItem.Label]</texture>
@@ -609,7 +607,7 @@
                     </control>
                     <control type="image">
                         <right>40</right>
-                        <bottom>100</bottom>
+                        <bottom>40</bottom>
                         <width>50</width>
                         <height>50</height>
                         <aspectratio>keep</aspectratio>
@@ -623,13 +621,13 @@
                     <visible>String.IsEqual(Window.Property(content),1)</visible>
                     <include>Animation.FadeOutDialogInfo</include>
                     <include>Animation.FadeInDialogInfo</include>
-                    <top>230</top>
+                    <top>DialogInfoTop</top>
                     <left>785</left>
                     <control type="label">
                         <width>150</width>
                         <height>36</height>
                         <font>Tiny</font>
-                        <top>329</top>
+                        <top>330</top>
                         <textcolor>Dark1</textcolor>
                         <label>[B]$LOCALIZE[134][/B]</label>
                         <aligny>center</aligny>
@@ -651,11 +649,11 @@
                         <onclick>PlayMedia($ESCINFO[Container(50).ListItem.FileNameAndPath])</onclick>
                     </control>
                     <control type="list" id="50">
-                        <left>250</left>
-                        <top>322</top>
+                        <left>280</left>
+                        <top>324</top>
                         <right>SidePad</right>
                         <width>1000</width>
-                        <height>268</height>
+                        <height>288</height>
                         <onleft>9000</onleft>
                         <onright>62</onright>
                         <onup>50</onup>

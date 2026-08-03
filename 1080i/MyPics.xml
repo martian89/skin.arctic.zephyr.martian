@@ -17,8 +17,6 @@
         <include>View_501_List_Squarepics</include>
         <include>View_502_Slider</include>
         <include content="View_SideBlade">
-            <param name="height" value="550" /> 
-            <param name="hidden_items_1" value="[!Player.HasMedia + !Player.Playing]" />
             <control type="grouplist" id="9000">
                 <include>Def9000GroupList</include>
                 <control type="button" id="2">
@@ -26,25 +24,14 @@
                     <include>DefContextButtonGradient</include>
                     <align>left</align>
                 </control>
-                <control type="button" id="3">
-                    <description>Sort</description>
-                    <include>DefContextButtonGradient</include>
-                    <align>left</align>
-                </control>
-                <control type="togglebutton" id="4">
-                    <description>Ascending</description>
-                    <include>DefContextButtonGradient</include>
-                    <align>left</align>
-                    <label>584</label>
-                    <altlabel>585</altlabel>
-                </control>
+                <include>View_SideBlade_Common</include>
                 <control type="radiobutton" id="40">
                     <include>DefContextButtonGradient</include>
                     <align>left</align>
                     <label>Layout 2</label>
                     <selected>Skin.HasSetting(pics.layout.fanart)</selected>
                     <onclick>Skin.ToggleSetting(pics.layout.fanart)</onclick>
-                    <visible>Control.IsVisible(51)</visible>
+                    <visible>Control.IsVisible(501)</visible>
                 </control>
                 <control type="button" id="6">
                     <description>Slideshow</description>
@@ -66,6 +53,18 @@
                     <align>left</align>
                     <label>13319</label>
                 </control>
+                <control type="button" id="55554">
+                    <include>DefContextMenuLabel</include>
+                    <label>14230</label>
+                    <visible>!String.IsEmpty(Container.PluginName)</visible>
+                </control>
+                <control type="button" id="9098">
+                    <include>DefContextButtonGradient</include>
+                    <align>left</align>
+                    <label>10140</label>
+                    <onclick>Addon.OpenSettings($INFO[Container.PluginName])</onclick>
+                    <visible>!String.IsEmpty(Container.PluginName)</visible>
+                </control>    
                 <include>View_SideBlade_NowPlaying</include>                
             </control>
         </include>

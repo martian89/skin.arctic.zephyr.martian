@@ -16,34 +16,24 @@
         <include>Furniture_Weather</include>
         <include>Furniture_Flags_Games</include>
         <include content="View_SideBlade">
-            <param name="hidden_items_1" value="[!Player.HasMedia + !Player.Playing] + Control.IsVisible(52)" />
-            <param name="hidden_items_2" value="[Player.HasMedia | Player.Playing] + [Control.IsVisible(58) | Control.IsVisible(500) | Control.IsVisible(513) | Control.IsVisible(515) | Control.IsVisible(555)]" />
-            <param name="hidden_items_3" value="[!Player.HasMedia + !Player.Playing] + [Control.IsVisible(58) | Control.IsVisible(500) | Control.IsVisible(513) | Control.IsVisible(515) | Control.IsVisible(555)]" />
             <control type="grouplist" id="9000">
                 <include>Def9000GroupList</include>
+                <include>View_SideBlade_ViewMode</include>
+                <include>View_SideBlade_Common</include>
                 <include>View_Options</include>
                 <!-- Other Options -->
-                <control type="button" id="55553">
+                <control type="button" id="55554">
                     <include>DefContextMenuLabel</include>
-                    <label>587</label>
+                    <label>14230</label>
+                    <visible>!String.IsEmpty(Container.PluginName)</visible>
                 </control>
-                <control type="edit" id="19">
-                    <label>587</label>
-                    <description>Filter (hidden)</description>
-                    <align>left</align>
+                <control type="button" id="9098">
                     <include>DefContextButtonGradient</include>
-                    <visible>!Container.CanFilterAdvanced</visible>
-                </control>
-                <control type="radiobutton" id="98">
-                    <visible>Container.CanFilterAdvanced</visible>
-                    <description>Filter</description>
-                    <include>DefContextButtonGradient</include>
-                    <label>587</label>
                     <align>left</align>
-                    <onclick>SetFocus(50)</onclick>
-                    <onclick>Filter</onclick>
-                    <selected>Container.Filtered</selected>
-                </control>
+                    <label>10140</label>
+                    <onclick>Addon.OpenSettings($INFO[Container.PluginName])</onclick>
+                    <visible>!String.IsEmpty(Container.PluginName)</visible>
+                </control>    
                 <include>View_SideBlade_NowPlaying</include>
             </control>
         </include>

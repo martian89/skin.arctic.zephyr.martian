@@ -91,7 +91,7 @@
                             <effect type="slide" start="0,0" end="0,100" delay="0" time="200" tween="quadratic" easing="out"/>
                         </animation>
                         <animation type="Conditional" condition="String.IsEqual(Window.Property(ShowDisc),1)">
-                            <effect type="slide" start="0,0" end="0,-220" delay="0" time="200" tween="quadratic" easing="out"/>
+                            <effect type="slide" start="0,0" end="0,-205" delay="0" time="200" tween="quadratic" easing="out"/>
                         </animation>
                         <visible>Control.HasFocus(11100) + !String.IsEmpty(ListItem.Art(discart)) + !Skin.HasSetting(hide.discart)</visible>
                         <top>200</top>
@@ -128,15 +128,15 @@
 
                 <!-- Control Buttons -->
                 <control type="group">
-                    <bottom>-80</bottom>
+                    <top>856</top>
                     <include>Animation.VideoFadeOut</include>
                     <include>DialogVideoInfoNavigation</include>
-                    <include content="ArrowsNavigation">
+                    <include content="DialogInfo_Navigation_Arrows">
                         <param name="visible" value="Integer.IsGreater(Container(9000).NumItems,8) + ControlGroup(9000).HasFocus()" />
                     </include>
                 </control>
                 <control type="group">
-                    <top>930</top>
+                    <top>950</top>
                     <right>SidePad</right>
                     <width>1400</width>
                     <control type="label">
@@ -259,9 +259,9 @@
                 </control>
 
                 <!-- Arrows -->
-                <include content="ArrowsNavigation">
+                <include content="DialogInfo_Navigation_Arrows">
                     <param name="visible" value="Control.HasFocus(10055) + Integer.IsGreater(Container(55).NumItems,1)" />
-                    <param name="centerbottom" value="560" />
+                    <param name="top" value="500" />
                 </include>
 
                 <!-- FANART -->
@@ -269,22 +269,21 @@
                     <visible>String.IsEqual(Window.Property(content),5)</visible>
                     <include>Animation.FadeInDialogInfo</include>
                     <include>Animation.FadeOutDialogInfo</include>
+                    <top>PosterPad</top>
                     <left>570</left>
                     <right>SidePad</right>
-                    <bottom>184</bottom>
-                    <top>335</top>
+                    <height>PosterH</height>
                     <control type="image">
-                        <left>0</left>
-                        <top>-119</top>
-                        <right>0</right>
-                        <bottom>71</bottom>
+                        <width>100%</width>
+                        <height>100%</height>
                         <texture colordiffuse="Box2" border="4" background="true" infill="false">common/box21.png</texture>
+                        <visible>Skin.HasSetting(global.showborders)</visible>
                     </control>
                     <control type="group">
                         <left>-7</left>
-                        <top>-126</top>
+                        <top>-7</top>
                         <right>-7</right>
-                        <bottom>64</bottom>
+                        <bottom>-7</bottom>
                         <control type="image">
                             <texture border="5" colordiffuse="$VAR[ColorHighlight]">common/box.png</texture>
                             <animation condition="Control.HasFocus(10055)" effect="fade" end="100" start="0" time="150">Conditional</animation>
@@ -297,40 +296,41 @@
                         </control>
                     </control>
                     <control type="image">
-                        <height>607</height>
-                        <width>1268</width>
                         <left>1</left>
-                        <top>-118</top>
+                        <top>1</top>
+                        <right>1</right>
+                        <bottom>1</bottom>
                         <texture colordiffuse="Background" border="4">common/box.png</texture>
                     </control>
                     <include content="DialogInfo_List_Updating">
                         <param name="visi" value="String.IsEqual(Window.Property(content),5)"/>
                         <param name="controlid" value="55"/>
-                        <param name="top" value="-118"/>
+                        <param name="top" value="1"/>
                         <param name="left" value="1"/>
                         <param name="width" value="1268"/>
-                        <param name="height" value="607"/>
+                        <param name="height" value="638"/>
                     </include>
                     <control type="fixedlist" id="55">
-                        <top>-118</top>
+                        <top>1</top>
                         <left>1</left>
+                        <right>1</right>
+                        <bottom>1</bottom>
                         <ondown>9000</ondown>
                         <onback>9000</onback>
                         <onup>9000</onup>
-                        <width>1268</width>
                         <preloaditems>2</preloaditems>
                         <autoscroll time="5000">ControlGroup(9000).HasFocus()</autoscroll>
                         <viewtype>fixedlist</viewtype>
                         <orientation>horizontal</orientation>
                         <include>ScrolltimeDetailsList</include>
                         <visible allowhiddenfocus="true">!Skin.HasSetting(showartwork.video.tmdbhelper) | [!Container(55).IsUpdating + Skin.HasSetting(showartwork.video.tmdbhelper)]</visible>
-                        <itemlayout width="1268" height="607">
+                        <itemlayout width="1268" height="638">
                             <control type="image">
                                 <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
                                 <texture diffuse="diffuse/bigwiderolodex.png" fallback="DefaultAddonPicture.png">$VAR[Image_Thumb_Label]</texture>
                             </control>
                         </itemlayout>
-                        <focusedlayout width="1268" height="607">
+                        <focusedlayout width="1268" height="638">
                             <control type="image">
                                 <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
                                 <texture diffuse="diffuse/bigwiderolodex.png" fallback="DefaultAddonPicture.png">$VAR[Image_Thumb_Label]</texture>
@@ -438,7 +438,7 @@
                     </control>
                     <control type="image">
                         <right>40</right>
-                        <bottom>100</bottom>
+                        <bottom>40</bottom>
                         <width>50</width>
                         <height>50</height>
                         <aspectratio>keep</aspectratio>
@@ -453,20 +453,21 @@
                     <visible>String.IsEqual(Window.Property(content),6) + !Window.IsVisible(DialogBusy.xml)</visible>
                     <include>Animation.FadeInDialogInfo</include>
                     <include>Animation.FadeOutDialogInfo</include>
+                    <top>PosterPad</top>
                     <left>570</left>
                     <right>SidePad</right>
-                    <bottom>184</bottom>
-                    <top>217</top>
+                    <height>PosterH</height>
                     <control type="image">
-                        <top>-1</top>
-                        <bottom>71</bottom>
+                        <height>100%</height>
+                        <width>100%</width>
                         <texture colordiffuse="Box2" border="4" background="true" infill="false">common/box21.png</texture>
+                        <visible>Skin.HasSetting(global.showborders)</visible>
                     </control>
                     <control type="group">
+                        <top>-7</top>
                         <left>-7</left>
-                        <top>-8</top>
-                        <right>-7</right>
-                        <bottom>64</bottom>
+                        <right>-7</right>    
+                        <bottom>-7</bottom>
                         <control type="image">
                             <texture border="5" colordiffuse="$VAR[ColorHighlight]">common/box.png</texture>
                             <animation condition="Control.HasFocus(7011)" effect="fade" end="100" start="0" time="150">Conditional</animation>
@@ -478,16 +479,16 @@
                             <animation condition="!Control.HasFocus(7011)" effect="fade" end="0" start="100" time="100">Conditional</animation>
                         </control>
                     </control>
-                    <control type="image">
-                        <height>607</height>
-                        <width>1268</width>
-                        <left>1</left>
-                        <texture colordiffuse="FF000000" border="4">common/box.png</texture>
-                    </control>
                     <control type="group">
-                        <height>607</height>
-                        <width>1268</width>
+                        <top>1</top>
                         <left>1</left>
+                        <right>1</right>    
+                        <bottom>1</bottom>
+	                    <control type="image">
+	                        <height>100%</height>
+	                        <width>100%</width>
+	                        <texture colordiffuse="FF000000" border="4">common/box.png</texture>
+	                    </control>
                         <control type="videowindow">
                             <visible>String.IsEqual(Window.Property(content),6)</visible>
                             <animation type="Hidden" reversible="false">
@@ -496,32 +497,29 @@
                             </animation>
                             <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
                         </control>
-                    </control>
-                    <control type="group">
-                        <left>50</left>
-                        <top>-120</top>
-                        <visible>!Player.HasVideo</visible>
-                        <control type="group">
-                            <left>560</left>
-                            <control type="image" description="Back">
-                                <left>0</left>
-                                <centertop>55%</centertop>
-                                <width>60</width>
-                                <height>60</height>
-                                <aspectratio align="center" aligny="center">keep</aspectratio>
-                                <texture colordiffuse="$VAR[ColorHighlight]">osd/play2.png</texture>
-                                <visible>Control.HasFocus(7011)</visible>
-                            </control>
-                            <control type="image" description="Back">
-                                <left>0</left>
-                                <centertop>55%</centertop>
-                                <width>60</width>
-                                <height>60</height>
-                                <aspectratio align="center" aligny="center">keep</aspectratio>
-                                <texture colordiffuse="PanelWhite70">osd/play2.png</texture>
-                                <visible>!Control.HasFocus(7011)</visible>
-                            </control>
-                        </control>
+	                    <control type="group">
+	                        <visible>!Player.HasVideo</visible>
+	                        <control type="group">
+	                            <control type="image" description="Back">
+	                                <centerleft>50%</centerleft>
+	                                <centertop>50%</centertop>
+	                                <width>60</width>
+	                                <height>60</height>
+	                                <aspectratio align="center" aligny="center">keep</aspectratio>
+	                                <texture colordiffuse="$VAR[ColorHighlight]">osd/play2.png</texture>
+	                                <visible>Control.HasFocus(7011)</visible>
+	                            </control>
+	                            <control type="image" description="Back">
+                                    <centerleft>50%</centerleft>
+                                    <centertop>50%</centertop>
+	                                <width>60</width>
+	                                <height>60</height>
+	                                <aspectratio align="center" aligny="center">keep</aspectratio>
+	                                <texture colordiffuse="PanelWhite70">osd/play2.png</texture>
+	                                <visible>!Control.HasFocus(7011)</visible>
+	                            </control>
+	                        </control>
+	                    </control>
                     </control>
                 </control>
 
@@ -732,9 +730,9 @@
                             </control>
                             <control type="textbox">
                                 <include content="def_top" condition="Skin.HasSetting(furniture.flags)">
-                                    <param name="top" value="102" />
+                                    <param name="top" value="106" />
                                 </include>
-                                <top>176</top>
+                                <top>188</top>
                                 <include content="def_height" condition="Skin.HasSetting(furniture.flags)">
                                     <param name="height" value="221" />
                                 </include>
@@ -750,7 +748,7 @@
                         <!-- DETAILS -->
                         <control type="group">
                             <width>100%</width>
-                            <top>333</top>
+                            <top>351</top>
                             <control type="grouplist">
                                 <orientation>vertical</orientation>
                                 <itemgap>-30</itemgap>
@@ -818,7 +816,7 @@
                                     <label>[B]$LOCALIZE[31814] / $LOCALIZE[31813][/B]</label>
                                     <aligny>center</aligny>
                                     <align>left</align>
-                                    <visible>![!String.IsEmpty(ListItem.Top250) | !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Top250))] + !String.IsEqual(ListItem.DBType,musicvideo) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Revenue)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Revenue))</visible>
+                                    <visible>![!String.IsEmpty(ListItem.Top250) | !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Top250))] + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Budget)) + !String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Budget),$0) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Revenue)) + !String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Revenue),$0)</visible>
                                 </control>
                                 <control type="label">
                                     <font>Tiny</font>
@@ -906,7 +904,7 @@
                                     <textcolor>Dark2</textcolor>
                                     <label fallback="19055">$INFO[Window(Home).Property(TMDbHelper.ListItem.Revenue)] / $INFO[Window(Home).Property(TMDbHelper.ListItem.Budget)]</label>
                                     <aligny>center</aligny>
-                                    <visible>![!String.IsEmpty(ListItem.Top250) | !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Top250))] + !String.IsEqual(ListItem.DBType,musicvideo) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Budget)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Revenue))</visible>
+                                    <visible>![!String.IsEmpty(ListItem.Top250) | !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Top250))] + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Budget)) + !String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Budget),$0) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Revenue)) + !String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Revenue),$0)</visible>
                                 </control>
                                 <control type="label">
                                     <font>Tiny</font>
@@ -1020,7 +1018,7 @@
                             </control>
                             <control type="image" description="clearart">
                                 <fadetime>ClearArtFadetime</fadetime>
-                                <bottom>240</bottom>
+                                <bottom>224</bottom>
                                 <right>0</right>
                                 <width>350</width>
                                 <aspectratio scalediffuse="true" align="right" aligny="bottom">keep</aspectratio>

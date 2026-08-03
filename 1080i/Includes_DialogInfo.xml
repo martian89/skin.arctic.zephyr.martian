@@ -662,8 +662,8 @@
                 <include>Animation.FadeOutDialogInfo</include>
                 <include>Animation.FadeInDialogInfo</include>
                 <left>20</left>
-                <right>0</right>
-                <bottom>30</bottom>
+                <right>-10</right>
+                <bottom>-10</bottom>
                 <height>210</height>
                 <onleft>$PARAM[controlid]</onleft>
                 <onright>$PARAM[controlid]</onright>
@@ -777,6 +777,32 @@
             <param name="icon" value="$PARAM[icon]" />
         </include>    
     </include>
+
+    <include name="DialogInfo_Navigation_Arrows">
+        <param name="top" default="28"/>
+        <param name="centerleft" default="550"/>
+        <param name="visible" default="false"/>
+        <definition>
+        <control type="group">
+            <include>Animation.DelayFadeIn</include>
+            <visible>$PARAM[visible]</visible>
+            <top>$PARAM[top]</top>
+            <height>72</height>
+            <control type="image">
+                <centertop>50%</centertop>
+                <centerleft>$PARAM[centerleft]</centerleft>
+                <include>arrowdimensions</include>
+                <texture colordiffuse="Dark1" flipx="true">common/arrow-small-right.png</texture>
+            </control>
+            <control type="image">
+                <centertop>50%</centertop>
+                <centerright>61</centerright>
+                <include>arrowdimensions</include>
+                <texture colordiffuse="Dark1" flipx="false">common/arrow-small-right.png</texture>
+            </control>
+        </control>
+        </definition>
+    </include>
  
     <include name="DialogVideoInfo_Trailer_Click_Action">
         <onclick condition="Skin.HasSetting(PlayTrailerWindowed) + !Skin.HasSetting(Use.IMDB.Trailer) + !String.IsEmpty(ListItem.Trailer)">PlayMedia($INFO[ListItem.Trailer],1)</onclick>
@@ -846,7 +872,7 @@
    
     <include name="DialogVideoInfoNavigation">
         <control type="grouplist" id="9000">
-            <bottom>224</bottom>
+            <top>28</top>
             <left>570</left>
             <right>81</right>
             <include>listdimensions</include>
@@ -1163,7 +1189,7 @@
 
     <include name="DialogMusicInfoNavigation">
         <control type="grouplist" id="9000">
-            <bottom>144</bottom>
+            <top>28</top>
             <left>783</left>
             <right>SidePad</right>
             <include>listdimensions</include>
@@ -1287,7 +1313,7 @@
 
     <include name="DialogAddonInfoNavigation">
         <control type="grouplist" id="9000">
-            <bottom>224</bottom>
+            <top>28</top>
             <left>783</left>
             <right>SidePad</right>
             <include>listdimensions</include>
@@ -1359,7 +1385,7 @@
 
     <include name="DialogPVRInfoNavigation">
         <control type="grouplist" id="9000">
-            <bottom>224</bottom>
+            <top>28</top>
             <left>783</left>
             <right>SidePad</right>
             <include>listdimensions</include>

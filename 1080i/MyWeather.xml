@@ -139,33 +139,33 @@
             <visible allowhiddenfocus="true">false</visible>
         </control>
         <include content="View_SideBlade">
-            <param name="height" value="480" /> 
-            <param name="hidden_items_1" value="[!Player.HasMedia + !Player.Playing]" />
             <control type="grouplist" id="9000">
-                <include>Def9000GroupList</include>
+                <include content="Def9000GroupList">
+                    <param name="onback" value="9100" />
+                </include>
                 <!-- Weather Options -->
-                <control type="button" id="9001" description="Weather Location">
+                <control type="button" id="9002" description="Weather Location">
                     <include>DefContextButtonGradient</include>
                     <align>left</align>
                     <label>$LOCALIZE[184]:</label>
                     <label2>$INFO[Weather.Location]</label2>
                     <onclick>Weather.LocationNext</onclick>
                 </control>
-                <control type="radiobutton" id="9002" description="Show weather overlay">
+                <control type="radiobutton" id="9003" description="Show weather overlay">
                     <include>DefContextButtonGradient</include>
                     <align>left</align>
                     <label>31234</label>
-                    <enable>$EXP[HasWeatherFanartSingle] | $EXP[HasWeatherFanartMulti]</enable>
+                    <visible>$EXP[HasWeatherFanartSingle] | $EXP[HasWeatherFanartMulti]</visible>
                     <selected>!Skin.HasSetting(weather.hidefanart) + [$EXP[HasWeatherFanartSingle] | $EXP[HasWeatherFanartMulti]]</selected>
                     <onclick>Skin.ToggleSetting(weather.hidefanart)</onclick>
                 </control>
-                <control type="button" id="9003">
+                <control type="button" id="9004">
                     <include>DefContextButtonGradient</include>
                     <align>left</align>
                     <label>$LOCALIZE[10140]</label>
                     <onclick>Addon.OpenSettings($INFO[Weather.Plugin])</onclick>
                 </control>
-                <control type="button" id="9004">
+                <control type="button" id="9005">
                     <include>DefContextButtonGradient</include>
                     <align>left</align>
                     <label>$LOCALIZE[5]</label>
