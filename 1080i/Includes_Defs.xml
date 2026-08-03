@@ -640,9 +640,6 @@
     </include>
 
     <include name="Def9000Arrows">
-        <param name="hidden_items_1" default="false" />    
-        <param name="hidden_items_2" default="false" />    
-        <param name="hidden_items_3" default="false" />    
         <definition>
 	        <control type="group">
 	            <visible>Container(9000).HasNext | Container(9000).HasPrevious</visible>
@@ -657,74 +654,38 @@
 	                <top>0r</top>
 	                <include>arrowdimensions</include>
 	                <texture colordiffuse="White70" flipy="false">common/arrow-small.png</texture>
-                    <animation effect="slide" end="0,-70" time="0" condition="[$PARAM[hidden_items_3]]">Conditional</animation>
-                    <animation effect="slide" end="0,-70" time="0" condition="[$PARAM[hidden_items_3]] | [$PARAM[hidden_items_2]]">Conditional</animation>
-                    <animation effect="slide" end="0,-70" time="0" condition="[$PARAM[hidden_items_3]] | [$PARAM[hidden_items_2]]  | [$PARAM[hidden_items_1]]">Conditional</animation>
 	            </control>
 	        </control>
         </definition>
     </include>
 
     <include name="Def9000Background">
-        <param name="hidden_items_1" default="false" />    
-        <param name="hidden_items_2" default="false" />    
-        <param name="hidden_items_3" default="false" />    
-        <definition>
-	        <visible allowhiddenfocus="true">ControlGroup(9000).HasFocus()</visible>
-	        <animation effect="slide" start="0,0" end="-3000,-3000" time="0" condition="!ControlGroup(9000).HasFocus()">Conditional</animation>
-	        <include>Animation.ZoomIn</include>
-	        <include>Animation.FadeOut</include>
-	        <top>184</top>
-	        <centerleft>50%</centerleft>
-	        <height>340</height>
-	        <width>466</width>
-            <control type="image">
-                <description>background image</description>
-                <top>0</top>
-                <left>0</left>
-                <right>0</right>
-                <bottom>210</bottom>
-                <texture border="16" colordiffuse="White100">common/rounded-shadow8.png</texture>
-                <visible>[$PARAM[hidden_items_3]]</visible>
-            </control>
-            <control type="image">
-                <description>background image</description>
-                <top>0</top>
-                <left>0</left>
-                <right>0</right>
-                <bottom>140</bottom>
-                <texture border="16" colordiffuse="White100">common/rounded-shadow8.png</texture>
-                <visible>[$PARAM[hidden_items_2]] + ![$PARAM[hidden_items_3]]</visible>
-            </control>
-            <control type="image">
-                <description>background image</description>
-                <top>0</top>
-                <left>0</left>
-                <right>0</right>
-                <bottom>70</bottom>
-                <texture border="16" colordiffuse="White100">common/rounded-shadow8.png</texture>
-                <visible>[$PARAM[hidden_items_1]] + ![$PARAM[hidden_items_2]] + ![$PARAM[hidden_items_3]]</visible>
-            </control>
-	        <control type="image">
-	            <description>background image</description>
-	            <top>0</top>
-	            <left>0</left>
-	            <right>0</right>
-	            <bottom>0</bottom>
-	            <texture border="16" colordiffuse="White100">common/rounded-shadow8.png</texture>
-	            <visible>![$PARAM[hidden_items_1]] + ![$PARAM[hidden_items_2]] + ![$PARAM[hidden_items_3]]</visible>
-	        </control>
-	        <include content="Def_Gradient_Settings_Image">
-	            <param name="controlid" value="9000"/>
-	            <param name="top" value="114"/>
-	            <param name="left" value="8"/>
-	            <param name="right" value="8"/>
-	            <param name="align_right" value="true"/>
-	            <param name="overlayfix" value="true"/>
-	            <param name="delay" value="20"/>
-	            <param name="visible" value="!ControlGroup(6150).HasFocus()"/>
-	        </include>
-        </definition>
+		<visible allowhiddenfocus="true">ControlGroup(9000).HasFocus()</visible>
+		<animation effect="slide" start="0,0" end="-3000,-3000" time="0" condition="!ControlGroup(9000).HasFocus()">Conditional</animation>
+		<include>Animation.ZoomIn</include>
+		<include>Animation.FadeOut</include>
+		<top>184</top>
+		<centerleft>50%</centerleft>
+		<height>340</height>
+		<width>466</width>
+		<control type="image">
+		    <description>background image</description>
+		    <top>0</top>
+		    <left>0</left>
+		    <right>0</right>
+		    <bottom>0</bottom>
+		    <texture border="16" colordiffuse="White100">common/rounded-shadow8.png</texture>
+		</control>
+		<include content="Def_Gradient_Settings_Image">
+		    <param name="controlid" value="9000"/>
+		    <param name="top" value="114"/>
+		    <param name="left" value="8"/>
+		    <param name="right" value="8"/>
+		    <param name="align_right" value="true"/>
+		    <param name="overlayfix" value="true"/>
+		    <param name="delay" value="20"/>
+		    <param name="visible" value="!ControlGroup(6150).HasFocus()"/>
+		</include>
     </include>
 
     <include name="DefHomeRight520">
@@ -825,6 +786,11 @@
         <value condition="Control.HasFocus(52)">RunScript(plugin.video.themoviedb.helper,add_query=$INFO[Container(52).ListItem.Label],tmdb_type=person,origin_tmdb_type=$INFO[Window.Property(origin_tmdb_type)],origin_dbid=$INFO[Window.Property(origin_dbid)],call_auto=1190)</value>    
         <value condition="Control.HasFocus(56) + !String.IsEmpty(Container(56).ListItem.Property(tmdb_id))">RunScript(plugin.video.themoviedb.helper,add_path=$INFO[Container(56).ListItem.Property(tmdb_id),plugin://plugin.video.themoviedb.helper/?info=details&amp;tmdb_type=person&amp;tmdb_id=,],origin_tmdb_type=$INFO[Window.Property(origin_tmdb_type)],origin_dbid=$INFO[Window.Property(origin_dbid)],call_auto=1190)</value>    
         <value condition="Control.HasFocus(56)">RunScript(plugin.video.themoviedb.helper,add_query=$INFO[Container(56).ListItem.Label],tmdb_type=person,origin_tmdb_type=$INFO[Window.Property(origin_tmdb_type)],origin_dbid=$INFO[Window.Property(origin_dbid)],call_auto=1190)</value>    
+    </variable>
+    
+    <variable name="Def_GlobalSearch_Query">
+        <value condition="Window.IsVisible(MyVideoNav.xml)">movies=true&amp;tvshows=true&amp;episodes=true&amp;musicvideos=true&amp;actors=true&amp;directors=true"</value>
+        <value condition="Window.IsVisible(MyMusicNav.xml)">artists=true&amp;albums=true&amp;songs=true&amp;musicvideos=true</value>
     </variable>
     
     <variable name="Def_PercentWatched">
@@ -1126,8 +1092,6 @@
             </control>
         </control>
         <include content="View_SideBlade">
-            <param name="height" value="270" /> 
-            <param name="hidden_items_1" value="[!Player.HasMedia + !Player.Playing]" />
             <control type="grouplist" id="9000">
                 <include content="Def9000GroupList">
                     <param name="onback" value="9500" /> 
@@ -2720,15 +2684,6 @@
         <align>left</align>
     </include>
     
-    <include name="Def_GlobalSearch_Actions">
-        <param name="query" />
-        <definition>
-            <onclick condition="System.AddonIsEnabled(script.globalsearch)">RunScript(script.globalsearch,$PARAM[query])</onclick>
-            <onclick condition="System.HasAddon(script.globalsearch) + !System.AddonIsEnabled(script.globalsearch)">EnableAddon(script.globalsearch)</onclick>
-            <onclick condition="!System.HasAddon(script.globalsearch)">InstallAddon(script.globalsearch)</onclick>
-        </definition>
-    </include>
- 
     <include name="Def_SelectImage_Actions">
         <param name="header" />
         <param name="property" />

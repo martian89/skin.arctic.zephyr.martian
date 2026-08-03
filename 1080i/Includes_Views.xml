@@ -103,10 +103,6 @@
 	</variable>
 
     <include name="View_SideBlade">
-        <param name="height" default="690" />
-        <param name="hidden_items_1" default="false" />
-        <param name="hidden_items_2" default="false" />
-        <param name="hidden_items_3" default="false" />
         <definition>
             <control type="group">
                 <include>Animation.FadeIn</include>
@@ -115,47 +111,113 @@
                 <include>GlobalOverlay</include>
             </control>
             <control type="group">
-                <height>$PARAM[height]</height>
-	            <include content="Def9000Background">
-	                <param name="hidden_items_1" value="$PARAM[hidden_items_1]" />
-                    <param name="hidden_items_2" value="$PARAM[hidden_items_2]" />
-                    <param name="hidden_items_3" value="$PARAM[hidden_items_3]" />
-	            </include>
-	            <include content="Def9000Arrows">
-                    <param name="hidden_items_1" value="$PARAM[hidden_items_1]" />
-                    <param name="hidden_items_2" value="$PARAM[hidden_items_2]" />
-                    <param name="hidden_items_3" value="$PARAM[hidden_items_3]" />
-	            </include>
+	            <include>View_SideBlade_Background</include>
+	            <include>Def9000Arrows</include>
 	            <include>Def9000Header</include>
 	            <nested />
             </control>
         </definition>  
     </include>
     
+    <expression name="HasViewOptionsLabel">Control.IsVisible(9001)</expression>
+    <expression name="HasExtraOptionsLabel">Control.IsVisible(55554)</expression>
+    
+    <include name="View_SideBlade_Background">
+        <definition>
+            <visible allowhiddenfocus="true">ControlGroup(9000).HasFocus()</visible>
+            <animation effect="slide" start="0,0" end="-3000,-3000" time="0" condition="!ControlGroup(9000).HasFocus()">Conditional</animation>
+            <include>Animation.ZoomIn</include>
+            <include>Animation.FadeOut</include>
+            <top>184</top>
+            <centerleft>50%</centerleft>
+            <height>690</height>
+            <width>466</width>
+            <control type="image">
+                <description>background image</description>
+                <top>0</top>
+                <left>0</left>
+                <right>0</right>
+                <bottom>490</bottom>
+                <texture border="16" colordiffuse="White100">common/rounded-shadow8.png</texture>
+                <visible>!Window.IsVisible(MyPlaylist.xml) + Integer.IsEqual(Container(9000).NumItems,1)</visible>
+            </control>
+            <control type="image">
+                <description>background image</description>
+                <top>0</top>
+                <left>0</left>
+                <right>0</right>
+                <bottom>420</bottom>
+                <texture border="16" colordiffuse="White100">common/rounded-shadow8.png</texture>
+                <visible>!Window.IsVisible(MyPlaylist.xml) + [Integer.IsEqual(Container(9000).NumItems,2) + !$EXP[HasViewOptionsLabel] + !$EXP[HasExtraOptionsLabel] | Integer.IsEqual(Container(9000).NumItems,1) + [$EXP[HasViewOptionsLabel] + !$EXP[HasExtraOptionsLabel] | !$EXP[HasViewOptionsLabel] + $EXP[HasExtraOptionsLabel]]]</visible>
+            </control>
+            <control type="image">
+                <description>background image</description>
+                <top>0</top>
+                <left>0</left>
+                <right>0</right>
+                <bottom>350</bottom>
+                <texture border="16" colordiffuse="White100">common/rounded-shadow8.png</texture>
+                <visible>!Window.IsVisible(MyPlaylist.xml) + [Integer.IsEqual(Container(9000).NumItems,3) + !$EXP[HasViewOptionsLabel] + !$EXP[HasExtraOptionsLabel] | Integer.IsEqual(Container(9000).NumItems,2) + [$EXP[HasViewOptionsLabel] + !$EXP[HasExtraOptionsLabel] | !$EXP[HasViewOptionsLabel] + $EXP[HasExtraOptionsLabel]] | Integer.IsEqual(Container(9000).NumItems,1) + $EXP[HasViewOptionsLabel] + $EXP[HasExtraOptionsLabel]]</visible>
+            </control>
+            <control type="image">
+                <description>background image</description>
+                <top>0</top>
+                <left>0</left>
+                <right>0</right>
+                <bottom>280</bottom>
+                <texture border="16" colordiffuse="White100">common/rounded-shadow8.png</texture>
+                <visible>!Window.IsVisible(MyPlaylist.xml) + [Integer.IsEqual(Container(9000).NumItems,4) + !$EXP[HasViewOptionsLabel] + !$EXP[HasExtraOptionsLabel] | Integer.IsEqual(Container(9000).NumItems,3) + [$EXP[HasViewOptionsLabel] + !$EXP[HasExtraOptionsLabel] | !$EXP[HasViewOptionsLabel] + $EXP[HasExtraOptionsLabel]] | Integer.IsEqual(Container(9000).NumItems,2) + $EXP[HasViewOptionsLabel] + $EXP[HasExtraOptionsLabel]]</visible>
+            </control>
+            <control type="image">
+                <description>background image</description>
+                <top>0</top>
+                <left>0</left>
+                <right>0</right>
+                <bottom>210</bottom>
+                <texture border="16" colordiffuse="White100">common/rounded-shadow8.png</texture>
+                <visible>Integer.IsEqual(Container(9000).NumItems,5) + !$EXP[HasViewOptionsLabel] + !$EXP[HasExtraOptionsLabel] | Integer.IsEqual(Container(9000).NumItems,4) + [$EXP[HasViewOptionsLabel] + !$EXP[HasExtraOptionsLabel] | !$EXP[HasViewOptionsLabel] + $EXP[HasExtraOptionsLabel]] | Integer.IsEqual(Container(9000).NumItems,3) + $EXP[HasViewOptionsLabel] + $EXP[HasExtraOptionsLabel]</visible>
+            </control>
+            <control type="image">
+                <description>background image</description>
+                <top>0</top>
+                <left>0</left>
+                <right>0</right>
+                <bottom>140</bottom>
+                <texture border="16" colordiffuse="White100">common/rounded-shadow8.png</texture>
+                <visible>Integer.IsEqual(Container(9000).NumItems,6) + !$EXP[HasViewOptionsLabel] + !$EXP[HasExtraOptionsLabel] | Integer.IsEqual(Container(9000).NumItems,5) + [$EXP[HasViewOptionsLabel] + !$EXP[HasExtraOptionsLabel] | !$EXP[HasViewOptionsLabel] + $EXP[HasExtraOptionsLabel]] | Integer.IsEqual(Container(9000).NumItems,4) + $EXP[HasViewOptionsLabel] + $EXP[HasExtraOptionsLabel]</visible>
+            </control>
+            <control type="image">
+                <description>background image</description>
+                <top>0</top>
+                <left>0</left>
+                <right>0</right>
+                <bottom>70</bottom>
+                <texture border="16" colordiffuse="White100">common/rounded-shadow8.png</texture>
+                <visible>Window.IsVisible(MyPlaylist.xml) + Integer.IsEqual(Container(9000).NumItems,1) | Integer.IsEqual(Container(9000).NumItems,7) + !$EXP[HasViewOptionsLabel] + !$EXP[HasExtraOptionsLabel] | Integer.IsEqual(Container(9000).NumItems,6) + [$EXP[HasViewOptionsLabel] + !$EXP[HasExtraOptionsLabel] | !$EXP[HasViewOptionsLabel] + $EXP[HasExtraOptionsLabel]] | Integer.IsEqual(Container(9000).NumItems,5) + $EXP[HasViewOptionsLabel] + $EXP[HasExtraOptionsLabel]</visible>
+            </control>
+            <control type="image">
+                <description>background image</description>
+                <top>0</top>
+                <left>0</left>
+                <right>0</right>
+                <bottom>0</bottom>
+                <texture border="16" colordiffuse="White100">common/rounded-shadow8.png</texture>
+                <visible>Window.IsVisible(MyPlaylist.xml) + Integer.IsEqual(Container(9000).NumItems,2) | Integer.IsGreater(Container(9000).NumItems,7) | Integer.IsEqual(Container(9000).NumItems,7) + [$EXP[HasViewOptionsLabel] + !$EXP[HasExtraOptionsLabel] | !$EXP[HasViewOptionsLabel] + $EXP[HasExtraOptionsLabel]] | Integer.IsEqual(Container(9000).NumItems,6) + $EXP[HasViewOptionsLabel] + $EXP[HasExtraOptionsLabel]</visible>
+            </control>
+            <include content="Def_Gradient_Settings_Image">
+                <param name="controlid" value="9000"/>
+                <param name="top" value="114"/>
+                <param name="left" value="8"/>
+                <param name="right" value="8"/>
+                <param name="align_right" value="true"/>
+                <param name="overlayfix" value="true"/>
+                <param name="delay" value="20"/>
+                <param name="visible" value="!ControlGroup(6150).HasFocus()"/>
+            </include>
+        </definition>
+    </include>
+
 	<include name="View_Options">
-		<!-- Sort Options -->
-		<control type="button" id="9100">
-			<description>View</description>
-			<include>DefContextButtonGradient</include>
-			<align>left</align>
-			<label>$LOCALIZE[582]: $INFO[Container.Viewmode]</label>
-			<onclick>Runscript(script.skinvariables,action=buildviews,contentid=$VAR[View_ModeSwitch],pluginname=$INFO[Container.PluginName])</onclick>
-		</control>
-
-		<control type="button" id="3">
-			<description>Sort</description>
-			<include>DefContextButtonGradient</include>
-			<align>left</align>
-		</control>
-
-		<control type="togglebutton" id="4">
-			<description>Ascending</description>
-			<include>DefContextButtonGradient</include>
-			<align>left</align>
-			<label>584</label>
-			<altlabel>585</altlabel>
-		</control>
-
 		<!-- View Options -->
 		<control type="button" id="9001">
             <visible>
@@ -647,6 +709,65 @@
 		</control>
 	</include>
 
+    <include name="View_SideBlade_ViewMode">
+        <control type="button" id="9100">
+            <description>View</description>
+            <include>DefContextButtonGradient</include>
+            <align>left</align>
+            <label>$LOCALIZE[582]: $INFO[Container.Viewmode]</label>
+            <onclick>Runscript(script.skinvariables,action=buildviews,contentid=$VAR[View_ModeSwitch],pluginname=$INFO[Container.PluginName])</onclick>
+        </control>    
+    </include>
+    
+    <include name="View_SideBlade_Common">
+        <!-- Sort Options -->
+        <control type="button" id="3">
+            <description>Sort</description>
+            <include>DefContextButtonGradient</include>
+            <align>left</align>
+            <visible>Control.IsEnabled(3)</visible>
+        </control>
+
+        <control type="togglebutton" id="4">
+            <description>Ascending</description>
+            <include>DefContextButtonGradient</include>
+            <align>left</align>
+            <label>584</label>
+            <altlabel>585</altlabel>
+            <visible>Control.IsEnabled(4)</visible>
+        </control>
+
+        <control type="button" id="9091">
+            <description>Global Search</description>
+            <include>DefContextButtonGradient</include>
+            <align>left</align>
+            <label>137</label>
+            <onclick condition="System.AddonIsEnabled(script.globalsearch)">RunScript(script.globalsearch,$VAR[Def_GlobalSearch_Query])</onclick>
+            <onclick condition="System.HasAddon(script.globalsearch) + !System.AddonIsEnabled(script.globalsearch)">EnableAddon(script.globalsearch)</onclick>
+            <onclick condition="!System.HasAddon(script.globalsearch)">InstallAddon(script.globalsearch)</onclick>
+            <visible>Window.IsVisible(MyVideoNav.xml) | Window.IsVisible(MyMusicNav.xml)</visible>
+        </control>
+
+        <control type="button" id="19">
+            <label>587</label>
+            <description>Filter (hidden)</description>
+            <align>left</align>
+            <include>DefContextButtonGradient</include>
+            <visible>!Container.CanFilterAdvanced</visible>
+        </control>
+
+        <control type="radiobutton" id="98">
+            <visible>Container.CanFilterAdvanced</visible>
+            <description>Filter</description>
+            <include>DefContextButtonGradient</include>
+            <label>587</label>
+            <align>left</align>
+            <onclick>SetFocus(50)</onclick>
+            <onclick>Filter</onclick>
+            <selected>Container.Filtered</selected>
+        </control>    
+    </include>
+    
     <include name="View_SideBlade_Playlist">
         <control type="button" id="6148">
             <description>Music playlist</description>
@@ -672,10 +793,10 @@
             <control type="grouplist" id="6150">
                 <visible>Player.HasMedia | Player.Playing</visible>
                 <usecontrolcoords>true</usecontrolcoords>
-                <top>16</top>
+                <top>14</top>
                 <left>8</left>
                 <right>8</right>
-                <height>54</height>
+                <height>56</height>
                 <align>center</align>
                 <itemgap>10</itemgap>
                 <include>ScrolltimeViewsList</include>

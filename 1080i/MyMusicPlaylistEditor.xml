@@ -209,8 +209,17 @@
                 </control>
             </control>
         </control>
-        <include content="View_SideBlade">
-            <param name="height" value="340" />
+ 
+        <control type="group">
+            <include>Animation.FadeIn</include>
+            <include>Animation.FadeOut</include>
+            <visible>ControlGroup(9000).HasFocus()</visible>
+            <include>GlobalOverlay</include>
+        </control>
+                
+        <control type="group">
+            <include>Def9000Background</include>
+            <include content="Def9000Header"><param name="header_label" value="14230"/></include>
             <control type="grouplist" id="9000">
                 <include>Def9000GroupList</include>
                 <control type="button" id="6">
@@ -232,7 +241,7 @@
                     <include>DefContextButtonGradient</include>
                 </control>
             </control>
-        </include>
+        </control>
 
     </controls>
 </window>
