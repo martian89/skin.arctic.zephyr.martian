@@ -720,22 +720,7 @@
     </include>
     
     <include name="View_SideBlade_Common">
-        <!-- Sort Options -->
-        <control type="button" id="3">
-            <description>Sort</description>
-            <include>DefContextButtonGradient</include>
-            <align>left</align>
-            <visible>Control.IsEnabled(3)</visible>
-        </control>
-
-        <control type="togglebutton" id="4">
-            <description>Ascending</description>
-            <include>DefContextButtonGradient</include>
-            <align>left</align>
-            <label>584</label>
-            <altlabel>585</altlabel>
-            <visible>Control.IsEnabled(4)</visible>
-        </control>
+        <include>View_SideBlade_Sort</include>
 
         <control type="button" id="9091">
             <description>Global Search</description>
@@ -767,7 +752,25 @@
             <selected>Container.Filtered</selected>
         </control>    
     </include>
-    
+
+    <include name="View_SideBlade_Sort">
+        <!-- Sort Options -->
+        <control type="button" id="3">
+            <description>Sort</description>
+            <include>DefContextButtonGradient</include>
+            <align>left</align>
+            <visible>Control.IsEnabled(3)</visible>
+        </control>
+
+        <control type="togglebutton" id="4">
+            <description>Ascending</description>
+            <include>DefContextButtonGradient</include>
+            <align>left</align>
+            <label>$LOCALIZE[31015]: $INFO[Container.SortOrder]</label>
+            <visible>Control.IsEnabled(4)</visible>
+        </control>
+    </include>
+        
     <include name="View_SideBlade_Playlist">
         <control type="button" id="6148">
             <description>Music playlist</description>

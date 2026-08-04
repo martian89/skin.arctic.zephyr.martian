@@ -893,7 +893,7 @@
         <control type="image" description="Background">
             <include>Dimensions_Fullscreen</include>
             <texture colordiffuse="Background">special://skin/extras/backgrounds/overlays/bg.jpg</texture>
-            <visible>!$EXP[HomeIsSpotlight] + !$EXP[HomeIsClassic] + [[Player.HasVideo + Skin.HasSetting(global.showvideo)] | [Player.HasAudio + Skin.HasSetting(global.showvisualisation) + !String.IsEmpty(Visualisation.Name)]]</visible>
+            <visible>[!Window.IsVisible(home) | !$EXP[HomeIsSpotlight] + !$EXP[HomeIsClassic]] + [[Player.HasVideo + Skin.HasSetting(global.showvideo)] | [Player.HasAudio + Skin.HasSetting(global.showvisualisation) + !String.IsEmpty(Visualisation.Name)]]</visible>
             <animation effect="fade" start="100" end="75" time="0" condition="true">Conditional</animation>
         </control>
 

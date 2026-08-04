@@ -81,18 +81,7 @@
                     <visible>Window.IsVisible(MyPVRGuide.xml)</visible>
                     <align>left</align>
                 </control>
-                <control type="button" id="3">
-                    <description>Sort</description>
-                    <include>DefContextButtonGradient</include>
-                    <align>left</align>
-                </control>
-                <control type="togglebutton" id="4">
-                    <description>Direction</description>
-                    <include>DefContextButtonGradient</include>
-                    <align>left</align>
-                    <label>584</label>
-                    <altlabel>585</altlabel>
-                </control>
+                <include>View_SideBlade_Sort</include>
                 <control type="radiobutton" id="6">
                     <description>Show Hidden Channels</description>
                     <label>19051</label>
@@ -139,7 +128,7 @@
                     <right>10</right>
                     <bottom>10</bottom>
                     <texture colordiffuse="FF000000" border="10">diffuse/pvrinfo.png</texture>
-                    <visible>Player.HasVideo</visible>
+                    <visible>Player.HasVideo + !Skin.HasSetting(global.showvideo)</visible>
                 </control>
                 <control type="videowindow">
                     <left>10</left>
@@ -149,7 +138,7 @@
                     <animation type="WindowClose" reversible="false">
                         <effect type="zoom" center="auto" start="100" end="0" time="0" />
                     </animation>
-                    <visible>Player.HasVideo</visible>
+                    <visible>Player.HasVideo + !Skin.HasSetting(global.showvideo)</visible>
                     <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
                 </control>
                 <control type="image">
@@ -158,10 +147,10 @@
                     <right>10</right>
                     <bottom>10</bottom>
                     <texture colordiffuse="Fallback" border="4" background="true">common/diffuse_box.png</texture>
-                    <visible>!Player.HasVideo</visible>
+                    <visible>!Player.HasVideo | Skin.HasSetting(global.showvideo)</visible>
                 </control>
                 <control type="image">
-                    <visible>!Player.HasVideo + String.IsEmpty(Listitem.EpgEventIcon) + String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Fanart))</visible>
+                    <visible>[!Player.HasVideo | Skin.HasSetting(global.showvideo)] + String.IsEmpty(Listitem.EpgEventIcon) + String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Fanart))</visible>
                     <left>70</left>
                     <top>30</top>
                     <right>70</right>
@@ -171,7 +160,7 @@
                     <fadetime>PosterFanartFadetime</fadetime>
                 </control>
                 <control type="image">
-                    <visible>!Player.HasVideo + [!String.IsEmpty(Listitem.EpgEventIcon) | !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Fanart))]</visible>
+                    <visible>[!Player.HasVideo | Skin.HasSetting(global.showvideo)] + [!String.IsEmpty(Listitem.EpgEventIcon) | !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Fanart))]</visible>
                     <left>10</left>
                     <top>10</top>
                     <right>10</right>
