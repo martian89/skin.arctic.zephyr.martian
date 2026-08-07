@@ -802,7 +802,7 @@
             </include>
             <left>70</left>
             <include content="def_top" condition="!$PARAM[position_low]">
-                <param name="top" value="78" />
+                <param name="top" value="76" />
             </include>
             <centerbottom>NavBarPad</centerbottom>
             <include content="def_right" condition="Skin.HasSetting(furniture.clock) + $PARAM[position_low]">
@@ -817,7 +817,7 @@
             <itemgap>0</itemgap>
             <usecontrolcoords>true</usecontrolcoords>
             <control type="group">
-                <visible>[[[!String.IsEmpty(ListItem.Property(TotalEpisodes)) | !String.IsEmpty(ListItem.Episode)] + !Skin.HasSetting(ShowUnwatchedEpisodes)] | [!String.IsEmpty(ListItem.Property(UnWatchedEpisodes)) + Skin.HasSetting(ShowUnwatchedEpisodes)]] | ListItem.IsCollection | [!Skin.HasSetting(furniture.flagicons) + !String.IsEmpty(ListItem.VideoResolution)]</visible>
+                <visible>[Container.Content(tvshows) | Container.Content(seasons) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)] + [[!String.IsEmpty(ListItem.Property(TotalEpisodes)) | !String.IsEmpty(ListItem.Episode)] + !Skin.HasSetting(ShowUnwatchedEpisodes) | !String.IsEmpty(ListItem.Property(UnWatchedEpisodes)) + Skin.HasSetting(ShowUnwatchedEpisodes)] | ListItem.IsCollection | [!Skin.HasSetting(furniture.flagicons) + !String.IsEmpty(ListItem.VideoResolution)]</visible>
                 <centertop>50%</centertop>
                 <width>75</width>
                 <height>45</height>
@@ -1131,7 +1131,7 @@
             </include>
             <left>70</left>
             <include content="def_top" condition="!$PARAM[position_low]">
-                <param name="top" value="72" />
+                <param name="top" value="76" />
             </include>
             <centerbottom>NavBarPad</centerbottom>
             <include content="def_right" condition="Skin.HasSetting(furniture.clock) + $PARAM[position_low]">
@@ -1146,7 +1146,7 @@
             <itemgap>0</itemgap>
             <usecontrolcoords>true</usecontrolcoords>
             <control type="group">
-                <visible>[[[!String.IsEmpty(ListItem.Property(TotalEpisodes)) | !String.IsEmpty(ListItem.Episode)] + !Skin.HasSetting(ShowUnwatchedEpisodes)] | [!String.IsEmpty(ListItem.Property(UnWatchedEpisodes)) + Skin.HasSetting(ShowUnwatchedEpisodes)]] | ListItem.IsCollection</visible>
+                <visible>[Container.Content(tvshows) | Container.Content(seasons) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)] + [[!String.IsEmpty(ListItem.Property(TotalEpisodes)) | !String.IsEmpty(ListItem.Episode)] + !Skin.HasSetting(ShowUnwatchedEpisodes) | !String.IsEmpty(ListItem.Property(UnWatchedEpisodes)) + Skin.HasSetting(ShowUnwatchedEpisodes)] | ListItem.IsCollection</visible>
                 <centertop>50%</centertop>
                 <width>75</width>
                 <height>45</height>
@@ -2867,7 +2867,7 @@
                 <param name="left" value="-10" />
             </include>
             <include content="def_top" condition="!$PARAM[position_low]">
-                <param name="top" value="166" />
+                <param name="top" value="216" />
             </include>
             <left>70</left>
             <centerbottom>NavBarPad</centerbottom>
