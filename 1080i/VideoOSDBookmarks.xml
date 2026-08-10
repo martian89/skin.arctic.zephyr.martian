@@ -6,8 +6,19 @@
         <include content="DefDialog">
             <param name="width" value="1776" />
             <param name="height" value="570" />
-            <param name="header_label" value="$LOCALIZE[298] - $INFO[Container(11).CurrentItem] / $INFO[Container(11).NumItems]"/>
+            <param name="header_label" value="$VAR[Label_VideoOSDBookmarks_Header]"/>
 
+            <control type="label">
+                <posy>115</posy>
+                <width>100%</width>
+                <height>310</height>
+                <font>Small</font>
+                <align>center</align>
+                <label>$LOCALIZE[31156]</label>
+                <visible>Integer.IsEqual(Container(11).NumItems,0)</visible>
+	            <include>Animation.FadeOut</include>
+	            <include>Animation.FadeIn</include>
+            </control>            
             <control type="panel" id="11">
                 <posy>115</posy>
                 <centerleft>50%</centerleft>
@@ -75,7 +86,7 @@
             <control type="grouplist" id="9000">
                 <centerleft>50%</centerleft>
                 <bottom>30</bottom>
-                <width>1080</width>
+                <width>100%</width>
                 <height>66</height>
                 <itemgap>30</itemgap>
                 <align>center</align>
@@ -87,7 +98,7 @@
                 <control type="button" id="2">
                     <description>Create Bookmark button</description>
                     <label>294</label>
-                    <width>330</width>
+                    <width>350</width>
                     <texturefocus colordiffuse="$VAR[ColorHighlight]" border="5">common/box.png</texturefocus>
                     <texturenofocus colordiffuse="Black12" border="5">common/box.png</texturenofocus>
                     <include>DefDialogButtons</include>
@@ -95,19 +106,18 @@
                 <control type="button" id="3">
                     <description>Clear Bookmark button</description>
                     <label>296</label>
-                    <width>330</width>
+                    <width>350</width>
                     <texturefocus colordiffuse="$VAR[ColorHighlight]" border="5">common/box.png</texturefocus>
                     <texturenofocus colordiffuse="Black12" border="5">common/box.png</texturenofocus>
                     <include>DefDialogButtons</include>
                 </control>
                 <control type="button" id="4">
-                    <description>Clear Bookmark button</description>
                     <label>20406</label>
-                    <width>330</width>
+                    <width>350</width>
                     <texturefocus colordiffuse="$VAR[ColorHighlight]" border="5">common/box.png</texturefocus>
                     <texturenofocus colordiffuse="Black12" border="5">common/box.png</texturenofocus>
                     <include>DefDialogButtons</include>
-                    <visible>videoplayer.content(episodes)</visible>
+                    <visible>Control.IsEnabled(4)</visible>
                 </control>
             </control>
         </include>
