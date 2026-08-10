@@ -3,40 +3,16 @@
 <window id="125">
     <defaultcontrol always="true">2</defaultcontrol>
     <controls>
-        <include>GlobalOverlay</include>
-        <control type="group">
-            <height>800</height>
-            <width>1120</width>
-            <include>DefDialogInfoPanel</include>
-            <control type="label">
-                <include content="DefDialogHeader">
-                    <param name="left" value="105"/>
-                    <param name="posy" value="22"/>
-                </include>
-                <label>$LOCALIZE[298] - ($INFO[Container(11).NumItems]) ($INFO[Container(11).CurrentPage]/$INFO[Container(11).NumPages])</label>
-            </control>
-            <include content="Kodi_Logo">
-                <param name="dimensions" value="40"/>
-                <param name="top" value="38"/>
-                <param name="left" value="48"/>
-            </include>
+        <include content="DefDialog">
+            <param name="width" value="1776" />
+            <param name="height" value="570" />
+            <param name="header_label" value="$LOCALIZE[298] - $INFO[Container(11).CurrentItem] / $INFO[Container(11).NumItems]"/>
 
-            <!-- Lines -->
-            <control type="image">
-                <top>95</top>
-                <left>45</left>
-                <width>1030</width>
-                <height>1</height>
-                <bottom>10</bottom>
-                <colordiffuse>Black12</colordiffuse>
-                <texture>common/white.png</texture>
-            </control>
             <control type="panel" id="11">
+                <posy>115</posy>
                 <centerleft>50%</centerleft>
-                <posy>110</posy>
-                <left>35</left>
-                <width>1050</width>
-                <height>600</height>
+                <width>1710</width>
+                <height>310</height>
                 <onleft>2</onleft>
                 <onright>3</onright>
                 <ondown>2</ondown>
@@ -44,35 +20,55 @@
                 <scrolltime>200</scrolltime>
                 <viewtype label="536">icon</viewtype>
                 <orientation>horizontal</orientation>
-                <itemlayout height="292" width="350">
+                <itemlayout height="310" width="342">
                     <include content="include.widget.thumb">
                         <param name="id" value="11"/>
-                        <param name="height" value="245"/>
+                        <param name="height" value="240"/>
                     </include>
                     <control type="label">
                         <centerleft>50%</centerleft>
-                        <posy>251</posy>
+                        <posy>245</posy>
                         <width>330</width>
                         <height>23</height>
                         <align>center</align>
                         <font>Tiny</font>
-                        <label>$INFO[ListItem.Label]$INFO[ListItem.Label2,  •  ,]</label>
+                        <textcolor>Black100</textcolor>
+                        <label>$INFO[ListItem.Label]</label>
+                    </control>
+                    <control type="label">
+                        <centerleft>50%</centerleft>
+                        <posy>278</posy>
+                        <width>330</width>
+                        <height>23</height>
+                        <align>center</align>
+                        <font>Tiny</font>
+                        <label>$INFO[ListItem.Label2]</label>
                     </control>
                 </itemlayout>
-                <focusedlayout height="292" width="350">
+                <focusedlayout height="310" width="342">
                     <include content="include.widget.thumb">
                         <param name="id" value="11"/>
-                        <param name="height" value="245"/>
+                        <param name="height" value="240"/>
                         <param name="focused" value="true" />
                     </include>
                     <control type="label">
                         <centerleft>50%</centerleft>
-                        <posy>251</posy>
+                        <posy>245</posy>
                         <width>330</width>
                         <height>23</height>
                         <align>center</align>
                         <font>Tiny</font>
-                        <label>$INFO[ListItem.Label]$INFO[ListItem.Label2,  •  ,]</label>
+                        <textcolor>Black100</textcolor>
+                        <label>$INFO[ListItem.Label]</label>
+                    </control>
+                    <control type="label">
+                        <centerleft>50%</centerleft>
+                        <posy>278</posy>
+                        <width>330</width>
+                        <height>23</height>
+                        <align>center</align>
+                        <font>Tiny</font>
+                        <label>$INFO[ListItem.Label2]</label>
                     </control>
                 </focusedlayout>
             </control>
@@ -114,6 +110,6 @@
                     <visible>videoplayer.content(episodes)</visible>
                 </control>
             </control>
-        </control>
+        </include>
     </controls>
 </window>
