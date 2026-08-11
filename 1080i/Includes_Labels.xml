@@ -218,7 +218,7 @@
         <value condition="Window.IsActive(systeminfo)">$LOCALIZE[130]</value>
         <value condition="Window.IsActive(systemsettings)">$LOCALIZE[13000]</value>
         <value condition="Window.IsActive(pvrsettings)">$LOCALIZE[14204]</value>
-        <value condition="Window.IsActive(skinsettings)">$LOCALIZE[166]</value>
+        <value condition="Window.IsActive(skinsettings)">$LOCALIZE[20077]</value>
         <value condition="Window.IsActive(addonbrowser)">$LOCALIZE[24001]</value>
         <value condition="Window.IsActive(profiles)">$LOCALIZE[13200]</value>
         <value condition="Window.IsActive(servicesettings)">$LOCALIZE[14036]</value>
@@ -1307,7 +1307,7 @@
         <value condition="Container.Content(seasons) + !Control.IsVisible(516)">$INFO[ListItem.Property(TotalEpisodes),, $LOCALIZE[20360]]</value>
         <value condition="Container.Content(movies) | Container.Content(sets) | Container.Content(seasons) | Container.Content(episodes) | $EXP[IsVideoAssets]">$VAR[LabelDuration]</value>
         <value condition="[Container.Content(songs) | Container.Content(albums) | Container.Content(musicvideos)]">$VAR[LabelDurationMusic]</value>
-        <value condition="Container.Content(addons) + Container.Sortmethod(1) + !Skin.HasSetting(hide.markers)">$INFO[ListItem.AddonVersion]</value>
+        <value condition="Container.Content(addons) + String.IsEqual(Container.SortMethod,$LOCALIZE[551]) + !Skin.HasSetting(hide.markers)">$INFO[ListItem.AddonVersion]</value>
         <value>$INFO[ListItem.Label2]</value>
     </variable>
 
@@ -1471,6 +1471,11 @@
         <value>$INFO[ListItem.Property(Artist_Formed)]</value>
     </variable>
   
+    <variable name="Label_VideoOSDBookmarks_Header">
+        <value condition="Integer.IsGreater(Container(11).NumItems,0)">$LOCALIZE[298] - $INFO[Container(11).CurrentItem] / $INFO[Container(11).NumItems]</value>        
+        <value>$LOCALIZE[298]</value>        
+    </variable>
+
   	<variable name="Label_Player_SubtitlesLanguage">
   		<value condition="!VideoPlayer.HasSubtitles">$LOCALIZE[31604]</value>
   		<value condition="!VideoPlayer.SubtitlesEnabled">$LOCALIZE[13106]</value>
