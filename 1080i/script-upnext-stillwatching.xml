@@ -28,7 +28,7 @@
                 <height>64</height>
                 <aligny>center</aligny>
                 <font>Small</font>
-                <label>[CAPITALIZE]$ADDON[service.upnext 30024][/CAPITALIZE]</label>
+                <label>$ADDON[service.upnext 30024]</label>
                 <textcolor>$VAR[OSDPanelWhite100]</textcolor>
             </control>
             <control type="image" description="fanart">
@@ -41,6 +41,7 @@
                 <texture>$VAR[Image_UpNext]</texture>
             </control>
             <control type="image">
+                <visible>!Integer.IsGreater(Player.TimeRemaining,59)</visible>
                 <height>64</height>
                 <width>64</width>
                 <centertop>50%</centertop>
@@ -49,6 +50,7 @@
                 <texture colordiffuse="dfffffff">common/circle2.png</texture>
             </control>
             <control type="label">
+                <visible>!Integer.IsGreater(Player.TimeRemaining,59)</visible>
                 <description>Remaining</description>
                 <centertop>50%</centertop>
                 <centerleft>50%</centerleft>

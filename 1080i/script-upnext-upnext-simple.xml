@@ -14,8 +14,8 @@
             <include>Animation.FadeOut</include>
             <right>SidePad</right>
             <bottom>SidePad</bottom>
-            <width>480</width>
-            <height>334</height>
+            <width>640</width>
+            <height>64</height>
             <control type="image">
                 <description>background image</description>
                 <top>-8</top>
@@ -25,50 +25,26 @@
                 <animation effect="fade" start="100" end="90" condition="true">Conditional</animation>
                 <texture border="16" diffuse="diffuse/wall-fanart.png" colordiffuse="$VAR[OSDPanel]">common/rounded-shadow8.png</texture>
             </control>
-            <control type="label" description="text">
-                <left>20</left>
-                <right>20</right>
-                <height>64</height>
-                <aligny>center</aligny>
-                <font>Small</font>
-                <label>$ADDON[service.upnext 30008]...</label>
-                <textcolor>$VAR[OSDPanelWhite100]</textcolor>
-            </control>
-            <control type="image" description="fanart">
-                <top>64</top>
-                <bottom>64</bottom>
-                <left>0</left>
-                <right>0</right>
-                <fadetime>350</fadetime>
-                <aspectratio scalediffuse="false">scale</aspectratio>
-                <texture>$VAR[Image_UpNext]</texture>
-            </control>
-            <control type="image" description="blackline">
-                <height>64</height>
-                <width>64</width>
-                <centertop>50%</centertop>
-                <centerleft>50%</centerleft>
-                <aspectratio scalediffuse="false">keep</aspectratio>
-                <texture colordiffuse="dfffffff">common/circle2.png</texture>
-            </control>
             <control type="label">
-                <description>Remaining</description>
-                <centertop>50%</centertop>
-                <centerleft>50%</centerleft>
-                <width>885</width>
-                <font>SmallBold</font>
-                <align>center</align>
-                <textcolor>ffededed</textcolor>
-                <label>$INFO[Window.Property(remaining)]</label>
-            </control>
-            <control type="label" description="text">
+                <visible>Integer.IsGreater(Player.TimeRemaining,59)</visible>
                 <left>20</left>
                 <right>120</right>
                 <height>64</height>
                 <bottom>2</bottom>
                 <aligny>center</aligny>
                 <font>Small</font>
-                <label>$INFO[Window.Property(season),S,]$INFO[Window.Property(episode),E, - ]$INFO[Window.Property(title)]</label>
+                <label>$ADDON[service.upnext 30049]</label>
+                <textcolor>$VAR[OSDPanelWhite100]</textcolor>
+            </control>
+            <control type="label">
+                <visible>!Integer.IsGreater(Player.TimeRemaining,59)</visible>
+                <left>20</left>
+                <right>120</right>
+                <height>64</height>
+                <bottom>2</bottom>
+                <aligny>center</aligny>
+                <font>Small</font>
+                <label>$ADDON[service.upnext 30037]</label>
                 <textcolor>$VAR[OSDPanelWhite100]</textcolor>
             </control>
             <control type="button" id="3012">
