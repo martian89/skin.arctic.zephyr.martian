@@ -182,23 +182,23 @@
 
     <expression name="IsVideoSourceUHDBluray">
         [String.IsEqual(ListItem.VideoResolution,4K) | String.IsEmpty(ListItem.VideoResolution) + [String.Contains(ListItem.FileNameAndPath,4K) | String.Contains(ListItem.FileNameAndPath,2160p) | String.Contains(ListItem.FileNameAndPath,uhd)]]
-        + [String.Contains(ListItem.FilenameAndPath,bluray) | String.Contains(ListItem.FilenameAndPath,bdrip) | String.Contains(ListItem.FilenameAndPath,blu-ray)]
+        + [String.Contains(ListItem.FilenameAndPath,bluray) | String.Contains(ListItem.FilenameAndPath,bdrip) | String.Contains(ListItem.FilenameAndPath,brrip) | String.Contains(ListItem.FilenameAndPath,blu-ray) | String.Contains(ListItem.FilenameAndPath,remux)]
         + !$EXP[IsVideo3D]
     </expression>
     
     <expression name="IsVideoSourceUHDBlurayHub">
         [String.IsEqual(Container(9500).ListItem.VideoResolution,4K) | String.IsEmpty(Container(9500).ListItem.VideoResolution) + [String.Contains(Container(9500).ListItem.FileNameAndPath,4K) | String.Contains(Container(9500).ListItem.FileNameAndPath,2160p) | String.Contains(Container(9500).ListItem.FileNameAndPath,uhd)]]
-        + [String.Contains(Container(9500).ListItem.FilenameAndPath,bluray) | String.Contains(Container(9500).ListItem.FilenameAndPath,bdrip) | String.Contains(Container(9500).ListItem.FilenameAndPath,blu-ray)]
+        + [String.Contains(Container(9500).ListItem.FilenameAndPath,bluray) | String.Contains(Container(9500).ListItem.FilenameAndPath,bdrip) | String.Contains(Container(9500).ListItem.FilenameAndPath,brrip) | | String.Contains(Container(9500).ListItem.FilenameAndPath,blu-ray) | String.Contains(Container(9500).ListItem.FilenameAndPath,remux)]
         + !$EXP[IsVideo3DHub]
     </expression>
 
     <expression name="IsVideoSourceBluray">
-        [String.Contains(ListItem.FilenameAndPath,bluray) | String.Contains(ListItem.FilenameAndPath,bdrip) | String.Contains(ListItem.FilenameAndPath,bd25) | String.Contains(ListItem.FilenameAndPath,bd50) | String.Contains(ListItem.FilenameAndPath,blu-ray)]
+        [String.Contains(ListItem.FilenameAndPath,bluray) | String.Contains(ListItem.FilenameAndPath,bdrip) | String.Contains(ListItem.FilenameAndPath,brrip) | String.Contains(ListItem.FilenameAndPath,bd25) | String.Contains(ListItem.FilenameAndPath,bd50) | String.Contains(ListItem.FilenameAndPath,blu-ray) | String.Contains(ListItem.FilenameAndPath,remux)]
         + !$EXP[IsVideo3D] + !$EXP[IsVideoSourceUHDBluray]
     </expression>
     
     <expression name="IsVideoSourceBlurayHub">
-        [String.Contains(Container(9500).ListItem.FilenameAndPath,bluray) | String.Contains(Container(9500).ListItem.FilenameAndPath,bdrip) | String.Contains(Container(9500).ListItem.FilenameAndPath,bd25) | String.Contains(Container(9500).ListItem.FilenameAndPath,bd50) | String.Contains(Container(9500).ListItem.FilenameAndPath,blu-ray)]
+        [String.Contains(Container(9500).ListItem.FilenameAndPath,bluray) | String.Contains(Container(9500).ListItem.FilenameAndPath,bdrip) | String.Contains(Container(9500).ListItem.FilenameAndPath,brrip) | String.Contains(Container(9500).ListItem.FilenameAndPath,bd25) | String.Contains(Container(9500).ListItem.FilenameAndPath,bd50) | String.Contains(Container(9500).ListItem.FilenameAndPath,blu-ray) | String.Contains(Container(9500).ListItem.FilenameAndPath,remux)]
         + !$EXP[IsVideo3DHub] + !$EXP[IsVideoSourceUHDBlurayHub]
     </expression>
 
