@@ -151,21 +151,19 @@
         <control type="ranges">
             <visible>Skin.HasSetting(chapter.markers)</visible>
             <left>0</left>
-            <bottom>10</bottom>
+            <bottom>14</bottom>
             <width>100%</width>
             <height>8</height>
-            <texturebg border="3" colordiffuse="00FFFFFF">osd/ch.png</texturebg>
             <righttexture>osd/ch.png</righttexture>
             <info>Player.Chapters</info>
         </control>
         <control type="ranges">
-            <visible>Skin.HasSetting(bookmark.markers)</visible>
+            <visible>Player.HasBookmarks + Skin.HasSetting(bookmark.markers)</visible>
             <left>0</left>
-            <bottom>10</bottom>
+            <bottom>14</bottom>
             <width>100%</width>
             <height>8</height>
-            <texturebg border="3" colordiffuse="00FFFFFF">osd/chw.png</texturebg>
-            <righttexture colordiffuse="red">osd/chw.png</righttexture>
+            <righttexture colordiffuse="red" border="2">osd/ch.png</righttexture>
             <info>Player.Bookmarks</info>
         </control>
     </include>
@@ -1943,7 +1941,7 @@
             <texturefocus colordiffuse="$VAR[ColorHighlight]" flipx="true">osd/preset.png</texturefocus>
             <texturenofocus colordiffuse="$VAR[OSDPanelWhite70]" flipx="true">osd/preset.png</texturenofocus>
             <onclick>SetProperty(CustomDialogSettingsContent,musicsettings,home)</onclick>
-            <onclick>ActivateWindow(1101)</onclick>
+            <onclick>ActivateWindow(1131)</onclick>
         </control>
     </include>
 
@@ -2342,7 +2340,7 @@
                     <label>291</label>
                     <align>left</align>
                     <onclick>SetProperty(CustomDialogSettingsContent,videosettings,home)</onclick>
-                    <onclick>ActivateWindow(1101)</onclick>
+                    <onclick>ActivateWindow(1131)</onclick>
                     <include>DefOSDUpDown</include>
                     <include>DefOSDButtons</include>
                 </control>
@@ -2351,7 +2349,7 @@
                     <label>292</label>
                     <align>left</align>
                     <onclick>SetProperty(CustomDialogSettingsContent,audiosettings,home)</onclick>
-                    <onclick>ActivateWindow(1101)</onclick>
+                    <onclick>ActivateWindow(1131)</onclick>
                     <include>DefOSDUpDown</include>
                     <include>DefOSDButtons</include>
                 </control>
@@ -2360,7 +2358,7 @@
                     <align>left</align>
                     <label>$LOCALIZE[287]</label>
                     <onclick>SetProperty(CustomDialogSettingsContent,subtitlesettings,home)</onclick>
-                    <onclick>ActivateWindow(1101)</onclick>
+                    <onclick>ActivateWindow(1131)</onclick>
                     <include>DefOSDUpDown</include>
                     <include>DefOSDButtons</include>
                 </control>
@@ -2434,7 +2432,7 @@
                     <label>291</label>
                     <align>left</align>
                     <onclick>SetProperty(CustomDialogSettingsContent,videosettings,home)</onclick>
-                    <onclick>ActivateWindow(1101)</onclick>
+                    <onclick>ActivateWindow(1131)</onclick>
                     <include>DefOSDUpDown</include>
                     <include>DefOSDButtonsNewOSD</include>
                     <visible>$EXP[VideoOSDShort]</visible>
@@ -2445,7 +2443,7 @@
                     <label>292</label>
                     <align>left</align>
                     <onclick>SetProperty(CustomDialogSettingsContent,audiosettings,home)</onclick>
-                    <onclick>ActivateWindow(1101)</onclick>
+                    <onclick>ActivateWindow(1131)</onclick>
                     <include>DefOSDUpDown</include>
                     <include>DefOSDButtonsNewOSD</include>
                     <visible>$EXP[VideoOSDShort]</visible>
@@ -2456,7 +2454,7 @@
                     <align>left</align>
                     <label>$LOCALIZE[287]</label>
                     <onclick>SetProperty(CustomDialogSettingsContent,subtitlesettings,home)</onclick>
-                    <onclick>ActivateWindow(1101)</onclick>
+                    <onclick>ActivateWindow(1131)</onclick>
                     <include>DefOSDUpDown</include>
                     <include>DefOSDButtonsNewOSD</include>
                     <visible>$EXP[VideoOSDShort]</visible>
@@ -2468,7 +2466,7 @@
                     <width>OSDLabelsWidthWide</width>
                     <align>left</align>
                     <onclick>SetProperty(CustomDialogSettingsContent,videosettings,home)</onclick>
-                    <onclick>ActivateWindow(1101)</onclick>
+                    <onclick>ActivateWindow(1131)</onclick>
                     <include>DefOSDUpDown</include>
                     <include>DefOSDButtonsNewOSD</include>
                     <visible>!$EXP[VideoOSDShort]</visible>
@@ -2480,7 +2478,7 @@
                     <width>OSDLabelsWidthWide</width>
                     <align>left</align>
                     <onclick>SetProperty(CustomDialogSettingsContent,audiosettings,home)</onclick>
-                    <onclick>ActivateWindow(1101)</onclick>
+                    <onclick>ActivateWindow(1131)</onclick>
                     <include>DefOSDUpDown</include>
                     <include>DefOSDButtonsNewOSD</include>
                     <visible>!$EXP[VideoOSDShort]</visible>
@@ -2492,7 +2490,7 @@
                     <label>$LOCALIZE[287]</label>
                     <width>OSDLabelsWidthWide</width>
                     <onclick>SetProperty(CustomDialogSettingsContent,subtitlesettings,home)</onclick>
-                    <onclick>ActivateWindow(1101)</onclick>
+                    <onclick>ActivateWindow(1131)</onclick>
                     <include>DefOSDUpDown</include>
                     <include>DefOSDButtonsNewOSD</include>
                     <visible>!$EXP[VideoOSDShort]</visible>
@@ -2575,7 +2573,7 @@
                     <label/>
                     <font />
                     <onclick>SetProperty(CustomDialogSettingsContent,videosettings,home)</onclick>
-                    <onclick>ActivateWindow(1101)</onclick>
+                    <onclick>ActivateWindow(1131)</onclick>
                     <include>DefOSDUpDown</include>
                     <texturefocus colordiffuse="$VAR[ColorHighlight]">osd/videosett.png</texturefocus>
                     <texturenofocus colordiffuse="$VAR[OSDPanelWhite70]">osd/videosett.png</texturenofocus>
@@ -2587,7 +2585,7 @@
                     <label/>
                     <font />
                     <onclick>SetProperty(CustomDialogSettingsContent,audiosettings,home)</onclick>
-                    <onclick>ActivateWindow(1101)</onclick>
+                    <onclick>ActivateWindow(1131)</onclick>
                     <include>DefOSDUpDown</include>
                     <texturefocus colordiffuse="$VAR[ColorHighlight]">osd/audio.png</texturefocus>
                     <texturenofocus colordiffuse="$VAR[OSDPanelWhite70]">osd/audio.png</texturenofocus>
@@ -2600,7 +2598,7 @@
                     <label/>
                     <font />
                     <onclick>SetProperty(CustomDialogSettingsContent,subtitlesettings,home)</onclick>
-                    <onclick>ActivateWindow(1101)</onclick>
+                    <onclick>ActivateWindow(1131)</onclick>
                     <include>DefOSDUpDown</include>
                     <texturefocus colordiffuse="$VAR[ColorHighlight]">osd/lyrics.png</texturefocus>
                     <texturenofocus colordiffuse="$VAR[OSDPanelWhite70]">osd/lyrics.png</texturenofocus>
