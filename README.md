@@ -26,7 +26,7 @@ Instructions:
 
 Media can be flagged with following media source flags in Arctic: Zephyr (martian):
 
-* **Bluray**, if the filename contains BLURAY, BDRIP or BLU-RAY.
+* **Bluray**, if the filename contains BLURAY, BDRIP, BRRIP, BD25, BD50, BLU-RAY or REMUX.
 * **HDDVD**, if the filename contains HDDVD.
 * **DVD**, if the filename contains DVD.
 * **SDTV**, if the filename contains PDTV, SDTV or SD-TV.
