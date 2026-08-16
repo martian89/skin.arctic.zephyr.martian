@@ -239,11 +239,11 @@
         </control>
         <control type="button" id="290001">
             <include>HiddenButton</include>
-            <onleft>SetFocus($VAR[View_Current_ViewID])</onleft>
-            <onright>SetFocus($VAR[View_Current_ViewID])</onright>
-            <onback>SetFocus($VAR[View_Current_ViewID])</onback>
-            <onclick>SetFocus($VAR[View_Current_ViewID])</onclick>
-            <ondown>SetFocus($VAR[View_Current_ViewID])</ondown>
+            <onleft>SetFocus($VAR[View_CurrentID])</onleft>
+            <onright>SetFocus($VAR[View_CurrentID])</onright>
+            <onback>SetFocus($VAR[View_CurrentID])</onback>
+            <onclick>SetFocus($VAR[View_CurrentID])</onclick>
+            <ondown>SetFocus($VAR[View_CurrentID])</ondown>
             <ondown>Action(nextletter)</ondown>
             <ondown condition="Integer.IsEqual(Container.CurrentPage, Container.NumPages) | !Container.SortDirection(descending) + String.IsEqual(ListItem.SortLetter,Z) | Container.SortDirection(descending) + $EXP[SortLetterIsNumber]">Action(firstpage)</ondown>
             <ondown condition="!Container.SortDirection(descending) + [Integer.IsEqual(Container.CurrentPage, Container.NumPages) | String.IsEqual(ListItem.SortLetter,Z)]">Action(jumpsms2)</ondown>
@@ -252,7 +252,7 @@
             <ondown condition="Integer.IsEqual(Container.CurrentPage, Container.NumPages) | !Container.SortDirection(descending) + String.IsEqual(ListItem.SortLetter,Z) | Container.SortDirection(descending) + $EXP[SortLetterIsNumber]">Action(prevletter)</ondown>
             <ondown condition="Integer.IsEqual(Container.CurrentPage, Container.NumPages) | !Container.SortDirection(descending) + String.IsEqual(ListItem.SortLetter,Z) | Container.SortDirection(descending) + $EXP[SortLetterIsNumber]">Action(prevletter)</ondown>
             <ondown>SetFocus(290001)</ondown>
-            <onup>SetFocus($VAR[View_Current_ViewID])</onup>
+            <onup>SetFocus($VAR[View_CurrentID])</onup>
             <onup>Action(prevletter)</onup>
             <onup condition="Integer.IsEqual(Container.CurrentPage,1) | !Container.SortDirection(descending) + $EXP[SortLetterIsNumber] | !Container.SortDirection(descending) + String.IsEqual(ListItem.SortLetter,A)">Action(lastpage)</onup>
             <onup condition="!Container.SortDirection(descending) + [Integer.IsEqual(Container.CurrentPage,1) | $EXP[SortLetterIsNumber]]">Action(jumpsms9)</onup>
@@ -337,7 +337,7 @@
                     <textcolor>$VAR[ColorHighlight]</textcolor>
                 </control>
             </focusedlayout>
-            <content>plugin://script.skin.info.service/?action=letter_jump&amp;target=$VAR[View_Current_ViewID]&amp;available=true&amp;reload=$INFO[Container($VAR[View_Current_ViewID]).NumItems]$INFO[Container($VAR[View_Current_ViewID]).SortMethod]$INFO[Container($VAR[View_Current_ViewID]).SortOrder]$INFO[Container($VAR[View_Current_ViewID]).FolderPath]</content>
+            <content>plugin://script.skin.info.service/?action=letter_jump&amp;target=$VAR[View_CurrentID]&amp;available=true&amp;reload=$INFO[Container($VAR[View_CurrentID]).NumItems]$INFO[Container($VAR[View_CurrentID]).SortMethod]$INFO[Container($VAR[View_CurrentID]).SortOrder]$INFO[Container($VAR[View_CurrentID]).FolderPath]</content>
         </control>
     </include>
     
