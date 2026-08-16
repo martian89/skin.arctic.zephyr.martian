@@ -5,6 +5,41 @@
 		<views>50,550,505,506,507,508,509,511,512,513,56,57,53,55,555,59,54,51,58,52,500,503,514,515,516,517,519,521,522,523,524,526</views>
 	</include>
 
+    <variable name="View_CurrentID">
+        <value condition="Control.IsVisible(50)">50</value>
+        <value condition="Control.IsVisible(51)">51</value>
+        <value condition="Control.IsVisible(52)">52</value>
+        <value condition="Control.IsVisible(53)">53</value>
+        <value condition="Control.IsVisible(54)">54</value>
+        <value condition="Control.IsVisible(55)">55</value>
+        <value condition="Control.IsVisible(56)">56</value>
+        <value condition="Control.IsVisible(57)">57</value>
+        <value condition="Control.IsVisible(58)">58</value>
+        <value condition="Control.IsVisible(59)">59</value>
+        <value condition="Control.IsVisible(500)">500</value>
+        <value condition="Control.IsVisible(503)">503</value>
+        <value condition="Control.IsVisible(505)">505</value>
+        <value condition="Control.IsVisible(506)">506</value>
+        <value condition="Control.IsVisible(507)">507</value>
+        <value condition="Control.IsVisible(508)">508</value>
+        <value condition="Control.IsVisible(509)">509</value>
+        <value condition="Control.IsVisible(511)">511</value>
+        <value condition="Control.IsVisible(512)">512</value>
+        <value condition="Control.IsVisible(513)">513</value>
+        <value condition="Control.IsVisible(514)">514</value>
+        <value condition="Control.IsVisible(515)">515</value>
+        <value condition="Control.IsVisible(516)">516</value>
+        <value condition="Control.IsVisible(517)">517</value>
+        <value condition="Control.IsVisible(519)">519</value>
+        <value condition="Control.IsVisible(521)">521</value>
+        <value condition="Control.IsVisible(522)">522</value>
+        <value condition="Control.IsVisible(523)">523</value>
+        <value condition="Control.IsVisible(524)">524</value>
+        <value condition="Control.IsVisible(526)">526</value>
+        <value condition="Control.IsVisible(550)">550</value>
+        <value condition="Control.IsVisible(555)">555</value>
+    </variable>
+
 	<include name="View_Includes">
 		<include condition="$EXP[Exp_View_50_Include] + !Skin.HasSetting(50list.low)">View_50_List</include>
 		<include condition="$EXP[Exp_View_50_Include] + Skin.HasSetting(50list.low)">View_50_LowList</include>
@@ -49,43 +84,9 @@
 		<include condition="$EXP[Exp_View_555_Include]">View_555_Wall_Episodes</include>
 	</include>
 
-    <variable name="View_Current_ViewID">
-        <value condition="Control.IsVisible(50)">50</value>
-        <value condition="Control.IsVisible(51)">51</value>
-        <value condition="Control.IsVisible(52)">52</value>
-        <value condition="Control.IsVisible(53)">53</value>
-        <value condition="Control.IsVisible(54)">54</value>
-        <value condition="Control.IsVisible(55)">55</value>
-        <value condition="Control.IsVisible(56)">56</value>
-        <value condition="Control.IsVisible(57)">57</value>
-        <value condition="Control.IsVisible(58)">58</value>
-        <value condition="Control.IsVisible(59)">59</value>
-        <value condition="Control.IsVisible(500)">500</value>
-        <value condition="Control.IsVisible(503)">503</value>
-        <value condition="Control.IsVisible(505)">505</value>
-        <value condition="Control.IsVisible(506)">506</value>
-        <value condition="Control.IsVisible(507)">507</value>
-        <value condition="Control.IsVisible(508)">508</value>
-        <value condition="Control.IsVisible(509)">509</value>
-        <value condition="Control.IsVisible(511)">511</value>
-        <value condition="Control.IsVisible(512)">512</value>
-        <value condition="Control.IsVisible(513)">513</value>
-        <value condition="Control.IsVisible(514)">514</value>
-        <value condition="Control.IsVisible(515)">515</value>
-        <value condition="Control.IsVisible(516)">516</value>
-        <value condition="Control.IsVisible(517)">517</value>
-        <value condition="Control.IsVisible(519)">519</value>
-        <value condition="Control.IsVisible(521)">521</value>
-        <value condition="Control.IsVisible(522)">522</value>
-        <value condition="Control.IsVisible(523)">523</value>
-        <value condition="Control.IsVisible(524)">524</value>
-        <value condition="Control.IsVisible(526)">526</value>
-        <value condition="Control.IsVisible(550)">550</value>
-        <value condition="Control.IsVisible(555)">555</value>
-    </variable>
-
 	<variable name="View_ModeSwitch">
         <value condition="Container.Content(episodes) + Window.IsVisible(MyGames.xml)">games</value>
+        <value condition="Container.Content(movies) + String.StartsWith(Container.FolderPath,videodb://movies/sets/)">movies-sets</value>
         <value condition="Container.Content(movies) + String.IsEmpty(Container.PluginName) + !String.StartsWith(Container.FolderPath,videodb://) + !String.StartsWith(Container.FolderPath,special://)">movies-files</value>
         <value condition="Container.Content(tvshows) + String.IsEmpty(Container.PluginName) + !String.StartsWith(Container.FolderPath,videodb://) + !String.StartsWith(Container.FolderPath,special://)">tvshows-files</value>
         <value condition="Container.Content(episodes) + String.IsEmpty(Container.PluginName) + !String.StartsWith(Container.FolderPath,videodb://) + !String.StartsWith(Container.FolderPath,special://)">episodes-files</value>
@@ -102,6 +103,36 @@
 		<value>none</value>
 	</variable>
 
+    <expression name="UsePreviewImageSquare">
+        [ !String.Contains(Control.GetLabel(1),(movies)) 
+        + !String.Contains(Control.GetLabel(1),(movies-files)) 
+        + !String.Contains(Control.GetLabel(1),(movies-sets)) 
+        + !String.Contains(Control.GetLabel(1),(sets)) 
+        + !String.Contains(Control.GetLabel(1),(tvshows)) 
+        + !String.Contains(Control.GetLabel(1),(tvshows-files)) 
+        + !String.Contains(Control.GetLabel(1),(episode-groups-tvshows)) 
+        + !String.Contains(Control.GetLabel(1),(seasons)) 
+        + !String.Contains(Control.GetLabel(1),(episode-groups-seasons)) 
+        + !String.Contains(Control.GetLabel(1),(episodes)) 
+        + !String.Contains(Control.GetLabel(1),(episodes-files)) 
+        + !String.Contains(Control.GetLabel(1),(actors)) 
+        + !String.Contains(Control.GetLabel(1),(games)) 
+        + !String.Contains(Control.GetLabel(1),(none-games)) 
+        + !String.Contains(Control.GetLabel(1),(videoversions)) 
+        + !String.Contains(Control.GetLabel(1),(videoextras)) 
+        + !String.Contains(Control.GetLabel(1),(videoassets)) ]
+    </expression>
+
+    <expression name="UsePreviewImageMusic">
+        [ String.Contains(Control.GetLabel(1),(albums)) 
+        | String.Contains(Control.GetLabel(1),(songs)) 
+        | String.Contains(Control.GetLabel(1),(artists)) 
+        | String.Contains(Control.GetLabel(1),(musicvideos))]
+    </expression>
+        
+    <expression name="HasViewOptionsLabel">Control.IsVisible(55553)</expression>
+    <expression name="HasExtraOptionsLabel">Control.IsVisible(55554)</expression>
+    
     <include name="View_SideBlade">
         <definition>
             <control type="group">
@@ -118,9 +149,6 @@
             </control>
         </definition>  
     </include>
-    
-    <expression name="HasViewOptionsLabel">Control.IsVisible(55553)</expression>
-    <expression name="HasExtraOptionsLabel">Control.IsVisible(55554)</expression>
     
     <include name="View_SideBlade_Background">
         <definition>
