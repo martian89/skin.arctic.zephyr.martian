@@ -42,12 +42,12 @@
 
     <variable name="LabelTitle">
         <value condition="$EXP[InGameMode]">$VAR[GameTitle]</value>
-        <value condition="Container.Content(episodes) + !String.IsEmpty(ListItem.Title)">$INFO[ListItem.Title]</value>
+        <value condition="String.IsEqual(ListItem.DBType,episode) + !String.IsEmpty(ListItem.Title)">$INFO[ListItem.Title]</value>
         <value>$INFO[ListItem.Label]</value>
     </variable>
 
     <variable name="LabelPlot">
-        <value condition="Container.Content(seasons) + String.IsEmpty(ListItem.Plot)">$INFO[Container.ShowPlot]</value>
+        <value condition="String.IsEqual(ListItem.DBType,season) + String.IsEmpty(ListItem.Plot)">$INFO[Container.ShowPlot]</value>
         <value>$INFO[ListItem.Plot]</value>
     </variable>
 
@@ -1340,10 +1340,10 @@
         <value condition="$EXP[IsMediaInfoList] + !String.IsEqual(ListItem.Label,..)">$LOCALIZE[19055]</value>
         <value condition="ListItem.IsCollection">$LOCALIZE[31476]</value>
         <value condition="$EXP[InGameMode]">$VAR[GameGenre]</value>
-        <value condition="Container.Content(seasons) + !String.IsEqual(ListItem.Label,..) + !String.IsEmpty(ListItem.Year)">$INFO[ListItem.Year]</value>
-        <value condition="Container.Content(episodes) + !String.IsEqual(ListItem.Label,..) + !String.IsEmpty(ListItem.Premiered)">$INFO[ListItem.Premiered]</value>
-        <value condition="Container.Content(episodes) + !String.IsEqual(ListItem.Label,..) + !String.IsEmpty(ListItem.Year)">$INFO[ListItem.Year]</value>
-        <value condition="Container.Content(episodes) + !String.IsEqual(ListItem.Label,..) + !String.IsEmpty(ListItem.Duration(mins))">$VAR[LabelDurationTimeCheck]</value>
+        <value condition="String.IsEqual(ListItem.DBType,season) + !String.IsEqual(ListItem.Label,..) + !String.IsEmpty(ListItem.Year)">$INFO[ListItem.Year]</value>
+        <value condition="String.IsEqual(ListItem.DBType,episode) + !String.IsEqual(ListItem.Label,..) + !String.IsEmpty(ListItem.Premiered)">$INFO[ListItem.Premiered]</value>
+        <value condition="String.IsEqual(ListItem.DBType,episode) + !String.IsEqual(ListItem.Label,..) + !String.IsEmpty(ListItem.Year)">$INFO[ListItem.Year]</value>
+        <value condition="String.IsEqual(ListItem.DBType,episode) + !String.IsEqual(ListItem.Label,..) + !String.IsEmpty(ListItem.Duration(mins))">$VAR[LabelDurationTimeCheck]</value>
         <value condition="String.IsEqual(ListItem.DBType,artist) + !String.IsEmpty(ListItem.Property(Artist_Style))">$INFO[ListItem.Property(Artist_Style)]</value>
         <value condition="String.IsEqual(ListItem.DBType,album) + !String.IsEmpty(ListItem.Artist)">$INFO[ListItem.Artist]$INFO[ListItem.Year,  •  ,]</value>
         <value condition="[String.IsEqual(ListItem.DBType,song) | String.IsEqual(ListItem.DBType,musicvideo) | String.IsEqual(ListItem.DBType,video)] + !String.IsEmpty(ListItem.Artist)">$INFO[ListItem.Artist]$INFO[ListItem.Album,  •  ,]$INFO[ListItem.Year,  •  ,]</value>
