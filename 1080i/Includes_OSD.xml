@@ -101,6 +101,8 @@
     </include>
 
     <include name="ProgressBar">
+        <param name="wide_markers" default="false" />
+        <definition>
         <control type="ranges">
             <visible>Skin.HasSetting(cutlist.markers)</visible>
             <bottom>10</bottom>
@@ -149,7 +151,7 @@
             <visible>Pvr.IsPlayingTv</visible>
         </control>
         <control type="ranges">
-            <visible>Skin.HasSetting(chapter.markers)</visible>
+            <visible>Skin.HasSetting(chapter.markers) + !$PARAM[wide_markers]</visible>
             <left>0</left>
             <bottom>14</bottom>
             <width>100%</width>
@@ -158,14 +160,33 @@
             <info>Player.Chapters</info>
         </control>
         <control type="ranges">
-            <visible>Player.HasBookmarks + Skin.HasSetting(bookmark.markers)</visible>
+            <visible>Skin.HasSetting(chapter.markers) + $PARAM[wide_markers]</visible>
             <left>0</left>
             <bottom>14</bottom>
             <width>100%</width>
             <height>8</height>
-            <righttexture colordiffuse="FFFF0000">osd/ch.png</righttexture>
+            <righttexture colordiffuse="$VAR[OSDPanelWhite100]">osd/ch2.png</righttexture>
+            <info>Player.Chapters</info>
+        </control>
+        <control type="ranges">
+            <visible>Player.HasBookmarks + Skin.HasSetting(bookmark.markers) + !$PARAM[wide_markers]</visible>
+            <left>0</left>
+            <bottom>14</bottom>
+            <width>100%</width>
+            <height>8</height>
+            <righttexture colordiffuse="FFFF0000">osd/bookmark.png</righttexture>
             <info>Player.Bookmarks</info>
         </control>
+        <control type="ranges">
+            <visible>Player.HasBookmarks + Skin.HasSetting(bookmark.markers) + $PARAM[wide_markers]</visible>
+            <left>0</left>
+            <bottom>14</bottom>
+            <width>100%</width>
+            <height>8</height>
+            <righttexture colordiffuse="FFFF0000">osd/bookmark2.png</righttexture>
+            <info>Player.Bookmarks</info>
+        </control>
+        </definition>
     </include>
     
     <include name="OSDPVRInfoContent">
@@ -2900,7 +2921,9 @@
 	                <left>SidePad</left>
 	                <right>SidePad</right>
                     <bottom>20</bottom>
-                    <include>ProgressBar</include>
+                    <include content="ProgressBar">
+                        <param name="wide_markers" value="[[Window.IsVisible(fullscreeninfo) | !String.IsEmpty(Window(home).Property(osdinfo)) | Player.ShowInfo | $EXP[ShowInfoWithOSD] | $EXP[ShowInfoOnPause]] + ![String.IsEmpty(Player.Art(tvshow.poster)) + String.IsEmpty(Player.Art(poster)) + [!VideoPlayer.Content(LiveTV) | String.IsEmpty(Player.Art(thumb))]]]" />
+                    </include>
 	            </control>
             </control>
         </control>
@@ -3190,7 +3213,9 @@
                     <right>SidePadNewOSD</right>
                     <top>20</top>
                     <bottom>20</bottom>
-                    <include>ProgressBar</include>
+                     <include content="ProgressBar">
+                        <param name="wide_markers" value="[!Skin.hasSetting(osd.disableposter) + [Window.IsVisible(fullscreeninfo) | !String.IsEmpty(Window(home).Property(osdinfo)) | Player.ShowInfo | $EXP[ShowInfoWithOSD] | $EXP[ShowInfoOnPause]] + ![String.IsEmpty(Player.Art(tvshow.poster)) + String.IsEmpty(Player.Art(poster)) + [!VideoPlayer.Content(LiveTV) | String.IsEmpty(Player.Art(thumb))]]]" />
+                    </include>
                 </control>
             </control>
         </control>
@@ -3507,7 +3532,9 @@
                         <top>20</top>
                         <bottom>20</bottom>
                         <width>1860</width>
-                        <include>ProgressBar</include>
+	                     <include content="ProgressBar">
+	                        <param name="wide_markers" value="[Window.IsVisible(fullscreeninfo) | !String.IsEmpty(Window(home).Property(osdinfo)) | Player.ShowInfo | $EXP[ShowInfoOnPause]]" />
+	                    </include>
 	                </control>    
 	            </control>
             </control>
