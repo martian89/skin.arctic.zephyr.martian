@@ -1364,7 +1364,7 @@
     </variable>
 
     <variable name="Label_View_51_Title">
-        <value condition="Container.Content(movies) | Container.Content(episodes)">$VAR[LabelYear,,  •  ]$INFO[ListItem.Label]</value>
+        <value condition="String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,episode)">$VAR[LabelYear,,  •  ]$INFO[ListItem.Label]</value>
         <value>$INFO[ListItem.Label]</value>
     </variable>
 
@@ -1377,8 +1377,8 @@
     <variable name="Label_View_55_Info_SubLabel">
         <value condition="$EXP[InGameMode]">$VAR[GameYear]$VAR[GameRating,  •  ]</value>
         <value condition="String.IsEqual(ListItem.DBType,movie)">$INFO[ListItem.Year]$VAR[LabelDurationTimeCheck,  •  ]$VAR[RatingLabel,  •  ]</value>
-        <value condition="String.IsEqual(ListItem.DBType,tvshow)">$INFO[ListItem.Episode,, $LOCALIZE[20360]]$INFO[ListItem.Property(UnWatchedEpisodes),  •  , $LOCALIZE[16101]]$VAR[RatingLabel,  •  ]</value>
-        <value condition="String.IsEqual(ListItem.DBType,set) | Container.Content(seasons) | Container.Content(sets)">$INFO[ListItem.Year]$INFO[Container(55).NumItems,  •  , $LOCALIZE[342]]$VAR[RatingLabel,  •  ]</value>
+        <value condition="String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)">$INFO[ListItem.Episode,, $LOCALIZE[20360]]$INFO[ListItem.Property(UnWatchedEpisodes),  •  , $LOCALIZE[16101]]$VAR[RatingLabel,  •  ]</value>
+        <value condition="String.IsEqual(ListItem.DBType,set)">$INFO[ListItem.Year]$VAR[RatingLabel,  •  ]</value>
         <value>$VAR[LabelDurationTimeCheck]</value>
     </variable>
     
