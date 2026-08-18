@@ -185,7 +185,8 @@
             <include>DefContextButtonGradient</include>
             <label>31290</label>
             <onclick>Dialog.Close(1131)</onclick>
-            <onclick>ActivateWindow(playerprocessinfo)</onclick>
+            <onclick condition="!System.AddonIsEnabled(script.tinyppi)">ActivateWindow(playerprocessinfo)</onclick>
+            <onclick condition="System.AddonIsEnabled(script.tinyppi)">RunScript(script.tinyppi)</onclick>
         </control>
 		<control type="button" id="104">
 			<align>left</align>
