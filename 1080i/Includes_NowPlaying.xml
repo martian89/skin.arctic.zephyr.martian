@@ -41,12 +41,12 @@
                 <param name="visible" value="Skin.HasSetting(extended.nowplaying.videowindow)" />
             </include>
             <include content="NowPlaying_Square">
-                <param name="visible" value="![Skin.HasSetting(extended.nowplaying.videowindow) + VideoPlayer.Content(livetv)]" />
+                <param name="visible" value="![Skin.HasSetting(extended.nowplaying.videowindow) + [VideoPlayer.Content(livetv) | VideoPlayer.Content(musicvideos)]]" />
                 <param name="fallback_image" value="DefaultAudio.png"/>
             </include>
             <include content="NowPlaying_Square">
                 <param name="left" value="551" />
-                <param name="visible" value="$EXP[IsPVRVideo] + Skin.HasSetting(extended.nowplaying.videowindow)" />
+                <param name="visible" value="[$EXP[IsPVRVideo] | VideoPlayer.Content(musicvideos)] + Skin.HasSetting(extended.nowplaying.videowindow)" />
             </include>
             <include content="NowPlaying_Square">
                 <param name="left" value="-10" />
@@ -60,11 +60,11 @@
             </include>
             <include content="NowPlaying_InfoRight">
                 <param name="left" value="0" />
-                <param name="visible" value="[$EXP[IsVideo] + !Skin.HasSetting(extended.nowplaying.videowindow)] | [$EXP[IsAudio] + Skin.HasSetting(extended.nowplaying.hidecd)] | [$EXP[IsPVRAudio] + Skin.HasSetting(extended.nowplaying.hidecd)]" />
+                <param name="visible" value="[$EXP[IsVideo] + !Skin.HasSetting(extended.nowplaying.videowindow)] | [$EXP[IsAudio] + Skin.HasSetting(extended.nowplaying.hidecd)] | [$EXP[IsPVRAudio] + Skin.HasSetting(extended.nowplaying.hidecd)] | [VideoPlayer.Content(musicvideos) + Skin.HasSetting(extended.nowplaying.hidecd)]" />
             </include>
             <include content="NowPlaying_InfoRight">
                 <param name="left" value="661" />
-                <param name="visible" value="$EXP[IsPVRVideo] + Skin.HasSetting(extended.nowplaying.videowindow)" />
+                <param name="visible" value="[$EXP[IsPVRVideo] | VideoPlayer.Content(musicvideos)] + Skin.HasSetting(extended.nowplaying.videowindow)" />
             </include>
             <include content="NowPlaying_InfoRight">
                 <param name="left" value="140" />
@@ -72,7 +72,7 @@
             </include>
             <include content="NowPlaying_InfoRight">
                 <param name="left" value="100" />
-                <param name="visible" value="$EXP[IsPVRVideo] + !Skin.HasSetting(extended.nowplaying.videowindow)" />
+                <param name="visible" value="[$EXP[IsPVRVideo] | VideoPlayer.Content(musicvideos)] + !Skin.HasSetting(extended.nowplaying.videowindow)" />
             </include>
             <control type="list" id="999">
                 <include>HiddenListControl</include>
@@ -687,7 +687,7 @@
                 <param name="top" value="60" />
             </include>
             <visible>$PARAM[visible]</visible>
-            <visible>Player.HasVideo + !VideoPlayer.Content(livetv)</visible>
+            <visible>Player.HasVideo + !VideoPlayer.Content(livetv) + !VideoPlayer.Content(musicvideos)</visible>
             <control type="image">
                 <left>10</left>
                 <top>10</top>
@@ -756,7 +756,7 @@
                 <param name="top" value="60" />
             </include>
             <visible>$PARAM[visible]</visible>
-            <visible>Player.HasAudio | VideoPlayer.Content(livetv)</visible>
+            <visible>Player.HasAudio | VideoPlayer.Content(livetv) | VideoPlayer.Content(musicvideos)</visible>
             <control type="image">
                 <left>0</left>
                 <top>0</top>
