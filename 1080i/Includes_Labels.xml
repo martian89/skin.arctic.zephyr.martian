@@ -430,15 +430,15 @@
 
     <variable name="PlayerGenreInfo">
         <value condition="VideoPlayer.Content(LiveTV)">$INFO[VideoPlayer.ChannelNumberLabel,,. ]$INFO[VideoPlayer.ChannelName]</value>
-        <value condition="VideoPlayer.Content(episodes) + !String.IsEmpty(VideoPlayer.Episode) + !Skin.HasSetting(videoosd.side)">$INFO[VideoPlayer.Season,$LOCALIZE[20373] ,  •  ]$INFO[VideoPlayer.Episode,$LOCALIZE[20359] ,]$INFO[VideoPlayer.Premiered,  •  ,]</value>
-        <value condition="VideoPlayer.Content(episodes) + !String.IsEmpty(VideoPlayer.Episode) + Skin.HasSetting(videoosd.side)">$INFO[VideoPlayer.Season,S,]$INFO[VideoPlayer.Episode,E,]$INFO[VideoPlayer.Premiered,  •  ,]</value>
+        <value condition="VideoPlayer.Content(episodes) + !String.IsEmpty(VideoPlayer.Episode)">$INFO[VideoPlayer.Season,$LOCALIZE[20373] ,  •  ]$INFO[VideoPlayer.Episode,$LOCALIZE[20359] ,]$INFO[VideoPlayer.Premiered,  •  ,]</value>
+        <value condition="VideoPlayer.Content(musicvideos) + !String.IsEmpty(VideoPlayer.Artist)">$INFO[VideoPlayer.Artist]$INFO[VideoPlayer.Album,  •  ,]$INFO[VideoPlayer.Year,  •  ,]</value>
         <value condition="!String.IsEmpty(VideoPlayer.Genre)">$INFO[VideoPlayer.Genre]</value>
         <value>$LOCALIZE[19055]</value>
     </variable>
     
     <variable name="PlayerTrackInfo">
         <value condition="MusicPlayer.Content(LiveTV)">$INFO[MusicPlayer.ChannelNumberLabel,,. ]$INFO[MusicPlayer.ChannelName]</value>
-        <value>$INFO[MusicPlayer.Artist]$INFO[MusicPlayer.Album,  •  ,]$INFO[MusicPlayer.Year,  •  ,]$INFO[MusicPlayer.TrackNumber,  •  $LOCALIZE[554] ,]</value>
+        <value condition="!String.IsEmpty(MusicPlayer.Artist)">$INFO[MusicPlayer.Artist]$INFO[MusicPlayer.Album,  •  ,]$INFO[MusicPlayer.Year,  •  ,]$INFO[MusicPlayer.TrackNumber,  •  $LOCALIZE[554] ,]</value>
         <value>$LOCALIZE[19055]</value>
     </variable>
     
@@ -1092,6 +1092,7 @@
         <value condition="VideoPlayer.Content(livetv)">$INFO[VideoPlayer.ChannelName]$INFO[VideoPlayer.StartTime,  •  ,]$INFO[VideoPlayer.EndTime, - ]$INFO[PVR.EpgEventDuration(mins),  •  , $LOCALIZE[31102]]</value>
         <value condition="VideoPlayer.Content(movies)">$INFO[VideoPlayer.Year,,  •  ]$VAR[LabelDurationPlayer]$VAR[RatingLabelVideoPlayer,  •  ,]$VAR[Label_Movie_Ratings_Player]</value>
         <value condition="VideoPlayer.Content(episodes)">$INFO[VideoPlayer.Season,$LOCALIZE[36904] ,  •  ]$INFO[VideoPlayer.Episode,$LOCALIZE[36906] ,  •  ]$INFO[VideoPlayer.Premiered,,  •  ]$VAR[LabelDurationPlayer]$VAR[RatingLabelVideoPlayer,  •  ,]$VAR[Label_TvShow_Ratings_Player]</value>
+        <value condition="VideoPlayer.Content(musicvideos)">$INFO[VideoPlayer.Artist]$INFO[VideoPlayer.Year,  •  ]</value>
         <value condition="VideoPlayer.Content(files) + !String.IsEmpty(VideoPlayer.Studio)">$INFO[VideoPlayer.Studio]</value>
         <value condition="VideoPlayer.Content(files) + !String.IsEmpty(VideoPlayer.Artist)">$INFO[VideoPlayer.Artist]</value>
     </variable>
@@ -1107,7 +1108,8 @@
         <value condition="VideoPlayer.Content(livetv)">$INFO[VideoPlayer.NextTitle,$LOCALIZE[19031]: ]$INFO[VideoPlayer.NextStartTime, (,]$INFO[VideoPlayer.NextEndTime, - ,)]</value>
         <value condition="VideoPlayer.Content(movies)">$INFO[VideoPlayer.Tagline]</value>
         <value condition="VideoPlayer.Content(episodes)">$INFO[VideoPlayer.TvShowTitle]</value>
-        <value condition="VideoPlayer.Content(files) + !VideoPlayer.Content(livetv)">$VAR[Label_Player_MediaInfo]</value>
+        <value condition="VideoPlayer.Content(musicvideos) + !String.IsEmpty(VideoPlayer.Album)">$INFO[VideoPlayer.Artist,,  •  ]$INFO[VideoPlayer.Album]$INFO[VideoPlayer.Year,  •  ,]</value>
+        <value condition="VideoPlayer.Content(files)">$VAR[Label_Player_MediaInfo]</value>
     </variable>
     
     <variable name="Label_NowPlaying_Time_MusicSubInfo">
