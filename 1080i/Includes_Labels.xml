@@ -136,15 +136,12 @@
     </variable>
 
     <variable name="LabelDuration">
-        <value condition="String.IsEqual(Container.SortMethod,$LOCALIZE[552]) + String.StartsWith(Container.FolderPath,videodb://recentlyadded)">$INFO[ListItem.DateAdded]</value>
-        <value condition="String.IsEqual(Container.SortMethod,$LOCALIZE[552])">$INFO[ListItem.Date]</value>
         <value condition="String.IsEqual(Container.SortMethod,$LOCALIZE[20074])">$INFO[ListItem.MPAA]</value>
         <value condition="String.IsEqual(Container.SortMethod,$LOCALIZE[570])">$INFO[ListItem.DateAdded]</value>
         <value condition="String.IsEqual(Container.SortMethod,$LOCALIZE[567])">$INFO[ListItem.PlayCount]</value>
         <value condition="[Container.Content(songs) | Container.Content(albums) | Container.Content(musicvideos)]">$INFO[ListItem.Duration]</value>
-        <value condition="!String.IsEmpty(ListItem.Duration(mins))">$VAR[LabelDurationTimeCheck]</value>
-        <value condition="$EXP[InGameMode]"></value>
-        <value condition="[Container.Content(tvshows) + !Control.IsVisible(54) + !Control.IsVisible(58) + !Control.IsVisible(555)] | Container.Content(episodes)">$VAR[LabelYear]</value>
+        <value condition="[String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,episode)] + !String.IsEmpty(ListItem.Duration(mins))">$VAR[LabelDurationTimeCheck]</value>
+        <value condition="[Container.Content(tvshows) | Container.Content(sets)] + !Control.IsVisible(54) + !Control.IsVisible(58) + !Control.IsVisible(555)">$VAR[LabelYear]</value>
     </variable>
 
     <variable name="LabelDurationMusic">
@@ -1308,8 +1305,9 @@
         <value condition="[Container.Content(songs) | Container.Content(albums) | Container.Content(musicvideos)]">$VAR[LabelDurationMusic]</value>
         <value condition="String.IsEqual(ListItem.DBType,tvshow)">$INFO[ListItem.Year]</value>
         <value condition="String.IsEqual(ListItem.DBType,season) + !Control.IsVisible(516)">$INFO[ListItem.Property(TotalEpisodes),, $LOCALIZE[20360]]</value>
+        <value condition="String.IsEqual(Container.SortMethod,$LOCALIZE[551]) + Container.Content(addons) + !Skin.HasSetting(hide.markers)">$INFO[ListItem.AddonVersion]</value>
+        <value condition="String.IsEqual(Container.SortMethod,$LOCALIZE[552]) + !String.IsEmpty(ListItem.Date) + !String.StartsWith(Container.FolderPath,videodb://recentlyadded)">$INFO[ListItem.Date]</value>        
         <value condition="String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,set) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode) | String.IsEqual(ListItem.DBType,musicvideo) | $EXP[IsVideoAssets]">$VAR[LabelDuration]</value>
-        <value condition="Container.Content(addons) + String.IsEqual(Container.SortMethod,$LOCALIZE[551]) + !Skin.HasSetting(hide.markers)">$INFO[ListItem.AddonVersion]</value>
         <value>$INFO[ListItem.Label2]</value>
     </variable>
 
