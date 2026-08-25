@@ -457,7 +457,7 @@
         <value condition="!String.IsEmpty(ListItem.Property(FanartCode)) + $EXP[HasWeatherFanartSingle]">$VAR[WeatherFanartPath]$INFO[ListItem.Property(FanartCode),,.jpg]</value>
  	
 		<!-- Multi Widget -->
-        <value condition="String.IsEqual(ListItem.DBtype,episode) + !String.IsEmpty(ListItem.Art(thumb)) + Skin.HasSetting(background.episodes.use.thumbnail)">$INFO[ListItem.Art(thumb)]</value>
+        <value condition="String.IsEqual(ListItem.DBtype,episode) + !String.IsEmpty(ListItem.Art(thumb)) + Skin.HasSetting(background.episodes.use.thumbnail) + ![System.Setting(hideunwatchedepisodethumbs) + Integer.IsEqual(ListItem.Playcount,0)]">$INFO[ListItem.Art(thumb)]</value>
         <value condition="String.IsEqual(ListItem.DBtype,episode) + !String.IsEmpty(ListItem.Art(season.fanart)) + String.IsEqual(ListItem.Art(fanart),ListItem.Art(tvshow.fanart))">$INFO[ListItem.Art(season.fanart)]</value>
         <value condition="!String.IsEmpty(ListItem.Art(fanart))">$INFO[ListItem.Art(fanart)]</value>
         <value condition="!String.IsEmpty(ListItem.Property(fanart))">$INFO[ListItem.Property(fanart)]</value>
@@ -475,7 +475,7 @@
 	</variable>
 	
 	<variable name="GlobalFanart_MultiWidgets_Spotlight">
-        <value condition="String.IsEqual(Container(993100).ListItem.DBtype,episode) + !String.IsEmpty(Container(993100).ListItem.Art(thumb)) + Skin.HasSetting(background.episodes.use.thumbnail)">$INFO[Container(993100).ListItem.Art(thumb)]</value>
+        <value condition="String.IsEqual(Container(993100).ListItem.DBtype,episode) + !String.IsEmpty(Container(993100).ListItem.Art(thumb)) + Skin.HasSetting(background.episodes.use.thumbnail) + ![System.Setting(hideunwatchedepisodethumbs) + Integer.IsEqual(Container(993100).ListItem.Playcount,0)]">$INFO[Container(993100).ListItem.Art(thumb)]</value>
         <value condition="String.IsEqual(Container(993100).ListItem.DBtype,episode) + !String.IsEmpty(Container(993100).ListItem.Art(season.fanart)) + String.IsEqual(Container(993100).ListItem.Art(fanart),Container(993100)ListItem.Art(tvshow.fanart))">$INFO[Container(993100).ListItem.Art(season.fanart)]</value>
         <value condition="!String.IsEmpty(Container(993100).ListItem.Art(fanart))">$INFO[Container(993100).ListItem.Art(fanart)]</value>
         <value condition="!String.IsEmpty(Container(993100).ListItem.Property(fanart))">$INFO[Container(993100).ListItem.Property(fanart)]</value>
@@ -511,13 +511,13 @@
         <value condition="Window.IsVisible(weather) + [$EXP[HasWeatherFanartSingle] | $EXP[HasWeatherFanartMulti]]">$VAR[Image_WeatherCurrent]</value>
  
 		<!-- Extra Fanart -->
-        <value condition="!String.IsEmpty(Control.GetLabel(4399)) + Skin.HasSetting(EnableExtraFanart) + !Skin.HasSetting(global.hidefanart) + !String.IsEqual(ListItem.DBType,season) + !Container.Content(seasons) + ![String.IsEqual(ListItem.DBtype,episode) + [!String.IsEmpty(ListItem.Art(thumb)) + Skin.HasSetting(background.episodes.use.thumbnail)] | [!String.IsEmpty(ListItem.Art(season.fanart)) + String.IsEqual(ListItem.Art(fanart),ListItem.Art(tvshow.fanart))]]">$INFO[Control.GetLabel(4399)]</value>
+        <value condition="!String.IsEmpty(Control.GetLabel(4399)) + Skin.HasSetting(EnableExtraFanart) + !Skin.HasSetting(global.hidefanart) + !String.IsEqual(ListItem.DBType,season) + !Container.Content(seasons) + ![String.IsEqual(ListItem.DBtype,episode) + [!String.IsEmpty(ListItem.Art(thumb)) + Skin.HasSetting(background.episodes.use.thumbnail) + ![System.Setting(hideunwatchedepisodethumbs) + Integer.IsEqual(ListItem.Playcount,0)]] | [!String.IsEmpty(ListItem.Art(season.fanart)) + String.IsEqual(ListItem.Art(fanart),ListItem.Art(tvshow.fanart))]]">$INFO[Control.GetLabel(4399)]</value>
 
 		<!-- Multi Widgets -->
 		<value condition="Window.IsVisible(home) + Skin.HasSetting(home.vertical.widgets)">$VAR[GlobalFanart_MultiWidgets]</value>
 
         <!-- Standard Widget -->
-        <value condition="Window.IsVisible(home) + String.IsEqual(Container(301).ListItem.DBtype,episode) + !String.IsEmpty(Container(301).ListItem.Art(thumb)) + Skin.HasSetting(background.episodes.use.thumbnail) + [!Skin.HasSetting(home.dontshowfanart) | Control.HasFocus(301)] + Control.IsVisible(301)">$INFO[Container(301).ListItem.Art(thumb)]</value>
+        <value condition="Window.IsVisible(home) + String.IsEqual(Container(301).ListItem.DBtype,episode) + !String.IsEmpty(Container(301).ListItem.Art(thumb)) + Skin.HasSetting(background.episodes.use.thumbnail) + ![System.Setting(hideunwatchedepisodethumbs) + Integer.IsEqual(Container(301).ListItem.Playcount,0)] + [!Skin.HasSetting(home.dontshowfanart) | Control.HasFocus(301)] + Control.IsVisible(301)">$INFO[Container(301).ListItem.Art(thumb)]</value>
         <value condition="Window.IsVisible(home) + String.IsEqual(Container(301).ListItem.DBtype,episode) + !String.IsEmpty(Container(301).ListItem.Art(season.fanart)) + String.IsEqual(Container(301).ListItem.Art(fanart),Container(301).ListItem.Art(tvshow.fanart)) + [!Skin.HasSetting(home.dontshowfanart) | Control.HasFocus(301)] + Control.IsVisible(301)">$INFO[Container(301).ListItem.Art(season.fanart)]</value>
         <value condition="Window.IsVisible(home) + !String.IsEmpty(Container(301).ListItem.Art(fanart)) + [!Skin.HasSetting(home.dontshowfanart) | Control.HasFocus(301)] + Control.IsVisible(301)">$INFO[Container(301).ListItem.Art(fanart)]</value>
         <value condition="Window.IsVisible(home) + !String.IsEmpty(Container(301).ListItem.Property(fanart)) + [!Skin.HasSetting(home.dontshowfanart) | Control.HasFocus(301)] + Control.IsVisible(301)">$INFO[Container(301).ListItem.Property(fanart)]</value>
@@ -536,10 +536,10 @@
 		<value condition="Window.IsVisible(home)">$VAR[GlobalFanart_Fallback]</value>
 
         <!-- Other -->
-        <value condition="String.IsEqual(ListItem.DBtype,episode) + !String.IsEmpty(ListItem.Art(thumb)) + Skin.HasSetting(background.episodes.use.thumbnail)">$INFO[ListItem.Art(thumb)]</value>
+        <value condition="String.IsEqual(ListItem.DBtype,episode) + !String.IsEmpty(ListItem.Art(thumb)) + Skin.HasSetting(background.episodes.use.thumbnail) + ![System.Setting(hideunwatchedepisodethumbs) + Integer.IsEqual(ListItem.Playcount,0)]">$INFO[ListItem.Art(thumb)]</value>
         <value condition="String.IsEqual(ListItem.DBtype,episode) + !String.IsEmpty(ListItem.Art(season.fanart)) + String.IsEqual(ListItem.Art(fanart),ListItem.Art(tvshow.fanart))">$INFO[ListItem.Art(season.fanart)]</value>
         <value condition="!String.IsEmpty(ListItem.Art(fanart))">$INFO[ListItem.Art(fanart)]</value>
-        <value condition="String.IsEqual(Container(9500).ListItem.DBtype,episode) + !String.IsEmpty(Container(9500).ListItem.Art(thumb)) + Skin.HasSetting(background.episodes.use.thumbnail)">$INFO[Container(9500).ListItem.Art(thumb)]</value>
+        <value condition="String.IsEqual(Container(9500).ListItem.DBtype,episode) + !String.IsEmpty(Container(9500).ListItem.Art(thumb)) + Skin.HasSetting(background.episodes.use.thumbnail) + ![System.Setting(hideunwatchedepisodethumbs) + Integer.IsEqual(Container(9500).ListItem.Playcount,0)]">$INFO[Container(9500).ListItem.Art(thumb)]</value>
         <value condition="String.IsEqual(Container(9500).ListItem.DBtype,episode) + !String.IsEmpty(Container(9500).ListItem.Art(season.fanart)) + String.IsEqual(Container(9500).ListItem.Art(fanart),Container(9500).ListItem.Art(tvshow.fanart))">$INFO[Container(9500).ListItem.Art(season.fanart)]</value>
         <value condition="!String.IsEmpty(Container(9500).ListItem.Art(fanart))">$INFO[Container(9500).ListItem.Art(fanart)]</value>
         <value condition="!String.IsEmpty(ListItem.Property(Fanart)) + !Window.IsVisible(Settings.xml)">$INFO[ListItem.Property(Fanart)]</value>
@@ -1327,64 +1327,7 @@
     <variable name="UpNextEpisodePath">
         <value condition="String.IsEqual(ListItem.DBType,tvshow) + Integer.IsGreater(ListItem.Property(UnwatchedEpisodes),0) + !String.IsEmpty(ListItem.DBID)">videodb://inprogresstvshows/$INFO[ListItem.DBID]/-2/?tvshowid=$INFO[ListItem.DBID]</value>
     </variable>
-    
-    <include name="PosterDiscCase">
-        <param name="discposition" default="5"/>
-        <definition>
-        <control type="group">
-            <left>1568</left>
-            <top>548</top>
-            <visible>!String.IsEqual(ListItem.Label,..)</visible>
-            <control type="image">
-                <visible>!String.IsEmpty(ListItem.Art(discart)) + Skin.HasSetting(discartfanart) + !Container.OnNext + !Container.OnPrevious</visible>
-                <top>$PARAM[discposition]</top>
-                <width>235</width>
-                <height>235</height>
-                <left>-117</left>
-                <fadetime>1000</fadetime>
-                <texture>$INFO[ListItem.Art(discart)]</texture>
-                <animation type="Visible" reversible="false">
-                    <effect type="fade" start="0" end="100" time="0" delay="450"/>
-                    <effect type="slide" start="117" end="0" tween="sine" easing="out" time="600" delay="500"/>
-                </animation>
-                <animation type="Hidden" reversible="false">
-                    <effect type="fade" start="100" end="0" time="0"/>
-                </animation>
-                <animation type="WindowOpen" reversible="false">
-                    <effect type="fade" start="0" end="100" time="0" delay="450"/>
-                    <effect type="slide" start="117" end="0" tween="sine" easing="out" time="600" delay="500"/>
-                </animation>
-                <animation type="WindowClose" reversible="false">
-                    <effect type="slide" start="0" end="117" tween="sine" easing="out" time="250"/>
-                    <effect type="fade" start="100" end="0" time="150"/>
-                </animation>
-            </control>
-            <control type="image">
-                <width>242</width>
-                <height>342</height>
-                <fadetime>PosterFanartFadetime</fadetime>
-                <texture background="true">$VAR[PosterImage]</texture>
-            </control>
-            <control type="image">
-                <width>278</width>
-                <height>370</height>
-                <left>-20</left>
-                <top>-9</top>
-                <fadetime>PosterFanartFadetime</fadetime>
-                <texture>misc/poster_glass2.png</texture>
-                <visible>Skin.HasSetting(ModernCase)</visible>
-            </control>
-            <control type="image">
-                <width>244</width>
-                <height>345</height>
-                <fadetime>PosterFanartFadetime</fadetime>
-                <texture>misc/br-case.png</texture>
-                <visible>!Skin.HasSetting(ModernCase)</visible>
-            </control>
-        </control>
-        </definition>
-    </include>
-    
+
     <variable name="AutoCompletionPath">
         <value condition="System.AddonIsEnabled(plugin.program.autocompletion)">plugin://plugin.program.autocompletion?info=autocomplete&amp;&amp;id=$INFO[Control.GetLabel(312).index(1)]&amp;&amp;limit=9</value>
     </variable>
