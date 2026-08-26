@@ -1,6 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
 
+    <variable name="LandscapeImage_C5161">
+        <value condition="!String.IsEmpty(Container(5161).ListItem.Art(thumb)) + [String.IsEqual(Container(5161).ListItem.DBType,episode) + ![System.Setting(hideunwatchedepisodethumbs) + Integer.IsEqual(Container(5161).ListItem.Playcount,0)] | String.IsEqual(Container(5161).ListItem.DBType,video)]">$INFO[Container(5161).ListItem.Art(thumb)]</value>
+        <value condition="!String.IsEmpty(Container(5161).ListItem.Art(snap))">$INFO[Container(5161).ListItem.Art(snap)]</value>
+        <value condition="!String.IsEmpty(Container(5161).ListItem.Art(animatedfanart)) + !String.IsEqual(Container(5161).ListItem.DBType,episode) + Skin.HasSetting(furniture.animatedfanarts)">$INFO[Container(5161).ListItem.Art(animatedfanart)]</value>
+        <value condition="!String.IsEmpty(Container(5161).ListItem.Art(landscape)) + !Skin.HasSetting(DisableLandscapeArt)">$INFO[Container(5161).ListItem.Art(landscape)]</value>
+        <value condition="!String.IsEmpty(Container(5161).ListItem.Art(season.landscape)) + !Skin.HasSetting(DisableLandscapeArt)">$INFO[Container(5161).ListItem.Art(season.landscape)]</value>
+        <value condition="!String.IsEmpty(Container(5161).ListItem.Art(tvshow.landscape)) + !Skin.HasSetting(DisableLandscapeArt)">$INFO[Container(5161).ListItem.Art(tvshow.landscape)]</value>
+        <value condition="!String.IsEmpty(Container(5161).ListItem.Art(title))">$INFO[Container(5161).ListItem.Art(title)]</value>
+        <value condition="!String.IsEmpty(Container(5161).ListItem.Art(fanart))">$INFO[Container(5161).ListItem.Art(fanart)]</value>
+        <value condition="!String.IsEmpty(Container(5161).ListItem.Art(season.fanart))">$INFO[Container(5161).ListItem.Art(season.fanart)]</value>
+        <value condition="!String.IsEmpty(Container(5161).ListItem.Art(tvshow.fanart))">$INFO[Container(5161).ListItem.Art(tvshow.fanart)]</value>
+        <value condition="!String.IsEmpty(Container(5161).ListItem.EpgEventIcon)">$INFO[Container(5161).ListItem.EpgEventIcon]</value>
+        <value condition="!String.IsEmpty(Container(5161).ListItem.Thumb)">$INFO[Container(5161).ListItem.Thumb]</value>
+        <value condition="True">$INFO[Container(5161).ListItem.Icon]</value>
+    </variable>
+    <variable name="LandscapeImage">
+        <value condition="!String.IsEmpty(ListItem.Art(thumb)) + [String.IsEqual(ListItem.DBType,episode) + ![System.Setting(hideunwatchedepisodethumbs) + Integer.IsEqual(ListItem.Playcount,0)] | String.IsEqual(ListItem.DBType,video)]">$INFO[ListItem.Art(thumb)]</value>
+        <value condition="!String.IsEmpty(ListItem.Art(snap))">$INFO[ListItem.Art(snap)]</value>
+        <value condition="!String.IsEmpty(ListItem.Art(animatedfanart)) + !String.IsEqual(ListItem.DBType,episode) + Skin.HasSetting(furniture.animatedfanarts)">$INFO[ListItem.Art(animatedfanart)]</value>
+        <value condition="!String.IsEmpty(ListItem.Art(landscape)) + !Skin.HasSetting(DisableLandscapeArt)">$INFO[ListItem.Art(landscape)]</value>
+        <value condition="!String.IsEmpty(ListItem.Art(season.landscape)) + !Skin.HasSetting(DisableLandscapeArt)">$INFO[ListItem.Art(season.landscape)]</value>
+        <value condition="!String.IsEmpty(ListItem.Art(tvshow.landscape)) + !Skin.HasSetting(DisableLandscapeArt)">$INFO[ListItem.Art(tvshow.landscape)]</value>
+        <value condition="!String.IsEmpty(ListItem.Art(title))">$INFO[ListItem.Art(title)]</value>
+        <value condition="!String.IsEmpty(ListItem.Art(fanart))">$INFO[ListItem.Art(fanart)]</value>
+        <value condition="!String.IsEmpty(ListItem.Art(season.fanart))">$INFO[ListItem.Art(season.fanart)]</value>
+        <value condition="!String.IsEmpty(ListItem.Art(tvshow.fanart))">$INFO[ListItem.Art(tvshow.fanart)]</value>
+        <value condition="!String.IsEmpty(ListItem.EpgEventIcon)">$INFO[ListItem.EpgEventIcon]</value>
+        <value condition="!String.IsEmpty(ListItem.Thumb)">$INFO[ListItem.Thumb]</value>
+        <value condition="True">$INFO[ListItem.Icon]</value>
+    </variable>
+    <variable name="LandscapeImage_Parent">
+        <value condition="Control.HasFocus(5161)">$VAR[LandscapeImage_C5161]</value>
+        <value condition="True">$VAR[LandscapeImage]</value>
+    </variable>
     <variable name="LabelPercentWatched_C9500_-3">
         <value condition="Container(9500).ListItem(-3).IsPlaying + !Skin.HasSetting(hide.markers.isplaying)"></value>
         <value condition="$EXP[IsInProgress_C9500_-3] + !Skin.HasSetting(hide.markers.inprogress)">$VAR[LabelInProgressPercentage_C9500_-3]</value>
