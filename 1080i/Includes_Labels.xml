@@ -998,8 +998,9 @@
 
     <variable name="Label_Studio">
         <value condition="$EXP[InGameMode]">$VAR[GameStudio]</value>
-        <value condition="!String.IsEmpty(ListItem.Studio)">$INFO[ListItem.Studio]</value>
-        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Studio))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Studio)]</value>
+        <value condition="!String.IsEmpty(ListItem.DBID) + !String.IsEmpty(ListItem.Studio)">$INFO[ListItem.Studio]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Network.1.Name))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Network.1.Name)]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Studio.1.Name))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Studio.1.Name)]</value>
     </variable>
 
     <variable name="Label_Director">
