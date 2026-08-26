@@ -51,11 +51,6 @@
         <value>$INFO[ListItem.Plot]</value>
     </variable>
 
-    <variable name="LabelPlot9500">
-        <value condition="String.IsEqual(Container(9500).ListItem.DBType,season) + String.IsEmpty(Container(9500).ListItem.Plot)">$INFO[Container(9500).ShowPlot]</value>
-        <value>$INFO[Container(9500).ListItem.Plot]</value>
-    </variable>
-
     <variable name="LabelYear">
         <value condition="$EXP[InGameMode]">$VAR[GameYear]</value>
         <value condition="!String.IsEqual(ListItem.DBType,movie) + Container.Content(tvshows) + String.IsEqual(Container.SortMethod,$LOCALIZE[20360])">$INFO[ListItem.Property(TotalEpisodes),, $LOCALIZE[20360]]</value>
@@ -183,6 +178,13 @@
         <value condition="String.IsEqual(ListItem.DBType,episode)">$INFO[ListItem.Title,[B],[/B][CR],]$INFO[ListItem.Plot]</value>
         <value condition="String.IsEqual(ListItem.DBType,season) + String.IsEmpty(ListItem.Plot)">$INFO[Container.ShowPlot]</value>
         <value>$INFO[ListItem.Plot]</value>
+    </variable>
+
+    <variable name="LabelPlotBoxHub">
+        <value condition="!String.IsEmpty(Container(9500).ListItem.Property(Artist_Description))">$INFO[Container(9500).ListItem.Property(Artist_Description)]</value>
+        <value condition="!String.IsEmpty(Container(9500).ListItem.Property(Album_Description))">$INFO[Container(9500).ListItem.Property(Album_Description)]</value>
+        <value condition="String.IsEqual(Container(9500).ListItem.DBType,season) + String.IsEmpty(Container(9500).ListItem.Plot)">$INFO[Container(9500).ShowPlot]</value>
+        <value>$INFO[Container(9500).ListItem.Plot]</value>
     </variable>
 
     <variable name="LabelAudioChannels">
