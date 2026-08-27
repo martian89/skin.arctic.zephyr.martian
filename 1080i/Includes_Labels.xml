@@ -492,6 +492,12 @@
         <value>$INFO[Player.FinishTime]</value>
     </variable> 
 
+    <variable name="Label_ColorScheme">
+        <value condition="Skin.HasSetting(daynight.autocolor) + System.AddonIsEnabled(script.arctic.zephyr.martian.autocolors)">$LOCALIZE[31681]</value>
+        <value condition="String.IsEqual(Window(Home).Property(SkinInfo.Setting.lookandfeel.skincolors),SKINDEFAULT)">$LOCALIZE[15109]</value>
+        <value>$INFO[Window(Home).Property(SkinInfo.Setting.lookandfeel.skincolors]</value>
+    </variable>
+    
     <variable name="Label_GenreIcons">
         <value condition="!String.IsEmpty(Skin.String(genre.icons.name))">$INFO[Skin.String(genre.icons.name)]</value>
         <value condition="System.AddonIsEnabled(resource.images.moviegenreicons.transparent)">$LOCALIZE[15109]</value>
@@ -513,11 +519,6 @@
     <variable name="Label_MoviecountryIcons">
         <value condition="!String.IsEmpty(Skin.String(moviecountry.icons.name))">$INFO[Skin.String(moviecountry.icons.name)]</value>
         <value condition="System.AddonIsEnabled(resource.images.moviecountryicons.maps)">$LOCALIZE[15109]</value>
-        <value>$LOCALIZE[231]</value>
-    </variable>
-
-    <variable name="Label_GameIcons">
-        <value condition="!String.IsEmpty(Skin.String(game.logos.name))">$INFO[Skin.String(game.logos.name)]</value>
         <value>$LOCALIZE[231]</value>
     </variable>
 
