@@ -1548,7 +1548,6 @@
                 <centerleft>45.7%</centerleft>
                 <centertop>45%</centertop>
                 <texture colordiffuse="Dark3">$INFO[ListItem.Icon]</texture>
-                <animation effect="slide" start="0,0" end="0,20" time="0" condition="Skin.HasSetting(homemenu.only.icons)">Conditional</animation>
             </control>
             <control type="label">
                 <align>center</align>
@@ -1558,7 +1557,6 @@
                 <textcolor>Dark3</textcolor>
                 <font>HomeIcon</font>
                 <label>$INFO[ListItem.Label]</label>
-                <visible>!Skin.HasSetting(homemenu.only.icons)</visible>
             </control>
         </itemlayout>
         <focusedlayout width="222" height="220">
@@ -1570,7 +1568,6 @@
                     <centerleft>45.7%</centerleft>
                     <centertop>45%</centertop>
                     <texture colordiffuse="Dark1">$INFO[ListItem.Icon]</texture>
-                    <animation effect="slide" start="0,0" end="0,20" time="0" condition="Skin.HasSetting(homemenu.only.icons)">Conditional</animation>
                 </control>
                 <control type="label">
                     <align>center</align>
@@ -1580,13 +1577,9 @@
                     <textcolor>Dark1</textcolor>
                     <font>HomeIcon</font>
                     <label>$INFO[ListItem.Label]</label>
-                    <visible>!Skin.HasSetting(homemenu.only.icons)</visible>
                 </control>
                 <control type="image">
-                    <visible>Skin.HasSetting(homemenu.hide.underline) | Skin.HasSetting(homemenu.only.icons)</visible>
-                    <include content="def_bottom" condition="Skin.HasSetting(homemenu.only.icons)">
-                        <param name="bottom" value="46" />
-                    </include>
+                    <visible>Skin.HasSetting(homemenu.hide.underline)</visible>
                     <bottom>30</bottom>
                     <centerleft>45.7%</centerleft>
                     <include>arrowdimensions</include>
@@ -1596,7 +1589,7 @@
                     <animation effect="fade" end="100" start="0" delay="300" time="400" reversible="false">Focus</animation>
                 </control>
                 <control type="group">
-                    <visible>!Skin.HasSetting(homemenu.hide.underline) + !Skin.HasSetting(homemenu.only.icons)</visible>
+                    <visible>!Skin.HasSetting(homemenu.hide.underline)</visible>
                     <control type="image">
                         <bottom>15</bottom>
                         <centerleft>45.7%</centerleft>
