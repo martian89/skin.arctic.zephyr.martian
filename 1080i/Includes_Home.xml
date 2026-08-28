@@ -744,14 +744,14 @@
             <include>Furniture_Clock</include>
             <control type="group">
                 <control type="image">
-                    <visible>Integer.IsGreater(Container(300).NumItems,6)</visible>
+                    <visible>Container(300).HasNext | Container(300).HasPrevious</visible>
                     <top>962</top>
                     <left>52</left>
                     <include>arrowdimensions</include>
                     <texture colordiffuse="Dark2" flipx="true">common/arrow-small-right.png</texture>
                 </control>
                 <control type="image">
-                    <visible>Integer.IsGreater(Container(300).NumItems,6)</visible>
+                    <visible>Container(300).HasNext | Container(300).HasPrevious</visible>
                     <visible>!Skin.HasSetting(furniture.clock)</visible>
                     <top>962</top>
                     <right>480</right>
@@ -759,7 +759,7 @@
                     <texture colordiffuse="Dark2" flipx="false">common/arrow-small-right.png</texture>
                 </control>
                 <control type="image">
-                    <visible>Integer.IsGreater(Container(300).NumItems,6)</visible>
+                    <visible>Container(300).HasNext | Container(300).HasPrevious</visible>
                     <visible>Skin.HasSetting(furniture.clock)</visible>
                     <top>962</top>
                     <right>42</right>
@@ -1406,7 +1406,7 @@
             <control type="group">
                 <include>Animation.FadeOut</include>
                 <animation effect="fade" end="100" start="0" delay="300" time="400" condition="Control.HasFocus(300) | Control.HasFocus(302)">Conditional</animation>
-                <visible>Integer.IsGreater(Container(300).NumItems,6)</visible>
+                <visible>Container(300).HasNext | Container(300).HasPrevious</visible>
                 <control type="image">
                     <top>962</top>
                     <left>52</left>
@@ -1474,6 +1474,7 @@
         <focusedlayout width="222" height="116">
             <control type="group">
                 <visible>Skin.HasSetting(homemenu.hide.underline)</visible>
+                <animation effect="fade" start="100" end="50" delay="0" time="150" condition="!Control.HasFocus(300) + !Control.HasFocus(302)">Conditional</animation>
                 <control type="label">
                     <align>center</align>
                     <width>90%</width>
@@ -1482,7 +1483,6 @@
                     <textcolor>Dark1</textcolor>
                     <font>HomeLarge</font>
                     <label>$INFO[ListItem.Label]</label>
-                    <animation effect="fade" start="100" end="50" delay="0" time="150" condition="!Control.HasFocus(300) + !Control.HasFocus(302) + !Skin.HasSetting(home.vertical)">Conditional</animation>
                 </control>
                 <control type="image">
                     <top>83</top>
@@ -1496,6 +1496,7 @@
             </control>
             <control type="group">
                 <visible>!Skin.HasSetting(homemenu.hide.underline)</visible>
+                <animation effect="fade" start="100" end="50" delay="0" time="150" condition="!Control.HasFocus(300) + !Control.HasFocus(302)">Conditional</animation>
                 <control type="label">
                     <align>center</align>
                     <centertop>50%</centertop>
@@ -1504,7 +1505,6 @@
                     <textcolor>Dark1</textcolor>
                     <font>HomeLarge</font>
                     <label>$INFO[ListItem.Label]</label>
-                    <animation effect="fade" start="100" end="50" delay="0" time="150" condition="!Control.HasFocus(300) + !Control.HasFocus(302) + !Skin.HasSetting(home.vertical)">Conditional</animation>
                 </control>
                 <control type="image">
                     <top>102</top>
@@ -1515,22 +1515,19 @@
                     <visible>Integer.IsGreater(Container(302).NumItems,0)</visible>
                     <animation effect="fade" end="100" start="0" delay="300" time="400" reversible="false">Focus</animation>
                 </control>
-                <control type="group">
-                    <animation effect="fade" start="100" end="50" delay="0" time="150" condition="!Control.HasFocus(300) + !Control.HasFocus(302) + !Skin.HasSetting(home.vertical)">Conditional</animation>
-                    <control type="image">
-                        <top>88</top>
-                        <centerleft>45.7%</centerleft>
-                        <width>90%</width>
-                        <height>4</height>
-                        <texture colordiffuse="$VAR[ColorHighlight]">common/box.png</texture>
-                    </control>
-                    <control type="image">
-                        <top>88</top>
-                        <centerleft>45.7%</centerleft>
-                        <width>90%</width>
-                        <height>4</height>
-                        <texture colordiffuse="$VAR[ColorGradient]">common/gradient-box.png</texture>
-                    </control>
+                <control type="image">
+                    <top>88</top>
+                    <centerleft>45.7%</centerleft>
+                    <width>90%</width>
+                    <height>4</height>
+                    <texture colordiffuse="$VAR[ColorHighlight]">common/box.png</texture>
+                </control>
+                <control type="image">
+                    <top>88</top>
+                    <centerleft>45.7%</centerleft>
+                    <width>90%</width>
+                    <height>4</height>
+                    <texture colordiffuse="$VAR[ColorGradient]">common/gradient-box.png</texture>
                 </control>
             </control>
 
@@ -1546,31 +1543,11 @@
         <top>848</top>
         <itemlayout width="222" height="220">
             <control type="image">
-                <include content="def_width" condition="Skin.HasSetting(homemenu.only.icons)">
-                    <param name="width" value="100"/>
-                </include>
-                <include content="def_width" condition="!Skin.HasSetting(homemenu.only.icons)">
-                    <param name="width" value="100"/>
-                </include>
-                <include content="def_height" condition="Skin.HasSetting(homemenu.only.icons)">
-                    <param name="height" value="100"/>
-                </include>
-                <include content="def_height" condition="!Skin.HasSetting(homemenu.only.icons)">
-                    <param name="height" value="100"/>
-                </include>
+                <width>100</width>
+                <height>100</height>
                 <centerleft>45.7%</centerleft>
                 <centertop>45%</centertop>
                 <texture colordiffuse="Dark3">$INFO[ListItem.Icon]</texture>
-                <animation effect="slide" start="0,0" end="0,20" time="0" condition="Skin.HasSetting(homemenu.only.icons)">Conditional</animation>
-            </control>
-            <control type="image" description="BottomBG">
-                <width>1</width>
-                <height>50</height>
-                <bottom>75</bottom>
-                <left>210</left>
-                <animation effect="fade" start="100" end="30" time="0" condition="true">Conditional</animation>
-                <texture colordiffuse="Dark1">common/white.png</texture>
-                <visible>Skin.HasSetting(homemenu.only.icons)</visible>
             </control>
             <control type="label">
                 <align>center</align>
@@ -1580,29 +1557,17 @@
                 <textcolor>Dark3</textcolor>
                 <font>HomeIcon</font>
                 <label>$INFO[ListItem.Label]</label>
-                <visible>!Skin.HasSetting(homemenu.only.icons)</visible>
             </control>
         </itemlayout>
         <focusedlayout width="222" height="220">
             <control type="group">
-                <animation effect="fade" start="100" end="50" delay="0" time="150" condition="!Control.HasFocus(300) + !Control.HasFocus(302) + !Skin.HasSetting(home.vertical)">Conditional</animation>
+                <animation effect="fade" start="100" end="50" delay="0" time="150" condition="!Control.HasFocus(300) + !Control.HasFocus(302)">Conditional</animation>
                 <control type="image">
-                    <include content="def_width" condition="Skin.HasSetting(homemenu.only.icons)">
-                        <param name="width" value="100"/>
-                    </include>
-                    <include content="def_width" condition="!Skin.HasSetting(homemenu.only.icons)">
-                        <param name="width" value="100"/>
-                    </include>
-                    <include content="def_height" condition="Skin.HasSetting(homemenu.only.icons)">
-                        <param name="height" value="100"/>
-                    </include>
-                    <include content="def_height" condition="!Skin.HasSetting(homemenu.only.icons)">
-                        <param name="height" value="100"/>
-                    </include>
+	                <width>100</width>
+	                <height>100</height>
                     <centerleft>45.7%</centerleft>
                     <centertop>45%</centertop>
                     <texture colordiffuse="Dark1">$INFO[ListItem.Icon]</texture>
-                    <animation effect="slide" start="0,0" end="0,20" time="0" condition="Skin.HasSetting(homemenu.only.icons)">Conditional</animation>
                 </control>
                 <control type="label">
                     <align>center</align>
@@ -1612,18 +1577,9 @@
                     <textcolor>Dark1</textcolor>
                     <font>HomeIcon</font>
                     <label>$INFO[ListItem.Label]</label>
-                    <visible>!Skin.HasSetting(homemenu.only.icons)</visible>
-                </control>
-                <control type="image" description="BottomBG">
-                    <width>1</width>
-                    <height>50</height>
-                    <bottom>75</bottom>
-                    <left>210</left>
-                    <animation effect="fade" start="100" end="30" time="0" condition="true">Conditional</animation>
-                    <texture colordiffuse="Dark1">common/white.png</texture>
-                    <visible>Skin.HasSetting(homemenu.only.icons)</visible>
                 </control>
                 <control type="image">
+                    <visible>Skin.HasSetting(homemenu.hide.underline)</visible>
                     <bottom>30</bottom>
                     <centerleft>45.7%</centerleft>
                     <include>arrowdimensions</include>
@@ -1631,6 +1587,32 @@
                     <visible>Control.HasFocus(300)</visible>
                     <visible>Integer.IsGreater(Container(302).NumItems,0)</visible>
                     <animation effect="fade" end="100" start="0" delay="300" time="400" reversible="false">Focus</animation>
+                </control>
+                <control type="group">
+                    <visible>!Skin.HasSetting(homemenu.hide.underline)</visible>
+                    <control type="image">
+                        <bottom>15</bottom>
+                        <centerleft>45.7%</centerleft>
+                        <include>arrowdimensions</include>
+                        <texture colordiffuse="Dark3">common/arrow-small.png</texture>
+                        <visible>Control.HasFocus(300)</visible>
+                        <visible>Integer.IsGreater(Container(302).NumItems,0)</visible>
+                        <animation effect="fade" end="100" start="0" delay="300" time="400" reversible="false">Focus</animation>
+                    </control>
+                    <control type="image">
+                        <bottom>42</bottom>
+                        <centerleft>45.7%</centerleft>
+                        <width>90%</width>
+                        <height>4</height>
+                        <texture colordiffuse="$VAR[ColorHighlight]">common/box.png</texture>
+                    </control>
+                    <control type="image">
+                        <bottom>42</bottom>
+                        <centerleft>45.7%</centerleft>
+                        <width>90%</width>
+                        <height>4</height>
+                        <texture colordiffuse="$VAR[ColorGradient]">common/gradient-box.png</texture>
+                    </control>
                 </control>
             </control>
 

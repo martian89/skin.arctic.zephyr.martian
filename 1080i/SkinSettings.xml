@@ -1,6 +1,7 @@
 <window>
     <defaultcontrol always="true">9101</defaultcontrol>
     <backgroundcolor>0</backgroundcolor>
+    <onload condition="System.AddonIsEnabled(script.skin.info.service)">RunScript(script.skin.info.service,action=get_setting,setting=lookandfeel.skincolors)</onload>
     <controls>
         <include>GlobalBackground</include>
         <include>Furniture_Header</include>
@@ -301,22 +302,16 @@
                                 <label>$LOCALIZE[31410]</label>
                             </control>
                         </control>
-                        <control type="radiobutton" id="9809" description="Show Icons">
+                        <control type="button" id="9809" description="Home menu style">
                             <width>1360</width>
                             <visible>String.IsEqual(Window.Property(content),1)</visible>
                             <include>DefSettingsButtonGradientSkinSettings</include>
-                            <label>$LOCALIZE[31190]</label>
-                            <selected>Skin.HasSetting(home.showicons)</selected>
-                            <onclick>Skin.ToggleSetting(home.showicons)</onclick>
-                        </control>
-                        <control type="radiobutton" id="9810">
-                            <width>1360</width>
-                            <visible>String.IsEqual(Window.Property(content),1)</visible>
-                            <include>DefSettingsButtonGradientSkinSettings</include>
-                            <label>$LOCALIZE[31297]$LOCALIZE[31393]</label>
-                            <selected>Skin.HasSetting(homemenu.only.icons)</selected>
-                            <onclick>Skin.ToggleSetting(homemenu.only.icons)</onclick>
-                            <enable>Skin.HasSetting(home.showicons)</enable>
+                            <label>$LOCALIZE[31406]</label>
+                            <label2>$VAR[Label_HomeMenuStyle]</label2>
+                            <onclick condition="!Skin.HasSetting(home.showicons)">Skin.SetBool(home.showicons)</onclick>
+                            <onclick condition="Skin.HasSetting(home.showicons) + !Skin.HasSetting(homemenu.only.icons) + Skin.HasSetting(home.vertical)">Skin.SetBool(homemenu.only.icons)</onclick>
+                            <onclick condition="Skin.HasSetting(home.showicons) + [Skin.HasSetting(homemenu.only.icons) | !Skin.HasSetting(home.vertical)]">Skin.Reset(home.showicons)</onclick>
+                            <onclick condition="Skin.HasSetting(home.showicons) + [Skin.HasSetting(homemenu.only.icons) | !Skin.HasSetting(home.vertical)]">Skin.Reset(homemenu.only.icons)</onclick>
                         </control>
                         <control type="radiobutton" id="9817">
                             <width>1360</width>
@@ -326,7 +321,6 @@
                             <selected>!Skin.HasSetting(homemenu.hide.underline)</selected>
                             <onclick>Skin.ToggleSetting(homemenu.hide.underline)</onclick>
                             <visible>!$EXP[HomeIsVerticalAll]</visible>
-                            <enable>!Skin.HasSetting(home.showicons)</enable>
                         </control>
                         <control type="radiobutton" id="9898" description="Horz Sub">
                             <width>1360</width>
@@ -1128,7 +1122,8 @@
                         <ondown>9600</ondown>
                         <orientation>vertical</orientation>
                         <visible>String.IsEqual(Window.Property(content),3)</visible>
-                        <control type="grouplist" id="9050">
+                        <!-- GLOBAL -->
+                        <control type="grouplist" id="9601">
                             <visible>String.IsEqual(Window.Property(content),3)</visible>
                             <orientation>horizontal</orientation>
                             <enable>false</enable>
@@ -1141,14 +1136,34 @@
                                 <width>1310</width>
                                 <disabledcolor>PanelWhite30</disabledcolor>
                                 <height>70</height>
-                                <label>$LOCALIZE[31679]</label>
+                                <label>31078</label>
                             </control>
                         </control>
-                        <control type="button" id="9051" description="Set Custom Colour">
+                        <control type="radiobutton" id="9602" description="Autocolor">
+                            <width>1360</width>
+                            <visible>String.IsEqual(Window.Property(content),3)</visible>
+                            <include>DefSettingsButtonGradientSkinSettings</include>
+                            <label>$LOCALIZE[31680] $LOCALIZE[14013] $LOCALIZE[33027]/$LOCALIZE[33028]</label>
+                            <selected>Skin.HasSetting(daynight.autocolor)</selected>
+                            <onclick>Skin.ToggleSetting(daynight.autocolor)</onclick>
+                            <visible>System.AddonIsEnabled(script.arctic.zephyr.martian.autocolors)</visible>
+                            <visible>!System.AddonIsEnabled(script.skin.info.service)</visible>
+                        </control>
+                        <control type="button" id="9603" description="Color Theme">
                             <width>1360</width>
                             <visible>String.IsEqual(Window.Property(content),3)</visible>
                             <include>DefSettingsButtonGradientSkinSettings</include>
                             <label>$LOCALIZE[31680]</label>
+                            <label2>$VAR[Label_ColorScheme]</label2>
+                            <onclick>SetProperty(includesetting,SkinColors,home)</onclick>
+                            <onclick>ActivateWindow(1130)</onclick>
+                            <visible>System.AddonIsEnabled(script.skin.info.service)</visible>
+                        </control>
+                        <control type="button" id="9604" description="Set Colour Presets">
+                            <width>1360</width>
+                            <visible>String.IsEqual(Window.Property(content),3)</visible>
+                            <include>DefSettingsButtonGradientSkinSettings</include>
+                            <label>$LOCALIZE[31679]</label>
                             <label2>$VAR[Label_ColorSetting]</label2>
                             <onclick>SetProperty(includesetting,ColorSettings,home)</onclick>
                             <onclick>ActivateWindow(1130)</onclick>
@@ -1741,15 +1756,6 @@
                             <label>31589</label>
                             <selected>Skin.HasSetting(labels.autoscroll)</selected>
                             <onclick>Skin.ToggleSetting(labels.autoscroll)</onclick>
-                        </control>
-                        <control type="radiobutton" id="9804" description="Autocolor">
-                            <width>1360</width>
-                            <visible>String.IsEqual(Window.Property(content),4)</visible>
-                            <include>DefSettingsButtonGradientSkinSettings</include>
-                            <label>$LOCALIZE[14078] $LOCALIZE[15111] $LOCALIZE[14013] $LOCALIZE[33027]/$LOCALIZE[33028]</label>
-                            <selected>Skin.HasSetting(daynight.autocolor)</selected>
-                            <onclick>Skin.ToggleSetting(daynight.autocolor)</onclick>
-                            <visible>System.AddonIsEnabled(script.arctic.zephyr.martian.autocolors)</visible>
                         </control>
                         <control type="grouplist" id="92720">
                             <visible>String.IsEqual(Window.Property(content),4)</visible>

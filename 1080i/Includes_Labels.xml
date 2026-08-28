@@ -161,17 +161,17 @@
         <value condition="!String.IsEmpty(ListItem.Property(Album_Description))">$INFO[ListItem.Property(Album_Description)]</value>
         <value condition="!String.IsEmpty(ListItem.AddonDescription)">$INFO[ListItem.AddonDescription]</value>
         <value condition="Container.Content(songs)">$INFO[ListItem.Artist,[B],[/B][CR]]$INFO[ListItem.Album]$INFO[ListItem.Year,  (,)]</value>
-        <value condition="!String.IsEqual(ListItem.DBType,movie) + Container.Content(episodes)">$INFO[ListItem.Title,[B],[/B][CR],]$INFO[ListItem.Plot]</value>
-        <value condition="Container.Content(seasons) + String.IsEmpty(ListItem.Plot)">$INFO[Container.ShowPlot]</value>
         <value condition="Control.HasFocus(5161)">$INFO[Container(5161).ListItem.Plot]</value>
         <value condition="Control.HasFocus(5261)">$INFO[Container(5261).ListItem.Plot]</value>
+        <value condition="String.IsEqual(ListItem.DBType,episode)">$INFO[ListItem.Title,[B],[/B][CR],]$INFO[ListItem.Plot]</value>
+        <value condition="String.IsEqual(ListItem.DBType,season) + String.IsEmpty(ListItem.Plot)">$INFO[Container.ShowPlot]</value>
         <value>$INFO[ListItem.Plot]</value>
     </variable>
 
-    <variable name="LabelPlot9500">
+    <variable name="LabelPlotBoxHub">
         <value condition="!String.IsEmpty(Container(9500).ListItem.Property(Artist_Description))">$INFO[Container(9500).ListItem.Property(Artist_Description)]</value>
         <value condition="!String.IsEmpty(Container(9500).ListItem.Property(Album_Description))">$INFO[Container(9500).ListItem.Property(Album_Description)]</value>
-        <value condition="!String.IsEmpty(Container(9500).ListItem.AddonDescription)">$INFO[Container(9500).ListItem.AddonDescription]</value>
+        <value condition="String.IsEqual(Container(9500).ListItem.DBType,season) + String.IsEmpty(Container(9500).ListItem.Plot)">$INFO[Container(9500).ShowPlot]</value>
         <value>$INFO[Container(9500).ListItem.Plot]</value>
     </variable>
 
@@ -485,6 +485,18 @@
         <value>$INFO[Player.FinishTime]</value>
     </variable> 
 
+    <variable name="Label_HomeMenuStyle">
+        <value condition="Skin.HasSetting(home.showicons) + Skin.HasSetting(homemenu.only.icons) + Skin.HasSetting(home.vertical)">$LOCALIZE[31409]</value>
+        <value condition="Skin.HasSetting(home.showicons)">$LOCALIZE[31408]</value>
+        <value>$LOCALIZE[31407]</value>
+    </variable>
+    
+    <variable name="Label_ColorScheme">
+        <value condition="Skin.HasSetting(daynight.autocolor) + System.AddonIsEnabled(script.arctic.zephyr.martian.autocolors)">$LOCALIZE[31681]</value>
+        <value condition="String.IsEqual(Window(Home).Property(SkinInfo.Setting.lookandfeel.skincolors),SKINDEFAULT)">$LOCALIZE[15109]</value>
+        <value>$INFO[Window(Home).Property(SkinInfo.Setting.lookandfeel.skincolors]</value>
+    </variable>
+    
     <variable name="Label_GenreIcons">
         <value condition="!String.IsEmpty(Skin.String(genre.icons.name))">$INFO[Skin.String(genre.icons.name)]</value>
         <value condition="System.AddonIsEnabled(resource.images.moviegenreicons.transparent)">$LOCALIZE[15109]</value>
@@ -506,11 +518,6 @@
     <variable name="Label_MoviecountryIcons">
         <value condition="!String.IsEmpty(Skin.String(moviecountry.icons.name))">$INFO[Skin.String(moviecountry.icons.name)]</value>
         <value condition="System.AddonIsEnabled(resource.images.moviecountryicons.maps)">$LOCALIZE[15109]</value>
-        <value>$LOCALIZE[231]</value>
-    </variable>
-
-    <variable name="Label_GameIcons">
-        <value condition="!String.IsEmpty(Skin.String(game.logos.name))">$INFO[Skin.String(game.logos.name)]</value>
         <value>$LOCALIZE[231]</value>
     </variable>
 
@@ -1306,7 +1313,7 @@
         <value condition="String.IsEqual(ListItem.DBType,tvshow)">$INFO[ListItem.Year]</value>
         <value condition="String.IsEqual(ListItem.DBType,season) + !Control.IsVisible(516)">$INFO[ListItem.Property(TotalEpisodes),, $LOCALIZE[20360]]</value>
         <value condition="String.IsEqual(Container.SortMethod,$LOCALIZE[551]) + Container.Content(addons) + !Skin.HasSetting(hide.markers)">$INFO[ListItem.AddonVersion]</value>
-        <value condition="String.IsEqual(Container.SortMethod,$LOCALIZE[552]) + !String.IsEmpty(ListItem.Date) + !String.StartsWith(Container.FolderPath,videodb://recentlyadded)">$INFO[ListItem.Date]</value>        
+        <value condition="String.IsEqual(Container.SortMethod,$LOCALIZE[552]) + Container.Content(episodes) + !String.StartsWith(Container.FolderPath,videodb://recentlyadded)">$INFO[ListItem.Date]</value>        
         <value condition="String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,set) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode) | String.IsEqual(ListItem.DBType,musicvideo) | $EXP[IsVideoAssets]">$VAR[LabelDuration]</value>
         <value>$INFO[ListItem.Label2]</value>
     </variable>
