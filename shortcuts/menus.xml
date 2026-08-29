@@ -970,9 +970,7 @@
             <shortcut name="tv-lastchannel" label="19324" icon="special://skin/extras/icons/livetv.png">
                 <action>PlayPvrTV</action>
             </shortcut>
-            <group name="tv-channels-group" label="10700" icon="special://skin/extras/icons/files.png">
-                <content source="pvr" target="tv" />
-            </group>
+            <content source="pvr" target="tv" folder="10700" icon="special://skin/extras/icons/files.png" />
         </group>       
 
         <!-- Radio -->
@@ -1001,28 +999,18 @@
             <shortcut name="radio-lastchannel" label="19324" icon="special://skin/extras/icons/radio.png">
                 <action>PlayPvrRadio</action>
             </shortcut>
-            <group name="radio-channels-group" label="19024" icon="special://skin/extras/icons/files.png">
-                <content source="pvr" target="radio" />
-            </group>
+            <content source="pvr" target="radio" folder="19024" icon="special://skin/extras/icons/files.png" />
         </group>
 
         <!-- Add-ons -->
         <group name="addons" label="24001" icon="special://skin/extras/icons/addons.png">
-            <group name="program-addons" label="10001" icon="special://skin/extras/icons/addons.png">
-                <content source="addons" target="programs" label="10001" />
-                <shortcut name="apps" label="20244" icon="special://skin/extras/icons/addons.png" visible="System.Platform.Android">
-                    <action>ActivateWindow(programs,androidapp://sources/apps/,return)</action>
-                 </shortcut>
-            </group>
-            <group name="video-addons" label="1037" icon="special://skin/extras/icons/video-addons.png">
-                <content source="addons" target="videos" icon="special://skin/extras/icons/video-addons.png"/>
-            </group>
-            <group name="music-addons" label="1038" icon="special://skin/extras/icons/songs.png">
-                <content source="addons" target="music" label="1038" />
-            </group>
-            <group name="picture-addons" label="1039" icon="special://skin/extras/icons/pictures.png">
-                <content source="addons" target="pictures" label="1039" />
-            </group>
+           	<content source="addons" target="videos" folder="1037" icon="special://skin/extras/icons/video-addons.png"/>
+            <content source="addons" target="music" folder="1038" icon="special://skin/extras/icons/songs.png" />
+            <content source="addons" target="pictures" folder="1039" icon="special://skin/extras/icons/pictures.png" />
+            <content source="addons" target="programs" folder="1043" icon="special://skin/extras/icons/addons.png" />
+            <shortcut name="apps" label="20244" type="addons" target="programs" icon="special://skin/extras/icons/android.png" visible="System.Platform.Android">
+                <action>ActivateWindow(programs,androidapp://sources/apps/,return)</action>
+            </shortcut>
             <shortcut name="game-addons" label="35049" icon="special://skin/extras/icons/xbox.png">
                 <action>ActivateWindow(Games,addons://sources/game/,return)</action>
             </shortcut>
@@ -1030,31 +1018,17 @@
 		       
 		<!-- Playlists -->
 		<group name="playlists" label="136" icon="special://skin/extras/icons/playlist.png">
-            <group name="video-playlists" label="20012" icon="special://skin/extras/icons/playlist.png">
-                <content source="playlists" target="videos" />
-            </group>
-            <group name="music-playlists" label="20011" icon="special://skin/extras/icons/playlist.png">
-                <content source="playlists" target="music" />
-            </group>
-            <group name="skin-playlists" label="31514" icon="special://skin/extras/icons/playlist.png">
-                <content source="playlists" path="special://skin/extras/playlists/" />
-            </group>
+            <content source="playlists" target="videos" folder="20012" icon="special://skin/extras/icons/playlist.png" />
+            <content source="playlists" target="music" folder="20011" icon="special://skin/extras/icons/playlist.png" />
+            <content source="playlists" folder="31514" path="special://skin/extras/playlists/" icon="special://skin/extras/icons/playlist.png"/>
 		</group> 
 
 		<!-- Sources -->
 		<group name="sources" label="39031" icon="special://skin/extras/icons/files.png">
-	        <group name="video-sources" label="31127" icon="special://skin/extras/icons/files.png">
-	            <content source="sources" target="videos" />
-	        </group>
-	        <group name="music-sources" label="31128" icon="special://skin/extras/icons/files.png">
-	            <content source="sources" target="music" />
-	        </group>
-	        <group name="picture-sources" label="31129" icon="special://skin/extras/icons/files.png">
-	            <content source="sources" target="pictures" />
-	        </group>
-	        <group name="file-sources" label="31130" icon="special://skin/extras/icons/files.png">
-	            <content source="sources" target="files" />
-	        </group>
+			<content source="sources" target="videos" folder="31127" icon="special://skin/extras/icons/files.png" />
+            <content source="sources" target="music" folder="31128" icon="special://skin/extras/icons/files.png" />
+            <content source="sources" target="pictures"  folder="31129" icon="special://skin/extras/icons/files.png" />
+            <content source="sources" target="files" folder="31130" icon="special://skin/extras/icons/files.png" />
 		</group> 
 		
         <!-- Favourites -->

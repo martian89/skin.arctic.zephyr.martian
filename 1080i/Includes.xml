@@ -1399,9 +1399,11 @@
           | String.IsEqual(Container(211).ListItem.Property(widgetPath),settings) ]
     </expression>
 
-    <expression name="IsSkinshortcuts">Window.IsVisible(script-skinshortcuts.xml) | !String.IsEmpty(Window(home).Property(SpotlightWidget))</expression>
-
     <expression name="Skinshortcuts_Mainmenu_Active">String.IsEqual(Window.Property(menuname),mainmenu) + String.IsEmpty(Window.Property(skinshortcuts-dialog))</expression>
     <expression name="Skinshortcuts_Widgets_Active">String.EndsWith(Window.Property(menuname),.widgets) | String.IsEqual(Window.Property(skinshortcuts-dialog),widget)</expression>
-
+    
+    <expression name="Has_List_Thumbnails_Label2">
+        [String.IsEqual(Window(home).Property(skinshortcuts-picker),shortcut) | String.IsEqual(Window(home).Property(skinshortcuts-picker),widget) | String.IsEqual(Window(home).Property(skinshortcuts-picker),browse)] + [!String.isEmpty(ListItem.Property(path)) | !String.IsEmpty(ListItem.Property(count))]
+        | !String.IsEmpty(ListItem.Label2)
+    </expression>
 </includes>
