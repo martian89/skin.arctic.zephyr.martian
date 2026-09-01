@@ -954,10 +954,19 @@
                 <visible>[Skin.HasSetting(Use.IMDB.Trailer) + System.AddonIsEnabled(plugin.video.imdb.trailers) + [!String.IsEmpty(Window(home).Property(TMDbHelper.ListItem.imdb_id)) | !String.IsEmpty(ListItem.UniqueId(imdb))]] | [!Skin.HasSetting(Use.IMDB.Trailer) + !String.IsEmpty(ListItem.Trailer)]</visible>
                 <visible>$EXP[IsVideoInfo]</visible>
             </control>
+            <control type="radiobutton" id="10021">
+                <include content="DialogVideoInfoButtons">
+                    <param name="icon" value="buttonsdialogs/media_details.png" />
+                </include>
+				<onclick>SetProperty(content,15)</onclick>
+                <onclick>SetFocus(9300,0,absolute)</onclick>
+                <visible>!String.IsEmpty(ListItem.DBID) + [String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,musicvideo) | String.IsEqual(ListItem.DBType,episode)]</visible>
+                <visible>!Skin.HasSetting(hidebutton.video.mediadetails)</visible>
+            </control>
 
             <!-- Cinema -->
             <control type="radiobutton" id="10006">
-                <description>Home Theatre</description>
+                 <description>Home Theatre</description>
                 <include content="DialogVideoInfoButtons">
                     <param name="icon" value="buttonsdialogs/playcinema.png" />
                 </include>
@@ -1453,6 +1462,256 @@
         </control>
     </include>
 
+    <include name="AudioStreamInfo">
+        <item>
+            <label>$LOCALIZE[460] $PARAM[stream]</label>
+            <label2>$VAR[Label_Audio_Codec_Track$PARAM[stream]]$INFO[ListItem.Property(AudioChannels.$PARAM[stream]),  •  , $LOCALIZE[10127]]$INFO[ListItem.Property(AudioLanguage.$PARAM[stream]),  •  [UPPERCASE],[/UPPERCASE]]</label2>
+            <icon>special://skin/extras/icons/volume.png</icon>
+            <visible>!String.IsEmpty(ListItem.Property(AudioCodec.$PARAM[stream]))</visible>
+        </item>
+    </include>
+    
+    <include name="SubtitleStreamInfo">
+        <item>
+            <label>$LOCALIZE[462] $PARAM[stream]</label>
+            <label2>$INFO[ListItem.Property(SubtitleLanguage.$PARAM[stream]),[UPPERCASE],[/UPPERCASE]]</label2>
+            <icon>special://skin/extras/icons/cc.png</icon>
+            <visible>!String.IsEmpty(ListItem.Property(SubtitleLanguage.$PARAM[stream]))</visible>
+        </item> 
+    </include>
+
+    <include name="DialogInfoMediaDetails">
+    	<control type="group">
+            <visible allowhiddenfocus="true">String.IsEqual(Window.Property(content),15)</visible>
+            <animation effect="slide" start="0,0" end="-3000,-3000" time="0" condition="!String.IsEqual(Window.Property(content),15)">Conditional</animation>
+            <include>Animation.FadeIn</include>
+            <include>Animation.FadeOut</include>
+            <control type="image">
+                <include>Dimensions_Fullscreen</include>
+                <texture border="2">common/black-back.png</texture>
+            </control>
+ 
+	         <control type="group">
+	             <include content="DefDialogBackground">
+	                <param name="width" value="1180"/>
+	                <param name="height" value="900"/>
+	            </include>
+	
+	            <control type="label">
+	                <include>DefDialogHeader</include>
+	                <label>31203</label>
+	            </control>
+	
+	            <include content="Kodi_Logo">
+	                <param name="dimensions" value="40"/>
+	                <param name="top" value="40"/>
+	                <param name="left" value="40"/>
+	            </include>
+	
+	            <!-- Lines -->
+	            <control type="image">
+	                <top>95</top>
+	                <left>40</left>
+	                <right>40</right>
+	                <height>1</height>
+	                <bottom>10</bottom>
+	                <colordiffuse>Black12</colordiffuse>
+	                <texture>common/white.png</texture>
+	            </control>  
+	
+	           	<control type="list" id="9300">
+	                <left>8</left>
+	                <width>1064</width>
+	                <posy>115</posy>
+	                <height>696</height>
+					<onback>9000</onback>
+	                <onleft>9301</onleft>
+	                <onright>1723</onright>
+	                <pagecontrol>1723</pagecontrol>
+                    <include content="Def_ThumbnailListLayout">
+                        <param name="focused" value="Control.HasFocus(9300)" />
+                        <param name="default_icon" value="true" />
+                        <param name="indicators" value="false" />
+                        <param name="width" value="796" />
+                    </include>
+		            <content>
+		            	<item>
+		            		<label>Video</label>
+		            		<label2>$INFO[ListItem.VideoResolution,, ]$VAR[HDSD]$VAR[Label_Video_Codec,  •  ,]$VAR[Label_Video_Aspect,  •  ,]$VAR[Label_Video_3D,  •  ,]$VAR[Label_Video_HdrType1,  •  ,]$INFO[ListItem.Property(HdrDetail.1), P]$VAR[Label_Video_HdrType2, / ,]$INFO[ListItem.Property(HdrDetail.2), P]</label2>
+		            		<icon>special://skin/extras/icons/film.png</icon>
+		            		<visible>!String.IsEmpty(ListItem.VideoCodec)</visible>
+		            	</item>
+		            	<include content="AudioStreamInfo"><param name="stream" value="1" /></include>
+		            	<include content="AudioStreamInfo"><param name="stream" value="2" /></include>
+		            	<include content="AudioStreamInfo"><param name="stream" value="3" /></include>
+		            	<include content="AudioStreamInfo"><param name="stream" value="4" /></include>
+		            	<include content="AudioStreamInfo"><param name="stream" value="5" /></include>
+		            	<include content="AudioStreamInfo"><param name="stream" value="6" /></include>
+		            	<include content="AudioStreamInfo"><param name="stream" value="7" /></include>
+		            	<include content="AudioStreamInfo"><param name="stream" value="8" /></include>
+		            	<include content="AudioStreamInfo"><param name="stream" value="9" /></include>
+		            	<include content="AudioStreamInfo"><param name="stream" value="10" /></include>
+		            	<include content="AudioStreamInfo"><param name="stream" value="11" /></include>
+		            	<include content="AudioStreamInfo"><param name="stream" value="12" /></include>
+		            	<include content="AudioStreamInfo"><param name="stream" value="13" /></include>
+		            	<include content="AudioStreamInfo"><param name="stream" value="14" /></include>
+		            	<include content="AudioStreamInfo"><param name="stream" value="15" /></include>
+		            	<include content="AudioStreamInfo"><param name="stream" value="16" /></include>
+		            	<include content="AudioStreamInfo"><param name="stream" value="17" /></include>
+		            	<include content="AudioStreamInfo"><param name="stream" value="18" /></include>
+		            	<include content="AudioStreamInfo"><param name="stream" value="19" /></include>
+		            	<include content="AudioStreamInfo"><param name="stream" value="20" /></include>
+		            	<include content="AudioStreamInfo"><param name="stream" value="21" /></include>
+		            	<include content="AudioStreamInfo"><param name="stream" value="22" /></include>
+		            	<include content="AudioStreamInfo"><param name="stream" value="23" /></include>
+		            	<include content="AudioStreamInfo"><param name="stream" value="24" /></include>
+		            	<include content="AudioStreamInfo"><param name="stream" value="25" /></include>
+		            	<include content="AudioStreamInfo"><param name="stream" value="26" /></include>
+		            	<include content="AudioStreamInfo"><param name="stream" value="27" /></include>
+		            	<include content="AudioStreamInfo"><param name="stream" value="28" /></include>
+		            	<include content="AudioStreamInfo"><param name="stream" value="29" /></include>
+		            	<include content="AudioStreamInfo"><param name="stream" value="30" /></include>
+	
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="1" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="2" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="3" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="4" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="5" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="6" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="7" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="8" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="9" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="10" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="11" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="12" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="13" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="14" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="15" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="16" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="17" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="18" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="19" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="20" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="21" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="22" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="23" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="24" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="25" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="26" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="27" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="28" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="29" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="30" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="31" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="32" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="33" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="34" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="35" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="36" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="37" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="38" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="39" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="40" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="41" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="42" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="43" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="44" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="45" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="46" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="47" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="48" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="49" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="50" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="51" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="52" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="53" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="54" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="55" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="56" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="57" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="58" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="59" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="60" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="61" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="62" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="63" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="64" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="65" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="66" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="67" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="68" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="69" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="70" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="71" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="72" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="73" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="74" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="75" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="76" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="77" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="78" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="79" /></include>
+		            	<include content="SubtitleStreamInfo"><param name="stream" value="80" /></include>
+		            </content>
+	            </control>
+	
+	            <include content="Furniture_Scrollbar_Dialog">
+	                <param name="id" value="1723"/>
+	                <param name="onleft" value="9300"/>
+	                <param name="onright" value="9301"/>
+	            </include>
+	 
+	            <!-- Lines -->
+	            <control type="image">
+	                <top>115</top>
+	                <right>375</right>
+	                <height>687</height>
+	                <width>1</width>
+	                <texture colordiffuse="Black12">common/white.png</texture>
+	                <animation effect="fade" start="0" end="100" time="100" condition="!Control.HasFocus(1723) + !Container.Scrolling">Conditional</animation>
+	            </control>
+	
+	             <!-- Buttons -->           
+	            <control type="grouplist" id="9301">
+	                <top>115</top>              
+	                <right>42</right>
+	                <width>300</width>
+	                <itemgap>DialogButtonsItemgap</itemgap>
+	                <orientation>vertical</orientation>
+	                <onleft>1723</onleft>
+	                <onright>9300</onright>
+			        <control type="button" id="9302">
+			            <include>DefDialogButtons</include>
+						<label>15067</label>
+						<onclick>SetFocus(9000)</onclick>
+			        </control>
+	            </control>                
+	
+	            <control type="image">
+	                <description>Large Icon Image</description>
+	                <right>42</right>
+	                <top>351</top>
+	                <width>300</width>
+	                <height>450</height>
+	                <texture colordiffuse="Black70" fallback="DefaultAddonNone.png">$INFO[Container(9300).ListItem.Icon]</texture>
+	                <aspectratio align="center" aligny="bottom">keep</aspectratio>
+	            </control>
+	
+		        <control type="label">
+		            <include>Animation.FadeIn</include>
+		            <include>Animation.FadeOut</include>
+		            <right>40</right>
+		            <font>Tiny</font>
+		            <height>50</height>
+		            <bottom>30</bottom>
+		            <align>right</align>
+		            <textcolor>Black70</textcolor>
+		            <label>$INFO[Container(9300).CurrentItem] / $INFO[Container(9300).NumItems]</label>
+		        </control>
+	        </control>
+        </control>
+	</include>
+
     <include name="DialogInfoCustomSettings">
         <control type="group">
             <visible allowhiddenfocus="true">ControlGroup(9400).HasFocus() + !Window.IsVisible(DialogBusy.xml)</visible>
@@ -1665,4 +1924,5 @@
             </control>
         </control>
     </include>
+	
 </includes>
