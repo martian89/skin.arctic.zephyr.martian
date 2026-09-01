@@ -60,7 +60,7 @@
             </include>
             <include content="NowPlaying_InfoRight">
                 <param name="left" value="0" />
-                <param name="visible" value="[$EXP[IsVideo] + !Skin.HasSetting(extended.nowplaying.videowindow)] | [$EXP[IsAudio] + Skin.HasSetting(extended.nowplaying.hidecd)] | [$EXP[IsPVRAudio] + Skin.HasSetting(extended.nowplaying.hidecd)] | [VideoPlayer.Content(musicvideos) + Skin.HasSetting(extended.nowplaying.hidecd)]" />
+                <param name="visible" value="[$EXP[IsVideo] + !Skin.HasSetting(extended.nowplaying.videowindow)] | [$EXP[IsAudio] + Skin.HasSetting(extended.nowplaying.hidecd)] | [VideoPlayer.Content(musicvideos) + Skin.HasSetting(extended.nowplaying.hidecd)] | $EXP[IsPVRAudio]" />
             </include>
             <include content="NowPlaying_InfoRight">
                 <param name="left" value="661" />
@@ -68,7 +68,7 @@
             </include>
             <include content="NowPlaying_InfoRight">
                 <param name="left" value="140" />
-                <param name="visible" value="[$EXP[IsPVRAudio] + !Skin.HasSetting(extended.nowplaying.hidecd)] | [$EXP[IsAudio] + !Skin.HasSetting(extended.nowplaying.hidecd)]" />
+                <param name="visible" value="[$EXP[IsAudio] + !Skin.HasSetting(extended.nowplaying.hidecd)]" />
             </include>
             <include content="NowPlaying_InfoRight">
                 <param name="left" value="100" />
@@ -560,7 +560,7 @@
                 <effect type="fade" start="0" end="100" time="1" delay="800"/>
             </animation>
             <visible>Player.HasMedia + Player.HasAudio</visible>
-            <visible>!Skin.HasSetting(extended.nowplaying.hidecd)</visible>
+            <visible>!Skin.HasSetting(extended.nowplaying.hidecd) + !$EXP[IsPVRAudio]</visible>
             <include content="DefDiscArtNowPlaying">
                 <param name="visible" value="Skin.HasSetting(osd.music.disc.fake.cd)" />
                 <param name="diffuse" value="diffuse/diffuse_cd.png" />

@@ -427,8 +427,8 @@
     </variable>
     
     <variable name="PlayerTrackInfo">
-        <value condition="MusicPlayer.Content(LiveTV)">$INFO[MusicPlayer.ChannelNumberLabel,,. ]$INFO[MusicPlayer.ChannelName]</value>
         <value condition="!String.IsEmpty(MusicPlayer.Artist)">$INFO[MusicPlayer.Artist]$INFO[MusicPlayer.Album,  •  ,]$INFO[MusicPlayer.Year,  •  ,]$INFO[MusicPlayer.TrackNumber,  •  $LOCALIZE[554] ,]</value>
+        <value condition="MusicPlayer.Content(LiveTV)">$INFO[MusicPlayer.ChannelNumberLabel,,. ]$INFO[MusicPlayer.ChannelName]</value>
         <value>$LOCALIZE[19055]</value>
     </variable>
     
@@ -1108,7 +1108,7 @@
     
     <variable name="Label_NowPlaying_Time_MusicSubInfo">
         <value condition="!Player.Playing">$VAR[PlayerStatus]</value>
-        <value condition="!String.IsEmpty(MusicPlayer.Album)">$VAR[PlayerTrackInfo]</value>
+        <value condition="!String.IsEmpty(MusicPlayer.Artist)">$VAR[PlayerTrackInfo]</value>
         <value>$VAR[Label_Audio_Codec_Furniture]$INFO[MusicPlayer.BitRate,  •  ,kbps]$INFO[MusicPlayer.Samplerate, •  ,kHz]$INFO[MusicPlayer.BPM,  •  ,bpm]$INFO[MusicPlayer.BitsPerSample,  •  ,bit]</value>
     </variable>
     
