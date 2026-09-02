@@ -289,11 +289,15 @@
                 <itemgap>17</itemgap>
                 <include content="NowPlayingHeaderLabel">
                     <param name="label" value="$INFO[Player.Title]" />
-                    <param name="visible" value="!VideoPlayer.Content(livetv)" />
+                    <param name="visible" value="!$EXP[IsPVRVideo] + !$EXP[IsPVRAudio]" />
+                </include>
+                <include content="NowPlayingHeaderLabel">
+                    <param name="label" value="$INFO[MusicPlayer.Title]" />
+                    <param name="visible" value="$EXP[IsPVRAudio]" />
                 </include>
                 <include content="NowPlayingHeaderLabel">
                     <param name="label" value="$INFO[Player.Title]$INFO[VideoPlayer.StartTime,  •  ,]$INFO[VideoPlayer.EndTime, - ]$INFO[VideoPlayer.Duration(mins),  •  , $LOCALIZE[31102]]" />
-                    <param name="visible" value="VideoPlayer.Content(livetv)" />
+                    <param name="visible" value="$EXP[IsPVRVideo]" />
                 </include>
                 <include condition="Skin.HasSetting(homemenu.netflix) + !Skin.HasSetting(home.netflix.clearlogo) | Skin.HasSetting(homemenu.clean.flix)">IntentButton</include>
                 <control type="grouplist">
