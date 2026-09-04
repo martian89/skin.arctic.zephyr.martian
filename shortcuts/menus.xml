@@ -74,7 +74,7 @@
 			<label>31103</label>
 			<label2>$ADDON[script.skinshortcuts 32034]</label2>
 			<icon>special://skin/extras/icons/livetv.png</icon>
-			<action>ActivateWindow(Tvchannels)</action>
+			<action>ActivateWindow(TVChannels)</action>
 			<visible>Pvr.HasTVChannels</visible>
 		</item>
         <item name="radio" submenu="radio">
@@ -87,9 +87,16 @@
         <item name="videos" submenu="videos">
             <label>3</label>
             <label2>$ADDON[script.skinshortcuts 32034]</label2>
-            <icon>special://skin/extras/icons/video-addons.png</icon>
+            <icon>special://skin/extras/icons/videoplay.png</icon>
             <action>ActivateWindow(videos,library://video/,return)</action>
             <visible>!Library.HasContent(Movies) + !Library.HasContent(TVShows)</visible>
+        </item>
+        <item name="playdisc" submenu="playdisc">
+            <label>341</label>
+            <label2>$ADDON[script.skinshortcuts 32034]</label2>
+            <icon>special://skin/extras/icons/cd.png</icon>
+            <action>PlayDisc</action>
+            <visible>System.HasMediaDVD | System.HasMediaAudioCD</visible>
         </item>
 		<item name="settings" submenu="settings">
 			<label>10004</label>
@@ -807,7 +814,7 @@
             <shortcut name="tmdbhelper-episodes" label="31212" icon="special://skin/extras/icons/director.png">
                 <action>ActivateWindow(1125)</action>
             </shortcut>
-			<shortcut name="videos" label="3" icon="special://skin/extras/icons/video.png">
+			<shortcut name="videos" label="3" icon="special://skin/extras/icons/videoplay.png">
 				<action>ActivateWindow(Videos,library://video/,return)</action>
 			</shortcut>
 			<shortcut name="movies" label="342" icon="special://skin/extras/icons/film.png">
@@ -817,7 +824,7 @@
 				<action>ActivateWindow(Videos,videodb://tvshows/titles/,return)</action>
 			</shortcut>
 			<shortcut name="livetv" label="31103" icon="special://skin/extras/icons/livetv.png" visible="Pvr.HasTVChannels">
-				<action>ActivateWindow(Tvchannels)</action>
+				<action>ActivateWindow(TVChannels)</action>
 				<visible>Pvr.HasTVChannels</visible>
 			</shortcut>
 			<shortcut name="radio" label="19021" icon="special://skin/extras/icons/radio.png" visible="PVR.HasRadioChannels">
@@ -922,7 +929,7 @@
         </group>
 
         <!-- Video Library -->
-        <group name="video-library" label="3" icon="special://skin/extras/icons/video.png">
+        <group name="video-library" label="3" icon="special://skin/extras/icons/videoplay.png">
             <content source="nodes" target="videos" />
             <shortcut name="search-video" label="137" icon="special://skin/extras/icons/search.png" visible="System.AddonIsEnabled(script.globalsearch)">
                 <action>RunScript(script.globalsearch,tvshows=true&amp;episodes=true&amp;movies=true&amp;actors=true&amp;directors=true)</action>
@@ -1114,4 +1121,8 @@
 		<subdialog buttonID="9308" menu="x1118" />
 		<subdialog buttonID="9309" menu="x1119" />
 	</dialogs>
+	
+	<!-- Disable context menu -->
+    <contextmenu>false</contextmenu>
+    	
 </menus>
