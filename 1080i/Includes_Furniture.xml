@@ -797,25 +797,15 @@
         <control type="grouplist">
             <visible>![Skin.HasSetting(furniture.flagicons) + Skin.HasSetting(furniture.coloredicons)]</visible>
             <visible>!String.IsEqual(ListItem.Label,..)</visible>
-            <include content="def_left" condition="!$PARAM[position_low]">
-                <param name="left" value="-10" />
-            </include>
-            <left>70</left>
             <include content="def_top" condition="!$PARAM[position_low]">
                 <param name="top" value="76" />
             </include>
-            <centerbottom>NavBarPad</centerbottom>
-            <include content="def_right" condition="Skin.HasSetting(furniture.clock) + $PARAM[position_low]">
-                <param name="right" value="SidePad" />
+            <include content="def_left" condition="!$PARAM[position_low]">
+                <param name="left" value="-10" />
             </include>
-            <include content="def_right" condition="!Skin.HasSetting(furniture.clock) + $PARAM[position_low]">
-                <param name="right" value="440" />
+            <include content="DefFurnitureFlagsGroupList">
+                <param name="position_low" value="$PARAM[position_low]" />
             </include>
-            <height>120</height>
-            <orientation>horizontal</orientation>
-            <align>left</align>
-            <itemgap>0</itemgap>
-            <usecontrolcoords>true</usecontrolcoords>
             <control type="group">
                 <visible>[Container.Content(tvshows) | Container.Content(seasons) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)] + [[!String.IsEmpty(ListItem.Property(TotalEpisodes)) | !String.IsEmpty(ListItem.Episode)] + !Skin.HasSetting(ShowUnwatchedEpisodes) | !String.IsEmpty(ListItem.Property(UnWatchedEpisodes)) + Skin.HasSetting(ShowUnwatchedEpisodes)] | ListItem.IsCollection | [!Skin.HasSetting(furniture.flagicons) + !String.IsEmpty(ListItem.VideoResolution)]</visible>
                 <centertop>50%</centertop>
@@ -1126,25 +1116,15 @@
         <control type="grouplist">
             <visible>Skin.HasSetting(furniture.flagicons) + Skin.HasSetting(furniture.coloredicons)</visible>
             <visible>!String.IsEqual(ListItem.Label,..)</visible>
-            <include content="def_left" condition="!$PARAM[position_low]">
-                <param name="left" value="-10" />
-            </include>
-            <left>70</left>
             <include content="def_top" condition="!$PARAM[position_low]">
                 <param name="top" value="76" />
             </include>
-            <centerbottom>NavBarPad</centerbottom>
-            <include content="def_right" condition="Skin.HasSetting(furniture.clock) + $PARAM[position_low]">
-                <param name="right" value="SidePad" />
+            <include content="def_left" condition="!$PARAM[position_low]">
+                <param name="left" value="-10" />
             </include>
-            <include content="def_right" condition="!Skin.HasSetting(furniture.clock) + $PARAM[position_low]">
-                <param name="right" value="440" />
+            <include content="DefFurnitureFlagsGroupList">
+                <param name="position_low" value="$PARAM[position_low]" />
             </include>
-            <height>120</height>
-            <orientation>horizontal</orientation>
-            <align>left</align>
-            <itemgap>0</itemgap>
-            <usecontrolcoords>true</usecontrolcoords>
             <control type="group">
                 <visible>[Container.Content(tvshows) | Container.Content(seasons) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)] + [[!String.IsEmpty(ListItem.Property(TotalEpisodes)) | !String.IsEmpty(ListItem.Episode)] + !Skin.HasSetting(ShowUnwatchedEpisodes) | !String.IsEmpty(ListItem.Property(UnWatchedEpisodes)) + Skin.HasSetting(ShowUnwatchedEpisodes)] | ListItem.IsCollection</visible>
                 <centertop>50%</centertop>
@@ -1475,19 +1455,7 @@
         <control type="grouplist">
             <visible>![Skin.HasSetting(furniture.flagicons) + Skin.HasSetting(furniture.coloredicons)]</visible>
             <visible>!String.IsEqual(Container(9500).ListItem.Label,..)</visible>
-            <left>70</left>
-            <centerbottom>NavBarPad</centerbottom>
-            <include content="def_right" condition="Skin.HasSetting(furniture.clock)">
-                <param name="right" value="SidePad" />
-            </include>
-            <include content="def_right" condition="!Skin.HasSetting(furniture.clock)">
-                <param name="right" value="440" />
-            </include>
-            <height>120</height>
-            <orientation>horizontal</orientation>
-            <align>left</align>
-            <itemgap>0</itemgap>
-            <usecontrolcoords>true</usecontrolcoords>
+            <include>DefFurnitureFlagsGroupList</include>
             <control type="group">
                 <visible>[[String.IsEqual(Container(9500).ListItem.DBType,tvshow) | String.IsEqual(Container(9500).ListItem.DBType,season)] + [[!String.IsEmpty(Container(9500).ListItem.Property(TotalEpisodes)) | !String.IsEmpty(Container(9500).ListItem.Episode)] + !Skin.HasSetting(ShowUnwatchedEpisodes) | !String.IsEmpty(Container(9500).ListItem.Property(UnWatchedEpisodes)) + Skin.HasSetting(ShowUnwatchedEpisodes)]] | Container(9500).ListItem.IsCollection | [!Skin.HasSetting(furniture.flagicons) + !String.IsEmpty(Container(9500).ListItem.VideoResolution)]</visible>
                 <centertop>50%</centertop>
@@ -1759,19 +1727,7 @@
             <visible>Skin.HasSetting(furniture.flagicons) + Skin.HasSetting(furniture.coloredicons)</visible>
             <visible>String.IsEqual(Container(9500).ListItem.DBType,movie) | String.IsEqual(Container(9500).ListItem.DBType,set) | String.IsEqual(Container(9500).ListItem.DBType,episode) | String.IsEqual(Container(9500).ListItem.DBType,tvshow) | String.IsEqual(Container(9500).ListItem.DBType,season)</visible>
             <visible>!String.IsEqual(Container(9500).ListItem.Label,..)</visible>
-            <left>70</left>
-            <centerbottom>NavBarPad</centerbottom>
-            <include content="def_right" condition="Skin.HasSetting(furniture.clock)">
-                <param name="right" value="SidePad" />
-            </include>
-            <include content="def_right" condition="!Skin.HasSetting(furniture.clock)">
-                <param name="right" value="440" />
-            </include>
-            <height>120</height>
-            <orientation>horizontal</orientation>
-            <align>left</align>
-            <itemgap>0</itemgap>
-            <usecontrolcoords>true</usecontrolcoords>
+            <include>DefFurnitureFlagsGroupList</include>
             <control type="group">
                 <visible>[[String.IsEqual(Container(9500).ListItem.DBType,tvshow) | String.IsEqual(Container(9500).ListItem.DBType,season)] + [[!String.IsEmpty(Container(9500).ListItem.Property(TotalEpisodes)) | !String.IsEmpty(Container(9500).ListItem.Episode)] + !Skin.HasSetting(ShowUnwatchedEpisodes) | !String.IsEmpty(Container(9500).ListItem.Property(UnWatchedEpisodes)) + Skin.HasSetting(ShowUnwatchedEpisodes)]] | Container(9500).ListItem.IsCollection</visible>
                 <centertop>50%</centertop>
@@ -2656,25 +2612,15 @@
             <visible>!Control.HasFocus(9501)</visible>
             <visible>!Control.HasFocus(160)</visible>
             <visible>!String.IsEqual(ListItem.Label,..)</visible>
-            <include content="def_left" condition="!$PARAM[position_low]">
-                <param name="left" value="-10" />
-            </include>
             <include content="def_top" condition="!$PARAM[position_low]">
                 <param name="top" value="216" />
             </include>
-            <left>70</left>
-            <centerbottom>NavBarPad</centerbottom>
-            <include content="def_right" condition="Skin.HasSetting(furniture.clock) + $PARAM[position_low]">
-                <param name="right" value="SidePad" />
+            <include content="def_left" condition="!$PARAM[position_low]">
+                <param name="left" value="-10" />
             </include>
-            <include content="def_right" condition="!Skin.HasSetting(furniture.clock) + $PARAM[position_low]">
-                <param name="right" value="440" />
+            <include content="DefFurnitureFlagsGroupList">
+                <param name="position_low" value="$PARAM[position_low]" />
             </include>
-            <height>120</height>
-            <orientation>horizontal</orientation>
-            <align>left</align>
-            <itemgap>0</itemgap>
-            <usecontrolcoords>true</usecontrolcoords>
             <include>AlbumCount</include>
             <include content="Furniture_RatingFlags" condition="!Skin.HasSetting(furniture.hide.musicrating)">
                 <param name="Star" value="FlagstarSong" />
@@ -2863,25 +2809,15 @@
             <visible>!Control.HasFocus(9501)</visible>
             <visible>!Control.HasFocus(160)</visible>
             <visible>!String.IsEqual(ListItem.Label,..)</visible>
-            <include content="def_left" condition="!$PARAM[position_low]">
-                <param name="left" value="-10" />
-            </include>
             <include content="def_top" condition="!$PARAM[position_low]">
                 <param name="top" value="216" />
             </include>
-            <left>70</left>
-            <centerbottom>NavBarPad</centerbottom>
-            <include content="def_right" condition="Skin.HasSetting(furniture.clock) + $PARAM[position_low]">
-                <param name="right" value="SidePad" />
+            <include content="def_left" condition="!$PARAM[position_low]">
+                <param name="left" value="-10" />
             </include>
-            <include content="def_right" condition="!Skin.HasSetting(furniture.clock) + $PARAM[position_low]">
-                <param name="right" value="440" />
+            <include content="DefFurnitureFlagsGroupList">
+                <param name="position_low" value="$PARAM[position_low]" />
             </include>
-            <height>120</height>
-            <orientation>horizontal</orientation>
-            <align>left</align>
-            <itemgap>0</itemgap>
-            <usecontrolcoords>true</usecontrolcoords>
             <include>AlbumCount</include>
             <include content="Furniture_RatingFlags" condition="!Skin.HasSetting(furniture.hide.musicrating)">
                 <param name="Star" value="FlagstarSong" />
@@ -3028,19 +2964,7 @@
         <control type="grouplist">
             <visible>![Skin.HasSetting(furniture.flagicons) + Skin.HasSetting(furniture.coloredicons)]</visible>
             <visible>!String.IsEqual(ListItem.Label,..)</visible>
-            <left>70</left>
-            <centerbottom>NavBarPad</centerbottom>
-            <include content="def_right" condition="Skin.HasSetting(furniture.clock)">
-                <param name="right" value="SidePad" />
-            </include>
-            <include content="def_right" condition="!Skin.HasSetting(furniture.clock)">
-                <param name="right" value="440" />
-            </include>
-            <height>120</height>
-            <orientation>horizontal</orientation>
-            <align>left</align>
-            <itemgap>0</itemgap>
-            <usecontrolcoords>true</usecontrolcoords>
+            <include>DefFurnitureFlagsGroupList</include>
             <include>AlbumCount</include>
             <include content="Furniture_RatingFlags" condition="!Skin.HasSetting(furniture.hide.musicrating)">
                 <param name="Star" value="HubFlagstar" />
@@ -3207,19 +3131,7 @@
         <control type="grouplist">
             <visible>Skin.HasSetting(furniture.flagicons) + Skin.HasSetting(furniture.coloredicons)</visible>
             <visible>!String.IsEqual(ListItem.Label,..)</visible>
-            <left>70</left>
-            <centerbottom>NavBarPad</centerbottom>
-            <include content="def_right" condition="Skin.HasSetting(furniture.clock)">
-                <param name="right" value="SidePad" />
-            </include>
-            <include content="def_right" condition="!Skin.HasSetting(furniture.clock)">
-                <param name="right" value="440" />
-            </include>
-            <height>120</height>
-            <orientation>horizontal</orientation>
-            <align>left</align>
-            <itemgap>0</itemgap>
-            <usecontrolcoords>true</usecontrolcoords>
+            <include>DefFurnitureFlagsGroupList</include>
             <include>AlbumCount</include>
             <include content="Furniture_RatingFlags" condition="!Skin.HasSetting(furniture.hide.musicrating)">
                 <param name="Star" value="HubFlagstar" />
@@ -3347,19 +3259,7 @@
             <include>Animation.FurnitureVisible</include>
             <visible>!Skin.HasSetting(furniture.flags)</visible>
             <visible>!ListItem.IsFolder + !String.IsEmpty(Container.PluginName) + $EXP[InGameMode]</visible>
-            <left>70</left>
-            <centerbottom>NavBarPad</centerbottom>
-            <include content="def_right" condition="Skin.HasSetting(furniture.clock)">
-                <param name="right" value="SidePad" />
-            </include>
-            <include content="def_right" condition="!Skin.HasSetting(furniture.clock)">
-                <param name="right" value="440" />
-            </include>
-            <height>120</height>
-            <orientation>horizontal</orientation>
-            <align>left</align>
-            <itemgap>0</itemgap>
-            <usecontrolcoords>true</usecontrolcoords>
+            <include>DefFurnitureFlagsGroupList</include>
             <control type="group">
                 <visible>!Skin.HasSetting(furniture.flagicons) + !String.IsEmpty(Control.GetLabel(6601))</visible>
                 <centertop>50%</centertop>
@@ -4090,6 +3990,21 @@
             <textcolor>Dark1</textcolor>
             <label>$INFO[Window(Home).Property(TMDbHelper.ListItem.Emmy_Wins)]</label>
         </control>          
+    </include>
+
+    <include name="DefFurnitureFlagsGroupList">
+        <param name="position_low" default="true" />
+        <definition>        
+            <left>70</left>
+            <include condition="Skin.HasSetting(furniture.clock) + $PARAM[position_low]">DefHomeRightSidePad</include>
+            <include condition="!Skin.HasSetting(furniture.clock) + $PARAM[position_low]">DefHomeRight520</include>
+            <height>120</height>
+            <centerbottom>NavBarPad</centerbottom>
+            <orientation>horizontal</orientation>
+            <align>left</align>
+            <itemgap>0</itemgap>
+            <usecontrolcoords>true</usecontrolcoords>
+        </definition>                      
     </include>
 
 </includes>
