@@ -1392,44 +1392,6 @@
 	            <include condition="!ListItem.IsCollection">ExtendedRatingFlags_Furniture_Color</include>
             </control>
         </control>
-        <control type="grouplist">
-            <include>Animation.FurnitureVisible</include>
-            <visible>Skin.HasSetting(furniture.flags)</visible>
-            <visible>Container.Content(movies) | Container.Content(files) | Container.Content(episodes)</visible>
-            <visible>!String.IsEqual(ListItem.Label,..)</visible>
-            <left>SidePad</left>
-            <centerbottom>NavBarPad</centerbottom>
-            <include content="def_right" condition="Skin.HasSetting(furniture.clock)">
-                <param name="right" value="SidePad" />
-            </include>
-            <include content="def_right" condition="!Skin.HasSetting(furniture.clock)">
-                <param name="right" value="440" />
-            </include>
-            <height>120</height>
-            <orientation>horizontal</orientation>
-            <align>left</align>
-            <itemgap>10</itemgap>
-            <usecontrolcoords>true</usecontrolcoords>
-            <control type="image" description="Duration">
-                <width>48</width>
-                <height>64</height>
-                <centertop>50%</centertop>
-                <texture colordiffuse="Dark1">flags/time.png</texture>
-                <aspectratio align="left">scale</aspectratio>
-                <visible>$EXP[ShowFurnitureFlagsDuration]</visible>
-            </control>
-            <control type="label" description="Duration">
-                <width>auto</width>
-                <centertop>50%</centertop>
-                <height>64</height>
-                <align>left</align>
-                <aligny>center</aligny>
-                <label>$VAR[LabelDurationTimeCheck] </label>
-                <font>Flag</font>
-                <textcolor>Dark1</textcolor>
-                <visible>$EXP[ShowFurnitureFlagsDuration]</visible>
-            </control>
-        </control>
     </include>
 
     <include name="Furniture_Hub_Flags">
@@ -3996,8 +3958,12 @@
         <param name="position_low" default="true" />
         <definition>        
             <left>70</left>
-            <include condition="Skin.HasSetting(furniture.clock) + $PARAM[position_low]">DefHomeRightSidePad</include>
-            <include condition="!Skin.HasSetting(furniture.clock) + $PARAM[position_low]">DefHomeRight520</include>
+            <include content="def_right" condition="Skin.HasSetting(furniture.clock) + $PARAM[position_low]">
+                <param name="right" value="SidePad" />
+            </include>
+            <include content="def_right" condition="!Skin.HasSetting(furniture.clock) + $PARAM[position_low]">
+                <param name="right" value="495" />
+            </include>
             <height>120</height>
             <centerbottom>NavBarPad</centerbottom>
             <orientation>horizontal</orientation>
