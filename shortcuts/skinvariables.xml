@@ -119,7 +119,7 @@
           ]
     </expression>
     <expression name="IsNewMovie" containers="301,9500" start="-3" end="3">
-        String.IsEqual({listitem}.DBTYPE,movie)
+        String.IsEqual({listitem}.DBTYPE,movie) + !Container({id}).Content(videoextras)
         + [
             String.IsEqual(Window(Home).Property(LatestMovie.1.Title),{listitem}.Title) + String.IsEqual(Window(Home).Property(LatestMovie.1.Year),{listitem}.Year)
             | String.IsEqual(Window(Home).Property(LatestMovie.2.Title),{listitem}.Title) + String.IsEqual(Window(Home).Property(LatestMovie.2.Year),{listitem}.Year)
