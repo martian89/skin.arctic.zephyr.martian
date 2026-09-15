@@ -17,15 +17,15 @@
     </variable>
 
     <variable name="ProgressCircleLabel">
-        <value condition="String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,episode)">$VAR[Percentagelabel]</value>
+        <value condition="String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,episode)">$VAR[ProgressCirclePercentageLabel]</value>
         <value condition="String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) + !String.IsEmpty(ListItem.Property(WatchedEpisodes))">$INFO[ListItem.Property(WatchedEpisodes)]/$INFO[ListItem.Property(TotalEpisodes)]</value>
         <value condition="String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)">$INFO[ListItem.Property(TotalEpisodes)]</value>
     </variable>
 
-    <variable name="Percentagelabel">
+    <variable name="ProgressCirclePercentageLabel">
         <value condition="ListItem.IsResumable">$INFO[ListItem.PercentPlayed]%</value>
-        <value condition="String.IsEqual(ListItem.Overlay,OverlayWatched.png) + !ListItem.IsResumable">100%</value>
-        <value condition="String.IsEqual(ListItem.PercentPlayed,0) + String.IsEqual(ListItem.Overlay,OverlayUnwatched.png)">0%</value>
+        <value condition="String.IsEqual(ListItem.Overlay,OverlayWatched.png) | Integer.IsGreater(ListItem.PlayCount,0)">100%</value>
+        <value>0%</value>
     </variable>
 
     <variable name="LabelTitle">
