@@ -9,51 +9,17 @@
     </shortcut>
     <shortcut>
         <label2>Power Menu Shortcut</label2>
-        <label>$LOCALIZE[31360]</label>
-        <action>SystemLogOff</action>
-        <visible>[System.HasLoginScreen | Integer.IsGreater(System.ProfileCount,1)] + System.Loggedon</visible>
-        <icon />
-        <thumb />
-    </shortcut>
-    <shortcut>
-        <label2>Power Menu Shortcut</label2>
-        <label>$LOCALIZE[20046]</label>
-        <altlabel>20045</altlabel>
-        <action>mastermode</action>
-        <visible>System.HasLocks</visible>
-        <icon />
-        <thumb />
-    </shortcut>
-    <shortcut>
-        <label2>Power Menu Shortcut</label2>
         <label>$LOCALIZE[13012]</label>
         <action>Quit()</action>
+        <visible>System.ShowExitButton</visible>
         <icon />
         <thumb />
-        <visible>System.ShowExitButton</visible>
     </shortcut>
     <shortcut>
         <label2>Power Menu Shortcut</label2>
         <label>$LOCALIZE[13005]</label>
         <action>Powerdown()</action>
         <visible>System.CanPowerDown</visible>
-        <icon />
-        <thumb />
-    </shortcut>
-    <shortcut>
-        <label2>Power Menu Shortcut</label2>
-        <label>$LOCALIZE[20150]</label>
-        <action>AlarmClock(shutdowntimer,Shutdown())</action>
-        <visible>!System.HasAlarm(shutdowntimer)</visible>
-        <visible>System.CanPowerDown | System.CanSuspend | System.CanHibernate</visible>
-        <icon />
-        <thumb />
-    </shortcut>
-    <shortcut>
-        <label2>Power Menu Shortcut</label2>
-        <label>$LOCALIZE[20151]</label>
-        <action>CancelAlarm(shutdowntimer)</action>
-        <visible>System.HasAlarm(shutdowntimer)</visible>
         <icon />
         <thumb />
     </shortcut>
@@ -85,13 +51,63 @@
         <label2>Power Menu Shortcut</label2>
         <label>$LOCALIZE[31232]</label>
         <action>RebootToAndroid</action>
-        <visible>System.PathExist("/dev/env")</visible>
+        <visible>System.PathExist("/dev/system") | System.PathExist("/dev/super") | System.PathExist("/dev/userdata") | System.PathExist("/dev/data")</visible>
         <icon />
         <thumb />
     </shortcut>
     <shortcut>
-        <label>$LOCALIZE[5]</label>
         <label2>Power Menu Shortcut</label2>
+        <label>$LOCALIZE[31360]</label>
+        <action>SystemLogOff</action>
+        <visible>[System.HasLoginScreen | Integer.IsGreater(System.ProfileCount,1)] + System.Loggedon</visible>
+        <icon />
+        <thumb />
+    </shortcut>
+    <shortcut>
+        <label2>Power Menu Shortcut</label2>
+        <label>$LOCALIZE[20046]</label>
+        <altlabel>20045</altlabel>
+        <action>mastermode</action>
+        <visible>System.HasLocks</visible>
+        <icon />
+        <thumb />
+    </shortcut>
+    <shortcut>
+        <label2>Power Menu Shortcut</label2>
+        <label>$LOCALIZE[13017]</label>
+        <action>InhibitIdleShutdown(true)</action>
+        <visible>System.HasShutdown +!System.IsInhibit</visible>
+        <icon />
+        <thumb />
+    </shortcut>
+    <shortcut>
+        <label2>Power Menu Shortcut</label2>
+        <label>$LOCALIZE[13018]</label>
+        <action>InhibitIdleShutdown(false)</action>
+        <visible>System.HasShutdown + System.IsInhibit</visible>
+        <icon />
+        <thumb />
+    </shortcut>
+    <shortcut>
+        <label2>Power Menu Shortcut</label2>
+        <label>$LOCALIZE[20150]</label>
+        <action>AlarmClock(shutdowntimer,Shutdown())</action>
+        <visible>!System.HasAlarm(shutdowntimer)</visible>
+        <visible>System.CanPowerDown | System.CanSuspend | System.CanHibernate</visible>
+        <icon />
+        <thumb />
+    </shortcut>
+    <shortcut>
+        <label2>Power Menu Shortcut</label2>
+        <label>$LOCALIZE[20151]</label>
+        <action>CancelAlarm(shutdowntimer)</action>
+        <visible>System.HasAlarm(shutdowntimer)</visible>
+        <icon />
+        <thumb />
+    </shortcut>
+    <shortcut>
+        <label2>Power Menu Shortcut</label2>
+        <label>$LOCALIZE[5]</label>
         <action>ActivateWindow(settings)</action>
         <visible>System.Loggedon</visible>
         <icon />
