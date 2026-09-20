@@ -3,7 +3,7 @@
 
     <include name="Furniture_Scrollbar">
         <param name="id" default="60"/>
-        <param name="jumpbar" default="false"/>
+        <param name="jumpbar" default="true"/>
         <param name="top" default="PosterPad"/>
         <param name="height" default="PosterH"/>
         <param name="onleft" default="50"/>
@@ -31,7 +31,7 @@
 
     <include name="Furniture_Scrollbar_Horizontal">
         <param name="id" default="60"/>
-        <param name="jumpbar" default="false"/>
+        <param name="jumpbar" default="true"/>
         <param name="onup" default="50"/>
         <param name="bottom" default="200"/>
         <param name="left" default="SidePad"/>
@@ -45,12 +45,13 @@
 	        <orientation>horizontal</orientation>
 	        <height>8</height>
 	        <onup>$PARAM[onup]</onup>
-	        <ondown condition="$PARAM[jumpbar] + $EXP[UseDefaultJumpbar]">290001</ondown>
-	        <ondown condition="$PARAM[jumpbar] + !$EXP[UseDefaultJumpbar]">390000</ondown>
+	        <!-- Use scrollbar visibility as condition to work around a problem with wrap lists -->
+            <ondown condition="$PARAM[jumpbar] + $EXP[UseDefaultJumpbar] + Control.IsVisible($PARAM[id])">290001</ondown>
+            <ondown condition="$PARAM[jumpbar] + !$EXP[UseDefaultJumpbar] + Control.IsVisible($PARAM[id])">390000</ondown>
 	        <texturesliderbackground border="4" colordiffuse="Dark4">scrollbar/scrollv.png</texturesliderbackground>
 	        <texturesliderbar border="4" colordiffuse="Dark3">scrollbar/scrollv.png</texturesliderbar>
 	        <texturesliderbarfocus border="4" colordiffuse="Dark2">scrollbar/scrollv.png</texturesliderbarfocus>
-	        <animation effect="fade" start="100" end="0" time="400" condition="[!Control.HasFocus($PARAM[id]) + !Container.Scrolling] | Control.HasFocus(290001)">Conditional</animation>
+	        <animation effect="fade" start="100" end="0" time="400" condition="!Control.HasFocus($PARAM[id]) | Control.HasFocus(290001)">Conditional</animation>
         </control>
         </definition>
     </include>
