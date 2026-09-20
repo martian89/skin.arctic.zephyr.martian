@@ -882,10 +882,10 @@
             <onup>9601</onup>
             <orientation>horizontal</orientation>
             <control type="radiobutton" id="8">
-                <textureradioonfocus colordiffuse="FFFFFFFF">buttonsdialogs/continue.png</textureradioonfocus>
-                <textureradioonnofocus colordiffuse="FFFFFFFF">buttonsdialogs/continue.png</textureradioonnofocus>
+                <textureradioonfocus colordiffuse="FFFFFFFF">icons/continue.png</textureradioonfocus>
+                <textureradioonnofocus colordiffuse="FFFFFFFF">icons/continue.png</textureradioonnofocus>
                 <include content="DialogVideoInfoButtons">
-                    <param name="icon" value="buttonsdialogs/play.png" />
+                    <param name="icon" value="icons/play.png" />
                 </include>
                 <selected>ListItem.IsResumable</selected>
                 <visible>!ListItem.IsPlaying</visible>
@@ -897,10 +897,10 @@
             <control type="radiobutton" id="10001">
                 <onclick condition="!ListItem.IsFolder + !String.IsEmpty(ListItem.FileNameAndPath)">RunScript(plugin.video.themoviedb.helper,close_dialog=1190,"playmedia=$INFO[ListItem.FileNameAndPath]")</onclick>
                 <onclick condition="!ListItem.IsFolder + String.IsEmpty(ListItem.FileNameAndPath)">RunScript(plugin.video.themoviedb.helper,close_dialog=1190,"playmedia=$INFO[ListItem.FolderPath]")</onclick>
-                <textureradioonfocus colordiffuse="FFFFFFFF">buttonsdialogs/continue.png</textureradioonfocus>
-                <textureradioonnofocus colordiffuse="FFFFFFFF">buttonsdialogs/continue.png</textureradioonnofocus>
+                <textureradioonfocus colordiffuse="FFFFFFFF">icons/continue.png</textureradioonfocus>
+                <textureradioonnofocus colordiffuse="FFFFFFFF">icons/continue.png</textureradioonnofocus>
                 <include content="DialogVideoInfoButtons">
-                    <param name="icon" value="buttonsdialogs/play.png" />
+                    <param name="icon" value="icons/play.png" />
                 </include>
                 <selected>ListItem.IsResumable</selected>
                 <visible>!ListItem.IsPlaying</visible>
@@ -914,7 +914,7 @@
                 <onclick condition="Skin.HasSetting(home.netflix.autoplay.trailer) + $EXP[TrailerIsPlaying] + !Skin.HasSetting(trailer.dont.stop.on.unfocus)">ClearProperty(TrailerPath,home)</onclick>
                 <onclick>SendClick(8)</onclick>
                 <include content="DialogVideoInfoButtons">
-                    <param name="icon" value="buttonsdialogs/folder.png" />
+                    <param name="icon" value="icons/folder.png" />
                 </include>
                 <visible>String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,set)</visible>
             </control>
@@ -922,10 +922,10 @@
             <control type="radiobutton" id="10003">
                 <onclick condition="Player.Playing">Pause</onclick>
                 <onclick condition="!Player.Playing">Play</onclick>
-                <textureradioonfocus colordiffuse="FFFFFFFF">buttonsdialogs/pause.png</textureradioonfocus>
-                <textureradioonnofocus colordiffuse="FFFFFFFF">buttonsdialogs/pause.png</textureradioonnofocus>
+                <textureradioonfocus colordiffuse="FFFFFFFF">icons/pause.png</textureradioonfocus>
+                <textureradioonnofocus colordiffuse="FFFFFFFF">icons/pause.png</textureradioonnofocus>
                 <include content="DialogVideoInfoButtons">
-                    <param name="icon" value="buttonsdialogs/continue.png" />
+                    <param name="icon" value="icons/continue.png" />
                 </include>
                 <selected>Player.Playing</selected>
                 <visible>ListItem.IsPlaying</visible>
@@ -937,7 +937,7 @@
                 <onclick condition="!Window.IsVisible(1190)">PlayMedia($ESCINFO[Container(9911).ListItem.FileNameAndPath])</onclick>
                 <onclick condition="Window.IsVisible(1190)">RunScript(plugin.video.themoviedb.helper,close_dialog=1190,"playmedia=$INFO[Container(9911).ListItem.FileNameAndPath]")</onclick>
                 <include content="DialogVideoInfoButtons">
-                    <param name="icon" value="buttonsdialogs/upnext.png" />
+                    <param name="icon" value="icons/upnext.png" />
                 </include>
             </control>
 
@@ -947,7 +947,7 @@
                 <onclick condition="Skin.HasSetting(PlayTrailerWindowed)">SetProperty(dontslide,1,home)</onclick>
                 <onclick condition="Skin.HasSetting(PlayTrailerWindowed)">SetFocus(7011)</onclick>
                 <include content="DialogVideoInfoButtons">
-                    <param name="icon" value="buttonsdialogs/trailer.png" />
+                    <param name="icon" value="icons/trailer.png" />
                 </include>
                 <include>DialogVideoInfo_Trailer_Click_Action</include>
                 <visible>!Skin.HasSetting(hidebutton.video.trailer)</visible>
@@ -959,7 +959,7 @@
             <control type="radiobutton" id="10006">
                 <description>Home Theatre</description>
                 <include content="DialogVideoInfoButtons">
-                    <param name="icon" value="buttonsdialogs/playcinema.png" />
+                    <param name="icon" value="icons/playcinema.png" />
                 </include>
                 <onclick>RunScript(script.preshowexperience,dbtype=$INFO[ListItem.DBType],dbid=$INFO[ListItem.DBID])</onclick>
                 <visible>String.IsEqual(ListItem.DBTYPE,movie) | String.IsEqual(ListItem.DBTYPE,episode)</visible>
@@ -968,10 +968,10 @@
             <control type="radiobutton" id="7">
                 <include>OnFocusOnClick</include>
                 <include>ClearOnFocusOnClick</include>
-                <textureradioonfocus colordiffuse="FFFFFFFF">buttonsdialogs/rating.png</textureradioonfocus>
-                <textureradioonnofocus colordiffuse="FFFFFFFF">buttonsdialogs/rating.png</textureradioonnofocus>
+                <textureradioonfocus colordiffuse="FFFFFFFF">icons/rating.png</textureradioonfocus>
+                <textureradioonnofocus colordiffuse="FFFFFFFF">icons/rating.png</textureradioonnofocus>
                 <include content="DialogVideoInfoButtons">
-                    <param name="icon" value="buttonsdialogs/rating_new.png" />
+                    <param name="icon" value="icons/rating_new.png" />
                 </include>
                 <selected>String.IsEmpty(ListItem.UserRating)</selected>
                 <visible>Control.IsEnabled(7)</visible>
@@ -985,7 +985,7 @@
                 <onclick>SetProperty(content,11)</onclick>
                 <onclick>SetFocus(10070)</onclick>
                 <include content="DialogVideoInfoButtons">
-                    <param name="icon" value="buttonsdialogs/trailer.png" />
+                    <param name="icon" value="icons/trailer.png" />
                 </include>
                 <visible>$EXP[ShowTmdbActorMovies]</visible>
                 <visible>$EXP[IsPersonInfo]</visible>
@@ -995,7 +995,7 @@
                 <onclick>SetProperty(content,12)</onclick>
                 <onclick>SetFocus(10071)</onclick>
                 <include content="DialogVideoInfoButtons">
-                    <param name="icon" value="buttonsdialogs/tvshows.png" />
+                    <param name="icon" value="icons/tvshows.png" />
                 </include>
                 <visible>$EXP[ShowTmdbActorTvShows]</visible>
                 <visible>$EXP[IsPersonInfo]</visible>
@@ -1005,7 +1005,7 @@
                 <onclick>SetProperty(content,13)</onclick>
                 <onclick>SetFocus(10072)</onclick>
                 <include content="DialogVideoInfoButtons">
-                    <param name="icon" value="buttonsdialogs/crew.png" />
+                    <param name="icon" value="icons/crew.png" />
                 </include>
                 <visible>$EXP[ShowTmdbActorInCrew]</visible>
                 <visible>$EXP[IsPersonInfo]</visible>
@@ -1018,7 +1018,7 @@
                 <onclick condition="String.IsEqual(ListItem.DBType,tvshow)">RunScript(script.wikipedia,wikipedia=$VAR[Wiki_Label],tmdb_type=tv,language=$VAR[LanguageCheck])</onclick>
                 <onclick condition="$EXP[IsPersonInfo]">RunScript(script.wikipedia,wikipedia=$VAR[Wiki_Label],language=$VAR[LanguageCheck])</onclick>
                 <include content="DialogVideoInfoButtons">
-                    <param name="icon" value="buttonsdialogs/wiki.png" />
+                    <param name="icon" value="icons/wiki.png" />
                 </include>
                 <visible>!Skin.HasSetting(hidebutton.video.wiki) + [String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow)] | !Skin.HasSetting(hidebutton.person.wiki) + $EXP[IsPersonInfo]</visible>
                 <visible>System.AddonIsEnabled(script.wikipedia)</visible>
@@ -1034,7 +1034,7 @@
                 <onclick condition="!Skin.HasSetting(extended.info.local.cast)">SetFocus(10052)</onclick>
                 <include>DialogVideoInfo_List_Click_Action</include>
                 <include content="DialogVideoInfoButtons">
-                    <param name="icon" value="buttonsdialogs/cast.png" />
+                    <param name="icon" value="icons/cast.png" />
                 </include>
                 <visible>!Skin.HasSetting(hidebutton.video.cast)</visible>
             </control>
@@ -1045,7 +1045,7 @@
                 <onclick>SetFocus(10050)</onclick>
                 <include>DialogVideoInfo_List_Click_Action</include>
                 <include content="DialogVideoInfoButtons">
-                    <param name="icon" value="buttonsdialogs/set.png" />
+                    <param name="icon" value="icons/set.png" />
                 </include>
                 <visible>Skin.HasSetting(extended.info.local.collections)</visible>
             </control>
@@ -1058,7 +1058,7 @@
                 <onclick>SetFocus(10056)</onclick>
                 <include>DialogVideoInfo_List_Click_Action</include>
                 <include content="DialogVideoInfoButtons">
-                    <param name="icon" value="buttonsdialogs/crew.png" />
+                    <param name="icon" value="icons/crew.png" />
                 </include>
                 <visible>$EXP[IsVideoInfo]</visible>
             </control>
@@ -1070,7 +1070,7 @@
                 <onclick>SetFocus(10053)</onclick>
                 <include>DialogVideoInfo_List_Click_Action</include>
                 <include content="DialogVideoInfoButtons">
-                    <param name="icon" value="buttonsdialogs/similar.png" />
+                    <param name="icon" value="icons/similar.png" />
                 </include>
                 <visible>$EXP[IsVideoInfo]</visible>
             </control>
@@ -1081,7 +1081,7 @@
                 <onclick>SetFocus(10060)</onclick>
                 <include>DialogVideoInfo_List_Click_Action</include>
                 <include content="DialogVideoInfoButtons">
-                    <param name="icon" value="buttonsdialogs/studio.png" />
+                    <param name="icon" value="icons/studio.png" />
                 </include>
                 <visible>$EXP[IsVideoInfo]</visible>
             </control>
@@ -1093,7 +1093,7 @@
                 <onclick>SetFocus(10062)</onclick>
                 <include>DialogVideoInfo_List_Click_Action</include>
                 <include content="DialogVideoInfoButtons">
-                    <param name="icon" value="buttonsdialogs/director.png" />
+                    <param name="icon" value="icons/director.png" />
                 </include>
                 <visible>$EXP[IsVideoInfo]</visible>
             </control>
@@ -1103,7 +1103,7 @@
                 <onclick>SetProperty(content,4)</onclick>
                 <onclick>SetFocus(10054)</onclick>
                 <include content="DialogVideoInfoButtons">
-                    <param name="icon" value="buttonsdialogs/youtube.png" />
+                    <param name="icon" value="icons/youtube.png" />
                 </include>
                 <visible>Skin.HasSetting(showbutton.video.youtube) + [String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow)] | Skin.HasSetting(showbutton.person.youtube) + $EXP[IsPersonInfo]</visible>
                 <visible>System.AddonIsEnabled(plugin.video.youtube)</visible>
@@ -1119,7 +1119,7 @@
                 <onclick condition="Skin.HasSetting(extended.info.local.collections) + !Window.IsVisible(1190)">ActivateWindow(Videos,videodb://movies/sets/$INFO[ListItem.SetId]/?setid=$INFO[ListItem.SetId])</onclick>
                 <include>DialogVideoInfo_List_Click_Action</include>
                 <include content="DialogVideoInfoButtons">
-                    <param name="icon" value="buttonsdialogs/set.png" />
+                    <param name="icon" value="icons/set.png" />
                 </include>
                 <visible>$EXP[IsVideoInfo]</visible>
             </control>
@@ -1127,14 +1127,14 @@
                 <onclick>SetProperty(content,5)</onclick>
                 <onclick>SetFocus(10055)</onclick>
                 <include content="DialogVideoInfoButtons">
-                    <param name="icon" value="buttonsdialogs/image.png" />
+                    <param name="icon" value="icons/image.png" />
                 </include>
                 <visible>!Skin.HasSetting(hidebutton.video.fanart) + !String.IsEqual(ListItem.DBType,musicvideo)</visible>
                 <visible>$EXP[IsVideoInfo]</visible>
             </control>
             <control type="radiobutton" id="10018">
                 <include content="DialogVideoInfoButtons">
-                    <param name="icon" value="buttonsdialogs/trakt.png" />
+                    <param name="icon" value="icons/trakt.png" />
                 </include>
                 <onclick condition="!String.IsEmpty(ListItem.Property(tmdb_id))">RunScript(plugin.video.themoviedb.helper,sync_trakt=watchlist,tmdb_id=$INFO[ListItem.Property(tmdb_id)],cache_refresh)</onclick>
                 <onclick condition="String.IsEmpty(ListItem.Property(tmdb_id))">RunScript(plugin.video.themoviedb.helper,sync_trakt=watchlist,tmdb_id=$INFO[window(home).property(tmdbhelper.listitem.tmdb_id)],$VAR[DB_type],cache_refresh)</onclick>
@@ -1145,7 +1145,7 @@
                 <onclick>SetProperty(content,14)</onclick>
                 <onclick>SetFocus(10073)</onclick>
                 <include content="DialogVideoInfoButtons">
-                    <param name="icon" value="buttonsdialogs/thumb.png" />
+                    <param name="icon" value="icons/thumb.png" />
                 </include>
                 <visible>$EXP[ShowTmdbActorFanart]</visible>
                 <visible>$EXP[IsPersonInfo]</visible>
@@ -1153,14 +1153,14 @@
 
             <control type="radiobutton" id="10019">
                 <include content="DialogVideoInfoButtons">
-                    <param name="icon" value="buttonsdialogs/manage.png" />
+                    <param name="icon" value="icons/manage.png" />
                 </include>
                 <onclick>SetFocus(9400)</onclick>
                 <visible>!Skin.HasSetting(global.kioskmode) + !String.IsEmpty(ListItem.DBID) + [!String.StartsWith(ListItem.Path,plugin://) | System.AddonIsEnabled(script.skin.info.service)]</visible>
             </control>
             <control type="radiobutton" id="10020">
                 <include content="DialogVideoInfoButtons">
-                    <param name="icon" value="buttonsdialogs/settings.png" />
+                    <param name="icon" value="icons/settings.png" />
                 </include>
                 <visible>!Skin.HasSetting(global.kioskmode) + [String.IsEmpty(ListItem.DBID) | [String.StartsWith(ListItem.Path,plugin://) + !System.AddonIsEnabled(script.skin.info.service)]]</visible>
                 <onclick condition="$EXP[IsPersonInfo]">SetProperty(personinformation,1)</onclick>
@@ -1205,17 +1205,17 @@
                 <onclick condition="System.HasAddon(script.playalbum) + String.IsEqual(ListItem.DBType,album) + !String.IsEmpty(ListItem.DBID)">RunScript(script.playalbum,albumid=$INFO[ListItem.DBID])</onclick>
                 <onclick condition="!System.HasAddon(script.playalbum) + !String.IsEmpty(ListItem.DBID)">InstallAddon(script.playalbum)</onclick>
                 <include content="DialogInfo_Buttons">
-                    <param name="icon" value="buttonsdialogs/play.png" />
+                    <param name="icon" value="icons/play.png" />
                 </include>
             </control>
             <control type="radiobutton" id="9201">
                 <visible>[String.IsEqual(ListItem.DBType,album) | String.IsEqual(ListItem.DBType,song)] + [ListItem.IsPlaying | [!String.IsEmpty(ListItem.FolderPath) + String.IsEqual(ListItem.FileNameAndPath,Player.Folderpath)]]</visible>
                 <onclick condition="Player.Playing">Pause</onclick>
                 <onclick condition="!Player.Playing">Play</onclick>
-                <textureradioonfocus colordiffuse="FFFFFFFF">buttonsdialogs/pause.png</textureradioonfocus>
-                <textureradioonnofocus colordiffuse="FFFFFFFF">buttonsdialogs/pause.png</textureradioonnofocus>
+                <textureradioonfocus colordiffuse="FFFFFFFF">icons/pause.png</textureradioonfocus>
+                <textureradioonnofocus colordiffuse="FFFFFFFF">icons/pause.png</textureradioonnofocus>
                 <include content="DialogInfo_Buttons">
-                    <param name="icon" value="buttonsdialogs/continue.png" />
+                    <param name="icon" value="icons/continue.png" />
                 </include>
                 <selected>Player.Playing</selected>
             </control>
@@ -1226,10 +1226,10 @@
                 <include>OnFocusOnClick</include>
                 <include>ClearOnFocusOnClick</include>
                 <onclick>SendClick(7)</onclick>
-                <textureradioonfocus colordiffuse="FFFFFFFF">buttonsdialogs/rating.png</textureradioonfocus>
-                <textureradioonnofocus colordiffuse="FFFFFFFF">buttonsdialogs/rating.png</textureradioonnofocus>
+                <textureradioonfocus colordiffuse="FFFFFFFF">icons/rating.png</textureradioonfocus>
+                <textureradioonnofocus colordiffuse="FFFFFFFF">icons/rating.png</textureradioonnofocus>
                 <include content="DialogInfo_Buttons">
-                    <param name="icon" value="buttonsdialogs/rating_new.png" />
+                    <param name="icon" value="icons/rating_new.png" />
                 </include>
                 <selected>String.IsEmpty(ListItem.UserRating)</selected>
                 <visible>!Skin.HasSetting(hidebutton.music.rating)</visible>
@@ -1239,7 +1239,7 @@
             <control type="radiobutton" id="9030">
                 <onclick>RunScript(script.wikipedia,wikipedia=$VAR[Wiki_Label],language=$VAR[LanguageCheck])</onclick>
                 <include content="DialogInfo_Buttons">
-                    <param name="icon" value="buttonsdialogs/wiki.png" />
+                    <param name="icon" value="icons/wiki.png" />
                 </include>
                 <visible>!Skin.HasSetting(hidebutton.music.wiki) + System.AddonIsEnabled(script.wikipedia)</visible>
             </control>
@@ -1250,7 +1250,7 @@
                 <onclick>SetProperty(content,1)</onclick>
                 <onclick>SetFocus(9009)</onclick>
                 <include content="DialogInfo_Buttons">
-                    <param name="icon" value="buttonsdialogs/musictracklist.png" />
+                    <param name="icon" value="icons/musictracklist.png" />
                 </include>
             </control>
 
@@ -1260,7 +1260,7 @@
                 <onclick>SetProperty(content,2)</onclick>
                 <onclick>SetFocus(10051)</onclick>
                 <include content="DialogInfo_Buttons">
-                    <param name="icon" value="buttonsdialogs/set.png" />
+                    <param name="icon" value="icons/set.png" />
                 </include>
                 <visible>!Skin.HasSetting(hidebutton.music.sets)</visible>
                 <visible>Integer.IsGreater(Container(51).NumItems,0)</visible>
@@ -1272,7 +1272,7 @@
                 <onclick>SetProperty(content,3)</onclick>
                 <onclick>SetFocus(10052)</onclick>
                 <include content="DialogInfo_Buttons">
-                    <param name="icon" value="buttonsdialogs/youtube.png" />
+                    <param name="icon" value="icons/youtube.png" />
                 </include>
                 <visible>Skin.HasSetting(showbutton.music.youtube) + System.AddonIsEnabled(plugin.video.youtube)</visible>
             </control>
@@ -1282,7 +1282,7 @@
                 <onclick>SetProperty(content,4)</onclick>
                 <onclick>SetFocus(10053)</onclick>
                 <include content="DialogInfo_Buttons">
-                    <param name="icon" value="buttonsdialogs/image.png" />
+                    <param name="icon" value="icons/image.png" />
                 </include>
                 <visible>!Skin.HasSetting(hidebutton.music.fanart)</visible>
                 <visible>Integer.IsGreater(Container(53).NumItems,0)</visible>
@@ -1294,7 +1294,7 @@
                 <onclick>SetProperty(content,8)</onclick>
                 <onclick>SetFocus(10054)</onclick>
                 <include content="DialogInfo_Buttons">
-                    <param name="icon" value="buttonsdialogs/more.png" />
+                    <param name="icon" value="icons/more.png" />
                 </include>
                 <visible>!Skin.HasSetting(hidebutton.music.more)</visible>
                 <visible>Integer.IsGreater(Container(54).NumItems,1)</visible>
@@ -1303,7 +1303,7 @@
             <!-- Setting Button -->
             <control type="radiobutton" id="9008">
                 <include content="DialogInfo_Buttons">
-                    <param name="icon" value="buttonsdialogs/manage.png" />
+                    <param name="icon" value="icons/manage.png" />
                 </include>
                 <onclick>SetFocus(9400)</onclick>
                 <visible>!Skin.HasSetting(global.kioskmode)</visible>
@@ -1323,25 +1323,25 @@
             <orientation>horizontal</orientation>
             <control type="radiobutton" id="12">
                 <include content="DialogInfo_Buttons">
-                    <param name="icon" value="buttonsdialogs/launch.png" />
+                    <param name="icon" value="icons/launch.png" />
                 </include>
                 <visible>Control.IsEnabled(12)</visible>
             </control>
             <control type="radiobutton" id="6">
-                <textureradioonfocus colordiffuse="FFFFFFFF">buttonsdialogs/uninstall.png</textureradioonfocus>
-                <textureradioonnofocus colordiffuse="FFFFFFFF">buttonsdialogs/uninstall.png</textureradioonnofocus>
+                <textureradioonfocus colordiffuse="FFFFFFFF">icons/uninstall.png</textureradioonfocus>
+                <textureradioonnofocus colordiffuse="FFFFFFFF">icons/uninstall.png</textureradioonnofocus>
                 <include content="DialogInfo_Buttons">
-                    <param name="icon" value="buttonsdialogs/install.png" />
+                    <param name="icon" value="icons/install.png" />
                 </include>
                 <visible>!Skin.HasSetting(global.kioskmode)</visible>
                 <visible>Control.IsEnabled(6)</visible>
                 <selected>ListItem.Property(addon.isinstalled) | !Window.IsActive(addonbrowser)</selected>
             </control>
             <control type="radiobutton" id="7">
-                <textureradioonfocus colordiffuse="FFFFFFFF">buttonsdialogs/disable.png</textureradioonfocus>
-                <textureradioonnofocus colordiffuse="FFFFFFFF">buttonsdialogs/disable.png</textureradioonnofocus>
+                <textureradioonfocus colordiffuse="FFFFFFFF">icons/disable.png</textureradioonfocus>
+                <textureradioonnofocus colordiffuse="FFFFFFFF">icons/disable.png</textureradioonnofocus>
                 <include content="DialogInfo_Buttons">
-                    <param name="icon" value="buttonsdialogs/enabled.png" />
+                    <param name="icon" value="icons/enabled.png" />
                 </include>
                 <visible>!Skin.HasSetting(global.kioskmode)</visible>
                 <visible>Control.IsEnabled(7)</visible>
@@ -1349,34 +1349,34 @@
             </control>
             <control type="radiobutton" id="9">
                 <include content="DialogInfo_Buttons">
-                    <param name="icon" value="buttonsdialogs/configure.png" />
+                    <param name="icon" value="icons/configure.png" />
                 </include>
                 <visible allowhiddenfocus="true">Control.IsEnabled(9)</visible>
             </control>
             <control type="radiobutton" id="8">
                 <include content="DialogInfo_Buttons">
-                    <param name="icon" value="buttonsdialogs/install.png" />
+                    <param name="icon" value="icons/install.png" />
                 </include>
                 <visible>Control.IsEnabled(8)</visible>
             </control>
             <control type="radiobutton" id="14">
                 <include content="DialogInfo_Buttons">
-                    <param name="icon" value="buttonsdialogs/update.png" />
+                    <param name="icon" value="icons/update.png" />
                 </include>
                 <visible>Control.IsEnabled(14)</visible>
             </control>
             <control type="radiobutton" id="13">
-                <textureradioonfocus colordiffuse="FFFFFFFF">buttonsdialogs/autoupdateon.png</textureradioonfocus>
-                <textureradioonnofocus colordiffuse="FFFFFFFF">buttonsdialogs/autoupdateon.png</textureradioonnofocus>
+                <textureradioonfocus colordiffuse="FFFFFFFF">icons/autoupdateon.png</textureradioonfocus>
+                <textureradioonnofocus colordiffuse="FFFFFFFF">icons/autoupdateon.png</textureradioonnofocus>
                 <include content="DialogInfo_Buttons">
-                    <param name="icon" value="buttonsdialogs/autoupdate.png" />
+                    <param name="icon" value="icons/autoupdate.png" />
                 </include>
                 <visible>!Skin.HasSetting(global.kioskmode)</visible>
                 <visible>Control.IsEnabled(13)</visible>
             </control>
             <control type="radiobutton" id="10">
                 <include content="DialogInfo_Buttons">
-                    <param name="icon" value="buttonsdialogs/dependency.png" />
+                    <param name="icon" value="icons/dependency.png" />
                 </include>
                 <visible>Control.IsEnabled(10)</visible>
             </control>
@@ -1394,43 +1394,43 @@
             <orientation>horizontal</orientation>
             <control type="radiobutton" id="5">
                 <include content="DialogInfo_Buttons">
-                    <param name="icon" value="buttonsdialogs/launch.png" />
+                    <param name="icon" value="icons/launch.png" />
                 </include>
                 <visible>Window.IsVisible(PVRGuideInfo)</visible>
             </control>
             <control type="radiobutton" id="4">
                 <include content="DialogInfo_Buttons">
-                    <param name="icon" value="buttonsdialogs/similar.png" />
+                    <param name="icon" value="icons/similar.png" />
                 </include>
                 <visible>Window.IsVisible(PVRGuideInfo)</visible>
             </control>
             <control type="radiobutton" id="6">
                 <include content="DialogInfo_Buttons">
-                    <param name="icon" value="buttonsdialogs/record2.png" />
+                    <param name="icon" value="icons/record2.png" />
                 </include>
                 <visible>Window.IsVisible(PVRGuideInfo)</visible>
             </control>
             <control type="radiobutton" id="8">
                 <include content="DialogInfo_Buttons">
-                    <param name="icon" value="buttonsdialogs/play_record.png" />
+                    <param name="icon" value="icons/play_record.png" />
                 </include>
                 <visible>Window.IsVisible(PVRGuideInfo) | Window.IsVisible(PVRRecordingInfo)</visible>
             </control>
             <control type="radiobutton" id="9">
                 <include content="DialogInfo_Buttons">
-                    <param name="icon" value="buttonsdialogs/timer.png" />
+                    <param name="icon" value="icons/timer.png" />
                 </include>
                 <visible>Window.IsVisible(PVRGuideInfo)</visible>
             </control>
             <control type="radiobutton" id="11">
                 <include content="DialogInfo_Buttons">
-                    <param name="icon" value="buttonsdialogs/ring.png" />
+                    <param name="icon" value="icons/ring.png" />
                 </include>
                 <visible>Window.IsVisible(PVRGuideInfo)</visible>
             </control>
             <control type="radiobutton" id="666">
                 <include content="DialogInfo_Buttons">
-                    <param name="icon" value="buttonsdialogs/record2.png" />
+                    <param name="icon" value="icons/record2.png" />
                 </include>
                 <onclick>Action(close)</onclick>
                 <onclick>RunScript(plugin.video.iptv.recorder,$ESCINFO[ListItem.ChannelName],$ESCINFO[ListItem.Title],$ESCINFO[ListItem.Date],$ESCINFO[ListItem.Duration],$ESCINFO[ListItem.Plot])</onclick>
@@ -1438,7 +1438,7 @@
             </control>
             <control type="radiobutton" id="667">
                 <include content="DialogInfo_Buttons">
-                    <param name="icon" value="buttonsdialogs/play_record.png" />
+                    <param name="icon" value="icons/play_record.png" />
                 </include>
                 <onclick>Action(close)</onclick>
                 <onclick>ActivateWindow(10025,&quot;plugin://plugin.video.iptv.recorder/recordings&quot;,return)</onclick>
@@ -1446,7 +1446,7 @@
             </control>
             <control type="radiobutton" id="10">
                 <include content="DialogInfo_Buttons">
-                    <param name="icon" value="buttonsdialogs/play.png" />
+                    <param name="icon" value="icons/play.png" />
                 </include>
                 <visible>Window.IsVisible(PVRGuideInfo)</visible>
             </control>
