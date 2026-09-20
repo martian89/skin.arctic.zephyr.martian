@@ -35,7 +35,6 @@
             </control>
             <include content="Furniture_Scrollbar">
                 <param name="id" value="1626" />
-                <param name="jumpbar" value="true" />
             </include>
         </control>
     </include>
@@ -99,7 +98,6 @@
             </control>
             <include content="Furniture_Scrollbar">
                 <param name="id" value="1625" />
-                <param name="jumpbar" value="true" />
             </include>
         </control>
     </include>
@@ -130,7 +128,7 @@
             <textcolor>Dark1</textcolor>
             <selectedcolor>Dark1</selectedcolor>
             <label>$INFO[ListItem.Label2]</label>
-            <visible>Skin.HasSetting(hide.markers) | ![Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(musicvideos) | Container.Content(videos)  | Container.Content(files)]</visible>
+            <visible>Skin.HasSetting(hide.markers) | ![Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(musicvideos) | Container.Content(videos) | Container.Content(files)]</visible>
         </control>
         <control type="label">
             <left>130</left>
@@ -157,6 +155,7 @@
             <font>WatchedIcon</font>
             <label>$VAR[LabelPercentWatched]</label>
             <visible>!String.IsEqual(ListItem.Label,..)</visible>
+            <visible>!Skin.HasSetting(hide.markers) + [Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(musicvideos) | Container.Content(videos) | Container.Content(files)]</visible>
         </control>
     </include>
 
@@ -193,7 +192,7 @@
             <textcolor>Light1</textcolor>
             <selectedcolor>Light1</selectedcolor>
             <label>$INFO[ListItem.Label2]</label>
-            <visible>Skin.HasSetting(hide.markers) | ![Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(musicvideos) | Container.Content(videos)  | Container.Content(files)]</visible>
+            <visible>Skin.HasSetting(hide.markers) | ![Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(musicvideos) | Container.Content(videos) | Container.Content(files)]</visible>
         </control>
         <control type="label">
             <left>130</left>
@@ -220,6 +219,7 @@
             <font>WatchedIcon</font>
             <label>$VAR[LabelPercentWatched]</label>
             <visible>!String.IsEqual(ListItem.Label,..)</visible>
+            <visible>!Skin.HasSetting(hide.markers) + [Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(musicvideos) | Container.Content(videos) | Container.Content(files)]</visible>
         </control>
     </include>
     

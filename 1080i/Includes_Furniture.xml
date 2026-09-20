@@ -3,7 +3,7 @@
 
     <include name="Furniture_Scrollbar">
         <param name="id" default="60"/>
-        <param name="jumpbar" default="false"/>
+        <param name="jumpbar" default="true"/>
         <param name="top" default="PosterPad"/>
         <param name="height" default="PosterH"/>
         <param name="onleft" default="50"/>
@@ -31,7 +31,7 @@
 
     <include name="Furniture_Scrollbar_Horizontal">
         <param name="id" default="60"/>
-        <param name="jumpbar" default="false"/>
+        <param name="jumpbar" default="true"/>
         <param name="onup" default="50"/>
         <param name="bottom" default="200"/>
         <param name="left" default="SidePad"/>
@@ -45,12 +45,13 @@
 	        <orientation>horizontal</orientation>
 	        <height>8</height>
 	        <onup>$PARAM[onup]</onup>
-	        <ondown condition="$PARAM[jumpbar] + $EXP[UseDefaultJumpbar]">290001</ondown>
-	        <ondown condition="$PARAM[jumpbar] + !$EXP[UseDefaultJumpbar]">390000</ondown>
+	        <!-- Use scrollbar visibility as condition to work around a problem with wrap lists -->
+            <ondown condition="$PARAM[jumpbar] + $EXP[UseDefaultJumpbar] + Control.IsVisible($PARAM[id])">290001</ondown>
+            <ondown condition="$PARAM[jumpbar] + !$EXP[UseDefaultJumpbar] + Control.IsVisible($PARAM[id])">390000</ondown>
 	        <texturesliderbackground border="4" colordiffuse="Dark4">scrollbar/scrollv.png</texturesliderbackground>
 	        <texturesliderbar border="4" colordiffuse="Dark3">scrollbar/scrollv.png</texturesliderbar>
 	        <texturesliderbarfocus border="4" colordiffuse="Dark2">scrollbar/scrollv.png</texturesliderbarfocus>
-	        <animation effect="fade" start="100" end="0" time="400" condition="[!Control.HasFocus($PARAM[id]) + !Container.Scrolling] | Control.HasFocus(290001)">Conditional</animation>
+	        <animation effect="fade" start="100" end="0" time="400" condition="!Control.HasFocus($PARAM[id]) | Control.HasFocus(290001)">Conditional</animation>
         </control>
         </definition>
     </include>
@@ -2480,7 +2481,6 @@
             <visible>!Window.IsVisible(DialogVolumeBar.xml) | Player.Muted</visible>
             <visible>!Window.IsVisible(DialogNotification.xml)</visible>
             <visible>!Window.IsVisible(DialogExtendedProgressBar.xml)</visible>
-            <visible>String.IsEmpty(Window(10025).Property(TvTunesIsAlive))</visible>
             <visible>!Window.IsActive(DialogNotification.xml)</visible>
             <visible>Player.HasMedia</visible>
             <animation effect="slide" start="0" end="0,-250" time="150" condition="Control.HasFocus(301) + !Skin.HasSetting(home.classicwidgets) + !Skin.HasSetting(home.vertical)">Conditional</animation>
@@ -3667,6 +3667,23 @@
             <textcolor>Dark1</textcolor>
             <label>$INFO[Window(Home).Property(TMDbHelper.ListItem.Letterboxd_Rating)]</label>
         </control>
+        <control type="image" description="MyAnimeList">
+            <visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.MyAnimeList_Rating)) + Skin.HasSetting(furniture.showmal)</visible>
+            <centertop>50%</centertop>
+            <width>33</width>
+            <height>33</height>
+            <left>15</left>
+            <texture colordiffuse="Dark1" background="true">flags/monochrome/ratings/mal.png</texture>
+        </control>
+        <control type="label" description="MyAnimeList">
+            <visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.MyAnimeList_Rating)) + Skin.HasSetting(furniture.showmal)</visible>
+            <centertop>50%</centertop>
+            <width>auto</width>
+            <height>64</height>
+            <font>Flag</font>
+            <textcolor>Dark1</textcolor>
+            <label>$INFO[Window(Home).Property(TMDbHelper.ListItem.MyAnimeList_Rating)]</label>
+        </control>
         <control type="image" description="Metacritic">
             <visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Metacritic_Rating)) + Skin.HasSetting(furniture.showmetacritic)</visible>
             <centertop>50%</centertop>
@@ -3683,6 +3700,23 @@
             <font>Flag</font>
             <textcolor>Dark1</textcolor>
             <label>$INFO[Window(Home).Property(TMDbHelper.ListItem.Metacritic_Rating)]%</label>
+        </control>
+        <control type="image" description="Roger Ebert">
+            <visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.RogerEbert_Rating)) + Skin.HasSetting(furniture.showrogerebert)</visible>
+            <centertop>50%</centertop>
+            <width>33</width>
+            <height>33</height>
+            <left>15</left>
+            <texture colordiffuse="Dark1" background="true">flags/monochrome/ratings/re.png</texture>
+        </control>
+        <control type="label" description="Roger Ebert">
+            <visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.RogerEbert_Rating)) + Skin.HasSetting(furniture.showrogerebert)</visible>
+            <centertop>50%</centertop>
+            <width>auto</width>
+            <height>64</height>
+            <font>Flag</font>
+            <textcolor>Dark1</textcolor>
+            <label>$INFO[Window(Home).Property(TMDbHelper.ListItem.RogerEbert_Rating)]</label>
         </control>
         <control type="image" description="Rotten Tomatoes">
             <visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.RottenTomatoes_Rating)) + Skin.HasSetting(furniture.showtomatoes)</visible>
@@ -3846,6 +3880,23 @@
             <textcolor>Dark1</textcolor>
             <label>$INFO[Window(Home).Property(TMDbHelper.ListItem.Letterboxd_Rating)]</label>
         </control>
+        <control type="image" description="MyAnimeList">
+            <visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.MyAnimeList_Rating)) + Skin.HasSetting(furniture.showmal)</visible>
+            <centertop>50%</centertop>
+            <width>34</width>
+            <height>34</height>
+            <left>15</left>
+            <texture background="true">flags/color/ratings/mal.png</texture>
+        </control>
+        <control type="label" description="MyAnimeList">
+            <visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.MyAnimeList_Rating)) + Skin.HasSetting(furniture.showmal)</visible>
+            <centertop>50%</centertop>
+            <width>auto</width>
+            <height>64</height>
+            <font>Flag</font>
+            <textcolor>Dark1</textcolor>
+            <label>$INFO[Window(Home).Property(TMDbHelper.ListItem.MyAnimeList_Rating)]</label>
+        </control>
         <control type="image" description="Metacritic">
             <visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Metacritic_Rating)) + Skin.HasSetting(furniture.showmetacritic)</visible>
             <centertop>50%</centertop>
@@ -3862,6 +3913,23 @@
             <font>Flag</font>
             <textcolor>Dark1</textcolor>
             <label>$INFO[Window(Home).Property(TMDbHelper.ListItem.Metacritic_Rating)]%</label>
+        </control>
+        <control type="image" description="Roger Ebert">
+            <visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.RogerEbert_Rating)) + Skin.HasSetting(furniture.showrogerebert)</visible>
+            <centertop>50%</centertop>
+            <width>34</width>
+            <height>34</height>
+            <left>15</left>
+            <texture background="true">flags/color/ratings/re.png</texture>
+        </control>
+        <control type="label" description="Roger Ebert">
+            <visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.RogerEbert_Rating)) + Skin.HasSetting(furniture.showrogerebert)</visible>
+            <centertop>50%</centertop>
+            <width>auto</width>
+            <height>64</height>
+            <font>Flag</font>
+            <textcolor>Dark1</textcolor>
+            <label>$INFO[Window(Home).Property(TMDbHelper.ListItem.RogerEbert_Rating)]</label>
         </control>
         <control type="image" description="Rotten Tomatoes">
             <visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.RottenTomatoes_Rating)) + Skin.HasSetting(furniture.showtomatoes)</visible>
