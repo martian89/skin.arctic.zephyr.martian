@@ -631,53 +631,7 @@
                         <ondown>9300</ondown>
                         <orientation>vertical</orientation>
                         <visible>String.IsEqual(Window.Property(content),2)</visible>
-                        <control type="grouplist" id="9710">
-                            <visible>String.IsEqual(Window.Property(content),2)</visible>
-                            <orientation>horizontal</orientation>
-                            <enable>false</enable>
-                            <height>70</height>
-                            <control type="button">
-                                <enable>false</enable>
-                                <textoffsetx>30</textoffsetx>
-                                <font>Button</font>
-                                <align>left</align>
-                                <width>1310</width>
-                                <disabledcolor>PanelWhite30</disabledcolor>
-                                <height>70</height>
-                                <label>31580</label>
-                            </control>
-                        </control>
-                        <control type="radiobutton" id="9711">
-                            <include>DefSettingsButtonGradientSkinSettings</include>
-                            <align>left</align>
-                            <label>31074</label>
-                            <visible>String.IsEqual(Window.Property(content),2)</visible>
-                            <selected>Skin.HasSetting(TMDbHelper.EnableBlur)</selected>
-                        
-                            <!-- Enable/disable blur -->
-                            <onclick>Skin.ToggleSetting(TMDbHelper.EnableBlur)</onclick>
-                            
-                            <!-- Restart TMDBHelper service -->
-                            <onclick>RunScript(plugin.video.themoviedb.helper,restart_service)</onclick>
-                            
-                            <!-- Create default blur image -->
-                            <onclick condition="!Skin.HasSetting(TMDbHelper.EnableBlur)">RunScript(plugin.video.themoviedb.helper,blur_image='"$VAR[Image_SimpleBackground]"')</onclick>
-                            
-                            <!-- Enable/disable blur settings -->
-                            <onclick condition="!Skin.HasSetting(TMDbHelper.EnableBlur)">Skin.SetBool(EnableBlurSettings)</onclick>
-                            <onclick condition="Skin.HasSetting(TMDbHelper.EnableBlur)">Skin.Reset(EnableBlurSettings)</onclick>                    
-                        </control>
-                        <control type="button" id="9712">
-                            <width>1360</width>
-                            <include>DefSettingsButtonGradientSkinSettings</include>
-                            <align>left</align>
-                            <label>5</label>
-                            <visible>String.IsEqual(Window.Property(content),2)</visible>
-                            <onclick>ActivateWindow(1134)</onclick>
-                            <onfocus>Skin.Reset(NoBlurFoto)</onfocus>
-                            <enable>Skin.HasSetting(TMDbHelper.EnableBlur) + Skin.HasSetting(EnableBlurSettings)</enable>
-                        </control>         
-                        <control type="grouplist" id="9713">
+                        <control type="grouplist" id="9301">
                             <visible>String.IsEqual(Window.Property(content),2)</visible>
                             <orientation>horizontal</orientation>
                             <enable>false</enable>
@@ -693,7 +647,7 @@
                                 <label>31078</label>
                             </control>
                         </control>
-                        <control type="button" id="97141">
+                        <control type="button" id="9302">
                             <width>1360</width>
                             <visible>String.IsEqual(Window.Property(content),2)</visible>
                             <include>DefSettingsButtonGradientSkinSettings</include>
@@ -702,7 +656,7 @@
                             <onclick>SetProperty(includesetting,BackgroundBrightness,home)</onclick>
                             <onclick>ActivateWindow(1130)</onclick>
                         </control>
-                        <control type="button" id="9045">
+                        <control type="button" id="9303">
                             <width>1360</width>
                             <label>$LOCALIZE[31358]</label>
                             <label2>$VAR[FadetimeLabel]</label2>
@@ -712,7 +666,7 @@
                             <onclick condition="Integer.IsEqual(Skin.String(Fadetime),3600)">Skin.SetString(Fadetime,1800)</onclick>
                             <onclick condition="Integer.IsEqual(Skin.String(Fadetime),1800)">Skin.SetString(Fadetime,600)</onclick>
                         </control>
-                        <control type="radiobutton" id="9714" description="Show fanart">
+                        <control type="radiobutton" id="9304" description="Show fanart">
                             <width>1360</width>
                             <visible>String.IsEqual(Window.Property(content),2)</visible>
                             <include>DefSettingsButtonGradientSkinSettings</include>
@@ -721,7 +675,7 @@
                             <onclick>Skin.ToggleSetting(global.hidefanart)</onclick>
                             <onclick condition="!Skin.HasSetting(global.hidefanart)">Skin.Reset(TMDbHelper.EnableBlur)</onclick>
                         </control>
-                        <control type="radiobutton" id="9715" description="Animate Fanart">
+                        <control type="radiobutton" id="9305" description="Animate Fanart">
                             <width>1360</width>
                             <visible>String.IsEqual(Window.Property(content),2)</visible>
                             <include>DefSettingsButtonGradientSkinSettings</include>
@@ -730,7 +684,7 @@
                             <onclick>Skin.ToggleSetting(Fanart.Animate)</onclick>
                             <enable>!Skin.HasSetting(global.hidefanart)</enable>
                         </control>
-                        <control type="radiobutton" id="9716" description="Extra Fanart">
+                        <control type="radiobutton" id="9306" description="Extra Fanart">
                             <width>1360</width>
                             <visible>String.IsEqual(Window.Property(content),2)</visible>
                             <include>DefSettingsButtonGradientSkinSettings</include>
@@ -739,7 +693,7 @@
                             <onclick>Skin.ToggleSetting(EnableExtraFanart)</onclick>
                             <enable>!Skin.HasSetting(global.hidefanart)</enable>
                         </control>
-                        <control type="radiobutton" id="9717">
+                        <control type="radiobutton" id="9307">
                             <width>1360</width>
                             <visible>String.IsEqual(Window.Property(content),2)</visible>
                             <include>DefSettingsButtonGradientSkinSettings</include>
@@ -748,7 +702,7 @@
                             <onclick>Skin.ToggleSetting(background.episodes.use.thumbnail)</onclick>
                             <enable>!Skin.HasSetting(global.hidefanart)</enable>
                         </control>
-                        <control type="button" id="9718" description="Set Weather Fanart">
+                        <control type="button" id="9308" description="Set Weather Fanart">
                             <width>1360</width>
                             <visible>String.IsEqual(Window.Property(content),2)</visible>
                             <include>DefSettingsButtonGradientSkinSettings</include>
@@ -756,7 +710,7 @@
                             <label2>$VAR[Label_WeatherFanart]</label2>
                             <onclick>RunScript(script.image.resource.select,property=weather.fanart&amp;type=resource.images.weatherfanart)</onclick>
                         </control>
-                        <control type="radiobutton" id="9719" description="Show video in background">
+                        <control type="radiobutton" id="9309" description="Show video in background">
                             <width>1360</width>
                             <visible>String.IsEqual(Window.Property(content),2)</visible>
                             <include>DefSettingsButtonGradientSkinSettings</include>
@@ -765,7 +719,7 @@
                             <onclick>Skin.ToggleSetting(global.showvideo)</onclick>
                             <onclick condition="!Skin.HasSetting(global.showvideo)">Skin.Reset(extended.nowplaying.videowindow)</onclick>
                         </control>
-                        <control type="radiobutton" id="97201" description="Show vis in background">
+                        <control type="radiobutton" id="9310" description="Show vis in background">
                             <width>1360</width>
                             <visible>String.IsEqual(Window.Property(content),2)</visible>
                             <include>DefSettingsButtonGradientSkinSettings</include>
@@ -773,6 +727,53 @@
                             <selected>Skin.HasSetting(global.showvisualisation)</selected>
                             <onclick>Skin.ToggleSetting(global.showvisualisation)</onclick>
                         </control>
+                        <control type="grouplist" id="9311">
+                            <visible>String.IsEqual(Window.Property(content),2)</visible>
+                            <orientation>horizontal</orientation>
+                            <enable>false</enable>
+                            <height>70</height>
+                            <control type="button">
+                                <enable>false</enable>
+                                <textoffsetx>30</textoffsetx>
+                                <font>Button</font>
+                                <align>left</align>
+                                <width>1310</width>
+                                <disabledcolor>PanelWhite30</disabledcolor>
+                                <height>70</height>
+                                <label>31580</label>
+                            </control>
+                        </control>
+                        <control type="radiobutton" id="9312">
+                            <include>DefSettingsButtonGradientSkinSettings</include>
+                            <align>left</align>
+                            <label>31074</label>
+                            <visible>String.IsEqual(Window.Property(content),2)</visible>
+                            <selected>Skin.HasSetting(TMDbHelper.EnableBlur) + !Skin.HasSetting(global.hidefanart)</selected>
+                            <enable>!Skin.HasSetting(global.hidefanart)</enable>
+                        
+                            <!-- Enable/disable blur -->
+                            <onclick>Skin.ToggleSetting(TMDbHelper.EnableBlur)</onclick>
+                            
+                            <!-- Restart TMDBHelper service -->
+                            <onclick>RunScript(plugin.video.themoviedb.helper,restart_service)</onclick>
+                            
+                            <!-- Create default blur image -->
+                            <onclick condition="!Skin.HasSetting(TMDbHelper.EnableBlur)">RunScript(plugin.video.themoviedb.helper,blur_image='"$VAR[Image_SimpleBackground]"')</onclick>
+                            
+                            <!-- Enable/disable blur settings -->
+                            <onclick condition="!Skin.HasSetting(TMDbHelper.EnableBlur)">Skin.SetBool(EnableBlurSettings)</onclick>
+                            <onclick condition="Skin.HasSetting(TMDbHelper.EnableBlur)">Skin.Reset(EnableBlurSettings)</onclick>                    
+                        </control>
+                        <control type="button" id="9313">
+                            <width>1360</width>
+                            <include>DefSettingsButtonGradientSkinSettings</include>
+                            <align>left</align>
+                            <label>5</label>
+                            <visible>String.IsEqual(Window.Property(content),2)</visible>
+                            <onclick>ActivateWindow(1134)</onclick>
+                            <onfocus>Skin.Reset(NoBlurFoto)</onfocus>
+                            <enable>Skin.HasSetting(TMDbHelper.EnableBlur) + Skin.HasSetting(EnableBlurSettings) + !Skin.HasSetting(global.hidefanart)</enable>
+                        </control>         
                     </control>
 
                     <!-- MUSIC Video OSD -->

@@ -805,13 +805,13 @@
     </include>
  
     <include name="DialogVideoInfo_Trailer_Click_Action">
-        <onclick condition="Skin.HasSetting(PlayTrailerWindowed) + !Skin.HasSetting(Use.IMDB.Trailer) + !String.IsEmpty(ListItem.Trailer)">PlayMedia($INFO[ListItem.Trailer],1)</onclick>
-        <onclick condition="Skin.HasSetting(PlayTrailerWindowed) + Skin.HasSetting(Use.IMDB.Trailer)">PlayMedia($VAR[ContentIMDbTrailer],1)</onclick>
-        <onclick condition="!Skin.HasSetting(PlayTrailerWindowed) + !Window.IsVisible(1190) + [Skin.HasSetting(Use.IMDB.Trailer) | !String.IsEmpty(ListItem.Trailer)]">Dialog.Close(movieinformation)</onclick>                
-        <onclick condition="!Skin.HasSetting(PlayTrailerWindowed) + !Window.IsVisible(1190) + !Skin.HasSetting(Use.IMDB.Trailer) + !String.IsEmpty(ListItem.Trailer)">SendClick(11)</onclick>
-        <onclick condition="!Skin.HasSetting(PlayTrailerWindowed) + !Window.IsVisible(1190) + Skin.HasSetting(Use.IMDB.Trailer)">PlayMedia($VAR[ContentIMDbTrailer])</onclick>                
-        <onclick condition="!Skin.HasSetting(PlayTrailerWindowed) + Window.IsVisible(1190) + !Skin.HasSetting(Use.IMDB.Trailer) + !String.IsEmpty(ListItem.Trailer)">RunScript(plugin.video.themoviedb.helper,close_dialog=1190,"playmedia=$INFO[ListItem.Trailer]")</onclick>
-        <onclick condition="!Skin.HasSetting(PlayTrailerWindowed) + Window.IsVisible(1190) + Skin.HasSetting(Use.IMDB.Trailer)">RunScript(plugin.video.themoviedb.helper,close_dialog=1190,"playmedia=$VAR[ContentIMDbTrailer]")</onclick>                
+        <onclick condition="Skin.HasSetting(PlayTrailerWindowed) + !$EXP[UseIMDbTrailer] + !String.IsEmpty(ListItem.Trailer)">PlayMedia($INFO[ListItem.Trailer],1)</onclick>
+        <onclick condition="Skin.HasSetting(PlayTrailerWindowed) + $EXP[UseIMDbTrailer]">PlayMedia($VAR[ContentIMDbTrailer],1)</onclick>
+        <onclick condition="!Skin.HasSetting(PlayTrailerWindowed) + !Window.IsVisible(1190) + [$EXP[UseIMDbTrailer] | !String.IsEmpty(ListItem.Trailer)]">Dialog.Close(movieinformation)</onclick>                
+        <onclick condition="!Skin.HasSetting(PlayTrailerWindowed) + !Window.IsVisible(1190) + !$EXP[UseIMDbTrailer] + !String.IsEmpty(ListItem.Trailer)">SendClick(11)</onclick>
+        <onclick condition="!Skin.HasSetting(PlayTrailerWindowed) + !Window.IsVisible(1190) + $EXP[UseIMDbTrailer]">PlayMedia($VAR[ContentIMDbTrailer])</onclick>                
+        <onclick condition="!Skin.HasSetting(PlayTrailerWindowed) + Window.IsVisible(1190) + !$EXP[UseIMDbTrailer] + !String.IsEmpty(ListItem.Trailer)">RunScript(plugin.video.themoviedb.helper,close_dialog=1190,"playmedia=$INFO[ListItem.Trailer]")</onclick>
+        <onclick condition="!Skin.HasSetting(PlayTrailerWindowed) + Window.IsVisible(1190) + $EXP[UseIMDbTrailer]">RunScript(plugin.video.themoviedb.helper,close_dialog=1190,"playmedia=$VAR[ContentIMDbTrailer]")</onclick>                
     </include>
 
     <include name="DialogVideoInfo_List_Click_Action">
@@ -951,7 +951,7 @@
                 </include>
                 <include>DialogVideoInfo_Trailer_Click_Action</include>
                 <visible>!Skin.HasSetting(hidebutton.video.trailer)</visible>
-                <visible>[Skin.HasSetting(Use.IMDB.Trailer) + System.AddonIsEnabled(plugin.video.imdb.trailers) + [!String.IsEmpty(Window(home).Property(TMDbHelper.ListItem.imdb_id)) | !String.IsEmpty(ListItem.UniqueId(imdb))]] | [!Skin.HasSetting(Use.IMDB.Trailer) + !String.IsEmpty(ListItem.Trailer)]</visible>
+                <visible>$EXP[UseIMDbTrailer] + [!String.IsEmpty(Window(home).Property(TMDbHelper.ListItem.imdb_id)) | !String.IsEmpty(ListItem.UniqueId(imdb))] | !String.IsEmpty(ListItem.Trailer)</visible>
                 <visible>$EXP[IsVideoInfo]</visible>
             </control>
             <control type="radiobutton" id="10021">
