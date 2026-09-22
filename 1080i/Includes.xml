@@ -775,45 +775,6 @@
         <content>$VAR[Image_Content_Additional_Fanart]</content>
     </include>
 
-    <include name="Container_NumItems">
-        <param name="id" value="$PARAM[id]" default="10055"/>
-        <param name="visible" value="$PARAM[visible]" default="false"/>
-        <definition>
-        <control type="group">
-            <include>Animation.DelayFadeIn1200</include>
-            <visible>$PARAM[visible]</visible>
-            <control type="label">
-                <align>right</align>
-                <right>125</right>
-                <bottom>80</bottom>
-                <font>Small</font>
-                <height>34</height>
-                <width>200</width>
-                <textcolor>Dark2</textcolor>
-                <label>$INFO[Container($PARAM[id]).CurrentItem] / $INFO[Container($PARAM[id]).NumItems]</label>
-                <animation effect="slide" start="0,0" end="45,0" time="0" condition="!Integer.IsGreater(Container($PARAM[id]).NumItems,1)">Conditional</animation>
-            </control>
-            <control type="grouplist">
-                <orientation>horizontal</orientation>
-                <height>22</height>
-                <align>right</align>
-                <right>SidePad</right>
-                <width>100</width>
-                <bottom>SidePad</bottom>
-                <visible>Integer.IsGreater(Container($PARAM[id]).NumItems,1)</visible>
-                <control type="image">
-                    <include>arrowdimensions</include>
-                    <texture colordiffuse="Dark2" flipx="true">common/arrow-small-right.png</texture>
-                </control>
-                <control type="image">
-                    <include>arrowdimensions</include>
-                    <texture colordiffuse="Dark2">common/arrow-small-right.png</texture>
-                </control>
-            </control>
-        </control>
-        </definition>
-    </include>
-
     <variable name="PlayListStatsPath">
         <value condition="System.AddonIsEnabled(script.skin.info.service) + String.StartsWith(Container(300).ListItem.Property(path),ActivateWindow) + String.Contains(Container(300).ListItem.Property(path),Videos) + String.StartsWith(Container(300).ListItem.Property(list),special://) + String.EndsWith(Container(300).ListItem.Property(list),.xsp)">plugin://script.skin.info.service/?action=path_stats&amp;path=$INFO[Container(300).ListItem.Property(list)]&amp;reload=$INFO[Window(Home).Property(SkinInfo.Library.Refreshed)]</value>
     </variable>
