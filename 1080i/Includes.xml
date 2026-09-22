@@ -781,7 +781,7 @@
 
         <!-- Global Fanart -->
         <control type="group">
-            <visible>![Window.IsVisible(Home.xml) + Skin.HasSetting(homemenu.netflix) + !Skin.HasSetting(hide.homemenu.netflix.preview) | [Control.IsVisible(521) | Control.IsVisible(522) | Control.IsVisible(523) | Control.IsVisible(524)] + !Skin.HasSetting(hide.views.netflix.preview) + !Skin.HasSetting(TMDbHelper.EnableBlur)] | $EXP[InfoDialogsActive] + [!Window.IsVisible(home) | !$EXP[InfoDialogsExtendedBackground]]</visible>
+            <visible>![Window.IsVisible(Home.xml) + Skin.HasSetting(homemenu.netflix) + !Skin.HasSetting(hide.homemenu.netflix.preview) | [Control.IsVisible(521) | Control.IsVisible(522) | Control.IsVisible(523) | Control.IsVisible(524)] + !Skin.HasSetting(hide.views.netflix.preview) + !Skin.HasSetting(TMDbHelper.EnableBlur) + !Skin.HasSetting(global.hidefanart)] | $EXP[InfoDialogsActive] + [!Window.IsVisible(home) | !$EXP[InfoDialogsExtendedBackground]]</visible>
 			<include>Animation.BackgroundHideView</include>
  	        <control type="multiimage" description="Fanart">
 	            <visible>!Skin.HasSetting(TMDbHelper.EnableBlur) | [Window.IsVisible(home) + !$EXP[InfoDialogsActive]]</visible>
@@ -814,6 +814,18 @@
 	            <include>Animation.Animate.Fanart</include>
 	            <include>Animation.AutoTrailer.FadeOut.Background</include>
 	        </control>
+
+	        <control type="image" description="Fanart Fallback always">
+	            <include>GlobalBackgroundFade</include>
+                <visible>!Player.HasMedia | [!Skin.HasSetting(global.showvideo) + Player.HasVideo] | [!Skin.HasSetting(global.showvisualisation) + Player.HasAudio] | [Skin.HasSetting(global.showvisualisation) + String.IsEmpty(Visualisation.Name) + Player.HasAudio]</visible>
+	            <include>Dimensions_Fullscreen</include>
+	            <visible>!Window.IsVisible(home) + Skin.HasSetting(global.hidefanart)</visible>
+                <include>Animation.Background.OpenClose</include>
+	            <aspectratio>scale</aspectratio>
+	            <texture background="true">$VAR[Image_SimpleBackground]</texture>
+                <include>Animation.Animate.Fanart</include>
+                <include>Animation.AutoTrailer.FadeOut.Background</include>
+	        </control>
 		
 	        <!-- Final Overlays -->
 	        <control type="image" description="FanartOverlay">
@@ -842,7 +854,7 @@
         
         <!-- Netflix Preview Window -->
         <control type="multiimage" description="Fanart">
-            <visible>[Window.IsVisible(Home.xml) + Skin.HasSetting(homemenu.netflix) + !Skin.HasSetting(homemenu.clean.flix) + !Skin.HasSetting(hide.homemenu.netflix.preview) | [Control.IsVisible(521) | Control.IsVisible(522) | Control.IsVisible(523) | Control.IsVisible(524)] + !Skin.HasSetting(hide.views.netflix.preview) + !Skin.HasSetting(TMDbHelper.EnableBlur)] + !$EXP[InfoDialogsActive] + String.IsEmpty(Window(Home).Property(TMDbHelper.HideView))</visible>
+            <visible>[Window.IsVisible(Home.xml) + Skin.HasSetting(homemenu.netflix) + !Skin.HasSetting(homemenu.clean.flix) + !Skin.HasSetting(hide.homemenu.netflix.preview) | [Control.IsVisible(521) | Control.IsVisible(522) | Control.IsVisible(523) | Control.IsVisible(524)] + !Skin.HasSetting(hide.views.netflix.preview) + !Skin.HasSetting(TMDbHelper.EnableBlur) + !Skin.HasSetting(global.hidefanart)] + !$EXP[InfoDialogsActive] + String.IsEmpty(Window(Home).Property(TMDbHelper.HideView))</visible>
             <visible>!Player.HasMedia | [!Skin.HasSetting(global.showvideo) + Player.HasVideo] | [!Skin.HasSetting(global.showvisualisation) + Player.HasAudio] | [Skin.HasSetting(global.showvisualisation) + String.IsEmpty(Visualisation.Name) + Player.HasAudio]</visible>
             <include>Animation.Background.OpenClose</include>
             <include>Dimensions_Fullscreen</include>
