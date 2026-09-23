@@ -21,6 +21,21 @@ Instructions:
 2. Install the repository using either the zip or file manager source linked above
 3. Install the latest version of Arctic: Zephyr (martian) from this repository
 
+## Updating required add-ons
+
+The skin uses the TMDb Helper, Skin Variables and (optionally) Wikipedia Kodi add-ons. To avoid problems it is recommended to update these add-ons to the latest versions from the jurialmunkey Alpha Repository.
+
+Kodi File Manager Source:
+https://jurialmunkey.github.io/repository.jurialmunkey/
+
+Direct ZIP Install:
+https://jurialmunkey.github.io/repository.jurialmunkey/repository.jurialmunkey-3.4.zip
+
+Instructions:
+
+1. Enable "Update official add-ons from any repository" in Kodi Settings > System > Add-ons
+2. Install the repository using either the zip or file manager source linked above
+3. Install the latest versions of TMDb Helper, Skin Variables and (optionally) Wikipedia from this repository
 
 ## Media flags
 
