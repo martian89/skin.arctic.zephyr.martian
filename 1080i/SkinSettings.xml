@@ -727,6 +727,7 @@
                         </control>
                         <control type="grouplist" id="9311">
                             <visible>String.IsEqual(Window.Property(content),2)</visible>
+                            <visible>!Skin.HasSetting(global.hidefanart)</visible>
                             <orientation>horizontal</orientation>
                             <enable>false</enable>
                             <height>70</height>
@@ -746,8 +747,8 @@
                             <align>left</align>
                             <label>31074</label>
                             <visible>String.IsEqual(Window.Property(content),2)</visible>
-                            <selected>Skin.HasSetting(TMDbHelper.EnableBlur) + !Skin.HasSetting(global.hidefanart)</selected>
-                            <enable>!Skin.HasSetting(global.hidefanart)</enable>
+                            <selected>Skin.HasSetting(TMDbHelper.EnableBlur)</selected>
+                            <visible>!Skin.HasSetting(global.hidefanart)</visible>
                         
                             <!-- Enable/disable blur -->
                             <onclick>Skin.ToggleSetting(TMDbHelper.EnableBlur)</onclick>
@@ -770,7 +771,8 @@
                             <visible>String.IsEqual(Window.Property(content),2)</visible>
                             <onclick>ActivateWindow(1134)</onclick>
                             <onfocus>Skin.Reset(NoBlurFoto)</onfocus>
-                            <enable>Skin.HasSetting(TMDbHelper.EnableBlur) + Skin.HasSetting(EnableBlurSettings) + !Skin.HasSetting(global.hidefanart)</enable>
+                            <enable>Skin.HasSetting(TMDbHelper.EnableBlur) + Skin.HasSetting(EnableBlurSettings)</enable>
+                            <visible>!Skin.HasSetting(global.hidefanart)</visible>
                         </control>         
                     </control>
 
