@@ -850,6 +850,45 @@
             </control>
         </control>
     </include>
+
+    <include name="DialogInfo_ImageViewer_NumItems">
+        <param name="id" value="$PARAM[id]" default="10055"/>
+        <param name="visible" value="$PARAM[visible]" default="false"/>
+        <definition>
+        <control type="group">
+            <include>Animation.DelayFadeIn1200</include>
+            <visible>$PARAM[visible]</visible>
+            <control type="label">
+                <align>right</align>
+                <right>125</right>
+                <bottom>80</bottom>
+                <font>Small</font>
+                <height>34</height>
+                <width>200</width>
+                <textcolor>Dark2</textcolor>
+                <label>$INFO[Container($PARAM[id]).CurrentItem] / $INFO[Container($PARAM[id]).NumItems]</label>
+                <animation effect="slide" start="0,0" end="45,0" time="0" condition="!Integer.IsGreater(Container($PARAM[id]).NumItems,1)">Conditional</animation>
+            </control>
+            <control type="grouplist">
+                <orientation>horizontal</orientation>
+                <height>22</height>
+                <align>right</align>
+                <right>SidePad</right>
+                <width>100</width>
+                <bottom>SidePad</bottom>
+                <visible>Integer.IsGreater(Container($PARAM[id]).NumItems,1)</visible>
+                <control type="image">
+                    <include>arrowdimensions</include>
+                    <texture colordiffuse="Dark2" flipx="true">common/arrow-small-right.png</texture>
+                </control>
+                <control type="image">
+                    <include>arrowdimensions</include>
+                    <texture colordiffuse="Dark2">common/arrow-small-right.png</texture>
+                </control>
+            </control>
+        </control>
+        </definition>
+    </include>
  
     <variable name="VideoInfoNavigation_onleft_control_id">
         <value condition="!Control.HasFocus(11100) + !String.IsEmpty(ListItem.Art(discart)) + !Skin.HasSetting(hide.discart)">11100</value>
