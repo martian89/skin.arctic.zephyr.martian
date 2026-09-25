@@ -169,9 +169,9 @@
         </item>
 		<item name="logoff">
 			<label2>Power Menu Shortcut</label2>
-			<label>31360</label>
+			<label>20126</label>
 	        <action>Dialog.Close(all,true)</action>
-			<action>SystemLogOff</action>
+			<action>System.LogOff</action>
 			<icon>special://skin/extras/icons/power.png</icon>
 			<visible>[System.HasLoginScreen | Integer.IsGreater(System.ProfileCount,1)] + System.Loggedon</visible>
 		</item>
@@ -813,7 +813,7 @@
 	    <item name="eventlog">
 	        <label>14111</label>
 	        <label2>$ADDON[script.skinshortcuts 32034]</label2>
-	        <icon>special://skin/extras/icons/recent.png</icon>
+	        <icon>special://skin/extras/icons/clipboard.png</icon>
 	        <action>ActivateWindow(EventLog,events://,return)</action>
 	    </item>    
     </submenu>	
@@ -882,7 +882,7 @@
 			<shortcut name="systeminfo" label="10007" icon="special://skin/extras/icons/sysinfo.png">
 				<action>ActivateWindow(SystemInfo)</action>
 			</shortcut>
-			<shortcut name="events" label="14111" icon="special://skin/extras/icons/recent.png">
+			<shortcut name="events" label="14111" icon="special://skin/extras/icons/clipboard.png">
 				<action>ActivateWindow(EventLog,events://,return)</action>
 			</shortcut>
 			<shortcut name="favourites" label="1036" icon="special://skin/extras/icons/favourites2.png">
@@ -1078,11 +1078,6 @@
        <!-- Kodi Commands -->
         <group name="commands-grp" label="$ADDON[script.skinshortcuts 32054]" icon="special://skin/extras/icons/power.png">
             <content source="commands" />
-            <shortcut name="logoff" label="31360" icon="special://skin/extras/icons/power.png">
-		        <action>Dialog.Close(all,true)</action>
-				<action>SystemLogOff</action>
-                <visible>[System.HasLoginScreen | Integer.IsGreater(System.ProfileCount,1)] + System.Loggedon</visible>
-            </shortcut>
             <shortcut name="reboot to android" label="31232" icon="special://skin/extras/icons/android.png" visible="System.AddonIsEnabled(service.coreelec.settings)">
 		        <action>System.ExecWait("/usr/sbin/rebootfromnand")</action>
                 <action>Reboot()</action>
