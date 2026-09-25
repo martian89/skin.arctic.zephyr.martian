@@ -1076,17 +1076,8 @@
         </group>                
 
        <!-- Kodi Commands -->
-        <group name="commands-grp" label="$ADDON[script.skinshortcuts 32054]" icon="special://skin/extras/icons/power.png">
+        <group name="commands-grp" label="$ADDON[script.skinshortcuts 32054]" icon="special://skin/extras/icons/files.png">
             <content source="commands" />
-            <shortcut name="reboot to android" label="31232" icon="special://skin/extras/icons/android.png" visible="System.AddonIsEnabled(service.coreelec.settings)">
-		        <action>System.ExecWait("/usr/sbin/rebootfromnand")</action>
-                <action>Reboot()</action>
-                <visible>System.PathExist("/dev/system") | System.PathExist("/dev/super") | System.PathExist("/dev/userdata") | System.PathExist("/dev/data")</visible>
-            </shortcut>
-            <shortcut name="mastermode" label="20045" icon="special://skin/extras/icons/artist.png">
-                <action>Mastermode</action>
-                <visible>System.HasLocks</visible>
-            </shortcut>
 	        <shortcut name="inhibit idle shutdown" label="13017" icon="special://skin/extras/icons/power.png">
 	            <action>InhibitIdleShutdown(true)</action>
 	            <visible>System.HasShutdown + !System.IsInhibit</visible>
@@ -1103,8 +1094,14 @@
 		        <action>CancelAlarm(shutdowntimer)</action>
 		        <visible>System.HasAlarm(shutdowntimer)</visible>
 		    </shortcut>
-            <shortcut name="screensaver" label="24008" icon="special://skin/extras/icons/eye2.png">
-                <action>ActivateScreensaver</action>
+            <shortcut name="reboot to android" label="31232" icon="special://skin/extras/icons/android.png" visible="System.AddonIsEnabled(service.coreelec.settings)">
+                <action>System.ExecWait("/usr/sbin/rebootfromnand")</action>
+                <action>Reboot()</action>
+                <visible>System.PathExist("/dev/system") | System.PathExist("/dev/super") | System.PathExist("/dev/userdata") | System.PathExist("/dev/data")</visible>
+            </shortcut>
+            <shortcut name="mastermode" label="20045" icon="special://skin/extras/icons/artist.png">
+                <action>Mastermode</action>
+                <visible>System.HasLocks</visible>
             </shortcut>
             <shortcut name="playdisc" label="341" icon="special://skin/extras/icons/cd.png">
                 <action>PlayDisc</action>
