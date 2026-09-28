@@ -140,15 +140,43 @@
             <width>100%</width>
             <bottom>10</bottom>
             <height>8</height>
-            <visible>Player.Seeking</visible>
+            <visible>Player.Seeking + !Pvr.IsPlayingTv</visible>
         </control>
-        <control type="progress" id="404">
-            <left>0</left>
-            <bottom>10</bottom>
-            <width>100%</width>
-            <height>8</height>
-            <info>PVR.EpgEventProgress</info>
+        <!-- Live TV. id 402/403 are filled by Kodi, including while seeking. -->
+        <control type="group">
             <visible>Pvr.IsPlayingTv</visible>
+            <control type="progress" id="402">
+                <description>Programme progress when timeshift seek is unavailable</description>
+                <bottom>10</bottom>
+                <width>100%</width>
+                <height>8</height>
+                <visible>!Player.SeekEnabled</visible>
+            </control>
+            <!-- Range fill. Left/right caps stay pinned to the bar, so only the mid texture is used. -->
+            <control type="progress">
+                <description>Timeshift buffer</description>
+                <bottom>10</bottom>
+                <width>100%</width>
+                <height>8</height>
+                <info2>PVR.TimeshiftProgressBufferStart</info2>
+                <info>PVR.TimeshiftProgressBufferEnd</info>
+                <texturebg colordiffuse="00FFFFFF">osd/progress-bg.png</texturebg>
+                <lefttexture></lefttexture>
+                <midtexture colordiffuse="Highlight2">osd/progress-end.png</midtexture>
+                <righttexture></righttexture>
+                <visible>Player.SeekEnabled</visible>
+            </control>
+            <control type="progress" id="403">
+                <description>Timeshift position</description>
+                <bottom>10</bottom>
+                <width>100%</width>
+                <height>8</height>
+                <texturebg colordiffuse="2f5f5f5f">osd/progress-bg.png</texturebg>
+                <lefttexture colordiffuse="$VAR[ColorHighlight]">osd/progress-end.png</lefttexture>
+                <midtexture colordiffuse="$VAR[ColorHighlight]">osd/progress-end.png</midtexture>
+                <righttexture colordiffuse="$VAR[ColorHighlight]">osd/progress-end.png</righttexture>
+                <visible>Player.SeekEnabled</visible>
+            </control>
         </control>
         <control type="ranges">
             <visible>Skin.HasSetting(chapter.markers) + !$PARAM[wide_markers]</visible>
@@ -1061,7 +1089,7 @@
                 <font>Tiny</font>
                 <textcolor>$VAR[OSDPanelWhite70]</textcolor>
                 <label>$INFO[System.Time,, ]</label>
-                <visible>Player.HasVideo</visible>
+                <visible>Player.HasVideo + ![VideoPlayer.Content(LiveTV) + !String.IsEmpty(PVR.TimeshiftProgressStartTime)]</visible>
             </control>
             <control type="image">
                 <visible>!Skin.HasSetting(ClockOSD)</visible>
@@ -1071,7 +1099,7 @@
                 <align>right</align>
                 <colordiffuse>$VAR[OSDPanelWhite70]</colordiffuse>
                 <texture>kaitoast/finishtime2.png</texture>
-                <visible>Player.HasVideo</visible>
+                <visible>Player.HasVideo + ![VideoPlayer.Content(LiveTV) + !String.IsEmpty(PVR.TimeshiftProgressStartTime)]</visible>
             </control>
             <control type="label">
                 <visible>!Skin.HasSetting(ClockOSD)</visible>
@@ -1081,7 +1109,7 @@
                 <font>Tiny</font>
                 <textcolor>$VAR[OSDPanelWhite70]</textcolor>
                 <label>$VAR[LabelOSDPlayerEndTime, ,  •  ]</label>
-                <visible>Player.HasVideo</visible>
+                <visible>Player.HasVideo + ![VideoPlayer.Content(LiveTV) + !String.IsEmpty(PVR.TimeshiftProgressStartTime)]</visible>
             </control>
             <control type="label" description="Chapter-OSD">
                 <left>380</left>
@@ -3010,7 +3038,7 @@
                             <font>Tiny</font>
                             <textcolor>$VAR[OSDPanelWhite70]</textcolor>
                             <label>$INFO[System.Time,, ]</label>
-                            <visible>Player.HasVideo</visible>
+                            <visible>Player.HasVideo + ![VideoPlayer.Content(LiveTV) + !String.IsEmpty(PVR.TimeshiftProgressStartTime)]</visible>
                         </control>
                         <control type="image">
                             <visible>!Skin.HasSetting(ClockOSD)</visible>
@@ -3020,7 +3048,7 @@
                             <align>right</align>
                             <colordiffuse>$VAR[OSDPanelWhite70]</colordiffuse>
                             <texture>kaitoast/finishtime2.png</texture>
-                            <visible>Player.HasVideo</visible>
+                            <visible>Player.HasVideo + ![VideoPlayer.Content(LiveTV) + !String.IsEmpty(PVR.TimeshiftProgressStartTime)]</visible>
                         </control>
                         <control type="label">
                             <visible>!Skin.HasSetting(ClockOSD)</visible>
@@ -3030,7 +3058,7 @@
                             <font>Tiny</font>
                             <textcolor>$VAR[OSDPanelWhite70]</textcolor>
                             <label>$VAR[LabelOSDPlayerEndTime, ,  •  ]</label>
-                            <visible>Player.HasVideo</visible>
+                            <visible>Player.HasVideo + ![VideoPlayer.Content(LiveTV) + !String.IsEmpty(PVR.TimeshiftProgressStartTime)]</visible>
                         </control>
                         <control type="label" description="Chapter-OSD">
                             <width>auto</width>
@@ -3290,7 +3318,7 @@
                             <font>Tiny</font>
                             <textcolor>$VAR[OSDPanelWhite70]</textcolor>
                             <label>$INFO[System.Time,, ]</label>
-                            <visible>Player.HasVideo</visible>
+                            <visible>Player.HasVideo + ![VideoPlayer.Content(LiveTV) + !String.IsEmpty(PVR.TimeshiftProgressStartTime)]</visible>
                         </control>
                         <control type="image">
                             <visible>!Skin.HasSetting(ClockOSD)</visible>
@@ -3300,7 +3328,7 @@
                             <align>right</align>
                             <colordiffuse>$VAR[OSDPanelWhite70]</colordiffuse>
                             <texture>kaitoast/finishtime2.png</texture>
-                            <visible>Player.HasVideo</visible>
+                            <visible>Player.HasVideo + ![VideoPlayer.Content(LiveTV) + !String.IsEmpty(PVR.TimeshiftProgressStartTime)]</visible>
                         </control>
                         <control type="label">
                             <visible>!Skin.HasSetting(ClockOSD)</visible>
@@ -3310,7 +3338,7 @@
                             <font>Tiny</font>
                             <textcolor>$VAR[OSDPanelWhite70]</textcolor>
                             <label>$VAR[LabelOSDPlayerEndTime, ,  •  ]</label>
-                            <visible>Player.HasVideo</visible>
+                            <visible>Player.HasVideo + ![VideoPlayer.Content(LiveTV) + !String.IsEmpty(PVR.TimeshiftProgressStartTime)]</visible>
                         </control>
                         <control type="label" description="Chapter-OSD">
                             <width>auto</width>
@@ -3592,7 +3620,7 @@
 		                            <font>Tiny</font>
 		                            <textcolor>$VAR[OSDPanelWhite70]</textcolor>
 		                            <label>$INFO[System.Time,, ]</label>
-		                            <visible>Player.HasVideo</visible>
+		                            <visible>Player.HasVideo + ![VideoPlayer.Content(LiveTV) + !String.IsEmpty(PVR.TimeshiftProgressStartTime)]</visible>
 		                        </control>
 		                        <control type="image">
 		                            <visible>!Skin.HasSetting(ClockOSD)</visible>
@@ -3602,7 +3630,7 @@
 		                            <align>right</align>
 		                            <colordiffuse>$VAR[OSDPanelWhite70]</colordiffuse>
 		                            <texture>kaitoast/finishtime2.png</texture>
-		                            <visible>Player.HasVideo</visible>
+		                            <visible>Player.HasVideo + ![VideoPlayer.Content(LiveTV) + !String.IsEmpty(PVR.TimeshiftProgressStartTime)]</visible>
 		                        </control>
 		                        <control type="label">
 		                            <visible>!Skin.HasSetting(ClockOSD)</visible>
@@ -3612,7 +3640,7 @@
 		                            <font>Tiny</font>
 		                            <textcolor>$VAR[OSDPanelWhite70]</textcolor>
 		                            <label>$VAR[LabelOSDPlayerEndTime, ,  •  ]</label>
-		                            <visible>Player.HasVideo</visible>
+		                            <visible>Player.HasVideo + ![VideoPlayer.Content(LiveTV) + !String.IsEmpty(PVR.TimeshiftProgressStartTime)]</visible>
 		                        </control>
 	                            <control type="label" description="Chapter-OSD">
 	                                <width>auto</width>
