@@ -1125,7 +1125,7 @@
                     <!-- Local Cast / Sets -->
                     <include content="DialogInfo_List_Poster">
                         <param name="fallbackpicture" value="$VAR[Image_DialogInfo_List_Poster_Fallback]"/>
-                        <param name="visi" value="String.IsEqual(Window.Property(content),1) + [Skin.HasSetting(extended.info.local.cast) | Skin.HasSetting(extended.info.local.sets)]"/>
+                        <param name="visi" value="[String.IsEqual(Window.Property(content),1) + [Skin.HasSetting(extended.info.local.cast) | Skin.HasSetting(extended.info.local.sets)]]"/>
                         <param name="controlid" value="50"/>
                         <param name="issets" value="String.IsEqual(ListItem.DBType,set)"/>
                         <param name="labeltwovisible" value="!String.IsEqual(ListItem.DBType,set)"/>
@@ -1138,7 +1138,7 @@
                     <!-- Cast -->
                     <include content="DialogInfo_List_Poster">
                         <param name="fallbackpicture" value="DefaultActor.png"/>
-                        <param name="visi" value="String.IsEqual(Window.Property(content),1) + !Skin.HasSetting(extended.info.local.cast)"/>
+                        <param name="visi" value="[String.IsEqual(Window.Property(content),1) + !Skin.HasSetting(extended.info.local.cast)]"/>
                         <param name="controlid" value="52"/>
                         <param name="onclick1" value="$VAR[Def_CastList_Item]"/>
                         <param name="onclick2" value="SetProperty(TMDbHelper.HideView,1,Home)"/>
