@@ -38,9 +38,9 @@
         	<visible>!Skin.HasSetting(musicosd.side) + !Skin.HasSetting(osd.usetheme)</visible>
             <visible>Player.HasMedia</visible>
             <height>74</height>
-            <left>560</left>
-            <right>SidePadNewOSD</right>
-            <bottom>110</bottom>
+            <left>SidePad</left>
+            <right>SidePad</right>
+            <bottom>60</bottom>
             <animation type="WindowOpen">
                 <effect type="fade" start="0" end="100" time="150" delay="150"/>
             </animation>
@@ -48,7 +48,7 @@
                 <effect type="fade" end="0" start="100" time="150"/>
             </animation>
             <animation effect="fade" start="100" end="0" time="150" condition="Window.IsVisible(DialogPlayerProcessInfo.xml)">Conditional</animation>
-            <animation effect="slide" start="0,0" end="-215,0" time="150" condition="Skin.HasSetting(musicosd.disableposter)">Conditional</animation>
+            <animation effect="slide" start="0,0" end="220,0" time="150" condition="!Skin.HasSetting(musicosd.disableposter)">Conditional</animation>
             <animation effect="slide" start="0,0" end="-60,0" time="150" condition="!Skin.HasSetting(musicosd.disableposter) + [Skin.HasSetting(musicosd.hidedisc) | MusicPlayer.Content(LiveTV)]">Conditional</animation>
 
             <control type="grouplist" id="101">
