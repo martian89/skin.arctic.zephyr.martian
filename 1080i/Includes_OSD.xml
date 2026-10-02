@@ -3544,24 +3544,46 @@
 	                    <visible>Skin.HasSetting(ShowClearArtOSD)</visible>
 	                    <include>Animation.FadeOut</include>                    
 	                </control>
-                    <control type="image">
-                        <top>111r</top>
-                        <width>100%</width>
-                        <height>1</height>
-                        <texture colordiffuse="BoxHomerow">common/sch2.png</texture>
-                        <visible>Skin.HasSetting(global.showborders)</visible>
+	                <control type="group">
+	                    <visible>Skin.HasSetting(osd.usetheme)</visible> 
+	                    <control type="image">
+	                        <top>111r</top>
+	                        <width>100%</width>
+	                        <height>1</height>
+	                        <texture colordiffuse="BoxHomerow">common/sch2.png</texture>
+	                        <visible>Skin.HasSetting(global.showborders)</visible>
+	                    </control>
+	                    <control type="image">
+	                        <top>110r</top>
+	                        <width>100%</width>
+	                        <height>374</height>
+	                        <texture>common/white.png</texture>
+	                        <colordiffuse>$VAR[OSDPanel]</colordiffuse>
+	                        <animation effect="fade" start="100" end="90" condition="true">Conditional</animation>
+	                    </control>
                     </control>
-                    <control type="image">
-                        <top>110r</top>
-                        <width>100%</width>
-                        <height>374</height>
-                        <texture>common/white.png</texture>
-                        <colordiffuse>$VAR[OSDPanel]</colordiffuse>
-                        <animation effect="fade" start="100" end="90" condition="true">Conditional</animation>
+                    <control type="group"> 
+                        <visible>!Skin.HasSetting(osd.usetheme)</visible> 
+                        <animation effect="fade" start="100" end="0" time="150" condition="Window.IsVisible(DialogPlayerProcessInfo.xml)">Conditional</animation>
+                        <animation effect="fade" start="0" end="100" time="250">WindowOpen</animation>
+                        <animation effect="fade" end="0" start="100" time="250">WindowClose</animation>  
+                        <control type="image">
+                            <top>830r</top>
+                            <width>100%</width>
+                            <height>870</height>
+                            <texture>common/fsinfoscreen.png</texture>
+                        </control>
+                        <control type="image">
+                            <top>830r</top>
+                            <width>100%</width>
+                            <height>870</height>
+                            <texture>common/fsinfoscreen.png</texture>
+                            <animation effect="fade" start="80" end="80" time="0" condition="true">Conditional</animation>
+                        </control>
                     </control>
 	                <control type="group">
-	                    <left>30</left>
-	                    <right>30</right>
+	                    <left>SidePad</left>
+	                    <right>SidePad</right>
 	                    <top>110r</top>
 	                    <bottom>0</bottom>
 	                    <control type="group">
@@ -3660,14 +3682,15 @@
                         <effect type="fade" start="70" end="100" time="200"/>
                         <effect type="slide" end="0,0" start="0,110" time="200"/>
                     </animation>                
-                    <left>30</left>
+                    <left>SidePad</left>
+                    <right>SidePad</right>
                     <top>110r</top>
                     <bottom>0</bottom>
                     <control type="group">
-                        <animation effect="zoom" end="0,20,640,70" time="0" condition="[Window.IsVisible(fullscreeninfo) | !String.IsEmpty(Window(home).Property(osdinfo)) | Player.ShowInfo | $EXP[ShowInfoOnPause]]">Conditional</animation>
+                        <animation effect="zoom" end="-50,20,640,70" time="0" condition="[Window.IsVisible(fullscreeninfo) | !String.IsEmpty(Window(home).Property(osdinfo)) | Player.ShowInfo | $EXP[ShowInfoOnPause]]">Conditional</animation>
                         <top>20</top>
                         <bottom>20</bottom>
-                        <width>1860</width>
+                        <width>100%</width>
 	                     <include content="ProgressBar">
 	                        <param name="wide_markers" value="[Window.IsVisible(fullscreeninfo) | !String.IsEmpty(Window(home).Property(osdinfo)) | Player.ShowInfo | $EXP[ShowInfoOnPause]]" />
 	                    </include>
