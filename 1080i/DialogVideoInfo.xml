@@ -762,7 +762,7 @@
                                     <label>[B]$LOCALIZE[31952][/B]</label>
                                     <aligny>center</aligny>
                                     <align>left</align>
-                                    <visible>!String.IsEqual(ListItem.DBType,musicvideo) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Creator))</visible>
+                                    <visible>[String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Creator))</visible>
                                 </control>
                                 <control type="label">
                                     <font>Tiny</font>
@@ -855,7 +855,7 @@
                                     <textcolor>Dark2</textcolor>
                                     <label fallback="19055">$INFO[Window(Home).Property(TMDbHelper.ListItem.Creator)]</label>
                                     <aligny>center</aligny>
-                                    <visible>!String.IsEqual(ListItem.DBType,musicvideo) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Creator))</visible>
+                                    <visible>[String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Creator))</visible>
                                 </control>
                                 <control type="label">
                                     <font>Tiny</font>
@@ -1125,7 +1125,7 @@
                     <!-- Local Cast / Sets -->
                     <include content="DialogInfo_List_Poster">
                         <param name="fallbackpicture" value="$VAR[Image_DialogInfo_List_Poster_Fallback]"/>
-                        <param name="visi" value="String.IsEqual(Window.Property(content),1) + [Skin.HasSetting(extended.info.local.cast) | Skin.HasSetting(extended.info.local.sets)]"/>
+                        <param name="visi" value="[String.IsEqual(Window.Property(content),1) + [Skin.HasSetting(extended.info.local.cast) | Skin.HasSetting(extended.info.local.sets)]]"/>
                         <param name="controlid" value="50"/>
                         <param name="issets" value="String.IsEqual(ListItem.DBType,set)"/>
                         <param name="labeltwovisible" value="!String.IsEqual(ListItem.DBType,set)"/>
@@ -1138,7 +1138,7 @@
                     <!-- Cast -->
                     <include content="DialogInfo_List_Poster">
                         <param name="fallbackpicture" value="DefaultActor.png"/>
-                        <param name="visi" value="String.IsEqual(Window.Property(content),1) + !Skin.HasSetting(extended.info.local.cast)"/>
+                        <param name="visi" value="[String.IsEqual(Window.Property(content),1) + !Skin.HasSetting(extended.info.local.cast)]"/>
                         <param name="controlid" value="52"/>
                         <param name="onclick1" value="$VAR[Def_CastList_Item]"/>
                         <param name="onclick2" value="SetProperty(TMDbHelper.HideView,1,Home)"/>

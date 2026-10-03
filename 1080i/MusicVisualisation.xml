@@ -15,6 +15,8 @@
             <animation effect="fade" start="0" end="100" time="450" delay="0" tween="sine" easing="in">WindowOpen</animation>            
             <control type="multiimage">
                 <aspectratio>scale</aspectratio>
+                <timeperimage>HomeTimePerImage</timeperimage>
+                <randomize>true</randomize>
                 <include>Dimensions_Fullscreen</include>
                 <include>BackgroundFanartFadetime</include>
                 <imagepath background="true">$VAR[Image_Visualisation_Background]</imagepath>
@@ -125,7 +127,7 @@
                 <animation effect="fade" start="0" end="100" time="200">Visible</animation>
                 <control type="image">
                     <visible>Skin.HasSetting(ShowClearArtMusicOSD)</visible>
-                    <animation effect="slide" start="0,0" end="0,-303" time="150" condition="[Player.ShowInfo | Skin.HasSetting(musicosd.alwaysshowinfo) | Window.IsVisible(script-cu-lrclyrics-main.xml) | $EXP[ShowInfoWithOSD]] + Skin.HasSetting(osd.artistinfos) + !Window.IsVisible(script-cu-lrclyrics-main.xml) + !MusicPlayer.Content(LiveTV)">Conditional</animation>
+                    <animation effect="slide" start="0,0" end="0,-314" time="150" condition="[Player.ShowInfo | Skin.HasSetting(musicosd.alwaysshowinfo) | Window.IsVisible(script-cu-lrclyrics-main.xml) | $EXP[ShowInfoWithOSD]] + Skin.HasSetting(osd.artistinfos) + !Window.IsVisible(script-cu-lrclyrics-main.xml) + !MusicPlayer.Content(LiveTV)">Conditional</animation>
                     <right>SidePad</right>
                     <bottom>110</bottom>
                     <width>400</width>
@@ -373,8 +375,8 @@
 	                <animation effect="fade" end="0" start="100" time="200">Hidden</animation>
 	                <animation effect="fade" end="0" start="100" time="200">WindowClose</animation>
                     <animation effect="slide" start="0,0" end="0,-80" time="0" condition="Skin.HasSetting(osd.artistinfos) + !MusicPlayer.Content(LiveTV)">Conditional</animation>
-                    <right>SidePadNewOSD</right>
-                    <bottom>220</bottom>
+                    <right>SidePad</right>
+                    <bottom>170</bottom>
                     <width>400</width>
                     <fadetime>ClearArtFadetime</fadetime>
                     <texture>$VAR[PlayerClearart]</texture>
@@ -387,16 +389,16 @@
 	                <animation effect="fade" start="0" end="100" time="250">WindowOpen</animation>
 	                <animation effect="fade" end="0" start="100" time="200">Hidden</animation>
 	                <animation effect="fade" end="0" start="100" time="200">WindowClose</animation>
-                    <right>SidePadNewOSD</right>
-                    <bottom>160</bottom>
+                    <right>SidePad</right>
+                    <bottom>110</bottom>
                     <width>400</width>
                     <fadetime>ClearArtFadetime</fadetime>
                     <texture>$VAR[PlayerClearart]</texture>
                     <aspectratio align="right" aligny="bottom">keep</aspectratio>
                 </control>
                 <control type="grouplist">
-                    <right>SidePadNewOSD</right>
-                    <bottom>88</bottom>
+                    <right>SidePad</right>
+                    <bottom>38</bottom>
                     <width>100%</width>
                     <height>64</height>
                     <align>right</align>
@@ -474,17 +476,17 @@
 	                </control>
                 </control>
                 <control type="group">
-                    <top>110r</top>
-                    <bottom>0</bottom>
+                    <top>60r</top>
+                    <height>110</height>
 			        <control type="group">
 			            <include content="def_left" condition="!Skin.HasSetting(musicosd.disableposter) + ![Skin.HasSetting(musicosd.hidedisc) | MusicPlayer.Content(LiveTV)]">
-			                <param name="left" value="560" />
+			                <param name="left" value="520" />
 			            </include>
                         <include content="def_left" condition="!Skin.HasSetting(musicosd.disableposter) + [Skin.HasSetting(musicosd.hidedisc) | MusicPlayer.Content(LiveTV)]">
-                            <param name="left" value="440" />
+                            <param name="left" value="400" />
                         </include>
-			            <left>SidePadNewOSD</left>
-			            <right>SidePadNewOSD</right>
+			            <left>SidePad</left>
+			            <right>SidePad</right>
 			            <top>20</top>
 			            <animation effect="slide" start="0,0" end="0,-50" time="150" condition="true">Conditional</animation>
 			            <bottom>20</bottom>
@@ -589,17 +591,16 @@
             <visible>!Skin.HasSetting(musicosd.disableposter) | Skin.HasSetting(osd.usetheme)</visible>
             <visible>$EXP[MusicSeekbarIsVisible]</visible>
             <animation effect="slide" start="0" end="0,-74" time="150" condition="Window.IsVisible(musicosd) + !Skin.HasSetting(musicosd.side) + Skin.HasSetting(osd.usetheme)">Conditional</animation>
-            <animation effect="slide" start="0" end="0,-44" time="150" condition="Window.IsVisible(musicosd) + !Skin.HasSetting(musicosd.side) + !Skin.HasSetting(osd.usetheme)">Conditional</animation>
             <animation effect="slide" start="0" end="0,-60" time="150" condition="[Player.ShowInfo | Skin.HasSetting(musicosd.alwaysshowinfo) | Window.IsVisible(script-cu-lrclyrics-main.xml) | $EXP[ShowInfoWithOSD]] + Skin.HasSetting(osd.usetheme)">Conditional</animation>
-            <animation effect="slide" start="0,0" end="-50,-75" time="0" condition="Skin.HasSetting(osd.usetheme)">Conditional</animation>
+            <animation effect="slide" start="0,0" end="0,-85" time="0" condition="Skin.HasSetting(osd.usetheme)">Conditional</animation>
             <animation type="Hidden">
                 <effect type="slide" start="0,0" end="-520,0" tween="sine" easing="out" time="300" delay="0"/>
             </animation>
             <animation type="Visible">
                 <effect type="slide" start="-520,0" end="0,0" tween="sine" easing="out" time="300" delay="0"/>
             </animation>
-            <top>105</top>
-            <left>50</left>            
+            <top>115</top>
+            <left>0</left>            
             <control type="group">
                 <visible>![Skin.HasSetting(musicosd.hidedisc) | MusicPlayer.Content(LiveTV)]</visible>
                 <animation type="WindowClose" reversible="false">
@@ -631,25 +632,25 @@
                     <effect type="slide" start="-495,0" end="0,0" tween="sine" easing="out" time="400" delay="0"/>
                 </animation>
                 <control type="image">
-                    <top>637</top>
+                    <top>627</top>
                     <left>SidePad</left>
-                    <height>260</height>
-                    <width>260</width>
+                    <height>270</height>
+                    <width>270</width>
                     <texture colordiffuse="Fallback" diffuse="diffuse/wall.png">common/white.png</texture>
                 </control>
                 <control type="image">
-                    <top>637</top>
+                    <top>627</top>
                     <left>SidePad</left>
-                    <height>260</height>
-                    <width>260</width>
+                    <height>270</height>
+                    <width>270</width>
                     <aspectratio scalediffuse="false">keep</aspectratio>
                     <texture diffuse="diffuse/widgetsquare_new.png" fallback="DefaultAlbumCover.png">$INFO[Player.Art(thumb)]</texture>
                 </control>
                 <control type="image">
-                    <top>636</top>
+                    <top>626</top>
                     <left>79</left>
-                    <height>262</height>
-                    <width>262</width>
+                    <height>272</height>
+                    <width>272</width>
                     <texture colordiffuse="$VAR[MusicOSDBox]" border="4" infill="false">common/box21.png</texture>
 	                <visible>Skin.HasSetting(global.showborders)</visible>            
                 </control>
@@ -684,12 +685,12 @@
             <animation effect="slide" start="0" end="0,-60" time="0" condition="true">Conditional</animation>
             <animation effect="slide" start="0" end="0,-74" time="150" condition="Window.IsVisible(musicosd) + !Skin.HasSetting(musicosd.side)">Conditional</animation>
             <control type="group">            
-                <left>539</left>
-                <top>666</top>
+                <left>549</left>
+                <top>656</top>
                 <control type="image">
                     <top>-8</top>
-                    <height>276</height>
-                    <width>1316</width>
+                    <height>286</height>
+                    <width>1306</width>
                     <left>-8</left>
 	              	<texture border="16" colordiffuse="$VAR[OSDPanel]">common/rounded-shadow8.png</texture>
                     <animation effect="fade" start="100" end="80" condition="true">Conditional</animation>
@@ -697,14 +698,14 @@
                 <control type="image">
                 	<top>-1</top>
                 	<left>-1</left>
-                    <height>262</height>
-                    <width>1302</width>
+                    <height>272</height>
+                    <width>1292</width>
                     <texture colordiffuse="BoxWidget" border="4" infill="false">common/box21.png</texture>
 	                <visible>Skin.HasSetting(global.showborders)</visible>            
                 </control>
                 <control type="label">
                     <left>35</left>
-                    <top>30</top>
+                    <top>23</top>
                     <height>40</height>
                     <font>MediumBold</font>
                     <textcolor>$VAR[OSDPanelWhite70]</textcolor>
@@ -712,8 +713,8 @@
                 </control>
                 <control type="textbox">
                     <left>35</left>
-                    <top>85</top>
-                    <height>138</height>
+                    <top>75</top>
+                    <height>170</height>
                     <right>120</right>
                     <font>Tiny</font>
                     <textcolor>$VAR[OSDPanelWhite70]</textcolor>
@@ -748,12 +749,12 @@
             <animation effect="slide" start="0" end="0,-60" time="0" condition="true">Conditional</animation>
             <animation effect="slide" start="0" end="0,-74" time="150" condition="Window.IsVisible(musicosd) + !Skin.HasSetting(musicosd.side)">Conditional</animation>
             <control type="group">            
-                <left>422</left>
-                <top>666</top>
+                <left>432</left>
+                <top>656</top>
                 <control type="image">
                     <top>-8</top>
-                    <height>276</height>
-                    <width>1432</width>
+                    <height>286</height>
+                    <width>1422</width>
                     <left>-8</left>
                     <texture border="16" colordiffuse="$VAR[OSDPanel]">common/rounded-shadow8.png</texture>
                     <animation effect="fade" start="100" end="80" condition="true">Conditional</animation>
@@ -761,14 +762,14 @@
                 <control type="image">
                     <top>-1</top>
                     <left>-1</left>
-                    <height>262</height>
-                    <width>1418</width>
+                    <height>272</height>
+                    <width>1408</width>
                     <texture colordiffuse="BoxWidget" border="4" infill="false">common/box21.png</texture>
                     <visible>Skin.HasSetting(global.showborders)</visible>            
                 </control>
                 <control type="label">
                     <left>35</left>
-                    <top>30</top>
+                    <top>23</top>
                     <height>40</height>
                     <font>MediumBold</font>
                     <textcolor>$VAR[OSDPanelWhite70]</textcolor>
@@ -776,8 +777,8 @@
                 </control>
                 <control type="textbox">
                     <left>35</left>
-                    <top>85</top>
-                    <height>138</height>
+                    <top>75</top>
+                    <height>170</height>
                     <right>120</right>
                     <font>Tiny</font>
                     <textcolor>$VAR[OSDPanelWhite70]</textcolor>
