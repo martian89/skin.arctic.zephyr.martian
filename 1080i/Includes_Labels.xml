@@ -422,9 +422,13 @@
         <value condition="!String.IsEmpty(VideoPlayer.Genre)">$INFO[VideoPlayer.Genre]</value>
         <value>$LOCALIZE[19055]</value>
     </variable>
-    
+
+    <variable name="PlayerDiscNumber">
+        <value condition="Integer.IsGreater(MusicPlayer.TotalDiscs,1) + !String.IsEmpty(MusicPlayer.DiscNumber)">$INFO[MusicPlayer.DiscNumber] / $INFO[MusicPlayer.TotalDiscs]</value>
+    </variable>
+        
     <variable name="PlayerTrackInfo">
-        <value condition="!String.IsEmpty(MusicPlayer.Artist)">$INFO[MusicPlayer.Artist]$INFO[MusicPlayer.Album,  •  ,]$INFO[MusicPlayer.Year,  •  ,]$INFO[MusicPlayer.TrackNumber,  •  $LOCALIZE[554] ,]</value>
+        <value condition="!String.IsEmpty(MusicPlayer.Artist)">$INFO[MusicPlayer.Artist]$INFO[MusicPlayer.Album,  •  ,]$INFO[MusicPlayer.Year,  •  ,]$VAR[PlayerDiscNumber,  •  $LOCALIZE[427] ,]$INFO[MusicPlayer.TrackNumber,  •  $LOCALIZE[554] ,]</value>
         <value condition="MusicPlayer.Content(LiveTV)">$INFO[MusicPlayer.ChannelNumberLabel,,. ]$INFO[MusicPlayer.ChannelName]</value>
         <value>$LOCALIZE[19055]</value>
     </variable>

@@ -300,12 +300,6 @@
             <action>UpdateLibrary(video)</action>
             <icon>special://skin/extras/icons/update.png</icon>
         </item>
-        <item name="clean-library">
-            <label>14247</label>
-            <label2>Movie Hub item</label2>
-            <action>CleanLibrary(video)</action>
-            <icon>special://skin/extras/icons/wand.png</icon>
-        </item>
     </menu>
 
     <menu name="x1112" build="auto" action="ActivateWindow(1112)">
@@ -389,12 +383,6 @@
             <action>UpdateLibrary(video)</action>
             <icon>special://skin/extras/icons/update.png</icon>
         </item>
-        <item name="clean-library">
-            <label>14247</label>
-            <label2>Episode Hub item</label2>
-            <action>CleanLibrary(video)</action>
-            <icon>special://skin/extras/icons/wand.png</icon>
-        </item>
     </menu>
 
     <menu name="x1113" build="auto" action="ActivateWindow(1113)">
@@ -450,12 +438,6 @@
 			<label2>14236</label2>
 			<icon>special://skin/extras/icons/update.png</icon>
 			<action>UpdateLibrary(video)</action>
-		</item>
-		<item name="clean-library">
-			<label>14247</label>
-			<label2>14236</label2>
-			<icon>special://skin/extras/icons/wand.png</icon>
-			<action>CleanLibrary(video)</action>
 		</item>
 	</submenu>
 
@@ -581,17 +563,29 @@
 
 	<submenu name="music" standalone="false">
 		<item name="recently-added">
-			<label>359</label>
+			<label>20382</label>
 			<label2>$ADDON[script.skinshortcuts 32019]</label2>
 			<icon>special://skin/extras/icons/recentlyadded.png</icon>
 			<action>ActivateWindow(Music,musicdb://recentlyaddedalbums/,return)</action>
 		</item>
-		<item name="recently-played">
-			<label>517</label>
+		<item name="artists">
+			<label>133</label>
 			<label2>$ADDON[script.skinshortcuts 32019]</label2>
-			<icon>special://skin/extras/icons/recent.png</icon>
-			<action>ActivateWindow(Music,musicdb://recentlyplayedalbums/,return)</action>
+			<icon>special://skin/extras/icons/artist.png</icon>
+			<action>ActivateWindow(MusicLibrary,musicdb://artists/,return)</action>
 		</item>
+        <item name="albums">
+            <label>132</label>
+            <label2>$ADDON[script.skinshortcuts 32019]</label2>
+            <icon>special://skin/extras/icons/songs.png</icon>
+            <action>ActivateWindow(MusicLibrary,musicdb://albums/,return)</action>
+        </item>
+        <item name="songs">
+            <label>134</label>
+            <label2>$ADDON[script.skinshortcuts 32019]</label2>
+            <icon>special://skin/extras/icons/song.png</icon>
+            <action>ActivateWindow(MusicLibrary,musicdb://songs/,return)</action>
+        </item>
 		<item name="files">
 			<label>744</label>
 			<label2>$ADDON[script.skinshortcuts 32019]</label2>
@@ -615,12 +609,6 @@
 			<label2>14237</label2>
 			<icon>special://skin/extras/icons/update.png</icon>
 			<action>UpdateLibrary(music)</action>
-		</item>
-		<item name="clean-library">
-			<label>14247</label>
-			<label2>14237</label2>
-			<icon>special://skin/extras/icons/wand.png</icon>
-			<action>CleanLibrary(music)</action>
 		</item>
 	</submenu>
 
@@ -943,7 +931,7 @@
         </group>
 
         <!-- Video Library -->
-        <group name="video-library" label="3" icon="special://skin/extras/icons/videoplay.png">
+        <group name="video-library" label="3">
             <content source="nodes" target="videos" />
             <shortcut name="search-video" label="137" icon="special://skin/extras/icons/search.png" visible="System.AddonIsEnabled(script.globalsearch)">
                 <action>RunScript(script.globalsearch,tvshows=true&amp;episodes=true&amp;movies=true&amp;actors=true&amp;directors=true)</action>
@@ -958,7 +946,7 @@
         </group>
 
         <!-- Music Library -->
-        <group name="music-library" label="2" icon="special://skin/extras/icons/songs.png">
+        <group name="music-library" label="2">
             <content source="nodes" target="music" />
             <shortcut name="search-music" label="137" icon="special://skin/extras/icons/search.png" visible="System.AddonIsEnabled(script.globalsearch)">
                 <action>RunScript(script.globalsearch,artists=true&amp;albums=true&amp;songs=true&amp;musicvideos=true)</action>
@@ -973,7 +961,7 @@
         </group>
  
          <!-- Live TV  -->
-        <group name="livetv" label="31103" icon="special://skin/extras/icons/livetv.png" visible="PVR.HasTVChannels">
+        <group name="livetv" label="31103" visible="PVR.HasTVChannels">
             <shortcut name="tv-channels" label="14301" icon="special://skin/extras/icons/livetv.png">
                 <action>ActivateWindow(TVChannels)</action>
             </shortcut>
@@ -1002,7 +990,7 @@
         </group>       
 
         <!-- Radio -->
-        <group name="radio" label="19021" icon="special://skin/extras/icons/radio.png" visible="PVR.HasRadioChannels">
+        <group name="radio" label="19021" visible="PVR.HasRadioChannels">
             <shortcut name="radio-channels" label="14301" icon="special://skin/extras/icons/radio.png">
                 <action>ActivateWindow(RadioChannels)</action>
             </shortcut>
@@ -1031,7 +1019,7 @@
         </group>
 
         <!-- Add-ons -->
-        <group name="addons" label="24001" icon="special://skin/extras/icons/addons.png">
+        <group name="addons" label="24001">
            	<content source="addons" target="videos" folder="1037" icon="special://skin/extras/icons/video-addons.png"/>
             <content source="addons" target="music" folder="1038" icon="special://skin/extras/icons/songs.png" />
             <content source="addons" target="pictures" folder="1039" icon="special://skin/extras/icons/pictures.png" />
@@ -1045,14 +1033,14 @@
         </group>
 		       
 		<!-- Playlists -->
-		<group name="playlists" label="136" icon="special://skin/extras/icons/playlist.png">
+		<group name="playlists" label="136">
             <content source="playlists" target="videos" folder="20012" icon="special://skin/extras/icons/playlist.png" />
             <content source="playlists" target="music" folder="20011" icon="special://skin/extras/icons/playlist.png" />
             <content source="playlists" folder="31514" path="special://skin/extras/playlists/" icon="special://skin/extras/icons/playlist.png"/>
 		</group> 
 
 		<!-- Sources -->
-		<group name="sources" label="39031" icon="special://skin/extras/icons/files.png">
+		<group name="sources" label="39031">
 			<content source="sources" target="videos" folder="31127" icon="special://skin/extras/icons/files.png" />
             <content source="sources" target="music" folder="31128" icon="special://skin/extras/icons/files.png" />
             <content source="sources" target="pictures"  folder="31129" icon="special://skin/extras/icons/files.png" />
@@ -1060,12 +1048,12 @@
 		</group> 
 		
         <!-- Favourites -->
-        <group name="favourites" label="1036" icon="special://skin/extras/icons/favourites2.png">
+        <group name="favourites" label="1036">
             <content source="favourites" />
         </group>
 
         <!-- Settings -->
-        <group name="settings-grp" label="10004" icon="special://skin/extras/icons/configure.png">
+        <group name="settings-grp" label="10004">
             <content source="settings" />
             <shortcut name="libreelec-settings" label="LibreELEC" type="10001" icon="special://skin/extras/icons/libreelec.png" visible="System.HasAddon(service.libreelec.settings)">
                 <action>RunAddon(service.libreelec.settings)</action>
@@ -1076,7 +1064,7 @@
         </group>                
 
        <!-- Kodi Commands -->
-        <group name="commands-grp" label="$ADDON[script.skinshortcuts 32054]" icon="special://skin/extras/icons/files.png">
+        <group name="commands-grp" label="$ADDON[script.skinshortcuts 32054]">
             <content source="commands" />
             <shortcut name="reboot to android" label="31232" icon="special://skin/extras/icons/android.png" visible="System.AddonIsEnabled(service.coreelec.settings)">
                 <action>System.ExecWait("/usr/sbin/rebootfromnand")</action>
