@@ -20,6 +20,96 @@
         <onclick condition="VideoPlayer.Content(episodes)">RunScript(plugin.video.themoviedb.helper,add_path=plugin://plugin.video.themoviedb.helper/?info=details&amp;tmdb_type=tv$INFO[Window(Home).Property(TMDbHelper.Player.TVShow.TMDb_ID),&amp;tmdb_id=,]$INFO[VideoPlayer.TVShowTitle,&amp;query=,]$INFO[VideoPlayer.Season,&amp;season=,]$INFO[VideoPlayer.Episode,&amp;episode=,]$INFO[VideoPlayer.Year,&amp;episode_year=,],call_auto=1190,return)</onclick>
     </include>
 
+    <variable name="FlagstarVideo1">
+        <value condition="Integer.IsGreater(VideoPlayer.UserRating,1) + Skin.HasSetting(userrating.override.rating)">star10</value>
+        <value condition="Integer.IsGreater(VideoPlayer.UserRating,0) + Skin.HasSetting(userrating.override.rating)">star5</value>
+        <value condition="Integer.IsGreater(VideoPlayer.Rating,1) + [String.IsEmpty(VideoPlayer.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star10</value>
+        <value condition="Integer.IsGreater(VideoPlayer.Rating,0) + [String.IsEmpty(VideoPlayer.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star5</value>
+        <value condition="Integer.IsGreater(Window(home).Property(TMDBHelper.Player.Rating),1) + String.IsEmpty(VideoPlayer.Rating) + [String.IsEmpty(VideoPlayer.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star10</value>
+        <value condition="Integer.IsGreater(Window(home).Property(TMDBHelper.Player.Rating),0) + String.IsEmpty(VideoPlayer.Rating) + [String.IsEmpty(VideoPlayer.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star5</value>
+        <value>star0</value>
+    </variable>
+
+    <variable name="FlagstarVideo2">
+        <value condition="Integer.IsGreater(VideoPlayer.UserRating,3) + Skin.HasSetting(userrating.override.rating)">star10</value>
+        <value condition="Integer.IsGreater(VideoPlayer.UserRating,2) + Skin.HasSetting(userrating.override.rating)">star5</value>
+        <value condition="Integer.IsGreater(VideoPlayer.Rating,3) + [String.IsEmpty(VideoPlayer.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star10</value>
+        <value condition="Integer.IsGreater(VideoPlayer.Rating,2) + [String.IsEmpty(VideoPlayer.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star5</value>
+        <value condition="Integer.IsGreater(Window(home).Property(TMDBHelper.Player.Rating),3) + String.IsEmpty(VideoPlayer.Rating) + [String.IsEmpty(VideoPlayer.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star10</value>
+        <value condition="Integer.IsGreater(Window(home).Property(TMDBHelper.Player.Rating),2) + String.IsEmpty(VideoPlayer.Rating) + [String.IsEmpty(VideoPlayer.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star5</value>
+        <value>star0</value>
+    </variable>
+
+    <variable name="FlagstarVideo3">
+        <value condition="Integer.IsGreater(VideoPlayer.UserRating,5) + Skin.HasSetting(userrating.override.rating)">star10</value>
+        <value condition="Integer.IsGreater(VideoPlayer.UserRating,4) + Skin.HasSetting(userrating.override.rating)">star5</value>
+        <value condition="Integer.IsGreater(VideoPlayer.Rating,5) + [String.IsEmpty(VideoPlayer.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star10</value>
+        <value condition="Integer.IsGreater(VideoPlayer.Rating,4) + [String.IsEmpty(VideoPlayer.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star5</value>
+        <value condition="Integer.IsGreater(Window(home).Property(TMDBHelper.Player.Rating),5) + String.IsEmpty(VideoPlayer.Rating) + [String.IsEmpty(VideoPlayer.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star10</value>
+        <value condition="Integer.IsGreater(Window(home).Property(TMDBHelper.Player.Rating),4) + String.IsEmpty(VideoPlayer.Rating) + [String.IsEmpty(VideoPlayer.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star5</value>
+        <value>star0</value>
+    </variable>
+
+    <variable name="FlagstarVideo4">
+        <value condition="Integer.IsGreater(VideoPlayer.UserRating,7) + Skin.HasSetting(userrating.override.rating)">star10</value>
+        <value condition="Integer.IsGreater(VideoPlayer.UserRating,6) + Skin.HasSetting(userrating.override.rating)">star5</value>
+        <value condition="Integer.IsGreater(VideoPlayer.Rating,7) + [String.IsEmpty(VideoPlayer.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star10</value>
+        <value condition="Integer.IsGreater(VideoPlayer.Rating,6) + [String.IsEmpty(VideoPlayer.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star5</value>
+        <value condition="Integer.IsGreater(Window(home).Property(TMDBHelper.Player.Rating),7) + String.IsEmpty(VideoPlayer.Rating) + [String.IsEmpty(VideoPlayer.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star10</value>
+        <value condition="Integer.IsGreater(Window(home).Property(TMDBHelper.Player.Rating),6) + String.IsEmpty(VideoPlayer.Rating) + [String.IsEmpty(VideoPlayer.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star5</value>
+        <value>star0</value>
+    </variable>
+
+    <variable name="FlagstarVideo5">
+        <value condition="Integer.IsGreater(VideoPlayer.UserRating,9) + Skin.HasSetting(userrating.override.rating)">star10</value>
+        <value condition="Integer.IsGreater(VideoPlayer.UserRating,8) + Skin.HasSetting(userrating.override.rating)">star5</value>
+        <value condition="Integer.IsGreater(VideoPlayer.Rating,9) + [String.IsEmpty(VideoPlayer.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star10</value>
+        <value condition="Integer.IsGreater(VideoPlayer.Rating,8) + [String.IsEmpty(VideoPlayer.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star5</value>
+        <value condition="Integer.IsGreater(Window(home).Property(TMDBHelper.Player.Rating),9) + String.IsEmpty(VideoPlayer.Rating) + [String.IsEmpty(VideoPlayer.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star10</value>
+        <value condition="Integer.IsGreater(Window(home).Property(TMDBHelper.Player.Rating),8) + String.IsEmpty(VideoPlayer.Rating) + [String.IsEmpty(VideoPlayer.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star5</value>
+        <value>star0</value>
+    </variable>
+
+    <variable name="FlagstarMusic1">
+        <value condition="Integer.IsGreater(MusicPlayer.UserRating,1) + Skin.HasSetting(userrating.override.rating)">star10</value>
+        <value condition="Integer.IsGreater(MusicPlayer.UserRating,0) + Skin.HasSetting(userrating.override.rating)">star5</value>
+        <value condition="Integer.IsGreater(MusicPlayer.Rating,1) + [String.IsEmpty(MusicPlayer.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star10</value>
+        <value condition="Integer.IsGreater(MusicPlayer.Rating,0) + [String.IsEmpty(MusicPlayer.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star5</value>
+        <value>star0</value>
+    </variable>
+
+    <variable name="FlagstarMusic2">
+        <value condition="Integer.IsGreater(MusicPlayer.UserRating,3) + Skin.HasSetting(userrating.override.rating)">star10</value>
+        <value condition="Integer.IsGreater(MusicPlayer.UserRating,2) + Skin.HasSetting(userrating.override.rating)">star5</value>
+        <value condition="Integer.IsGreater(MusicPlayer.Rating,3) + [String.IsEmpty(MusicPlayer.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star10</value>
+        <value condition="Integer.IsGreater(MusicPlayer.Rating,2) + [String.IsEmpty(MusicPlayer.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star5</value>
+        <value>star0</value>
+    </variable>
+
+    <variable name="FlagstarMusic3">
+        <value condition="Integer.IsGreater(MusicPlayer.UserRating,5) + Skin.HasSetting(userrating.override.rating)">star10</value>
+        <value condition="Integer.IsGreater(MusicPlayer.UserRating,4) + Skin.HasSetting(userrating.override.rating)">star5</value>
+        <value condition="Integer.IsGreater(MusicPlayer.Rating,5) + [String.IsEmpty(MusicPlayer.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star10</value>
+        <value condition="Integer.IsGreater(MusicPlayer.Rating,4) + [String.IsEmpty(MusicPlayer.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star5</value>
+        <value>star0</value>
+    </variable>
+
+    <variable name="FlagstarMusic4">
+        <value condition="Integer.IsGreater(MusicPlayer.UserRating,7) + Skin.HasSetting(userrating.override.rating)">star10</value>
+        <value condition="Integer.IsGreater(MusicPlayer.UserRating,6) + Skin.HasSetting(userrating.override.rating)">star5</value>
+        <value condition="Integer.IsGreater(MusicPlayer.Rating,7) + [String.IsEmpty(MusicPlayer.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star10</value>
+        <value condition="Integer.IsGreater(MusicPlayer.Rating,6) + [String.IsEmpty(MusicPlayer.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star5</value>
+        <value>star0</value>
+    </variable>
+
+    <variable name="FlagstarMusic5">
+        <value condition="Integer.IsGreater(MusicPlayer.UserRating,9) + Skin.HasSetting(userrating.override.rating)">star10</value>
+        <value condition="Integer.IsGreater(MusicPlayer.UserRating,8) + Skin.HasSetting(userrating.override.rating)">star5</value>
+        <value condition="Integer.IsGreater(MusicPlayer.Rating,9) + [String.IsEmpty(MusicPlayer.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star10</value>
+        <value condition="Integer.IsGreater(MusicPlayer.Rating,8) + [String.IsEmpty(MusicPlayer.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star5</value>
+        <value>star0</value>
+    </variable>
+
     <variable name="OSDRatingFlagsColor">
         <value condition="![Skin.HasSetting(furniture.flagicons) + Skin.HasSetting(furniture.coloredicons)]">$VAR[OSDPanelWhite70]</value>
         <value>$VAR[ColorHighlight]</value>
@@ -29,57 +119,31 @@
         <param name="visible" default="true"/>
         <definition>
             <include content="Def_Flag">
-                <param name="Star" value="FlagstarVideo1" />
+                <param name="color" value="$VAR[OSDRatingFlagsColor]" />
+                <param name="visible" value="!$PARAM[visible]" />
+            </include>
+            <include content="Def_Flag">
+                <param name="Star" value="$PARAM[Star]1" />
+                <param name="color" value="$VAR[OSDRatingFlagsColor]" />
+                <param name="visible" value="$PARAM[visible]" />
+            </include>
+            <include content="Def_Flag">
+                <param name="Star" value="$PARAM[Star]2" />
                 <param name="visible" value="$PARAM[visible]" />
                 <param name="color" value="$VAR[OSDRatingFlagsColor]" />
             </include>
             <include content="Def_Flag">
-                <param name="Star" value="FlagstarVideo2" />
-                <param name="visible" value="$PARAM[visible] + [Skin.HasSetting(videoosd.hideflags) | Skin.HasSetting(videoosd.side)]" />
-                <param name="color" value="$VAR[OSDRatingFlagsColor]" />
-            </include>
-            <include content="Def_Flag">
-                <param name="Star" value="FlagstarVideo3" />
-                <param name="visible" value="$PARAM[visible] + [Skin.HasSetting(videoosd.hideflags) | Skin.HasSetting(videoosd.side)]" />
-                <param name="color" value="$VAR[OSDRatingFlagsColor]" />
-            </include>
-            <include content="Def_Flag">
-                <param name="Star" value="FlagstarVideo4" />
-                <param name="visible" value="$PARAM[visible] + [Skin.HasSetting(videoosd.hideflags) | Skin.HasSetting(videoosd.side)]" />
-                <param name="color" value="$VAR[OSDRatingFlagsColor]" />
-            </include>
-            <include content="Def_Flag">
-                <param name="Star" value="FlagstarVideo5" />
-                <param name="visible" value="$PARAM[visible] + [Skin.HasSetting(videoosd.hideflags) | Skin.HasSetting(videoosd.side)]" />
-                <param name="color" value="$VAR[OSDRatingFlagsColor]" />
-            </include>
-        </definition>
-    </include>
-
-    <include name="MusicOSDRatingFlags">
-        <param name="visible" default="true"/>
-        <definition>
-            <include content="Def_Flag">
-                <param name="Star" value="FlagstarMusic1" />
-                <param name="color" value="$VAR[OSDRatingFlagsColor]" />
-            </include>
-            <include content="Def_Flag">
-                <param name="Star" value="FlagstarMusic2" />
+                <param name="Star" value="$PARAM[Star]3" />
                 <param name="visible" value="$PARAM[visible]" />
                 <param name="color" value="$VAR[OSDRatingFlagsColor]" />
             </include>
             <include content="Def_Flag">
-                <param name="Star" value="FlagstarMusic3" />
+                <param name="Star" value="$PARAM[Star]4" />
                 <param name="visible" value="$PARAM[visible]" />
                 <param name="color" value="$VAR[OSDRatingFlagsColor]" />
             </include>
             <include content="Def_Flag">
-                <param name="Star" value="FlagstarMusic4" />
-                <param name="visible" value="$PARAM[visible]" />
-                <param name="color" value="$VAR[OSDRatingFlagsColor]" />
-            </include>
-            <include content="Def_Flag">
-                <param name="Star" value="FlagstarMusic5" />
+                <param name="Star" value="$PARAM[Star]5" />
                 <param name="visible" value="$PARAM[visible]" />
                 <param name="color" value="$VAR[OSDRatingFlagsColor]" />
             </include>
@@ -269,7 +333,9 @@
                 <itemgap>12</itemgap>
                 <usecontrolcoords>true</usecontrolcoords>
                 <visible>!VideoPlayer.Content(livetv)</visible>
-                <include>OSDRatingFlags</include>
+                <include content="OSDRatingFlags">
+                    <param name="Star" value="FlagstarVideo" />
+                </include>
             </control>
 
             <!-- TAGLINE -->
@@ -670,7 +736,8 @@
                 <usecontrolcoords>true</usecontrolcoords>
                 <visible>!VideoPlayer.Content(livetv)</visible>
 	            <include content="OSDRatingFlags">
-	                <param name="visible" value="!VideoPlayer.Content(livetv)" />
+                    <param name="Star" value="FlagstarVideo" />
+	                <param name="visible" value="Skin.HasSetting(videoosd.hideflags)" />
 	            </include>
 	            <control type="label">
 	                <width>auto</width>
@@ -750,7 +817,10 @@
                 <orientation>horizontal</orientation>
                 <usecontrolcoords>true</usecontrolcoords>
                 <visible>!VideoPlayer.Content(livetv)</visible>
-                <include>OSDRatingFlags</include>
+                <include content="OSDRatingFlags">
+                    <param name="Star" value="FlagstarVideo" />
+                    <param name="visible" value="Skin.HasSetting(videoosd.hideflags)" />
+                </include>
                 <control type="label">
                     <width>auto</width>
                     <height>64</height>
@@ -3780,7 +3850,8 @@
                 <itemgap>12</itemgap>
                 <orientation>horizontal</orientation>
                 <usecontrolcoords>true</usecontrolcoords>
-                <include content="MusicOSDRatingFlags">
+                <include content="OSDRatingFlags">
+                    <param name="Star" value="FlagstarMusic" />
                     <param name="visible" value="Skin.HasSetting(musicosd.hideflags)" />
                 </include>
             </control>

@@ -403,44 +403,15 @@
         </control>
     </include>
 
-    <variable name="FlagstarMusic1">
-        <value condition="Integer.IsGreater(MusicPlayer.UserRating,1) + Skin.HasSetting(userrating.override.rating)">star10</value>
-        <value condition="Integer.IsGreater(MusicPlayer.UserRating,0) + Skin.HasSetting(userrating.override.rating)">star5</value>
-        <value condition="Integer.IsGreater(MusicPlayer.Rating,1) + [String.IsEmpty(MusicPlayer.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star10</value>
-        <value condition="Integer.IsGreater(MusicPlayer.Rating,0) + [String.IsEmpty(MusicPlayer.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star5</value>
-        <value>star0</value>
-    </variable>
-
-    <variable name="FlagstarMusic2">
-        <value condition="Integer.IsGreater(MusicPlayer.UserRating,3) + Skin.HasSetting(userrating.override.rating)">star10</value>
-        <value condition="Integer.IsGreater(MusicPlayer.UserRating,2) + Skin.HasSetting(userrating.override.rating)">star5</value>
-        <value condition="Integer.IsGreater(MusicPlayer.Rating,3) + [String.IsEmpty(MusicPlayer.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star10</value>
-        <value condition="Integer.IsGreater(MusicPlayer.Rating,2) + [String.IsEmpty(MusicPlayer.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star5</value>
-        <value>star0</value>
-    </variable>
-
-    <variable name="FlagstarMusic3">
-        <value condition="Integer.IsGreater(MusicPlayer.UserRating,5) + Skin.HasSetting(userrating.override.rating)">star10</value>
-        <value condition="Integer.IsGreater(MusicPlayer.UserRating,4) + Skin.HasSetting(userrating.override.rating)">star5</value>
-        <value condition="Integer.IsGreater(MusicPlayer.Rating,5) + [String.IsEmpty(MusicPlayer.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star10</value>
-        <value condition="Integer.IsGreater(MusicPlayer.Rating,4) + [String.IsEmpty(MusicPlayer.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star5</value>
-        <value>star0</value>
-    </variable>
-
-    <variable name="FlagstarMusic4">
-        <value condition="Integer.IsGreater(MusicPlayer.UserRating,7) + Skin.HasSetting(userrating.override.rating)">star10</value>
-        <value condition="Integer.IsGreater(MusicPlayer.UserRating,6) + Skin.HasSetting(userrating.override.rating)">star5</value>
-        <value condition="Integer.IsGreater(MusicPlayer.Rating,7) + [String.IsEmpty(MusicPlayer.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star10</value>
-        <value condition="Integer.IsGreater(MusicPlayer.Rating,6) + [String.IsEmpty(MusicPlayer.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star5</value>
-        <value>star0</value>
-    </variable>
-
-    <variable name="FlagstarMusic5">
-        <value condition="Integer.IsGreater(MusicPlayer.UserRating,9) + Skin.HasSetting(userrating.override.rating)">star10</value>
-        <value condition="Integer.IsGreater(MusicPlayer.UserRating,8) + Skin.HasSetting(userrating.override.rating)">star5</value>
-        <value condition="Integer.IsGreater(MusicPlayer.Rating,9) + [String.IsEmpty(MusicPlayer.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star10</value>
-        <value condition="Integer.IsGreater(MusicPlayer.Rating,8) + [String.IsEmpty(MusicPlayer.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star5</value>
-        <value>star0</value>
+    <variable name="ClearLogoTopVar">
+        <value condition="!String.IsEmpty(ListItem.Art(clearlogo))">$INFO[ListItem.Art(clearlogo)]</value>
+        <value condition="!String.IsEmpty(ListItem.Art(tvshow.clearlogo))">$INFO[ListItem.Art(tvshow.clearlogo)]</value>
+        <value condition="!String.IsEmpty(ListItem.Art(artist.clearlogo))">$INFO[ListItem.Art(artist.clearlogo)]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.clearlogo)) + String.StartsWith(ListItem.FolderPath,pvr://)">$INFO[Window(Home).Property(TMDbHelper.ListItem.clearlogo)]</value>
+        <value condition="!String.IsEmpty(Container(9500).ListItem.Art(clearlogo))">$INFO[Container(9500).ListItem.Art(clearlogo)]</value>
+        <value condition="!String.IsEmpty(Container(9500).ListItem.Art(tvshow.clearlogo))">$INFO[Container(9500).ListItem.Art(tvshow.clearlogo)]</value>
+        <value condition="!String.IsEmpty(Container(9500).ListItem.Art(artist.clearlogo))">$INFO[Container(9500).ListItem.Art(artist.clearlogo)]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.clearlogo)) + String.StartsWith(Container(9500).ListItem.FolderPath,pvr://)">$INFO[Window(Home).Property(TMDbHelper.ListItem.clearlogo)]</value>
     </variable>
 
     <variable name="Flagstar1">
@@ -530,56 +501,6 @@
         <value condition="Integer.IsGreater(ListItem.UserRating,8) + Skin.HasSetting(userrating.override.rating)">star5</value>
         <value condition="Integer.IsGreater(ListItem.Rating,9) + [String.IsEmpty(ListItem.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star10</value>
         <value condition="Integer.IsGreater(ListItem.Rating,8) + [String.IsEmpty(ListItem.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star5</value>
-        <value>star0</value>
-    </variable>
-
-    <variable name="FlagstarVideo1">
-        <value condition="Integer.IsGreater(VideoPlayer.UserRating,1) + Skin.HasSetting(userrating.override.rating)">star10</value>
-        <value condition="Integer.IsGreater(VideoPlayer.UserRating,0) + Skin.HasSetting(userrating.override.rating)">star5</value>
-        <value condition="Integer.IsGreater(VideoPlayer.Rating,1) + [String.IsEmpty(VideoPlayer.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star10</value>
-        <value condition="Integer.IsGreater(VideoPlayer.Rating,0) + [String.IsEmpty(VideoPlayer.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star5</value>
-        <value condition="Integer.IsGreater(Window(home).Property(TMDBHelper.Player.Rating),1) + String.IsEmpty(VideoPlayer.Rating) + [String.IsEmpty(VideoPlayer.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star10</value>
-        <value condition="Integer.IsGreater(Window(home).Property(TMDBHelper.Player.Rating),0) + String.IsEmpty(VideoPlayer.Rating) + [String.IsEmpty(VideoPlayer.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star5</value>
-        <value>star0</value>
-    </variable>
-
-    <variable name="FlagstarVideo2">
-        <value condition="Integer.IsGreater(VideoPlayer.UserRating,3) + Skin.HasSetting(userrating.override.rating)">star10</value>
-        <value condition="Integer.IsGreater(VideoPlayer.UserRating,2) + Skin.HasSetting(userrating.override.rating)">star5</value>
-        <value condition="Integer.IsGreater(VideoPlayer.Rating,3) + [String.IsEmpty(VideoPlayer.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star10</value>
-        <value condition="Integer.IsGreater(VideoPlayer.Rating,2) + [String.IsEmpty(VideoPlayer.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star5</value>
-        <value condition="Integer.IsGreater(Window(home).Property(TMDBHelper.Player.Rating),3) + String.IsEmpty(VideoPlayer.Rating) + [String.IsEmpty(VideoPlayer.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star10</value>
-        <value condition="Integer.IsGreater(Window(home).Property(TMDBHelper.Player.Rating),2) + String.IsEmpty(VideoPlayer.Rating) + [String.IsEmpty(VideoPlayer.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star5</value>
-        <value>star0</value>
-    </variable>
-
-    <variable name="FlagstarVideo3">
-        <value condition="Integer.IsGreater(VideoPlayer.UserRating,5) + Skin.HasSetting(userrating.override.rating)">star10</value>
-        <value condition="Integer.IsGreater(VideoPlayer.UserRating,4) + Skin.HasSetting(userrating.override.rating)">star5</value>
-        <value condition="Integer.IsGreater(VideoPlayer.Rating,5) + [String.IsEmpty(VideoPlayer.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star10</value>
-        <value condition="Integer.IsGreater(VideoPlayer.Rating,4) + [String.IsEmpty(VideoPlayer.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star5</value>
-        <value condition="Integer.IsGreater(Window(home).Property(TMDBHelper.Player.Rating),5) + String.IsEmpty(VideoPlayer.Rating) + [String.IsEmpty(VideoPlayer.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star10</value>
-        <value condition="Integer.IsGreater(Window(home).Property(TMDBHelper.Player.Rating),4) + String.IsEmpty(VideoPlayer.Rating) + [String.IsEmpty(VideoPlayer.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star5</value>
-        <value>star0</value>
-    </variable>
-
-    <variable name="FlagstarVideo4">
-        <value condition="Integer.IsGreater(VideoPlayer.UserRating,7) + Skin.HasSetting(userrating.override.rating)">star10</value>
-        <value condition="Integer.IsGreater(VideoPlayer.UserRating,6) + Skin.HasSetting(userrating.override.rating)">star5</value>
-        <value condition="Integer.IsGreater(VideoPlayer.Rating,7) + [String.IsEmpty(VideoPlayer.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star10</value>
-        <value condition="Integer.IsGreater(VideoPlayer.Rating,6) + [String.IsEmpty(VideoPlayer.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star5</value>
-        <value condition="Integer.IsGreater(Window(home).Property(TMDBHelper.Player.Rating),7) + String.IsEmpty(VideoPlayer.Rating) + [String.IsEmpty(VideoPlayer.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star10</value>
-        <value condition="Integer.IsGreater(Window(home).Property(TMDBHelper.Player.Rating),6) + String.IsEmpty(VideoPlayer.Rating) + [String.IsEmpty(VideoPlayer.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star5</value>
-        <value>star0</value>
-    </variable>
-
-    <variable name="FlagstarVideo5">
-        <value condition="Integer.IsGreater(VideoPlayer.UserRating,9) + Skin.HasSetting(userrating.override.rating)">star10</value>
-        <value condition="Integer.IsGreater(VideoPlayer.UserRating,8) + Skin.HasSetting(userrating.override.rating)">star5</value>
-        <value condition="Integer.IsGreater(VideoPlayer.Rating,9) + [String.IsEmpty(VideoPlayer.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star10</value>
-        <value condition="Integer.IsGreater(VideoPlayer.Rating,8) + [String.IsEmpty(VideoPlayer.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star5</value>
-        <value condition="Integer.IsGreater(Window(home).Property(TMDBHelper.Player.Rating),9) + String.IsEmpty(VideoPlayer.Rating) + [String.IsEmpty(VideoPlayer.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star10</value>
-        <value condition="Integer.IsGreater(Window(home).Property(TMDBHelper.Player.Rating),8) + String.IsEmpty(VideoPlayer.Rating) + [String.IsEmpty(VideoPlayer.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star5</value>
         <value>star0</value>
     </variable>
 
@@ -703,17 +624,6 @@
         <value>star0</value>
     </variable>
 
-    <variable name="ClearLogoTopVar">
-        <value condition="!String.IsEmpty(ListItem.Art(clearlogo))">$INFO[ListItem.Art(clearlogo)]</value>
-        <value condition="!String.IsEmpty(ListItem.Art(tvshow.clearlogo))">$INFO[ListItem.Art(tvshow.clearlogo)]</value>
-        <value condition="!String.IsEmpty(ListItem.Art(artist.clearlogo))">$INFO[ListItem.Art(artist.clearlogo)]</value>
-        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.clearlogo)) + String.StartsWith(ListItem.FolderPath,pvr://)">$INFO[Window(Home).Property(TMDbHelper.ListItem.clearlogo)]</value>
-        <value condition="!String.IsEmpty(Container(9500).ListItem.Art(clearlogo))">$INFO[Container(9500).ListItem.Art(clearlogo)]</value>
-        <value condition="!String.IsEmpty(Container(9500).ListItem.Art(tvshow.clearlogo))">$INFO[Container(9500).ListItem.Art(tvshow.clearlogo)]</value>
-        <value condition="!String.IsEmpty(Container(9500).ListItem.Art(artist.clearlogo))">$INFO[Container(9500).ListItem.Art(artist.clearlogo)]</value>
-        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.clearlogo)) + String.StartsWith(Container(9500).ListItem.FolderPath,pvr://)">$INFO[Window(Home).Property(TMDbHelper.ListItem.clearlogo)]</value>
-    </variable>
-
     <include name="Furniture_Flagstar">
         <param name="left" value="$PARAM[left]" default="0"/>
         <param name="visible" value="$PARAM[visible]" default="true"/>
@@ -735,8 +645,14 @@
         <param name="visible" value="$PARAM[visible]" default="true"/>
         <definition>
         <include content="Furniture_Flagstar">
+            <param name="Star" value="DefFlagstar" />
+            <param name="color" value="$PARAM[color]" />
+            <param name="visible" value="!$PARAM[visible]" />
+        </include>
+        <include content="Furniture_Flagstar">
             <param name="Star" value="$PARAM[Star]1" />
             <param name="color" value="$PARAM[color]" />
+            <param name="visible" value="$PARAM[visible]" />
         </include>
         <include content="Furniture_Flagstar">
             <param name="Star" value="$PARAM[Star]2" />
