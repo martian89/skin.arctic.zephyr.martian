@@ -2848,11 +2848,11 @@
 
         <!-- Unwatched -->
         <control type="grouplist">
-            <visible>Skin.HasSetting(markers.unwatched) + !Container($PARAM[id]).ListItem.IsResumable
+            <visible>Skin.HasSetting(markers.unwatched) + String.IsEmpty(Container($PARAM[id]).ListItem.DBID) + !Container($PARAM[id]).ListItem.IsResumable
               + [!Container($PARAM[id]).ListItem.IsPlaying | Skin.HasSetting(hide.markers.isplaying)]               
               + [!Container($PARAM[id]).ListItem.HasVideoVersions | Skin.HasSetting(hide.markers.versions)]
               + [!Container($PARAM[id]).ListItem.HasVideoExtras | Skin.HasSetting(hide.markers.extras)]
-              + [String.IsEmpty(Container($PARAM[id]).ListItem.DBID) | String.IsEmpty(Container($PARAM[id]).ListItem.Property(Item.Info)) | Skin.HasSetting(hide.markers.library)]
+              + [String.IsEmpty(Container($PARAM[id]).ListItem.Property(Item.Info)) | Skin.HasSetting(hide.markers.library)]
               + [!Container($PARAM[id]).ListItem.IsCollection | Skin.HasSetting(hide.markers.collection)]
               + [
                   String.IsEqual(Container($PARAM[id]).ListItem.Overlay,OverlayUnwatched.png)
