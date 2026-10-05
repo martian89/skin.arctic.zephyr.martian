@@ -28,6 +28,7 @@
         <value condition="{listitem}.IsCollection + !Skin.HasSetting(hide.markers.collection)">&#59649;</value>
         <value condition="$EXP[IsUnwatched{cid}{lid}] + Skin.HasSetting(markers.unwatched)">&#61833;</value>
         <value condition="{listitem}.IsFolder">&#59650;</value>
+        <value condition="!Window.IsVisible(AddonBrowser.xml) + String.IsEmpty({listitem}.DBID)">&#59656;</value>
         <value condition="Window.IsVisible(AddonBrowser.xml) + !String.IsEmpty({listitem}.AddonBroken)">&#59653;</value>
         <value condition="Window.IsVisible(AddonBrowser.xml) + {listitem}.Property(addon.orphaned)">&#59655;</value>
         <value condition="Window.IsVisible(AddonBrowser.xml) + {listitem}.Property(addon.downloading)">&#59651;</value>
@@ -212,6 +213,7 @@
     </expression>
 
     <expression name="IsUnwatched" containers="301,9500" start="-3" end="3">
+        !String.IsEmpty({listitem}.DBID) +
         [String.IsEqual({listitem}.Overlay,OverlayUnwatched.png)
         | Integer.IsEqual({listitem}.PlayCount,0)
         + [ String.IsEqual({listitem}.DBType,movie)

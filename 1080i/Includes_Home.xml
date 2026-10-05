@@ -2826,7 +2826,7 @@
 
         <!-- Unwatched -->
         <control type="grouplist">
-            <visible>Skin.HasSetting(markers.unwatched) + !Container($PARAM[id]).ListItem.IsResumable
+            <visible>Skin.HasSetting(markers.unwatched) + String.IsEmpty(Container($PARAM[id]).ListItem.DBID) + !Container($PARAM[id]).ListItem.IsResumable
               + [!Container($PARAM[id]).ListItem.IsPlaying | Skin.HasSetting(hide.markers.isplaying)]               
               + [![
                     [Container($PARAM[id]).ListItem.HasVideoVersions + !Skin.HasSetting(hide.markers.versions)]
@@ -2835,7 +2835,7 @@
                   | [Container($PARAM[id]).Content(videoversions) | Container($PARAM[id]).Content(videoassets) | Container($PARAM[id]).Content(videoextras)]
                   | String.StartsWith(Container($PARAM[id]).FolderPath,videodb://movies/videoversions/)
                 ]
-              + [String.IsEmpty(Container($PARAM[id]).ListItem.DBID) | String.IsEmpty(Container($PARAM[id]).ListItem.Property(Item.Info)) | Skin.HasSetting(hide.markers.library)]
+              + [String.IsEmpty(Container($PARAM[id]).ListItem.Property(Item.Info)) | Skin.HasSetting(hide.markers.library)]
               + [!Container($PARAM[id]).ListItem.IsCollection | Skin.HasSetting(hide.markers.collection)]
               + [
                   String.IsEqual(Container($PARAM[id]).ListItem.Overlay,OverlayUnwatched.png)
