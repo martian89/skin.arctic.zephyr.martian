@@ -103,70 +103,95 @@
     <include name="ProgressBar">
         <param name="wide_markers" default="false" />
         <definition>
-        <control type="ranges">
-            <visible>Skin.HasSetting(cutlist.markers)</visible>
-            <bottom>10</bottom>
-            <width>100%</width>
-            <height>8</height>
-            <texturebg colordiffuse="OSDProgressBarColor">osd/progress-bg.png</texturebg>
-            <lefttexture colordiffuse="FFFF0000">osd/progress-end.png</lefttexture>
-            <midtexture colordiffuse="FFFF0000">osd/progress-end.png</midtexture>
-            <righttexture colordiffuse="FFFF0000">osd/progress-end.png</righttexture>
-            <info>Player.EditList</info>
+        <control type="group">
+            <visible>!Pvr.IsPlayingTv + !Pvr.IsPlayingRadio</visible>
+            <control type="ranges">
+                <visible>Skin.HasSetting(cutlist.markers)</visible>
+                <bottom>10</bottom>
+                <width>100%</width>
+                <height>8</height>
+                <texturebg colordiffuse="OSDProgressBarColor">osd/progress-bg.png</texturebg>
+                <lefttexture colordiffuse="FFFF0000">osd/progress-end.png</lefttexture>
+                <midtexture colordiffuse="FFFF0000">osd/progress-end.png</midtexture>
+                <righttexture colordiffuse="FFFF0000">osd/progress-end.png</righttexture>
+                <info>Player.EditList</info>
+            </control>
+            <control type="progress" description="cache">
+                <description>Progress Bar</description>
+                <width>100%</width>
+                <bottom>10</bottom>
+                <height>8</height>
+                <info>Player.ProgressCache</info>
+                <texturebg colordiffuse="OSDProgressBarColor">osd/progress-bg.png</texturebg>
+                <lefttexture colordiffuse="Highlight2">osd/progress-end.png</lefttexture>
+                <midtexture colordiffuse="Highlight2">osd/progress-end.png</midtexture>
+                <righttexture colordiffuse="Highlight2">osd/progress-end.png</righttexture>
+            </control>
+            <control type="progress" id="23">
+                <description>Progress Bar</description>
+                <width>100%</width>
+                <bottom>10</bottom>
+                <height>8</height>
+                <info>Player.Progress</info>
+                <visible>!Player.Seeking</visible>
+            </control>
+            <control type="progress" id="401">
+                <description>Progress Bar</description>
+                <width>100%</width>
+                <bottom>10</bottom>
+                <height>8</height>
+                <visible>Player.Seeking</visible>
+            </control>
+            <control type="ranges">
+                <visible>Skin.HasSetting(chapter.markers) + !$PARAM[wide_markers]</visible>
+                <left>0</left>
+                <bottom>14</bottom>
+                <width>100%</width>
+                <height>8</height>
+                <righttexture colordiffuse="$VAR[OSDPanelWhite100]">osd/ch.png</righttexture>
+                <info>Player.Chapters</info>
+            </control>
+            <control type="ranges">
+                <visible>Skin.HasSetting(chapter.markers) + $PARAM[wide_markers]</visible>
+                <left>0</left>
+                <bottom>14</bottom>
+                <width>100%</width>
+                <height>8</height>
+                <righttexture colordiffuse="$VAR[OSDPanelWhite100]">osd/ch2.png</righttexture>
+                <info>Player.Chapters</info>
+            </control>
         </control>
-        <control type="progress" description="cache">
-            <description>Progress Bar</description>
-            <width>100%</width>
-            <bottom>10</bottom>
-            <height>8</height>
-            <info>Player.ProgressCache</info>
-            <texturebg colordiffuse="OSDProgressBarColor">osd/progress-bg.png</texturebg>
-            <lefttexture colordiffuse="Highlight2">osd/progress-end.png</lefttexture>
-            <midtexture colordiffuse="Highlight2">osd/progress-end.png</midtexture>
-            <righttexture colordiffuse="Highlight2">osd/progress-end.png</righttexture>
-            <visible>!Pvr.IsPlayingTv</visible>
-        </control>
-        <control type="progress" id="23">
-            <description>Progress Bar</description>
-            <width>100%</width>
-            <bottom>10</bottom>
-            <height>8</height>
-            <info>Player.Progress</info>
-            <visible>!Player.Seeking</visible>
-            <visible>!Pvr.IsPlayingTv</visible>
-        </control>
-        <control type="progress" id="401">
-            <description>Progress Bar</description>
-            <width>100%</width>
-            <bottom>10</bottom>
-            <height>8</height>
-            <visible>Player.Seeking</visible>
-        </control>
-        <control type="progress" id="404">
-            <left>0</left>
-            <bottom>10</bottom>
-            <width>100%</width>
-            <height>8</height>
-            <info>PVR.EpgEventProgress</info>
-            <visible>Pvr.IsPlayingTv</visible>
-        </control>
-        <control type="ranges">
-            <visible>Skin.HasSetting(chapter.markers) + !$PARAM[wide_markers]</visible>
-            <left>0</left>
-            <bottom>14</bottom>
-            <width>100%</width>
-            <height>8</height>
-            <righttexture colordiffuse="$VAR[OSDPanelWhite100]">osd/ch.png</righttexture>
-            <info>Player.Chapters</info>
-        </control>
-        <control type="ranges">
-            <visible>Skin.HasSetting(chapter.markers) + $PARAM[wide_markers]</visible>
-            <left>0</left>
-            <bottom>14</bottom>
-            <width>100%</width>
-            <height>8</height>
-            <righttexture colordiffuse="$VAR[OSDPanelWhite100]">osd/ch2.png</righttexture>
-            <info>Player.Chapters</info>
+        <control type="group">
+            <visible>Pvr.IsPlayingTv | Pvr.IsPlayingRadio</visible>
+            <control type="progress" id="402">
+                <description>Programme progress when timeshift seek is unavailable</description>
+                <left>0</left>
+                <bottom>10</bottom>
+                <width>100%</width>
+                <height>8</height>
+                <visible>!Player.SeekEnabled</visible>
+            </control>
+            <control type="progress">
+                <description>Timeshift buffer</description>
+                <bottom>10</bottom>
+                <width>100%</width>
+                <height>8</height>
+                <info2>PVR.TimeshiftProgressBufferStart</info2>
+                <info>PVR.TimeshiftProgressBufferEnd</info>
+                <texturebg colordiffuse="00FFFFFF">osd/progress-bg.png</texturebg>
+                <lefttexture></lefttexture>
+                <midtexture colordiffuse="Highlight2">osd/progress-end.png</midtexture>
+                <righttexture></righttexture>
+                <visible>Player.SeekEnabled</visible>
+            </control>
+            <control type="progress" id="403">
+                <description>Timeshift position</description>
+                <bottom>10</bottom>
+                <width>100%</width>
+                <height>8</height>
+                <info>PVR.TimeshiftProgressPlayPos</info>
+                <visible>Player.SeekEnabled</visible>
+            </control>
         </control>
         </definition>
     </include>
@@ -3825,4 +3850,5 @@
             <param name="visible" value="!Skin.HasSetting(musicosd.hideflags) + Skin.HasSetting(musicosd.disableposter) + !Skin.HasSetting(osd.usetheme) + !Skin.HasSetting(furniture.flagicons)" />
         </include>    
     </include>  
+
 </includes>
