@@ -224,6 +224,24 @@
                 <righttexture colordiffuse="$VAR[OSDPanelWhite100]">osd/ch2.png</righttexture>
                 <info>Player.Chapters</info>
             </control>
+	        <control type="ranges">
+	            <visible>Player.HasBookmarks + Skin.HasSetting(bookmark.markers) + !$PARAM[wide_markers]</visible>
+	            <left>0</left>
+	            <bottom>14</bottom>
+	            <width>100%</width>
+	            <height>8</height>
+	            <righttexture colordiffuse="FFFF0000">osd/bookmark.png</righttexture>
+	            <info>Player.Bookmarks</info>
+	        </control>
+	        <control type="ranges">
+	            <visible>Player.HasBookmarks + Skin.HasSetting(bookmark.markers) + $PARAM[wide_markers]</visible>
+	            <left>0</left>
+	            <bottom>14</bottom>
+	            <width>100%</width>
+	            <height>8</height>
+	            <righttexture colordiffuse="FFFF0000">osd/bookmark2.png</righttexture>
+	            <info>Player.Bookmarks</info>
+	        </control>
         </control>
         <control type="group">
             <visible>Pvr.IsPlayingTv | Pvr.IsPlayingRadio</visible>
@@ -256,24 +274,6 @@
                 <info>PVR.TimeshiftProgressPlayPos</info>
                 <visible>Player.SeekEnabled</visible>
             </control>
-        </control>
-        <control type="ranges">
-            <visible>Player.HasBookmarks + Skin.HasSetting(bookmark.markers) + !$PARAM[wide_markers]</visible>
-            <left>0</left>
-            <bottom>14</bottom>
-            <width>100%</width>
-            <height>8</height>
-            <righttexture colordiffuse="FFFF0000">osd/bookmark.png</righttexture>
-            <info>Player.Bookmarks</info>
-        </control>
-        <control type="ranges">
-            <visible>Player.HasBookmarks + Skin.HasSetting(bookmark.markers) + $PARAM[wide_markers]</visible>
-            <left>0</left>
-            <bottom>14</bottom>
-            <width>100%</width>
-            <height>8</height>
-            <righttexture colordiffuse="FFFF0000">osd/bookmark2.png</righttexture>
-            <info>Player.Bookmarks</info>
         </control>
         </definition>
     </include>
