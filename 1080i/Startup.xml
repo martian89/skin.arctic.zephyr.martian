@@ -2,14 +2,14 @@
 <!-- Foundation -->
 <window>
     <onload>SetProperty(SkinInitStarted,1,home)</onload>
-    <onload condition="!Skin.HasSetting(TMDbHelper.Service)">Skin.ToggleSetting(TMDbHelper.Service)</onload>
+    <onload>RunScript(script.skinvariables,action=buildviews)</onload>
     <onload>Skin.Reset(TMDbHelper.MonitorContainer)</onload>
     <onload>Skin.SetBool(TMDbHelper.DirectCallAuto)</onload>
-    <onload condition="Skin.HasSetting(TMDbHelper.EnableBlur)">RunScript(plugin.video.themoviedb.helper,blur_image='"$VAR[Image_SimpleBackground]"')</onload>
-    <onload>RunScript(script.skinvariables,action=buildviews)</onload>
+    <onload condition="$EXP[TMDbHelperBlurEnabled]">RunScript(plugin.video.themoviedb.helper,blur_image='"$VAR[Image_SimpleBackground]"')</onload>
     <onload>ClearProperty(SkinSplashStarted,home)</onload>
 
     <!-- First start settings -->
+    <onload condition="!Skin.HasSetting(startup.init)">Skin.SetBool(TMDbHelper.Service)</onload>
     <onload condition="!Skin.HasSetting(startup.init)">Skin.SetString(TMDbHelper.Blur.Radius,30)</onload>
     <onload condition="!Skin.HasSetting(startup.init)">Skin.SetString(AutoScrollTime,20s)</onload>
     <onload condition="!Skin.HasSetting(startup.init)">Skin.SetBool(global.hidecirles)</onload>
@@ -31,7 +31,7 @@
     <onload condition="!Skin.HasSetting(startup.init)">Skin.SetBool(ShowClearArtMusicOSD)</onload>
     <onload condition="!Skin.HasSetting(startup.init)">Skin.SetBool(startup.init)</onload>
     <onunload>ClearProperty(StartupReplaceWindow,Home)</onunload>
-      
+
     <!-- Go home -->
     <onload condition="String.IsEmpty(Window(Home).Property(StartupReplaceWindow))">ReplaceWindow(1198)</onload>
     <onload condition="!String.IsEmpty(Window(Home).Property(StartupReplaceWindow))">ReplaceWindow($INFO[Window(Home).Property(StartupReplaceWindow)])</onload>
