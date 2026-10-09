@@ -2,14 +2,14 @@
 <!-- Foundation -->
 <window id="2003">
     <defaultcontrol always="true">9000</defaultcontrol>
-    <onload condition="Control.IsVisible(11005)">SetFocus(11005)</onload>
-    <onload condition="Control.IsVisible(11003)">SetFocus(11003)</onload>
-    <onload condition="Control.IsVisible(11002)">SetFocus(11002)</onload>
-    <onload condition="Control.IsVisible(11001)">SetFocus(11001)</onload>
-    <onload condition="Control.IsVisible(10003)">SetFocus(10003)</onload>
-    <onload condition="Control.IsVisible(10002)">SetFocus(10002)</onload>
-    <onload condition="Control.IsVisible(10001)">SetFocus(10001)</onload>
-    <onload condition="Control.IsVisible(8)">SetFocus(8)</onload>
+    <onload condition="Control.IsVisible(11005)">AlarmClock(refocus,SetFocus(11005),0:00,silent)</onload>
+    <onload condition="Control.IsVisible(11003)">AlarmClock(refocus,SetFocus(11003),0:00,silent)</onload>
+    <onload condition="Control.IsVisible(11002)">AlarmClock(refocus,SetFocus(11002),0:00,silent)</onload>
+    <onload condition="Control.IsVisible(11001)">AlarmClock(refocus,SetFocus(11001),0:00,silent)</onload>
+    <onload condition="Control.IsVisible(10003)">AlarmClock(refocus,SetFocus(10003),0:00,silent)</onload>
+    <onload condition="Control.IsVisible(10002)">AlarmClock(refocus,SetFocus(10002),0:00,silent)</onload>
+    <onload condition="Control.IsVisible(10001)">AlarmClock(refocus,SetFocus(10001),0:00,silent)</onload>
+    <onload condition="Control.IsVisible(8)">AlarmClock(refocus,SetFocus(8),0:00,silent)</onload>
     <onload>Control.Move(50,$INFO[Container(50).CurrentItem,-])</onload>
     <onload>Control.Move(50,1)</onload>
     <onload>Control.Move(52,$INFO[Container(52).CurrentItem,-])</onload>
@@ -818,7 +818,7 @@
                                     <label>[B]$LOCALIZE[574][/B]</label>
                                     <aligny>center</aligny>
                                     <align>left</align>
-                                    <visible>!String.IsEqual(ListItem.DBType,musicvideo) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Country))</visible>
+                                    <visible>!String.IsEmpty(ListItem.Country) | !String.IsEqual(ListItem.DBType,musicvideo) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Country))</visible>
                                 </control>
                                 <control type="label">
                                     <visible>[String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,episode)] + [!String.IsEmpty(ListItem.Property(AudioLanguage.1)) | !String.IsEmpty(ListItem.Property(SubtitleLanguage.1))]</visible>
@@ -903,9 +903,9 @@
                                 <control type="label">
                                     <font>Tiny</font>
                                     <textcolor>Dark2</textcolor>
-                                    <label fallback="19055">$INFO[Window(Home).Property(TMDbHelper.ListItem.Country)]</label>
+                                    <label fallback="19055">$VAR[Label_Country]</label>
                                     <aligny>center</aligny>
-                                    <visible>!String.IsEqual(ListItem.DBType,musicvideo) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Country))</visible>
+                                    <visible>!String.IsEmpty(ListItem.Country) | !String.IsEqual(ListItem.DBType,musicvideo) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Country))</visible>
                                 </control>
                                 <control type="grouplist">
                                     <visible>String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,episode)</visible>
@@ -1125,12 +1125,12 @@
                     <!-- Local Cast / Sets -->
                     <include content="DialogInfo_List_Poster">
                         <param name="fallbackpicture" value="$VAR[Image_DialogInfo_List_Poster_Fallback]"/>
-                        <param name="visi" value="[String.IsEqual(Window.Property(content),1) + [Skin.HasSetting(extended.info.local.cast) | Skin.HasSetting(extended.info.local.sets)]]"/>
+                        <param name="visi" value="[String.IsEqual(Window.Property(content),1) + [!$EXP[TMDbHelperDataEnabled] | Skin.HasSetting(extended.info.local.cast) | Skin.HasSetting(extended.info.local.sets)]]"/>
                         <param name="controlid" value="50"/>
                         <param name="issets" value="String.IsEqual(ListItem.DBType,set)"/>
                         <param name="labeltwovisible" value="!String.IsEqual(ListItem.DBType,set)"/>
                         <param name="includecontent" value="false" />
-                        <param name="uparrow" value="true" />
+                        <param name="uparrow" value="$EXP[TMDbHelperDataEnabled] + !String.IsEqual(ListItem.DBType,set)" />
                         <param name="onup1" value="$VAR[Def_CastList_Item]" />
                         <param name="onup2" value="SetProperty(TMDbHelper.HideView,1,Home)" />
                     </include>
@@ -1138,7 +1138,7 @@
                     <!-- Cast -->
                     <include content="DialogInfo_List_Poster">
                         <param name="fallbackpicture" value="DefaultActor.png"/>
-                        <param name="visi" value="[String.IsEqual(Window.Property(content),1) + !Skin.HasSetting(extended.info.local.cast)]"/>
+                        <param name="visi" value="[String.IsEqual(Window.Property(content),1) + $EXP[TMDbHelperDataEnabled] + !Skin.HasSetting(extended.info.local.cast)]"/>
                         <param name="controlid" value="52"/>
                         <param name="onclick1" value="$VAR[Def_CastList_Item]"/>
                         <param name="onclick2" value="SetProperty(TMDbHelper.HideView,1,Home)"/>

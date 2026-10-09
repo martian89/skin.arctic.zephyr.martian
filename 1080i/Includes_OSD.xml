@@ -2507,9 +2507,9 @@
                 <onleft>17</onleft>
                 <onright>1</onright>
                 <usecontrolcoords>true</usecontrolcoords>
-                <include condition="!VideoPlayer.Content(livetv) + [VideoPlayer.HasMenu | [!VideoPlayer.Content(movies) + !VideoPlayer.Content(episodes)]]">OSDDVDMenu</include>
-                <include condition="!VideoPlayer.HasMenu + VideoPlayer.Content(episodes)">OSDExtraInfoTV</include>
-                <include condition="!VideoPlayer.HasMenu + VideoPlayer.Content(movies) + !VideoPlayer.Content(livetv)">OSDExtraInfoMOVIES</include>
+                <include condition="!VideoPlayer.Content(livetv) + [VideoPlayer.HasMenu | [!VideoPlayer.Content(movies) + !VideoPlayer.Content(episodes)] | !$EXP[TMDbHelperDataEnabled]]">OSDDVDMenu</include>
+                <include condition="!VideoPlayer.HasMenu + VideoPlayer.Content(episodes) + $EXP[TMDbHelperDataEnabled]">OSDExtraInfoTV</include>
+                <include condition="!VideoPlayer.HasMenu + VideoPlayer.Content(movies) + $EXP[TMDbHelperDataEnabled]">OSDExtraInfoMOVIES</include>
                 <include condition="!VideoPlayer.Content(livetv)">OSDVideosRight</include>
                 <include condition="VideoPlayer.Content(livetv)">OSDPVRRight</include>
             </control>
@@ -2646,9 +2646,9 @@
                 <onright condition="$EXP[VideoOSDShort]">1</onright>
                 <onright condition="!$EXP[VideoOSDShort]">210</onright>
                 <usecontrolcoords>true</usecontrolcoords>
-                <include condition="!VideoPlayer.Content(livetv) + [VideoPlayer.HasMenu | [!VideoPlayer.Content(movies) + !VideoPlayer.Content(episodes)]]">OSDDVDMenuNewOSD</include>
-                <include condition="!VideoPlayer.HasMenu + VideoPlayer.Content(episodes)">OSDExtraInfoTVNewOSD</include>
-                <include condition="!VideoPlayer.HasMenu + VideoPlayer.Content(movies) + !VideoPlayer.Content(livetv)">OSDExtraInfoMOVIESNewOSD</include>
+                <include condition="!VideoPlayer.Content(livetv) + [VideoPlayer.HasMenu | [!VideoPlayer.Content(movies) + !VideoPlayer.Content(episodes)] | !$EXP[TMDbHelperDataEnabled]]">OSDDVDMenuNewOSD</include>
+                <include condition="!VideoPlayer.HasMenu + VideoPlayer.Content(episodes) + $EXP[TMDbHelperDataEnabled]">OSDExtraInfoTVNewOSD</include>
+                <include condition="!VideoPlayer.HasMenu + VideoPlayer.Content(movies) + $EXP[TMDbHelperDataEnabled]">OSDExtraInfoMOVIESNewOSD</include>
                 <include condition="!VideoPlayer.Content(livetv)">OSDVideosRightNewOSD</include>
                 <include condition="VideoPlayer.Content(livetv)">OSDPVRRightNewOSD</include>
             </control>
@@ -2718,9 +2718,9 @@
                     <texturenofocus colordiffuse="$VAR[OSDPanelWhite70]">osd/lyrics.png</texturenofocus>
                 </control>
                 <include>OSDVideoControlsFlipNewOSD</include>
-                <include condition="!VideoPlayer.Content(livetv) + [VideoPlayer.HasMenu | [!VideoPlayer.Content(movies) + !VideoPlayer.Content(episodes)]]">OSDDVDMenuNewOSDSide</include>
-                <include condition="!VideoPlayer.HasMenu + VideoPlayer.Content(episodes)">OSDExtraInfoTVNewOSDSide</include>
-                <include condition="!VideoPlayer.HasMenu + VideoPlayer.Content(movies) + !VideoPlayer.Content(livetv)">OSDExtraInfoMOVIESNewOSDSide</include>
+                <include condition="!VideoPlayer.Content(livetv) + [VideoPlayer.HasMenu | [!VideoPlayer.Content(movies) + !VideoPlayer.Content(episodes)] | !$EXP[TMDbHelperDataEnabled]]">OSDDVDMenuNewOSDSide</include>
+                <include condition="!VideoPlayer.HasMenu + VideoPlayer.Content(episodes) + $EXP[TMDbHelperDataEnabled]">OSDExtraInfoTVNewOSDSide</include>
+                <include condition="!VideoPlayer.HasMenu + VideoPlayer.Content(movies) + $EXP[TMDbHelperDataEnabled]">OSDExtraInfoMOVIESNewOSDSide</include>
                 <include condition="!VideoPlayer.Content(livetv)">OSDVideosRightNewOSDSide</include>
                 <include condition="VideoPlayer.Content(livetv)">OSDPVRRightNewOSDSide</include>
             </control>

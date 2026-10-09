@@ -80,7 +80,7 @@
     <expression name="HomeMenuShowIconsOnly">Skin.HasSetting(homemenu.only.icons) + Skin.HasSetting(home.showicons)</expression>
     
     <expression name="InfoDialogsActive">Window.IsActive(DialogVideoInfo.xml) | Window.IsActive(DialogMusicInfo.xml) | Window.IsActive(DialogAddonInfo.xml) | Window.IsActive(DialogPVRInfo.xml)</expression>
-    <expression name="InfoDialogsExtendedBackground">![Skin.HasSetting(home.vertical) | Skin.HasSetting(home.vertical.widgets)] | Skin.HasSetting(homemenu.netflix) | Skin.HasSetting(TMDbHelper.EnableBlur)</expression>
+    <expression name="InfoDialogsExtendedBackground">![Skin.HasSetting(home.vertical) | Skin.HasSetting(home.vertical.widgets)] | Skin.HasSetting(homemenu.netflix) | $EXP[TMDbHelperBlurEnabled]</expression>
     <expression name="IsPVRVideo">!Player.HasAudio + VideoPlayer.Content(livetv)</expression>
     <expression name="IsPVRAudio">Player.HasAudio + VideoPlayer.Content(livetv)</expression>
     <expression name="IsAudio">Player.HasAudio + !VideoPlayer.Content(livetv)</expression>
@@ -100,6 +100,8 @@
     <expression name="TitleClearlogoAvailable">[!String.IsEmpty(ListItem.Art(clearlogo)) | !String.IsEmpty(ListItem.Art(artist.clearlogo)) | !String.IsEmpty(ListItem.Art(tvshow.clearlogo))]</expression>
     <expression name="UseDefaultJumpbar">Skin.HasSetting(DisableSkinInfoScrollbar) | !System.AddonIsEnabled(script.skin.info.service)</expression>
     <expression name="UseIMDbTrailer">Skin.HasSetting(Use.IMDB.Trailer) + System.AddonIsEnabled(plugin.video.imdb.trailers)</expression>
+    <expression name="TMDbHelperDataEnabled">Skin.HasSetting(TMDbHelper.Service)</expression>
+    <expression name="TMDbHelperBlurEnabled">Skin.HasSetting(TMDbHelper.EnableBlur) + $EXP[TMDbHelperDataEnabled]</expression>
 	<expression name="IsVideoInfo">Window.IsVisible(DialogVideoInfo.xml) + ![String.IsEqual(ListItem.Property(item.type),person) | String.IsEqual(ListItem.Property(dbtype),person) | String.IsEqual(ListItem.Property(Param.Info),person)]</expression>
 	<expression name="IsPersonInfo">Window.IsVisible(DialogVideoInfo.xml) + [String.IsEqual(ListItem.Property(item.type),person) | String.IsEqual(ListItem.Property(dbtype),person) | String.IsEqual(ListItem.Property(Param.Info),person)]</expression>
 
@@ -254,11 +256,12 @@
     </expression>
 
     <expression name="HasNextAired">
-        [[Container.Content(tvshows) | Container.Content(seasons)] + !String.IsEqual(ListItem.DBTYPE,movie) | String.IsEqual(ListItem.DBTYPE,tvshow) | String.IsEqual(ListItem.DBTYPE,season)]
-        + [
-           !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Next_Aired)) | !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Last_Aired))
-           | !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Status)) | !String.IsEmpty(ListItem.Status)
-          ]
+        !Skin.HasSetting(furniture.flags.nextaired) + $EXP[TMDbHelperDataEnabled]
+        + [[Container.Content(tvshows) | Container.Content(seasons)] + !String.IsEqual(ListItem.DBTYPE,movie) | String.IsEqual(ListItem.DBTYPE,tvshow) | String.IsEqual(ListItem.DBTYPE,season)]
+          + [
+             !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Next_Aired)) | !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Last_Aired))
+             | !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Status)) | !String.IsEmpty(ListItem.Status)
+            ]
         + !Window.IsVisible(script-globalsearch.xml)  
     </expression>
     
@@ -446,7 +449,7 @@
     </include>
 
     <include name="Blur_SimpleBackground_Onload_Action">
-	    <onload condition="Skin.HasSetting(TMDbHelper.EnableBlur)">RunScript(plugin.video.themoviedb.helper,blur_image='"$VAR[Image_SimpleBackground]"')</onload>
+	    <onload condition="$EXP[TMDbHelperBlurEnabled]">RunScript(plugin.video.themoviedb.helper,blur_image='"$VAR[Image_SimpleBackground]"')</onload>
     </include>
 
     <include name="buttontextures">
@@ -531,17 +534,17 @@
         <value condition="!String.IsEmpty(Container(301).ListItem.Icon)">$ESCINFO[Container(301).ListItem.Icon]</value>
     </variable>
 
-    <expression name="ShowTmdbCast">!Skin.HasSetting(extended.info.local.cast) + !Skin.HasSetting(hidebutton.video.cast) + [String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,episode)]</expression>
-    <expression name="ShowTmdbDirector">!Skin.HasSetting(hidebutton.video.director) + [String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,musicvideo)] + [!String.IsEqual(ListItem.DBType,musicvideo) + !String.IsEmpty(Window(home).Property(TMDbHelper.ListItem.Director)) | !String.IsEmpty(ListItem.Director)]</expression>
-    <expression name="ShowTmdbCrew">Skin.HasSetting(showbutton.video.crew) + [String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow)]</expression>
-    <expression name="ShowTmdbStudio">Skin.HasSetting(showbutton.video.studio) + [String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow)] + [!String.IsEmpty(Window(home).Property(TMDbHelper.ListItem.Studio)) | !String.IsEmpty(ListItem.Studio)]</expression>
-    <expression name="ShowTmdbSimilar">Skin.HasSetting(showbutton.video.similar) + [String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow)]</expression>
-    <expression name="ShowTmdbSet">!Skin.HasSetting(extended.info.local.collections) + !Skin.HasSetting(hidebutton.video.set) + [[String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(Window(home).Property(TMDbHelper.ListItem.Set.TMDb_ID))] | [String.IsEqual(ListItem.DBType,set) + !String.IsEmpty(Window(home).Property(TMDbHelper.ListItem.TMDb_ID))]]</expression>
-    <expression name="ShowTmdbArtwork">!Skin.HasSetting(extended.info.local.artwork) + [String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,episode)]</expression>
-    <expression name="ShowTmdbActorFanart">!Skin.HasSetting(hidebutton.person.fanart)</expression>
-    <expression name="ShowTmdbActorMovies">!Skin.HasSetting(hidebutton.person.movies) + Integer.IsGreater(ListItem.Property(numitems.tmdb.movies.cast),0)</expression>
-    <expression name="ShowTmdbActorTvShows">!Skin.HasSetting(hidebutton.person.tvshows) + Integer.IsGreater(ListItem.Property(numitems.tmdb.tvshows.cast),0)</expression>
-    <expression name="ShowTmdbActorInCrew">Skin.HasSetting(showbutton.person.crew) + [Integer.IsGreater(ListItem.Property(numitems.tmdb.movies.crew),0) | Integer.IsGreater(ListItem.Property(numitems.tmdb.tvshows.crew),0)]</expression>
+    <expression name="ShowTmdbCast">$EXP[TMDbHelperDataEnabled] + !Skin.HasSetting(extended.info.local.cast) + !Skin.HasSetting(hidebutton.video.cast) + [String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,episode)]</expression>
+    <expression name="ShowTmdbDirector">$EXP[TMDbHelperDataEnabled] + !Skin.HasSetting(hidebutton.video.director) + [String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,musicvideo)] + [!String.IsEqual(ListItem.DBType,musicvideo) + !String.IsEmpty(Window(home).Property(TMDbHelper.ListItem.Director)) | !String.IsEmpty(ListItem.Director)]</expression>
+    <expression name="ShowTmdbCrew">$EXP[TMDbHelperDataEnabled] + Skin.HasSetting(showbutton.video.crew) + [String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow)]</expression>
+    <expression name="ShowTmdbStudio">$EXP[TMDbHelperDataEnabled] + Skin.HasSetting(showbutton.video.studio) + [String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow)] + [!String.IsEmpty(Window(home).Property(TMDbHelper.ListItem.Studio)) | !String.IsEmpty(ListItem.Studio)]</expression>
+    <expression name="ShowTmdbSimilar">$EXP[TMDbHelperDataEnabled] + Skin.HasSetting(showbutton.video.similar) + [String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow)]</expression>
+    <expression name="ShowTmdbSet">$EXP[TMDbHelperDataEnabled] + !Skin.HasSetting(extended.info.local.collections) + !Skin.HasSetting(hidebutton.video.set) + [[String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(Window(home).Property(TMDbHelper.ListItem.Set.TMDb_ID))] | [String.IsEqual(ListItem.DBType,set) + !String.IsEmpty(Window(home).Property(TMDbHelper.ListItem.TMDb_ID))]]</expression>
+    <expression name="ShowTmdbArtwork">$EXP[TMDbHelperDataEnabled] + !Skin.HasSetting(extended.info.local.artwork) + [String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,episode)]</expression>
+    <expression name="ShowTmdbActorFanart">$EXP[TMDbHelperDataEnabled] + !Skin.HasSetting(hidebutton.person.fanart)</expression>
+    <expression name="ShowTmdbActorMovies">$EXP[TMDbHelperDataEnabled] + !Skin.HasSetting(hidebutton.person.movies) + Integer.IsGreater(ListItem.Property(numitems.tmdb.movies.cast),0)</expression>
+    <expression name="ShowTmdbActorTvShows">$EXP[TMDbHelperDataEnabled] + !Skin.HasSetting(hidebutton.person.tvshows) + Integer.IsGreater(ListItem.Property(numitems.tmdb.tvshows.cast),0)</expression>
+    <expression name="ShowTmdbActorInCrew">$EXP[TMDbHelperDataEnabled] + Skin.HasSetting(showbutton.person.crew) + [Integer.IsGreater(ListItem.Property(numitems.tmdb.movies.crew),0) | Integer.IsGreater(ListItem.Property(numitems.tmdb.tvshows.crew),0)]</expression>
     
     <include name="OnFocusOnClick">
         <onclick>SetProperty(SetUserRating,mixed,home)</onclick>
@@ -612,8 +615,8 @@
     </include>
 
     <variable name="TMDBHelperWidgetContainer">
-        <value condition="!String.IsEmpty(Container(300).ListItem.Property(submenuPath))">$VAR[TMDBHelperWidgetContainer_Parent]</value>
-        <value condition="Control.IsVisible(993100)">$NUMBER[993100]</value>
+        <value condition="$EXP[TMDbHelperDataEnabled] + !String.IsEmpty(Container(300).ListItem.Property(submenuPath))">$VAR[TMDBHelperWidgetContainer_Parent]</value>
+        <value condition="$EXP[TMDbHelperDataEnabled] + Control.IsVisible(993100)">$NUMBER[993100]</value>
     </variable>
 
     <include name="SetWidgetContainerForTMDB">
