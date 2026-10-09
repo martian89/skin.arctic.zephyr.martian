@@ -392,10 +392,10 @@
 
             <control type="group">
                 <visible>$PARAM[visi]</visible>
+                <visible>$PARAM[uparrow] + Control.HasFocus($PARAM[controlid]) + !Container($PARAM[controlid]).OnNext + !Container($PARAM[controlid]).OnPrevious</visible>
+                <include>Animation.DelayFadeIn</include>
                 <left>-211</left>
                 <top>82</top>
-                <visible>$PARAM[uparrow] + !$PARAM[issets] + Control.HasFocus($PARAM[controlid]) + !Container($PARAM[controlid]).OnNext + !Container($PARAM[controlid]).OnPrevious</visible>
-                <include>Animation.DelayFadeIn</include>
                 <control type="image">
                     <include>arrowdimensions</include>
                     <texture colordiffuse="Dark1" flipy="true">common/arrow-small.png</texture>
@@ -446,9 +446,9 @@
                     <onclick>$PARAM[onclick1]</onclick>
                     <onclick>$PARAM[onclick2]</onclick>
                     <onclick>$PARAM[onclick3]</onclick>
-                    <onup condition="!$PARAM[issets]">$PARAM[onup1]</onup>
-                    <onup condition="!$PARAM[issets]">$PARAM[onup2]</onup>
-                    <onup condition="!$PARAM[issets]">$PARAM[onup3]</onup>
+                    <onup condition="$PARAM[uparrow]">$PARAM[onup1]</onup>
+                    <onup condition="$PARAM[uparrow]">$PARAM[onup2]</onup>
+                    <onup condition="$PARAM[uparrow]">$PARAM[onup3]</onup>
                     <include>ScrolltimeDetailsList</include>
                     <focusposition>$PARAM[focusposition]</focusposition>
                     <orientation>horizontal</orientation>
@@ -1070,9 +1070,9 @@
                 <visible>String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,episode)</visible>
                 <onfocus>ClearProperty(dontslide,home)</onfocus>
                 <onclick>SetProperty(content,1)</onclick>
-                <onclick condition="Skin.HasSetting(extended.info.local.cast)">SetProperty(dontslide,1,home)</onclick>
-                <onclick condition="Skin.HasSetting(extended.info.local.cast)">SetFocus(10050)</onclick>
-                <onclick condition="!Skin.HasSetting(extended.info.local.cast)">SetFocus(10052)</onclick>
+                <onclick condition="!$EXP[TMDbHelperDataEnabled] | Skin.HasSetting(extended.info.local.cast)">SetProperty(dontslide,1,home)</onclick>
+                <onclick condition="!$EXP[TMDbHelperDataEnabled] | Skin.HasSetting(extended.info.local.cast)">SetFocus(10050)</onclick>
+                <onclick condition="$EXP[TMDbHelperDataEnabled] + !Skin.HasSetting(extended.info.local.cast)">SetFocus(10052)</onclick>
                 <include>DialogVideoInfo_List_Click_Action</include>
                 <include content="DialogVideoInfoButtons">
                     <param name="icon" value="icons/cast.png" />
@@ -1088,7 +1088,7 @@
                 <include content="DialogVideoInfoButtons">
                     <param name="icon" value="icons/set.png" />
                 </include>
-                <visible>Skin.HasSetting(extended.info.local.collections)</visible>
+                <visible>!$EXP[TMDbHelperDataEnabled] | Skin.HasSetting(extended.info.local.collections)</visible>
             </control>
 
             <!-- Crew -->
@@ -1151,13 +1151,13 @@
             </control>
 
             <control type="radiobutton" id="10016">
-                <visible>$EXP[ShowTmdbSet] | Skin.HasSetting(extended.info.local.collections) + !String.IsEmpty(ListItem.SetId) + !Skin.HasSetting(hidebutton.video.set)</visible>
+                <visible>$EXP[ShowTmdbSet] | [!$EXP[TMDbHelperDataEnabled] | Skin.HasSetting(extended.info.local.collections)] + !String.IsEmpty(ListItem.SetId) + !Skin.HasSetting(hidebutton.video.set)</visible>
                 <onfocus>SetProperty(videoset,1)</onfocus>
-                <onclick condition="!Skin.HasSetting(extended.info.local.collections)">SetProperty(content,8)</onclick>
-                <onclick condition="!Skin.HasSetting(extended.info.local.collections)">SetFocus(10057)</onclick>
-                <onclick condition="Skin.HasSetting(extended.info.local.collections) + Window.IsVisible(1190)">RunScript(plugin.video.themoviedb.helper,close_dialog=1190,call_path=videodb://movies/sets/$INFO[ListItem.SetId]/?setid=$INFO[ListItem.SetId])</onclick>
-                <onclick condition="Skin.HasSetting(extended.info.local.collections) + !Window.IsVisible(1190)">Dialog.Close(all,true)</onclick>
-                <onclick condition="Skin.HasSetting(extended.info.local.collections) + !Window.IsVisible(1190)">ActivateWindow(Videos,videodb://movies/sets/$INFO[ListItem.SetId]/?setid=$INFO[ListItem.SetId])</onclick>
+                <onclick condition="$EXP[TMDbHelperDataEnabled] + !Skin.HasSetting(extended.info.local.collections)">SetProperty(content,8)</onclick>
+                <onclick condition="$EXP[TMDbHelperDataEnabled] + !Skin.HasSetting(extended.info.local.collections)">SetFocus(10057)</onclick>
+                <onclick condition="[!$EXP[TMDbHelperDataEnabled] | Skin.HasSetting(extended.info.local.collections)] + Window.IsVisible(1190)">RunScript(plugin.video.themoviedb.helper,close_dialog=1190,call_path=videodb://movies/sets/$INFO[ListItem.SetId]/?setid=$INFO[ListItem.SetId])</onclick>
+                <onclick condition="[!$EXP[TMDbHelperDataEnabled] | Skin.HasSetting(extended.info.local.collections)] + !Window.IsVisible(1190)">Dialog.Close(all,true)</onclick>
+                <onclick condition="[!$EXP[TMDbHelperDataEnabled] | Skin.HasSetting(extended.info.local.collections)] + !Window.IsVisible(1190)">ActivateWindow(Videos,videodb://movies/sets/$INFO[ListItem.SetId]/?setid=$INFO[ListItem.SetId])</onclick>
                 <include>DialogVideoInfo_List_Click_Action</include>
                 <include content="DialogVideoInfoButtons">
                     <param name="icon" value="icons/set.png" />
@@ -1179,7 +1179,7 @@
                 </include>
                 <onclick condition="!String.IsEmpty(ListItem.Property(tmdb_id))">RunScript(plugin.video.themoviedb.helper,sync_trakt=watchlist,tmdb_id=$INFO[ListItem.Property(tmdb_id)],cache_refresh)</onclick>
                 <onclick condition="String.IsEmpty(ListItem.Property(tmdb_id))">RunScript(plugin.video.themoviedb.helper,sync_trakt=watchlist,tmdb_id=$INFO[window(home).property(tmdbhelper.listitem.tmdb_id)],$VAR[DB_type],cache_refresh)</onclick>
-                <visible>!Skin.HasSetting(hidebutton.video.trakt) + [!String.IsEmpty(ListItem.Property(tmdb_id)) | !String.IsEmpty(window(home).property(tmdbhelper.listitem.tmdb_id))] + [String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow)] + !String.IsEmpty(Window(Home).Property(TMDbHelper.TraktIsAuth))</visible>
+                <visible>$EXP[TMDbHelperDataEnabled] + !Skin.HasSetting(hidebutton.video.trakt) + [!String.IsEmpty(ListItem.Property(tmdb_id)) | !String.IsEmpty(window(home).property(tmdbhelper.listitem.tmdb_id))] + [String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow)] + !String.IsEmpty(Window(Home).Property(TMDbHelper.TraktIsAuth))</visible>
             </control>
 
             <control type="radiobutton" id="11005">

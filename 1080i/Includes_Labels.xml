@@ -1007,11 +1007,17 @@
         <value>$LOCALIZE[557]/$LOCALIZE[10523]</value>
     </variable>
 
+    <variable name="Label_Country">
+        <value condition="!String.IsEmpty(ListItem.Country)">$INFO[ListItem.Country]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Country))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Country)]</value>
+    </variable>
+
     <variable name="Label_Studio">
         <value condition="$EXP[InGameMode]">$VAR[GameStudio]</value>
         <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.base_studio))">$INFO[Window(Home).Property(TMDbHelper.ListItem.base_studio)]</value>
         <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Network.1.Name))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Network.1.Name)]</value>
         <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Studio.1.Name))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Studio.1.Name)]</value>
+        <value>$INFO[ListItem.Studio]</value>
     </variable>
 
     <variable name="Label_Director">
