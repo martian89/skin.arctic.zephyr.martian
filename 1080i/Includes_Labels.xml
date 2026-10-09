@@ -1333,7 +1333,8 @@
     </variable>
 
     <variable name="Label_List_50_Title">
-        <value condition="[Container.Content(songs) | Container.Content(musicvideos)] + [String.IsEqual(Container.SortMethod,$LOCALIZE[551]) | String.IsEqual(Container.SortMethod,$LOCALIZE[554])] + !String.IsEmpty(ListItem.Title)">$INFO[ListItem.TrackNumber,,. ]$INFO[ListItem.Title]</value>
+		<value condition="[Container.Content(songs) | Container.Content(musicvideos)] + [String.IsEqual(Container.SortMethod,$LOCALIZE[551]) | String.IsEqual(Container.SortMethod,$LOCALIZE[554])] + !String.IsEmpty(ListItem.Title) + Integer.IsGreater(ListItem.TotalDiscs,1)">$INFO[ListItem.DiscNumber,,-]$INFO[ListItem.TrackNumber,,. ]$INFO[ListItem.Title]</value>
+		<value condition="[Container.Content(songs) | Container.Content(musicvideos)] + [String.IsEqual(Container.SortMethod,$LOCALIZE[551]) | String.IsEqual(Container.SortMethod,$LOCALIZE[554])] + !String.IsEmpty(ListItem.Title)">$INFO[ListItem.TrackNumber,,. ]$INFO[ListItem.Title]</value>
         <value condition="[Container.Content(songs) | Container.Content(musicvideos)] + !String.IsEmpty(ListItem.Title)">$INFO[ListItem.Title]</value>
         <value>$INFO[ListItem.Label]</value>
     </variable>
