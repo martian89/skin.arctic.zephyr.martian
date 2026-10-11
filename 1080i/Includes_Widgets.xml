@@ -306,7 +306,7 @@
         <control type="group">
             <include>Animation.DelayFadeIn600</include>
             <include>Animation.FadeOut</include>
-            <visible>Integer.IsGreater(Container($PARAM[groupid]).NumItems,1) + ControlGroup(301).HasFocus()</visible>
+            <visible>[Container($PARAM[groupid]).HasNext | Container($PARAM[groupid]).HasPrevious] + ControlGroup(301).HasFocus()</visible>
             <visible>!$EXP[InfoDialogsActive]</visible>
             <right>SidePad</right>
             <control type="group">
