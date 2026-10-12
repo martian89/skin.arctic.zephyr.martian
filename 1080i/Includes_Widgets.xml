@@ -1385,6 +1385,7 @@
 
     <include name="def_widget_image">
         <param name="image" default="$VAR[PosterImage]" />
+        <param name="fallback" default="$VAR[Image_Fallback_Icon]" />
         <param name="top" default="10" />
         <param name="left" default="10" />
         <param name="right" default="10" />
@@ -1409,7 +1410,7 @@
                 </include>
                 <fadetime>$PARAM[fadetime]</fadetime>
                 <aspectratio scalediffuse="false">$PARAM[aspectratio]</aspectratio>
-                <texture flipy="$PARAM[flipy]" colordiffuse="$PARAM[colordiffuse]" diffuse="$PARAM[diffuse]" background="true" fallback="DefaultMovies.png">$PARAM[image]</texture>
+                <texture flipy="$PARAM[flipy]" colordiffuse="$PARAM[colordiffuse]" diffuse="$PARAM[diffuse]" background="true" fallback="$PARAM[fallback]">$PARAM[image]</texture>
                 <include condition="$PARAM[border]">def_widget_image_border_texture</include>
                 <visible>!$EXP[HasImage_ListItem_IconResource]</visible>
                 <visible>$PARAM[visible]</visible>
@@ -1559,7 +1560,7 @@
             <right>10</right>
             <bottom>10</bottom>
             <aspectratio scalediffuse="false">scale</aspectratio>
-            <texture diffuse="diffuse/widgetposter_new.png" background="true" fallback="DefaultMovies.png">$VAR[SeasonPosterImageFlix]</texture>
+            <texture diffuse="diffuse/widgetposter_new.png" background="true" fallback="DefaultFolder.png">$VAR[SeasonPosterImageFlix]</texture>
         </control>
         <control type="image">
             <left>10</left>
@@ -1567,7 +1568,7 @@
             <right>212</right>
             <bottom>10</bottom>
             <aspectratio scalediffuse="false">scale</aspectratio>
-            <texture diffuse="diffuse/widgetposter_new.png" background="true" fallback="DefaultMovies.png">$VAR[TvShowPosterImageFlix]</texture>
+            <texture diffuse="diffuse/widgetposter_new.png" background="true" fallback="DefaultFolder.png">$VAR[TvShowPosterImageFlix]</texture>
         </control>
         <include condition="$PARAM[visible_title_overlay]">Alternative_Title_Overlay</include>
         <control type="image">
@@ -1639,7 +1640,7 @@
             <right>10</right>
             <bottom>10</bottom>
             <aspectratio scalediffuse="false">keep</aspectratio>
-            <texture diffuse="diffuse/widgetsquare_new.png" background="true" fallback="DefaultMovies.png">$INFO[ListItem.Icon]</texture>
+            <texture diffuse="diffuse/widgetsquare_new.png" background="true">$INFO[ListItem.Icon]</texture>
         </control>
         <control type="group">
             <left>45</left>
@@ -1832,7 +1833,7 @@
             <right>10</right>
             <bottom>10</bottom>
             <aspectratio scalediffuse="false">scale</aspectratio>
-            <texture diffuse="diffuse/widgetbanner_new.png" background="true" fallback="DefaultMovies.png">$VAR[BannerImage]</texture>
+            <texture diffuse="diffuse/widgetbanner_new.png" background="true" fallback="$VAR[Image_Fallback_Icon]">$VAR[BannerImage]</texture>
             <visible>Window.IsVisible(home)</visible>
         </control>
         <control type="image">
@@ -1841,7 +1842,7 @@
             <right>10</right>
             <bottom>10</bottom>
             <aspectratio scalediffuse="false">scale</aspectratio>
-            <texture diffuse="diffuse/widgetbanner_small.png" background="true" fallback="DefaultMovies.png">$VAR[BannerImage]</texture>
+            <texture diffuse="diffuse/widgetbanner_small.png" background="true" fallback="$VAR[Image_Fallback_Icon]">$VAR[BannerImage]</texture>
             <visible>!Window.IsVisible(home)</visible>
         </control>
         <control type="image">
@@ -1891,7 +1892,7 @@
             </include>
             <bottom>10</bottom>
             <aspectratio scalediffuse="false">scale</aspectratio>
-            <texture diffuse="diffuse/widgetposter_left.png" background="true" fallback="DefaultMovies.png">$VAR[PosterImage]</texture>
+            <texture diffuse="diffuse/widgetposter_left.png" background="true" fallback="$VAR[Image_Fallback_Icon]">$VAR[PosterImage]</texture>
             <visible>$PARAM[poster]</visible>
         </control>
         <control type="image">
@@ -1900,7 +1901,7 @@
             <right>10</right>
             <bottom>10</bottom>
             <aspectratio scalediffuse="false">scale</aspectratio>
-            <texture diffuse="diffuse/widgetfanart_new.png" background="true" fallback="DefaultMovies.png">$VAR[LandscapeImage]</texture>
+            <texture diffuse="diffuse/widgetfanart_new.png" background="true" fallback="$VAR[Image_Fallback_Icon]">$VAR[LandscapeImage]</texture>
             <visible>!$PARAM[small] + !$EXP[HasImage_ListItem_IconResource]</visible>
         </control>
         <control type="image">
@@ -1909,7 +1910,7 @@
             <right>10</right>
             <bottom>101</bottom>
             <aspectratio scalediffuse="false">scale</aspectratio>
-            <texture diffuse="diffuse/widgetfanart_top.png" background="true" fallback="DefaultMovies.png">$VAR[LandscapeImage]</texture>
+            <texture diffuse="diffuse/widgetfanart_top.png" background="true" fallback="$VAR[Image_Fallback_Icon]">$VAR[LandscapeImage]</texture>
             <visible>$PARAM[small] + !$PARAM[poster] + !$EXP[HasImage_ListItem_IconResource]</visible>
         </control>
         <control type="image">
@@ -1918,7 +1919,7 @@
             <right>10</right>
             <bottom>101</bottom>
             <aspectratio scalediffuse="false">scale</aspectratio>
-            <texture diffuse="diffuse/widgetfanart_topright.png" border="1" background="true" fallback="DefaultMovies.png">$VAR[LandscapeImage]</texture>
+            <texture diffuse="diffuse/widgetfanart_topright.png" border="1" background="true" fallback="$VAR[Image_Fallback_Icon]">$VAR[LandscapeImage]</texture>
             <visible>$PARAM[small] + $PARAM[poster] + !$EXP[HasImage_ListItem_IconResource]</visible>
         </control>
         <include content="def_widget_image" condition="!$PARAM[small]">

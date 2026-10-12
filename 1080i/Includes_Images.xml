@@ -6,26 +6,13 @@
         <value condition="!String.IsEmpty(ListItem.Art(season.poster))">$INFO[ListItem.Art(season.poster)]</value>
         <value condition="!String.IsEmpty(ListItem.Art(poster))">$INFO[ListItem.Art(poster)]</value>
         <value condition="!String.IsEmpty(ListItem.Art(tvshow.poster))">$INFO[ListItem.Art(tvshow.poster)]</value>
-        <value condition="!String.IsEmpty(ListItem.Icon)">$INFO[ListItem.Icon]</value>
-        <value condition="String.IsEqual(ListItem.DBTYPE,movie)">DefaultMovieTitle.png</value>
-        <value condition="String.IsEqual(ListItem.DBTYPE,set)">DefaultSets.png</value>
-        <value condition="String.IsEqual(ListItem.DBTYPE,tvshow)">DefaultTVShowTitle.png</value>
-        <value condition="String.IsEqual(ListItem.DBTYPE,season)">DefaultTVShowTitle.png</value>
-        <value condition="String.IsEqual(ListItem.DBTYPE,episode)">DefaultTVShowTitle.png</value>
+        <value>$INFO[ListItem.Icon]</value>
     </variable>
 
     <variable name="PosterImageSquare">
         <value condition="!String.IsEmpty(ListItem.Art(poster))">$INFO[ListItem.Art(poster)]</value>
         <value condition="!String.IsEmpty(ListItem.Art(thumb))">$INFO[ListItem.Art(thumb)]</value>
-        <value condition="!String.IsEmpty(ListItem.Icon)">$INFO[ListItem.Icon]</value>
-        <value condition="String.IsEqual(ListItem.DBTYPE,artist)">DefaultArtist.png</value>
-        <value condition="String.IsEqual(ListItem.DBTYPE,album)">DefaultAlbumCover.png</value>
-        <value condition="String.IsEqual(ListItem.DBTYPE,song)">DefaultMusicSongs.png</value>
-        <value condition="String.IsEqual(ListItem.DBTYPE,musicvideo)">DefaultMusicVideoTitle.png</value>
-        <value condition="String.IsEqual(ListItem.DBTYPE,video)">DefaultVideo.png</value>
-        <value condition="!String.IsEmpty(ListItem.AddonName)">DefaultAddon.png</value>
-        <value condition="ListItem.IsFolder">DefaultFolder.png</value>
-        <value>DefaultFile.png</value>
+        <value>$INFO[ListItem.Icon]</value>
     </variable>
 
     <variable name="WidgetImage">
@@ -108,6 +95,11 @@
         <value>$INFO[ListItem.Icon]</value>
     </variable>
 
+    <variable name="Image_Fallback_Icon">
+        <value condition="ListItem.IsFolder">DefaultFolder.png</value>
+        <value>DefaultAddonNone.png</value>
+    </variable>
+    
     <variable name="Image_Clearlogo">
         <value condition="!String.IsEmpty(ListItem.Art(tvshow.clearlogo))">$INFO[ListItem.Art(tvshow.clearlogo)]</value>
         <value condition="!String.IsEmpty(ListItem.Art(clearlogo))">$INFO[ListItem.Art(clearlogo)]</value>
