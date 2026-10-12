@@ -407,11 +407,11 @@
         <value condition="!String.IsEmpty(ListItem.Art(clearlogo))">$INFO[ListItem.Art(clearlogo)]</value>
         <value condition="!String.IsEmpty(ListItem.Art(tvshow.clearlogo))">$INFO[ListItem.Art(tvshow.clearlogo)]</value>
         <value condition="!String.IsEmpty(ListItem.Art(artist.clearlogo))">$INFO[ListItem.Art(artist.clearlogo)]</value>
-        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.clearlogo)) + String.StartsWith(ListItem.FolderPath,pvr://)">$INFO[Window(Home).Property(TMDbHelper.ListItem.clearlogo)]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.clearlogo)) + $EXP[ItemIsLiveTV]">$INFO[Window(Home).Property(TMDbHelper.ListItem.clearlogo)]</value>
         <value condition="!String.IsEmpty(Container(9500).ListItem.Art(clearlogo))">$INFO[Container(9500).ListItem.Art(clearlogo)]</value>
         <value condition="!String.IsEmpty(Container(9500).ListItem.Art(tvshow.clearlogo))">$INFO[Container(9500).ListItem.Art(tvshow.clearlogo)]</value>
         <value condition="!String.IsEmpty(Container(9500).ListItem.Art(artist.clearlogo))">$INFO[Container(9500).ListItem.Art(artist.clearlogo)]</value>
-        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.clearlogo)) + String.StartsWith(Container(9500).ListItem.FolderPath,pvr://)">$INFO[Window(Home).Property(TMDbHelper.ListItem.clearlogo)]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.clearlogo)) + $EXP[ItemIsLiveTVHub]">$INFO[Window(Home).Property(TMDbHelper.ListItem.clearlogo)]</value>
     </variable>
 
     <variable name="Flagstar1">
@@ -691,7 +691,7 @@
     
     <include name="Furniture_Flags">
         <control type="group">
-    		<visible>[Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(musicvideos) | Container.Content(files) | Container.Content(videos) | $EXP[IsVideoAssets] | String.StartsWith(ListItem.FolderPath,pvr://) + !Window.IsVisible(DialogPVRGuideControls.xml) + !String.IsEmpty(Window(home).Property(TMDbHelper.ListItem.tmdb_id))] + [!ListItem.IsFolder | String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,set) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)] + ![String.IsEqual(ListItem.DBType,album) | String.IsEqual(ListItem.DBType,song)] + [!Window.IsVisible(script-globalsearch.xml) | Control.HasFocus(555)]</visible>
+    		<visible>[Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(musicvideos) | Container.Content(files) | Container.Content(videos) | $EXP[IsVideoAssets] | !String.IsEmpty(Window(home).Property(TMDbHelper.ListItem.tmdb_id)) + [Window.IsVisible(tvchannels) | Window.IsVisible(tvguide) | Window.IsVisible(tvrecordings) | Window.IsVisible(tvtimers) | Window.IsVisible(tvsearch)] + !Window.IsVisible(DialogPVRGuideControls.xml)] + [!ListItem.IsFolder | String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,set) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)] + ![String.IsEqual(ListItem.DBType,album) | String.IsEqual(ListItem.DBType,song)] + [!Window.IsVisible(script-globalsearch.xml) | Control.HasFocus(555)]</visible>
             <include>Animation.FurnitureVisible</include>
             <include content="Furniture_Flags_Include" condition="!Skin.HasSetting(furniture.flags)">
                 <param name="position_low" value="true" />
@@ -1842,7 +1842,7 @@
         	<visible>[Control.HasFocus(301) | ControlGroup(301).HasFocus] + !Skin.HasSetting(furniture.flags)</visible>
             <include>Animation.FurnitureVisible</include>
 	        <control type="group">
-	        	<visible>String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,set) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode) | String.IsEqual(ListItem.DBType,video) | String.IsEqual(ListItem.DBType,musicvideo) | String.IsEqual(ListItem.DBType,file) | String.StartsWith(ListItem.FolderPath,pvr://) + !String.IsEmpty(Window(home).Property(TMDbHelper.ListItem.tmdb_id))</visible>
+	        	<visible>String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,set) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode) | String.IsEqual(ListItem.DBType,video) | String.IsEqual(ListItem.DBType,musicvideo) | String.IsEqual(ListItem.DBType,file) | !String.IsEmpty(Window(home).Property(TMDbHelper.ListItem.tmdb_id)) + $EXP[ItemIsLiveTV]</visible>
 	            <include content="Furniture_Flags_Include" condition="!Skin.HasSetting(furniture.flags)">
 	                <param name="position_low" value="true" />
 	            </include>
