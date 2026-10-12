@@ -2481,7 +2481,7 @@
                 <param name="isfullscreenlayout" value="$PARAM[isfullscreenlayout]" />
             </include>
             <texture background="true">$INFO[Window(Home).Property(TMDbHelper.ListItem.clearart)]</texture>
-            <visible>String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://)</visible>
+            <visible>String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://channels/tv) | String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://recordings/tv) | String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://timers/tv)</visible>
         </control>
 
         <!-- All Other -->
@@ -2490,7 +2490,7 @@
                 <param name="isfullscreenlayout" value="$PARAM[isfullscreenlayout]" />
             </include>
             <texture background="true">$INFO[Container($PARAM[id]).ListItem.Art(clearart)]</texture>
-            <visible>!String.IsEqual(Container($PARAM[id]).ListItem.DBType,artist) + !String.IsEqual(Container($PARAM[id]).ListItem.DBType,album) + !String.IsEqual(Container($PARAM[id]).ListItem.DBType,song) + !String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://)</visible>
+            <visible>!String.IsEqual(Container($PARAM[id]).ListItem.DBType,artist) + !String.IsEqual(Container($PARAM[id]).ListItem.DBType,album) + !String.IsEqual(Container($PARAM[id]).ListItem.DBType,song) + ![String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://channels/tv) | String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://recordings/tv) | String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://timers/tv)]</visible>
         </control>
     </include>
 

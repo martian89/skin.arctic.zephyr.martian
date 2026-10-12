@@ -238,7 +238,6 @@
             <label>$INFO[Container($PARAM[focusid]).ListItem.TvShowTitle, •  ,  •  ]$INFO[Container($PARAM[focusid]).ListItem.Label]</label>
             <include>Animation.Vertical.Widgets.Title</include>
             <visible>Control.HasFocus($PARAM[focusid])</visible>
-            <visible>!String.StartsWith(ListItem.FolderPath,pvr://)</visible>
             <visible>String.IsEqual(Container($PARAM[focusid]).ListItem.DBType,episode)</visible>
             <visible>!Skin.HasSetting(homemenu.netflix)</visible>
         </control>
@@ -2318,7 +2317,7 @@
             <width>ClearLogoMaxWidth</width>
             <aspectratio scalediffuse="true" align="left">keep</aspectratio>
             <texture background="true">$INFO[Window(Home).Property(TMDbHelper.ListItem.clearlogo)]</texture>
-            <visible>$PARAM[visible] + Skin.HasSetting(home.netflix.clearlogo) + Skin.HasSetting(homemenu.netflix) + String.IsEmpty(Container($PARAM[id]).ListItem.Art(clearlogo)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.clearlogo)) + String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://) + !Skin.HasSetting(homemenu.clean.flix)</visible>
+            <visible>$PARAM[visible] + Skin.HasSetting(home.netflix.clearlogo) + Skin.HasSetting(homemenu.netflix) + String.IsEmpty(Container($PARAM[id]).ListItem.Art(clearlogo)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.clearlogo)) + [String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://channels/tv) | String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://recordings/tv) | String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://timers/tv)] + !Skin.HasSetting(homemenu.clean.flix)</visible>
         </control>
         <control type="label">
             <include content="def_font" condition="Skin.HasSetting(homemenu.netflix)">
@@ -2333,7 +2332,7 @@
             <textcolor>Dark1</textcolor>
             <label>$PARAM[label]</label>
             <include condition="Skin.HasSetting(labels.autoscroll)">LabelScroll</include>
-            <visible>$PARAM[visible] + [[[!Skin.HasSetting(home.netflix.clearlogo) | Skin.HasSetting(homemenu.clean.flix)] | [Skin.HasSetting(home.netflix.clearlogo) + Skin.HasSetting(homemenu.netflix) + String.IsEmpty(Container($PARAM[id]).ListItem.Art(clearlogo)) + [String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.clearlogo)) | !String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://)]]] | !Skin.HasSetting(homemenu.netflix)]</visible>
+            <visible>$PARAM[visible] + [[[!Skin.HasSetting(home.netflix.clearlogo) | Skin.HasSetting(homemenu.clean.flix)] | [Skin.HasSetting(home.netflix.clearlogo) + Skin.HasSetting(homemenu.netflix) + String.IsEmpty(Container($PARAM[id]).ListItem.Art(clearlogo)) + [String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.clearlogo)) | ![String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://channels/tv) | String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://recordings/tv) | String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://timers/tv)]]]] | !Skin.HasSetting(homemenu.netflix)]</visible>
         </control>
         </definition>
     </include>
@@ -2343,33 +2342,33 @@
         <!-- Episodes -->
         <include content="MultiWidgetsHeaderLabel">
             <param name="label" value="$INFO[Container($PARAM[id]).ListItem.Title]" />
-            <param name="visible" value="!String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://) + String.IsEqual(Container($PARAM[id]).ListItem.DBType,episode) + [$EXP[HomeIsModernMultiWidgets] | $EXP[HomeIsVerticalMultiWidgets]] + !Skin.HasSetting(homemenu.netflix) + !Skin.HasSetting(homemenu.clean.flix)" />
+            <param name="visible" value="String.IsEqual(Container($PARAM[id]).ListItem.DBType,episode) + [$EXP[HomeIsModernMultiWidgets] | $EXP[HomeIsVerticalMultiWidgets]] + !Skin.HasSetting(homemenu.netflix) + !Skin.HasSetting(homemenu.clean.flix)" />
             <param name="id" value="$PARAM[id]" />
         </include>
         
         <include content="MultiWidgetsHeaderLabel">
             <param name="label" value="$INFO[Container($PARAM[id]).ListItem.TvShowTitle,, - ]$INFO[Container($PARAM[id]).ListItem.Title]" />
-            <param name="visible" value="!String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://) + String.IsEqual(Container($PARAM[id]).ListItem.DBType,episode) + [[$EXP[HomeIsModernMultiWidgets] | $EXP[HomeIsVerticalMultiWidgets]] + [Skin.HasSetting(homemenu.netflix) | Skin.HasSetting(homemenu.clean.flix)]]" />
+            <param name="visible" value="String.IsEqual(Container($PARAM[id]).ListItem.DBType,episode) + [[$EXP[HomeIsModernMultiWidgets] | $EXP[HomeIsVerticalMultiWidgets]] + [Skin.HasSetting(homemenu.netflix) | Skin.HasSetting(homemenu.clean.flix)]]" />
             <param name="id" value="$PARAM[id]" />
         </include>
 
         <!-- All Other -->
         <include content="MultiWidgetsHeaderLabel">
             <param name="label" value="$INFO[Container($PARAM[id]).ListItem.Label]" />
-            <param name="visible" value="!String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://) + !String.IsEqual(Container($PARAM[id]).ListItem.DBType,episode) + String.IsEmpty(Container($PARAM[id]).ListItem.Property(Item))" />
+            <param name="visible" value="![String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://channels/tv) | String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://recordings/tv) | String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://timers/tv)] + !String.IsEqual(Container($PARAM[id]).ListItem.DBType,episode) + String.IsEmpty(Container($PARAM[id]).ListItem.Property(Item))" />
             <param name="id" value="$PARAM[id]" />
         </include>
 
         <!-- PVR -->
         <include content="MultiWidgetsHeaderLabel">
             <param name="label" value="$INFO[Container($PARAM[id]).ListItem.Title]" />
-            <param name="visible" value="String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://) + !String.IsEmpty(Container($PARAM[id]).ListItem.Title)" />
+            <param name="visible" value="[String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://channels/tv) | String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://recordings/tv) | String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://timers/tv)] + !String.IsEmpty(Container($PARAM[id]).ListItem.Title)" />
             <param name="id" value="$PARAM[id]" />
         </include>
 
         <include content="MultiWidgetsHeaderLabel">
             <param name="label" value="$INFO[Container($PARAM[id]).ListItem.Label]" />
-            <param name="visible" value="String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://) + String.IsEmpty(Container($PARAM[id]).ListItem.Title)" />
+            <param name="visible" value="[String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://channels/tv) | String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://recordings/tv) | String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://timers/tv)] + String.IsEmpty(Container($PARAM[id]).ListItem.Title)" />
             <param name="id" value="$PARAM[id]" />
         </include>
 
@@ -2394,7 +2393,7 @@
                     <param name="maxheight" value="$PARAM[plotmaxheight]" />
                 </include>
                 <label>$INFO[Container($PARAM[id]).ListItem.Plot]</label>
-                <visible>[[String.IsEqual(Container($PARAM[id]).ListItem.DBType,set) | String.IsEqual(Container($PARAM[id]).ListItem.DBType,movie) | String.IsEqual(Container($PARAM[id]).ListItem.DBType,episode) | String.IsEqual(Container($PARAM[id]).ListItem.DBType,tvshow) | String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://)] + !String.IsEmpty(Container($PARAM[id]).ListItem.Plot)] + [!Skin.HasSetting(homemenu.netflix) | Skin.HasSetting(homemenu.clean.flix) | !Skin.HasSetting(home.netflix.clearlogo) | [String.IsEmpty(Container($PARAM[id]).ListItem.Art(clearlogo)) + [String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.clearlogo)) | !String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://)]]]</visible>
+                <visible>[[String.IsEqual(Container($PARAM[id]).ListItem.DBType,set) | String.IsEqual(Container($PARAM[id]).ListItem.DBType,movie) | String.IsEqual(Container($PARAM[id]).ListItem.DBType,episode) | String.IsEqual(Container($PARAM[id]).ListItem.DBType,tvshow) | [String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://channels/tv) | String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://recordings/tv) | String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://timers/tv)]] + !String.IsEmpty(Container($PARAM[id]).ListItem.Plot)] + [!Skin.HasSetting(homemenu.netflix) | Skin.HasSetting(homemenu.clean.flix) | !Skin.HasSetting(home.netflix.clearlogo) | [String.IsEmpty(Container($PARAM[id]).ListItem.Art(clearlogo)) + [String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.clearlogo)) | ![String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://channels/tv) | String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://recordings/tv) | String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://timers/tv)]]]]</visible>
             </control>
 
             <!-- Sets Movies Episodes PVR Netflix ClearLogo -->
@@ -2403,7 +2402,7 @@
                     <param name="maxheight" value="136" />
                 </include>
                 <label>$INFO[Container($PARAM[id]).ListItem.Plot]</label>
-                <visible>[[String.IsEqual(Container($PARAM[id]).ListItem.DBType,set) | String.IsEqual(Container($PARAM[id]).ListItem.DBType,movie) | String.IsEqual(Container($PARAM[id]).ListItem.DBType,episode) | String.IsEqual(Container($PARAM[id]).ListItem.DBType,tvshow) | String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://)] + !String.IsEmpty(Container($PARAM[id]).ListItem.Plot)] + Skin.HasSetting(homemenu.netflix) + !Skin.HasSetting(homemenu.clean.flix) + Skin.HasSetting(home.netflix.clearlogo) + ![String.IsEmpty(Container($PARAM[id]).ListItem.Art(clearlogo)) + [String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.clearlogo)) | !String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://)]]</visible>
+                <visible>[[String.IsEqual(Container($PARAM[id]).ListItem.DBType,set) | String.IsEqual(Container($PARAM[id]).ListItem.DBType,movie) | String.IsEqual(Container($PARAM[id]).ListItem.DBType,episode) | String.IsEqual(Container($PARAM[id]).ListItem.DBType,tvshow) | [String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://channels/tv) | String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://recordings/tv) | String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://timers/tv)]] + !String.IsEmpty(Container($PARAM[id]).ListItem.Plot)] + Skin.HasSetting(homemenu.netflix) + !Skin.HasSetting(homemenu.clean.flix) + Skin.HasSetting(home.netflix.clearlogo) + ![String.IsEmpty(Container($PARAM[id]).ListItem.Art(clearlogo)) + [String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.clearlogo)) | ![String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://channels/tv) | String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://recordings/tv) | String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://timers/tv)]]]</visible>
             </control>
 
             <!-- Albums -->
@@ -2475,7 +2474,7 @@
                     <param name="maxheight" value="$PARAM[plotmaxheight]" />
                 </include>
                 <label>$INFO[Container($PARAM[id]).ListItem.Plot]</label>
-                <visible>![[String.IsEqual(Container($PARAM[id]).ListItem.DBType,set) | String.IsEqual(Container($PARAM[id]).ListItem.DBType,movie) | String.IsEqual(Container($PARAM[id]).ListItem.DBType,episode) | String.IsEqual(Container($PARAM[id]).ListItem.DBType,tvshow)] + !String.IsEmpty(Container($PARAM[id]).ListItem.Plot)] + ![String.IsEqual(Container($PARAM[id]).ListItem.DBType,album) + !String.IsEmpty(Container($PARAM[id]).ListItem.Property(Album_Description))] + ![String.IsEqual(Container($PARAM[id]).ListItem.DBType,artist) + !String.IsEmpty(Container($PARAM[id]).ListItem.Property(Artist_Description))] + ![String.IsEqual(Container($PARAM[id]).ListItem.DBType,song) + ControlGroup(301).HasFocus()] + ![String.IsEqual(Container($PARAM[id]).ListItem.DBType,song) + !ControlGroup(301).HasFocus() + !String.IsEmpty(Container($PARAM[id]).ListItem.Property(Artist_Description))]+ ![!String.IsEmpty(Container($PARAM[id]).ListItem.AddonDescription) + !String.IsEmpty(Container($PARAM[id]).ListItem.AddonDescription)] + ![String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://)] + !String.IsEqual(Container($PARAM[id]).ListItem.DBType,actor)</visible>
+                <visible>![[String.IsEqual(Container($PARAM[id]).ListItem.DBType,set) | String.IsEqual(Container($PARAM[id]).ListItem.DBType,movie) | String.IsEqual(Container($PARAM[id]).ListItem.DBType,episode) | String.IsEqual(Container($PARAM[id]).ListItem.DBType,tvshow)] + !String.IsEmpty(Container($PARAM[id]).ListItem.Plot)] + ![String.IsEqual(Container($PARAM[id]).ListItem.DBType,album) + !String.IsEmpty(Container($PARAM[id]).ListItem.Property(Album_Description))] + ![String.IsEqual(Container($PARAM[id]).ListItem.DBType,artist) + !String.IsEmpty(Container($PARAM[id]).ListItem.Property(Artist_Description))] + ![String.IsEqual(Container($PARAM[id]).ListItem.DBType,song) + ControlGroup(301).HasFocus()] + ![String.IsEqual(Container($PARAM[id]).ListItem.DBType,song) + !ControlGroup(301).HasFocus() + !String.IsEmpty(Container($PARAM[id]).ListItem.Property(Artist_Description))]+ ![!String.IsEmpty(Container($PARAM[id]).ListItem.AddonDescription) + !String.IsEmpty(Container($PARAM[id]).ListItem.AddonDescription)] + ![[String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://channels/tv) | String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://recordings/tv) | String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://timers/tv)]] + !String.IsEqual(Container($PARAM[id]).ListItem.DBType,actor)</visible>
             </control>
         </control>
     </include>
@@ -2775,17 +2774,17 @@
             <!-- PVR -->
             <control type="label" description="Duration">
                 <include>MultiWidgetsSubLabelDefinition</include>
-                <visible>String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://) + !Skin.HasSetting(NewTime)</visible>
+                <visible>[String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://channels/tv) | String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://recordings/tv) | String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://timers/tv)] + !Skin.HasSetting(NewTime)</visible>
                 <label>$INFO[Container($PARAM[id]).ListItem.Label]$INFO[Container($PARAM[id]).ListItem.StartTime,  •  ,]$INFO[Container($PARAM[id]).ListItem.EndTime, - ]$INFO[Container($PARAM[id]).ListItem.Duration(mins),  •  , $LOCALIZE[31102]]$VAR[Label_TvShow_Ratings]</label>
             </control>
             <control type="label" description="Duration">
                 <include>MultiWidgetsSubLabelDefinition</include>
-                <visible>String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://) + Skin.HasSetting(NewTime) + Integer.IsGreater(Container($PARAM[id]).ListItem.Duration(h),0)</visible>
+                <visible>[String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://channels/tv) | String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://recordings/tv) | String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://timers/tv)] + Skin.HasSetting(NewTime) + Integer.IsGreater(Container($PARAM[id]).ListItem.Duration(h),0)</visible>
                 <label>$INFO[Container($PARAM[id]).ListItem.Label]$INFO[Container($PARAM[id]).ListItem.StartTime,  •  ,]$INFO[Container($PARAM[id]).ListItem.EndTime, - ]$INFO[Container($PARAM[id]).ListItem.Duration(h),  •  ,$LOCALIZE[31088]] $INFO[Container($PARAM[id]).ListItem.Duration(mm),,$LOCALIZE[31089]]$VAR[Label_TvShow_Ratings]</label>
             </control>
             <control type="label" description="Duration">
                 <include>MultiWidgetsSubLabelDefinition</include>
-                <visible>String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://) + Skin.HasSetting(NewTime) + !Integer.IsGreater(Container($PARAM[id]).ListItem.Duration(h),0)</visible>
+                <visible>[String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://channels/tv) | String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://recordings/tv) | String.StartsWith(Container($PARAM[id]).ListItem.FolderPath,pvr://timers/tv)] + Skin.HasSetting(NewTime) + !Integer.IsGreater(Container($PARAM[id]).ListItem.Duration(h),0)</visible>
                 <label>$INFO[Container($PARAM[id]).ListItem.Label]$INFO[Container($PARAM[id]).ListItem.StartTime,  •  ,]$INFO[Container($PARAM[id]).ListItem.EndTime, - ]$INFO[Container($PARAM[id]).ListItem.Duration(mm),  •  ,$LOCALIZE[31089]]$VAR[Label_TvShow_Ratings]</label>
             </control>
         </control>

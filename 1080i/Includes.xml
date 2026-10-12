@@ -103,6 +103,10 @@
 	<expression name="IsVideoInfo">Window.IsVisible(DialogVideoInfo.xml) + ![String.IsEqual(ListItem.Property(item.type),person) | String.IsEqual(ListItem.Property(dbtype),person) | String.IsEqual(ListItem.Property(Param.Info),person)]</expression>
 	<expression name="IsPersonInfo">Window.IsVisible(DialogVideoInfo.xml) + [String.IsEqual(ListItem.Property(item.type),person) | String.IsEqual(ListItem.Property(dbtype),person) | String.IsEqual(ListItem.Property(Param.Info),person)]</expression>
 
+    <expression name="ItemIsLiveTV">String.StartsWith(ListItem.FolderPath,pvr://channels/tv) | String.StartsWith(ListItem.FolderPath,pvr://recordings/tv) | String.StartsWith(ListItem.FolderPath,pvr://timers/tv)</expression>
+    <expression name="ItemIsLiveTVHub">String.StartsWith(Container(9500).ListItem.FolderPath,pvr://channels/tv) | String.StartsWith(Container(9500).ListItem.FolderPath,pvr://recordings/tv) | String.StartsWith(Container(9500).ListItem.FolderPath,pvr://timers/tv)</expression>
+    <expression name="ItemIsLiveTV301">String.StartsWith(Container(301).ListItem.FolderPath,pvr://channels/tv) | String.StartsWith(Container(301).ListItem.FolderPath,pvr://recordings/tv) | String.StartsWith(Container(301).ListItem.FolderPath,pvr://timers/tv)</expression>
+    
     <expression name="HasImage_ListItem_IconResource">
         [ Window.IsVisible(MyVideoNav.xml) | Window.IsVisible(home)] + String.IsEqual(ListItem.DBType,country) + [!String.IsEmpty(Skin.String(moviecountry.icons.path)) | System.AddonIsEnabled(resource.images.moviecountryicons.maps)]
         | [Window.IsVisible(MyVideoNav.xml) | Window.IsVisible(home)] + String.IsEqual(ListItem.DBType,genre) + [!String.IsEmpty(Skin.String(genre.icons.path)) | System.AddonIsEnabled(resource.images.moviegenreicons.transparent)]

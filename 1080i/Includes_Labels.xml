@@ -325,7 +325,7 @@
 
     <variable name="PVRPlotLabel">
         <value condition="!String.IsEmpty(ListItem.Plot)">$INFO[ListItem.Plot]</value>
-        <value>$INFO[Window(home).Property(TMDBHelper.ListItem.Plot)]</value>
+        <value condition="$EXP[ItemIsLiveTV]">$INFO[Window(home).Property(TMDBHelper.ListItem.Plot)]</value>
     </variable>
 
     <variable name="PVREpisodeLabel">

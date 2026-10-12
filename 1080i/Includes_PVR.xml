@@ -141,7 +141,7 @@
                     <visible>!Player.HasVideo | Skin.HasSetting(global.showvideo)</visible>
                 </control>
                 <control type="image">
-                    <visible>[!Player.HasVideo | Skin.HasSetting(global.showvideo)] + String.IsEmpty(Listitem.EpgEventIcon) + String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Fanart))</visible>
+                    <visible>[!Player.HasVideo | Skin.HasSetting(global.showvideo)] + String.IsEmpty(Listitem.EpgEventIcon) + [String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Fanart)) | !String.IsEmpty(Window.Property(IsRadio))]</visible>
                     <left>70</left>
                     <top>30</top>
                     <right>70</right>
@@ -151,7 +151,7 @@
                     <fadetime>PosterFanartFadetime</fadetime>
                 </control>
                 <control type="image">
-                    <visible>[!Player.HasVideo | Skin.HasSetting(global.showvideo)] + [!String.IsEmpty(Listitem.EpgEventIcon) | !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Fanart))]</visible>
+                    <visible>[!Player.HasVideo | Skin.HasSetting(global.showvideo)] + [!String.IsEmpty(Listitem.EpgEventIcon) | !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Fanart)) + String.IsEmpty(Window.Property(IsRadio))]</visible>
                     <left>10</left>
                     <top>10</top>
                     <right>10</right>
@@ -1868,7 +1868,7 @@
 	                <label>$VAR[PVREpisodeLabel,,[CR]]$VAR[PVRPlotLabel]</label>
 	            </control>
                 <control type="image">
-                    <visible>String.IsEmpty(Listitem.EpgEventIcon) + String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Fanart))</visible>
+                    <visible>String.IsEmpty(Listitem.EpgEventIcon) + [String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Fanart)) | !String.IsEmpty(Window.Property(IsRadio))]</visible>
                     <right>-15</right>
                     <top>10</top>
                     <width>240</width>
@@ -1878,7 +1878,7 @@
                     <fadetime>PosterFanartFadetime</fadetime>
                 </control>
 	            <control type="image">
-                    <visible>!String.IsEmpty(Listitem.EpgEventIcon) | !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Fanart))</visible>
+                    <visible>!String.IsEmpty(Listitem.EpgEventIcon) | !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Fanart)) + String.IsEmpty(Window.Property(IsRadio))</visible>
 	                <right>-15</right>
 	                <top>10</top>
 	                <width>240</width>
