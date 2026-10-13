@@ -305,7 +305,7 @@
 			        <label>$LOCALIZE[31411]</label>
 			        <include>Def_Skinshortcuts_Buttons</include>
 			        <visible>!String.IsEqual(Container(211).ListItem.Property(widgetPath),submenu)</visible>
-			        <visible>Skin.HasSetting(home.vertical.widgets) + !Skin.HasSetting(homemenu.netflix)</visible>
+			        <visible>$EXP[HomeIsMultiWidgets] + !Skin.HasSetting(homemenu.netflix)</visible>
                     <visible>$EXP[Skinshortcuts_Widgets_Active]</visible>
 			    </control>
 			    <control type="button" id="351" description="Widget Aspect">
@@ -313,7 +313,7 @@
 			        <label2>$VAR[Label_Widget_Aspect]</label2>
 			        <include>Def_Skinshortcuts_Buttons</include>
 	                <visible>!$EXP[Widget_HasFixedAspect]</visible>
-	                <visible>!Skin.HasSetting(home.vertical.widgets)</visible>
+	                <visible>!$EXP[HomeIsMultiWidgets]</visible>
                     <visible>$EXP[Skinshortcuts_Widgets_Active]</visible>
 			    </control>
                 <control type="button" id="352" description="Widget Style">
@@ -321,7 +321,7 @@
                     <label2>$VAR[Label_Widget_Style]</label2>
                     <include>Def_Skinshortcuts_Buttons</include>
                     <visible>!$EXP[Widget_HasFixedAspect]</visible>
-                    <visible>Skin.HasSetting(home.vertical.widgets) + !Skin.HasSetting(homemenu.clean.flix)</visible>
+                    <visible>$EXP[HomeIsMultiWidgets] + !Skin.HasSetting(homemenu.clean.flix)</visible>
                     <visible>$EXP[Skinshortcuts_Widgets_Active]</visible>
                 </control>
 	            <control type="button" id="353" description="Widget Content">
@@ -361,7 +361,7 @@
 	                <include>Def_Skinshortcuts_Buttons</include>
 	                <enable>!String.IsEqual(Container(211).ListItem.Property(widgetLimit),Auto) | $EXP[Widget_HasStaticContent] | $EXP[HomeIsCleanMinimal] | $EXP[HomeIsSpotlight]</enable>
 	                <visible>!String.IsEmpty(Skin.String(AutoScrollTime))</visible>
-                    <visible>Skin.HasSetting(home.vertical.widgets) | !String.IsEqual(Container(211).ListItem.Property(widget),weather)</visible>
+                    <visible>$EXP[HomeIsMultiWidgets] | !String.IsEqual(Container(211).ListItem.Property(widget),weather)</visible>
                     <visible>$EXP[Skinshortcuts_Widgets_Active]</visible>
 	            </control>
 	            <control type="radiobutton" id="358" description="Widget List Type">
@@ -369,7 +369,7 @@
 	                <label>$LOCALIZE[31148]</label>
 	                <include>Def_Skinshortcuts_Buttons</include>
 	                <visible>!$EXP[HomeIsCleanMinimal] + !$EXP[HomeIsSpotlight]</visible>
-	                <visible>!String.IsEqual(Container(211).ListItem.Property(widget),weather) | Skin.HasSetting(home.vertical.widgets)</visible>
+	                <visible>!String.IsEqual(Container(211).ListItem.Property(widget),weather) | $EXP[HomeIsMultiWidgets]</visible>
                     <visible>!String.IsEqual(Container(211).ListItem.Property(widgetTarget),tvguide) + !String.IsEqual(Container(211).ListItem.Property(widgetTarget),radioguide)</visible>
                     <visible>$EXP[Skinshortcuts_Widgets_Active]</visible>
 	            </control>

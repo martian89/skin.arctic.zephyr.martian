@@ -62,7 +62,7 @@
             <visible>String.IsEmpty(Window(home).Property(TrailerFade))</visible>
             <visible>!$EXP[HomeShowHeader]</visible>
             <visible>Player.HasMedia</visible>
-            <visible>![[Skin.HasSetting(extended.nowplaying) | !Skin.HasSetting(homemenu.netflix)] + Skin.HasSetting(home.vertical.widgets)] + [!Skin.HasSetting(home.vertical) | ControlGroup(301).HasFocus]</visible>
+            <visible>![[Skin.HasSetting(extended.nowplaying) | !Skin.HasSetting(homemenu.netflix)] + $EXP[HomeIsMultiWidgets]] + [!Skin.HasSetting(home.vertical) | ControlGroup(301).HasFocus]</visible>
             <visible>!Control.HasFocus(301) | Skin.HasSetting(home.classicwidgets)</visible>
             <animation effect="slide" end="0,100" time="150" condition="Window.IsVisible(DialogNotification.xml) | Window.IsVisible(DialogExtendedProgressBar.xml) | [Window.IsVisible(DialogVolumeBar.xml) + !Player.Muted]">Conditional</animation>
             <control type="image">
@@ -139,9 +139,9 @@
             <include>Animation.FadeIn.Slide</include>
             <include>Animation.FadeOut</include>
             <visible>!Control.HasFocus(301) | [Skin.HasSetting(home.classicwidgets) + !$EXP[HomeShowHeader]]</visible>
-            <visible>![$EXP[HomeIsModernMultiWidgets] | $EXP[HomeIsVerticalMultiWidgets]] | [Skin.HasSetting(homemenu.netflix) + [!Skin.HasSetting(home.vertical) | ControlGroup(301).HasFocus]]</visible>
+            <visible>!$EXP[HomeIsMultiWidgets] | [Skin.HasSetting(homemenu.netflix) + [!Skin.HasSetting(home.vertical) | ControlGroup(301).HasFocus]]</visible>
             <visible>$EXP[HomeShowHeader] | [!Window.IsVisible(DialogNotification.xml) + !Window.IsVisible(DialogExtendedProgressBar.xml) + !Window.IsVisible(DialogVolumeBar.xml)]</visible>
-            <animation effect="slide" end="0,100" time="150" condition="!$EXP[HomeShowHeader] + Player.HasMedia + !Skin.HasSetting(home.hide.nowplaying) + ![Skin.HasSetting(extended.nowplaying) + [$EXP[HomeIsModernMultiWidgets] | $EXP[HomeIsVerticalMultiWidgets]]]">Conditional</animation>
+            <animation effect="slide" end="0,100" time="150" condition="!$EXP[HomeShowHeader] + Player.HasMedia + !Skin.HasSetting(home.hide.nowplaying) + ![Skin.HasSetting(extended.nowplaying) + $EXP[HomeIsMultiWidgets]]">Conditional</animation>
             <animation effect="slide" end="0,100" time="150" condition="!$EXP[HomeShowHeader] + Player.HasMedia + Window.IsVisible(DialogExtendedProgressBar.xml)">Conditional</animation>
             <animation effect="slide" start="0" end="0,190" time="150" condition="$EXP[HomeShowHeader]">Conditional</animation>
             <visible>Pvr.IsRecording | Pvr.HasTimer</visible>
@@ -201,7 +201,7 @@
         <control type="group">
             <animation effect="slide" start="0" end="0,200" time="150" condition="$EXP[HomeShowHeader]">Conditional</animation>
             <animation effect="slide" end="0,100" time="150" condition="[[Pvr.IsRecording | Pvr.HasTimer] + !Skin.HasSetting(hide.recording.info) | [!$EXP[HomeShowHeader] + [Window.IsVisible(DialogNotification.xml) | Window.IsVisible(DialogExtendedProgressBar.xml) | Window.IsVisible(DialogVolumeBar.xml)]]]">Conditional</animation>
-            <animation effect="slide" end="0,100" time="150" condition="!$EXP[HomeShowHeader] + Player.HasMedia + !Skin.HasSetting(home.hide.nowplaying) + ![Skin.HasSetting(extended.nowplaying) + [$EXP[HomeIsModernMultiWidgets] | $EXP[HomeIsVerticalMultiWidgets]]]">Conditional</animation>
+            <animation effect="slide" end="0,100" time="150" condition="!$EXP[HomeShowHeader] + Player.HasMedia + !Skin.HasSetting(home.hide.nowplaying) + ![Skin.HasSetting(extended.nowplaying) + $EXP[HomeIsMultiWidgets]]">Conditional</animation>
             <visible>String.IsEqual(Container(300).ListItem.Property(widget),weather) + !Skin.HasSetting(homemenu.netflix) | Skin.HasSetting(home.showweatherfanart)</visible>
             <visible>!Player.HasVideo | !Skin.HasSetting(global.showvideo)</visible>
             <visible>!Skin.HasSetting(home.vertical) | ControlGroup(301).HasFocus</visible>
@@ -519,7 +519,7 @@
                     <width>324</width>
                     <height>324</height>
                     <fadetime>PosterFanartFadetime</fadetime>
-                    <aspectratio scalediffuse="false">scale</aspectratio>
+                    <aspectratio scalediffuse="false">keep</aspectratio>
                     <texture diffuse="diffuse/widgetposter.png" fallback="DefaultAddonNone.png">$VAR[WidgetImage]</texture>
                 </control>
                 <control type="group">
@@ -767,8 +767,8 @@
                     <onfocus>ClearProperty(nowplayingautoshowtimer,home)</onfocus>
                     <include condition="!Skin.HasSetting(furniture.clock)">DefHomeRight520</include>
                     <include condition="Skin.HasSetting(furniture.clock)">DefHomeRightSidePad</include>
-                    <onup condition="$EXP[ExtendedNowPlayingIsVisible] + Skin.HasSetting(hide.home.nowplaying.controls) + [$EXP[HomeIsModernMultiWidgets] | $EXP[HomeIsVerticalMultiWidgets]] + Skin.HasSetting(home.extended.nowplaying.tracklist) + Integer.IsGreater(Container(778).NumItems,0) + Player.HasAudio">778</onup>
-                    <onup condition="$EXP[ExtendedNowPlayingIsVisible] + !Skin.HasSetting(hide.home.nowplaying.controls) + [$EXP[HomeIsModernMultiWidgets] | $EXP[HomeIsVerticalMultiWidgets]]">777</onup>
+                    <onup condition="$EXP[ExtendedNowPlayingIsVisible] + Skin.HasSetting(hide.home.nowplaying.controls) + $EXP[HomeIsMultiWidgets] + Skin.HasSetting(home.extended.nowplaying.tracklist) + Integer.IsGreater(Container(778).NumItems,0) + Player.HasAudio">778</onup>
+                    <onup condition="$EXP[ExtendedNowPlayingIsVisible] + !Skin.HasSetting(hide.home.nowplaying.controls) + $EXP[HomeIsMultiWidgets]">777</onup>
                     <onup condition="!Player.HasVideo | !Skin.HasSetting(global.showvideo)">301</onup>
                     <onup>301</onup>
                     <ondown condition="Integer.IsGreater(Container(302).NumItems,0)">SetFocus(302,0)</ondown>
@@ -1582,7 +1582,7 @@
             </control>
 
             <!-- Set TMDbHelper WidgetContainer -->
-            <include condition="$EXP[HomeIsModernMultiWidgets] | $EXP[HomeIsVerticalMultiWidgets]">SetWidgetContainerForTMDB</include>
+            <include condition="$EXP[HomeIsMultiWidgets]">SetWidgetContainerForTMDB</include>
         </focusedlayout>
         <content>
             <include>skinshortcuts-mainmenu</include>
@@ -1667,7 +1667,7 @@
             </control>
 
             <!-- Set TMDbHelper WidgetContainer -->
-            <include condition="$EXP[HomeIsModernMultiWidgets] | $EXP[HomeIsVerticalMultiWidgets]">SetWidgetContainerForTMDB</include>
+            <include condition="$EXP[HomeIsMultiWidgets]">SetWidgetContainerForTMDB</include>
         </focusedlayout>
         <content>
             <include>skinshortcuts-mainmenu</include>
@@ -1733,7 +1733,7 @@
                 </control>
             </control>
             <!-- Set TMDbHelper WidgetContainer -->
-            <include condition="$EXP[HomeIsModernMultiWidgets] | $EXP[HomeIsVerticalMultiWidgets]">SetWidgetContainerForTMDB</include>
+            <include condition="$EXP[HomeIsMultiWidgets]">SetWidgetContainerForTMDB</include>
         </focusedlayout>
         <content>
             <include>skinshortcuts-mainmenu</include>
@@ -1838,7 +1838,7 @@
 		    </control>
 		
 		    <!-- Set TMDbHelper WidgetContainer -->
-		    <include condition="$EXP[HomeIsModernMultiWidgets] | $EXP[HomeIsVerticalMultiWidgets]">SetWidgetContainerForTMDB</include>
+		    <include condition="$EXP[HomeIsMultiWidgets]">SetWidgetContainerForTMDB</include>
 		</focusedlayout>			
 	</include>
 
@@ -2155,23 +2155,23 @@
 	    <control type="list" id="302">
 	        <visible allowhiddenfocus="true">Control.HasFocus(302)</visible>
 	        <animation effect="fade" start="100" end="33" time="400" condition="Control.HasFocus(301)">Conditional</animation>
-            <include condition="!Skin.HasSetting(home.vertical.widgets)">Animation.LeftSide.Vertical.SubMenu</include>
+            <include condition="!$EXP[HomeIsMultiWidgets]">HomeSubMenu_Reposition_VerticalMenu</include>
+            <include>Animation.Slide.Vertical.Submenu</include>
 	        <include>Animation.FadeIn</include>
 	        <include>Animation.FadeOut</include>
-            <include>HomeSubMenu_Reposition_VerticalMenu</include>
 	        <description>Home Wraplist</description>
             <left>SidePad</left>
-            <include condition="Skin.HasSetting(home.vertical.widgets)">HomeVerticalMenuWidgets_Top</include>
+            <include condition="$EXP[HomeIsMultiWidgets]">HomeVerticalMenuWidgets_Top</include>
             <top>PosterPad</top>
             <width>PosterW</width>
             <height>720</height>
-            <include content="HomeVerticalSubMenuHitrect" condition="!Skin.HasSetting(home.vertical.widgets)">
+            <include content="HomeVerticalSubMenuHitrect" condition="!$EXP[HomeIsMultiWidgets]">
                 <param name="y" value="PosterPad" />
             </include>
-            <include content="HomeVerticalSubMenuHitrect" condition="Skin.HasSetting(home.vertical.widgets) + Skin.HasSetting(homemenu.netflix)">
+            <include content="HomeVerticalSubMenuHitrect" condition="$EXP[HomeIsMultiWidgets] + Skin.HasSetting(homemenu.netflix)">
                 <param name="y" value="215" />
             </include>
-            <include content="HomeVerticalSubMenuHitrect" condition="Skin.HasSetting(home.vertical.widgets) + !Skin.HasSetting(homemenu.netflix)">
+            <include content="HomeVerticalSubMenuHitrect" condition="$EXP[HomeIsMultiWidgets] + !Skin.HasSetting(homemenu.netflix)">
                 <param name="y" value="147" />
             </include>
 	        <orientation>vertical</orientation>
