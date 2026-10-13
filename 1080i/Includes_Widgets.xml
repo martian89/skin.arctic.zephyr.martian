@@ -464,7 +464,7 @@
                     <param name="id" value="$PARAM[shortcutsid]" />
                 </include>
             </control>
-            <include condition="Skin.HasSetting(home.netflix.autoplay.trailer) + [$EXP[HomeIsModernMultiWidgetsNetflix] | $EXP[HomeIsVerticalMultiWidgetsNetflix] | $EXP[HomeIsCleanMinimal]]">SetAutoTrailerControl</include>
+            <include condition="Skin.HasSetting(home.netflix.autoplay.trailer) + Skin.HasSetting(homemenu.netflix)">SetAutoTrailerControl</include>
         </focusedlayout>
         <focusedlayout height="325" width="325" condition="$PARAM[Square] + !$EXP[HomeIsCleanMinimal]">
             <control type="group">
@@ -476,7 +476,7 @@
                     <param name="focused" value="true" />
                 </include>
             </control>
-            <include condition="Skin.HasSetting(home.netflix.autoplay.trailer) + [$EXP[HomeIsModernMultiWidgetsNetflix] | $EXP[HomeIsVerticalMultiWidgetsNetflix] | $EXP[HomeIsCleanMinimal]]">SetAutoTrailerControl</include>
+            <include condition="Skin.HasSetting(home.netflix.autoplay.trailer) + Skin.HasSetting(homemenu.netflix)">SetAutoTrailerControl</include>
         </focusedlayout>
         <focusedlayout height="325" width="562" condition="$PARAM[Landscape] + !$EXP[HomeIsCleanMinimal]">
             <control type="group">
@@ -488,7 +488,7 @@
                     <param name="focused" value="true" />
                 </include>
             </control>
-            <include condition="Skin.HasSetting(home.netflix.autoplay.trailer) + [$EXP[HomeIsModernMultiWidgetsNetflix] | $EXP[HomeIsVerticalMultiWidgetsNetflix] | $EXP[HomeIsCleanMinimal]]">SetAutoTrailerControl</include>
+            <include condition="Skin.HasSetting(home.netflix.autoplay.trailer) + Skin.HasSetting(homemenu.netflix)">SetAutoTrailerControl</include>
         </focusedlayout>
         <focusedlayout height="325" width="400" condition="$PARAM[LandscapeSmall] + !$EXP[HomeIsCleanMinimal]">
             <control type="group">
@@ -501,7 +501,7 @@
                     <param name="focused" value="true" />
                 </include>
             </control>
-            <include condition="Skin.HasSetting(home.netflix.autoplay.trailer) + [$EXP[HomeIsModernMultiWidgetsNetflix] | $EXP[HomeIsVerticalMultiWidgetsNetflix] | $EXP[HomeIsCleanMinimal]]">SetAutoTrailerControl</include>
+            <include condition="Skin.HasSetting(home.netflix.autoplay.trailer) + Skin.HasSetting(homemenu.netflix)">SetAutoTrailerControl</include>
         </focusedlayout>
         <focusedlayout height="325" width="542" condition="$PARAM[LandscapePosterSmall] + !$EXP[HomeIsCleanMinimal]">
             <control type="group">
@@ -515,7 +515,7 @@
                     <param name="focused" value="true" />
                 </include>
             </control>
-            <include condition="Skin.HasSetting(home.netflix.autoplay.trailer) + [$EXP[HomeIsModernMultiWidgetsNetflix] | $EXP[HomeIsVerticalMultiWidgetsNetflix] | $EXP[HomeIsCleanMinimal]]">SetAutoTrailerControl</include>
+            <include condition="Skin.HasSetting(home.netflix.autoplay.trailer) + Skin.HasSetting(homemenu.netflix)">SetAutoTrailerControl</include>
         </focusedlayout>
         <focusedlayout height="325" width="1690" condition="$PARAM[Banner] + !$EXP[HomeIsCleanMinimal]">
             <control type="group">
@@ -527,7 +527,7 @@
                     <param name="focused" value="true" />
                 </include>
             </control>
-            <include condition="Skin.HasSetting(home.netflix.autoplay.trailer) + [$EXP[HomeIsModernMultiWidgetsNetflix] | $EXP[HomeIsVerticalMultiWidgetsNetflix] | $EXP[HomeIsCleanMinimal]]">SetAutoTrailerControl</include>
+            <include condition="Skin.HasSetting(home.netflix.autoplay.trailer) + Skin.HasSetting(homemenu.netflix)">SetAutoTrailerControl</include>
         </focusedlayout>
         <focusedlayout height="325" width="562" condition="$PARAM[Thumbnail] + !$EXP[HomeIsCleanMinimal]">
             <control type="group">
@@ -539,7 +539,7 @@
                     <param name="focused" value="true" />
                 </include>
             </control>
-            <include condition="Skin.HasSetting(home.netflix.autoplay.trailer) + [$EXP[HomeIsModernMultiWidgetsNetflix] | $EXP[HomeIsVerticalMultiWidgetsNetflix] | $EXP[HomeIsCleanMinimal]]">SetAutoTrailerControl</include>
+            <include condition="Skin.HasSetting(home.netflix.autoplay.trailer) + Skin.HasSetting(homemenu.netflix)">SetAutoTrailerControl</include>
         </focusedlayout>
         </definition>
     </include>
@@ -2342,13 +2342,13 @@
         <!-- Episodes -->
         <include content="MultiWidgetsHeaderLabel">
             <param name="label" value="$INFO[Container($PARAM[id]).ListItem.Title]" />
-            <param name="visible" value="String.IsEqual(Container($PARAM[id]).ListItem.DBType,episode) + [$EXP[HomeIsModernMultiWidgets] | $EXP[HomeIsVerticalMultiWidgets]] + !Skin.HasSetting(homemenu.netflix) + !Skin.HasSetting(homemenu.clean.flix)" />
+            <param name="visible" value="String.IsEqual(Container($PARAM[id]).ListItem.DBType,episode) + $EXP[HomeIsMultiWidgets] + !Skin.HasSetting(homemenu.netflix) + !Skin.HasSetting(homemenu.clean.flix)" />
             <param name="id" value="$PARAM[id]" />
         </include>
         
         <include content="MultiWidgetsHeaderLabel">
             <param name="label" value="$INFO[Container($PARAM[id]).ListItem.TvShowTitle,, - ]$INFO[Container($PARAM[id]).ListItem.Title]" />
-            <param name="visible" value="String.IsEqual(Container($PARAM[id]).ListItem.DBType,episode) + [[$EXP[HomeIsModernMultiWidgets] | $EXP[HomeIsVerticalMultiWidgets]] + [Skin.HasSetting(homemenu.netflix) | Skin.HasSetting(homemenu.clean.flix)]]" />
+            <param name="visible" value="String.IsEqual(Container($PARAM[id]).ListItem.DBType,episode) + $EXP[HomeIsMultiWidgets] + [Skin.HasSetting(homemenu.netflix) | Skin.HasSetting(homemenu.clean.flix)]" />
             <param name="id" value="$PARAM[id]" />
         </include>
 
@@ -2594,7 +2594,7 @@
                 <control type="label">
                     <include>MultiWidgetsSubLabelDefinition</include>
                     <label>$INFO[Container($PARAM[id]).ListItem.TvShowTitle,,  •  ]</label>
-                    <visible>!String.IsEmpty(Container($PARAM[id]).ListItem.TvShowTitle) + [$EXP[HomeIsModernMultiWidgets] | $EXP[HomeIsVerticalMultiWidgets]] + !Skin.HasSetting(homemenu.netflix) + !Skin.HasSetting(homemenu.clean.flix)</visible>
+                    <visible>!String.IsEmpty(Container($PARAM[id]).ListItem.TvShowTitle) + $EXP[HomeIsMultiWidgets] + !Skin.HasSetting(homemenu.netflix) + !Skin.HasSetting(homemenu.clean.flix)</visible>
                 </control>
                 <control type="label">
                     <include>MultiWidgetsSubLabelDefinition</include>

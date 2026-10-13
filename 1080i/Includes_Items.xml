@@ -741,12 +741,11 @@
 		<item>
             <label>$LOCALIZE[31287] $LOCALIZE[31394] $LOCALIZE[31014]</label>
             <include>ResetViewtypes</include>
-            <onclick>Skin.SetBool(home.modernwidgets)</onclick>
             <onclick>Skin.SetBool(home.vertical.widgets)</onclick>
             <onclick>Skin.SetBool(homemenu.netflix)</onclick>
             <onclick>Close</onclick>
             <thumb>special://skin/extras/homemenu/2$VAR[ColorTheme,_].jpg</thumb>
-            <include condition="Skin.HasSetting(home.modernwidgets) + Skin.HasSetting(home.vertical.widgets) + Skin.HasSetting(homemenu.netflix) + !Skin.HasSetting(homemenu.clean.flix)">Item_Selected</include>		
+            <include condition="$EXP[HomeIsModernMultiWidgets] + Skin.HasSetting(homemenu.netflix) + !Skin.HasSetting(homemenu.clean.flix)">Item_Selected</include>		
 		</item>
 		<item>
             <label>$LOCALIZE[31250] $LOCALIZE[31394] $LOCALIZE[31014]</label>
@@ -756,16 +755,15 @@
             <onclick>Skin.SetBool(homemenu.netflix)</onclick>
             <onclick>Close</onclick>
             <thumb>special://skin/extras/homemenu/1$VAR[ColorTheme,_].jpg</thumb>
-            <include condition="Skin.HasSetting(home.vertical) + Skin.HasSetting(home.vertical.widgets) + Skin.HasSetting(homemenu.netflix)">Item_Selected</include>		
+            <include condition="$EXP[HomeIsVerticalMultiWidgets] + Skin.HasSetting(homemenu.netflix)">Item_Selected</include>		
 		</item>
 		<item>
             <label>$LOCALIZE[31287] $LOCALIZE[31394]</label>
             <include>ResetViewtypes</include>
-            <onclick>Skin.SetBool(home.modernwidgets)</onclick>
             <onclick>Skin.SetBool(home.vertical.widgets)</onclick>
             <onclick>Close</onclick>
             <thumb>special://skin/extras/homemenu/4$VAR[ColorTheme,_].jpg</thumb>
-            <include condition="Skin.HasSetting(home.modernwidgets) + Skin.HasSetting(home.vertical.widgets) + !Skin.HasSetting(homemenu.netflix)">Item_Selected</include>		
+            <include condition="$EXP[HomeIsModernMultiWidgets] + !Skin.HasSetting(homemenu.netflix)">Item_Selected</include>     
 		</item>
 		<item>
             <label>$LOCALIZE[31250] $LOCALIZE[31394]</label>
@@ -774,25 +772,24 @@
             <onclick>Skin.SetBool(home.vertical.widgets)</onclick>
             <onclick>Close</onclick>			
             <thumb>special://skin/extras/homemenu/7$VAR[ColorTheme,_].jpg</thumb>
-            <include condition="!Skin.HasSetting(home.classicwidgets) + Skin.HasSetting(home.vertical) + Skin.HasSetting(home.vertical.widgets) + !Skin.HasSetting(homemenu.netflix)">Item_Selected</include>			
+            <include condition="$EXP[HomeIsVerticalMultiWidgets] + !Skin.HasSetting(homemenu.netflix)">Item_Selected</include>       
 		</item>
 		<item>
             <label>$LOCALIZE[31533]</label>
             <include>ResetViewtypes</include>
-            <onclick>Skin.SetBool(home.modernwidgets)</onclick>
             <onclick>Skin.SetBool(home.vertical.widgets)</onclick>
             <onclick>Skin.SetBool(homemenu.netflix)</onclick>
             <onclick>Skin.SetBool(homemenu.clean.flix)</onclick>
             <onclick>Close</onclick>			
             <thumb>special://skin/extras/homemenu/9$VAR[ColorTheme,_].jpg</thumb>
-            <include condition="Skin.HasSetting(home.modernwidgets) + Skin.HasSetting(homemenu.netflix) + Skin.HasSetting(home.vertical.widgets) + Skin.HasSetting(homemenu.clean.flix)">Item_Selected</include>		
+            <include condition="$EXP[HomeIsCleanMinimal]">Item_Selected</include>		
 		</item>
 		<item>
             <label>$LOCALIZE[31248]</label>
             <include>ResetViewtypes</include>
             <onclick>Close</onclick>			
             <thumb>special://skin/extras/homemenu/5$VAR[ColorTheme,_].jpg</thumb>
-            <include condition="!Skin.HasSetting(home.classicwidgets) + !Skin.HasSetting(home.vertical) + !Skin.HasSetting(homemenu.netflix) + !Skin.HasSetting(home.modernwidgets)">Item_Selected</include>		
+            <include condition="$EXP[HomeIsSpotlight]">Item_Selected</include>		
 		</item>
 		<item>
             <label>$LOCALIZE[31249]</label>
@@ -800,7 +797,7 @@
             <onclick>Skin.SetBool(home.classicwidgets)</onclick>
             <onclick>Close</onclick>			
             <thumb>special://skin/extras/homemenu/8$VAR[ColorTheme,_].jpg</thumb>
-            <include condition="Skin.HasSetting(home.classicwidgets)">Item_Selected</include>		
+            <include condition="$EXP[HomeIsClassic]">Item_Selected</include>		
 		</item>
 		<item>
             <label>$LOCALIZE[31250]</label>
@@ -808,7 +805,7 @@
             <onclick>Skin.SetBool(home.vertical)</onclick>
             <onclick>Close</onclick>			
             <thumb>special://skin/extras/homemenu/6$VAR[ColorTheme,_].jpg</thumb>
-            <include condition="!Skin.HasSetting(home.classicwidgets) + Skin.HasSetting(home.vertical) + !Skin.HasSetting(home.vertical.widgets)">Item_Selected</include>		
+            <include condition="$EXP[HomeIsVertical]">Item_Selected</include>		
 		</item>
 	</include>
 	

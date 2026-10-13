@@ -2863,7 +2863,7 @@
 		        <onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetFullscreen),yes)">SetProperty(customValue,)</onclick>
 		        <onclick>SendClick(404)</onclick>
 		        <enable>!String.IsEqual(Container(211).ListItem.Property(Path),submenu)</enable>
-		        <visible>Skin.HasSetting(home.vertical.widgets) + !Skin.HasSetting(homemenu.netflix)</visible>
+		        <visible>$EXP[HomeIsMultiWidgets] + !Skin.HasSetting(homemenu.netflix)</visible>
                 <visible>$PARAM[visible]</visible>
 		    </control>
 		    <control type="button" id="$PARAM[baseid]11" description="Widget Aspect">
@@ -2916,7 +2916,7 @@
                 <onclick>SendClick(404)</onclick>
                 <enable>!String.IsEqual(Container(211).ListItem.Property(widgetLimit),Auto) | $EXP[Widget_HasStaticContent] | $EXP[HomeIsCleanMinimal] | $EXP[HomeIsSpotlight]</enable>
                 <visible>!String.IsEmpty(Skin.String(AutoScrollTime))</visible>
-                <visible>Skin.HasSetting(home.vertical.widgets) | !String.IsEqual(Container(211).ListItem.Property(widget),weather)</visible>
+                <visible>$EXP[HomeIsMultiWidgets] | !String.IsEqual(Container(211).ListItem.Property(widget),weather)</visible>
                 <visible>$PARAM[visible]</visible>
             </control>
             <control type="radiobutton" id="$PARAM[baseid]17" description="Widget List Type">

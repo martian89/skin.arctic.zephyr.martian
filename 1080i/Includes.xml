@@ -64,18 +64,16 @@
     <include file="Includes_Fallbacks.xml"/>
 
     <!-- Expressions -->
-    <expression name="HomeIsModernMultiWidgets">!Skin.HasSetting(home.vertical) + !Skin.HasSetting(home.classicwidgets) + Skin.HasSetting(home.modernwidgets) + Skin.HasSetting(home.vertical.widgets)</expression>
+    <expression name="HomeIsMultiWidgets">Skin.HasSetting(home.vertical.widgets)</expression>
+    <expression name="HomeIsModernMultiWidgets">!Skin.HasSetting(home.vertical) + Skin.HasSetting(home.vertical.widgets)</expression>
     <expression name="HomeIsVerticalMultiWidgets">Skin.HasSetting(home.vertical) + Skin.HasSetting(home.vertical.widgets)</expression>
-    <expression name="HomeIsModernMultiWidgetsNetflix">!Skin.HasSetting(home.vertical) + !Skin.HasSetting(home.classicwidgets) + Skin.HasSetting(home.modernwidgets) + Skin.HasSetting(home.vertical.widgets) + Skin.HasSetting(homemenu.netflix) + !Skin.HasSetting(homemenu.clean.flix)</expression>
-    <expression name="HomeIsVerticalMultiWidgetsNetflix">Skin.HasSetting(home.vertical) + Skin.HasSetting(home.vertical.widgets) + Skin.HasSetting(homemenu.netflix) + !Skin.HasSetting(homemenu.clean.flix)</expression>
-    <expression name="HomeIsCleanMinimal">Skin.HasSetting(home.modernwidgets) + Skin.HasSetting(home.vertical.widgets) + Skin.HasSetting(homemenu.netflix) + Skin.HasSetting(homemenu.clean.flix)</expression>
+    <expression name="HomeIsCleanMinimal">Skin.HasSetting(homemenu.clean.flix)</expression>
     <expression name="HomeIsVerticalAll">Skin.HasSetting(home.vertical)</expression>
-    <expression name="HomeIsClassic">!Skin.HasSetting(home.vertical) + Skin.HasSetting(home.classicwidgets)</expression>
+    <expression name="HomeIsClassic">Skin.HasSetting(home.classicwidgets)</expression>
     <expression name="HomeIsVertical">Skin.HasSetting(home.vertical) + !Skin.HasSetting(home.vertical.widgets)</expression>
-    <expression name="HomeIsSpotlight">!Skin.HasSetting(home.classicwidgets) + !Skin.HasSetting(home.vertical) + !Skin.HasSetting(homemenu.netflix) + !Skin.HasSetting(home.modernwidgets)</expression>
-    <expression name="HomeIsModern">Skin.HasSetting(home.modernwidgets) + !Skin.HasSetting(home.vertical.widgets) + !Skin.HasSetting(homemenu.netflix)</expression>
+    <expression name="HomeIsSpotlight">!Skin.HasSetting(home.classicwidgets) + !Skin.HasSetting(home.vertical) + !Skin.HasSetting(home.vertical.widgets)</expression>
+
     <expression name="HomeShowHeader">Skin.HasSetting(home.showheader) + !Skin.HasSetting(home.vertical.widgets)</expression>
- 
     <expression name="HomeMenuShowIconsOnly">Skin.HasSetting(homemenu.only.icons) + Skin.HasSetting(home.showicons)</expression>
     
     <expression name="InfoDialogsActive">Window.IsActive(DialogVideoInfo.xml) | Window.IsActive(DialogMusicInfo.xml) | Window.IsActive(DialogAddonInfo.xml) | Window.IsActive(DialogPVRInfo.xml)</expression>
@@ -88,7 +86,7 @@
     <expression name="ShowInfoOnPause">Player.Paused + Skin.HasSetting(osd.showinfoonpause) + String.IsEmpty(Window(Home).Property(OSDExtendedInfo))</expression>
     <expression name="ShowInfoWithOSD">Skin.HasSetting(osd.showinfo) + Window.IsVisible(videoosd) | Skin.HasSetting(musicosd.showinfo) + Window.IsVisible(musicosd)</expression>
     <expression name="VideoOSDShort">!Skin.HasSetting(osd.disableposter) + [Window.IsVisible(fullscreeninfo) | Player.ShowInfo | !String.IsEmpty(Window(home).Property(osdinfo)) | $EXP[ShowInfoWithOSD] | $EXP[ShowInfoOnPause]] + [[!String.IsEmpty(Player.Art(tvshow.poster)) | !String.IsEmpty(Player.Art(poster))] + !VideoPlayer.Content(LiveTV) | [VideoPlayer.Content(LiveTV) | VideoPlayer.Content(musicvideos)] + !String.IsEmpty(Player.Art(thumb))]</expression>
-    <expression name="TrailerWindowIsActive">Skin.HasSetting(home.netflix.autoplay.trailer) + [[Window.IsVisible(Home.xml) + [$EXP[HomeIsModernMultiWidgetsNetflix] | $EXP[HomeIsCleanMinimal] | $EXP[HomeIsVerticalMultiWidgetsNetflix]]] | Control.IsVisible(521) | Control.IsVisible(522)] + !Window.IsVisible(DialogVideoInfo.xml) + String.IsEqual(Window(home).Property(TrailerPath2),Player.FileNameAndPath) + !String.IsEmpty(Player.FileNameAndPath)</expression>
+    <expression name="TrailerWindowIsActive">Skin.HasSetting(home.netflix.autoplay.trailer) + [[Window.IsVisible(Home.xml) + Skin.HasSetting(homemenu.netflix)] | Control.IsVisible(521) | Control.IsVisible(522)] + !Window.IsVisible(DialogVideoInfo.xml) + String.IsEqual(Window(home).Property(TrailerPath2),Player.FileNameAndPath) + !String.IsEmpty(Player.FileNameAndPath)</expression>
     <expression name="TrailerIsReady">Skin.HasSetting(home.netflix.autoplay.trailer) + [Window.IsVisible(Home.xml) | Window.IsVisible(MyVideoNav.xml) | $EXP[InGameMode]] + !Control.HasFocus(300) + !Player.HasMedia + !String.IsEmpty(Window(home).Property(listitem.trailer)) + !System.HasVisibleModalDialog + !Window.IsVisible(script-globalsearch.xml) + !String.IsEqual(Window(home).Property(TrailerPath),Window(home).Property(listitem.trailer)) + !System.IdleTime(30)</expression>
     <expression name="TrailerWaitingForPlayer">!String.IsEmpty(Window(home).Property(TrailerPath2)) + !String.IsEmpty(Window(home).Property(TrailerPath)) + String.IsEmpty(Player.FileNameAndPath)</expression>
     <expression name="TrailerIsPlaying">String.IsEqual(Window(home).Property(TrailerPath2),Player.FileNameAndPath) + !String.IsEmpty(Player.FileNameAndPath)</expression>
@@ -675,7 +673,6 @@
     <include name="ResetViewtypes">
         <onclick>Skin.Reset(home.classicwidgets)</onclick>
         <onclick>Skin.Reset(home.vertical)</onclick>
-        <onclick>Skin.Reset(home.modernwidgets)</onclick>
         <onclick>Skin.Reset(home.vertical.widgets)</onclick>
         <onclick>Skin.Reset(homemenu.netflix)</onclick>
         <onclick>Skin.Reset(homemenu.clean.flix)</onclick>
