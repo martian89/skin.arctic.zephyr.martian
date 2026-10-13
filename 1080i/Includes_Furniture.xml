@@ -414,6 +414,7 @@
         <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.clearlogo)) + $EXP[ItemIsLiveTVHub]">$INFO[Window(Home).Property(TMDbHelper.ListItem.clearlogo)]</value>
     </variable>
 
+    <!-- Flags -->
     <variable name="Flagstar1">
         <value condition="Integer.IsGreater(ListItem.UserRating,1) + Skin.HasSetting(userrating.override.rating)">star10</value>
         <value condition="Integer.IsGreater(ListItem.UserRating,0) + Skin.HasSetting(userrating.override.rating)">star5</value>
@@ -423,7 +424,6 @@
         <value condition="Integer.IsGreater(Window(home).Property(TMDBHelper.ListItem.Rating),0) + String.IsEmpty(ListItem.Rating) + [String.IsEmpty(ListItem.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star5</value>
         <value>star0</value>
     </variable>
-
     <variable name="Flagstar2">
         <value condition="Integer.IsGreater(ListItem.UserRating,3) + Skin.HasSetting(userrating.override.rating)">star10</value>
         <value condition="Integer.IsGreater(ListItem.UserRating,2) + Skin.HasSetting(userrating.override.rating)">star5</value>
@@ -433,7 +433,6 @@
         <value condition="Integer.IsGreater(Window(home).Property(TMDBHelper.ListItem.Rating),2) + String.IsEmpty(ListItem.Rating) + [String.IsEmpty(ListItem.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star5</value>
         <value>star0</value>
     </variable>
-
     <variable name="Flagstar3">
         <value condition="Integer.IsGreater(ListItem.UserRating,5) + Skin.HasSetting(userrating.override.rating)">star10</value>
         <value condition="Integer.IsGreater(ListItem.UserRating,4) + Skin.HasSetting(userrating.override.rating)">star5</value>
@@ -443,7 +442,6 @@
         <value condition="Integer.IsGreater(Window(home).Property(TMDBHelper.ListItem.Rating),4) + String.IsEmpty(ListItem.Rating) + [String.IsEmpty(ListItem.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star5</value>
         <value>star0</value>
     </variable>
-
     <variable name="Flagstar4">
         <value condition="Integer.IsGreater(ListItem.UserRating,7) + Skin.HasSetting(userrating.override.rating)">star10</value>
         <value condition="Integer.IsGreater(ListItem.UserRating,6) + Skin.HasSetting(userrating.override.rating)">star5</value>
@@ -453,7 +451,6 @@
         <value condition="Integer.IsGreater(Window(home).Property(TMDBHelper.ListItem.Rating),6) + String.IsEmpty(ListItem.Rating) + [String.IsEmpty(ListItem.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star5</value>
         <value>star0</value>
     </variable>
-
     <variable name="Flagstar5">
         <value condition="Integer.IsGreater(ListItem.UserRating,9) + Skin.HasSetting(userrating.override.rating)">star10</value>
         <value condition="Integer.IsGreater(ListItem.UserRating,8) + Skin.HasSetting(userrating.override.rating)">star5</value>
@@ -461,76 +458,6 @@
         <value condition="Integer.IsGreater(ListItem.Rating,8) + [String.IsEmpty(ListItem.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star5</value>
         <value condition="Integer.IsGreater(Window(home).Property(TMDBHelper.ListItem.Rating),9) + String.IsEmpty(ListItem.Rating) + [String.IsEmpty(ListItem.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star10</value>
         <value condition="Integer.IsGreater(Window(home).Property(TMDBHelper.ListItem.Rating),8) + String.IsEmpty(ListItem.Rating) + [String.IsEmpty(ListItem.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star5</value>
-        <value>star0</value>
-    </variable>
-
-    <variable name="FlagstarSong1">
-        <value condition="Integer.IsGreater(ListItem.UserRating,1) + Skin.HasSetting(userrating.override.rating)">star10</value>
-        <value condition="Integer.IsGreater(ListItem.UserRating,0) + Skin.HasSetting(userrating.override.rating)">star5</value>
-        <value condition="Integer.IsGreater(ListItem.Rating,1) + [String.IsEmpty(ListItem.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star10</value>
-        <value condition="Integer.IsGreater(ListItem.Rating,0) + [String.IsEmpty(ListItem.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star5</value>
-        <value>star0</value>
-    </variable>
-
-    <variable name="FlagstarSong2">
-        <value condition="Integer.IsGreater(ListItem.UserRating,3) + Skin.HasSetting(userrating.override.rating)">star10</value>
-        <value condition="Integer.IsGreater(ListItem.UserRating,2) + Skin.HasSetting(userrating.override.rating)">star5</value>
-        <value condition="Integer.IsGreater(ListItem.Rating,3) + [String.IsEmpty(ListItem.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star10</value>
-        <value condition="Integer.IsGreater(ListItem.Rating,2) + [String.IsEmpty(ListItem.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star5</value>
-        <value>star0</value>
-    </variable>
-
-    <variable name="FlagstarSong3">
-        <value condition="Integer.IsGreater(ListItem.UserRating,5) + Skin.HasSetting(userrating.override.rating)">star10</value>
-        <value condition="Integer.IsGreater(ListItem.UserRating,4) + Skin.HasSetting(userrating.override.rating)">star5</value>
-        <value condition="Integer.IsGreater(ListItem.Rating,5) + [String.IsEmpty(ListItem.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star10</value>
-        <value condition="Integer.IsGreater(ListItem.Rating,4) + [String.IsEmpty(ListItem.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star5</value>
-        <value>star0</value>
-    </variable>
-
-    <variable name="FlagstarSong4">
-        <value condition="Integer.IsGreater(ListItem.UserRating,7) + Skin.HasSetting(userrating.override.rating)">star10</value>
-        <value condition="Integer.IsGreater(ListItem.UserRating,6) + Skin.HasSetting(userrating.override.rating)">star5</value>
-        <value condition="Integer.IsGreater(ListItem.Rating,7) + [String.IsEmpty(ListItem.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star10</value>
-        <value condition="Integer.IsGreater(ListItem.Rating,6) + [String.IsEmpty(ListItem.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star5</value>
-        <value>star0</value>
-    </variable>
-
-    <variable name="FlagstarSong5">
-        <value condition="Integer.IsGreater(ListItem.UserRating,9) + Skin.HasSetting(userrating.override.rating)">star10</value>
-        <value condition="Integer.IsGreater(ListItem.UserRating,8) + Skin.HasSetting(userrating.override.rating)">star5</value>
-        <value condition="Integer.IsGreater(ListItem.Rating,9) + [String.IsEmpty(ListItem.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star10</value>
-        <value condition="Integer.IsGreater(ListItem.Rating,8) + [String.IsEmpty(ListItem.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star5</value>
-        <value>star0</value>
-    </variable>
-
-    <variable name="FlagstarSelect1">
-        <value condition="Integer.IsGreater(Container(3).ListItem.Label,1)">star10</value>
-        <value condition="Integer.IsGreater(Container(3).ListItem.Label,0)">star5</value>
-        <value>star0</value>
-    </variable>
-
-    <variable name="FlagstarSelect2">
-        <value condition="Integer.IsGreater(Container(3).ListItem.Label,3)">star10</value>
-        <value condition="Integer.IsGreater(Container(3).ListItem.Label,2)">star5</value>
-        <value>star0</value>
-    </variable>
-
-    <variable name="FlagstarSelect3">
-        <value condition="Integer.IsGreater(Container(3).ListItem.Label,5)">star10</value>
-        <value condition="Integer.IsGreater(Container(3).ListItem.Label,4)">star5</value>
-        <value>star0</value>
-    </variable>
-
-    <variable name="FlagstarSelect4">
-        <value condition="Integer.IsGreater(Container(3).ListItem.Label,7)">star10</value>
-        <value condition="Integer.IsGreater(Container(3).ListItem.Label,6)">star5</value>
-        <value>star0</value>
-    </variable>
-
-    <variable name="FlagstarSelect5">
-        <value condition="Integer.IsGreater(Container(3).ListItem.Label,9)">star10</value>
-        <value condition="Integer.IsGreater(Container(3).ListItem.Label,8)">star5</value>
         <value>star0</value>
     </variable>
 
@@ -543,7 +470,6 @@
         <value condition="Integer.IsGreater(Window(home).Property(TMDBHelper.ListItem.Rating),0) + String.IsEmpty(Container(9500).ListItem.Rating) + [String.IsEmpty(Container(9500).ListItem.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star5</value>
         <value>star0</value>
     </variable>
-
     <variable name="HubFlagstar2">
         <value condition="Integer.IsGreater(Container(9500).ListItem.UserRating,3) + Skin.HasSetting(userrating.override.rating)">star10</value>
         <value condition="Integer.IsGreater(Container(9500).ListItem.UserRating,2) + Skin.HasSetting(userrating.override.rating)">star5</value>
@@ -553,7 +479,6 @@
         <value condition="Integer.IsGreater(Window(home).Property(TMDBHelper.ListItem.Rating),2) + String.IsEmpty(Container(9500).ListItem.Rating) + [String.IsEmpty(Container(9500).ListItem.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star5</value>
         <value>star0</value>
     </variable>
-
     <variable name="HubFlagstar3">
         <value condition="Integer.IsGreater(Container(9500).ListItem.UserRating,5) + Skin.HasSetting(userrating.override.rating)">star10</value>
         <value condition="Integer.IsGreater(Container(9500).ListItem.UserRating,4) + Skin.HasSetting(userrating.override.rating)">star5</value>
@@ -563,7 +488,6 @@
         <value condition="Integer.IsGreater(Window(home).Property(TMDBHelper.ListItem.Rating),4) + String.IsEmpty(Container(9500).ListItem.Rating) + [String.IsEmpty(Container(9500).ListItem.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star5</value>
         <value>star0</value>
     </variable>
-
     <variable name="HubFlagstar4">
         <value condition="Integer.IsGreater(Container(9500).ListItem.UserRating,7) + Skin.HasSetting(userrating.override.rating)">star10</value>
         <value condition="Integer.IsGreater(Container(9500).ListItem.UserRating,6) + Skin.HasSetting(userrating.override.rating)">star5</value>
@@ -573,7 +497,6 @@
         <value condition="Integer.IsGreater(Window(home).Property(TMDBHelper.ListItem.Rating),6) + String.IsEmpty(Container(9500).ListItem.Rating) + [String.IsEmpty(Container(9500).ListItem.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star5</value>
         <value>star0</value>
     </variable>
-
     <variable name="HubFlagstar5">
         <value condition="Integer.IsGreater(Container(9500).ListItem.UserRating,9) + Skin.HasSetting(userrating.override.rating)">star10</value>
         <value condition="Integer.IsGreater(Container(9500).ListItem.UserRating,8) + Skin.HasSetting(userrating.override.rating)">star5</value>
@@ -584,6 +507,32 @@
         <value>star0</value>
     </variable>
 
+    <variable name="SelectFlagstar1">
+        <value condition="Integer.IsGreater(Container(3).ListItem.Label,1)">star10</value>
+        <value condition="Integer.IsGreater(Container(3).ListItem.Label,0)">star5</value>
+        <value>star0</value>
+    </variable>
+    <variable name="SelectFlagstar2">
+        <value condition="Integer.IsGreater(Container(3).ListItem.Label,3)">star10</value>
+        <value condition="Integer.IsGreater(Container(3).ListItem.Label,2)">star5</value>
+        <value>star0</value>
+    </variable>
+    <variable name="SelectFlagstar3">
+        <value condition="Integer.IsGreater(Container(3).ListItem.Label,5)">star10</value>
+        <value condition="Integer.IsGreater(Container(3).ListItem.Label,4)">star5</value>
+        <value>star0</value>
+    </variable>
+    <variable name="SelectFlagstar4">
+        <value condition="Integer.IsGreater(Container(3).ListItem.Label,7)">star10</value>
+        <value condition="Integer.IsGreater(Container(3).ListItem.Label,6)">star5</value>
+        <value>star0</value>
+    </variable>
+    <variable name="SelectFlagstar5">
+        <value condition="Integer.IsGreater(Container(3).ListItem.Label,9)">star10</value>
+        <value condition="Integer.IsGreater(Container(3).ListItem.Label,8)">star5</value>
+        <value>star0</value>
+    </variable>
+
     <variable name="ScreensaverFlagstar1">
         <value condition="Integer.IsGreater(Container(1297).ListItem.UserRating,1) + Skin.HasSetting(userrating.override.rating)">star10</value>
         <value condition="Integer.IsGreater(Container(1297).ListItem.UserRating,0) + Skin.HasSetting(userrating.override.rating)">star5</value>
@@ -591,7 +540,6 @@
         <value condition="Integer.IsGreater(Container(1297).ListItem.Rating,0) + [String.IsEmpty(Container(1297).ListItem.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star5</value>
         <value>star0</value>
     </variable>
-
     <variable name="ScreensaverFlagstar2">
         <value condition="Integer.IsGreater(Container(1297).ListItem.UserRating,3) + Skin.HasSetting(userrating.override.rating)">star10</value>
         <value condition="Integer.IsGreater(Container(1297).ListItem.UserRating,2) + Skin.HasSetting(userrating.override.rating)">star5</value>
@@ -599,7 +547,6 @@
         <value condition="Integer.IsGreater(Container(1297).ListItem.Rating,2) + [String.IsEmpty(Container(1297).ListItem.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star5</value>
         <value>star0</value>
     </variable>
-
     <variable name="ScreensaverFlagstar3">
         <value condition="Integer.IsGreater(Container(1297).ListItem.UserRating,5) + Skin.HasSetting(userrating.override.rating)">star10</value>
         <value condition="Integer.IsGreater(Container(1297).ListItem.UserRating,4) + Skin.HasSetting(userrating.override.rating)">star5</value>
@@ -607,7 +554,6 @@
         <value condition="Integer.IsGreater(Container(1297).ListItem.Rating,4) + [String.IsEmpty(Container(1297).ListItem.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star5</value>
         <value>star0</value>
     </variable>
-
     <variable name="ScreensaverFlagstar4">
         <value condition="Integer.IsGreater(Container(1297).ListItem.UserRating,7) + Skin.HasSetting(userrating.override.rating)">star10</value>
         <value condition="Integer.IsGreater(Container(1297).ListItem.UserRating,6) + Skin.HasSetting(userrating.override.rating)">star5</value>
@@ -615,12 +561,48 @@
         <value condition="Integer.IsGreater(Container(1297).ListItem.Rating,6) + [String.IsEmpty(Container(1297).ListItem.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star5</value>
         <value>star0</value>
     </variable>
-
     <variable name="ScreensaverFlagstar5">
         <value condition="Integer.IsGreater(Container(1297).ListItem.UserRating,9) + Skin.HasSetting(userrating.override.rating)">star10</value>
         <value condition="Integer.IsGreater(Container(1297).ListItem.UserRating,8) + Skin.HasSetting(userrating.override.rating)">star5</value>
         <value condition="Integer.IsGreater(Container(1297).ListItem.Rating,9) + [String.IsEmpty(Container(1297).ListItem.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star10</value>
         <value condition="Integer.IsGreater(Container(1297).ListItem.Rating,8) + [String.IsEmpty(Container(1297).ListItem.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star5</value>
+        <value>star0</value>
+    </variable>
+
+    <!-- MusicFlags -->
+    <variable name="MusicFlagstar1">
+        <value condition="Integer.IsGreater(ListItem.UserRating,1) + Skin.HasSetting(userrating.override.rating)">star10</value>
+        <value condition="Integer.IsGreater(ListItem.UserRating,0) + Skin.HasSetting(userrating.override.rating)">star5</value>
+        <value condition="Integer.IsGreater(ListItem.Rating,1) + [String.IsEmpty(ListItem.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star10</value>
+        <value condition="Integer.IsGreater(ListItem.Rating,0) + [String.IsEmpty(ListItem.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star5</value>
+        <value>star0</value>
+    </variable>
+    <variable name="MusicFlagstar2">
+        <value condition="Integer.IsGreater(ListItem.UserRating,3) + Skin.HasSetting(userrating.override.rating)">star10</value>
+        <value condition="Integer.IsGreater(ListItem.UserRating,2) + Skin.HasSetting(userrating.override.rating)">star5</value>
+        <value condition="Integer.IsGreater(ListItem.Rating,3) + [String.IsEmpty(ListItem.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star10</value>
+        <value condition="Integer.IsGreater(ListItem.Rating,2) + [String.IsEmpty(ListItem.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star5</value>
+        <value>star0</value>
+    </variable>
+    <variable name="MusicFlagstar3">
+        <value condition="Integer.IsGreater(ListItem.UserRating,5) + Skin.HasSetting(userrating.override.rating)">star10</value>
+        <value condition="Integer.IsGreater(ListItem.UserRating,4) + Skin.HasSetting(userrating.override.rating)">star5</value>
+        <value condition="Integer.IsGreater(ListItem.Rating,5) + [String.IsEmpty(ListItem.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star10</value>
+        <value condition="Integer.IsGreater(ListItem.Rating,4) + [String.IsEmpty(ListItem.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star5</value>
+        <value>star0</value>
+    </variable>
+    <variable name="MusicFlagstar4">
+        <value condition="Integer.IsGreater(ListItem.UserRating,7) + Skin.HasSetting(userrating.override.rating)">star10</value>
+        <value condition="Integer.IsGreater(ListItem.UserRating,6) + Skin.HasSetting(userrating.override.rating)">star5</value>
+        <value condition="Integer.IsGreater(ListItem.Rating,7) + [String.IsEmpty(ListItem.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star10</value>
+        <value condition="Integer.IsGreater(ListItem.Rating,6) + [String.IsEmpty(ListItem.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star5</value>
+        <value>star0</value>
+    </variable>
+    <variable name="MusicFlagstar5">
+        <value condition="Integer.IsGreater(ListItem.UserRating,9) + Skin.HasSetting(userrating.override.rating)">star10</value>
+        <value condition="Integer.IsGreater(ListItem.UserRating,8) + Skin.HasSetting(userrating.override.rating)">star5</value>
+        <value condition="Integer.IsGreater(ListItem.Rating,9) + [String.IsEmpty(ListItem.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star10</value>
+        <value condition="Integer.IsGreater(ListItem.Rating,8) + [String.IsEmpty(ListItem.UserRating) | !Skin.HasSetting(userrating.override.rating)]">star5</value>
         <value>star0</value>
     </variable>
 
@@ -2501,7 +2483,7 @@
             </include>
             <include>AlbumCount</include>
             <include content="Furniture_RatingFlags" condition="!Skin.HasSetting(furniture.hide.musicrating)">
-                <param name="Star" value="FlagstarSong" />
+                <param name="Star" value="MusicFlagstar" />
                 <param name="visible" value="!Skin.HasSetting(furniture.numericrating)" />
             </include>
             <control type="label">
@@ -2698,7 +2680,7 @@
             </include>
             <include>AlbumCount</include>
             <include content="Furniture_RatingFlags" condition="!Skin.HasSetting(furniture.hide.musicrating)">
-                <param name="Star" value="FlagstarSong" />
+                <param name="Star" value="MusicFlagstar" />
                 <param name="visible" value="!Skin.HasSetting(furniture.numericrating)" />
             </include>
             <control type="label">
