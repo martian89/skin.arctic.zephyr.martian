@@ -870,6 +870,9 @@
 	        <animation effect="slide" start="0" end="0,1000" time="150" condition="!Control.HasFocus(300) + !Control.HasFocus(302)">Conditional</animation>
 	        <animation effect="slide" start="0" end="0,1000" time="150">WindowClose</animation>
 	        <animation effect="slide" end="0" start="0,1000" time="150">WindowOpen</animation>
+            <include content="def_top" condition="$EXP[HomeIsVerticalMultiWidgets] + !Skin.HasSetting(homemenu.netflix)">
+                <param name="top" value="131" />
+            </include>
             <include content="def_top" condition="Skin.HasSetting(home.vertical)">
                 <param name="top" value="200" />
             </include>
@@ -2160,19 +2163,18 @@
 	        <include>Animation.FadeIn</include>
 	        <include>Animation.FadeOut</include>
 	        <description>Home Wraplist</description>
-            <left>SidePad</left>
-            <include condition="$EXP[HomeIsMultiWidgets]">HomeVerticalMenuWidgets_Top</include>
+            <include content="def_top" condition="$EXP[HomeIsMultiWidgets] + !Skin.HasSetting(homemenu.netflix)">
+                <param name="top" value="147" />
+            </include>
             <top>PosterPad</top>
+            <left>SidePad</left>
             <width>PosterW</width>
             <height>720</height>
-            <include content="HomeVerticalSubMenuHitrect" condition="!$EXP[HomeIsMultiWidgets]">
-                <param name="y" value="PosterPad" />
-            </include>
-            <include content="HomeVerticalSubMenuHitrect" condition="$EXP[HomeIsMultiWidgets] + Skin.HasSetting(homemenu.netflix)">
-                <param name="y" value="215" />
-            </include>
             <include content="HomeVerticalSubMenuHitrect" condition="$EXP[HomeIsMultiWidgets] + !Skin.HasSetting(homemenu.netflix)">
                 <param name="y" value="147" />
+            </include>
+            <include content="HomeVerticalSubMenuHitrect" condition="!$EXP[HomeIsMultiWidgets] | Skin.HasSetting(homemenu.netflix)">
+                <param name="y" value="PosterPad" />
             </include>
 	        <orientation>vertical</orientation>
 	        <onright>300</onright>
@@ -2211,15 +2213,6 @@
 	    </control>
     </include>
 	
-	<include name="HomeVerticalMenuWidgets_Top">
-        <include content="def_top" condition="Skin.HasSetting(homemenu.netflix)">
-            <param name="top" value="215" />
-        </include>
-        <include content="def_top" condition="!Skin.HasSetting(homemenu.netflix)">
-            <param name="top" value="147" />
-        </include>
-	</include>
-	
     <include name="HomeVerticalMenuWidgets">
 
         <!-- Furniture -->
@@ -2243,8 +2236,11 @@
                     <include>Animation.FadeIn</include>
                     <include>Animation.FadeOut</include>
                     <description>Home Wraplist</description>
+                    <include content="def_top" condition="!Skin.HasSetting(homemenu.netflix)">
+                        <param name="top" value="147" />
+                    </include>
+                    <top>PosterPad</top>
                     <left>SidePad</left>
-                    <include>HomeVerticalMenuWidgets_Top</include>
                     <width>PosterW</width>
                     <height>720</height>
                     <orientation>vertical</orientation>
