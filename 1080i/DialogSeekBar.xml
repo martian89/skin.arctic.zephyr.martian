@@ -8,7 +8,9 @@
 
     <onload condition="Player.Paused + !String.IsEmpty(Window(Home).Property(OSDExtendedInfo))">PlayerControl(Play)</onload>
     <onload condition="Player.Paused + !String.IsEmpty(Window(Home).Property(OSDExtendedInfo))">ClearProperty(OSDExtendedInfo,Home)</onload>
-
+    <onload>SetProperty(ShowDisc,1,home)</onload>
+    <onunload>ClearProperty(ShowDisc,home)</onunload>
+    
     <controls>
         <control type="group">
             <visible>String.IsEmpty(Window(Home).Property(OSDExtendedInfo))</visible>
