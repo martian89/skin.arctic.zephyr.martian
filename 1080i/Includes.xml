@@ -102,7 +102,7 @@
 	<expression name="IsPersonInfo">Window.IsVisible(DialogVideoInfo.xml) + [String.IsEqual(ListItem.Property(item.type),person) | String.IsEqual(ListItem.Property(dbtype),person) | String.IsEqual(ListItem.Property(Param.Info),person)]</expression>
 
     <expression name="PlayerShowInfo">Window.IsVisible(fullscreeninfo) | !String.IsEmpty(Window(home).Property(osdinfo)) | Player.ShowInfo | $EXP[ShowInfoWithOSD] | $EXP[ShowInfoOnPause]</expression>
-    <expression name="PlayerShowSideOSDInfo">!String.IsEmpty(Window(home).Property(osdinfo)) | Window.IsVisible(fullscreeninfo) | Player.ShowInfo | $EXP[ShowInfoOnPause]</expression>
+    <expression name="PlayerShowSideOSDInfo">Window.IsVisible(fullscreeninfo) | !String.IsEmpty(Window(home).Property(osdinfo)) | $EXP[ShowInfoOnPause]</expression>
     
     <expression name="ItemIsLiveTV">String.StartsWith(ListItem.FolderPath,pvr://channels/tv) | String.StartsWith(ListItem.FolderPath,pvr://recordings/tv) | String.StartsWith(ListItem.FolderPath,pvr://timers/tv)</expression>
     <expression name="ItemIsLiveTVHub">String.StartsWith(Container(9500).ListItem.FolderPath,pvr://channels/tv) | String.StartsWith(Container(9500).ListItem.FolderPath,pvr://recordings/tv) | String.StartsWith(Container(9500).ListItem.FolderPath,pvr://timers/tv)</expression>
