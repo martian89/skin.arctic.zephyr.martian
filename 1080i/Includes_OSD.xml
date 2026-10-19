@@ -294,15 +294,13 @@
     <!-- SIDE OSD -->
     <include name="OSDInfoContentSide">
         <control type="grouplist">
-            <include content="def_top" condition="VideoPlayer.Content(LiveTV)">
-                <param name="top" value="-680" />
-            </include>
             <top>-620</top>
             <left>300</left>
             <width>340</width>
             <align>center</align>
             <orientation>vertical</orientation>
             <itemgap>12</itemgap>
+            <animation effect="slide" start="0,0" end="0,-60" time="150" condition="VideoPlayer.Content(LiveTV)">Conditional</animation>
 
             <!-- TITLE CLEARLOGO -->
             <control type="image" description="clearlogo">
@@ -358,15 +356,10 @@
             <left>0</left>
             <width>640</width>
             <orientation>vertical</orientation>
-            <include content="def_top" condition="VideoPlayer.Content(LiveTV)">
-                <param name="top" value="295" />
-            </include>
-            <include content="def_bottom" condition="VideoPlayer.Content(LiveTV)">
-                <param name="bottom" value="114" />
-            </include>
             <top>425</top>
             <bottom>96</bottom>
             <itemgap>18</itemgap>
+            <animation effect="slide" start="0,0" end="0,-130" time="150" condition="VideoPlayer.Content(LiveTV)">Conditional</animation>
 
             <!-- GENRE -->
             <control type="label" description="Show">
