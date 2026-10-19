@@ -1408,8 +1408,8 @@
                         <texture colordiffuse="Dark4" border="5">common/box.png</texture>
                     </control>
                     <control type="image">
-                        <right>30</right>
-                        <top>30</top>
+                        <right>20</right>
+                        <top>20</top>
                         <width>100</width>
                         <height>100</height>
                         <aspectratio align="right" aligny="top">keep</aspectratio>
@@ -1417,19 +1417,28 @@
                     </control>
                     <control type="label">
                         <left>30</left>
-                        <right>140</right>
-                        <top>20</top>
+                        <right>130</right>
+                        <top>18</top>
                         <align>left</align>
                         <aligny>top</aligny>
                         <font>SmallBold</font>
                         <textcolor>Dark1</textcolor>
                         <selectedcolor>Dark1</selectedcolor>
-                        <label>$INFO[ListItem.ChannelNumberLabel,,. ]$INFO[ListItem.ChannelName]</label>
+                        <label>$VAR[PVRChannelZero]$INFO[ListItem.ChannelNumberLabel,,. ]$INFO[ListItem.ChannelName]</label>
+                    </control>
+                    <control type="image">
+                        <left>30</left>
+                        <top>66</top>
+                        <width>24</width>
+                        <height>24</height>
+                        <aspectratio>keep</aspectratio>
+                        <texture colordiffuse="Dark1">pvr/clock24.png</texture>
+                        <visible>!String.IsEmpty(ListItem.Title)</visible>
                     </control>
                     <control type="label">
-                        <left>30</left>
-                        <right>140</right>
-                        <top>64</top>
+                        <left>70</left>
+                        <right>130</right>
+                        <top>66</top>
                         <height>22</height>
                         <align>left</align>
                         <aligny>center</aligny>
@@ -1438,23 +1447,32 @@
                         <selectedcolor>Dark1</selectedcolor>
                         <label>$INFO[ListItem.Title]</label>
                     </control>
-                    <control type="label">
+                    <control type="image">
                         <left>30</left>
-                        <right>140</right>
-                        <top>94</top>
+                        <top>96</top>
+                        <width>24</width>
+                        <height>24</height>
+                        <aspectratio>keep</aspectratio>
+                        <texture colordiffuse="Dark1">pvr/nextclock24.png</texture>
+                        <visible>!String.IsEmpty(ListItem.NextTitle)</visible>
+                    </control>
+                    <control type="label">
+                        <left>70</left>
+                        <right>130</right>
+                        <top>96</top>
                         <height>22</height>
                         <align>left</align>
                         <aligny>center</aligny>
                         <font>Tiny</font>
-                        <textcolor>Dark2</textcolor>
-                        <selectedcolor>Dark2</selectedcolor>
-                        <label>$INFO[ListItem.NextTitle,$LOCALIZE[19031]: ]</label>
+                        <textcolor>Dark1</textcolor>
+                        <selectedcolor>Dark1</selectedcolor>
+                        <label>$INFO[ListItem.NextTitle]</label>
                     </control>
                     <control type="progress">
                         <left>30</left>
                         <right>30</right>
                         <height>8</height>
-                        <bottom>30</bottom>
+                        <bottom>24</bottom>
                         <info>ListItem.Progress</info>
                     </control>
                     <control type="image">
@@ -1475,8 +1493,8 @@
                         <texture colordiffuse="Dark1" border="5">common/box.png</texture>
                     </control>
                     <control type="image">
-                        <right>30</right>
-                        <top>30</top>
+                        <right>20</right>
+                        <top>20</top>
                         <width>100</width>
                         <height>100</height>
                         <aspectratio align="right" aligny="top">keep</aspectratio>
@@ -1484,45 +1502,62 @@
                     </control>
                     <control type="label">
                         <left>30</left>
-                        <right>140</right>
-                        <top>20</top>
+                        <right>130</right>
+                        <top>18</top>
                         <align>left</align>
                         <aligny>top</aligny>
                         <font>SmallBold</font>
                         <textcolor>Light1</textcolor>
                         <selectedcolor>Light1</selectedcolor>
-                        <label>$INFO[ListItem.ChannelNumberLabel,,. ]$INFO[ListItem.ChannelName]</label>
+                        <label>$VAR[PVRChannelZero]$INFO[ListItem.ChannelNumberLabel,,. ]$INFO[ListItem.ChannelName]</label>
+                    </control>
+                    <control type="image">
+                        <left>30</left>
+                        <top>66</top>
+                        <width>24</width>
+                        <height>24</height>
+                        <aspectratio>keep</aspectratio>
+                        <texture colordiffuse="Light1">pvr/clock24.png</texture>
+                        <visible>!String.IsEmpty(ListItem.Title)</visible>
                     </control>
                     <control type="label">
-                        <left>30</left>
-                        <right>140</right>
-                        <top>64</top>
+                        <left>70</left>
+                        <right>130</right>
+                        <top>66</top>
                         <height>22</height>
                         <align>left</align>
                         <aligny>center</aligny>
                         <font>Tiny</font>
-                        <scroll>false</scroll>
                         <textcolor>Light1</textcolor>
                         <selectedcolor>Light1</selectedcolor>
                         <label>$INFO[ListItem.Title]</label>
                     </control>
-                    <control type="label">
+                    <control type="image">
                         <left>30</left>
-                        <right>140</right>
-                        <top>94</top>
+                        <top>96</top>
+                        <width>24</width>
+                        <height>24</height>
+                        <aspectratio>keep</aspectratio>
+                        <texture colordiffuse="Light1">pvr/nextclock24.png</texture>
+                        <visible>!String.IsEmpty(ListItem.NextTitle)</visible>
+                    </control>
+                    <control type="label">
+                        <left>70</left>
+                        <right>130</right>
+                        <top>96</top>
                         <height>22</height>
                         <align>left</align>
                         <aligny>center</aligny>
                         <font>Tiny</font>
-                        <textcolor>Light2</textcolor>
-                        <selectedcolor>Light2</selectedcolor>
-                        <label>$INFO[ListItem.NextTitle,$LOCALIZE[19031]: ]</label>
+                        <textcolor>Light1</textcolor>
+                        <selectedcolor>Light1</selectedcolor>
+                        <label>$INFO[ListItem.NextTitle]</label>
                     </control>
                     <control type="progress">
                         <left>30</left>
                         <right>30</right>
                         <height>8</height>
-                        <bottom>30</bottom>
+                        <bottom>24</bottom>
                         <info>ListItem.Progress</info>
                     </control>
                     <control type="image">
