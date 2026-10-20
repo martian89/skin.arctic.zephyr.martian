@@ -312,12 +312,9 @@
     <!-- SIDE OSD -->
     <include name="OSDInfoContentSide">
         <control type="grouplist">
-            <include content="def_top" condition="VideoPlayer.Content(LiveTV)">
-                <param name="top" value="-680" />
-            </include>
-            <top>-620</top>
-            <left>300</left>
-            <width>340</width>
+            <top>-1010</top>
+            <right>0</right>
+            <width>350</width>
             <align>center</align>
             <orientation>vertical</orientation>
             <itemgap>12</itemgap>
@@ -325,7 +322,7 @@
             <!-- TITLE CLEARLOGO -->
             <control type="image" description="clearlogo">
                 <visible>!Skin.HasSetting(osd.showclearlogotitle) + !String.IsEmpty(Player.Art(clearlogo)) + !VideoPlayer.Content(episodes)</visible>
-                <width>340</width>
+                <width>100%</width>
                 <height>124</height>
                 <aspectratio align="center">keep</aspectratio>
                 <texture background="true">$INFO[Player.Art(clearlogo)]</texture>
@@ -344,7 +341,7 @@
 
             <!-- RATING STARS -->
             <control type="grouplist">
-                <width>340</width>
+                <width>100%</width>
                 <height>48</height>
                 <orientation>horizontal</orientation>
                 <align>center</align>
@@ -359,8 +356,7 @@
             <!-- TAGLINE -->
             <control type="textbox" description="Show">
                 <visible>!String.IsEmpty(Videoplayer.Tagline)</visible>
-                <width>340</width>
-                <left>285</left>
+                <width>100%</width>
                 <top>80</top>
                 <height max="160">auto</height>
                 <font>Small</font>
@@ -373,16 +369,9 @@
 
         <!-- MEDIA-ICONS -->
         <control type="grouplist">
-            <left>0</left>
-            <width>640</width>
+            <width>100%</width>
             <orientation>vertical</orientation>
-            <include content="def_top" condition="VideoPlayer.Content(LiveTV)">
-                <param name="top" value="295" />
-            </include>
-            <include content="def_bottom" condition="VideoPlayer.Content(LiveTV)">
-                <param name="bottom" value="114" />
-            </include>
-            <top>425</top>
+            <top>35</top>
             <bottom>96</bottom>
             <itemgap>18</itemgap>
 
@@ -539,47 +528,12 @@
             <visible>!Window.IsVisible(videoosd)</visible>
             <animation effect="fade" start="0" end="100" delay="0" time="250">Visible</animation>
             <animation effect="fade" start="100" end="0" delay="0" time="250">Hidden</animation>
+            <animation effect="slide" start="0,0" end="0,20" condition="VideoPlayer.Content(LiveTV) | String.IsEmpty(Player.Art(tvshow.poster)) + String.IsEmpty(Player.Art(poster))">Conditional</animation>
             <bottom>-10</bottom>
 
             <!-- PLAYER STATUS -->
             <control type="label">
-                <visible>Player.Playing + !Player.Seeking + !Player.Caching + VideoPlayer.Content(episodes)</visible>
-                <animation effect="fade" start="100" end="0" time="200" condition="Window.IsVisible(videoosd)">Conditional</animation>
-                <left>0</left>
-                <width>100%</width>
-                <bottom>30</bottom>
-                <height>40</height>
-                <font>Tiny</font>
-                <textcolor>$VAR[OSDPanelWhite70]</textcolor>
-                <label>$VAR[PlayerGenreInfo]</label>
-            </control>
-            <control type="label">
-                <visible>[!Player.Playing + !Player.Paused | Player.Seeking | Player.Caching] + VideoPlayer.Content(episodes)</visible>
-                <animation effect="fade" start="100" end="0" time="200" condition="Window.IsVisible(videoosd)">Conditional</animation>
-                <left>0</left>
-                <width>100%</width>
-                <bottom>30</bottom>
-                <height>40</height>
-                <font>Tiny</font>
-                <textcolor>$VAR[OSDPanelWhite70]</textcolor>
-                <label>$VAR[PlayerStatus]</label>
-            </control>
-            <control type="fadelabel">
-                <visible>Player.Paused + !Player.Seeking + !Player.Caching + VideoPlayer.Content(episodes)</visible>
-                <animation effect="fade" start="100" end="0" time="200" condition="Window.IsVisible(videoosd)">Conditional</animation>
-                <left>0</left>
-                <width>100%</width>
-                <bottom>30</bottom>
-                <height>40</height>
-                <font>Tiny</font>
-                <pauseatend>6000</pauseatend>
-                <scroll>false</scroll>
-                <textcolor>$VAR[OSDPanelWhite70]</textcolor>
-                <label>$VAR[PlayerStatus]</label>
-                <label>$VAR[PlayerGenreInfo]</label>
-            </control>
-            <control type="label">
-                <visible>Player.Playing + !Player.Seeking + !Player.Caching + !VideoPlayer.Content(LiveTV) + !VideoPlayer.Content(episodes)</visible>
+                <visible>Player.Playing + !Player.Seeking + !Player.Caching + !Skin.HasSetting(ClockOSD)</visible>
                 <animation effect="fade" start="100" end="0" time="200" condition="Window.IsVisible(videoosd)">Conditional</animation>
                 <left>0</left>
                 <width>100%</width>
@@ -590,7 +544,7 @@
                 <label>$INFO[Player.FinishTime,$LOCALIZE[31013] ]</label>
             </control>
             <control type="label">
-                <visible>[!Player.Playing + !Player.Paused | Player.Seeking | Player.Caching] + !VideoPlayer.Content(LiveTV) + !VideoPlayer.Content(episodes)</visible>
+                <visible>!Player.Playing + !Player.Paused | Player.Seeking | Player.Caching | Skin.HasSetting(ClockOSD)</visible>
                 <animation effect="fade" start="100" end="0" time="200" condition="Window.IsVisible(videoosd)">Conditional</animation>
                 <left>0</left>
                 <width>100%</width>
@@ -601,7 +555,7 @@
                 <label>$VAR[PlayerStatus]</label>
             </control>
             <control type="fadelabel">
-                <visible>Player.Paused + !Player.Seeking + !Player.Caching + !VideoPlayer.Content(LiveTV) + !VideoPlayer.Content(episodes)</visible>
+                <visible>Player.Paused + !Player.Seeking + !Player.Caching + !Skin.HasSetting(ClockOSD)</visible>
                 <animation effect="fade" start="100" end="0" time="200" condition="Window.IsVisible(videoosd)">Conditional</animation>
                 <left>0</left>
                 <width>100%</width>
@@ -613,42 +567,6 @@
                 <textcolor>$VAR[OSDPanelWhite70]</textcolor>
                 <label>$VAR[PlayerStatus]</label>
                 <label>$INFO[Player.FinishTime,$LOCALIZE[31013] ]</label>
-            </control>
-            <control type="label">
-                <visible>Player.Playing + !Player.Seeking + !Player.Caching + VideoPlayer.Content(LiveTV)</visible>
-                <animation effect="fade" start="100" end="0" time="200" condition="Window.IsVisible(videoosd)">Conditional</animation>
-                <left>0</left>
-                <width>100%</width>
-                <bottom>30</bottom>
-                <height>40</height>
-                <font>Tiny</font>
-                <textcolor>$VAR[OSDPanelWhite70]</textcolor>
-                <label>$VAR[PlayerGenreInfo]</label>
-            </control>
-            <control type="label">
-                <visible>[!Player.Playing + !Player.Paused | Player.Seeking | Player.Caching] + VideoPlayer.Content(LiveTV)</visible>
-                <animation effect="fade" start="100" end="0" time="200" condition="Window.IsVisible(videoosd)">Conditional</animation>
-                <left>0</left>
-                <width>100%</width>
-                <bottom>30</bottom>
-                <height>40</height>
-                <font>Tiny</font>
-                <textcolor>$VAR[OSDPanelWhite70]</textcolor>
-                <label>$VAR[PlayerStatus]</label>
-            </control>
-            <control type="fadelabel">
-                <visible>Player.Paused + !Player.Seeking + !Player.Caching + VideoPlayer.Content(LiveTV)</visible>
-                <animation effect="fade" start="100" end="0" time="200" condition="Window.IsVisible(videoosd)">Conditional</animation>
-                <left>0</left>
-                <width>100%</width>
-                <bottom>30</bottom>
-                <height>40</height>
-                <font>Tiny</font>
-                <pauseatend>6000</pauseatend>
-                <scroll>false</scroll>
-                <textcolor>$VAR[OSDPanelWhite70]</textcolor>
-                <label>$VAR[PlayerStatus]</label>
-                <label>$VAR[PlayerGenreInfo]</label>
             </control>
             <control type="grouplist">
                 <right>0</right>
@@ -1138,7 +1056,7 @@
             <include>DefOSDUpDown</include>
             <include>DefOSDButtons</include>
             <label>298</label>
-            <onclick>ActivateWindow(125)</onclick>
+            <onclick>ActivateWindow(videobookmarks)</onclick>
         </control>
     </include>
 
@@ -1226,7 +1144,7 @@
             <include>DefOSDUpDown</include>
             <include>DefOSDButtonsNewOSD</include>
             <label>298</label>
-            <onclick>ActivateWindow(125)</onclick>
+            <onclick>ActivateWindow(videobookmarks)</onclick>
             <visible>$EXP[VideoOSDShort]</visible>
             <include>Animation.OSD.Wide.Short</include>
         </control>
@@ -1250,7 +1168,7 @@
             <include>DefOSDUpDown</include>
             <include>DefOSDButtonsNewOSD</include>
             <label>298</label>
-            <onclick>ActivateWindow(125)</onclick>
+            <onclick>ActivateWindow(videobookmarks)</onclick>
             <visible>!$EXP[VideoOSDShort]</visible>
             <include>Animation.OSD.Wide.Short</include>
         </control>
@@ -1428,7 +1346,7 @@
             <include>DefOSDUpDown</include>
             <texturefocus colordiffuse="$VAR[ColorHighlight]" flipx="true">osd/bookmarks.png</texturefocus>
             <texturenofocus colordiffuse="$VAR[OSDPanelWhite70]" flipx="true">osd/bookmarks.png</texturenofocus>
-            <onclick>ActivateWindow(125)</onclick>
+            <onclick>ActivateWindow(videobookmarks)</onclick>
         </control>
     </include>
 
@@ -1522,19 +1440,6 @@
             <texturenofocus colordiffuse="$VAR[OSDPanelWhite70]">osd/info.png</texturenofocus>
             <include>OSDExtendedInfo_Click_Action</include>
         </control>
-    </include>
-
-    <include name="DefOSDButtonsNewOSDSide">
-        <aligny>center</aligny>
-        <align>center</align>
-        <height>48</height>
-        <font>Tiny</font>
-        <include>DefOSDUpDown</include>
-        <disabledcolor>$VAR[OSDPanelWhite12]</disabledcolor>
-        <textcolor>$VAR[OSDPanelWhite70]</textcolor>
-        <focusedcolor>$VAR[ColorHighlight]</focusedcolor>
-        <texturefocus />
-        <width>210</width>
     </include>
 
     <variable name="MusicOSDBox">
@@ -2284,6 +2189,86 @@
             </control>
         </control>
     </include>
+
+    <include name="OSDPoster">
+	    <control type="group">
+	        <visible>Skin.HasSetting(discartOSD)</visible> 
+	        <left>3</left>
+	        <top>-236</top>
+	        <width>254</width>
+	        <height>254</height>
+	        <control type="image">
+	            <visible>!String.IsEmpty(Player.Art(discart)) + !String.IsEmpty(Player.Art(poster))</visible>
+	            <visible>!String.IsEmpty(Window(home).Property(OSDShowDisc)) + $EXP[PlayerShowInfo]</visible>
+	            <texture>$INFO[Player.Art(discart)]</texture>
+	            <aspectratio align="center" aligny="center">keep</aspectratio>
+	            <animation type="Visible" reversible="false">
+	                <effect type="slide" start="0,100" end="0,-130" tween="sine" easing="out" time="600" delay="200"/>
+	                <effect type="fade" start="0" end="100" time="100" delay="200"/>
+	            </animation>
+	            <animation type="Hidden" reversible="false">
+	                <effect type="slide" start="0,-130" end="0,0" tween="sine" easing="out" time="400" delay="0"/>
+	                <effect type="fade" start="100" end="0" time="100"/>
+	            </animation>
+	            <animation effect="rotate" center="auto" time="6000" end="-360" condition="true" loop="true">Conditional</animation>
+	        </control>
+	    </control>
+	    <control type="image">
+	        <visible>!VideoPlayer.Content(LiveTV) + [!String.IsEmpty(Player.Art(tvshow.poster)) | !String.IsEmpty(Player.Art(poster))]</visible>
+	        <left>0</left>
+	        <top>-239</top>
+	        <width>260</width>
+	        <height>390</height>
+	        <texture diffuse="diffuse/listposter.png">$VAR[PlayerPoster]</texture>
+	        <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
+	    </control>
+	    <control type="image">
+	        <visible>!VideoPlayer.Content(LiveTV) + [!String.IsEmpty(Player.Art(tvshow.poster)) | !String.IsEmpty(Player.Art(poster))]</visible>
+	        <left>-1</left>
+	        <top>-240</top>
+	        <width>262</width>
+	        <height>392</height>
+	        <texture diffuse="diffuse/listposter.png" colordiffuse="PanelWhite70" border="4" infill="false">common/box21.png</texture>
+	        <visible>Skin.HasSetting(global.showborders)</visible>
+	    </control>
+	    <control type="image">
+	        <width>260</width>
+	        <height>260</height>
+	        <bottom>8</bottom>
+	        <left>0</left>
+	        <aspectratio>keep</aspectratio>
+	        <texture border="5" colordiffuse="$VAR[OSDPanel]">common/box.png</texture>
+	        <animation effect="fade" start="100" end="90" condition="true">Conditional</animation>
+	        <visible>[[VideoPlayer.Content(LiveTV) | VideoPlayer.Content(musicvideos) + String.IsEmpty(Player.Art(poster))] + !String.IsEmpty(Player.Art(thumb))]</visible>
+	    </control>
+	    <control type="image">
+	        <visible>[VideoPlayer.Content(LiveTV) + !String.IsEmpty(Player.Art(thumb))]</visible>
+	        <width>230</width>
+	        <left>15</left>
+	        <height>230</height>
+	        <bottom>23</bottom>
+	        <aspectratio>keep</aspectratio>
+	        <texture diffuse="diffuse/wall.png">$INFO[Player.Art(thumb)]</texture>
+	    </control>
+	    <control type="image">
+	        <visible>[VideoPlayer.Content(musicvideos) + String.IsEmpty(Player.Art(poster)) + !String.IsEmpty(Player.Art(thumb))]</visible>
+	        <width>260</width>
+	        <left>0</left>
+	        <height>260</height>
+	        <bottom>8</bottom>
+	        <aspectratio>keep</aspectratio>
+	        <texture diffuse="diffuse/wall.png">$INFO[Player.Art(thumb)]</texture>
+	    </control>
+	    <control type="image">
+	        <visible>[[VideoPlayer.Content(LiveTV) | VideoPlayer.Content(musicvideos) + String.IsEmpty(Player.Art(poster))] + !String.IsEmpty(Player.Art(thumb))]</visible>
+	        <width>262</width>
+	        <left>-1</left>
+	        <height>262</height>
+	        <bottom>7</bottom>
+	        <texture diffuse="diffuse/listposter.png" colordiffuse="PanelWhite70" border="4" infill="false">common/box21.png</texture>
+	        <visible>Skin.HasSetting(global.showborders)</visible>
+	    </control>
+    </include>
     
     <include name="OSD1">
     
@@ -2687,80 +2672,7 @@
                 <animation effect="fade" start="100" end="0" time="200">Hidden</animation>
                 <control type="group">
                     <left>SidePad</left>
-                    <control type="group">
-                        <visible>Skin.HasSetting(discartOSD)</visible>
-                        <left>5</left>
-                        <top>-234</top>
-                        <width>250</width>
-                        <height>250</height>
-                        <control type="image">
-                            <visible>!String.IsEmpty(Player.Art(discart)) + !String.IsEmpty(Player.Art(poster))</visible>
-                            <visible>!String.IsEmpty(Window(home).Property(ShowDisc)) + $EXP[PlayerShowInfo]</visible>
-                            <texture>$INFO[Player.Art(discart)]</texture>
-                            <aspectratio align="center" aligny="center">keep</aspectratio>
-                            <animation type="Visible" reversible="false">
-                                <effect type="slide" start="0,100" end="0,-130" tween="sine" easing="out" time="600" delay="200"/>
-                                <effect type="fade" start="0" end="100" time="100" delay="200"/>
-                            </animation>
-                            <animation type="Hidden" reversible="false">
-                                <effect type="slide" start="0,-130" end="0,0" tween="sine" easing="out" time="400" delay="0"/>
-                                <effect type="fade" start="100" end="0" time="100"/>
-                            </animation>
-                            <animation effect="rotate" center="auto" time="6000" end="-360" condition="true" loop="true">Conditional</animation>
-                        </control>
-                    </control>
-                    <control type="image">
-                        <visible>!VideoPlayer.Content(LiveTV) + [!String.IsEmpty(Player.Art(tvshow.poster)) | !String.IsEmpty(Player.Art(poster))]</visible>
-                        <left>0</left>
-                        <top>-239</top>
-                        <width>260</width>
-                        <height>390</height>
-                        <texture diffuse="diffuse/listposter.png">$VAR[PlayerPoster]</texture>
-                        <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
-                    </control>
-                    <control type="image">
-                        <visible>[!VideoPlayer.Content(LiveTV) + [!String.IsEmpty(Player.Art(tvshow.poster)) | !String.IsEmpty(Player.Art(poster))]]</visible>
-                        <left>-1</left>
-                        <top>-240</top>
-                        <width>262</width>
-                        <height>392</height>
-                        <texture colordiffuse="Box2" border="4" background="true" infill="false">common/box21.png</texture>
-                        <visible>Skin.HasSetting(global.showborders)</visible>
-                    </control>
-                    <control type="image">
-                        <width>260</width>
-                        <height>260</height>
-                        <bottom>50</bottom>
-                        <aspectratio>keep</aspectratio>
-                        <texture border="5" colordiffuse="Fallback">common/box.png</texture>
-                        <animation effect="fade" start="100" end="90" condition="true">Conditional</animation>
-                        <visible>[VideoPlayer.Content(LiveTV) | VideoPlayer.Content(musicvideos) + String.IsEmpty(Player.Art(poster))] + !String.IsEmpty(Player.Art(thumb))</visible>
-                    </control>
-                    <control type="image">
-                        <width>260</width>
-                        <height>260</height>
-                        <bottom>50</bottom>
-                        <texture colordiffuse="Box2" border="4" background="true" infill="false">common/box21.png</texture>
-                        <visible>[VideoPlayer.Content(LiveTV) | VideoPlayer.Content(musicvideos) + String.IsEmpty(Player.Art(poster))] + !String.IsEmpty(Player.Art(thumb))</visible>
-                        <visible>Skin.HasSetting(global.showborders)</visible>
-                    </control>
-                    <control type="image">
-                        <width>230</width>
-                        <height>230</height>
-                        <bottom>65</bottom>
-                        <left>15</left>
-                        <aspectratio>keep</aspectratio>
-                        <texture>$INFO[Player.Art(thumb)]</texture>
-                        <visible>VideoPlayer.Content(LiveTV) + !String.IsEmpty(Player.Art(thumb))</visible>
-                    </control>
-                    <control type="image">
-                        <width>260</width>
-                        <height>260</height>
-                        <bottom>50</bottom>
-                        <aspectratio>keep</aspectratio>
-                        <texture>$INFO[Player.Art(thumb)]</texture>
-                        <visible>VideoPlayer.Content(musicvideos) + String.IsEmpty(Player.Art(poster)) + !String.IsEmpty(Player.Art(thumb))</visible>
-                    </control>
+                    <include>OSDPoster</include> 
                 </control>
             </control>
             
@@ -2852,7 +2764,7 @@
                 <bottom>0</bottom>
                 <width>100%</width>
                 <height>200</height>
-                <visible>Window.IsVisible(fullscreeninfo) | !String.IsEmpty(Window(home).Property(osdinfo)) | Player.ShowInfo | $EXP[ShowInfoWithOSD] | $EXP[ShowInfoOnPause]</visible>
+                <visible>$EXP[PlayerShowInfo]</visible>
                 <animation effect="fade" start="0" end="100" time="250">Visible</animation>
                 <animation effect="fade" start="0" end="100" time="250">WindowOpen</animation>
                 <animation effect="fade" end="0" start="100" time="200">Hidden</animation>
@@ -2873,83 +2785,7 @@
                     <right>SidePad</right>
                     <top>-10</top>
                     <bottom>50</bottom>
-                    <control type="group">
-                        <visible>Skin.HasSetting(discartOSD) + !Skin.HasSetting(osd.disableposter)</visible> 
-                        <left>5</left>
-                        <top>-234</top>
-                        <width>250</width>
-                        <height>250</height>
-                        <control type="image">
-                            <visible>!String.IsEmpty(Player.Art(discart)) + !String.IsEmpty(Player.Art(poster))</visible>
-                            <visible>!String.IsEmpty(Window(home).Property(ShowDisc)) + $EXP[PlayerShowInfo]</visible>
-                            <texture>$INFO[Player.Art(discart)]</texture>
-                            <aspectratio align="center" aligny="center">keep</aspectratio>
-                            <animation type="Visible" reversible="false">
-                                <effect type="slide" start="0,100" end="0,-130" tween="sine" easing="out" time="600" delay="200"/>
-                                <effect type="fade" start="0" end="100" time="100" delay="200"/>
-                            </animation>
-                            <animation type="Hidden" reversible="false">
-                                <effect type="slide" start="0,-130" end="0,0" tween="sine" easing="out" time="400" delay="0"/>
-                                <effect type="fade" start="100" end="0" time="100"/>
-                            </animation>
-                            <animation effect="rotate" center="auto" time="6000" end="-360" condition="true" loop="true">Conditional</animation>
-                        </control>
-                    </control>
-                    <control type="image">
-                        <visible>!VideoPlayer.Content(LiveTV) + !Skin.hasSetting(osd.disableposter) + [!String.IsEmpty(Player.Art(tvshow.poster)) | !String.IsEmpty(Player.Art(poster))]</visible>
-                        <left>0</left>
-                        <top>-239</top>
-                        <width>260</width>
-                        <height>390</height>
-                        <texture diffuse="diffuse/listposter.png">$VAR[PlayerPoster]</texture>
-                        <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
-                    </control>
-                    <control type="image">
-                        <visible>!VideoPlayer.Content(LiveTV) + !Skin.hasSetting(osd.disableposter) + [!String.IsEmpty(Player.Art(tvshow.poster)) | !String.IsEmpty(Player.Art(poster))]</visible>
-                        <left>-1</left>
-                        <top>-240</top>
-                        <width>262</width>
-                        <height>392</height>
-                        <texture diffuse="diffuse/listposter.png" colordiffuse="PanelWhite70" border="4" infill="false">common/box21.png</texture>
-                        <visible>Skin.HasSetting(global.showborders)</visible>
-                    </control>
-                    <control type="image">
-                        <width>260</width>
-                        <height>260</height>
-                        <bottom>8</bottom>
-                        <left>0</left>
-                        <aspectratio>keep</aspectratio>
-                        <texture border="5" colordiffuse="$VAR[OSDPanel]">common/box.png</texture>
-                        <animation effect="fade" start="100" end="90" condition="true">Conditional</animation>
-                        <visible>!Skin.hasSetting(osd.disableposter) + [[VideoPlayer.Content(LiveTV) | VideoPlayer.Content(musicvideos) + String.IsEmpty(Player.Art(poster))] + !String.IsEmpty(Player.Art(thumb))]</visible>
-                    </control>
-                    <control type="image">
-                        <visible>!Skin.hasSetting(osd.disableposter) + [VideoPlayer.Content(LiveTV) + !String.IsEmpty(Player.Art(thumb))]</visible>
-                        <width>230</width>
-                        <left>15</left>
-                        <height>230</height>
-                        <bottom>23</bottom>
-                        <aspectratio>keep</aspectratio>
-                        <texture diffuse="diffuse/wall.png">$INFO[Player.Art(thumb)]</texture>
-                    </control>
-                    <control type="image">
-                        <visible>!Skin.hasSetting(osd.disableposter) + [VideoPlayer.Content(musicvideos) + String.IsEmpty(Player.Art(poster)) + !String.IsEmpty(Player.Art(thumb))]</visible>
-                        <width>260</width>
-                        <left>0</left>
-                        <height>260</height>
-                        <bottom>8</bottom>
-                        <aspectratio>keep</aspectratio>
-                        <texture diffuse="diffuse/wall.png">$INFO[Player.Art(thumb)]</texture>
-                    </control>
-                    <control type="image">
-                        <visible>!Skin.hasSetting(osd.disableposter) + [[VideoPlayer.Content(LiveTV) | VideoPlayer.Content(musicvideos) + String.IsEmpty(Player.Art(poster))] + !String.IsEmpty(Player.Art(thumb))]</visible>
-                        <width>262</width>
-                        <left>-1</left>
-                        <height>262</height>
-                        <bottom>7</bottom>
-                        <texture diffuse="diffuse/listposter.png" colordiffuse="PanelWhite70" border="4" infill="false">common/box21.png</texture>
-                        <visible>Skin.HasSetting(global.showborders)</visible>
-                    </control>
+                    <include condition="!Skin.HasSetting(osd.disableposter)">OSDPoster</include>
                     <control type="group">
                         <visible>!Skin.hasSetting(osd.disableposter)</visible>
                         <left>308</left>
@@ -2994,7 +2830,7 @@
                 <width>100%</width>
                 <animation effect="slide" start="0" end="0,-74" time="150" condition="Window.IsVisible(videoosd)">Conditional</animation>
                 <control type="group">
-	                <visible>!Window.IsVisible(fullscreeninfo)  + String.IsEmpty(Window(home).Property(osdinfo)) + !Player.ShowInfo + !$EXP[ShowInfoOnPause] + !$EXP[ShowInfoWithOSD]</visible>
+	                <visible>!$EXP[PlayerShowInfo]</visible>
 	                <visible>Player.Seeking | Player.HasPerformedSeek(3) | Player.Paused | Player.Forwarding | Player.Rewinding | !String.IsEmpty(Player.SeekNumeric) | !String.IsEmpty(PVR.ChannelNumberInput) | Window.IsVisible(videoosd)</visible>
 	                <animation effect="fade" start="0" end="100" delay="150" time="250">WindowOpen</animation>
 	                <animation effect="fade" end="0" start="100" time="200">WindowClose</animation>
@@ -3031,16 +2867,16 @@
                     <animation effect="fade" start="0" end="100" time="250">Visible</animation>
                     <animation effect="fade" end="0" start="100" time="0">WindowClose</animation>
                     <animation effect="fade" end="0" start="100" time="100">Hidden</animation>
-                    <animation effect="slide" end="0,-39" time="50" reversible="false" condition="VideoPlayer.Content(LiveTV) + Skin.HasSetting(pvr.showtechnicalinfo) + !Skin.hasSetting(osd.disableposter) + [Window.IsVisible(fullscreeninfo) | !String.IsEmpty(Window(home).Property(osdinfo)) | Player.ShowInfo | $EXP[ShowInfoWithOSD] | $EXP[ShowInfoOnPause]] + ![String.IsEmpty(Player.Art(tvshow.poster)) + String.IsEmpty(Player.Art(poster)) + [!VideoPlayer.Content(LiveTV) | String.IsEmpty(Player.Art(thumb))]]">Conditional</animation>
-                    <animation effect="slide" start="0,-39" time="50" reversible="false" condition="VideoPlayer.Content(LiveTV) + Skin.HasSetting(pvr.showtechnicalinfo) + ![!Skin.hasSetting(osd.disableposter) + [Window.IsVisible(fullscreeninfo) | !String.IsEmpty(Window(home).Property(osdinfo)) | Player.ShowInfo | $EXP[ShowInfoWithOSD] | $EXP[ShowInfoOnPause]] + ![String.IsEmpty(Player.Art(tvshow.poster)) + String.IsEmpty(Player.Art(poster)) + [!VideoPlayer.Content(LiveTV) | String.IsEmpty(Player.Art(thumb))]]]">Conditional</animation>
-                    <animation effect="zoom" end="388,0,1452,80" delay="100" reversible="false" condition="!Skin.hasSetting(osd.disableposter) + [Window.IsVisible(fullscreeninfo) | !String.IsEmpty(Window(home).Property(osdinfo)) | Player.ShowInfo | $EXP[ShowInfoWithOSD] | $EXP[ShowInfoOnPause]] + ![String.IsEmpty(Player.Art(tvshow.poster)) + String.IsEmpty(Player.Art(poster)) + [!VideoPlayer.Content(LiveTV) + !VideoPlayer.Content(musicvideos) | String.IsEmpty(Player.Art(thumb))]]">Conditional</animation>
-                    <animation effect="zoom" start="388,0,1452,80" delay="100" time="20" reversible="false" condition="![!Skin.hasSetting(osd.disableposter) + [Window.IsVisible(fullscreeninfo) | !String.IsEmpty(Window(home).Property(osdinfo)) | Player.ShowInfo | $EXP[ShowInfoWithOSD] | $EXP[ShowInfoOnPause]] + ![String.IsEmpty(Player.Art(tvshow.poster)) + String.IsEmpty(Player.Art(poster)) + [!VideoPlayer.Content(LiveTV) + !VideoPlayer.Content(musicvideos) | String.IsEmpty(Player.Art(thumb))]]]">Conditional</animation>
+                    <animation effect="slide" end="0,-39" time="50" reversible="false" condition="VideoPlayer.Content(LiveTV) + Skin.HasSetting(pvr.showtechnicalinfo) + !Skin.hasSetting(osd.disableposter) + $EXP[PlayerShowInfo] + ![String.IsEmpty(Player.Art(tvshow.poster)) + String.IsEmpty(Player.Art(poster)) + [!VideoPlayer.Content(LiveTV) | String.IsEmpty(Player.Art(thumb))]]">Conditional</animation>
+                    <animation effect="slide" start="0,-39" time="50" reversible="false" condition="VideoPlayer.Content(LiveTV) + Skin.HasSetting(pvr.showtechnicalinfo) + ![!Skin.hasSetting(osd.disableposter) + $EXP[PlayerShowInfo] + ![String.IsEmpty(Player.Art(tvshow.poster)) + String.IsEmpty(Player.Art(poster)) + [!VideoPlayer.Content(LiveTV) | String.IsEmpty(Player.Art(thumb))]]]">Conditional</animation>
+                    <animation effect="zoom" end="388,0,1452,80" delay="100" reversible="false" condition="!Skin.hasSetting(osd.disableposter) + $EXP[PlayerShowInfo] + ![String.IsEmpty(Player.Art(tvshow.poster)) + String.IsEmpty(Player.Art(poster)) + [!VideoPlayer.Content(LiveTV) + !VideoPlayer.Content(musicvideos) | String.IsEmpty(Player.Art(thumb))]]">Conditional</animation>
+                    <animation effect="zoom" start="388,0,1452,80" delay="100" time="20" reversible="false" condition="![!Skin.hasSetting(osd.disableposter) + $EXP[PlayerShowInfo] + ![String.IsEmpty(Player.Art(tvshow.poster)) + String.IsEmpty(Player.Art(poster)) + [!VideoPlayer.Content(LiveTV) + !VideoPlayer.Content(musicvideos) | String.IsEmpty(Player.Art(thumb))]]]">Conditional</animation>
                     <left>SidePad</left>
                     <right>SidePad</right>
                     <top>10</top>
                     <bottom>30</bottom>
                     <include content="ProgressBar">
-                        <param name="wide_markers" value="[!Skin.hasSetting(osd.disableposter) + [Window.IsVisible(fullscreeninfo) | !String.IsEmpty(Window(home).Property(osdinfo)) | Player.ShowInfo | $EXP[ShowInfoWithOSD] | $EXP[ShowInfoOnPause]] + ![String.IsEmpty(Player.Art(tvshow.poster)) + String.IsEmpty(Player.Art(poster)) + [!VideoPlayer.Content(LiveTV) | String.IsEmpty(Player.Art(thumb))]]]" />
+                        <param name="wide_markers" value="[!Skin.hasSetting(osd.disableposter) + $EXP[PlayerShowInfo] + ![String.IsEmpty(Player.Art(tvshow.poster)) + String.IsEmpty(Player.Art(poster)) + [!VideoPlayer.Content(LiveTV) | String.IsEmpty(Player.Art(thumb))]]]" />
                     </include>
                 </control>
             </control>
@@ -3055,7 +2891,7 @@
 
             <!-- Background left -->
             <control type="group">
-                <visible>Window.IsVisible(videoosd) | !String.IsEmpty(Window(home).Property(osdinfo)) | Window.IsVisible(fullscreeninfo) | Player.ShowInfo | $EXP[ShowInfoOnPause]</visible>
+                <visible>Window.IsVisible(videoosd) | $EXP[PlayerShowSideOSDInfo]</visible>
                 <animation type="Visible">
                     <effect type="slide" start="-700" end="0" time="250"/>
                     <effect type="fade" start="0" end="100" time="100"/>
@@ -3098,7 +2934,7 @@
                 <bottom>0</bottom>
                 <width>640</width>
                 <height>1020</height>
-                <visible>Window.IsVisible(videoosd) | !String.IsEmpty(Window(home).Property(osdinfo)) | Window.IsVisible(fullscreeninfo) | Player.ShowInfo | $EXP[ShowInfoOnPause]</visible>
+                <visible>Window.IsVisible(videoosd) | $EXP[PlayerShowSideOSDInfo]</visible>
                 <animation type="Visible">
                     <effect type="slide" start="-700" end="0" time="250"/>
                     <effect type="fade" start="0" end="100" time="100"/>
@@ -3117,88 +2953,67 @@
                 </animation>
                 <control type="group">
                     <control type="image">
-                        <visible>!VideoPlayer.Content(LiveTV) + [!String.IsEmpty(Player.Art(tvshow.poster)) | !String.IsEmpty(Player.Art(poster))]</visible>
-                        <left>0</left>
-                        <top>0</top>
                         <width>260</width>
                         <height>390</height>
                         <texture diffuse="diffuse/listposter.png">$VAR[PlayerPoster]</texture>
                         <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
+                        <visible>!VideoPlayer.Content(LiveTV) + [!String.IsEmpty(Player.Art(tvshow.poster)) | !String.IsEmpty(Player.Art(poster))]</visible>
+                    </control>
+                    <control type="image">
+                        <left>-1</left>
+                        <top>-1</top>
+                        <width>262</width>
+                        <height>392</height>
+                        <texture colordiffuse="$VAR[MusicOSDBox]" border="4" background="true" infill="false">common/box21.png</texture>
+                        <visible>!VideoPlayer.Content(LiveTV) + [!String.IsEmpty(Player.Art(tvshow.poster)) | !String.IsEmpty(Player.Art(poster))]</visible>
+                        <visible>Skin.HasSetting(global.showborders)</visible>
                     </control>
                     <control type="image">
                         <width>260</width>
-                        <left>0</left>
-                        <top>0</top>
                         <height>260</height>
                         <aspectratio>keep</aspectratio>
                         <texture border="5" colordiffuse="$VAR[OSDPanel]">common/box.png</texture>
                         <animation effect="fade" start="100" end="90" condition="true">Conditional</animation>
-                        <visible>VideoPlayer.Content(LiveTV) + !String.IsEmpty(Player.Art(thumb))</visible>
+                        <visible>VideoPlayer.Content(LiveTV) | String.IsEmpty(Player.Art(tvshow.poster)) + String.IsEmpty(Player.Art(poster))</visible>
                     </control>
                     <control type="image">
-                        <width>220</width>
                         <left>20</left>
                         <top>20</top>
-                        <height>220</height>
-                        <aspectratio>keep</aspectratio>
-                        <texture diffuse="diffuse/wall.png">$INFO[Window(Home).Property(PVR.Artwork.fanart)]</texture>
-                        <visible>VideoPlayer.Content(LiveTV) + !String.IsEmpty(Window(Home).Property(PVR.Artwork.fanart)) + Skin.HasSetting(enable_PvrArtwork)</visible>
-                    </control>
-                    <control type="image">
                         <width>220</width>
-                        <left>20</left>
-                        <top>20</top>
                         <height>220</height>
                         <aspectratio>keep</aspectratio>
                         <texture diffuse="diffuse/wall.png">$INFO[Player.Art(thumb)]</texture>
-                        <visible>VideoPlayer.Content(LiveTV) + !String.IsEmpty(Player.Art(thumb)) + String.IsEmpty(Window(Home).Property(PVR.Artwork.fanart))</visible>
+                        <visible>VideoPlayer.Content(LiveTV) + !String.IsEmpty(Player.Art(thumb))</visible>
                     </control>
                     <control type="image">
                         <width>260</width>
-                        <left>0</left>
-                        <top>0</top>
                         <height>260</height>
                         <aspectratio>scale</aspectratio>
-                        <texture fallback="DefaultAddonMusicvVideoInfo.png">$INFO[Player.Art(thumb)]</texture>
-                        <visible>!VideoPlayer.Content(LiveTV) + [String.IsEmpty(Player.Art(tvshow.poster)) + String.IsEmpty(Player.Art(poster))]</visible>
-                    </control>
-                    <control type="group">
-                        <left>0</left>
-                        <width>640</width>
-                        <visible>VideoPlayer.Content(LiveTV) + !String.IsEmpty(Player.Art(thumb))</visible>
-                        <include>OSDInfoContentSide</include>
-                        <include>OSDPVRInfoContent</include>
-                    </control>
-                    <control type="group">
-                        <left>0</left>
-                        <width>640</width>
-                        <visible>!String.IsEmpty(Player.Art(tvshow.poster)) | !String.IsEmpty(Player.Art(poster))</visible>
-                        <include>OSDInfoContentSide</include>
-                    </control>
-                    <control type="group">
-                        <left>0</left>
-                        <top>-120</top>
-                        <width>640</width>
-                        <visible>String.IsEmpty(Player.Art(tvshow.poster)) + String.IsEmpty(Player.Art(poster)) + [!VideoPlayer.Content(LiveTV) | String.IsEmpty(Player.Art(thumb))]</visible>
-                        <include>OSDInfoContentSide</include>
+                        <texture diffuse="diffuse/wall.png" fallback="DefaultAddonNone.png">$INFO[Player.Art(thumb)]</texture>
+                        <visible>VideoPlayer.Content(LiveTV) + String.IsEmpty(Player.Art(thumb)) | !VideoPlayer.Content(LiveTV) + [String.IsEmpty(Player.Art(tvshow.poster)) + String.IsEmpty(Player.Art(poster))]</visible>
                     </control>
                     <control type="image">
+                        <left>-1</left>
+                        <top>-1</top>
+                        <width>262</width>
+                        <height>262</height>
+                        <texture colordiffuse="$VAR[MusicOSDBox]" border="4" background="true" infill="false">common/box21.png</texture>
+                        <visible>VideoPlayer.Content(LiveTV) | String.IsEmpty(Player.Art(tvshow.poster)) + String.IsEmpty(Player.Art(poster))</visible>
+                        <visible>Skin.HasSetting(global.showborders)</visible>
+                    </control>
+                    <control type="group">
+                        <top>390</top>
+                        <bottom>0</bottom>
+                        <width>100%</width>
+                        <include>OSDInfoContentSide</include>
                         <visible>!VideoPlayer.Content(LiveTV) + [!String.IsEmpty(Player.Art(tvshow.poster)) | !String.IsEmpty(Player.Art(poster))]</visible>
-                        <left>-1</left>
-                        <top>-1</top>
-                        <width>272</width>
-                        <height>392</height>
-                        <texture colordiffuse="$VAR[MusicOSDBox]" border="4" background="true" infill="false">common/box21.png</texture>
-                        <visible>Skin.HasSetting(global.showborders)</visible>
                     </control>
-                    <control type="image">
-                        <visible>[VideoPlayer.Content(LiveTV) + !String.IsEmpty(Player.Art(thumb))] | [!VideoPlayer.Content(LiveTV) + [String.IsEmpty(Player.Art(tvshow.poster)) + String.IsEmpty(Player.Art(poster))]]</visible>
-                        <left>-1</left>
-                        <top>-1</top>
-                        <width>272</width>
-                        <height>272</height>
-                        <texture colordiffuse="$VAR[MusicOSDBox]" border="4" background="true" infill="false">common/box21.png</texture>
-                        <visible>Skin.HasSetting(global.showborders)</visible>
+                    <control type="group">
+                        <top>260</top>
+                        <bottom>20</bottom>
+                        <width>100%</width>
+                        <include>OSDInfoContentSide</include>
+                        <visible>VideoPlayer.Content(LiveTV) | String.IsEmpty(Player.Art(tvshow.poster)) + String.IsEmpty(Player.Art(poster))</visible>
                     </control>
                 </control>
             </control>
@@ -3206,8 +3021,7 @@
             <!-- Seekbar -->
             <control type="group">
                 <control type="group">
-                    <visible>!Window.IsVisible(videoosd)</visible>
-	                <visible>!Window.IsVisible(fullscreeninfo) + String.IsEmpty(Window(home).Property(osdinfo)) + !Player.ShowInfo + !$EXP[ShowInfoOnPause]</visible>
+                    <visible>!Window.IsVisible(videoosd) + !$EXP[PlayerShowSideOSDInfo]</visible>
 	                <visible>Player.Seeking | Player.HasPerformedSeek(3) | Player.Paused | Player.Forwarding | Player.Rewinding | !String.IsEmpty(Player.SeekNumeric) | !String.IsEmpty(PVR.ChannelNumberInput)</visible>
 	                <animation type="WindowOpen" reversible="false">
 	                    <effect type="fade" start="0" end="100" time="200"/>
@@ -3298,32 +3112,32 @@
 	                </control>
 	            </control>
                 <control type="group">
-                    <visible>!Window.IsVisible(videoosd) + [!String.IsEmpty(Window(home).Property(osdinfo)) | Window.IsVisible(fullscreeninfo) | Player.Seeking | Player.HasPerformedSeek(3) | Player.Paused | Player.Forwarding | Player.Rewinding | !String.IsEmpty(Player.SeekNumeric) | !String.IsEmpty(PVR.ChannelNumberInput)]</visible>
-                    <animation type="WindowOpen" reversible="false" condition="[Window.IsVisible(fullscreeninfo) | !String.IsEmpty(Window(home).Property(osdinfo)) | Player.ShowInfo | $EXP[ShowInfoOnPause]]">
+                    <visible>!Window.IsVisible(videoosd) + [$EXP[PlayerShowSideOSDInfo] | Player.Seeking | Player.HasPerformedSeek(3) | Player.Paused | Player.Forwarding | Player.Rewinding | !String.IsEmpty(Player.SeekNumeric) | !String.IsEmpty(PVR.ChannelNumberInput)]</visible>
+                    <animation type="WindowOpen" reversible="false" condition="$EXP[PlayerShowSideOSDInfo]">
                         <effect type="slide" start="-700" end="0" time="250"/>
                         <effect type="fade" start="0" end="100" time="100"/>
                     </animation>
-                    <animation type="Visible" reversible="false" condition="[Window.IsVisible(fullscreeninfo) | !String.IsEmpty(Window(home).Property(osdinfo)) | Player.ShowInfo | $EXP[ShowInfoOnPause]]">
+                    <animation type="Visible" reversible="false" condition="$EXP[PlayerShowSideOSDInfo]">
                         <effect type="slide" start="-700" end="0" time="250"/>
                         <effect type="fade" start="0" end="100" time="100"/>
                     </animation>                
-	                <animation type="Hidden" reversible="false" condition="[Window.IsVisible(fullscreeninfo) | !String.IsEmpty(Window(home).Property(osdinfo)) | Player.ShowInfo | $EXP[ShowInfoOnPause]]">
+	                <animation type="Hidden" reversible="false" condition="$EXP[PlayerShowSideOSDInfo]">
 	                    <effect type="slide" end="-700" start="0" time="400"/>
 	                    <effect type="fade" start="100" end="0" time="100"/>
 	                </animation>
-	                <animation type="WindowClose" reversible="false" condition="[Window.IsVisible(fullscreeninfo) | !String.IsEmpty(Window(home).Property(osdinfo)) | Player.ShowInfo | $EXP[ShowInfoOnPause]]">
+	                <animation type="WindowClose" reversible="false" condition="$EXP[PlayerShowSideOSDInfo]">
 	                    <effect type="slide" end="-700" start="0" time="400"/>
 	                    <effect type="fade" start="100" end="0" time="100"/>
 	                </animation>
-                    <animation type="WindowOpen" reversible="false" condition="![Window.IsVisible(fullscreeninfo) | !String.IsEmpty(Window(home).Property(osdinfo)) | Player.ShowInfo | $EXP[ShowInfoOnPause]]">
+                    <animation type="WindowOpen" reversible="false" condition="!$EXP[PlayerShowSideOSDInfo]">
                         <effect type="fade" start="0" end="100" time="200"/>
                         <effect type="slide" end="0,0" start="0,110" time="200"/>
                     </animation>
-                    <animation type="WindowClose" reversible="false" condition="![Window.IsVisible(fullscreeninfo) | !String.IsEmpty(Window(home).Property(osdinfo)) | Player.ShowInfo | $EXP[ShowInfoOnPause]]">
+                    <animation type="WindowClose" reversible="false" condition="!$EXP[PlayerShowSideOSDInfo]">
                         <effect type="slide" start="0,0" end="0,110" time="250" delay="100"/>
                         <effect type="fade" start="100" end="50" time="250" />
                     </animation>
-                    <animation type="Visible" reversible="false" condition="![Window.IsVisible(fullscreeninfo) | !String.IsEmpty(Window(home).Property(osdinfo)) | Player.ShowInfo | $EXP[ShowInfoOnPause]]">
+                    <animation type="Visible" reversible="false" condition="!$EXP[PlayerShowSideOSDInfo]">
                         <effect type="fade" start="70" end="100" time="200"/>
                         <effect type="slide" end="0,0" start="0,110" time="200"/>
                     </animation>                
@@ -3332,11 +3146,15 @@
                     <top>110r</top>
                     <bottom>0</bottom>
                     <control type="group">
-                        <animation effect="zoom" end="-50,20,640,70" time="0" condition="[Window.IsVisible(fullscreeninfo) | !String.IsEmpty(Window(home).Property(osdinfo)) | Player.ShowInfo | $EXP[ShowInfoOnPause]]">Conditional</animation>
+                        <animation type="Conditional" reversible="false" condition="$EXP[PlayerShowSideOSDInfo]">
+                            <effect type="slide" start="0" end="-700" time="0" />
+                            <effect type="zoom" end="-50,20,640,70" time="0" />
+                            <effect type="slide" start="0" end="1929" time="250" />
+                        </animation>
                         <top>20</top>
                         <bottom>20</bottom>
                         <width>100%</width>
-	                     <include content="ProgressBar">
+	                    <include content="ProgressBar">
 	                        <param name="wide_markers" value="[Window.IsVisible(fullscreeninfo) | !String.IsEmpty(Window(home).Property(osdinfo)) | Player.ShowInfo | $EXP[ShowInfoOnPause]]" />
 	                    </include>
 	                </control>    
