@@ -515,43 +515,7 @@
 
             <!-- PLAYER STATUS -->
             <control type="label">
-                <visible>Player.Playing + !Player.Seeking + !Player.Caching + VideoPlayer.Content(episodes)</visible>
-                <animation effect="fade" start="100" end="0" time="200" condition="Window.IsVisible(videoosd)">Conditional</animation>
-                <left>0</left>
-                <width>100%</width>
-                <bottom>30</bottom>
-                <height>40</height>
-                <font>Tiny</font>
-                <textcolor>$VAR[OSDPanelWhite70]</textcolor>
-                <label>$VAR[PlayerGenreInfo]</label>
-            </control>
-            <control type="label">
-                <visible>[!Player.Playing + !Player.Paused | Player.Seeking | Player.Caching] + VideoPlayer.Content(episodes)</visible>
-                <animation effect="fade" start="100" end="0" time="200" condition="Window.IsVisible(videoosd)">Conditional</animation>
-                <left>0</left>
-                <width>100%</width>
-                <bottom>30</bottom>
-                <height>40</height>
-                <font>Tiny</font>
-                <textcolor>$VAR[OSDPanelWhite70]</textcolor>
-                <label>$VAR[PlayerStatus]</label>
-            </control>
-            <control type="fadelabel">
-                <visible>Player.Paused + !Player.Seeking + !Player.Caching + VideoPlayer.Content(episodes)</visible>
-                <animation effect="fade" start="100" end="0" time="200" condition="Window.IsVisible(videoosd)">Conditional</animation>
-                <left>0</left>
-                <width>100%</width>
-                <bottom>30</bottom>
-                <height>40</height>
-                <font>Tiny</font>
-                <pauseatend>6000</pauseatend>
-                <scroll>false</scroll>
-                <textcolor>$VAR[OSDPanelWhite70]</textcolor>
-                <label>$VAR[PlayerStatus]</label>
-                <label>$VAR[PlayerGenreInfo]</label>
-            </control>
-            <control type="label">
-                <visible>Player.Playing + !Player.Seeking + !Player.Caching + !VideoPlayer.Content(LiveTV) + !VideoPlayer.Content(episodes)</visible>
+                <visible>Player.Playing + !Player.Seeking + !Player.Caching + !Skin.HasSetting(ClockOSD)</visible>
                 <animation effect="fade" start="100" end="0" time="200" condition="Window.IsVisible(videoosd)">Conditional</animation>
                 <left>0</left>
                 <width>100%</width>
@@ -562,7 +526,7 @@
                 <label>$INFO[Player.FinishTime,$LOCALIZE[31013] ]</label>
             </control>
             <control type="label">
-                <visible>[!Player.Playing + !Player.Paused | Player.Seeking | Player.Caching] + !VideoPlayer.Content(LiveTV) + !VideoPlayer.Content(episodes)</visible>
+                <visible>!Player.Playing + !Player.Paused | Player.Seeking | Player.Caching | Skin.HasSetting(ClockOSD)</visible>
                 <animation effect="fade" start="100" end="0" time="200" condition="Window.IsVisible(videoosd)">Conditional</animation>
                 <left>0</left>
                 <width>100%</width>
@@ -573,7 +537,7 @@
                 <label>$VAR[PlayerStatus]</label>
             </control>
             <control type="fadelabel">
-                <visible>Player.Paused + !Player.Seeking + !Player.Caching + !VideoPlayer.Content(LiveTV) + !VideoPlayer.Content(episodes)</visible>
+                <visible>Player.Paused + !Player.Seeking + !Player.Caching + !Skin.HasSetting(ClockOSD)</visible>
                 <animation effect="fade" start="100" end="0" time="200" condition="Window.IsVisible(videoosd)">Conditional</animation>
                 <left>0</left>
                 <width>100%</width>
@@ -585,42 +549,6 @@
                 <textcolor>$VAR[OSDPanelWhite70]</textcolor>
                 <label>$VAR[PlayerStatus]</label>
                 <label>$INFO[Player.FinishTime,$LOCALIZE[31013] ]</label>
-            </control>
-            <control type="label">
-                <visible>Player.Playing + !Player.Seeking + !Player.Caching + VideoPlayer.Content(LiveTV)</visible>
-                <animation effect="fade" start="100" end="0" time="200" condition="Window.IsVisible(videoosd)">Conditional</animation>
-                <left>0</left>
-                <width>100%</width>
-                <bottom>30</bottom>
-                <height>40</height>
-                <font>Tiny</font>
-                <textcolor>$VAR[OSDPanelWhite70]</textcolor>
-                <label>$VAR[PlayerGenreInfo]</label>
-            </control>
-            <control type="label">
-                <visible>[!Player.Playing + !Player.Paused | Player.Seeking | Player.Caching] + VideoPlayer.Content(LiveTV)</visible>
-                <animation effect="fade" start="100" end="0" time="200" condition="Window.IsVisible(videoosd)">Conditional</animation>
-                <left>0</left>
-                <width>100%</width>
-                <bottom>30</bottom>
-                <height>40</height>
-                <font>Tiny</font>
-                <textcolor>$VAR[OSDPanelWhite70]</textcolor>
-                <label>$VAR[PlayerStatus]</label>
-            </control>
-            <control type="fadelabel">
-                <visible>Player.Paused + !Player.Seeking + !Player.Caching + VideoPlayer.Content(LiveTV)</visible>
-                <animation effect="fade" start="100" end="0" time="200" condition="Window.IsVisible(videoosd)">Conditional</animation>
-                <left>0</left>
-                <width>100%</width>
-                <bottom>30</bottom>
-                <height>40</height>
-                <font>Tiny</font>
-                <pauseatend>6000</pauseatend>
-                <scroll>false</scroll>
-                <textcolor>$VAR[OSDPanelWhite70]</textcolor>
-                <label>$VAR[PlayerStatus]</label>
-                <label>$VAR[PlayerGenreInfo]</label>
             </control>
             <control type="grouplist">
                 <right>0</right>
@@ -3206,7 +3134,7 @@
                         <width>260</width>
                         <height>260</height>
                         <aspectratio>scale</aspectratio>
-                        <texture fallback="DefaultAddonNone.png">$INFO[Player.Art(thumb)]</texture>
+                        <texture diffuse="diffuse/wall.png" fallback="DefaultAddonNone.png">$INFO[Player.Art(thumb)]</texture>
                         <visible>VideoPlayer.Content(LiveTV) + String.IsEmpty(Player.Art(thumb)) | !VideoPlayer.Content(LiveTV) + [String.IsEmpty(Player.Art(tvshow.poster)) + String.IsEmpty(Player.Art(poster))]</visible>
                     </control>
                     <control type="image">
@@ -3366,7 +3294,7 @@
                         <animation type="Conditional" reversible="false" condition="$EXP[PlayerShowSideOSDInfo]">
                             <effect type="slide" start="0" end="-700" time="0" />
                             <effect type="zoom" end="-50,20,640,70" time="0" />
-                            <effect type="slide" start="0" end="1930" time="250" />
+                            <effect type="slide" start="0" end="1929" time="250" />
                         </animation>
                         <top>20</top>
                         <bottom>20</bottom>
