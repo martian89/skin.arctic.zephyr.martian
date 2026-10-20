@@ -294,18 +294,17 @@
     <!-- SIDE OSD -->
     <include name="OSDInfoContentSide">
         <control type="grouplist">
-            <top>-620</top>
-            <left>300</left>
-            <width>340</width>
+            <top>-1010</top>
+            <right>0</right>
+            <width>350</width>
             <align>center</align>
             <orientation>vertical</orientation>
             <itemgap>12</itemgap>
-            <animation effect="slide" start="0,0" end="0,-60" time="150" condition="VideoPlayer.Content(LiveTV)">Conditional</animation>
 
             <!-- TITLE CLEARLOGO -->
             <control type="image" description="clearlogo">
                 <visible>!Skin.HasSetting(osd.showclearlogotitle) + !String.IsEmpty(Player.Art(clearlogo)) + !VideoPlayer.Content(episodes)</visible>
-                <width>340</width>
+                <width>100%</width>
                 <height>124</height>
                 <aspectratio align="center">keep</aspectratio>
                 <texture background="true">$INFO[Player.Art(clearlogo)]</texture>
@@ -324,7 +323,7 @@
 
             <!-- RATING STARS -->
             <control type="grouplist">
-                <width>340</width>
+                <width>100%</width>
                 <height>48</height>
                 <orientation>horizontal</orientation>
                 <align>center</align>
@@ -339,8 +338,7 @@
             <!-- TAGLINE -->
             <control type="textbox" description="Show">
                 <visible>!String.IsEmpty(Videoplayer.Tagline)</visible>
-                <width>340</width>
-                <left>285</left>
+                <width>100%</width>
                 <top>80</top>
                 <height max="160">auto</height>
                 <font>Small</font>
@@ -353,13 +351,11 @@
 
         <!-- MEDIA-ICONS -->
         <control type="grouplist">
-            <left>0</left>
-            <width>640</width>
+            <width>100%</width>
             <orientation>vertical</orientation>
-            <top>425</top>
+            <top>35</top>
             <bottom>96</bottom>
             <itemgap>18</itemgap>
-            <animation effect="slide" start="0,0" end="0,-130" time="150" condition="VideoPlayer.Content(LiveTV)">Conditional</animation>
 
             <!-- GENRE -->
             <control type="label" description="Show">
@@ -514,6 +510,7 @@
             <visible>!Window.IsVisible(videoosd)</visible>
             <animation effect="fade" start="0" end="100" delay="0" time="250">Visible</animation>
             <animation effect="fade" start="100" end="0" delay="0" time="250">Hidden</animation>
+            <animation effect="slide" start="0,0" end="0,20" condition="VideoPlayer.Content(LiveTV) | String.IsEmpty(Player.Art(tvshow.poster)) + String.IsEmpty(Player.Art(poster))">Conditional</animation>
             <bottom>-10</bottom>
 
             <!-- PLAYER STATUS -->
@@ -3186,28 +3183,33 @@
                 </animation>
                 <control type="group">
                     <control type="image">
-                        <visible>!VideoPlayer.Content(LiveTV) + [!String.IsEmpty(Player.Art(tvshow.poster)) | !String.IsEmpty(Player.Art(poster))]</visible>
-                        <left>0</left>
-                        <top>0</top>
                         <width>260</width>
                         <height>390</height>
                         <texture diffuse="diffuse/listposter.png">$VAR[PlayerPoster]</texture>
                         <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
+                        <visible>!VideoPlayer.Content(LiveTV) + [!String.IsEmpty(Player.Art(tvshow.poster)) | !String.IsEmpty(Player.Art(poster))]</visible>
+                    </control>
+                    <control type="image">
+                        <left>-1</left>
+                        <top>-1</top>
+                        <width>262</width>
+                        <height>392</height>
+                        <texture colordiffuse="$VAR[MusicOSDBox]" border="4" background="true" infill="false">common/box21.png</texture>
+                        <visible>!VideoPlayer.Content(LiveTV) + [!String.IsEmpty(Player.Art(tvshow.poster)) | !String.IsEmpty(Player.Art(poster))]</visible>
+                        <visible>Skin.HasSetting(global.showborders)</visible>
                     </control>
                     <control type="image">
                         <width>260</width>
-                        <left>0</left>
-                        <top>0</top>
                         <height>260</height>
                         <aspectratio>keep</aspectratio>
                         <texture border="5" colordiffuse="$VAR[OSDPanel]">common/box.png</texture>
                         <animation effect="fade" start="100" end="90" condition="true">Conditional</animation>
-                        <visible>VideoPlayer.Content(LiveTV) + !String.IsEmpty(Player.Art(thumb))</visible>
+                        <visible>VideoPlayer.Content(LiveTV) | String.IsEmpty(Player.Art(tvshow.poster)) + String.IsEmpty(Player.Art(poster))</visible>
                     </control>
                     <control type="image">
-                        <width>220</width>
                         <left>20</left>
                         <top>20</top>
+                        <width>220</width>
                         <height>220</height>
                         <aspectratio>keep</aspectratio>
                         <texture diffuse="diffuse/wall.png">$INFO[Player.Art(thumb)]</texture>
@@ -3215,50 +3217,33 @@
                     </control>
                     <control type="image">
                         <width>260</width>
-                        <left>0</left>
-                        <top>0</top>
                         <height>260</height>
                         <aspectratio>scale</aspectratio>
-                        <texture fallback="DefaultMusicVideos.png">$INFO[Player.Art(thumb)]</texture>
-                        <visible>!VideoPlayer.Content(LiveTV) + [String.IsEmpty(Player.Art(tvshow.poster)) + String.IsEmpty(Player.Art(poster))]</visible>
-                    </control>
-                    <control type="group">
-                        <left>0</left>
-                        <width>640</width>
-                        <visible>VideoPlayer.Content(LiveTV) + !String.IsEmpty(Player.Art(thumb))</visible>
-                        <include>OSDInfoContentSide</include>
-                        <include>OSDPVRInfoContent</include>
-                    </control>
-                    <control type="group">
-                        <left>0</left>
-                        <width>640</width>
-                        <visible>!String.IsEmpty(Player.Art(tvshow.poster)) | !String.IsEmpty(Player.Art(poster))</visible>
-                        <include>OSDInfoContentSide</include>
-                    </control>
-                    <control type="group">
-                        <left>0</left>
-                        <top>-120</top>
-                        <width>640</width>
-                        <visible>String.IsEmpty(Player.Art(tvshow.poster)) + String.IsEmpty(Player.Art(poster)) + [!VideoPlayer.Content(LiveTV) | String.IsEmpty(Player.Art(thumb))]</visible>
-                        <include>OSDInfoContentSide</include>
+                        <texture fallback="DefaultAddonNone.png">$INFO[Player.Art(thumb)]</texture>
+                        <visible>VideoPlayer.Content(LiveTV) + String.IsEmpty(Player.Art(thumb)) | !VideoPlayer.Content(LiveTV) + [String.IsEmpty(Player.Art(tvshow.poster)) + String.IsEmpty(Player.Art(poster))]</visible>
                     </control>
                     <control type="image">
+                        <left>-1</left>
+                        <top>-1</top>
+                        <width>262</width>
+                        <height>262</height>
+                        <texture colordiffuse="$VAR[MusicOSDBox]" border="4" background="true" infill="false">common/box21.png</texture>
+                        <visible>VideoPlayer.Content(LiveTV) | String.IsEmpty(Player.Art(tvshow.poster)) + String.IsEmpty(Player.Art(poster))</visible>
+                        <visible>Skin.HasSetting(global.showborders)</visible>
+                    </control>
+                    <control type="group">
+                        <top>390</top>
+                        <bottom>0</bottom>
+                        <width>100%</width>
+                        <include>OSDInfoContentSide</include>
                         <visible>!VideoPlayer.Content(LiveTV) + [!String.IsEmpty(Player.Art(tvshow.poster)) | !String.IsEmpty(Player.Art(poster))]</visible>
-                        <left>-1</left>
-                        <top>-1</top>
-                        <width>272</width>
-                        <height>392</height>
-                        <texture colordiffuse="$VAR[MusicOSDBox]" border="4" background="true" infill="false">common/box21.png</texture>
-                        <visible>Skin.HasSetting(global.showborders)</visible>
                     </control>
-                    <control type="image">
-                        <visible>[VideoPlayer.Content(LiveTV) + !String.IsEmpty(Player.Art(thumb))] | [!VideoPlayer.Content(LiveTV) + [String.IsEmpty(Player.Art(tvshow.poster)) + String.IsEmpty(Player.Art(poster))]]</visible>
-                        <left>-1</left>
-                        <top>-1</top>
-                        <width>272</width>
-                        <height>272</height>
-                        <texture colordiffuse="$VAR[MusicOSDBox]" border="4" background="true" infill="false">common/box21.png</texture>
-                        <visible>Skin.HasSetting(global.showborders)</visible>
+                    <control type="group">
+                        <top>260</top>
+                        <bottom>20</bottom>
+                        <width>100%</width>
+                        <include>OSDInfoContentSide</include>
+                        <visible>VideoPlayer.Content(LiveTV) | String.IsEmpty(Player.Art(tvshow.poster)) + String.IsEmpty(Player.Art(poster))</visible>
                     </control>
                 </control>
             </control>
