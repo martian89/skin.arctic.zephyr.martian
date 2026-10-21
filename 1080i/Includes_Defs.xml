@@ -2873,6 +2873,29 @@
         </definition>
     </include>
 
+    <include name="Def_Artwork_Inherited_Indicator">
+	    <control type="group">
+	        <visible>String.IsEqual(ListItem.Property(is_inherited),true)</visible>
+	        <left>1</left>
+	        <top>1</top>
+	        <control type="image">
+	            <centerleft>37</centerleft>
+	            <centertop>37</centertop>
+	            <width>40</width>
+	            <height>40</height>
+	            <texture colordiffuse="d7ffcd3c">common/circle.png</texture>
+	        </control>
+	        <control type="image">
+	            <centerleft>37</centerleft>
+	            <centertop>35</centertop>
+	            <width>50</width>
+	            <height>50</height>
+	            <align>center</align>
+                <texture colordiffuse="df000000">special://skin/extras/icons/tv.png</texture>
+	        </control>
+	    </control>    
+    </include>
+    
     <include name="Def_Artwork_List_Layout">
         <param name="control_id" default="100" />
         <param name="width" default="355" />
@@ -2942,6 +2965,7 @@
                         </include>
 	                </control>
 	            </control>
+                <include>Def_Artwork_Inherited_Indicator</include>
 	        </itemlayout>
 	        <focusedlayout height="$PARAM[height]" width="$PARAM[width]" condition="$PARAM[condition]">
 	            <control type="group">
@@ -3002,6 +3026,7 @@
                         </include>
                     </control>
 	            </control>
+                <include>Def_Artwork_Inherited_Indicator</include>
 	        </focusedlayout>
         </definition>
     </include>
