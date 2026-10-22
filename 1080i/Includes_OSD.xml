@@ -997,7 +997,7 @@
         <textcolor>$VAR[OSDPanelWhite70]</textcolor>
         <focusedcolor>$VAR[ColorHighlight]</focusedcolor>
         <texturefocus />
-        <width>158</width>
+        <width>150</width>
     </include>
 
     <include name="DefOSDUpDown">
@@ -1422,13 +1422,13 @@
         </control>
     </include>
 
-    <variable name="MusicOSDBox">
+    <variable name="OSDBox2">
         <value condition="!Skin.HasSetting(osd.usetheme)">PanelWhite70</value>
         <value>Box2</value>
     </variable>
 
     <variable name="OSDPanel">
-        <value condition="!Skin.HasSetting(osd.usetheme) + !Window.IsVisible(DialogVideoInfo.xml)">ff1A1A1A</value>
+        <value condition="!Skin.HasSetting(osd.usetheme)">ff1A1A1A</value>
         <value>Background</value>
     </variable>
 
@@ -1455,6 +1455,11 @@
     <variable name="OSDPanelWhite100">
         <value condition="!Skin.HasSetting(osd.usetheme)">PanelWhite100</value>
         <value>Dark1</value>
+    </variable>
+
+    <variable name="OSDFallback">
+        <value condition="!Skin.HasSetting(osd.usetheme)">$VAR[OSDPanel]</value>
+        <value>Fallback</value>
     </variable>
 
     <include name="OSDControlsHome">
@@ -2260,7 +2265,7 @@
 	        <bottom>7</bottom>
 	        <width>262</width>
 	        <height>392</height>
-	        <texture diffuse="diffuse/listposter.png" colordiffuse="PanelWhite70" border="4" infill="false">common/box21.png</texture>
+	        <texture diffuse="diffuse/listposter.png" colordiffuse="$VAR[OSDBox2]" border="4" infill="false">common/box21.png</texture>
 	        <visible>Skin.HasSetting(global.showborders)</visible>
 	    </control>
 	    <control type="image">
@@ -2269,7 +2274,7 @@
 	        <bottom>8</bottom>
 	        <left>0</left>
 	        <aspectratio>keep</aspectratio>
-	        <texture border="5" colordiffuse="$VAR[OSDPanel]">common/box.png</texture>
+	        <texture border="5" colordiffuse="$VAR[OSDFallback]">common/box.png</texture>
 	        <animation effect="fade" start="100" end="90" condition="true">Conditional</animation>
 	        <visible>[[VideoPlayer.Content(LiveTV) | VideoPlayer.Content(musicvideos) + String.IsEmpty(Player.Art(poster))] + !String.IsEmpty(Player.Art(thumb))]</visible>
 	    </control>
@@ -2297,7 +2302,7 @@
 	        <left>-1</left>
 	        <height>262</height>
 	        <bottom>7</bottom>
-	        <texture diffuse="diffuse/listposter.png" colordiffuse="PanelWhite70" border="4" infill="false">common/box21.png</texture>
+	        <texture diffuse="diffuse/listposter.png" colordiffuse="$VAR[OSDBox2]" border="4" infill="false">common/box21.png</texture>
 	        <visible>Skin.HasSetting(global.showborders)</visible>
 	    </control>
     </include>
@@ -3110,7 +3115,7 @@
                         <top>-1</top>
                         <width>262</width>
                         <height>392</height>
-                        <texture colordiffuse="$VAR[MusicOSDBox]" border="4" background="true" infill="false">common/box21.png</texture>
+                        <texture colordiffuse="$VAR[OSDBox2]" border="4" background="true" infill="false">common/box21.png</texture>
                         <visible>!VideoPlayer.Content(LiveTV) + [!String.IsEmpty(Player.Art(tvshow.poster)) | !String.IsEmpty(Player.Art(poster))]</visible>
                         <visible>Skin.HasSetting(global.showborders)</visible>
                     </control>
@@ -3118,7 +3123,7 @@
                         <width>260</width>
                         <height>260</height>
                         <aspectratio>keep</aspectratio>
-                        <texture border="5" colordiffuse="$VAR[OSDPanel]">common/box.png</texture>
+                        <texture border="5" colordiffuse="Fallback">common/box.png</texture>
                         <animation effect="fade" start="100" end="90" condition="true">Conditional</animation>
                         <visible>VideoPlayer.Content(LiveTV) | String.IsEmpty(Player.Art(tvshow.poster)) + String.IsEmpty(Player.Art(poster))</visible>
                     </control>
@@ -3143,7 +3148,7 @@
                         <top>-1</top>
                         <width>262</width>
                         <height>262</height>
-                        <texture colordiffuse="$VAR[MusicOSDBox]" border="4" background="true" infill="false">common/box21.png</texture>
+                        <texture colordiffuse="$VAR[OSDBox2]" border="4" background="true" infill="false">common/box21.png</texture>
                         <visible>VideoPlayer.Content(LiveTV) | String.IsEmpty(Player.Art(tvshow.poster)) + String.IsEmpty(Player.Art(poster))</visible>
                         <visible>Skin.HasSetting(global.showborders)</visible>
                     </control>
