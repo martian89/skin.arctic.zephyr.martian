@@ -41,8 +41,8 @@
     </include>
 
     <include name="Animation.Vertical.Widgets.Label">
-        <include condition="![Skin.HasSetting(home.vertical) + Skin.HasSetting(home.vertical.widgets)]">fadehorizontal</include>
-        <include condition="[Skin.HasSetting(home.vertical) + Skin.HasSetting(home.vertical.widgets)]">fadevertical</include>
+        <include condition="!$EXP[HomeIsVerticalMultiWidgets]">fadehorizontal</include>
+        <include condition="$EXP[HomeIsVerticalMultiWidgets]">fadevertical</include>
     </include>
 
     <include name="Animation.Vertical.Widgets.Title">
@@ -148,15 +148,6 @@
         </animation>
         <animation type="Conditional" reversible="true" condition="Window.IsVisible(DialogConfirm.xml) | Window.IsVisible(DialogSelect.xml) | Window.IsVisible(DialogContextMenu.xml) | Window.IsVisible(DialogButtonMenu.xml) | ControlGroup(9000).HasFocus()">
             <effect type="zoom" end="95" start="100" time="200" center="auto" tween="quadratic" easing="in"/>
-        </animation>
-    </include>
-
-    <include name="Animation.Weather">
-        <animation type="Visible" reversible="false">
-            <effect type="fade" end="100" start="0" time="300" delay="250"/>
-        </animation>
-        <animation type="Hidden" reversible="false">
-            <effect type="fade" end="0" start="100" time="300"/>
         </animation>
     </include>
 
@@ -460,10 +451,6 @@
         </definition>
     </include>
 
-    <include name="Animation.FadeInMusic">
-        <animation effect="fade" start="0" end="100" time="350" tween="cubic" easing="inout">Visible</animation>
-    </include>
-
     <include name="Animation.FadeInWeatherDelay">
         <animation effect="fade" start="0" end="100" time="350" tween="cubic" easing="inout" reversible="false" delay="200">Visible</animation>
     </include>
@@ -484,23 +471,12 @@
         <animation effect="fade" end="0" start="100" time="250">Hidden</animation>
     </include>
 
-    <include name="Animation.FadeInDelayNew">
-        <animation effect="fade" start="0" end="100" time="50" delay="200">Visible</animation>
-    </include>
-
     <include name="Animation.PosterSlide">
         <animation condition="Control.HasFocus(11100) + !String.IsEmpty(ListItem.Art(discart))" effect="slide" end="0,95" start="0,0" time="300">Conditional</animation>
     </include>
 
     <include name="Animation.PosterSlideSquare">
         <animation condition="Control.HasFocus(11100) + !String.IsEmpty(ListItem.Art(discart))" effect="slide" end="0,95" start="0,0" time="300">Conditional</animation>
-    </include>
-
-    <include name="Animation.CDSlideSquare">
-        <animation condition="Control.HasFocus(9002) + !String.IsEmpty(ListItem.Art(discart))" reversible="false" effect="slide" start="0,0" end="0,-130" delay="0" time="400" tween="quadratic" easing="out">Conditional</animation>
-        <animation type="Hidden">
-            <effect type="slide" reversible="false" start="0,-130" end="0,0" delay="0" time="200" tween="quadratic" easing="out"/>
-        </animation>
     </include>
 
     <include name="Animation.DelayFadeIn">
@@ -518,11 +494,6 @@
         <animation effect="fade" start="0" end="100" time="650" delay="600" tween="cubic" easing="inout">WindowOpen</animation>
     </include>
 
-    <include name="Animation.DelayFadeIn3">
-        <animation effect="fade" start="0" end="100" time="650" delay="900" tween="cubic" easing="inout" reversible="false">Visible</animation>
-        <animation effect="fade" start="0" end="100" time="650" delay="900" tween="cubic" easing="inout">WindowOpen</animation>
-    </include>
-    
     <include name="Animation.DelayFadeIn1200">
         <animation effect="fade" start="0" end="100" time="650" delay="1200" tween="cubic" easing="inout" reversible="false">Visible</animation>
         <animation effect="fade" start="0" end="100" time="650" delay="1200" tween="cubic" easing="inout">WindowOpen</animation>
@@ -664,10 +635,6 @@
         </animation>
     </include>
 
-    <include name="Animation.FadeInDialogInfo">
-        <animation effect="fade" start="0" end="100" time="350" delay="300">Visible</animation>
-    </include>
-
     <include name="Animation.AddonFadeOut">
         <animation condition="Control.HasFocus(9601)" effect="fade" end="0" start="100" time="300">Conditional</animation>
     </include>
@@ -714,10 +681,6 @@
 
     <include name="Animation.Home.Clean">
         <animation effect="slide" start="0" end="0,220" time="150" tween="sine" condition="ControlGroup(301).HasFocus">Conditional</animation>
-    </include>
-    
-    <include name="Animation.AutoTrailer.IsPlaying">
-        <animation effect="fade" end="0" start="100" time="250" condition="$EXP[TrailerWindowIsActive]">Conditional</animation>
     </include>
     
     <include name="Animation.AutoTrailer.FadeOut.Background">
@@ -779,13 +742,6 @@
         </definition>
     </include>
 
-    <include name="Animation.Clean.Widget.Slide.Out">
-        <animation type="WindowClose" condition="!ControlGroup.HasFocus(301)">
-            <effect type="fade" start="100" end="0" time="100" />
-            <effect type="slide" start="0,0" end="0,250" time="150" />
-        </animation>
-    </include>
-    
     <include name="Animation.Animate.Fanart">
         <animation effect="zoom" start="110" end="120" center="auto" time="10000" tween="sine" easing="inout" pulse="true" condition="Skin.HasSetting(Fanart.Animate)">Conditional</animation>
         <animation effect="slide" start="-20,-20" end="20,20" time="6000" tween="sine" easing="inout" pulse="true" condition="Skin.HasSetting(Fanart.Animate)">Conditional</animation>

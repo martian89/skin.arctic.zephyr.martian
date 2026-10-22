@@ -7,8 +7,8 @@
     <include>Generator_BuildViewTypes_Onload</include>
     <onload>RunScript(script.skinshortcuts,type=buildxml&amp;mainmenuID=300&amp;group=mainmenu|x1111|x1112|x1113|x1114|x1115|x1116|x1117|x1118|x1119|powermenu&amp;levels=6)</onload>
     <onload>Skin.SetString(Wikipedia.Format.Link,[COLOR=$VAR[ColorHighlight]]{}[/COLOR])</onload>
-    <onload condition="[!$EXP[HomeIsModernMultiWidgets] + !$EXP[HomeIsVerticalMultiWidgets] | $EXP[HomeIsCleanMinimal]] + !Window.Previous(1190)">SetFocus(300)</onload>
-    <onload condition="!$EXP[HomeIsModernMultiWidgets] + !$EXP[HomeIsVerticalMultiWidgets]">SetProperty(TMDbHelper.WidgetContainer,301,home)</onload>
+    <onload condition="[!$EXP[HomeIsMultiWidgets] | $EXP[HomeIsCleanMinimal]] + !Window.Previous(1190)">SetFocus(300)</onload>
+    <onload condition="!$EXP[HomeIsMultiWidgets]">SetProperty(TMDbHelper.WidgetContainer,301,home)</onload>
     <onload>ClearProperty(TMDbHelper.HideView,Home)</onload>
     <onunload>ClearProperty(TMDbHelper.WidgetContainer,home)</onunload>
     <onunload condition="Skin.HasSetting(home.netflix.autoplay.trailer)">ClearProperty(listitem.trailer,home)</onunload>
@@ -29,8 +29,8 @@
         <!-- Other Menus And Widgets -->
         <include condition="$EXP[HomeIsVerticalMultiWidgets]">HomeVerticalMenuWidgets</include>
         <include condition="$EXP[HomeIsVertical]">HomeVerticalMenu</include>
-        <include condition="!Skin.HasSetting(home.vertical) + ![Skin.HasSetting(home.modernwidgets) + Skin.HasSetting(home.vertical.widgets)] + !Skin.HasSetting(home.classicwidgets)">HomeWidgetInfo</include>
-        <include condition="!Skin.HasSetting(home.vertical) + Skin.HasSetting(home.classicwidgets)">HomeClassicWidgets</include>
+        <include condition="$EXP[HomeIsSpotlight]">HomeWidgetInfo</include>
+        <include condition="$EXP[HomeIsClassic]">HomeClassicWidgets</include>
     
         <!-- Fade Out On HomeIsModernMultiWidgets -->
         <control type="group">

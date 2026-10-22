@@ -259,14 +259,14 @@
                             <label>$LOCALIZE[31115]</label>
                             <selected>Skin.HasSetting(home.showheader)</selected>
                             <onclick>Skin.ToggleSetting(home.showheader)</onclick>
-                            <visible>!Skin.HasSetting(home.vertical) + !Skin.HasSetting(home.vertical.widgets)</visible>
+                            <visible>!Skin.HasSetting(home.vertical) + !$EXP[HomeIsMultiWidgets]</visible>
                         </control>
                         <control type="radiobutton" id="9856" description="Always Show Weather Widget">
                             <width>1360</width>
                             <visible>String.IsEqual(Window.Property(content),1)</visible>
                             <include>DefSettingsButtonGradientSkinSettings</include>
                             <label>31145</label>
-                            <visible>![[Skin.HasSetting(home.vertical) | Skin.HasSetting(home.vertical.widgets)] + !Skin.HasSetting(homemenu.netflix)] + !Skin.HasSetting(furniture.weather) + !Skin.HasSetting(furniture.weatherleft)</visible>
+                            <visible>![[Skin.HasSetting(home.vertical) | $EXP[HomeIsMultiWidgets]] + !Skin.HasSetting(homemenu.netflix)] + !Skin.HasSetting(furniture.weather) + !Skin.HasSetting(furniture.weatherleft)</visible>
                             <selected>Skin.HasSetting(home.showweatherfanart) + !$EXP[HomeShowHeader] + !String.IsEmpty(Weather.Plugin)</selected>
                             <onclick condition="!String.IsEmpty(Weather.Plugin) + Skin.HasSetting(home.showweatherfanart)">Skin.Reset(home.showweatherfanart)</onclick>
                             <onclick condition="!String.IsEmpty(Weather.Plugin) + !Skin.HasSetting(home.showweatherfanart)">Skin.SetBool(home.showweatherfanart)</onclick>
@@ -352,7 +352,7 @@
                                 <height>70</height>
                                 <label>31014</label>
                             </control>
-                            <visible>[$EXP[HomeIsModernMultiWidgetsNetflix] | $EXP[HomeIsVerticalMultiWidgetsNetflix]]</visible>
+                            <visible>Skin.HasSetting(homemenu.netflix) + !Skin.HasSetting(homemenu.clean.flix)</visible>
                         </control>
                         <control type="radiobutton" id="9873" description="Netflix preview window">
                             <width>1360</width>
@@ -361,7 +361,7 @@
                             <label>$LOCALIZE[31475]</label>
                             <selected>!Skin.HasSetting(hide.homemenu.netflix.preview)</selected>
                             <onclick>Skin.ToggleSetting(hide.homemenu.netflix.preview)</onclick>
-                            <visible>[$EXP[HomeIsModernMultiWidgetsNetflix] | $EXP[HomeIsVerticalMultiWidgetsNetflix]]</visible>
+                            <visible>Skin.HasSetting(homemenu.netflix) + !Skin.HasSetting(homemenu.clean.flix)</visible>
                         </control>
                         <control type="button" id="9877" description="Fade Netflix preview window">
                             <width>1360</width>
@@ -371,7 +371,7 @@
                             <label2>$VAR[FadeNetflixPreviewLabel]</label2>
                             <onclick>SetProperty(includesetting,FadeNetflixPreview,home)</onclick>
                             <onclick>ActivateWindow(1130)</onclick>
-                            <visible>[$EXP[HomeIsModernMultiWidgetsNetflix] | $EXP[HomeIsVerticalMultiWidgetsNetflix]] + !Skin.HasSetting(hide.homemenu.netflix.preview)</visible>
+                            <visible>Skin.HasSetting(homemenu.netflix) + !Skin.HasSetting(homemenu.clean.flix) + !Skin.HasSetting(hide.homemenu.netflix.preview)</visible>
                         </control>
                         <control type="radiobutton" id="9878" description="ClearLogo">
                             <width>1360</width>
@@ -380,7 +380,7 @@
                             <label>$LOCALIZE[31073]</label>
                             <selected>Skin.HasSetting(home.netflix.clearlogo)</selected>
                             <onclick>Skin.ToggleSetting(home.netflix.clearlogo)</onclick>
-                            <visible>[$EXP[HomeIsModernMultiWidgetsNetflix] | $EXP[HomeIsVerticalMultiWidgetsNetflix]] + !Skin.HasSetting(homemenu.clean.flix)</visible>
+                            <visible>Skin.HasSetting(homemenu.netflix) + !Skin.HasSetting(homemenu.clean.flix)</visible>
                         </control>
                         <control type="radiobutton" id="9879" description="Netflix Plot">
                             <width>1360</width>
@@ -389,7 +389,7 @@
                             <label>$LOCALIZE[31535]</label>
                             <selected>Skin.HasSetting(home.hide.netflix.plot)</selected>
                             <onclick>Skin.ToggleSetting(home.hide.netflix.plot)</onclick>
-                            <visible>[$EXP[HomeIsModernMultiWidgetsNetflix] | $EXP[HomeIsVerticalMultiWidgetsNetflix]]</visible>
+                            <visible>Skin.HasSetting(homemenu.netflix) + !Skin.HasSetting(homemenu.clean.flix)</visible>
                         </control>
                         <control type="grouplist" id="9740">
                             <visible>String.IsEqual(Window.Property(content),1)</visible>
@@ -414,11 +414,11 @@
                             <include>DefSettingsButtonGradientSkinSettings</include>
                             <label>$LOCALIZE[31155]</label>
                             <label2>$VAR[Label_NowPlaying]</label2>
-                            <onclick condition="!Skin.HasSetting(extended.nowplaying) + !Skin.HasSetting(home.hide.nowplaying) + [$EXP[HomeIsModernMultiWidgets] | $EXP[HomeIsVerticalMultiWidgets]]">Skin.ToggleSetting(extended.nowplaying)</onclick>
-                            <onclick condition="Skin.HasSetting(extended.nowplaying) | ![$EXP[HomeIsModernMultiWidgets] | $EXP[HomeIsVerticalMultiWidgets]]">Skin.SetBool(home.hide.nowplaying)</onclick>
-                            <onclick condition="Skin.HasSetting(extended.nowplaying) | ![$EXP[HomeIsModernMultiWidgets] | $EXP[HomeIsVerticalMultiWidgets]]">Skin.Reset(extended.nowplaying)</onclick>
-                            <onclick condition="Skin.HasSetting(home.hide.nowplaying) + [[$EXP[HomeIsModernMultiWidgets] | $EXP[HomeIsVerticalMultiWidgets]] + !Skin.HasSetting(homemenu.netflix)]">Skin.SetBool(extended.nowplaying)</onclick>
-                            <onclick condition="Skin.HasSetting(home.hide.nowplaying) + ![[$EXP[HomeIsModernMultiWidgets] | $EXP[HomeIsVerticalMultiWidgets]] + !Skin.HasSetting(homemenu.netflix)]">Skin.Reset(extended.nowplaying)</onclick>
+                            <onclick condition="!Skin.HasSetting(extended.nowplaying) + !Skin.HasSetting(home.hide.nowplaying) + $EXP[HomeIsMultiWidgets]">Skin.ToggleSetting(extended.nowplaying)</onclick>
+                            <onclick condition="Skin.HasSetting(extended.nowplaying) | !$EXP[HomeIsMultiWidgets]">Skin.SetBool(home.hide.nowplaying)</onclick>
+                            <onclick condition="Skin.HasSetting(extended.nowplaying) | !$EXP[HomeIsMultiWidgets]">Skin.Reset(extended.nowplaying)</onclick>
+                            <onclick condition="Skin.HasSetting(home.hide.nowplaying) + [$EXP[HomeIsMultiWidgets] + !Skin.HasSetting(homemenu.netflix)]">Skin.SetBool(extended.nowplaying)</onclick>
+                            <onclick condition="Skin.HasSetting(home.hide.nowplaying) + ![$EXP[HomeIsMultiWidgets] + !Skin.HasSetting(homemenu.netflix)]">Skin.Reset(extended.nowplaying)</onclick>
                             <onclick condition="Skin.HasSetting(home.hide.nowplaying)">Skin.Reset(home.hide.nowplaying)</onclick>
                             <visible>!$EXP[HomeIsVertical] + !$EXP[HomeShowHeader]</visible>
                         </control>
@@ -429,7 +429,7 @@
                             <label>$LOCALIZE[31670]</label>
                             <selected>!Skin.HasSetting(hide.home.nowplaying.controls)</selected>
                             <onclick>Skin.ToggleSetting(hide.home.nowplaying.controls)</onclick>
-                            <visible>Skin.HasSetting(home.vertical.widgets) + Skin.HasSetting(extended.nowplaying) + !Skin.HasSetting(home.hide.nowplaying)</visible>
+                            <visible>$EXP[HomeIsMultiWidgets] + Skin.HasSetting(extended.nowplaying) + !Skin.HasSetting(home.hide.nowplaying)</visible>
                         </control>
                         <control type="radiobutton" id="9721">
                             <width>1360</width>
@@ -439,7 +439,7 @@
                             <selected>Skin.HasSetting(extended.nowplaying.videowindow)</selected>
                             <onclick>Skin.ToggleSetting(extended.nowplaying.videowindow)</onclick>
                             <onclick condition="!Skin.HasSetting(extended.nowplaying.videowindow)">Skin.Reset(global.showvideo)</onclick>
-                            <visible>Skin.HasSetting(home.vertical.widgets) + Skin.HasSetting(extended.nowplaying) + !Skin.HasSetting(home.hide.nowplaying)</visible>
+                            <visible>$EXP[HomeIsMultiWidgets] + Skin.HasSetting(extended.nowplaying) + !Skin.HasSetting(home.hide.nowplaying)</visible>
                         </control>
                         <control type="button" id="9726">
                             <width>1360</width>
@@ -451,7 +451,7 @@
                             <onclick condition="Skin.HasSetting(home.extended.nowplaying.tracklist)">Skin.ToggleSetting(home.extended.nowplaying.scrolling.text)</onclick>
                             <onclick condition="Skin.HasSetting(home.extended.nowplaying.scrolling.text)">Skin.Reset(home.extended.nowplaying.scrolling.text)</onclick>
                             <onclick condition="Skin.HasSetting(home.extended.nowplaying.tracklist)">Skin.Reset(home.extended.nowplaying.tracklist)</onclick>
-                            <visible>Skin.HasSetting(home.vertical.widgets) + Skin.HasSetting(extended.nowplaying) + !Skin.HasSetting(home.hide.nowplaying)</visible>
+                            <visible>$EXP[HomeIsMultiWidgets] + Skin.HasSetting(extended.nowplaying) + !Skin.HasSetting(home.hide.nowplaying)</visible>
                         </control>
                         <control type="radiobutton" id="9722">
                             <width>1360</width>
@@ -461,7 +461,7 @@
                             <selected>Skin.HasSetting(extended.nowplaying.clearart)</selected>
                             <onclick>Skin.ToggleSetting(extended.nowplaying.clearart)</onclick>
                             <visible>!Skin.HasSetting(home.vertical) | Skin.HasSetting(homemenu.only.icons) + Skin.HasSetting(home.showicons)</visible>
-                            <visible>Skin.HasSetting(home.vertical.widgets) + Skin.HasSetting(extended.nowplaying) + !Skin.HasSetting(home.hide.nowplaying)</visible>
+                            <visible>$EXP[HomeIsMultiWidgets] + Skin.HasSetting(extended.nowplaying) + !Skin.HasSetting(home.hide.nowplaying)</visible>
                         </control>
                         <control type="radiobutton" id="9723">
                             <width>1360</width>
@@ -470,7 +470,7 @@
                             <label>$LOCALIZE[31079]</label>
                             <selected>!Skin.HasSetting(extended.nowplaying.hidecd)</selected>
                             <onclick>Skin.ToggleSetting(extended.nowplaying.hidecd)</onclick>
-                            <visible>Skin.HasSetting(home.vertical.widgets) + Skin.HasSetting(extended.nowplaying) + !Skin.HasSetting(home.hide.nowplaying)</visible>
+                            <visible>$EXP[HomeIsMultiWidgets] + Skin.HasSetting(extended.nowplaying) + !Skin.HasSetting(home.hide.nowplaying)</visible>
                         </control>
                         <control type="radiobutton" id="97231">
                             <width>1360</width>
@@ -479,7 +479,7 @@
                             <label>$LOCALIZE[31708]</label>
                             <selected>Skin.HasSetting(home.nowplaying.info.auto.show)</selected>
                             <onclick>Skin.ToggleSetting(home.nowplaying.info.auto.show)</onclick>
-                            <visible>Skin.HasSetting(home.vertical.widgets) + Skin.HasSetting(extended.nowplaying) + !Skin.HasSetting(home.hide.nowplaying)</visible>
+                            <visible>$EXP[HomeIsMultiWidgets] + Skin.HasSetting(extended.nowplaying) + !Skin.HasSetting(home.hide.nowplaying)</visible>
                         </control>
                         <control type="grouplist" id="9818">
                             <visible>String.IsEqual(Window.Property(content),1)</visible>
@@ -537,7 +537,7 @@
                             <visible>String.IsEqual(Window.Property(content),1)</visible>
                             <include>DefSettingsButtonGradientSkinSettings</include>
                             <label>31200</label>
-                            <visible>!Skin.HasSetting(home.vertical) + !Skin.HasSetting(home.vertical.widgets)</visible>
+                            <visible>!Skin.HasSetting(home.vertical) + !$EXP[HomeIsMultiWidgets]</visible>
                             <selected>Skin.HasSetting(home.dontautoshowwidget)</selected>
                             <onclick>Skin.ToggleSetting(home.dontautoshowwidget)</onclick>
                         </control>
@@ -548,7 +548,7 @@
                             <label>31028</label>
                             <selected>!Skin.HasSetting(widgets.fade)</selected>
                             <onclick>Skin.ToggleSetting(widgets.fade)</onclick>
-                            <visible>$EXP[HomeIsModernMultiWidgets] | $EXP[HomeIsVerticalMultiWidgets] | $EXP[HomeIsVertical]</visible>
+                            <visible>$EXP[HomeIsMultiWidgets] | $EXP[HomeIsVertical]</visible>
                         </control>
                         <control type="radiobutton" id="9848" description="Show ClearArt">
                             <width>1360</width>
@@ -557,7 +557,7 @@
                             <label>$LOCALIZE[31673]</label>
                             <selected>!Skin.HasSetting(home.multiwidgets.hideclearart)</selected>
                             <onclick>Skin.ToggleSetting(home.multiwidgets.hideclearart)</onclick>
-                            <visible>[$EXP[HomeIsModernMultiWidgets] | $EXP[HomeIsVerticalMultiWidgets]] + !Skin.HasSetting(homemenu.netflix)</visible>
+                            <visible>$EXP[HomeIsMultiWidgets] + !Skin.HasSetting(homemenu.netflix)</visible>
                         </control>
                         <control type="grouplist" id="9859">
                             <visible>String.IsEqual(Window.Property(content),1)</visible>
@@ -746,7 +746,6 @@
                         </control>
                         <control type="radiobutton" id="9312">
                             <include>DefSettingsButtonGradientSkinSettings</include>
-                            <align>left</align>
                             <label>31074</label>
                             <visible>String.IsEqual(Window.Property(content),2)</visible>
                             <selected>Skin.HasSetting(TMDbHelper.EnableBlur)</selected>
@@ -769,7 +768,6 @@
                         <control type="button" id="9313">
                             <width>1360</width>
                             <include>DefSettingsButtonGradientSkinSettings</include>
-                            <align>left</align>
                             <label>5</label>
                             <visible>String.IsEqual(Window.Property(content),2)</visible>
                             <onclick>ActivateWindow(1134)</onclick>
@@ -1894,7 +1892,6 @@
                             <visible>String.IsEqual(Window.Property(content),4)</visible>
                             <width>1360</width>
                             <include>DefSettingsButtonGradientSkinSettings</include>
-                            <align>left</align>
                             <label>$LOCALIZE[31985]</label>
                             <label2>$VAR[MarkersTypeLabel]</label2>
                             <onclick condition="!Skin.HasSetting(hide.markers) + !Skin.HasSetting(furniture.markers.alternative)">Skin.SetBool(furniture.markers.alternative)</onclick>
@@ -2161,14 +2158,14 @@
                                 <width>1310</width>
                                 <disabledcolor>PanelWhite30</disabledcolor>
                                 <height>70</height>
-                                <label>TMDbHelper</label>
+                                <label>31439</label>
                             </control>
                         </control>
                         <control type="radiobutton" id="12012">
                             <width>1360</width>
                             <visible>String.IsEqual(Window.Property(content),6)</visible>
                             <include>DefSettingsButtonGradientSkinSettings</include>
-                            <label>TMDbHelper $LOCALIZE[19099]</label>
+                            <label>31440</label>
                             <selected>Skin.HasSetting(TMDbHelper.Service)</selected>
                             <onclick>Skin.ToggleSetting(TMDbHelper.Service)</onclick>
                             <onclick condition="Skin.HasSetting(TMDbHelper.Service)">Skin.Reset(TMDbHelper.EnableBlur)</onclick>
@@ -2236,7 +2233,7 @@
                                 <height>70</height>
                                 <label>$LOCALIZE[31394] $LOCALIZE[31400]</label>
                             </control>
-                            <visible>$EXP[HomeIsModernMultiWidgets] | $EXP[HomeIsVerticalMultiWidgets]</visible>
+                            <visible>$EXP[HomeIsMultiWidgets]</visible>
                         </control>
                         <control type="radiobutton" id="12017">
                             <width>1360</width>
@@ -2245,7 +2242,7 @@
                             <label>31502</label>
                             <selected>Skin.HasSetting(disable.widgets.onback.go.back.to.position.0)</selected>
                             <onclick>Skin.ToggleSetting(disable.widgets.onback.go.back.to.position.0)</onclick>
-                            <visible>$EXP[HomeIsModernMultiWidgets] | $EXP[HomeIsVerticalMultiWidgets]</visible>
+                            <visible>$EXP[HomeIsMultiWidgets]</visible>
                         </control>
                         <control type="radiobutton" id="12018">
                             <width>1360</width>
@@ -2281,7 +2278,7 @@
                             <label>31607</label>
                             <selected>Skin.HasSetting(widget.items.onback.go.back.to.position.0)</selected>
                             <onclick>Skin.ToggleSetting(widget.items.onback.go.back.to.position.0)</onclick>
-                            <visible>$EXP[HomeIsVerticalMultiWidgets] | $EXP[HomeIsModernMultiWidgets]</visible>
+                            <visible>$EXP[HomeIsMultiWidgets]</visible>
                         </control>
                         <control type="radiobutton" id="12022">
                             <width>1360</width>
@@ -2291,7 +2288,7 @@
                             <selected>Skin.HasSetting(widget.items.onback.go.back.to.position.0.setfocus.home)</selected>
                             <onclick>Skin.ToggleSetting(widget.items.onback.go.back.to.position.0.setfocus.home)</onclick>
                             <enable>Skin.HasSetting(widget.items.onback.go.back.to.position.0)</enable>
-                            <visible>[$EXP[HomeIsVerticalMultiWidgets] | $EXP[HomeIsModernMultiWidgets]] + Skin.HasSetting(widget.items.onback.go.back.to.position.0)</visible>
+                            <visible>$EXP[HomeIsMultiWidgets] + Skin.HasSetting(widget.items.onback.go.back.to.position.0)</visible>
                         </control>
                         <control type="radiobutton" id="12023">
                             <width>1360</width>
@@ -2300,7 +2297,7 @@
                             <label>31623</label>
                             <selected>Skin.HasSetting(home.onback.go.to.first.widget)</selected>
                             <onclick>Skin.ToggleSetting(home.onback.go.to.first.widget)</onclick>
-                            <visible>$EXP[HomeIsVerticalMultiWidgets] | $EXP[HomeIsModernMultiWidgets]</visible>
+                            <visible>$EXP[HomeIsMultiWidgets]</visible>
                         </control>
                     </control>
                 </control>

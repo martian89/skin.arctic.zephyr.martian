@@ -129,17 +129,6 @@
         <radioposx>390</radioposx>
     </include>
 
-    <include name="DefDialogButtonsDefault">
-        <align>left</align>
-        <font>Small</font>
-        <textcolor>PanelWhite100</textcolor>
-        <disabledcolor>PanelWhite12</disabledcolor>
-        <height>70</height>
-        <width>450</width>
-        <alttexturefocus colordiffuse="$VAR[ColorHighlight]" border="5">common/white.png</alttexturefocus>
-        <texturefocus colordiffuse="$VAR[ColorHighlight]" border="5">common/white.png</texturefocus>
-    </include>
-
     <include name="DefDialogInfoPanel">
         <include>Animation.FadeIn.Slide</include>
         <include>Animation.FadeOut</include>
@@ -425,45 +414,6 @@
         <texturefocus colordiffuse="$VAR[ColorGradient]" border="5">common/gradient-box-wide-cut.png</texturefocus>
     </include>
 
-    <include name="DefContextButtonGradientViewtype">
-        <radioposx>403</radioposx>
-        <left>7</left>
-        <align>left</align>
-        <textwidth>360</textwidth>
-        <width>460</width>
-        <height>66</height>
-        <font>Small</font>
-        <disabledcolor>Black12</disabledcolor>
-        <textcolor>Black70</textcolor>
-        <textureradiofocus colordiffuse="Black70">buttons/radio-on.png</textureradiofocus>
-        <textureradionofocus colordiffuse="Black30">buttons/radio-off.png</textureradionofocus>
-        <focusedcolor>Selected</focusedcolor>
-        <alttexturefocus colordiffuse="$VAR[ColorGradient]" border="5">common/gradient-box-wide-cut.png</alttexturefocus>
-        <texturefocus colordiffuse="$VAR[ColorGradient]" border="5">common/gradient-box-wide-cut.png</texturefocus>
-    </include>
-
-    <include name="DefDialogButtonsGradient">
-        <width>300</width>
-        <font>Small</font>
-        <textcolor>Black70</textcolor>
-        <height>70</height>
-        <texturefocus colordiffuse="$VAR[ColorGradient]" border="5">common/gradient-box-wide.png</texturefocus>
-    </include>
-
-    <include name="DefContextButtonBlur">
-        <radioposx>392</radioposx>
-        <width>450</width>
-        <height>70</height>
-        <font>Small</font>
-        <align>left</align>
-        <textcolor>PanelWhite100</textcolor>
-        <textureradiofocus colordiffuse="Black70">buttons/radio-on.png</textureradiofocus>
-        <textureradionofocus colordiffuse="Black70">buttons/radio-off.png</textureradionofocus>
-        <focusedcolor>Selected</focusedcolor>
-        <alttexturefocus colordiffuse="$VAR[ColorHighlight]" border="16">common/white.png</alttexturefocus>
-        <texturefocus colordiffuse="$VAR[ColorHighlight]" border="16">common/white.png</texturefocus>
-    </include>
-
     <include name="DefContextButtonColorbox">
         <textoffsetx>80</textoffsetx>
         <radioposx>1245</radioposx>
@@ -556,19 +506,6 @@
         <texturedownfocus colordiffuse="PanelWhite100">buttons/spin-down.png</texturedownfocus>
         <textureradiofocus colordiffuse="PanelWhite70">buttons/radio-on.png</textureradiofocus>
         <textureradionofocus colordiffuse="PanelWhite70">buttons/radio-off.png</textureradionofocus>
-        <texturefocus colordiffuse="$VAR[ColorHighlight]">common/white.png</texturefocus>
-        <alttexturefocus colordiffuse="$VAR[ColorHighlight]">common/white.png</alttexturefocus>
-    </include>
-
-    <include name="DefSettingsLabel">
-        <enable>false</enable>
-        <textoffsetx>30</textoffsetx>
-        <font>Button</font>
-        <textcolor>PanelWhite30</textcolor>
-        <align>left</align>
-        <width>1310</width>
-        <disabledcolor>PanelWhite30</disabledcolor>
-        <height>70</height>
         <texturefocus colordiffuse="$VAR[ColorHighlight]">common/white.png</texturefocus>
         <alttexturefocus colordiffuse="$VAR[ColorHighlight]">common/white.png</alttexturefocus>
     </include>
@@ -1211,42 +1148,6 @@
         <left>180</left>
     </include>
 
-    <include name="ClearlogoOverlay">
-        <control type="image">
-            <width>$PARAM[width]</width>
-            <right>$PARAM[right]</right>
-            <bottom>$PARAM[bottom]</bottom>
-            <aspectratio align="right" aligny="bottom">keep</aspectratio>
-            <texture background="true">$VAR[Image_Clearlogo]</texture>
-        </control>
-    </include>
-
-    <include name="DefOSDPlayerTitle">
-        <control type="label" description="Show">
-            <width>$PARAM[width]</width>
-            <top>40</top>
-            <height>40</height>
-            <font>MediumBold</font>
-            <textcolor>$VAR[OSDPanelWhite100]</textcolor>
-            <label>$VAR[PlayerBigTitle]</label>
-            <visible>$PARAM[visible]</visible>
-            <include condition="Skin.HasSetting(labels.autoscroll)">LabelScroll</include>
-        </control>
-    </include>
-
-    <include name="DefOSDPlayerTVShowTitle">
-        <control type="label" description="Show">
-            <width>$PARAM[width]</width>
-            <top>40</top>
-            <height>40</height>
-            <font>MediumBold</font>
-            <textcolor>$VAR[OSDPanelWhite100]</textcolor>
-            <label>$INFO[VideoPlayer.TVShowTitle] - $INFO[VideoPlayer.Title]</label>
-            <visible>$PARAM[visible]</visible>
-            <include condition="Skin.HasSetting(labels.autoscroll)">LabelScroll</include>
-        </control>
-    </include>
-
     <include name="def_control">
         <control type="$PARAM[control]" id="$PARAM[id]">
             <nested />
@@ -1305,10 +1206,6 @@
         <colordiffuse>$PARAM[colordiffuse]</colordiffuse>
     </include>
     
-    <include name="def_textheight">
-        <height min="$PARAM[height_min]" max="$PARAM[height_max]">auto</height>
-    </include>
-
     <include name="def_autoscroll">
         <autoscroll time="$PARAM[time]" delay="1000">$PARAM[condition]</autoscroll>
     </include>
@@ -1338,9 +1235,9 @@
         <control type="image">
             <visible>!Window.IsVisible(DialogBusy.xml)</visible>
             <visible>!Skin.HasSetting(osd.music.disc.fake.cd)</visible>
-            <width>264</width>
-            <height>264</height>
-            <top>631</top>
+            <width>254</width>
+            <height>254</height>
+            <top>641</top>
             <left>100</left>
             <texture diffuse="diffuse/diffuse_cd_full.png">$VAR[Image_DiscArt_Music]</texture>
             <animation effect="rotate" center="auto" time="6000" end="-360" condition="true" loop="true">Conditional</animation>
@@ -1348,33 +1245,12 @@
         <control type="image">
             <visible>!Window.IsVisible(DialogBusy.xml)</visible>
             <visible>Skin.HasSetting(osd.music.disc.fake.cd)</visible>
-            <width>264</width>
-            <height>264</height>
-            <top>631</top>
+            <width>254</width>
+            <height>254</height>
+            <top>641</top>
             <left>100</left>
             <texture diffuse="diffuse/diffuse_cd.png">$VAR[Image_DiscArt_Music]</texture>
             <animation effect="rotate" center="auto" time="6000" end="-360" condition="true" loop="true">Conditional</animation>
-        </control>
-    </include>
-
-    <include name="Def_Selectbox">
-        <control type="image">
-            <visible>Control.HasFocus($PARAM[FocusId])</visible>
-            <left>3</left>
-            <top>3</top>
-            <right>3</right>
-            <bottom>3</bottom>
-            <texture colordiffuse="$VAR[ColorHighlight]" border="20">common/selectbox.png</texture>
-            <include>Animation.SelectBoxHome</include>
-        </control>
-        <control type="image">
-            <visible>Control.HasFocus($PARAM[FocusId])</visible>
-            <left>3</left>
-            <top>3</top>
-            <right>3</right>
-            <bottom>3</bottom>
-            <texture colordiffuse="$VAR[ColorGradient]" border="20">common/gradient-selectbox.png</texture>
-            <include>Animation.SelectBoxHome</include>
         </control>
     </include>
 
@@ -2863,7 +2739,7 @@
 		        <onclick condition="String.IsEqual(Container(211).ListItem.Property(widgetFullscreen),yes)">SetProperty(customValue,)</onclick>
 		        <onclick>SendClick(404)</onclick>
 		        <enable>!String.IsEqual(Container(211).ListItem.Property(Path),submenu)</enable>
-		        <visible>Skin.HasSetting(home.vertical.widgets) + !Skin.HasSetting(homemenu.netflix)</visible>
+		        <visible>$EXP[HomeIsMultiWidgets] + !Skin.HasSetting(homemenu.netflix)</visible>
                 <visible>$PARAM[visible]</visible>
 		    </control>
 		    <control type="button" id="$PARAM[baseid]11" description="Widget Aspect">
@@ -2916,7 +2792,7 @@
                 <onclick>SendClick(404)</onclick>
                 <enable>!String.IsEqual(Container(211).ListItem.Property(widgetLimit),Auto) | $EXP[Widget_HasStaticContent] | $EXP[HomeIsCleanMinimal] | $EXP[HomeIsSpotlight]</enable>
                 <visible>!String.IsEmpty(Skin.String(AutoScrollTime))</visible>
-                <visible>Skin.HasSetting(home.vertical.widgets) | !String.IsEqual(Container(211).ListItem.Property(widget),weather)</visible>
+                <visible>$EXP[HomeIsMultiWidgets] | !String.IsEqual(Container(211).ListItem.Property(widget),weather)</visible>
                 <visible>$PARAM[visible]</visible>
             </control>
             <control type="radiobutton" id="$PARAM[baseid]17" description="Widget List Type">
@@ -2997,6 +2873,29 @@
         </definition>
     </include>
 
+    <include name="Def_Artwork_Inherited_Indicator">
+	    <control type="group">
+	        <visible>String.IsEqual(ListItem.Property(is_inherited),true)</visible>
+	        <left>1</left>
+	        <top>1</top>
+	        <control type="image">
+	            <centerleft>37</centerleft>
+	            <centertop>37</centertop>
+	            <width>40</width>
+	            <height>40</height>
+	            <texture colordiffuse="d7ffcd3c">common/circle.png</texture>
+	        </control>
+	        <control type="image">
+	            <centerleft>37</centerleft>
+	            <centertop>35</centertop>
+	            <width>50</width>
+	            <height>50</height>
+	            <align>center</align>
+                <texture colordiffuse="df000000">special://skin/extras/icons/tv.png</texture>
+	        </control>
+	    </control>    
+    </include>
+    
     <include name="Def_Artwork_List_Layout">
         <param name="control_id" default="100" />
         <param name="width" default="355" />
@@ -3066,6 +2965,7 @@
                         </include>
 	                </control>
 	            </control>
+                <include>Def_Artwork_Inherited_Indicator</include>
 	        </itemlayout>
 	        <focusedlayout height="$PARAM[height]" width="$PARAM[width]" condition="$PARAM[condition]">
 	            <control type="group">
@@ -3126,6 +3026,7 @@
                         </include>
                     </control>
 	            </control>
+                <include>Def_Artwork_Inherited_Indicator</include>
 	        </focusedlayout>
         </definition>
     </include>
