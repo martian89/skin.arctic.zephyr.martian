@@ -1,4 +1,4 @@
-# Arctic: Zephyr (martian) [![License](https://img.shields.io/badge/license-CC--NC--SA%203.0-green)](http://creativecommons.org/licenses/by-nc-sa/3.0/)
+# Arctic: Zephyr (martian) [![License](https://img.shields.io/badge/license-CC--BY--NC--SA%203.0-green)](http://creativecommons.org/licenses/by-nc-sa/3.0/)
 
 <img src="https://github.com/martian89/skin.arctic.zephyr.martian/blob/master/resources/icon.png" width="256" height="256" />
 
