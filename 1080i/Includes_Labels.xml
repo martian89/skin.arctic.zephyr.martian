@@ -106,9 +106,9 @@
     <variable name="LabelMusicSubline">
         <value condition="Container.Content(artists) + Integer.IsEqual(Container(5231).NumItems,1)">$INFO[Container(5231).NumItems,, $LOCALIZE[558]]</value>
         <value condition="Container.Content(artists)">$INFO[Container(5231).NumItems,, $LOCALIZE[132]]</value>
-        <value condition="Container.Content(songs) + !String.IsEmpty(ListItem.Album)">$INFO[ListItem.Album]$INFO[ListItem.Year,  •  ]$INFO[ListItem.Duration(mm:ss),  •  , $LOCALIZE[31102]]</value>
-        <value condition="!String.IsEmpty(ListItem.Year)">$INFO[ListItem.Year]$VAR[LabelDurationTimeCheck,  •  ,]$VAR[RatingLabel,  •  ,]</value>
-        <value>$VAR[LabelDurationTimeCheck]$VAR[RatingLabel,  •  ,]</value>
+        <value condition="Container.Content(songs) + !String.IsEmpty(ListItem.Album)">$INFO[ListItem.Album]$INFO[ListItem.Year,  •  ]$INFO[ListItem.Duration(mm:ss),  •  ,]</value>
+        <value condition="!String.IsEmpty(ListItem.Year)">$INFO[ListItem.Year]$INFO[ListItem.Duration(mm:ss),  •  ,]$VAR[RatingLabel,  •  ,]</value>
+        <value>$INFO[ListItem.Duration(mm:ss)]$VAR[RatingLabel,  •  ,]</value>
     </variable>
 
     <variable name="LabelDurationTimeCheck">
@@ -145,13 +145,12 @@
     </variable>
 
     <variable name="LabelDurationMusic">
-        <value condition="Container.Content(albums) + [String.IsEqual(Container.SortMethod,$LOCALIZE[551]) | String.IsEqual(Container.SortMethod,$LOCALIZE[554]) | String.IsEqual(Container.SortMethod,$LOCALIZE[556]) | String.IsEqual(Container.SortMethod,$LOCALIZE[557]) | String.IsEqual(Container.SortMethod,$LOCALIZE[558]) | String.IsEqual(Container.SortMethod,$LOCALIZE[563]) | String.IsEqual(Container.SortMethod,$LOCALIZE[578]) | String.IsEqual(Container.SortMethod,$LOCALIZE[562]) | String.IsEqual(Container.SortMethod,$LOCALIZE[38018])] + !String.IsEmpty(ListItem.Duration(mins))">$VAR[LabelDurationTimeCheck]</value>
-        <value condition="[String.IsEqual(Container.SortMethod,$LOCALIZE[180]) | String.IsEqual(Container.SortMethod,$LOCALIZE[551]) | String.IsEqual(Container.SortMethod,$LOCALIZE[554]) | String.IsEqual(Container.SortMethod,$LOCALIZE[556]) | String.IsEqual(Container.SortMethod,$LOCALIZE[557]) | String.IsEqual(Container.SortMethod,$LOCALIZE[558]) | String.IsEqual(Container.SortMethod,$LOCALIZE[563]) | String.IsEqual(Container.SortMethod,$LOCALIZE[578]) | String.IsEqual(Container.SortMethod,$LOCALIZE[562]) | String.IsEqual(Container.SortMethod,$LOCALIZE[38018])] + !String.IsEmpty(ListItem.Duration)">$INFO[ListItem.Duration]</value>
+        <value condition="[String.IsEqual(Container.SortMethod,$LOCALIZE[180]) | String.IsEqual(Container.SortMethod,$LOCALIZE[551]) | String.IsEqual(Container.SortMethod,$LOCALIZE[554]) | String.IsEqual(Container.SortMethod,$LOCALIZE[556]) | String.IsEqual(Container.SortMethod,$LOCALIZE[557]) | String.IsEqual(Container.SortMethod,$LOCALIZE[558]) | String.IsEqual(Container.SortMethod,$LOCALIZE[563]) | String.IsEqual(Container.SortMethod,$LOCALIZE[578]) | String.IsEqual(Container.SortMethod,$LOCALIZE[562]) | String.IsEqual(Container.SortMethod,$LOCALIZE[38018])]">$INFO[ListItem.Duration]</value>
         <value>$INFO[ListItem.Label2]</value>
     </variable>
 
     <variable name="LabelDurationFurniture">
-        <value condition="[String.IsEqual(ListItem.DBType,song) | String.IsEqual(ListItem.DBType,musicvideo)] + !String.IsEmpty(ListItem.Duration(ss))">$INFO[ListItem.Duration(mins:ss),, $LOCALIZE[31102]]</value>
+        <value condition="[String.IsEqual(ListItem.DBType,song) | String.IsEqual(ListItem.DBType,album) | String.IsEqual(ListItem.DBType,musicvideo)]">$INFO[ListItem.Duration(mins:ss)]</value>
         <value>$VAR[LabelDurationTimeCheck]</value>
     </variable>
     
@@ -1114,11 +1113,11 @@
     </variable>
 
     <variable name="Label_Movie_Rating_1">
-        <value condition="String.IsEqual(Skin.String(Ratings.Movies.1),TMDb) + !String.StartsWith(Window(Home).Property(TMDbHelper.ListItem.TMDb_Rating),0)">$INFO[Window(Home).Property(TMDbHelper.ListItem.TMDb_Rating),  •  TMDb ,]</value>
-        <value condition="String.IsEqual(Skin.String(Ratings.Movies.1),IMDb) + !String.StartsWith(Window(Home).Property(TMDbHelper.ListItem.IMDb_Rating),0)">$INFO[Window(Home).Property(TMDbHelper.ListItem.IMDb_Rating),  •  IMDb ,]</value>
-        <value condition="String.IsEqual(Skin.String(Ratings.Movies.1),Trakt) + !String.StartsWith(Window(Home).Property(TMDbHelper.ListItem.Trakt_Rating),0)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Trakt_Rating),  •  Trakt ,]</value>
-        <value condition="String.IsEqual(Skin.String(Ratings.Movies.1),LB) + !String.StartsWith(Window(Home).Property(TMDbHelper.ListItem.Letterboxd_Rating),0)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Letterboxd_Rating),  •  LB ,]</value>
-        <value condition="String.IsEqual(Skin.String(Ratings.Movies.1),RE) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.RogerEbert_Rating))">$INFO[Window(Home).Property(TMDbHelper.ListItem.RogerEbert_Rating),  •  RE ,]</value>
+        <value condition="String.IsEqual(Skin.String(Ratings.Movies.1),TMDb) + Integer.IsGreater(Window(Home).Property(TMDbHelper.ListItem.TMDb_Rating),0)">$INFO[Window(Home).Property(TMDbHelper.ListItem.TMDb_Rating),  •  TMDb ,]</value>
+        <value condition="String.IsEqual(Skin.String(Ratings.Movies.1),IMDb) + Integer.IsGreater(Window(Home).Property(TMDbHelper.ListItem.IMDb_Rating),0)">$INFO[Window(Home).Property(TMDbHelper.ListItem.IMDb_Rating),  •  IMDb ,]</value>
+        <value condition="String.IsEqual(Skin.String(Ratings.Movies.1),Trakt) + Integer.IsGreater(Window(Home).Property(TMDbHelper.ListItem.Trakt_Rating),0)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Trakt_Rating),  •  Trakt ,]</value>
+        <value condition="String.IsEqual(Skin.String(Ratings.Movies.1),LB) + Integer.IsGreater(Window(Home).Property(TMDbHelper.ListItem.Letterboxd_Rating),0)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Letterboxd_Rating),  •  LB ,]</value>
+        <value condition="String.IsEqual(Skin.String(Ratings.Movies.1),RE)">$INFO[Window(Home).Property(TMDbHelper.ListItem.RogerEbert_Rating),  •  RE ,]</value>
         <value condition="String.IsEqual(Skin.String(Ratings.Movies.1),MC)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Metacritic_Rating),  •  MC ,%]</value>
         <value condition="String.IsEqual(Skin.String(Ratings.Movies.1),RT)">$INFO[Window(Home).Property(TMDbHelper.ListItem.RottenTomatoes_Rating),  •  RT ,%]</value>
         <value condition="String.IsEqual(Skin.String(Ratings.Movies.1),MDBList) + Integer.IsGreater(Window(Home).Property(TMDbHelper.ListItem.MDBList_Rating),0)">$INFO[Window(Home).Property(TMDbHelper.ListItem.MDBList_Rating),  •  MDB ,%]</value>
@@ -1127,11 +1126,11 @@
     </variable>
 
     <variable name="Label_Movie_Rating_2">
-        <value condition="String.IsEqual(Skin.String(Ratings.Movies.2),TMDb) + !String.StartsWith(Window(Home).Property(TMDbHelper.ListItem.TMDb_Rating),0)">$INFO[Window(Home).Property(TMDbHelper.ListItem.TMDb_Rating),  •  TMDb ,]</value>
-        <value condition="String.IsEqual(Skin.String(Ratings.Movies.2),IMDb) + !String.StartsWith(Window(Home).Property(TMDbHelper.ListItem.IMDb_Rating),0)">$INFO[Window(Home).Property(TMDbHelper.ListItem.IMDb_Rating),  •  IMDb ,]</value>
-        <value condition="String.IsEqual(Skin.String(Ratings.Movies.2),Trakt) + !String.StartsWith(Window(Home).Property(TMDbHelper.ListItem.Trakt_Rating),0)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Trakt_Rating),  •  Trakt ,]</value>
-        <value condition="String.IsEqual(Skin.String(Ratings.Movies.2),LB) + !String.StartsWith(Window(Home).Property(TMDbHelper.ListItem.Letterboxd_Rating),0)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Letterboxd_Rating),  •  LB ,]</value>
-        <value condition="String.IsEqual(Skin.String(Ratings.Movies.2),RE) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.RogerEbert_Rating))">$INFO[Window(Home).Property(TMDbHelper.ListItem.RogerEbert_Rating),  •  RE ,]</value>
+        <value condition="String.IsEqual(Skin.String(Ratings.Movies.2),TMDb) + Integer.IsGreater(Window(Home).Property(TMDbHelper.ListItem.TMDb_Rating),0)">$INFO[Window(Home).Property(TMDbHelper.ListItem.TMDb_Rating),  •  TMDb ,]</value>
+        <value condition="String.IsEqual(Skin.String(Ratings.Movies.2),IMDb) + Integer.IsGreater(Window(Home).Property(TMDbHelper.ListItem.IMDb_Rating),0)">$INFO[Window(Home).Property(TMDbHelper.ListItem.IMDb_Rating),  •  IMDb ,]</value>
+        <value condition="String.IsEqual(Skin.String(Ratings.Movies.2),Trakt) + Integer.IsGreater(Window(Home).Property(TMDbHelper.ListItem.Trakt_Rating),0)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Trakt_Rating),  •  Trakt ,]</value>
+        <value condition="String.IsEqual(Skin.String(Ratings.Movies.2),LB) + Integer.IsGreater(Window(Home).Property(TMDbHelper.ListItem.Letterboxd_Rating),0)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Letterboxd_Rating),  •  LB ,]</value>
+        <value condition="String.IsEqual(Skin.String(Ratings.Movies.2),RE)">$INFO[Window(Home).Property(TMDbHelper.ListItem.RogerEbert_Rating),  •  RE ,]</value>
         <value condition="String.IsEqual(Skin.String(Ratings.Movies.2),MC)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Metacritic_Rating),  •  MC ,%]</value>
         <value condition="String.IsEqual(Skin.String(Ratings.Movies.2),RT)">$INFO[Window(Home).Property(TMDbHelper.ListItem.RottenTomatoes_Rating),  •  RT ,%]</value>
         <value condition="String.IsEqual(Skin.String(Ratings.Movies.2),MDBList) + Integer.IsGreater(Window(Home).Property(TMDbHelper.ListItem.MDBList_Rating),0)">$INFO[Window(Home).Property(TMDbHelper.ListItem.MDBList_Rating),  •  MDB ,%]</value>
@@ -1144,11 +1143,11 @@
 	</variable>
 
     <variable name="Label_Movie_Rating_Player_1">
-        <value condition="String.IsEqual(Skin.String(Ratings.Movies.1),TMDb) + !String.StartsWith(Window(Home).Property(TMDbHelper.Player.TMDb_Rating),0)">$INFO[Window(Home).Property(TMDbHelper.Player.TMDb_Rating),  •  TMDb ,]</value>
-        <value condition="String.IsEqual(Skin.String(Ratings.Movies.1),IMDb) + !String.StartsWith(Window(Home).Property(TMDbHelper.Player.IMDb_Rating),0)">$INFO[Window(Home).Property(TMDbHelper.Player.IMDb_Rating),  •  IMDb ,]</value>
-        <value condition="String.IsEqual(Skin.String(Ratings.Movies.1),Trakt) + !String.StartsWith(Window(Home).Property(TMDbHelper.Player.Trakt_Rating),0)">$INFO[Window(Home).Property(TMDbHelper.Player.Trakt_Rating),  •  Trakt ,]</value>
-        <value condition="String.IsEqual(Skin.String(Ratings.Movies.1),LB) + !String.StartsWith(Window(Home).Property(TMDbHelper.Player.Letterboxd_Rating),0)">$INFO[Window(Home).Property(TMDbHelper.Player.Letterboxd_Rating),  •  LB ,]</value>
-        <value condition="String.IsEqual(Skin.String(Ratings.Movies.1),RE) + !String.IsEmpty(Window(Home).Property(TMDbHelper.Player.RogerEbert_Rating))">$INFO[Window(Home).Property(TMDbHelper.Player.RogerEbert_Rating),  •  RE ,]</value>
+        <value condition="String.IsEqual(Skin.String(Ratings.Movies.1),TMDb) + Integer.IsGreater(Window(Home).Property(TMDbHelper.Player.TMDb_Rating),0)">$INFO[Window(Home).Property(TMDbHelper.Player.TMDb_Rating),  •  TMDb ,]</value>
+        <value condition="String.IsEqual(Skin.String(Ratings.Movies.1),IMDb) + Integer.IsGreater(Window(Home).Property(TMDbHelper.Player.IMDb_Rating),0)">$INFO[Window(Home).Property(TMDbHelper.Player.IMDb_Rating),  •  IMDb ,]</value>
+        <value condition="String.IsEqual(Skin.String(Ratings.Movies.1),Trakt) + Integer.IsGreater(Window(Home).Property(TMDbHelper.Player.Trakt_Rating),0)">$INFO[Window(Home).Property(TMDbHelper.Player.Trakt_Rating),  •  Trakt ,]</value>
+        <value condition="String.IsEqual(Skin.String(Ratings.Movies.1),LB) + Integer.IsGreater(Window(Home).Property(TMDbHelper.Player.Letterboxd_Rating),0)">$INFO[Window(Home).Property(TMDbHelper.Player.Letterboxd_Rating),  •  LB ,]</value>
+        <value condition="String.IsEqual(Skin.String(Ratings.Movies.1),RE)">$INFO[Window(Home).Property(TMDbHelper.Player.RogerEbert_Rating),  •  RE ,]</value>
         <value condition="String.IsEqual(Skin.String(Ratings.Movies.1),MC)">$INFO[Window(Home).Property(TMDbHelper.Player.Metacritic_Rating),  •  MC ,%]</value>
         <value condition="String.IsEqual(Skin.String(Ratings.Movies.1),RT)">$INFO[Window(Home).Property(TMDbHelper.Player.RottenTomatoes_Rating),  •  RT ,%]</value>
         <value condition="String.IsEqual(Skin.String(Ratings.Movies.1),MDBList) + Integer.IsGreater(Window(Home).Property(TMDbHelper.ListItem.MDBList_Rating),0)">$INFO[Window(Home).Property(TMDbHelper.Player.MDBList_Rating),  •  MDB ,%]</value>
@@ -1157,11 +1156,11 @@
     </variable>
 
     <variable name="Label_Movie_Rating_Player_2">
-        <value condition="String.IsEqual(Skin.String(Ratings.Movies.2),TMDb) + !String.StartsWith(Window(Home).Property(TMDbHelper.Player.TMDb_Rating),0)">$INFO[Window(Home).Property(TMDbHelper.Player.TMDb_Rating),  •  TMDb ,]</value>
-        <value condition="String.IsEqual(Skin.String(Ratings.Movies.2),IMDb) + !String.StartsWith(Window(Home).Property(TMDbHelper.Player.IMDb_Rating),0)">$INFO[Window(Home).Property(TMDbHelper.Player.IMDb_Rating),  •  IMDb ,]</value>
-        <value condition="String.IsEqual(Skin.String(Ratings.Movies.2),Trakt) + !String.StartsWith(Window(Home).Property(TMDbHelper.Player.Trakt_Rating),0)">$INFO[Window(Home).Property(TMDbHelper.Player.Trakt_Rating),  •  Trakt ,]</value>
-        <value condition="String.IsEqual(Skin.String(Ratings.Movies.2),LB) + !String.StartsWith(Window(Home).Property(TMDbHelper.Player.Letterboxd_Rating),0)">$INFO[Window(Home).Property(TMDbHelper.Player.Letterboxd_Rating),  •  LB ,]</value>
-        <value condition="String.IsEqual(Skin.String(Ratings.Movies.2),RE) + !String.IsEmpty(Window(Home).Property(TMDbHelper.Player.RogerEbert_Rating))">$INFO[Window(Home).Property(TMDbHelper.Player.RogerEbert_Rating),  •  RE ,]</value>
+        <value condition="String.IsEqual(Skin.String(Ratings.Movies.2),TMDb) + Integer.IsGreater(Window(Home).Property(TMDbHelper.Player.TMDb_Rating),0)">$INFO[Window(Home).Property(TMDbHelper.Player.TMDb_Rating),  •  TMDb ,]</value>
+        <value condition="String.IsEqual(Skin.String(Ratings.Movies.2),IMDb) + Integer.IsGreater(Window(Home).Property(TMDbHelper.Player.IMDb_Rating),0)">$INFO[Window(Home).Property(TMDbHelper.Player.IMDb_Rating),  •  IMDb ,]</value>
+        <value condition="String.IsEqual(Skin.String(Ratings.Movies.2),Trakt) + Integer.IsGreater(Window(Home).Property(TMDbHelper.Player.Trakt_Rating),0)">$INFO[Window(Home).Property(TMDbHelper.Player.Trakt_Rating),  •  Trakt ,]</value>
+        <value condition="String.IsEqual(Skin.String(Ratings.Movies.2),LB) + Integer.IsGreater(Window(Home).Property(TMDbHelper.Player.Letterboxd_Rating),0)">$INFO[Window(Home).Property(TMDbHelper.Player.Letterboxd_Rating),  •  LB ,]</value>
+        <value condition="String.IsEqual(Skin.String(Ratings.Movies.2),RE)">$INFO[Window(Home).Property(TMDbHelper.Player.RogerEbert_Rating),  •  RE ,]</value>
         <value condition="String.IsEqual(Skin.String(Ratings.Movies.2),MC)">$INFO[Window(Home).Property(TMDbHelper.Player.Metacritic_Rating),  •  MC ,%]</value>
         <value condition="String.IsEqual(Skin.String(Ratings.Movies.2),RT)">$INFO[Window(Home).Property(TMDbHelper.Player.RottenTomatoes_Rating),  •  RT ,%]</value>
         <value condition="String.IsEqual(Skin.String(Ratings.Movies.2),MDBList) + Integer.IsGreater(Window(Home).Property(TMDbHelper.ListItem.MDBList_Rating),0)">$INFO[Window(Home).Property(TMDbHelper.Player.MDBList_Rating),  •  MDB ,%]</value>
@@ -1174,10 +1173,10 @@
 	</variable>
     
     <variable name="Label_TvShow_Ratings">
-        <value condition="String.IsEqual(Skin.String(Ratings.TvShows.1),TMDb) + !String.StartsWith(Window(Home).Property(TMDbHelper.ListItem.TMDb_Rating),0)">$INFO[Window(Home).Property(TMDbHelper.ListItem.TMDb_Rating),  •  TMDb ,]</value>
-        <value condition="String.IsEqual(Skin.String(Ratings.TvShows.1),IMDb) + !String.StartsWith(Window(Home).Property(TMDbHelper.ListItem.IMDb_Rating),0)">$INFO[Window(Home).Property(TMDbHelper.ListItem.IMDb_Rating),  •  IMDb ,]</value>
-        <value condition="String.IsEqual(Skin.String(Ratings.TvShows.1),Trakt) + !String.StartsWith(Window(Home).Property(TMDbHelper.ListItem.Trakt_Rating),0)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Trakt_Rating),  •  Trakt ,]</value>
-        <value condition="String.IsEqual(Skin.String(Ratings.TvShows.1),LB) + !String.StartsWith(Window(Home).Property(TMDbHelper.ListItem.Letterboxd_Rating),0)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Letterboxd_Rating),  •  LB ,]</value>
+        <value condition="String.IsEqual(Skin.String(Ratings.TvShows.1),TMDb) + Integer.IsGreater(Window(Home).Property(TMDbHelper.ListItem.TMDb_Rating),0)">$INFO[Window(Home).Property(TMDbHelper.ListItem.TMDb_Rating),  •  TMDb ,]</value>
+        <value condition="String.IsEqual(Skin.String(Ratings.TvShows.1),IMDb) + Integer.IsGreater(Window(Home).Property(TMDbHelper.ListItem.IMDb_Rating),0)">$INFO[Window(Home).Property(TMDbHelper.ListItem.IMDb_Rating),  •  IMDb ,]</value>
+        <value condition="String.IsEqual(Skin.String(Ratings.TvShows.1),Trakt) + Integer.IsGreater(Window(Home).Property(TMDbHelper.ListItem.Trakt_Rating),0)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Trakt_Rating),  •  Trakt ,]</value>
+        <value condition="String.IsEqual(Skin.String(Ratings.TvShows.1),LB) + Integer.IsGreater(Window(Home).Property(TMDbHelper.ListItem.Letterboxd_Rating),0)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Letterboxd_Rating),  •  LB ,]</value>
         <value condition="String.IsEqual(Skin.String(Ratings.TvShows.1),MAL) + Integer.IsGreater(Window(Home).Property(TMDbHelper.ListItem.MyAnimeList_Rating),0)">$INFO[Window(Home).Property(TMDbHelper.ListItem.MyAnimeList_Rating),  •  MAL ,]</value>
         <value condition="String.IsEqual(Skin.String(Ratings.TvShows.1),MC)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Metacritic_Rating),  •  MC ,%]</value>
         <value condition="String.IsEqual(Skin.String(Ratings.TvShows.1),RT)">$INFO[Window(Home).Property(TMDbHelper.ListItem.RottenTomatoes_Rating),  •  RT ,%]</value>
@@ -1187,10 +1186,10 @@
     </variable>
 
     <variable name="Label_TvShow_Ratings_Player">
-        <value condition="String.IsEqual(Skin.String(Ratings.TvShows.1),TMDb) + !String.StartsWith(Window(Home).Property(TMDbHelper.Player.TMDb_Rating),0)">$INFO[Window(Home).Property(TMDbHelper.Player.TMDb_Rating),  •  TMDb ,]</value>
-        <value condition="String.IsEqual(Skin.String(Ratings.TvShows.1),IMDb) + !String.StartsWith(Window(Home).Property(TMDbHelper.Player.IMDb_Rating),0)">$INFO[Window(Home).Property(TMDbHelper.Player.IMDb_Rating),  •  IMDb ,]</value>
-        <value condition="String.IsEqual(Skin.String(Ratings.TvShows.1),Trakt) + !String.StartsWith(Window(Home).Property(TMDbHelper.Player.Trakt_Rating),0)">$INFO[Window(Home).Property(TMDbHelper.Player.Trakt_Rating),  •  Trakt ,]</value>
-        <value condition="String.IsEqual(Skin.String(Ratings.TvShows.1),LB) + !String.StartsWith(Window(Home).Property(TMDbHelper.Player.Letterboxd_Rating),0)">$INFO[Window(Home).Property(TMDbHelper.Player.Letterboxd_Rating),  •  LB ,]</value>
+        <value condition="String.IsEqual(Skin.String(Ratings.TvShows.1),TMDb) + Integer.IsGreater(Window(Home).Property(TMDbHelper.Player.TMDb_Rating),0)">$INFO[Window(Home).Property(TMDbHelper.Player.TMDb_Rating),  •  TMDb ,]</value>
+        <value condition="String.IsEqual(Skin.String(Ratings.TvShows.1),IMDb) + Integer.IsGreater(Window(Home).Property(TMDbHelper.Player.IMDb_Rating),0)">$INFO[Window(Home).Property(TMDbHelper.Player.IMDb_Rating),  •  IMDb ,]</value>
+        <value condition="String.IsEqual(Skin.String(Ratings.TvShows.1),Trakt) + Integer.IsGreater(Window(Home).Property(TMDbHelper.Player.Trakt_Rating),0)">$INFO[Window(Home).Property(TMDbHelper.Player.Trakt_Rating),  •  Trakt ,]</value>
+        <value condition="String.IsEqual(Skin.String(Ratings.TvShows.1),LB) + Integer.IsGreater(Window(Home).Property(TMDbHelper.Player.Letterboxd_Rating),0)">$INFO[Window(Home).Property(TMDbHelper.Player.Letterboxd_Rating),  •  LB ,]</value>
         <value condition="String.IsEqual(Skin.String(Ratings.TvShows.1),MAL) + Integer.IsGreater(Window(Home).Property(TMDbHelper.Player.MyAnimeList_Rating),0)">$INFO[Window(Home).Property(TMDbHelper.Player.MyAnimeList_Rating),  •  MAL ,]</value>
         <value condition="String.IsEqual(Skin.String(Ratings.TvShows.1),MC)">$INFO[Window(Home).Property(TMDbHelper.Player.Metacritic_Rating),  •  MC ,%]</value>
         <value condition="String.IsEqual(Skin.String(Ratings.TvShows.1),RT)">$INFO[Window(Home).Property(TMDbHelper.Player.RottenTomatoes_Rating),  •  RT ,%]</value>
@@ -1269,11 +1268,11 @@
 
     <variable name="Label_List_50_LabelTwo">
         <value condition="$EXP[InGameMode]">$VAR[GameYear]</value>
-        <value condition="[Container.Content(songs) | Container.Content(albums) | Container.Content(musicvideos)]">$VAR[LabelDurationMusic]</value>
+        <value condition="[Container.Content(songs) | Container.Content(albums) | Container.Content(musicvideos)] + String.IsEqual(Container.SortMethod,$LOCALIZE[38018])">$VAR[LabelDurationMusic]</value>
         <value condition="String.IsEqual(ListItem.DBType,tvshow)">$INFO[ListItem.Year]</value>
         <value condition="String.IsEqual(ListItem.DBType,season) + !Control.IsVisible(516)">$INFO[ListItem.Property(TotalEpisodes),, $LOCALIZE[20360]]</value>
-        <value condition="String.IsEqual(Container.SortMethod,$LOCALIZE[551]) + Container.Content(addons) + !Skin.HasSetting(hide.markers)">$INFO[ListItem.AddonVersion]</value>
-        <value condition="String.IsEqual(Container.SortMethod,$LOCALIZE[552]) + Container.Content(episodes) + !String.StartsWith(Container.FolderPath,videodb://recentlyadded)">$INFO[ListItem.Date]</value>        
+        <value condition="Container.Content(addons) + String.IsEqual(Container.SortMethod,$LOCALIZE[551]) + !Skin.HasSetting(hide.markers)">$INFO[ListItem.AddonVersion]</value>
+        <value condition="Container.Content(episodes) + String.IsEqual(Container.SortMethod,$LOCALIZE[552]) + !String.StartsWith(Container.FolderPath,videodb://recentlyadded)">$INFO[ListItem.Date]</value>        
         <value condition="String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,set) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode) | String.IsEqual(ListItem.DBType,musicvideo) | $EXP[IsVideoAssets]">$VAR[LabelDuration]</value>
         <value>$INFO[ListItem.Label2]</value>
     </variable>
