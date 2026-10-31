@@ -709,6 +709,11 @@
         <value>Dark1</value>
     </variable>
 
+    <variable name="Origin_Params">
+        <value condition="!String.IsEmpty(Window.Property(origin_dbid))">,origin_tmdb_type=$INFO[Window.Property(origin_tmdb_type)],origin_tmdb_season=$INFO[Window.Property(origin_tmdb_season)],origin_tmdb_episode=$INFO[Window.Property(origin_tmdb_episode)],origin_dbid=$INFO[Window.Property(origin_dbid)]</value>
+        <value>,origin_tmdb_type=$INFO[Window.Property(origin_tmdb_type)],origin_tmdb_season=$INFO[Window.Property(origin_tmdb_season)],origin_tmdb_episode=$INFO[Window.Property(origin_tmdb_episode)],origin_tmdb_id=$INFO[Window.Property(origin_tmdb_id)]</value>
+    </variable>
+    
     <variable name="Tmdb_Type">
         <value condition="String.IsEqual(ListItem.DBTYPE,movie) | String.IsEqual(ListItem.DBTYPE,set)">movie</value>
         <value condition="String.IsEqual(ListItem.DBTYPE,tvshow) | String.IsEqual(ListItem.DBTYPE,season) | String.IsEqual(ListItem.DBTYPE,episode)">tv</value>
