@@ -1261,6 +1261,7 @@
     </variable>
 
     <variable name="Label_List_Title">
+        <value condition="ListItem.HasVideoVersions + !ListItem.IsDefaultVideoVersionName + [System.GetBool(videolibrary.flattenversions) + [Control.IsVisible(50) | Control.IsVisible(51) | Control.IsVisible(52) | Control.IsVisible(54) | Control.IsVisible(56) | Control.IsVisible(57)] | Window.IsActive(videoplaylist)]">$INFO[ListItem.Label]$INFO[ListItem.VideoVersionName, [,]]</value>
         <value condition="String.IsEqual(ListItem.DBType,episode) + Window.IsActive(videoplaylist)">$INFO[ListItem.TVShowTitle,,: ]$VAR[LabelSeason]x$VAR[LabelEpisodeZero]$INFO[ListItem.Episode]. $INFO[ListItem.Title]</value>
         <value condition="String.IsEqual(ListItem.DBType,musicvideo) + Window.IsActive(videoplaylist)">$INFO[ListItem.Artist,, - ]$INFO[ListItem.Title]</value>
         <value>$INFO[ListItem.Label]</value>
