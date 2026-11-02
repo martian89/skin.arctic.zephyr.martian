@@ -1275,9 +1275,9 @@
         <value condition="!String.IsEqual(ListItem.Label,..)">$INFO[ListItem.Path]</value>
     </variable>
 
-    <variable name="Label_List_50_Title">
-        <value condition="[Container.Content(songs) | Container.Content(musicvideos)] + [String.IsEqual(Container.SortMethod,$LOCALIZE[551]) | String.IsEqual(Container.SortMethod,$LOCALIZE[554])] + !String.IsEmpty(ListItem.Title)">$INFO[ListItem.TrackNumber,,. ]$INFO[ListItem.Title]</value>
-        <value condition="[Container.Content(songs) | Container.Content(musicvideos)] + !String.IsEmpty(ListItem.Title)">$INFO[ListItem.Title]</value>
+    <variable name="Label_List_Title">
+        <value condition="String.IsEqual(ListItem.DBType,episode) + Window.IsActive(videoplaylist)">$INFO[ListItem.TVShowTitle,,: ]$VAR[LabelSeason]x$VAR[LabelEpisodeZero]$INFO[ListItem.Episode]. $INFO[ListItem.Title]</value>
+        <value condition="String.IsEqual(ListItem.DBType,musicvideo) + Window.IsActive(videoplaylist)">$INFO[ListItem.Artist,, - ]$INFO[ListItem.Title]</value>
         <value>$INFO[ListItem.Label]</value>
     </variable>
 
@@ -1290,6 +1290,12 @@
         <value condition="Container.Content(episodes) + String.IsEqual(Container.SortMethod,$LOCALIZE[552]) + !String.StartsWith(Container.FolderPath,videodb://recentlyadded)">$INFO[ListItem.Date]</value>        
         <value condition="String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,set) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode) | String.IsEqual(ListItem.DBType,musicvideo) | $EXP[IsVideoAssets]">$VAR[LabelDuration]</value>
         <value>$INFO[ListItem.Label2]</value>
+    </variable>
+
+    <variable name="Label_List_50_Extended_Title">
+        <value condition="[String.IsEqual(ListItem.DBType,song) | String.IsEqual(ListItem.DBType,musicvideo)] + [String.IsEqual(Container.SortMethod,$LOCALIZE[551]) | String.IsEqual(Container.SortMethod,$LOCALIZE[554])] + !String.IsEmpty(ListItem.Title)">$INFO[ListItem.TrackNumber,,. ]$INFO[ListItem.Title]</value>
+        <value condition="[String.IsEqual(ListItem.DBType,song) | String.IsEqual(ListItem.DBType,musicvideo)] + !String.IsEmpty(ListItem.Title)">$INFO[ListItem.Title]</value>
+        <value>$VAR[Label_List_Title]</value>
     </variable>
 
     <variable name="Label_List_50_Extended_LabelTwo">
@@ -1334,8 +1340,8 @@
     </variable>
 
     <variable name="Label_View_51_Title">
-        <value condition="String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,episode)">$VAR[LabelYear,,  •  ]$INFO[ListItem.Label]</value>
-        <value>$INFO[ListItem.Label]</value>
+        <value condition="String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,episode)">$VAR[LabelYear,,  •  ]$VAR[Label_List_Title]</value>
+        <value>$VAR[Label_List_Title]</value>
     </variable>
 
     <variable name="Label_View_54_EpisodesCount">
@@ -1361,7 +1367,7 @@
 
     <variable name="Label_View_514_Title">
         <value condition="Container.Content(albums) + !String.IsEmpty(ListItem.Artist)">$INFO[ListItem.Artist]</value>
-        <value>$INFO[ListItem.Label]</value>
+        <value>$VAR[Label_List_Title]</value>
     </variable>
 
     <variable name="Label_View_514_GenreAlbum">
