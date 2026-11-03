@@ -1260,7 +1260,7 @@
         <value condition="!String.IsEqual(ListItem.Label,..)">$INFO[ListItem.Path]</value>
     </variable>
 
-    <variable name="Label_List_Title">
+    <variable name="Label_List_50_Title">
         <value condition="ListItem.HasVideoVersions + !ListItem.IsDefaultVideoVersionName + [System.GetBool(videolibrary.flattenversions) | Window.IsActive(videoplaylist)]">$INFO[ListItem.Label]$INFO[ListItem.VideoVersionName, [,]]</value>
         <value condition="String.IsEqual(ListItem.DBType,episode) + Window.IsActive(videoplaylist)">$INFO[ListItem.TVShowTitle,,: ]$VAR[LabelSeason]x$VAR[LabelEpisodeZero]$INFO[ListItem.Episode]. $INFO[ListItem.Title]</value>
         <value condition="String.IsEqual(ListItem.DBType,musicvideo) + Window.IsActive(videoplaylist)">$INFO[ListItem.Artist,, - ]$INFO[ListItem.Title]</value>
@@ -1278,10 +1278,15 @@
         <value>$INFO[ListItem.Label2]</value>
     </variable>
 
+    <variable name="Label_List_50_Rating">
+        <value condition="[!String.IsEmpty(ListItem.Rating) | [!String.IsEmpty(ListItem.UserRating) + Skin.HasSetting(userrating.override.rating)]]">$VAR[RatingLabel]</value>
+        <value>0.0</value>
+    </variable>
+
     <variable name="Label_List_50_Extended_Title">
-        <value condition="[String.IsEqual(ListItem.DBType,song) | String.IsEqual(ListItem.DBType,musicvideo)] + [String.IsEqual(Container.SortMethod,$LOCALIZE[551]) | String.IsEqual(Container.SortMethod,$LOCALIZE[554])] + !String.IsEmpty(ListItem.Title)">$INFO[ListItem.TrackNumber,,. ]$INFO[ListItem.Title]</value>
+        <value condition="[Container.Content(songs) | Container.Content(musicvideos)] + [String.IsEqual(Container.SortMethod,$LOCALIZE[551]) | String.IsEqual(Container.SortMethod,$LOCALIZE[554])] + !String.IsEmpty(ListItem.Title)">$INFO[ListItem.TrackNumber,,. ]$INFO[ListItem.Title]</value>
         <value condition="[String.IsEqual(ListItem.DBType,song) | String.IsEqual(ListItem.DBType,musicvideo)] + !String.IsEmpty(ListItem.Title)">$INFO[ListItem.Title]</value>
-        <value>$VAR[Label_List_Title]</value>
+        <value>$VAR[Label_List_50_Title]</value>
     </variable>
 
     <variable name="Label_List_50_Extended_LabelTwo">
@@ -1290,11 +1295,6 @@
         <value condition="String.IsEqual(ListItem.DBType,tvshow)">$INFO[ListItem.Year]</value>
         <value condition="String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,set) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode) | String.IsEqual(ListItem.DBType,musicvideo) | $EXP[IsVideoAssets]">$VAR[LabelDuration]</value>
         <value>$INFO[ListItem.Label2]</value>
-    </variable>
-
-    <variable name="Label_List_50_Rating">
-        <value condition="[!String.IsEmpty(ListItem.Rating) | [!String.IsEmpty(ListItem.UserRating) + Skin.HasSetting(userrating.override.rating)]]">$VAR[RatingLabel]</value>
-        <value>0.0</value>
     </variable>
 
     <variable name="Label_List_50_Extended_Details">
