@@ -694,7 +694,7 @@
     <include name="Furniture_Flags_Include">
         <control type="grouplist">
             <visible>![Skin.HasSetting(furniture.flagicons) + Skin.HasSetting(furniture.coloredicons)]</visible>
-            <visible>!String.IsEqual(ListItem.Label,..)</visible>
+            <visible>!ListItem.IsParentFolder</visible>
             <include content="def_top" condition="!$PARAM[position_low]">
                 <param name="top" value="76" />
             </include>
@@ -1013,7 +1013,7 @@
         </control>
         <control type="grouplist">
             <visible>Skin.HasSetting(furniture.flagicons) + Skin.HasSetting(furniture.coloredicons)</visible>
-            <visible>!String.IsEqual(ListItem.Label,..)</visible>
+            <visible>!ListItem.IsParentFolder</visible>
             <include content="def_top" condition="!$PARAM[position_low]">
                 <param name="top" value="76" />
             </include>
@@ -1314,7 +1314,7 @@
     <include name="Furniture_Hub_Flags_Include">
         <control type="grouplist">
             <visible>![Skin.HasSetting(furniture.flagicons) + Skin.HasSetting(furniture.coloredicons)]</visible>
-            <visible>!String.IsEqual(Container(9500).ListItem.Label,..)</visible>
+            <visible>!Container(9500).ListItem.IsParentFolder</visible>
             <include>DefFurnitureFlagsGroupList</include>
             <control type="group">
                 <visible>[[String.IsEqual(Container(9500).ListItem.DBType,tvshow) | String.IsEqual(Container(9500).ListItem.DBType,season)] + [[!String.IsEmpty(Container(9500).ListItem.Property(TotalEpisodes)) | !String.IsEmpty(Container(9500).ListItem.Episode)] + !Skin.HasSetting(ShowUnwatchedEpisodes) | !String.IsEmpty(Container(9500).ListItem.Property(UnWatchedEpisodes)) + Skin.HasSetting(ShowUnwatchedEpisodes)]] | Container(9500).ListItem.IsCollection | [!Skin.HasSetting(furniture.flagicons) + !String.IsEmpty(Container(9500).ListItem.VideoResolution)]</visible>
@@ -1586,7 +1586,7 @@
         <control type="grouplist">
             <visible>Skin.HasSetting(furniture.flagicons) + Skin.HasSetting(furniture.coloredicons)</visible>
             <visible>String.IsEqual(Container(9500).ListItem.DBType,movie) | String.IsEqual(Container(9500).ListItem.DBType,set) | String.IsEqual(Container(9500).ListItem.DBType,episode) | String.IsEqual(Container(9500).ListItem.DBType,tvshow) | String.IsEqual(Container(9500).ListItem.DBType,season)</visible>
-            <visible>!String.IsEqual(Container(9500).ListItem.Label,..)</visible>
+            <visible>!Container(9500).ListItem.IsParentFolder</visible>
             <include>DefFurnitureFlagsGroupList</include>
             <control type="group">
                 <visible>[[String.IsEqual(Container(9500).ListItem.DBType,tvshow) | String.IsEqual(Container(9500).ListItem.DBType,season)] + [[!String.IsEmpty(Container(9500).ListItem.Property(TotalEpisodes)) | !String.IsEmpty(Container(9500).ListItem.Episode)] + !Skin.HasSetting(ShowUnwatchedEpisodes) | !String.IsEmpty(Container(9500).ListItem.Property(UnWatchedEpisodes)) + Skin.HasSetting(ShowUnwatchedEpisodes)]] | Container(9500).ListItem.IsCollection</visible>
@@ -2470,7 +2470,7 @@
             <visible>![Skin.HasSetting(furniture.flagicons) + Skin.HasSetting(furniture.coloredicons)]</visible>
             <visible>!Control.HasFocus(9501)</visible>
             <visible>!Control.HasFocus(160)</visible>
-            <visible>!String.IsEqual(ListItem.Label,..)</visible>
+            <visible>!ListItem.IsParentFolder</visible>
             <include content="def_top" condition="!$PARAM[position_low]">
                 <param name="top" value="216" />
             </include>
@@ -2667,7 +2667,7 @@
             <visible>Skin.HasSetting(furniture.flagicons) + Skin.HasSetting(furniture.coloredicons)</visible>
             <visible>!Control.HasFocus(9501)</visible>
             <visible>!Control.HasFocus(160)</visible>
-            <visible>!String.IsEqual(ListItem.Label,..)</visible>
+            <visible>!ListItem.IsParentFolder</visible>
             <include content="def_top" condition="!$PARAM[position_low]">
                 <param name="top" value="216" />
             </include>
@@ -2822,7 +2822,7 @@
     <include name="Furniture_Hub_Flags_Audio_Include">
         <control type="grouplist">
             <visible>![Skin.HasSetting(furniture.flagicons) + Skin.HasSetting(furniture.coloredicons)]</visible>
-            <visible>!String.IsEqual(ListItem.Label,..)</visible>
+            <visible>!ListItem.IsParentFolder</visible>
             <include>DefFurnitureFlagsGroupList</include>
             <include>AlbumCount</include>
             <include content="Furniture_RatingFlags" condition="!Skin.HasSetting(furniture.hide.musicrating)">
@@ -2989,7 +2989,7 @@
         </control>
         <control type="grouplist">
             <visible>Skin.HasSetting(furniture.flagicons) + Skin.HasSetting(furniture.coloredicons)</visible>
-            <visible>!String.IsEqual(ListItem.Label,..)</visible>
+            <visible>!ListItem.IsParentFolder</visible>
             <include>DefFurnitureFlagsGroupList</include>
             <include>AlbumCount</include>
             <include content="Furniture_RatingFlags" condition="!Skin.HasSetting(furniture.hide.musicrating)">
