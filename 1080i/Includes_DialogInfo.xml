@@ -756,7 +756,7 @@
                     </control>
                 </control>
             </focusedlayout>
-            <content sortorder="descending" limit="1" sortby="playcount" browse="never">musicdb://songs/?xsp=%7B%22order%22%3A%7B%22direction%22%3A%22ascending%22%2C%22ignorefolders%22%3A0%2C%22method%22%3A%22songs%22%7D%2C%22rules%22%3A%7B%22and%22%3A%5B%7B%22field%22%3A%22artist%22%2C%22operator%22%3A%22contains%22%2C%22value%22%3A%5B%22$INFO[ListItem.Artist]%22%5D%7D%5D%7D%2C%22type%22%3A%22songs%22%7D</content>
+            <content sortorder="descending" limit="1" sortby="playcount" browse="never">$VAR[Path_MusicInfo_MostPlayedSong]</content>
         </control>
     </include>
 
@@ -808,21 +808,21 @@
  
     <include name="DialogVideoInfo_Trailer_Click_Action">
         <onclick condition="Skin.HasSetting(PlayTrailerWindowed) + !$EXP[UseIMDbTrailer] + !String.IsEmpty(ListItem.Trailer)">PlayMedia($INFO[ListItem.Trailer],1)</onclick>
-        <onclick condition="Skin.HasSetting(PlayTrailerWindowed) + $EXP[UseIMDbTrailer]">PlayMedia($VAR[ContentIMDbTrailer],1)</onclick>
+        <onclick condition="Skin.HasSetting(PlayTrailerWindowed) + $EXP[UseIMDbTrailer]">PlayMedia($VAR[Path_VideoInfo_IMDbTrailer],1)</onclick>
         <onclick condition="!Skin.HasSetting(PlayTrailerWindowed) + !Window.IsVisible(1190) + [$EXP[UseIMDbTrailer] | !String.IsEmpty(ListItem.Trailer)]">Dialog.Close(movieinformation)</onclick>                
         <onclick condition="!Skin.HasSetting(PlayTrailerWindowed) + !Window.IsVisible(1190) + !$EXP[UseIMDbTrailer] + !String.IsEmpty(ListItem.Trailer)">SendClick(11)</onclick>
-        <onclick condition="!Skin.HasSetting(PlayTrailerWindowed) + !Window.IsVisible(1190) + $EXP[UseIMDbTrailer]">PlayMedia($VAR[ContentIMDbTrailer])</onclick>                
+        <onclick condition="!Skin.HasSetting(PlayTrailerWindowed) + !Window.IsVisible(1190) + $EXP[UseIMDbTrailer]">PlayMedia($VAR[Path_VideoInfo_IMDbTrailer])</onclick>                
         <onclick condition="!Skin.HasSetting(PlayTrailerWindowed) + Window.IsVisible(1190) + !$EXP[UseIMDbTrailer] + !String.IsEmpty(ListItem.Trailer)">RunScript(plugin.video.themoviedb.helper,close_dialog=1190,"playmedia=$INFO[ListItem.Trailer]")</onclick>
-        <onclick condition="!Skin.HasSetting(PlayTrailerWindowed) + Window.IsVisible(1190) + $EXP[UseIMDbTrailer]">RunScript(plugin.video.themoviedb.helper,close_dialog=1190,"playmedia=$VAR[ContentIMDbTrailer]")</onclick>                
+        <onclick condition="!Skin.HasSetting(PlayTrailerWindowed) + Window.IsVisible(1190) + $EXP[UseIMDbTrailer]">RunScript(plugin.video.themoviedb.helper,close_dialog=1190,"playmedia=$VAR[Path_VideoInfo_IMDbTrailer]")</onclick>                
     </include>
 
     <include name="DialogVideoInfo_List_Click_Action">
-        <onclick condition="!String.IsEqual(ListItem.DBType,set)">SetProperty(origin_tmdb_type,$VAR[Tmdb_Type])</onclick>    
-        <onclick condition="!String.IsEqual(ListItem.DBType,set)">SetProperty(origin_tmdb_id,$INFO[ListItem.Property(tmdb_id)])</onclick>    
-        <onclick condition="!String.IsEqual(ListItem.DBType,set)">SetProperty(origin_season,$INFO[ListItem.Season])</onclick>    
-        <onclick condition="!String.IsEqual(ListItem.DBType,set)">SetProperty(origin_episode,$INFO[ListItem.Episode])</onclick>    
-        <onclick condition="!String.IsEqual(ListItem.DBType,set)">SetProperty(origin_dbid,$INFO[ListItem.DBID])</onclick>    
-    </include>
+        <onclick>SetProperty(origin_tmdb_type,$VAR[Path_ContextParams_TMDbType])</onclick>    
+        <onclick>SetProperty(origin_tmdb_id,$VAR[Path_InfoParams_TMDb_ID])</onclick>    
+        <onclick>SetProperty(origin_season,$VAR[Path_InfoParams_Season])</onclick>    
+        <onclick>SetProperty(origin_episode,$VAR[Path_InfoParams_Episode])</onclick>    
+        <onclick>SetProperty(origin_dbid,$VAR[Path_InfoParams_DBID])</onclick>    
+   </include>
     
     <include name="DialogVideoInfo_ExtendedImage">
         <control type="button" id="$PARAM[buttonid]">
@@ -1058,9 +1058,9 @@
             <control type="radiobutton" id="10008">
                 <onfocus>ClearProperty(dontslide,home)</onfocus>
                 <onclick>SetProperty(dontslide,1,home)</onclick>
-                <onclick condition="String.IsEqual(ListItem.DBType,movie)">RunScript(script.wikipedia,wikipedia=$VAR[Wiki_Label],tmdb_type=movie,language=$VAR[LanguageCheck])</onclick>
-                <onclick condition="String.IsEqual(ListItem.DBType,tvshow)">RunScript(script.wikipedia,wikipedia=$VAR[Wiki_Label],tmdb_type=tv,language=$VAR[LanguageCheck])</onclick>
-                <onclick condition="$EXP[IsPersonInfo]">RunScript(script.wikipedia,wikipedia=$VAR[Wiki_Label],language=$VAR[LanguageCheck])</onclick>
+                <onclick condition="String.IsEqual(ListItem.DBType,movie)">RunScript(script.wikipedia,wikipedia=$VAR[Path_Wikipedia_Title],tmdb_type=movie,language=$VAR[Path_Wikipedia_Language])</onclick>
+                <onclick condition="String.IsEqual(ListItem.DBType,tvshow)">RunScript(script.wikipedia,wikipedia=$VAR[Path_Wikipedia_Title],tmdb_type=tv,language=$VAR[Path_Wikipedia_Language])</onclick>
+                <onclick condition="$EXP[IsPersonInfo]">RunScript(script.wikipedia,wikipedia=$VAR[Path_Wikipedia_Title],language=$VAR[Path_Wikipedia_Language])</onclick>
                 <include content="DialogVideoInfoButtons">
                     <param name="icon" value="icons/wiki.png" />
                 </include>
@@ -1181,7 +1181,7 @@
                     <param name="icon" value="icons/trakt.png" />
                 </include>
                 <onclick condition="!String.IsEmpty(ListItem.Property(tmdb_id))">RunScript(plugin.video.themoviedb.helper,sync_trakt=watchlist,tmdb_id=$INFO[ListItem.Property(tmdb_id)],cache_refresh)</onclick>
-                <onclick condition="String.IsEmpty(ListItem.Property(tmdb_id))">RunScript(plugin.video.themoviedb.helper,sync_trakt=watchlist,tmdb_id=$INFO[window(home).property(tmdbhelper.listitem.tmdb_id)],$VAR[DB_type],cache_refresh)</onclick>
+                <onclick condition="String.IsEmpty(ListItem.Property(tmdb_id))">RunScript(plugin.video.themoviedb.helper,sync_trakt=watchlist,tmdb_id=$INFO[window(home).property(tmdbhelper.listitem.tmdb_id)],type=$VAR[Path_ContextParams_TMDbType],cache_refresh)</onclick>
                 <visible>$EXP[TMDbHelperDataEnabled] + !Skin.HasSetting(hidebutton.video.trakt) + [!String.IsEmpty(ListItem.Property(tmdb_id)) | !String.IsEmpty(window(home).property(tmdbhelper.listitem.tmdb_id))] + [String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow)] + !String.IsEmpty(Window(Home).Property(TMDbHelper.TraktIsAuth))</visible>
             </control>
 
@@ -1282,7 +1282,7 @@
             
             <!-- Wikipedia Button -->
             <control type="radiobutton" id="9030">
-                <onclick>RunScript(script.wikipedia,wikipedia=$VAR[Wiki_Label],language=$VAR[LanguageCheck])</onclick>
+                <onclick>RunScript(script.wikipedia,wikipedia=$VAR[Path_Wikipedia_Title],language=$VAR[Path_Wikipedia_Language])</onclick>
                 <include content="DialogInfo_Buttons">
                     <param name="icon" value="icons/wiki.png" />
                 </include>
