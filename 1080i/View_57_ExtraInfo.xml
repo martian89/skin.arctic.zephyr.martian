@@ -284,7 +284,7 @@
                 <left>526</left>
                 <width>155</width>
                 <height>155</height>
-                <visible>$EXP[ShowProgressInfo] + !String.IsEqual(ListItem.Label,..) + !String.IsEqual(ListItem.DBType,set) + !Window.IsVisible(MyMusicNav.xml) + $PARAM[visible_progress]</visible>
+                <visible>$EXP[ShowProgressInfo] + !ListItem.IsParentFolder + !String.IsEqual(ListItem.DBType,set) + !Window.IsVisible(MyMusicNav.xml) + $PARAM[visible_progress]</visible>
                 <control type="group">
                     <control type="image" description="Back">
                         <centertop>44%</centertop>
@@ -293,7 +293,7 @@
                         <texture diffuse="diffuse/diffuse_progress.png" border="0">progress/back3.png</texture>
                     </control>
                     <control type="group">
-                        <visible>!String.IsEqual(ListItem.Label,..) + [Container.Content(movies) | Container.Content(episodes)]</visible>
+                        <visible>!ListItem.IsParentFolder + [Container.Content(movies) | Container.Content(episodes)]</visible>
                         <include>Animation.SwitchText</include>
                         <control type="image">
                             <visible>ListItem.IsResumable</visible>
@@ -312,7 +312,7 @@
                     </control>
                 </control>
                 <control type="image">
-                    <visible>!String.IsEqual(ListItem.Label,..) + [Container.Content(tvshows) | Container.Content(seasons)]</visible>
+                    <visible>!ListItem.IsParentFolder + [Container.Content(tvshows) | Container.Content(seasons)]</visible>
                     <width>139</width>
                     <height>139</height>
                     <centertop>44%</centertop>

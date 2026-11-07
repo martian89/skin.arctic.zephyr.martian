@@ -74,17 +74,6 @@
                 <param name="left" value="100" />
                 <param name="visible" value="[$EXP[IsPVRVideo] | VideoPlayer.Content(musicvideos)] + !Skin.HasSetting(extended.nowplaying.videowindow)" />
             </include>
-            <control type="list" id="999">
-                <include>HiddenListControl</include>
-                <include content="OnDirectionAction"><param name="ondirection" value="300" /></include>
-                <onfocus>SetProperty(shownowplayinginfo,1,home)</onfocus>
-                <content limit="1" browse="never">$VAR[CurrentlyPlayingItem]</content>
-            </control>
-            <control type="button" id="4000" description="Helper">
-                <include>HiddenButton</include>
-                <include content="OnDirectionAction"><param name="ondirection" value="300" /></include>
-                <onfocus>SetFocus(25)</onfocus>
-            </control>
         </control>        
     </include>
 
@@ -728,15 +717,6 @@
                 <texture colordiffuse="BoxWidget" border="4" background="true" infill="false">common/box21.png</texture>
                 <visible>Skin.HasSetting(global.showborders)</visible>
             </control>
-            <control type="group">
-                <animation type="Conditional" condition="Control.HasFocus(25)">
-                    <effect type="zoom" start="95" end="100" time="150" tween="sine" easing="inout" center="auto"/>
-                    <effect type="fade" start="0" end="100" time="150" tween="sine" easing="in"/>
-                </animation>
-                <include content="def_widgetfocus">
-                    <param name="id" value="25"/>
-                </include>
-            </control>
         </control>
         </definition>
     </include>
@@ -796,15 +776,6 @@
                 <bottom>10</bottom>
                 <texture colordiffuse="BoxWidget" border="4" background="true" infill="false">common/box21.png</texture>
                 <visible>Skin.HasSetting(global.showborders)</visible>
-            </control>
-            <control type="group">
-                <animation type="Conditional" condition="Control.HasFocus(25)">
-                    <effect type="zoom" start="95" end="100" time="150" tween="sine" easing="inout" center="auto"/>
-                    <effect type="fade" start="0" end="100" time="150" tween="sine" easing="in"/>
-                </animation>
-                <include content="def_widgetfocus">
-                    <param name="id" value="25"/>
-                </include>
             </control>
         </control>
         </definition>

@@ -15,9 +15,7 @@
 
 		<onclick>Dialog.Close(all,true)</onclick>
 		
-        <onclick condition="VideoPlayer.Content(movies) + !String.IsEmpty(VideoPlayer.UniqueId(tmdb))">RunScript(plugin.video.themoviedb.helper,add_path=plugin://plugin.video.themoviedb.helper/?info=details&amp;tmdb_type=movie$INFO[VideoPlayer.UniqueId(tmdb),&amp;tmdb_id=,],call_auto=1190,return)</onclick>
-        <onclick condition="VideoPlayer.Content(movies)">RunScript(plugin.video.themoviedb.helper,add_path=plugin://plugin.video.themoviedb.helper/?info=details&amp;tmdb_type=movie$INFO[Window(Home).Property(TMDbHelper.Player.TMDb_ID),&amp;tmdb_id=,]$INFO[Player.Title,&amp;query=,]$INFO[VideoPlayer.Year,&amp;year=,],call_auto=1190,return)</onclick>
-        <onclick condition="VideoPlayer.Content(episodes)">RunScript(plugin.video.themoviedb.helper,add_path=plugin://plugin.video.themoviedb.helper/?info=details&amp;tmdb_type=tv$INFO[Window(Home).Property(TMDbHelper.Player.TVShow.TMDb_ID),&amp;tmdb_id=,]$INFO[VideoPlayer.TVShowTitle,&amp;query=,]$INFO[VideoPlayer.Season,&amp;season=,]$INFO[VideoPlayer.Episode,&amp;episode=,]$INFO[VideoPlayer.Year,&amp;episode_year=,],call_auto=1190,return)</onclick>
+        <onclick>RunScript(script.skinvariables,run_executebuiltin=special://skin/shortcuts/builtins/skinvariables-openinfo-player.json,use_rules=True)</onclick>
     </include>
 
     <!-- OSD Flags -->
@@ -382,7 +380,7 @@
                     <visible>!Skin.HasSetting(furniture.flagicons)</visible>
                 </control>
                 <control type="image">
-                    <width min="20" max="65">auto</width>
+                    <width max="65">auto</width>
                     <height>42</height>
                     <centertop>53%</centertop>
                     <texture colordiffuse="$VAR[OSDPanelWhite70]" fallback="flags/fallback.png">$INFO[VideoPlayer.VideoResolution,flags/monochrome/resolution/,.png]</texture>
@@ -390,7 +388,7 @@
                     <visible>!String.IsEmpty(VideoPlayer.VideoResolution) + Skin.HasSetting(furniture.flagicons)</visible>
                 </control>
                 <control type="image">
-                    <width min="20" max="80">auto</width>
+                    <width max="80">auto</width>
                     <height>48</height>
                     <centertop>53%</centertop>
                     <texture colordiffuse="$VAR[OSDPanelWhite70]" fallback="flags/fallback.png">$INFO[VideoPlayer.VideoCodec,flags/monochrome/video/,.png]</texture>
@@ -398,7 +396,7 @@
                     <visible>!String.IsEmpty(VideoPlayer.VideoCodec) + Skin.HasSetting(furniture.flagicons)</visible>
                 </control>
                 <control type="image">
-                    <width min="20" max="75">auto</width>
+                    <width max="75">auto</width>
                     <height>56</height>
                     <centertop>53%</centertop>
                     <texture colordiffuse="$VAR[OSDPanelWhite70]" fallback="flags/fallback.png">$INFO[VideoPlayer.VideoAspect,flags/monochrome/aspectratio/,.png]</texture>
@@ -406,7 +404,7 @@
                     <visible>!String.IsEmpty(VideoPlayer.VideoAspect) + Skin.HasSetting(furniture.flagicons)</visible>
                 </control>
                 <control type="image" description="HDR">
-                    <width min="20" max="100">auto</width>
+                    <width max="100">auto</width>
                     <height>56</height>
                     <centertop>50%</centertop>
                     <texture colordiffuse="$VAR[OSDPanelWhite70]" fallback="flags/fallback.png">$VAR[Image_Video_HDRType]</texture>
@@ -414,7 +412,7 @@
                     <visible>!String.IsEmpty(VideoPlayer.HdrType) + Skin.HasSetting(furniture.flagicons)</visible>
                 </control>
                 <control type="image">
-                    <width min="20" max="90">auto</width>
+                    <width max="90">auto</width>
                     <height>56</height>
                     <centertop>53%</centertop>
                     <texture colordiffuse="$VAR[OSDPanelWhite70]" fallback="flags/fallback.png">$VAR[Image_AudioCodec]</texture>
@@ -422,7 +420,7 @@
                     <visible>!String.IsEmpty(VideoPlayer.AudioCodec) + Skin.HasSetting(furniture.flagicons)</visible>
                 </control>
                 <control type="image">
-                    <width min="20" max="70">auto</width>
+                    <width max="70">auto</width>
                     <height>45</height>
                     <centertop>53%</centertop>
                     <texture colordiffuse="$VAR[OSDPanelWhite70]" fallback="flags/fallback.png">$INFO[VideoPlayer.AudioChannels,flags/monochrome/channels/,.png]</texture>
@@ -447,7 +445,7 @@
                     <visible>!Skin.HasSetting(furniture.flagicons)</visible>
                 </control>
                 <control type="image">
-                    <width min="20" max="75">auto</width>
+                    <width max="75">auto</width>
                     <height>62</height>
                     <left>-10</left>
                     <centertop>53%</centertop>
@@ -456,7 +454,7 @@
                     <visible>!String.IsEmpty(VideoPlayer.VideoResolution) + Skin.HasSetting(furniture.flagicons)</visible>
                 </control>
                 <control type="image">
-                    <width min="20" max="80">auto</width>
+                    <width max="80">auto</width>
                     <height>55</height>
                     <centertop>53%</centertop>
                     <texture fallback="flags/fallback.png">$INFO[VideoPlayer.VideoCodec,flags/color/video/,.png]</texture>
@@ -464,7 +462,7 @@
                     <visible>!String.IsEmpty(VideoPlayer.VideoCodec) + Skin.HasSetting(furniture.flagicons)</visible>
                 </control>
                 <control type="image">
-                    <width min="20" max="75">auto</width>
+                    <width max="75">auto</width>
                     <height>55</height>
                     <centertop>53%</centertop>
                     <texture fallback="flags/fallback.png">$INFO[VideoPlayer.VideoAspect,flags/color/aspectratio/,.png]</texture>
@@ -472,7 +470,7 @@
                     <visible>!String.IsEmpty(VideoPlayer.VideoAspect) + Skin.HasSetting(furniture.flagicons)</visible>
                 </control>
                 <control type="image" description="HDR">
-                    <width min="20" max="100">auto</width>
+                    <width max="100">auto</width>
                     <height>56</height>
                     <centertop>53%</centertop>
                     <texture fallback="flags/fallback.png">$VAR[Image_Video_HDRType]</texture>
@@ -480,7 +478,7 @@
                     <visible>!String.IsEmpty(VideoPlayer.HdrType) + Skin.HasSetting(furniture.flagicons)</visible>
                 </control>
                 <control type="image">
-                    <width min="20" max="90">auto</width>
+                    <width max="90">auto</width>
                     <height>55</height>
                     <centertop>53%</centertop>
                     <texture fallback="flags/fallback.png">$VAR[Image_AudioCodec]</texture>
@@ -488,7 +486,7 @@
                     <visible>!String.IsEmpty(VideoPlayer.AudioCodec) + Skin.HasSetting(furniture.flagicons)</visible>
                 </control>
                 <control type="image">
-                    <width min="20" max="70">auto</width>
+                    <width max="70">auto</width>
                     <height>34</height>
                     <centertop>53%</centertop>
                     <texture fallback="flags/fallback.png">$INFO[VideoPlayer.AudioChannels,flags/color/channels/,.png]</texture>
@@ -604,7 +602,7 @@
                 <visible>!Skin.HasSetting(furniture.flagicons) + !Skin.HasSetting(videoosd.hideflags)</visible>
             </control>
             <control type="image">
-                <width min="20" max="73">auto</width>
+                <width max="73">auto</width>
                 <height>46</height>
                 <centertop>53%</centertop>
                 <texture colordiffuse="$VAR[OSDPanelWhite70]" fallback="flags/fallback.png">$INFO[VideoPlayer.VideoResolution,flags/monochrome/resolution/,.png]</texture>
@@ -612,7 +610,7 @@
                 <visible>Skin.HasSetting(furniture.flagicons) + !String.IsEmpty(VideoPlayer.VideoResolution) + !Skin.HasSetting(videoosd.hideflags)</visible>
             </control>
             <control type="image">
-                <width min="20" max="80">auto</width>
+                <width max="80">auto</width>
                 <height>48</height>
                 <centertop>53%</centertop>
                 <texture colordiffuse="$VAR[OSDPanelWhite70]" fallback="flags/fallback.png">$INFO[VideoPlayer.VideoCodec,flags/monochrome/video/,.png]</texture>
@@ -620,7 +618,7 @@
                 <visible>Skin.HasSetting(furniture.flagicons) + !String.IsEmpty(VideoPlayer.VideoCodec) + !Skin.HasSetting(videoosd.hideflags)</visible>
             </control>
             <control type="image">
-                <width min="20" max="80">auto</width>
+                <width max="80">auto</width>
                 <height>56</height>
                 <centertop>53%</centertop>
                 <texture colordiffuse="$VAR[OSDPanelWhite70]" fallback="flags/fallback.png">$INFO[VideoPlayer.VideoAspect,flags/monochrome/aspectratio/,.png]</texture>
@@ -628,7 +626,7 @@
                 <visible>Skin.HasSetting(furniture.flagicons) + !String.IsEmpty(VideoPlayer.VideoAspect) + !Skin.HasSetting(videoosd.hideflags)</visible>
             </control>
             <control type="image" description="HDR">
-                <width min="20" max="100">auto</width>
+                <width max="100">auto</width>
                 <height>56</height>
                 <centertop>50%</centertop>
                 <texture colordiffuse="$VAR[OSDPanelWhite70]" fallback="flags/fallback.png">$VAR[Image_Video_HDRType]</texture>
@@ -636,7 +634,7 @@
                 <visible>Skin.HasSetting(furniture.flagicons) + !String.IsEmpty(VideoPlayer.HdrType) + !Skin.HasSetting(videoosd.hideflags)</visible>
             </control>
             <control type="image">
-                <width min="20" max="90">auto</width>
+                <width max="90">auto</width>
                 <height>56</height>
                 <centertop>53%</centertop>
                 <texture colordiffuse="$VAR[OSDPanelWhite70]" fallback="flags/fallback.png">$VAR[Image_AudioCodec]</texture>
@@ -644,7 +642,7 @@
                 <visible>Skin.HasSetting(furniture.flagicons) + !String.IsEmpty(VideoPlayer.AudioCodec) + !Skin.HasSetting(videoosd.hideflags)</visible>
             </control>
             <control type="image">
-                <width min="20" max="70">auto</width>
+                <width max="70">auto</width>
                 <height>45</height>
                 <centertop>53%</centertop>
                 <texture colordiffuse="$VAR[OSDPanelWhite70]" fallback="flags/fallback.png">$INFO[VideoPlayer.AudioChannels,flags/monochrome/channels/,.png]</texture>
@@ -686,7 +684,7 @@
             <itemgap>8</itemgap>
             <usecontrolcoords>true</usecontrolcoords>
             <control type="image">
-                <width min="20" max="75">auto</width>
+                <width max="75">auto</width>
                 <height>62</height>
                 <centertop>53%</centertop>
                 <texture fallback="flags/fallback.png">$INFO[VideoPlayer.VideoResolution,flags/color/resolution/,.png]</texture>
@@ -694,7 +692,7 @@
                 <visible>!String.IsEmpty(VideoPlayer.VideoResolution)</visible>
             </control>
             <control type="image">
-                <width min="20" max="80">auto</width>
+                <width max="80">auto</width>
                 <height>55</height>
                 <centertop>53%</centertop>
                 <texture fallback="flags/fallback.png">$INFO[VideoPlayer.VideoCodec,flags/color/video/,.png]</texture>
@@ -702,7 +700,7 @@
                 <visible>!String.IsEmpty(VideoPlayer.VideoCodec)</visible>
             </control>
             <control type="image">
-                <width min="20" max="75">auto</width>
+                <width max="75">auto</width>
                 <height>55</height>
                 <centertop>53%</centertop>
                 <texture fallback="flags/fallback.png">$INFO[VideoPlayer.VideoAspect,flags/color/aspectratio/,.png]</texture>
@@ -710,7 +708,7 @@
                 <visible>!String.IsEmpty(VideoPlayer.VideoAspect)</visible>
             </control>
             <control type="image" description="HDR">
-                <width min="20" max="100">auto</width>
+                <width max="100">auto</width>
                 <height>56</height>
                 <centertop>53%</centertop>
                 <texture fallback="flags/fallback.png">$VAR[Image_Video_HDRType]</texture>
@@ -718,7 +716,7 @@
                 <visible>!String.IsEmpty(VideoPlayer.HdrType)</visible>
             </control>
             <control type="image">
-                <width min="20" max="90">auto</width>
+                <width max="90">auto</width>
                 <height>55</height>
                 <centertop>53%</centertop>
                 <texture fallback="flags/fallback.png">$VAR[Image_AudioCodec]</texture>
@@ -726,7 +724,7 @@
                 <visible>!String.IsEmpty(VideoPlayer.AudioCodec)</visible>
             </control>
             <control type="image">
-                <width min="20" max="70">auto</width>
+                <width max="70">auto</width>
                 <height>34</height>
                 <centertop>53%</centertop>
                 <texture fallback="flags/fallback.png">$INFO[VideoPlayer.AudioChannels,flags/color/channels/,.png]</texture>
@@ -943,7 +941,6 @@
 	        <centertop>10%</centertop>
 	        <width>30</width>
 	        <height>45</height>
-	        <align>right</align>
 	        <colordiffuse>$VAR[OSDPanelWhite70]</colordiffuse>
 	        <texture>kaitoast/finishtime2.png</texture>
 	        <visible>Player.HasVideo</visible>
@@ -1463,23 +1460,6 @@
     </variable>
 
     <include name="OSDControlsHome">
-        <control type="button" id="25">
-            <description>Skip Back</description>
-            <width>48</width>
-            <height>48</height>
-            <label/>
-            <font />
-            <include>DefControlsHomeUpDown</include>
-            <texturefocus colordiffuse="$VAR[ColorHighlight]" flipx="true">osd/info.png</texturefocus>
-            <texturenofocus colordiffuse="Dark2" flipx="true">osd/info.png</texturenofocus>
-            <onclick condition="!Container(999).IsUpdating + Integer.IsGreater(Container(999).NumItems,0)">SetFocus(999)</onclick>
-            <onclick condition="!Container(999).IsUpdating + Integer.IsGreater(Container(999).NumItems,0)">Action(info)</onclick>
-            <oninfo condition="!Container(999).IsUpdating + Integer.IsGreater(Container(999).NumItems,0)">SetFocus(999)</oninfo>
-            <oninfo condition="!Container(999).IsUpdating + Integer.IsGreater(Container(999).NumItems,0)">Action(info)</oninfo>
-            <onfocus condition="!Player.HasMedia">SetFocus(300)</onfocus>
-            <visible allowhiddenfocus="!String.IsEmpty(VideoPlayer.DBID) | !String.IsEmpty(MusicPlayer.DBID)">false</visible>
-            <!-- !VideoPlayer.Content(livetv) + !Container(999).IsUpdating + Integer.IsGreater(Container(999).NumItems,0) -->
-        </control>
         <control type="button" id="12">
             <description>Skip Back</description>
             <width>48</width>
@@ -3368,7 +3348,7 @@
                 <visible>!Skin.HasSetting(furniture.flagicons) + !String.IsEmpty(MusicPlayer.BPM) + !Skin.HasSetting(musicosd.hideflags)</visible>
             </control>
             <control type="image">
-                <width min="20" max="90">auto</width>
+                <width max="90">auto</width>
                 <height>56</height>
                 <centertop>53%</centertop>
                 <include content="def_colordiffuse" condition="!Skin.HasSetting(furniture.coloredicons)">
@@ -3379,7 +3359,7 @@
                 <visible>Skin.HasSetting(furniture.flagicons) + !String.IsEmpty(MusicPlayer.Codec) + !Skin.HasSetting(musicosd.hideflags)</visible>
             </control>
             <control type="image">
-                <width min="20" max="85">auto</width>
+                <width max="85">auto</width>
                 <include content="def_height" condition="Skin.HasSetting(furniture.coloredicons)">
                     <param name="height" value="36" />
                 </include>

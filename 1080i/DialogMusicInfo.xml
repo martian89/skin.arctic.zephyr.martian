@@ -80,7 +80,6 @@
                         <scrollspeed>40</scrollspeed>
                         <textcolor>Dark3</textcolor>
                         <label>$VAR[Label_FileNameAndPath]</label>
-                        <aligny>center</aligny>
                         <align>right</align>
                         <visible>ControlGroup(9000).HasFocus()</visible>
                         <include>Animation.FileNameAndPath</include>
@@ -118,7 +117,6 @@
                         <font>Tiny</font>
                         <textcolor>Dark1</textcolor>
                         <label fallback="19055">$VAR[Label_DialogMusicInfo_Tagline]</label>
-                        <aligny>center</aligny>
                     </control>
                 </control>
 
@@ -318,7 +316,7 @@
                         <param name="onclick1" value="Dialog.Close(all,force)"/>
                         <param name="onclick2" value="PlayerControl(Stop)"/>
                         <param name="onclick3" value="PlayMedia($ESCINFO[Container($PARAM[controlid]).ListItem.FileNameAndPath()])"/>
-                        <param name="ContentToLoad" value="$VAR[ContentMusicYoutube]" />
+                        <param name="ContentToLoad" value="$VAR[Path_MusicInfo_Youtube]" />
                         <param name="target" value="videos" />
                         <param name="limit" value="25" />
                         <param name="sortby" value="file" />
@@ -342,7 +340,7 @@
                         <param name="controlid" value="54"/>
                         <param name="onclick1" value="Dialog.Close(all,force)"/>
                         <param name="onclick2" value="PlayMedia($ESCINFO[Container($PARAM[controlid]).ListItem.FileNameAndPath()])"/>
-                        <param name="ContentToLoad" value="$VAR[MoreOfArtistContent]" />
+                        <param name="ContentToLoad" value="$VAR[Path_MusicInfo_MoreOfArtist]" />
                     </include>
                 </control>
                 <control type="group">
@@ -631,7 +629,6 @@
                         <top>330</top>
                         <textcolor>Dark1</textcolor>
                         <label>[B]$LOCALIZE[134][/B]</label>
-                        <aligny>center</aligny>
                         <include>Animation.FadeIn</include>
                     </control>
                     <control type="button" id="9009">
@@ -761,6 +758,10 @@
             <onright>SetFocus(53)</onright>
             <onright>RIGHT</onright>
             <onright>SetFocus(161)</onright>
+        </control>
+        <control type="list" id="4001">
+            <include>HiddenListControl</include>
+            <content>$VAR[Path_MusicInfo_Encoder]</content>
         </control>
         <control type="group">
             <visible>Control.HasFocus(161)</visible>

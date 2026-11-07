@@ -12,7 +12,6 @@
                 <width>1000</width>
                 <posy>20</posy>
                 <font>MediumBold</font>
-                <textcolor>Black70</textcolor>
                 <label>$LOCALIZE[24012]</label>
             </control>
             <include content="Kodi_Logo">
@@ -104,11 +103,7 @@
                     <control type="label">
                         <posx>257</posx>
                         <width>810</width>
-                        <height>66</height>
-                        <aligny>center</aligny>
                         <label>$INFO[ListItem.Label,,  •  ]$INFO[ListItem.Label2]</label>
-                        <textcolor>Black70</textcolor>
-                        <font>Small</font>
                     </control>
                     <control type="image">
                         <right>90</right>
@@ -117,17 +112,13 @@
                         <height>32</height>
                         <aspectratio aligny="top">keep</aspectratio>
                         <texture colordiffuse="Dark1">flags/star10.png</texture>
-                        <visible>!String.IsEqual(ListItem.Label,..) + !String.IsEmpty(ListItem.ActualIcon,..)</visible>
+                        <visible>!ListItem.IsParentFolder + !String.IsEmpty(ListItem.ActualIcon)</visible>
                     </control>
                     <control type="label">
                         <right>30</right>
                         <width>100</width>
-                        <height>66</height>
-                        <aligny>center</aligny>
                         <align>right</align>
                         <label fallback="-">$INFO[ListItem.ActualIcon,,.0]</label>
-                        <textcolor>Black70</textcolor>
-                        <font>Small</font>
                     </control>
                 </itemlayout>
                 <focusedlayout height="69" width="1200">
@@ -193,11 +184,8 @@
                     <control type="label">
                         <posx>257</posx>
                         <width>810</width>
-                        <height>66</height>
-                        <aligny>center</aligny>
                         <label>$INFO[ListItem.Label,,  •  ]$INFO[ListItem.Label2]</label>
                         <textcolor>Selected</textcolor>
-                        <font>Small</font>
                         <scroll>true</scroll>
                     </control>
                     <control type="image">
@@ -207,17 +195,14 @@
                         <height>32</height>
                         <aspectratio aligny="top">keep</aspectratio>
                         <texture colordiffuse="Selected">flags/star10.png</texture>
-                        <visible>!String.IsEqual(ListItem.Label,..) + !String.IsEmpty(ListItem.ActualIcon,..)</visible>
+                        <visible>!ListItem.IsParentFolder + !String.IsEmpty(ListItem.ActualIcon)</visible>
                     </control>
                     <control type="label">
                         <right>30</right>
                         <width>100</width>
-                        <height>66</height>
-                        <aligny>center</aligny>
                         <align>right</align>
                         <label fallback="-">$INFO[ListItem.ActualIcon,,.0]</label>
                         <textcolor>Selected</textcolor>
-                        <font>Small</font>
                     </control>
                 </focusedlayout>
             </control>
@@ -239,7 +224,6 @@
                 <bottom>15</bottom>
                 <align>left</align>
                 <font>Tiny</font>
-                <textcolor>Black70</textcolor>
                 <label>$INFO[Control.GetLabel(140),,   ]$INFO[Player.FileName]</label>
             </control>
 
@@ -256,13 +240,11 @@
                 <posx>1230</posx>
                 <posy>110</posy>
                 <width>385</width>
-                <height>66</height>
                 <label>413</label>
                 <ondown>150</ondown>
                 <onleft>120</onleft>
                 <align>left</align>
                 <textcolor>Black30</textcolor>
-                <focusedcolor>Selected</focusedcolor>
                 <texturefocus border="5" colordiffuse="$VAR[ColorGradient]">common/gradient-box-wide.png</texturefocus>
                 <texturenofocus border="5" colordiffuse="Black12">common/box.png</texturenofocus>
             </control>
@@ -289,11 +271,8 @@
                     <control type="label">
                         <left>30</left>
                         <right>30</right>
-                        <height>66</height>
-                        <aligny>center</aligny>
                         <label>$INFO[ListItem.Label]</label>
                         <textcolor>Black30</textcolor>
-                        <selectedcolor>Highlight2</selectedcolor>
                     </control>
                 </itemlayout>
                 <focusedlayout height="69" width="485">
@@ -318,18 +297,13 @@
                     <control type="label">
                         <left>30</left>
                         <right>30</right>
-                        <height>66</height>
-                        <aligny>center</aligny>
                         <label>$INFO[ListItem.Label]</label>
                         <textcolor>Black30</textcolor>
-                        <selectedcolor>Highlight2</selectedcolor>
                         <visible>!Control.HasFocus(150)</visible>
                     </control>
                     <control type="label">
                         <left>30</left>
                         <right>30</right>
-                        <height>66</height>
-                        <aligny>center</aligny>
                         <label>$INFO[ListItem.Label]</label>
                         <textcolor>Selected</textcolor>
                         <selectedcolor>Selected</selectedcolor>
