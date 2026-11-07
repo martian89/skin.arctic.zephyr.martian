@@ -116,7 +116,7 @@
                 <control type="list" id="9911">
                     <include>HiddenListControl</include>
                     <visible>String.IsEqual(ListItem.DBType,tvshow) + Integer.IsGreater(ListItem.Property(UnwatchedEpisodes),0) + !String.IsEmpty(ListItem.DBID)</visible>
-                    <content sortby="playcount" sortorder="ascending" limit="1" browse="never">$VAR[UpNextEpisodePath]</content>
+                    <content sortby="playcount" sortorder="ascending" limit="1" browse="never">$VAR[Path_VideoInfo_UpNextEpisodes]</content>
                 </control>
                 <control type="button" id="7011">
                     <include>HiddenButton</include>
@@ -429,7 +429,7 @@
                                 <visible>!$EXP[ShowTmdbArtwork] + !String.IsEmpty(ListItem.Art(landscape)) + !Skin.HasSetting(hideartwork.video.landscape)</visible>
                             </item>
                         </content>
-                        <content>$VAR[Def_Fanart_List]</content>
+                        <content>$VAR[Path_VideoInfo_OnlineFanart]</content>
                     </control>
                     <control type="image">
                         <right>40</right>
@@ -1076,8 +1076,8 @@
                         <param name="labeltwovisible" value="!String.IsEqual(ListItem.DBType,set)"/>
                         <param name="includecontent" value="false" />
                         <param name="uparrow" value="$EXP[TMDbHelperDataEnabled] + !String.IsEqual(ListItem.DBType,set)" />
-                        <param name="onup1" value="$VAR[Def_CastList_Item]" />
-                        <param name="onup2" value="SetProperty(TMDbHelper.HideView,1,Home)" />
+                        <param name="onup1" value="SetProperty(TMDbHelper.HideView,1,Home)"/>
+                        <param name="onup2" value="$VAR[Path_VideoInfo_OnClickAction]" />
                     </include>
 
                     <!-- Cast -->
@@ -1085,9 +1085,9 @@
                         <param name="fallbackpicture" value="DefaultActor.png"/>
                         <param name="visi" value="[String.IsEqual(Window.Property(content),1) + $EXP[TMDbHelperDataEnabled] + !Skin.HasSetting(extended.info.local.cast) + !String.IsEqual(ListItem.DBType,set)]"/>
                         <param name="controlid" value="52"/>
-                        <param name="onclick1" value="$VAR[Def_CastList_Item]"/>
-                        <param name="onclick2" value="SetProperty(TMDbHelper.HideView,1,Home)"/>
-                        <param name="ContentToLoad" value="$VAR[Def_Cast_List]" />
+                        <param name="onclick1" value="SetProperty(TMDbHelper.HideView,1,Home)"/>
+                        <param name="onclick2" value="$VAR[Path_VideoInfo_OnClickAction]" />
+                        <param name="ContentToLoad" value="$VAR[Path_VideoInfo_OnlineCast]" />
                     </include>
 
                     <!-- By Director -->
@@ -1095,10 +1095,10 @@
                         <param name="fallbackpicture" value="DefaultMovieTitle.png"/>
                         <param name="visi" value="String.IsEqual(Window.Property(content),7)"/>
                         <param name="controlid" value="62"/>
-                        <param name="onclick1" value="$VAR[Def_VideoList_Item]"/>
-                        <param name="onclick2" value="SetProperty(TMDbHelper.HideView,1,Home)"/>
+                        <param name="onclick1" value="SetProperty(TMDbHelper.HideView,1,Home)"/>
+                        <param name="onclick2" value="$VAR[Path_VideoInfo_OnClickAction]" />
                         <param name="labeltwovisible" value="false"/>
-                        <param name="ContentToLoad" value="$VAR[Def_Director_List]" />
+                        <param name="ContentToLoad" value="$VAR[Path_VideoInfo_OnlineDirector]" />
                     </include>
 
                     <!-- By Sets -->
@@ -1106,9 +1106,9 @@
                         <param name="fallbackpicture" value="DefaultMovieTitle.png"/>
                         <param name="visi" value="String.IsEqual(Window.Property(content),8)"/>
                         <param name="controlid" value="57"/>
-                        <param name="onclick1" value="$VAR[Def_VideoList_Item]"/>
-                        <param name="onclick2" value="SetProperty(TMDbHelper.HideView,1,Home)"/>
-                        <param name="ContentToLoad" value="$VAR[Def_Set_List]" />
+                        <param name="onclick1" value="SetProperty(TMDbHelper.HideView,1,Home)"/>
+                        <param name="onclick2" value="$VAR[Path_VideoInfo_OnClickAction]" />
+                        <param name="ContentToLoad" value="$VAR[Path_VideoInfo_OnlineCollection]" />
                     </include>
 
                     <!-- Crew -->
@@ -1116,9 +1116,9 @@
                         <param name="fallbackpicture" value="DefaultActor.png"/>
                         <param name="visi" value="String.IsEqual(Window.Property(content),9)"/>
                         <param name="controlid" value="56"/>
-                        <param name="onclick1" value="$VAR[Def_CastList_Item]"/>
-                        <param name="onclick2" value="SetProperty(TMDbHelper.HideView,1,Home)"/>
-                        <param name="ContentToLoad" value="$VAR[Def_Crew_List]" />
+                        <param name="onclick1" value="SetProperty(TMDbHelper.HideView,1,Home)"/>
+                        <param name="onclick2" value="$VAR[Path_VideoInfo_OnClickAction]" />
+                        <param name="ContentToLoad" value="$VAR[Path_VideoInfo_OnlineCrew]" />
                     </include>
 
                     <!-- Similar -->
@@ -1126,9 +1126,9 @@
                         <param name="fallbackpicture" value="$VAR[Image_VideoListSimilar_Fallback]"/>
                         <param name="visi" value="String.IsEqual(Window.Property(content),2)"/>
                         <param name="controlid" value="53"/>
-                        <param name="onclick1" value="$VAR[Def_VideoList_Item]"/>
-                        <param name="onclick2" value="SetProperty(TMDbHelper.HideView,1,Home)"/>
-                        <param name="ContentToLoad" value="$VAR[Def_Similar_List]" />
+                        <param name="onclick1" value="SetProperty(TMDbHelper.HideView,1,Home)"/>
+                        <param name="onclick2" value="$VAR[Path_VideoInfo_OnClickAction]" />
+                        <param name="ContentToLoad" value="$VAR[Path_VideoInfo_Similar]" />
                     </include>
 
                     <!-- Studio -->
@@ -1136,9 +1136,9 @@
                         <param name="fallbackpicture" value="$VAR[Image_VideoListSimilar_Fallback]"/>
                         <param name="visi" value="String.IsEqual(Window.Property(content),3)"/>
                         <param name="controlid" value="60"/>
-                        <param name="onclick1" value="$VAR[Def_VideoList_Item]"/>
-                        <param name="onclick2" value="SetProperty(TMDbHelper.HideView,1,Home)"/>
-                        <param name="ContentToLoad" value="$VAR[Def_Studio_List]" />
+                        <param name="onclick1" value="SetProperty(TMDbHelper.HideView,1,Home)"/>
+                        <param name="onclick2" value="$VAR[Path_VideoInfo_OnClickAction]" />
+                        <param name="ContentToLoad" value="$VAR[Path_VideoInfo_OnlineStudio]" />
                     </include>
 
                     <!-- Youtube -->
@@ -1151,7 +1151,7 @@
                         <param name="controlid" value="54"/>
                         <param name="onclick1" value="Dialog.Close(all,force)"/>
                         <param name="onclick2" value="PlayMedia($ESCINFO[Container($PARAM[controlid]).ListItem.FileNameAndPath()])"/>
-                        <param name="ContentToLoad" value="$VAR[ContentVideoYoutube]" />
+                        <param name="ContentToLoad" value="$VAR[Path_VideoInfo_Youtube]" />
                         <param name="target" value="videos" />
                         <param name="limit" value="25" />
                         <param name="sortby" value="file" />
@@ -1162,9 +1162,9 @@
                         <param name="fallbackpicture" value="DefaultMovieTitle.png"/>
                         <param name="visi" value="String.IsEqual(Window.Property(content),11)"/>
                         <param name="controlid" value="70"/>
-                        <param name="onclick1" value="$VAR[Def_VideoList_Item]"/>
-                        <param name="onclick2" value="SetProperty(TMDbHelper.HideView,1,Home)"/>
-                        <param name="ContentToLoad" value="$VAR[Def_Actor_in_Movies_List]" />
+                        <param name="onclick1" value="SetProperty(TMDbHelper.HideView,1,Home)"/>
+                        <param name="onclick2" value="$VAR[Path_VideoInfo_OnClickAction]" />
+                        <param name="ContentToLoad" value="$VAR[Path_PersonInfo_Movies]" />
                     </include>
 
                     <!-- Actor in TV Shows -->
@@ -1172,9 +1172,9 @@
                         <param name="fallbackpicture" value="DefaultTVShowTitle.png"/>
                         <param name="visi" value="String.IsEqual(Window.Property(content),12)"/>
                         <param name="controlid" value="71"/>
-                        <param name="onclick1" value="$VAR[Def_VideoList_Item]"/>
-                        <param name="onclick2" value="SetProperty(TMDbHelper.HideView,1,Home)"/>
-                        <param name="ContentToLoad" value="$VAR[Def_Actor_in_TVShows_List]" />
+                        <param name="onclick1" value="SetProperty(TMDbHelper.HideView,1,Home)"/>
+                        <param name="onclick2" value="$VAR[Path_VideoInfo_OnClickAction]" />
+                        <param name="ContentToLoad" value="$VAR[Path_PersonInfo_TVShows]" />
                     </include>
 
                     <!-- Crew -->
@@ -1182,9 +1182,9 @@
                         <param name="fallbackpicture" value="DefaultMovieTitle.png"/>
                         <param name="visi" value="String.IsEqual(Window.Property(content),13)"/>
                         <param name="controlid" value="72"/>
-                        <param name="onclick1" value="$VAR[Def_VideoList_Item]"/>
-                        <param name="onclick2" value="SetProperty(TMDbHelper.HideView,1,Home)"/>
-                        <param name="ContentToLoad" value="$VAR[Def_Crew_In_Both_List]" />
+                        <param name="onclick1" value="SetProperty(TMDbHelper.HideView,1,Home)"/>
+                        <param name="onclick2" value="$VAR[Path_VideoInfo_OnClickAction]" />
+                        <param name="ContentToLoad" value="$VAR[Path_PersonInfo_CrewInBoth]" />
                     </include>
  
                     <!-- Images -->
@@ -1193,7 +1193,7 @@
                         <param name="visi" value="String.IsEqual(Window.Property(content),14)"/>
                         <param name="controlid" value="73"/>
                         <param name="onclick1" value="SetFocus(161)" />
-                        <param name="ContentToLoad" value="$VAR[Def_Actor_Image_List]" />
+                        <param name="ContentToLoad" value="$VAR[Path_PersonInfo_Fanart]" />
                         <param name="labeltwovisible" value="false"/>
                     </include>
                 </control>
@@ -1232,6 +1232,10 @@
             <onright>SetFocus(55)</onright>
             <onright>RIGHT</onright>
             <onright>SetFocus(160)</onright>
+        </control>
+        <control type="list" id="4001">
+            <include>HiddenListControl</include>
+            <content>$VAR[Path_VideoInfo_Encoder]</content>
         </control>
         <control type="group">
             <visible>Control.HasFocus(160)</visible>

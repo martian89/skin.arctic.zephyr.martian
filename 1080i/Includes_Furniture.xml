@@ -713,14 +713,12 @@
                     <width>45</width>
                     <height>45</height>
                     <left>10</left>
-                    <align>center</align>
                     <texture border="0" colordiffuse="Dark1">common/circle.png</texture>
                     <visible>!ListItem.IsCollection</visible>
                 </control>
                 <control type="image" description="Sets">
                     <width>70</width>
                     <height>50</height>
-                    <align>center</align>
                     <texture border="0" colordiffuse="Dark1">flags/set.png</texture>
                     <visible>ListItem.IsCollection</visible>
                     <centertop>51%</centertop>
@@ -1031,7 +1029,6 @@
                 <control type="image">
                     <width>45</width>
                     <height>45</height>
-                    <align>center</align>
                     <left>10</left>
                     <texture border="0" colordiffuse="Dark1">common/circle.png</texture>
                     <visible>!ListItem.IsCollection</visible>
@@ -1039,7 +1036,6 @@
                 <control type="image" description="Sets">
                     <width>70</width>
                     <height>50</height>
-                    <align>center</align>
                     <texture border="0" colordiffuse="Dark1">flags/set.png</texture>
                     <visible>ListItem.IsCollection</visible>
                     <centertop>51%</centertop>
@@ -1325,14 +1321,12 @@
                     <width>45</width>
                     <height>45</height>
                     <left>10</left>
-                    <align>center</align>
                     <texture border="0" colordiffuse="Dark1">common/circle.png</texture>
                     <visible>!Container(9500).ListItem.IsCollection</visible>
                 </control>
                 <control type="image" description="Sets">
                     <width>70</width>
                     <height>50</height>
-                    <align>center</align>
                     <texture border="0" colordiffuse="Dark1">flags/set.png</texture>
                     <visible>Container(9500).ListItem.IsCollection</visible>
                     <centertop>51%</centertop>
@@ -1596,7 +1590,6 @@
                 <control type="image">
                     <width>45</width>
                     <height>45</height>
-                    <align>center</align>
                     <left>10</left>
                     <texture border="0" colordiffuse="Dark1">common/circle.png</texture>
                     <visible>!Container(9500).ListItem.IsCollection</visible>
@@ -1604,7 +1597,6 @@
                 <control type="image" description="Sets">
                     <width>70</width>
                     <height>50</height>
-                    <align>center</align>
                     <texture border="0" colordiffuse="Dark1">flags/set.png</texture>
                     <visible>Container(9500).ListItem.IsCollection</visible>
                     <centertop>51%</centertop>
@@ -2096,14 +2088,14 @@
     <include name="Header_PlayListStats">
         <control type="list">
             <include>HiddenListControl</include>
-            <content>$VAR[PlayListStatsPath]</content>
+            <content>$VAR[Path_Playlist_Stats]</content>
         </control>
     </include>
     
     <include name="Header_PlaylistsCountItem">
         <control type="list" id="9986">
             <include>HiddenListControl</include>
-            <content>$VAR[PlaylistsCountItemPath]</content>
+            <content>$VAR[Path_Playlist_Count]</content>
         </control>
     </include>
 
@@ -2156,7 +2148,6 @@
                         <width max="60">auto</width>
                         <height>60</height>
                         <bottom>39</bottom>
-                        <align>right</align>
                         <aspectratio aligny="center" align="center">keep</aspectratio>
                         <texture>$INFO[Skin.String(weather.icons.path),,/]$INFO[Window(weather).Property(Current.FanartCode),,.png]</texture>
                         <visible>![String.IsEmpty(Skin.String(weather.icons.path)) | String.Contains(Skin.String(weather.icons.path),Default)] + !String.Contains(Skin.String(weather.icons.path),animated) + Skin.HasSetting(weather.icons.override) + !String.Contains(Skin.String(weather.icons.path),White) + !String.Contains(Skin.String(weather.icons.path),Outline) + !String.Contains(Skin.String(weather.icons.path),Transparent) + !String.Contains(Skin.String(weather.icons.path),Monstr)</visible>
@@ -2166,7 +2157,6 @@
                         <width max="60">auto</width>
                         <height>60</height>
                         <bottom>39</bottom>
-                        <align>right</align>
                         <aspectratio aligny="center" align="center">keep</aspectratio>
                         <texture colordiffuse="Dark2">$INFO[Skin.String(weather.icons.path),,/]$INFO[Window(weather).Property(Current.FanartCode),,.png]</texture>
                         <visible>![String.IsEmpty(Skin.String(weather.icons.path)) | String.Contains(Skin.String(weather.icons.path),Default)] + !String.Contains(Skin.String(weather.icons.path),animated) + Skin.HasSetting(weather.icons.override) + [String.Contains(Skin.String(weather.icons.path),White) | String.Contains(Skin.String(weather.icons.path),Outline) | String.Contains(Skin.String(weather.icons.path),Transparent) | String.Contains(Skin.String(weather.icons.path),Monstr)]</visible>
@@ -2175,7 +2165,6 @@
                         <width max="60">auto</width>
                         <height>60</height>
                         <bottom>39</bottom>
-                        <align>right</align>
                         <aspectratio aligny="center" align="center">keep</aspectratio>
                         <texture colordiffuse="Dark2">$INFO[Weather.FanartCode,resource://resource.images.weathericons.white/,.png]</texture>
                         <visible>![$EXP[UseOutlookIconsWMO] + Skin.HasSetting(weather.icons.override)] + [[String.IsEmpty(Skin.String(weather.icons.path)) + !String.Contains(Skin.String(weather.icons.path),Default)] | [String.Contains(Skin.String(weather.icons.path),Default) + !Skin.HasSetting(weather.icons.override)] | [![String.IsEmpty(Skin.String(weather.icons.path)) | String.Contains(Skin.String(weather.icons.path),Default)] + !Skin.HasSetting(weather.icons.override)]]</visible>
@@ -2184,7 +2173,6 @@
                         <width max="60">auto</width>
                         <height>60</height>
                         <bottom>39</bottom>
-                        <align>right</align>
                         <aspectratio aligny="center" align="center">keep</aspectratio>
                         <texture>$INFO[Window(weather).Property(Current.OutlookIconWMO)]</texture>
                         <visible>$EXP[UseOutlookIconsWMO] + Skin.HasSetting(weather.icons.override)</visible>
@@ -2194,7 +2182,6 @@
                         <width max="60">auto</width>
                         <height>60</height>
                         <bottom>39</bottom>
-                        <align>right</align>
                         <aspectratio aligny="center" align="center">keep</aspectratio>
                         <texture>$INFO[Skin.String(weather.icons.path),,/]$INFO[Window(weather).Property(Current.FanartCode),,.png]</texture>
                         <visible>String.Contains(Skin.String(weather.icons.path),Default) + Skin.HasSetting(weather.icons.override)</visible>
@@ -2442,7 +2429,6 @@
                 <width>45</width>
                 <height>45</height>
                 <left>10</left>
-                <align>center</align>
                 <texture border="0" colordiffuse="Dark1">common/circle.png</texture>
             </control>
             <control type="label">
@@ -3128,7 +3114,6 @@
                     <width>45</width>
                     <height>45</height>
                     <left>10</left>
-                    <align>center</align>
                     <texture border="0" colordiffuse="Dark1">common/circle.png</texture>
                 </control>
                 <control type="label">

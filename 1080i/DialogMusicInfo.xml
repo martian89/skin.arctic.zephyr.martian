@@ -316,7 +316,7 @@
                         <param name="onclick1" value="Dialog.Close(all,force)"/>
                         <param name="onclick2" value="PlayerControl(Stop)"/>
                         <param name="onclick3" value="PlayMedia($ESCINFO[Container($PARAM[controlid]).ListItem.FileNameAndPath()])"/>
-                        <param name="ContentToLoad" value="$VAR[ContentMusicYoutube]" />
+                        <param name="ContentToLoad" value="$VAR[Path_MusicInfo_Youtube]" />
                         <param name="target" value="videos" />
                         <param name="limit" value="25" />
                         <param name="sortby" value="file" />
@@ -340,7 +340,7 @@
                         <param name="controlid" value="54"/>
                         <param name="onclick1" value="Dialog.Close(all,force)"/>
                         <param name="onclick2" value="PlayMedia($ESCINFO[Container($PARAM[controlid]).ListItem.FileNameAndPath()])"/>
-                        <param name="ContentToLoad" value="$VAR[MoreOfArtistContent]" />
+                        <param name="ContentToLoad" value="$VAR[Path_MusicInfo_MoreOfArtist]" />
                     </include>
                 </control>
                 <control type="group">
@@ -758,6 +758,10 @@
             <onright>SetFocus(53)</onright>
             <onright>RIGHT</onright>
             <onright>SetFocus(161)</onright>
+        </control>
+        <control type="list" id="4001">
+            <include>HiddenListControl</include>
+            <content>$VAR[Path_MusicInfo_Encoder]</content>
         </control>
         <control type="group">
             <visible>Control.HasFocus(161)</visible>
