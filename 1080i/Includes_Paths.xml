@@ -42,8 +42,8 @@
         <value condition="String.IsEqual(ListItem.DBType,movie) + !String.isEmpty(ListItem.UniqueId(tmdb))">$INFO[ListItem.UniqueId(tmdb),&amp;tmdb_id=,]</value>
         <value condition="String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(ListItem.Property(imdb_id))">$INFO[ListItem.Property(imdb_id),&amp;imdb_id=,]</value>
         <value condition="String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow)">$INFO[Window(home).Property(TMDbHelper.ListItem.tmdb_id),&amp;tmdb_id=,]$VAR[Path_Encoded_Title,&amp;query=,]$INFO[ListItem.Year,&amp;year=,]</value>        
-        <value condition="String.IsEqual(ListItem.DBType,episode)">$INFO[Window(home).Property(TMDbHelper.ListItem.tvshow.tmdb_id),&amp;tmdb_id=,]$VAR[Path_Encoded_TvShowTitle,&amp;query=,]$INFO[VideoPlayer.Season,&amp;season=,]$INFO[ListItem.Episode,&amp;episode=,]$INFO[ListItem.Year,&amp;episode_year=,]</value>
-        <value condition="String.IsEqual(ListItem.DBType,season) | String.StartsWith(ListItem.Label,Season)">$INFO[Window(home).Property(TMDbHelper.ListItem.tvshow.tmdb_id),&amp;tmdb_id=,]$VAR[Path_Encoded_TvShowTitle,&amp;query=,]$INFO[VideoPlayer.Season,&amp;season=,]</value>
+        <value condition="String.IsEqual(ListItem.DBType,episode)">$INFO[Window(home).Property(TMDbHelper.ListItem.tvshow.tmdb_id),&amp;tmdb_id=,]$VAR[Path_Encoded_TvShowTitle,&amp;query=,]$INFO[ListItem.Season,&amp;season=,]$INFO[ListItem.Episode,&amp;episode=,]$INFO[ListItem.Year,&amp;episode_year=,]</value>
+        <value condition="String.IsEqual(ListItem.DBType,season) | String.StartsWith(ListItem.Label,Season)">$INFO[Window(home).Property(TMDbHelper.ListItem.tvshow.tmdb_id),&amp;tmdb_id=,]$VAR[Path_Encoded_TvShowTitle,&amp;query=,]$INFO[ListItem.Season,&amp;season=,]</value>
         <value condition="!String.IsEmpty(ListItem.Title)">$VAR[Path_Encoded_Title,&amp;query=,]$INFO[ListItem.Year,&amp;year=,]</value>
         <value>$VAR[Path_Encoded_Label,&amp;query=,]</value>
     </variable>
@@ -91,6 +91,14 @@
     </variable>
     -->
 
+    <variable name="Path_InfoParams_TMDb_Type">
+        <value condition="ListItem.IsCollection | String.IsEqual(ListItem.DBType,set)">collection</value>    
+        <value condition="String.IsEqual(ListItem.DBType,tvshow)">tv</value>    
+        <value condition="String.IsEqual(ListItem.DBType,movie)">movie</value>    
+        <value condition="String.IsEqual(ListItem.DBType,season)">season</value>
+        <value condition="String.IsEqual(ListItem.DBType,episode)">episode</value>
+    </variable>
+
     <variable name="Path_InfoParams_TMDb_ID">
         <value condition="String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)">$INFO[ListItem.Property(tvshow.tmdb_id)]</value>    
         <value>$INFO[ListItem.Property(tmdb_id)]</value>
@@ -105,7 +113,6 @@
     </variable>
         
     <variable name="Path_InfoParams_DBID">
-        <value condition="String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)">$INFO[ListItem.TVShowDBID]</value>    
         <value>$INFO[ListItem.DBID]</value>
     </variable>
 
