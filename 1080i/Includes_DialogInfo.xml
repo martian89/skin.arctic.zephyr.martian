@@ -1045,7 +1045,7 @@
                 <visible>$EXP[IsPersonInfo]</visible>
             </control>
             <control type="radiobutton" id="11003">
-                <onfocus>SetProperty(videocrew,1)</onfocus>
+                <onfocus>SetProperty(actorcrew,1)</onfocus>
                 <onclick>SetProperty(content,13)</onclick>
                 <onclick>SetFocus(10072)</onclick>
                 <include content="DialogVideoInfoButtons">
@@ -1073,6 +1073,7 @@
                 <visible>String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,episode)</visible>
                 <onfocus>ClearProperty(dontslide,home)</onfocus>
                 <onclick>SetProperty(content,1)</onclick>
+                <onfocus condition="$EXP[TMDbHelperDataEnabled] + !Skin.HasSetting(extended.info.local.cast)">SetProperty(videocast,1)</onfocus>
                 <onclick condition="!$EXP[TMDbHelperDataEnabled] | Skin.HasSetting(extended.info.local.cast)">SetProperty(dontslide,1,home)</onclick>
                 <onclick condition="!$EXP[TMDbHelperDataEnabled] | Skin.HasSetting(extended.info.local.cast)">SetFocus(10050)</onclick>
                 <onclick condition="$EXP[TMDbHelperDataEnabled] + !Skin.HasSetting(extended.info.local.cast)">SetFocus(10052)</onclick>
@@ -1168,6 +1169,7 @@
                 <visible>$EXP[IsVideoInfo]</visible>
             </control>
             <control type="radiobutton" id="10017">
+                <onfocus>SetProperty(videofanart,1)</onfocus>
                 <onclick>SetProperty(content,5)</onclick>
                 <onclick>SetFocus(10055)</onclick>
                 <include content="DialogVideoInfoButtons">

@@ -120,45 +120,53 @@
         <value>RunScript(script.skinvariables,run_executebuiltin=special://skin/shortcuts/builtins/skinvariables-openinfo.json,use_rules=True)</value>
     </variable>
 
-    <variable name="Path_VideoInfo_Youtube">
-        <value condition="String.IsEqual(Window.Property(videoyoutube),1)">plugin://plugin.video.youtube/search/?q=$VAR[Path_Youtube_Query]</value>
-    </variable>
-
     <variable name="Path_VideoInfo_IMDbTrailer">
         <value condition="!String.IsEmpty(ListItem.UniqueId(imdb))">plugin://plugin.video.imdb.trailers/?action=play_id&amp;imdb=$INFO[ListItem.UniqueId(imdb)]</value>
         <value condition="!String.IsEmpty(Window(home).Property(TMDbHelper.ListItem.imdb_id))">plugin://plugin.video.imdb.trailers/?action=play_id&amp;imdb=$INFO[Window(home).Property(TMDbHelper.ListItem.imdb_id)]</value>
     </variable>
 
+    <variable name="Path_VideoInfo_Youtube">
+        <value condition="String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.DBType))">special://skin/extras/Null.xsp</value>
+        <value condition="!String.IsEmpty(Window.Property(videoyoutube))">plugin://plugin.video.youtube/search/?q=$VAR[Path_Youtube_Query]</value>
+    </variable>
+
     <variable name="Path_VideoInfo_OnlineFanart">
-        <value condition="$EXP[ShowTmdbArtwork]">plugin://plugin.video.themoviedb.helper/?info=fanart&amp;tmdb_type=$VAR[Path_ContextParams_TMDbType]$VAR[Path_Param_Query]&amp;nextpage=false</value>
+        <value condition="String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.DBType))">special://skin/extras/Null.xsp</value>
+        <value condition="$EXP[ShowTmdbArtwork] + !String.IsEmpty(Window.Property(videofanart))">plugin://plugin.video.themoviedb.helper/?info=fanart&amp;tmdb_type=$VAR[Path_ContextParams_TMDbType]$VAR[Path_Param_Query]&amp;nextpage=false</value>
     </variable>
 
     <variable name="Path_VideoInfo_OnlineCollection">
-        <value condition="$EXP[ShowTmdbSet] + String.IsEqual(ListItem.DBTYPE,set)">plugin://plugin.video.themoviedb.helper/?info=collection&amp;tmdb_type=collection&amp;tmdb_id=$INFO[Window(home).Property(TMDbHelper.ListItem.TMDb_ID)]&amp;nextpage=false&amp;cacheonly=true</value>
-        <value condition="$EXP[ShowTmdbSet]">plugin://plugin.video.themoviedb.helper/?info=collection&amp;tmdb_type=collection&amp;tmdb_id=$INFO[Window(home).Property(TMDbHelper.ListItem.Set.TMDb_ID)]&amp;nextpage=false&amp;cacheonly=true</value>
+        <value condition="String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.DBType))">special://skin/extras/Null.xsp</value>
+        <value condition="$EXP[ShowTmdbSet] + String.IsEqual(ListItem.DBTYPE,set) + !String.IsEmpty(Window.Property(videoset))">plugin://plugin.video.themoviedb.helper/?info=collection&amp;tmdb_type=collection&amp;tmdb_id=$INFO[Window(home).Property(TMDbHelper.ListItem.TMDb_ID)]&amp;nextpage=false&amp;cacheonly=true</value>
+        <value condition="$EXP[ShowTmdbSet] + !String.IsEmpty(Window.Property(videoset))">plugin://plugin.video.themoviedb.helper/?info=collection&amp;tmdb_type=collection&amp;tmdb_id=$INFO[Window(home).Property(TMDbHelper.ListItem.Set.TMDb_ID)]&amp;nextpage=false&amp;cacheonly=true</value>
     </variable>
 
     <variable name="Path_VideoInfo_OnlineCast">
-        <value condition="$EXP[ShowTmdbCast] + String.IsEqual(ListItem.DBTYPE,tvshow)">plugin://plugin.video.themoviedb.helper/?info=cast&amp;tmdb_type=$VAR[Path_ContextParams_TMDbType]$VAR[Path_Param_Query]&amp;aggregate=true&amp;limit=250&amp;nextpage=false&amp;cacheonly=true</value>
-        <value condition="$EXP[ShowTmdbCast]">plugin://plugin.video.themoviedb.helper/?info=cast&amp;tmdb_type=$VAR[Path_ContextParams_TMDbType]$VAR[Path_Param_Query]&amp;limit=250&amp;nextpage=false&amp;cacheonly=true</value>
+        <value condition="String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.DBType))">special://skin/extras/Null.xsp</value>
+        <value condition="$EXP[ShowTmdbCast] + String.IsEqual(ListItem.DBTYPE,tvshow) + !String.IsEmpty(Window.Property(videocast))">plugin://plugin.video.themoviedb.helper/?info=cast&amp;tmdb_type=$VAR[Path_ContextParams_TMDbType]$VAR[Path_Param_Query]&amp;aggregate=true&amp;limit=250&amp;nextpage=false&amp;cacheonly=true</value>
+        <value condition="$EXP[ShowTmdbCast] + !String.IsEmpty(Window.Property(videocast))">plugin://plugin.video.themoviedb.helper/?info=cast&amp;tmdb_type=$VAR[Path_ContextParams_TMDbType]$VAR[Path_Param_Query]&amp;limit=250&amp;nextpage=false&amp;cacheonly=true</value>
     </variable>
 
     <variable name="Path_VideoInfo_OnlineCrew">
+        <value condition="String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.DBType))">special://skin/extras/Null.xsp</value>
         <value condition="$EXP[ShowTmdbCrew] + !String.IsEmpty(Window.Property(videocrew))">plugin://plugin.video.themoviedb.helper/?info=crew&amp;tmdb_type=$VAR[Path_ContextParams_TMDbType]$VAR[Path_Param_Query]&amp;filter_key=job&amp;filter_value=Creator / Director / Producer / Screenplay / Writer / Original Music Composer / Novel / Storyboard / Comic Book&amp;exclude_key=job&amp;exclude_value=Associate / Assistant / Additional / Second / Supervising / Consulting / Standby / Intermediate / Artist / Line Producer / Digital Producer / Effects Producer / Music Producer / Technical Director / Art Director / Casting Director&amp;limit=250&amp;nextpage=false&amp;cacheonly=true</value>
     </variable>
 
     <variable name="Path_VideoInfo_OnlineDirector">
+        <value condition="String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.DBType))">special://skin/extras/Null.xsp</value>
         <value condition="$EXP[ShowTmdbDirector] + !String.IsEmpty(Window.Property(videodirector)) + !String.IsEmpty(ListItem.TvShowTitle)">plugin://plugin.video.themoviedb.helper/?info=crew_in_tvshows&amp;tmdb_type=person&amp;filter_key=job&amp;filter_value=Director$VAR[Path_FromDirector]&amp;exclude_key=title&amp;exclude_value=$VAR[Path_Encoded_TvShowTitle]&amp;sort_key=first_air_date$VAR[Path_Params_Default]</value>
         <value condition="$EXP[ShowTmdbDirector] + !String.IsEmpty(Window.Property(videodirector)) + String.IsEqual(ListItem.DBType,tvshow)">plugin://plugin.video.themoviedb.helper/?info=crew_in_tvshows&amp;tmdb_type=person&amp;filter_key=job&amp;filter_value=Director$VAR[Path_FromDirector]&amp;exclude_key=title&amp;exclude_value=$VAR[Path_Encoded_Title]&amp;sort_key=first_air_date$VAR[Path_Params_Default]</value>
         <value condition="$EXP[ShowTmdbDirector] + !String.IsEmpty(Window.Property(videodirector))">plugin://plugin.video.themoviedb.helper/?info=crew_in_movies&amp;tmdb_type=person&amp;filter_key=job&amp;filter_value=Director$VAR[Path_FromDirector]&amp;exclude_key=title&amp;exclude_value=$VAR[Path_Encoded_Title]&amp;sort_key=release_date$VAR[Path_Params_Default]</value>
     </variable>
 
     <variable name="Path_VideoInfo_OnlineStudio">
+        <value condition="String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.DBType))">special://skin/extras/Null.xsp</value>
         <value condition="$EXP[ShowTmdbStudio] + !String.IsEmpty(Window.Property(videostudio)) + !String.IsEmpty(ListItem.TvShowTitle)">plugin://plugin.video.themoviedb.helper?info=discover$VAR[Path_FromStudio]&amp;exclude_key=title&amp;exclude_value=$VAR[Path_Encoded_TvShowTitle]$VAR[Path_Params_Default]</value>
         <value condition="$EXP[ShowTmdbStudio] + !String.IsEmpty(Window.Property(videostudio))">plugin://plugin.video.themoviedb.helper?info=discover$VAR[Path_FromStudio]&amp;exclude_key=title&amp;exclude_value=$VAR[Path_Encoded_Title]$VAR[Path_Params_Default]</value>
     </variable>
 
     <variable name="Path_VideoInfo_Similar">
+        <value condition="String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.DBType))">special://skin/extras/Null.xsp</value>
         <value condition="$EXP[ShowTmdbSimilar] + !String.IsEmpty(Window.Property(videosimilar))">plugin://plugin.video.themoviedb.helper?info=similar&amp;tmdb_type=$VAR[Path_ContextParams_TMDbType]$VAR[Path_Param_Query]&amp;nextpage=false&amp;cacheonly=true</value>
     </variable>
 
@@ -171,19 +179,23 @@
     </variable>
 
     <variable name="Path_PersonInfo_Fanart">
+        <value condition="String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.DBType))">special://skin/extras/Null.xsp</value>
         <value condition="$EXP[ShowTmdbActorFanart] + $EXP[IsPersonInfo]">plugin://plugin.video.themoviedb.helper?info=images&amp;tmdb_type=person&amp;tmdb_id=$INFO[ListItem.Property(tmdb_id)]</value>
     </variable>
 
     <variable name="Path_PersonInfo_Movies">
+        <value condition="String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.DBType))">special://skin/extras/Null.xsp</value>
         <value condition="$EXP[ShowTmdbActorMovies] + !String.IsEmpty(Window.Property(actormovies))">plugin://plugin.video.themoviedb.helper?info=stars_in_movies&amp;tmdb_type=person&amp;tmdb_id=$INFO[ListItem.Property(tmdb_id)]&amp;sort_key=release_date$VAR[Path_Params_Default]</value>
     </variable>
 
     <variable name="Path_PersonInfo_TVShows">
+        <value condition="String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.DBType))">special://skin/extras/Null.xsp</value>
         <value condition="$EXP[ShowTmdbActorTvShows] + !String.IsEmpty(Window.Property(actortvshows))">plugin://plugin.video.themoviedb.helper?info=stars_in_tvshows&amp;tmdb_type=person&amp;tmdb_id=$INFO[ListItem.Property(tmdb_id)]&amp;sort_key=first_air_date$VAR[Path_Params_Default]</value>
     </variable>
 
     <variable name="Path_PersonInfo_CrewInBoth">
-        <value condition="$EXP[ShowTmdbActorInCrew] + !String.IsEmpty(Window.Property(videocrew))">plugin://plugin.video.themoviedb.helper?info=crew_in_both&amp;tmdb_type=person&amp;tmdb_id=$INFO[ListItem.Property(tmdb_id)]&amp;sort_key=year$VAR[Path_Params_Default]</value>
+        <value condition="String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.DBType))">special://skin/extras/Null.xsp</value>
+        <value condition="$EXP[ShowTmdbActorInCrew] + !String.IsEmpty(Window.Property(actorcrew))">plugin://plugin.video.themoviedb.helper?info=crew_in_both&amp;tmdb_type=person&amp;tmdb_id=$INFO[ListItem.Property(tmdb_id)]&amp;sort_key=year$VAR[Path_Params_Default]</value>
     </variable>
 
     <variable name="Path_MusicInfo_Youtube">
