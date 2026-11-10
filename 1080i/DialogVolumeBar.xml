@@ -17,15 +17,15 @@
                     <posy>0</posy>
                     <width>660</width>
                     <height>100</height>
-                    <animation effect="fade" start="100" end="90" condition="true">Conditional</animation>
-                    <texture border="16" colordiffuse="Background">common/rounded-shadow8.png</texture>
+                    <animation effect="fade" start="100" end="90" condition="Skin.HasSetting(osd.usetheme) | [!Window.IsVisible(fullscreenvideo) + !Window.IsVisible(visualisation)]">Conditional</animation>
+                    <texture border="16" colordiffuse="$VAR[OSDPanel]">common/rounded-shadow8.png</texture>
                 </control>
                 <control type="image">
                     <left>7</left>
                     <top>7</top>
                     <right>7</right>
                     <bottom>7</bottom>
-                    <texture colordiffuse="BoxNotification" border="4" background="true" infill="false">common/box21.png</texture>
+                    <texture colordiffuse="$VAR[OSDBoxNotification]" border="4" background="true" infill="false">common/box21.png</texture>
                     <visible>Skin.HasSetting(global.showborders)</visible>
                 </control>
                 <control type="group">
@@ -36,7 +36,7 @@
                         <width>64</width>
                         <height>64</height>
                         <aspectratio>keep</aspectratio>
-                        <texture colordiffuse="Dark1">buttons/volume.png</texture>
+                        <texture colordiffuse="$VAR[OSDPanelWhite70]">buttons/volume.png</texture>
                         <visible>!Player.Muted</visible>
                     </control>
                     <control type="image">
@@ -45,7 +45,7 @@
                         <width>64</width>
                         <height>64</height>
                         <aspectratio>keep</aspectratio>
-                        <texture colordiffuse="Dark1">buttons/mute.png</texture>
+                        <texture colordiffuse="$VAR[OSDPanelWhite70]">buttons/mute.png</texture>
                         <visible>Player.Muted</visible>
                     </control>
                     <control type="label">
@@ -54,7 +54,7 @@
                         <height>24</height>
                         <font>Tiny</font>
                         <label>$LOCALIZE[13376]$INFO[Player.Volume,  ,]</label>
-                        <textcolor>Dark1</textcolor>
+                        <textcolor>$VAR[OSDPanelWhite70]</textcolor>
                     </control>
                     <control type="label">
                         <align>right</align>
@@ -63,7 +63,7 @@
                         <height>24</height>
                         <font>Tiny</font>
                         <label>$INFO[Control.GetLabel(1),, %]</label>
-                        <textcolor>Dark1</textcolor>
+                        <textcolor>$VAR[OSDPanelWhite70]</textcolor>
                     </control>
                     <control type="progress">
                         <description>progress control</description>
@@ -81,7 +81,7 @@
                         <left>38</left>
                         <centertop>50%</centertop>
                         <height>24</height>
-                        <textcolor>Dark1</textcolor>
+                        <textcolor>$VAR[OSDPanelWhite70]</textcolor>
                         <font>Tiny</font>
                         <label>29802</label>
                     </control>
@@ -114,8 +114,8 @@
                     <top>-8</top>
                     <width>100</width>
                     <height>100</height>
-                    <animation effect="fade" start="100" end="90" condition="true">Conditional</animation>
-                    <texture border="16" colordiffuse="Background">common/rounded-shadow8.png</texture>
+                    <animation effect="fade" start="100" end="90" condition="Skin.HasSetting(osd.usetheme) | [!Window.IsVisible(fullscreenvideo) + !Window.IsVisible(visualisation)]">Conditional</animation>
+                    <texture border="16" colordiffuse="$VAR[OSDPanel]">common/rounded-shadow8.png</texture>
                 </control>
                 <control type="image" id="901">
                     <centerleft>42</centerleft>
@@ -123,7 +123,7 @@
                     <width>64</width>
                     <height>64</height>
                     <aspectratio>keep</aspectratio>
-                    <texture colordiffuse="Dark1">buttons/mute.png</texture>
+                    <texture colordiffuse="$VAR[OSDPanelWhite70]">buttons/mute.png</texture>
                 </control>
             </control>
         </control>

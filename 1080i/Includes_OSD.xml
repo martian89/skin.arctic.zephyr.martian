@@ -1439,44 +1439,41 @@
         </control>
     </include>
 
+    <variable name="OSDBoxNotification">
+        <value condition="[Skin.HasSetting(osd.usetheme)] | [!Window.IsVisible(fullscreenvideo) + !Window.IsVisible(visualisation)]">BoxNotification</value>
+        <value>PanelWhite30</value>
+    </variable>
     <variable name="OSDBox2">
-        <value condition="!Skin.HasSetting(osd.usetheme)">PanelWhite70</value>
-        <value>Box2</value>
+        <value condition="[Skin.HasSetting(osd.usetheme)] | [!Window.IsVisible(fullscreenvideo) + !Window.IsVisible(visualisation)]">Box2</value>
+        <value>PanelWhite70</value>
     </variable>
-
     <variable name="OSDPanel">
-        <value condition="!Skin.HasSetting(osd.usetheme)">ff1A1A1A</value>
-        <value>Background</value>
+        <value condition="[Skin.HasSetting(osd.usetheme)] | [!Window.IsVisible(fullscreenvideo) + !Window.IsVisible(visualisation)]">Background</value>
+        <value>OSDBack</value>
     </variable>
-
     <variable name="OSDPanelWhite12">
-        <value condition="!Skin.HasSetting(osd.usetheme)">PanelWhite12</value>
-        <value>Dark3</value>
+        <value condition="[Skin.HasSetting(osd.usetheme)] | [!Window.IsVisible(fullscreenvideo) + !Window.IsVisible(visualisation)]">Dark3</value>
+        <value>PanelWhite12</value>
     </variable>
-
     <variable name="OSDPanelWhite30">
-        <value condition="!Skin.HasSetting(osd.usetheme)">PanelWhite70</value>
-        <value>Dark2</value>
+        <value condition="[Skin.HasSetting(osd.usetheme)] | [!Window.IsVisible(fullscreenvideo) + !Window.IsVisible(visualisation)]">Dark2</value>
+        <value>PanelWhite70</value>
     </variable>
-
     <variable name="OSDPanelWhite70">
-        <value condition="!Skin.HasSetting(osd.usetheme)">PanelWhite90</value>
-        <value>Dark1</value>
+        <value condition="[Skin.HasSetting(osd.usetheme)] | [!Window.IsVisible(fullscreenvideo) + !Window.IsVisible(visualisation)]">Dark1</value>
+        <value>PanelWhite90</value>
     </variable>
-
     <variable name="OSDPanelWhite70-Kaitoast">
-        <value condition="String.IsEqual(Control.GetLabel(400),kaitoast/info.png)">$VAR[OSDPanelWhite70]</value>
-        <value>ffbbbbbb</value>
+        <value condition="String.StartsWith(Control.GetLabel(400),Default)">$VAR[OSDPanelWhite70]</value>
+        <value>FFffffff</value>
     </variable>
-
     <variable name="OSDPanelWhite100">
-        <value condition="!Skin.HasSetting(osd.usetheme)">PanelWhite100</value>
-        <value>Dark1</value>
+        <value condition="[Skin.HasSetting(osd.usetheme)] | [!Window.IsVisible(fullscreenvideo) + !Window.IsVisible(visualisation)]">Dark1</value>
+        <value>PanelWhite100</value>
     </variable>
-
     <variable name="OSDFallback">
-        <value condition="!Skin.HasSetting(osd.usetheme)">$VAR[OSDPanel]</value>
-        <value>Fallback</value>
+        <value condition="[Skin.HasSetting(osd.usetheme)] | [!Window.IsVisible(fullscreenvideo) + !Window.IsVisible(visualisation)]">Fallback</value>
+        <value>$VAR[OSDPanel]</value>
     </variable>
 
     <include name="OSDControlsHome">
@@ -2094,7 +2091,7 @@
                     <width>100%</width>
                     <height>100%</height>
                     <colordiffuse>$VAR[OSDPanel]</colordiffuse>
-                    <animation effect="fade" start="100" end="90" condition="true">Conditional</animation>
+                    <animation effect="fade" start="100" end="90" condition="Skin.HasSetting(osd.usetheme) | [!Window.IsVisible(fullscreenvideo) + !Window.IsVisible(visualisation)]">Conditional</animation>
                     <texture border="16">common/rounded-shadow8.png</texture>
                     <visible>Player.HasVideo</visible>
                 </control>
@@ -2105,7 +2102,7 @@
                     <width>50%</width>
                     <height>100%</height>
                     <colordiffuse>$VAR[OSDPanel]</colordiffuse>
-                    <animation effect="fade" start="100" end="90" condition="true">Conditional</animation>
+                    <animation effect="fade" start="100" end="90" condition="Skin.HasSetting(osd.usetheme) | [!Window.IsVisible(fullscreenvideo) + !Window.IsVisible(visualisation)]">Conditional</animation>
                     <texture border="16">common/rounded-shadow8.png</texture>
                     <visible>!Player.HasVideo</visible>
                 </control>
@@ -2114,8 +2111,7 @@
                     <top>7</top>
                     <right>7</right>
                     <bottom>7</bottom>
-                    <texture colordiffuse="$VAR[ColorBorder]" border="4" background="true" infill="false">common/box21.png</texture>
-                    <animation effect="fade" start="100" end="80" condition="!Skin.HasSetting(osd.usetheme)">Conditional</animation>
+                    <texture colordiffuse="$VAR[OSDBoxNotification]" border="4" background="true" infill="false">common/box21.png</texture>
                     <visible>Skin.HasSetting(global.showborders)</visible>
                 </control>
                 <control type="group">
@@ -2494,7 +2490,14 @@
             <animation type="WindowClose">
                 <effect type="fade" end="0" start="100" time="250"/>
             </animation>
+            <animation type="Visible">
+                <effect type="fade" start="0" end="100" time="250" delay="200"/>
+            </animation>
+            <animation type="Hidden">
+                <effect type="fade" end="0" start="100" time="150"/>
+            </animation>
             <animation effect="fade" start="100" end="0" time="150" condition="Window.IsVisible(DialogPlayerProcessInfo.xml)">Conditional</animation>
+            <visible>!Window.IsVisible(pvrosdchannels) + !Window.IsVisible(pvrchannelguide) + !Window.IsVisible(pvrguideinfo)</visible>
 
             <control type="grouplist" id="101">
                 <top>-15</top>
@@ -2877,7 +2880,7 @@
 
             <!-- Background left -->
             <control type="group">
-                <visible>Window.IsVisible(videoosd) | $EXP[PlayerShowSideOSDInfo]</visible>
+                <visible>[Window.IsVisible(videoosd) | $EXP[PlayerShowSideOSDInfo]] + !Window.IsVisible(pvrosdchannels) + !Window.IsVisible(pvrchannelguide) + !Window.IsVisible(pvrguideinfo)</visible>
                 <animation type="Visible">
                     <effect type="slide" start="-700" end="0" time="250"/>
                     <effect type="fade" start="0" end="100" time="100"/>
@@ -2909,7 +2912,7 @@
                     <height>100%</height>
                     <texture>common/white.png</texture>
                     <colordiffuse>$VAR[OSDPanel]</colordiffuse>
-                    <animation effect="fade" start="100" end="90" condition="true">Conditional</animation>
+                    <animation effect="fade" start="100" end="90" condition="Skin.HasSetting(osd.usetheme)">Conditional</animation>
                 </control>
             </control>
             
@@ -2920,7 +2923,7 @@
                 <bottom>0</bottom>
                 <width>640</width>
                 <height>1020</height>
-                <visible>Window.IsVisible(videoosd) | $EXP[PlayerShowSideOSDInfo]</visible>
+                <visible>[Window.IsVisible(videoosd) | $EXP[PlayerShowSideOSDInfo]] + !Window.IsVisible(pvrosdchannels) + !Window.IsVisible(pvrchannelguide) + !Window.IsVisible(pvrguideinfo)</visible>
                 <animation type="Visible">
                     <effect type="slide" start="-700" end="0" time="250"/>
                     <effect type="fade" start="0" end="100" time="100"/>

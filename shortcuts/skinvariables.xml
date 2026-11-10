@@ -24,7 +24,7 @@
         <value condition="!Skin.HasSetting(hide.markers.inprogress) + $EXP[IsInProgress{cid}{lid}]">$VAR[LabelInProgressPercentage{cid}{lid}]</value>
         <value condition="!Skin.HasSetting(hide.markers.watched) + $EXP[IsWatched{cid}{lid}]">[COLOR=WatchedProgress]&#62078;[/COLOR]</value>
         <value condition="!Skin.HasSetting(hide.markers.newcontent) + $EXP[IsNewContent{cid}{lid}]">[COLOR=$VAR[ColorHighlight]]&#62079;[/COLOR]</value>
-        <value condition="!String.IsEmpty({listitem}.Property(Item.Info)) + !String.IsEmpty({listitem}.DBID) + !Skin.HasSetting(hide.markers.library)">&#62698;</value>
+        <value condition="!String.IsEmpty({listitem}.Property(Item.Info)) + [!String.IsEmpty({listitem}.DBID) | !String.IsEmpty({listitem}.Property(DBID))] + !Skin.HasSetting(hide.markers.library)">&#62698;</value>
         <value condition="{listitem}.IsCollection + !Skin.HasSetting(hide.markers.collection)">&#59649;</value>
         <value condition="Skin.HasSetting(markers.unwatched) + $EXP[IsUnwatched{cid}{lid}]">&#61833;</value>
         <value condition="{listitem}.IsFolder">&#59650;</value>
@@ -52,7 +52,7 @@
         <value condition="!Skin.HasSetting(hide.markers.inprogress) + $EXP[IsInProgress{cid}{lid}]">$VAR[PosterInProgressIndicator]</value>
         <value condition="!Skin.HasSetting(hide.markers.watched) + $EXP[IsWatched{cid}{lid}]">indicator/poster-checkmark.png</value>
         <value condition="!Skin.HasSetting(hide.markers.newcontent) + $EXP[IsNewContent{cid}{lid}]">indicator/poster-new.png</value>
-        <value condition="!String.IsEmpty({listitem}.DBID) + !String.IsEmpty({listitem}.Property(Item.Info)) + !Skin.HasSetting(hide.markers.library)">indicator/poster-library.png</value>
+        <value condition="[!String.IsEmpty({listitem}.DBID) | !String.IsEmpty({listitem}.Property(DBID))] + !String.IsEmpty({listitem}.Property(Item.Info)) + !Skin.HasSetting(hide.markers.library)">indicator/poster-library.png</value>
         <value condition="{listitem}.IsCollection + !Skin.HasSetting(hide.markers.collection)">indicator/poster-movieset.png</value>
         <value condition="Skin.HasSetting(markers.unwatched) + $EXP[IsUnwatched{cid}{lid}]">indicator/poster-unwatched.png</value>
     </variable>
@@ -65,7 +65,7 @@
         <value condition="!Skin.HasSetting(hide.markers.inprogress) + $EXP[IsInProgress{cid}{lid}]">indicator/backing.png</value>
         <value condition="!Skin.HasSetting(hide.markers.watched) + $EXP[IsWatched{cid}{lid}]">indicator/backing.png</value>
         <value condition="!Skin.HasSetting(hide.markers.newcontent) + $EXP[IsNewContent{cid}{lid}]">indicator/backing.png</value>
-        <value condition="!String.IsEmpty({listitem}.DBID) + !String.IsEmpty({listitem}.Property(Item.Info)) + !Skin.HasSetting(hide.markers.library)">indicator/backing.png</value>
+        <value condition="[!String.IsEmpty({listitem}.DBID) | !String.IsEmpty({listitem}.Property(DBID))] + !String.IsEmpty({listitem}.Property(Item.Info)) + !Skin.HasSetting(hide.markers.library)">indicator/backing.png</value>
         <value condition="{listitem}.IsCollection + !Skin.HasSetting(hide.markers.collection)">indicator/backing.png</value>
         <value condition="Skin.HasSetting(markers.unwatched) + $EXP[IsUnwatched{cid}{lid}]">indicator/backing.png</value>
     </variable>

@@ -16,7 +16,7 @@
                 <top>7</top>
                 <right>7</right>
                 <bottom>7</bottom>
-                <texture colordiffuse="BoxNotification" border="4" background="true" infill="false">common/box21.png</texture>
+                <texture colordiffuse="$VAR[OSDBoxNotification]" border="4" background="true" infill="false">common/box21.png</texture>
                 <visible>Skin.HasSetting(global.showborders)</visible>
             </control>
             <control type="image">
@@ -25,8 +25,8 @@
                 <posy>0</posy>
                 <width>660</width>
                 <height>100</height>
-                <colordiffuse>Background</colordiffuse>
-                <animation effect="fade" start="100" end="90" condition="true">Conditional</animation>
+                <colordiffuse>$VAR[OSDPanel]</colordiffuse>
+                <animation effect="fade" start="100" end="90" condition="Skin.HasSetting(osd.usetheme) | [!Window.IsVisible(fullscreenvideo) + !Window.IsVisible(visualisation)]">Conditional</animation>
                 <texture diffuse="diffuse/wall-fanart.png" border="16">common/rounded-shadow8.png</texture>
             </control>
             <control type="group">
@@ -45,7 +45,7 @@
                     <top>22</top>
                     <height>24</height>
                     <font>TinyBold</font>
-                    <textcolor>Dark1</textcolor>
+                    <textcolor>$VAR[OSDPanelWhite70]</textcolor>
                 </control>
                 <control type="label" id="402">
                     <left>104</left>
@@ -53,7 +53,7 @@
                     <bottom>22</bottom>
                     <height>24</height>
                     <font>Tiny</font>
-                    <textcolor>Dark1</textcolor>
+                    <textcolor>$VAR[OSDPanelWhite70]</textcolor>
                 </control>
             </control>
         </control>
