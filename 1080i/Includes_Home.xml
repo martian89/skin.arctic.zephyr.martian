@@ -171,7 +171,7 @@
                     <width>64</width>
                     <height>64</height>
                     <aspectratio>keep</aspectratio>
-                    <texture colordiffuse="Dark1">kaitoast/info.png</texture>
+                    <texture colordiffuse="Dark1">DefaultIconInfo.png</texture>
                 </control>
                 <control type="label">
                     <left>97</left>
@@ -2739,7 +2739,7 @@
 
         <!-- Library -->
         <control type="grouplist">
-            <visible>!String.IsEmpty(Container($PARAM[id]).ListItem.DBID) + !String.IsEmpty(Container($PARAM[id]).ListItem.Property(Item.Info)) + !Skin.HasSetting(hide.markers.library)
+            <visible>[!String.IsEmpty(Container($PARAM[id]).ListItem.DBID) | !String.IsEmpty(Container($PARAM[id]).ListItem.Property(DBID))] + !String.IsEmpty(Container($PARAM[id]).ListItem.Property(Item.Info)) + !Skin.HasSetting(hide.markers.library)
             	+ [!Container($PARAM[id]).ListItem.HasVideoExtras | Skin.HasSetting(hide.markers.extras)]
             	+ [!Container($PARAM[id]).ListItem.HasVideoVersions | Skin.HasSetting(hide.markers.versions)]
             	+ [!Container($PARAM[id]).ListItem.IsPlaying | Skin.HasSetting(hide.markers.isplaying)]
@@ -2810,7 +2810,7 @@
         <!-- Collection -->
         <control type="grouplist">
             <visible>Container($PARAM[id]).ListItem.IsCollection + !Skin.HasSetting(hide.markers.collection)
-                + [String.IsEmpty(Container($PARAM[id]).ListItem.DBID) | String.IsEmpty(Container($PARAM[id]).ListItem.Property(Item.Info)) | Skin.HasSetting(hide.markers.library)]
+                + [String.IsEmpty(Container($PARAM[id]).ListItem.DBID) + String.IsEmpty(Container($PARAM[id]).ListItem.Property(DBID)) | String.IsEmpty(Container($PARAM[id]).ListItem.Property(Item.Info)) | Skin.HasSetting(hide.markers.library)]
                 + [Skin.HasSetting(hide.markers.watched) | ![String.IsEqual(Container($PARAM[id]).ListItem.Overlay,OverlayWatched.png) | Integer.IsGreater(Container($PARAM[id]).ListItem.PlayCount,0)]]
                 + [Skin.HasSetting(hide.markers.inprogress) | !Container($PARAM[id]).ListItem.IsResumable]
             </visible>
@@ -2827,7 +2827,7 @@
 
         <!-- Unwatched -->
         <control type="grouplist">
-            <visible>Skin.HasSetting(markers.unwatched) + String.IsEmpty(Container($PARAM[id]).ListItem.DBID) + !Container($PARAM[id]).ListItem.IsResumable
+            <visible>Skin.HasSetting(markers.unwatched) + String.IsEmpty(Container($PARAM[id]).ListItem.DBID) + String.IsEmpty(Container($PARAM[id]).ListItem.Property(DBID)) + !Container($PARAM[id]).ListItem.IsResumable
               + [!Container($PARAM[id]).ListItem.IsPlaying | Skin.HasSetting(hide.markers.isplaying)]               
               + [!Container($PARAM[id]).ListItem.HasVideoVersions | Skin.HasSetting(hide.markers.versions)]
               + [!Container($PARAM[id]).ListItem.HasVideoExtras | Skin.HasSetting(hide.markers.extras)]
