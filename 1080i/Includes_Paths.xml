@@ -132,7 +132,7 @@
 
     <variable name="Path_VideoInfo_OnlineFanart">
         <value condition="String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.DBType))">special://skin/extras/Null.xsp</value>
-        <value condition="$EXP[ShowTmdbArtwork] + !String.IsEmpty(Window.Property(videofanart))">plugin://plugin.video.themoviedb.helper/?info=fanart&amp;tmdb_type=$VAR[Path_ContextParams_TMDbType]$VAR[Path_Param_Query]&amp;nextpage=false</value>
+        <value condition="$EXP[ShowTmdbArtwork]">plugin://plugin.video.themoviedb.helper/?info=fanart&amp;tmdb_type=$VAR[Path_ContextParams_TMDbType]$VAR[Path_Param_Query]&amp;nextpage=false</value>
     </variable>
 
     <variable name="Path_VideoInfo_OnlineCollection">
@@ -143,8 +143,8 @@
 
     <variable name="Path_VideoInfo_OnlineCast">
         <value condition="String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.DBType))">special://skin/extras/Null.xsp</value>
-        <value condition="$EXP[ShowTmdbCast] + String.IsEqual(ListItem.DBTYPE,tvshow) + !String.IsEmpty(Window.Property(videocast))">plugin://plugin.video.themoviedb.helper/?info=cast&amp;tmdb_type=$VAR[Path_ContextParams_TMDbType]$VAR[Path_Param_Query]&amp;aggregate=true&amp;limit=250&amp;nextpage=false&amp;cacheonly=true</value>
-        <value condition="$EXP[ShowTmdbCast] + !String.IsEmpty(Window.Property(videocast))">plugin://plugin.video.themoviedb.helper/?info=cast&amp;tmdb_type=$VAR[Path_ContextParams_TMDbType]$VAR[Path_Param_Query]&amp;limit=250&amp;nextpage=false&amp;cacheonly=true</value>
+        <value condition="$EXP[ShowTmdbCast] + String.IsEqual(ListItem.DBTYPE,tvshow)">plugin://plugin.video.themoviedb.helper/?info=cast&amp;tmdb_type=$VAR[Path_ContextParams_TMDbType]$VAR[Path_Param_Query]&amp;aggregate=true&amp;limit=250&amp;nextpage=false&amp;cacheonly=true</value>
+        <value condition="$EXP[ShowTmdbCast]">plugin://plugin.video.themoviedb.helper/?info=cast&amp;tmdb_type=$VAR[Path_ContextParams_TMDbType]$VAR[Path_Param_Query]&amp;limit=250&amp;nextpage=false&amp;cacheonly=true</value>
     </variable>
 
     <variable name="Path_VideoInfo_OnlineCrew">
