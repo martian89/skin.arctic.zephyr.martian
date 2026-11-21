@@ -1,10 +1,14 @@
 <window>
 	<controls>
         <include>GlobalOverlay</include>
-		<include content="DefDialog">
+		<include content="Dialog_Standard_Layout">
 			<param name="header_id" value="2" />
 
-			<control type="list" id="10">
+            <include content="Dialog_List">
+                <param name="id" value="10" />
+                <param name="itemlayout_include" value="Dialog_SimpleList_Layout" />
+                <param name="indicators" value="false" />
+
 				<left>8</left>
 				<width>1064</width>
 				<posy>115</posy>
@@ -12,10 +16,7 @@
 				<onleft>9001</onleft>
 				<onright>1723</onright>
 				<pagecontrol>1723</pagecontrol>
-				<include content="Def_SimpleListLayout">
-					<param name="indicators" value="false" />
-				</include>
-			</control>
+			</include>
 
 			<include content="Furniture_Scrollbar_Dialog">
 				<param name="id" value="1723" />
@@ -73,7 +74,7 @@
 				<font>Tiny</font>
 			</control>
 
-			<include>DialogSelectlabelInclude</include>
+			<include>Dialog_Part_CurrentItem</include>
 
 		</include>
 	</controls>

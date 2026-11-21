@@ -1,0 +1,519 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+
+    <include name="Dialog_Standard_Layout">
+        <param name="header_id"/>
+        <param name="header_label"/>
+        <param name="width" default="1080"/>
+        <param name="height" default="900"/>
+        
+        <definition>
+            <control type="group">
+                <include content="DefDialogBackground">
+                    <param name="width" value="$PARAM[width]"/>
+                    <param name="height" value="$PARAM[height]"/>
+                </include>
+                <include content="Dialog_Part_HeaderLabel">
+                    <param name="id" value="$PARAM[header_id]" />
+                    <param name="label" value="$PARAM[header_label]" />
+                </include>
+                <include>Dialog_Part_Logo</include>
+                <include>Dialog_Part_Line</include>
+                <nested />
+            </control>
+        </definition>
+    </include>
+
+    <include name="Dialog_Part_HeaderLabel">
+	    <control type="label" id="$PARAM[id]">
+	        <include>DefDialogHeader</include>
+	        <label>$PARAM[label]</label>
+	    </control>
+    </include>
+
+    <include name="Dialog_Part_Logo">
+	    <include content="Kodi_Logo">
+	        <param name="dimensions" value="40"/>
+	        <param name="top" value="40"/>
+	        <param name="left" value="40"/>
+	    </include>
+    </include>
+    
+    <include name="Dialog_Part_Line">
+	    <control type="image">
+	        <top>95</top>
+	        <left>40</left>
+	        <right>40</right>
+	        <height>1</height>
+	        <colordiffuse>Black12</colordiffuse>
+	        <texture>common/white.png</texture>
+	    </control>      
+    </include>
+
+    <include name="Dialog_Part_CurrentItem">
+        <control type="label">
+            <include>Animation.FadeIn</include>
+            <include>Animation.FadeOut</include>
+            <right>40</right>
+            <font>Tiny</font>
+            <height>50</height>
+            <bottom>30</bottom>
+            <align>right</align>
+            <textcolor>Black70</textcolor>
+            <label>$VAR[DialogSelectlabel]</label>
+        </control>
+    </include>
+	
+	<include name="Dialog_List">
+        <param name="id" />        
+        <param name="control" default="list"/>        
+        <param name="item_w" default="696" />        
+        <param name="item_h" default="66" />
+        <param name="itemlayout_include" />
+        <param name="itemlayout_w" default="696"/>
+        <param name="itemlayout_h" default="69"/>
+        <param name="focused" default="true"/>
+        <param name="indicators" default="true" />      
+        <param name="selected" default="ListItem.IsSelected" />
+        <param name="default_icon" default="false" />      
+        <param name="textcolor" default="Black70" />      
+        <param name="altfocus" default="false" />
+		<definition>
+			<control type="$PARAM[control]" id="$PARAM[id]">
+				<nested />
+	            <itemlayout height="$PARAM[itemlayout_h]" width="$PARAM[itemlayout_w]">
+	            	<include content="$PARAM[itemlayout_include]">
+				        <param name="item_w" value="$PARAM[item_w]" />        
+				        <param name="item_h" value="$PARAM[item_h]" />
+				        <param name="indicators" value="$PARAM[indicators]" />      
+				        <param name="selected" value="$PARAM[selected]"  />
+				        <param name="default_icon" value="$PARAM[default_icon]"  />      
+				        <param name="textcolor" value="$PARAM[textcolor]" />      
+				        <param name="focused" value="false"/>
+				        <param name="misc" value="$PARAM[misc]"/>
+	            	</include>
+	            </itemlayout>
+	            <focusedlayout height="$PARAM[itemlayout_h]" width="$PARAM[itemlayout_w]" condition="!$PARAM[focused] + !$PARAM[altfocus]">
+	            	<include content="$PARAM[itemlayout_include]">
+				        <param name="item_w" value="$PARAM[item_w]" />        
+				        <param name="item_h" value="$PARAM[item_h]" />
+				        <param name="indicators" value="$PARAM[indicators]" />      
+				        <param name="selected" value="$PARAM[selected]"  />
+				        <param name="default_icon" value="$PARAM[default_icon]"  />      
+				        <param name="textcolor" value="$PARAM[textcolor]" />      
+				        <param name="focused" value="false"/>
+				        <param name="misc" value="$PARAM[misc]"/>
+	            	</include>
+	            </focusedlayout>
+	            <focusedlayout height="$PARAM[itemlayout_h]" width="$PARAM[itemlayout_w]" condition="$PARAM[focused] | $PARAM[altfocus]">
+					<include content="Dialog_List_Layout_Highlight">
+				        <param name="focused" value="$PARAM[focused]" />
+				        <param name="item_h" value="$PARAM[item_h]" />
+					</include>
+	            	<include content="$PARAM[itemlayout_include]">
+				        <param name="item_w" value="$PARAM[item_w]" />        
+				        <param name="item_h" value="$PARAM[item_h]" />
+				        <param name="indicators" value="$PARAM[indicators]" />      
+				        <param name="selected" value="$PARAM[selected]"  />
+				        <param name="default_icon" value="$PARAM[default_icon]"  />      
+				        <param name="textcolor" value="Selected" />      
+				        <param name="focused" value="true"/>
+				        <param name="misc" value="$PARAM[misc]"/>
+	            	</include>
+	            </focusedlayout>
+			</control>
+		</definition>
+	</include>
+
+    <include name="Dialog_List_Layout_Highlight">
+	    <control type="image">
+	        <left>0</left>
+	        <right>0</right>
+	        <height>$PARAM[item_h]</height>
+	        <texture border="5" colordiffuse="$VAR[ColorHighlight]">common/white.png</texture>
+            <animation effect="fade" start="100" end="50" condition="!$PARAM[focused]">Conditional</animation>
+	    </control>
+	    <control type="image">
+	        <left>0</left>
+	        <right>0</right>
+	        <height>$PARAM[item_h]</height>
+	        <texture border="8" colordiffuse="$VAR[ColorGradient]">common/gradient-box-wide-cut.png</texture>
+            <animation effect="fade" start="100" end="50" condition="!$PARAM[focused]">Conditional</animation>
+	    </control>
+	</include>
+
+	<include name="Dialog_List_Layout_Icon">
+		<param name="width" default="111" />
+		<param name="offset_x" default="32" />
+		<param name="offset_y" default="12" />
+		<param name="border_width" default="113" />
+		<param name="border_offset_x" default="31" />
+		<param name="border_offset_y" default="11" />
+		<param name="colordiffuse" default="Black70" />
+		<param name="focused" default="true" />
+		<param name="default_icon" default="false" />
+		<definition>
+		    <control type="image">
+		        <posx>$PARAM[offset_x]</posx>
+		        <posy>$PARAM[offset_y]</posy>
+		        <width>$PARAM[width]</width>
+		        <height>$PARAM[width]</height>
+		        <aspectratio scalediffuse="false">scale</aspectratio>
+		        <texture diffuse="diffuse/dialogselect.png" fallback="DefaultAddonNone.png">$PARAM[icon]</texture>
+		        <visible>!Skin.HasSetting(global.hidecirles) + [$PARAM[focused] | !$PARAM[default_icon]]</visible>
+		    </control>
+		    <control type="image">
+		        <posx>$PARAM[offset_x]</posx>
+		        <posy>$PARAM[offset_y]</posy>
+		        <width>$PARAM[width]</width>
+		        <height>$PARAM[width]</height>
+		        <aspectratio scalediffuse="false">scale</aspectratio>
+		        <texture colordiffuse="$PARAM[colordiffuse]" diffuse="diffuse/dialogselect.png" fallback="DefaultAddonNone.png">$PARAM[icon]</texture>
+		        <visible>!Skin.HasSetting(global.hidecirles) + !$PARAM[focused] + $PARAM[default_icon]</visible>
+		    </control>
+		    <control type="image">
+		        <posx>$PARAM[offset_x]</posx>
+		        <posy>$PARAM[offset_y]</posy>
+		        <width>$PARAM[width]</width>
+		        <height>$PARAM[width]</height>
+		        <aspectratio scalediffuse="false">keep</aspectratio>
+		        <texture fallback="DefaultAddonNone.png">$PARAM[icon]</texture>
+		        <visible>Skin.HasSetting(global.hidecirles) + [$PARAM[focused] | !$PARAM[default_icon]]</visible>
+		    </control>
+		    <control type="image">
+		        <posx>$PARAM[offset_x]</posx>
+		        <posy>$PARAM[offset_y]</posy>
+		        <width>$PARAM[width]</width>
+		        <height>$PARAM[width]</height>
+		        <aspectratio scalediffuse="false">keep</aspectratio>
+		        <texture colordiffuse="$PARAM[colordiffuse]" fallback="DefaultAddonNone.png">$PARAM[icon]</texture>
+		        <visible>Skin.HasSetting(global.hidecirles) + !$PARAM[focused] + $PARAM[default_icon]</visible>
+		    </control>
+		    <control type="image">
+		        <top>$PARAM[border_offset_y]</top>
+		        <left>$PARAM[border_offset_x]</left>
+		        <width>$PARAM[border_width]</width>
+		        <height>$PARAM[border_width]</height>
+		        <texture colordiffuse="Box2" border="4" background="true" infill="false">common/box21.png</texture>
+		        <visible>Skin.HasSetting(global.showborders) + Skin.HasSetting(global.hidecirles)</visible>
+		    </control>	
+		</definition>
+	</include>	    
+
+	<include name="Dialog_List_Layout_Labels">
+        <param name="item_h" default="135"/>
+        <param name="indicators" />      
+        <param name="textcolor" />
+        <param name="label">$INFO[ListItem.Label]</param>
+        <param name="label2">$INFO[ListItem.Label2]</param>
+        <param name="label2_visible">!String.IsEmpty(ListItem.Label2)</param>
+		<definition>
+	        <control type="label">
+	            <posy>-18</posy>
+	            <left>170</left>
+	            <include content="def_right" condition="$PARAM[indicators]">
+	                <param name="right" value="84" />
+	            </include>
+	            <right>30</right>
+	            <height>$PARAM[item_h]</height>
+	            <font>SmallBold</font>
+	            <textcolor>$PARAM[textcolor]</textcolor>
+	            <selectedcolor>$PARAM[textcolor]</selectedcolor>
+	            <label>$PARAM[label]</label>
+	            <animation effect="slide" end="0,18" condition="!$PARAM[label2_visible]">Conditional</animation>
+	        </control>
+	        <control type="label">
+	            <posy>18</posy>
+	            <left>170</left>
+	            <include content="def_right" condition="$PARAM[indicators]">
+	                <param name="right" value="84" />
+	            </include>
+	            <right>30</right>
+	            <height>$PARAM[item_h]</height>
+	            <font>Mini</font>
+	            <textcolor>$PARAM[textcolor]</textcolor>
+	            <selectedcolor>$PARAM[textcolor]</selectedcolor>
+	            <label fallback="19055">$PARAM[label2]</label>
+	            <visible>$PARAM[label2_visible]</visible>
+	        </control>
+		</definition>
+    </include>
+    
+    <include name="Dialog_SimpleList_Layout">
+        <param name="misc" default="SmallBold"/>
+        <param name="textcolor" />
+    	<param name="indicators" />
+    	<param name="selected" />
+        <definition>
+	        <control type="label">
+	            <left>30</left>
+	            <include content="def_right" condition="$PARAM[indicators]">
+	                <param name="right" value="84" />
+	            </include>
+	            <right>30</right>
+	            <height>$PARAM[item_h]</height>
+	            <font>$PARAM[misc]</font>
+	            <textcolor>$PARAM[textcolor]</textcolor>
+	            <selectedcolor>$PARAM[textcolor]</selectedcolor>
+	            <info>ListItem.Label</info>
+	        </control>
+	        <include condition="$PARAM[indicators]" content="Def_IndicatorImage">
+	            <param name="selected" value="$PARAM[selected]" />
+	        </include>
+        </definition>
+    </include>
+    
+    <include name="Dialog_ThumbnailList_Layout">
+    	<param name="icon" default="$VAR[Image_ListItem_DialogSelect]"/>
+    	<param name="default_icon" default="false" />
+        <param name="textcolor" />
+    	<param name="indicators" />
+    	<param name="selected" />
+        <definition>
+			<include content="Dialog_List_Layout_Icon">
+		        <param name="default_icon" value="$PARAM[default_icon]"  />      
+		        <param name="focused" value="$PARAM[focused]"/>
+				<param name="icon" value="$PARAM[icon]" />
+			</include>	
+			<include content="Dialog_List_Layout_Labels">
+		        <param name="label2_visible" value="$EXP[Has_List_Thumbnails_Label2]"/>
+		        <param name="textcolor" value="$PARAM[textcolor]"/>
+		        <param name="indicators" value="$PARAM[indicators]"/>
+			</include>
+	        <include condition="$PARAM[indicators]" content="Def_IndicatorImage">
+	            <param name="selected" value="$PARAM[selected]" />
+	        </include>
+        </definition>
+    </include>
+
+    <include name="Dialog_MediaInfoList_Layout">
+    	<param name="indicators" default="true"/>
+        <param name="selected" default="ListItem.IsSelected" />
+        <param name="textcolor" />
+        <definition>
+			<include content="Dialog_List_Layout_Icon">
+				<param name="icon" value="$VAR[FanartImage]" />
+			</include>	
+			<include content="Dialog_List_Layout_Labels">
+				<param name="label" value="$VAR[Label_List_MediaInfo]" />
+		        <param name="label2" value="$VAR[Label_List_MediaInfo_Label2]"/>
+		        <param name="label2_visible" value="true"/>
+		        <param name="textcolor" value="$PARAM[textcolor]"/>
+		        <param name="indicators" value="$PARAM[indicators]"/>
+			</include>
+	        <include condition="$PARAM[indicators]" content="Def_IndicatorImage">
+	            <param name="selected" value="$PARAM[selected]" />
+	        </include>
+        </definition>
+    </include>
+
+    <include name="Dialog_ManageArtworkList_Label">
+        <param name="top" />
+        <param name="color1" default="Black100"/>
+        <param name="color2" default="Black70"/>
+        <definition>
+            <control type="group">
+                <visible>!String.IsEqual(ListItem.Property(is_current),true)</visible>
+                <top>$PARAM[top]</top>
+                <left>10</left>
+                <right>10</right>
+                <control type="label">
+                    <top>0</top>
+                    <height>30</height>
+                    <align>center</align>
+                    <textcolor>$PARAM[color1]</textcolor>
+                    <font>Tiny</font>
+                    <label fallback="$LOCALIZE[13205]">$INFO[ListItem.Property(dimensions)]</label>
+                </control>
+                <control type="label">
+                    <top>30</top>
+                    <height>30</height>
+                    <align>center</align>
+                    <textcolor>$PARAM[color2]</textcolor>
+                    <font>Mini</font>
+                    <label>$INFO[ListItem.Property(source)]</label>
+                </control>
+            </control>
+            <control type="group">
+                <visible>String.IsEqual(ListItem.Property(is_current),true)</visible>
+                <top>$PARAM[top]</top>
+                <left>10</left>
+                <right>10</right>
+                <control type="label">
+                    <top>0</top>
+                    <height>30</height>
+                    <align>center</align>
+                    <textcolor>Highlight2</textcolor>
+                    <font>Tiny</font>
+                    <label fallback="$LOCALIZE[13205]">$INFO[ListItem.Property(dimensions)]</label>
+                </control>
+                <control type="label">
+                    <top>30</top>
+                    <height>30</height>
+                    <align>center</align>
+                    <textcolor>Highlight2</textcolor>
+                    <font>Mini</font>
+                    <label>$INFO[ListItem.Property(source)]</label>
+                </control>
+            </control>
+        </definition>
+    </include>
+
+    <include name="Dialog_ManageArtworkList_InheritedIndicator">
+        <control type="group">
+            <visible>String.IsEqual(ListItem.Property(is_inherited),true)</visible>
+            <left>1</left>
+            <top>1</top>
+            <control type="image">
+                <centerleft>37</centerleft>
+                <centertop>37</centertop>
+                <width>40</width>
+                <height>40</height>
+                <texture colordiffuse="d7ffcd3c">common/circle.png</texture>
+            </control>
+            <control type="image">
+                <centerleft>37</centerleft>
+                <centertop>35</centertop>
+                <width>50</width>
+                <height>50</height>
+                <texture colordiffuse="df000000">special://skin/extras/icons/tv.png</texture>
+            </control>
+        </control>    
+    </include>
+    
+    <include name="Dialog_ManageArtworkList_Layout">
+        <param name="control_id" default="100" />
+        <param name="itemlayout_w" default="355" />
+        <param name="itemlayout_h" default="345" />
+        <param name="condition" default="true" />
+        <param name="title_overlay" default="false" />
+        <param name="bordersize" default="0" />
+        <param name="aspectratio" default="scale" />
+        <param name="diffuse" default="diffuse/widgetfanart_new.png" />
+        <param name="image_offset_x" default="0" />
+        <param name="image_w" default="100%"/>
+        <param name="image_h" />
+        <definition>
+            <itemlayout height="$PARAM[itemlayout_h]" width="$PARAM[itemlayout_w]" condition="$PARAM[condition]">
+                <control type="group">
+                    <width>$PARAM[image_w]</width>
+                    <left>$PARAM[image_offset_x]</left>
+                    <control type="group">
+                        <height>$PARAM[image_h]</height>
+                        <control type="image">
+                            <texture border="11" background="true" infill="false">common/$VAR[nofocus-shadow10]</texture>
+                        </control>
+                        <control type="image">
+                            <left>10</left>
+                            <top>10</top>
+                            <right>10</right>
+                            <bottom>10</bottom>
+                            <texture colordiffuse="Black12" border="4" background="true">common/diffuse_box.png</texture>
+                        </control>
+                        <control type="image">
+                            <left>10</left>
+                            <top>10</top>
+                            <right>10</right>
+                            <bottom>10</bottom>
+                            <bordersize>$PARAM[bordersize]</bordersize>
+                            <texture background="true" diffuse="$PARAM[diffuse]">$INFO[ListItem.Art(thumb)]</texture>
+                            <aspectratio>$PARAM[aspectratio]</aspectratio>
+                        </control>
+                        <control type="image">
+                            <bottom>10</bottom>
+                            <right>10</right>
+                            <height>75</height>
+                            <left>10</left>
+                            <texture colordiffuse="D9333333">common/black-back.png</texture>
+                            <visible>$PARAM[title_overlay]</visible>
+                        </control>
+                        <control type="image">
+                            <left>10</left>
+                            <top>10</top>
+                            <right>10</right>
+                            <bottom>10</bottom>
+                            <texture colordiffuse="BoxWidget" border="4" background="true" infill="false">common/box21.png</texture>
+                            <visible>Skin.HasSetting(global.showborders)</visible>
+                        </control>
+                    </control>
+                    <control type="group">
+                        <include content="def_top" condition="$PARAM[title_overlay]">
+                            <param name="top" value="-76" />
+                        </include>                   
+                        <include content="Dialog_ManageArtworkList_Label" condition="$PARAM[title_overlay]">
+                            <param name="top" value="$PARAM[image_h]" />
+                            <param name="color1" value="PanelWhite100" />  
+                            <param name="color2" value="PanelWhite70" />  
+                        </include>
+                        <include content="Dialog_ManageArtworkList_Label" condition="!$PARAM[title_overlay]">
+                            <param name="top" value="$PARAM[image_h]" />
+                        </include>
+                    </control>
+                </control>
+                <include>Dialog_ManageArtworkList_InheritedIndicator</include>
+            </itemlayout>
+            <focusedlayout height="$PARAM[itemlayout_h]" width="$PARAM[itemlayout_w]" condition="$PARAM[condition]">
+                <control type="group">
+                    <width>$PARAM[image_w]</width>
+                    <left>$PARAM[image_offset_x]</left>
+                    <control type="group">
+                        <height>$PARAM[image_h]</height>
+                        <control type="image">
+                            <texture border="11" background="true" infill="false">common/$VAR[nofocus-shadow10]</texture>
+                        </control>
+                        <control type="image">
+                            <left>10</left>
+                            <top>10</top>
+                            <right>10</right>
+                            <bottom>10</bottom>
+                            <texture colordiffuse="Black12" border="4" background="true">common/diffuse_box.png</texture>
+                        </control>
+                        <control type="image">
+                            <left>10</left>
+                            <top>10</top>
+                            <right>10</right>
+                            <bottom>10</bottom>
+                            <bordersize>$PARAM[bordersize]</bordersize>
+                            <texture background="true" diffuse="$PARAM[diffuse]">$INFO[ListItem.Art(thumb)]</texture>
+                            <aspectratio>$PARAM[aspectratio]</aspectratio>
+                        </control>
+                        <control type="image">
+                            <bottom>10</bottom>
+                            <right>10</right>
+                            <height>75</height>
+                            <left>10</left>
+                            <texture colordiffuse="D9333333">common/black-back.png</texture>
+                            <visible>$PARAM[title_overlay]</visible>
+                        </control>
+                        <control type="image">
+                            <left>10</left>
+                            <top>10</top>
+                            <right>10</right>
+                            <bottom>10</bottom>
+                            <texture colordiffuse="BoxWidget" border="4" background="true" infill="false">common/box21.png</texture>
+                            <visible>Skin.HasSetting(global.showborders)</visible>
+                        </control>
+                        <include content="def_widgetfocus">
+                            <param name="id" value="$PARAM[control_id]"/>
+                        </include>
+                    </control>
+                    <control type="group">
+                        <include content="def_top" condition="$PARAM[title_overlay]">
+                            <param name="top" value="-76" />
+                        </include>                   
+                        <include content="Dialog_ManageArtworkList_Label" condition="$PARAM[title_overlay]">
+                            <param name="top" value="$PARAM[image_h]" />
+                            <param name="color1" value="PanelWhite100" />  
+                            <param name="color2" value="PanelWhite70" />  
+                        </include>
+                        <include content="Dialog_ManageArtworkList_Label" condition="!$PARAM[title_overlay]">
+                            <param name="top" value="$PARAM[image_h]" />
+                        </include>
+                    </control>
+                </control>
+                <include>Dialog_ManageArtworkList_InheritedIndicator</include>
+            </focusedlayout>
+        </definition>
+    </include>
+
+</includes>

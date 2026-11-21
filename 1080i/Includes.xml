@@ -45,6 +45,7 @@
     <include file="Includes_PVR.xml"/>
     <include file="Includes_OSD.xml"/>
     <include file="Includes_VideoLyrics.xml"/>
+    <include file="Includes_Dialogs.xml"/>
     <include file="Includes_DialogInfo.xml"/>
     <include file="Includes_DialogSelect.xml"/>
     <include file="Includes_DialogSettings.xml"/>
@@ -562,20 +563,6 @@
         <onunfocus>ClearProperty(SetUserRating,home)</onunfocus>
     </include>
 
-    <include name="DialogSelectlabelInclude">
-        <control type="label">
-            <include>Animation.FadeIn</include>
-            <include>Animation.FadeOut</include>
-            <right>40</right>
-            <font>Tiny</font>
-            <height>50</height>
-            <bottom>30</bottom>
-            <align>right</align>
-            <textcolor>Black70</textcolor>
-            <label>$VAR[DialogSelectlabel]</label>
-        </control>
-    </include>
-
     <variable name="nofocus-shadow10">
         <value>nofocus-shadow36.png</value>
     </variable>
@@ -875,5 +862,8 @@
         <value condition="String.StartsWith(Container(211).ListItem.Property(path),pvr://recordings/radio)">radiorecordings</value>
         <value condition="String.StartsWith(Container(211).ListItem.Property(path),pvr://timers/radio)">radiotimers</value>
     </variable>
-    
+
+    <expression name="Has_List_Thumbnails_Label2">
+        !String.IsEmpty(ListItem.Label2) + !$EXP[IsSkinshortcuts]
+    </expression>    
 </includes>
