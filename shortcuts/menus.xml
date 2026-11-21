@@ -89,7 +89,6 @@
             <label2>$ADDON[script.skinshortcuts 32034]</label2>
             <icon>special://skin/extras/icons/videoplay.png</icon>
             <action>ActivateWindow(videos,library://video/,return)</action>
-            <visible>!Library.HasContent(Movies) + !Library.HasContent(TVShows)</visible>
         </item>
         <item name="playdisc" submenu="playdisc">
             <label>341</label>
@@ -420,6 +419,7 @@
 			<label2>$ADDON[script.skinshortcuts 32018]</label2>
 			<icon>special://skin/extras/icons/musicvideo.png</icon>
 			<action>ActivateWindow(Videos,videodb://musicvideos/titles/,return)</action>
+            <visible>Library.HasContent(MusicVideos)</visible>
 		</item>
 		<item name="files">
 			<label>744</label>
@@ -439,6 +439,12 @@
 			<icon>special://skin/extras/icons/update.png</icon>
 			<action>UpdateLibrary(video)</action>
 		</item>
+        <item name="clean-library">
+            <label>14247</label>
+            <label2>14236</label2>
+            <icon>special://skin/extras/icons/wand.png</icon>
+            <action>CleanLibrary(video,true)</action>
+        </item>
 	</submenu>
 
 	<submenu name="movies" standalone="false">
@@ -496,12 +502,6 @@
 			<icon>special://skin/extras/icons/video-addons.png</icon>
 			<action>ActivateWindow(Videos,Addons,return)</action>
 		</item>
-		<item name="update-library">
-			<label>$VAR[VideoScanLabel]</label>
-			<label2>14236</label2>
-			<icon>special://skin/extras/icons/update.png</icon>
-			<action>UpdateLibrary(video)</action>
-		</item>
 	</submenu>
 
 	<submenu name="tvshows" standalone="false">
@@ -552,12 +552,6 @@
 			<label2>$ADDON[script.skinshortcuts 32014]</label2>
 			<icon>special://skin/extras/icons/video-addons.png</icon>
 			<action>ActivateWindow(Videos,Addons,return)</action>
-		</item>
-		<item name="update-library">
-			<label>$VAR[VideoScanLabel]</label>
-			<label2>14236</label2>
-			<icon>special://skin/extras/icons/update.png</icon>
-			<action>UpdateLibrary(video)</action>
 		</item>
 	</submenu>
 
@@ -610,6 +604,12 @@
 			<icon>special://skin/extras/icons/update.png</icon>
 			<action>UpdateLibrary(music)</action>
 		</item>
+        <item name="clean-library">
+            <label>14247</label>
+            <label2>14237</label2>
+            <icon>special://skin/extras/icons/wand.png</icon>
+            <action>CleanLibrary(music,true)</action>
+        </item>
 	</submenu>
 
 	<submenu name="musicvideos" standalone="false">

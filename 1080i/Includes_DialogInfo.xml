@@ -1565,8 +1565,18 @@
 	                <colordiffuse>Black12</colordiffuse>
 	                <texture>common/white.png</texture>
 	            </control>  
-	
-	           	<control type="list" id="9300">
+
+                <include content="Dialog_List">
+                    <param name="id" value="9300" />
+                    <param name="itemlayout_include" value="Dialog_ThumbnailList_Layout" />
+                    <param name="itemlayout_h" value="138"/>
+                    <param name="itemlayout_w" value="796"/>
+                    <param name="item_h" value="135" />
+                    <param name="item_w" value="796"/>
+                    <param name="focused" value="Control.HasFocus(9300)" />
+                    <param name="default_icon" value="true" />
+                    <param name="indicators" value="false" />
+
 	                <left>8</left>
 	                <width>1064</width>
 	                <posy>115</posy>
@@ -1575,12 +1585,6 @@
 	                <onleft>9301</onleft>
 	                <onright>1723</onright>
 	                <pagecontrol>1723</pagecontrol>
-                    <include content="Def_ThumbnailListLayout">
-                        <param name="focused" value="Control.HasFocus(9300)" />
-                        <param name="default_icon" value="true" />
-                        <param name="indicators" value="false" />
-                        <param name="width" value="796" />
-                    </include>
 		            <content>
 		            	<item>
 		            		<label>157</label>
@@ -1700,7 +1704,7 @@
 		            	<include content="SubtitleStreamInfo"><param name="stream" value="79" /></include>
 		            	<include content="SubtitleStreamInfo"><param name="stream" value="80" /></include>
 		            </content>
-	            </control>
+	            </include>
 	
 	            <include content="Furniture_Scrollbar_Dialog">
 	                <param name="id" value="1723"/>
@@ -1838,30 +1842,11 @@
                     <colordiffuse>White100</colordiffuse>
                     <texture border="16">common/rounded-shadow8.png</texture>
                 </control>
-                <control type="group">
-                    <top>25</top>
-                    <left>22</left>
-                    <right>22</right>
-                    <control type="label">
-                        <description>Header Label</description>
-                        <left>70</left>
-                        <width>1000</width>
-                        <font>MediumBold</font>
-                        <textcolor>Black70</textcolor>
-                        <label>16106</label>
-                    </control>
-                    <include>Kodi_Logo</include>
-
-                    <!-- Lines -->
-                    <control type="image">
-                        <top>70</top>
-                        <left>17</left>
-                        <right>17</right>
-                        <height>1</height>
-                        <colordiffuse>Black12</colordiffuse>
-                        <texture>common/white.png</texture>
-                    </control>
-                </control>
+	            <include content="Dialog_Part_HeaderLabel">
+	                <param name="label" value="16106" />
+	            </include>
+	            <include>Dialog_Part_Logo</include>
+	            <include>Dialog_Part_Line</include>
                 <control type="group">
                     <visible>Container(9400).HasNext | Container(9400).HasPrevious</visible>
                     <control type="image">

@@ -43,10 +43,10 @@
 	-->
 	<controls>
         <include>GlobalOverlay</include>
-        <include content="DefDialog">
+        <include content="Dialog_Standard_Layout">
             <param name="header_label" value="$INFO[Window.Property(heading)]$INFO[Window.Property(year), (,)]$INFO[Window.Property(arttype), - [CAPITALIZE],[/CAPITALIZE]]"/>
-            <param name="width" value="1853"/>
-            <param name="height" value="890"/>
+            <param name="itemlayout_w" value="1853"/>
+            <param name="itemlayout_h" value="890"/>
                 	
 			<!-- Artwork Panel -->
 			<control type="panel" id="100">
@@ -61,103 +61,103 @@
 				<orientation>vertical</orientation>
 				<preloaditems>2</preloaditems>
 				<!-- Poster layout: 6x2 grid (12 items) - 2:3 aspect ratio -->
-                <include content="Def_Artwork_List_Layout">
-                    <param name="width" value="236" />
-                    <param name="height" value="345" />
-                    <param name="image_height" value="345" />
+                <include content="Dialog_ManageArtworkList_Layout">
+                    <param name="itemlayout_w" value="236" />
+                    <param name="itemlayout_h" value="345" />
+                    <param name="image_h" value="345" />
                     <param name="title_overlay" value="true" />
                     <param name="diffuse" value="diffuse/widgetposter_new.png" />
                     <param name="condition" value="String.IsEqual(Window.Property(artlayout),poster)"/>             
                 </include>
 				<!-- Fanart / Landscape layout: 3x2 grid (6 items) - 16:9 aspect ratio -->
-                <include content="Def_Artwork_List_Layout">
-                    <param name="width" value="473" />
-                    <param name="height" value="345" />
-                    <param name="image_height" value="275" />
+                <include content="Dialog_ManageArtworkList_Layout">
+                    <param name="itemlayout_w" value="473" />
+                    <param name="itemlayout_h" value="345" />
+                    <param name="image_h" value="275" />
                     <param name="aspectratio" value="keep" />
                     <param name="condition" value="String.IsEqual(Window.Property(artlayout),fanart) | String.IsEqual(Window.Property(artlayout),landscape)"/>             
                 </include>
 				<!-- Banner: 2x3 grid (6 items) - 5.405:1 aspect ratio (unique arttype) -->
-                <include content="Def_Artwork_List_Layout">
-                    <param name="width" value="710" />
-                    <param name="height" value="230" />
-                    <param name="image_height" value="148" />
+                <include content="Dialog_ManageArtworkList_Layout">
+                    <param name="itemlayout_w" value="710" />
+                    <param name="itemlayout_h" value="230" />
+                    <param name="image_h" value="148" />
                     <param name="diffuse" value="diffuse/widgetbanner_small.png" />
                     <param name="condition" value="String.IsEqual(Window.Property(arttype),banner)"/>             
                 </include>
 				<!-- Square layout: 5x2 grid (10 items) - 1:1 aspect ratio -->
-				<include content="Def_Artwork_List_Layout">
-			        <param name="width" value="284" />
-			        <param name="height" value="345" />
-			        <param name="image_width" value="274" />
-			        <param name="image_height" value="274" />
-			        <param name="image_offset" value="5" />
+				<include content="Dialog_ManageArtworkList_Layout">
+			        <param name="itemlayout_w" value="284" />
+			        <param name="itemlayout_h" value="345" />
+			        <param name="image_w" value="274" />
+			        <param name="image_h" value="274" />
+			        <param name="image_offset_x" value="5" />
                     <param name="diffuse" value="diffuse/widgetsquare_new.png" />
 			        <param name="condition" value="String.IsEqual(Window.Property(artlayout),square) + !String.IsEqual(Window.Property(arttype),discart)"/>				
 				</include>
                 <!-- Discart: 5x2 grid (10 items) - 1:1 aspect ratio with border -->
-                <include content="Def_Artwork_List_Layout">
-                    <param name="width" value="284" />
-                    <param name="height" value="345" />
-                    <param name="image_width" value="274" />
-                    <param name="image_height" value="274" />
-                    <param name="image_offset" value="5" />
+                <include content="Dialog_ManageArtworkList_Layout">
+                    <param name="itemlayout_w" value="284" />
+                    <param name="itemlayout_h" value="345" />
+                    <param name="image_w" value="274" />
+                    <param name="image_h" value="274" />
+                    <param name="image_offset_x" value="5" />
                     <param name="bordersize" value="8" />
                     <param name="diffuse" value="diffuse/widgetsquare_new.png" />
                     <param name="condition" value="String.IsEqual(Window.Property(arttype),discart)"/>             
                 </include>
 				<!-- Characterart: 6x2 grid (12 items) - 0.715 aspect ratio (unique arttype) -->
-                <include content="Def_Artwork_List_Layout">
-                    <param name="width" value="236" />
-                    <param name="height" value="345" />
-                    <param name="image_width" value="203" />
-                    <param name="image_height" value="276" />
-                    <param name="image_offset" value="17" />
+                <include content="Dialog_ManageArtworkList_Layout">
+                    <param name="itemlayout_w" value="236" />
+                    <param name="itemlayout_h" value="345" />
+                    <param name="image_w" value="203" />
+                    <param name="image_h" value="276" />
+                    <param name="image_offset_x" value="17" />
                     <param name="aspectratio" value="keep" />
                     <param name="condition" value="String.IsEqual(Window.Property(arttype),characterart)"/>             
                 </include>
 				<!-- Clearlogo: 4x3 grid (12 items) - 2.581 aspect ratio (unique arttype) -->
-                <include content="Def_Artwork_List_Layout">
-                    <param name="width" value="355" />
-                    <param name="height" value="230" />
-                    <param name="image_width" value="314" />
-                    <param name="image_height" value="160" />
-                    <param name="image_offset" value="20" />
+                <include content="Dialog_ManageArtworkList_Layout">
+                    <param name="itemlayout_w" value="355" />
+                    <param name="itemlayout_h" value="230" />
+                    <param name="image_w" value="314" />
+                    <param name="image_h" value="160" />
+                    <param name="image_offset_x" value="20" />
                     <param name="bordersize" value="8" />
                     <param name="aspectratio" value="keep" />
                     <param name="condition" value="String.IsEqual(Window.Property(arttype),clearlogo)"/>             
                 </include>
 				<!-- Spine: 8x2 grid (16 items) - 1:20 narrow portrait (unique arttype) -->
-                <include content="Def_Artwork_List_Layout">
-                    <param name="width" value="178" />
-                    <param name="height" value="345" />
-                    <param name="image_height" value="285" />
+                <include content="Dialog_ManageArtworkList_Layout">
+                    <param name="itemlayout_w" value="178" />
+                    <param name="itemlayout_h" value="345" />
+                    <param name="image_h" value="285" />
                     <param name="aspectratio" value="keep" />
                     <param name="condition" value="String.IsEqual(Window.Property(arttype),spine)"/>             
                 </include>
 				<!-- 3D Case: 4x2 grid (8 items) - 1.39:1 aspect ratio (unique arttype) -->
-                <include content="Def_Artwork_List_Layout">
-                    <param name="width" value="355" />
-                    <param name="height" value="345" />
-                    <param name="image_height" value="261" />
+                <include content="Dialog_ManageArtworkList_Layout">
+                    <param name="itemlayout_w" value="355" />
+                    <param name="itemlayout_h" value="345" />
+                    <param name="image_h" value="261" />
                     <param name="bordersize" value="8" />
                     <param name="aspectratio" value="keep" />
                     <param name="condition" value="String.IsEqual(Window.Property(arttype),3dcase)"/>             
                 </include>
 				<!-- 3D Flat: 3x2 grid (6 items) - 2.17:1 wide aspect ratio (unique arttype) -->
-                <include content="Def_Artwork_List_Layout">
-                    <param name="width" value="473" />
-                    <param name="height" value="345" />
-                    <param name="image_height" value="229" />
+                <include content="Dialog_ManageArtworkList_Layout">
+                    <param name="itemlayout_w" value="473" />
+                    <param name="itemlayout_h" value="345" />
+                    <param name="image_h" value="229" />
                     <param name="bordersize" value="8" />
                     <param name="aspectratio" value="keep" />
                     <param name="condition" value="String.IsEqual(Window.Property(arttype),3dflat)"/>             
                 </include>
 				<!-- 3D Face: 4x2 grid (8 items) - 1.47:1 aspect ratio (unique arttype) -->
-                <include content="Def_Artwork_List_Layout">
-                    <param name="width" value="355" />
-                    <param name="height" value="345" />
-                    <param name="image_height" value="248" />
+                <include content="Dialog_ManageArtworkList_Layout">
+                    <param name="itemlayout_w" value="355" />
+                    <param name="itemlayout_h" value="345" />
+                    <param name="image_h" value="248" />
                     <param name="bordersize" value="8" />
                     <param name="aspectratio" value="keep" />
                     <param name="condition" value="String.IsEqual(Window.Property(arttype),3dface)"/>             

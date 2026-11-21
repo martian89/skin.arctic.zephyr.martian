@@ -4,7 +4,7 @@
     <controls>
         <include>GlobalOverlay</include>
 
-        <include content="DefDialog">
+        <include content="Dialog_Standard_Layout">
             <param name="header_id" value="2"/>
             <param name="width" value="1700"/>
 
@@ -46,22 +46,27 @@
                 <right>376</right>
                 <width>946</width>
                 <height>690</height>
-                <control type="list" id="50">
+                <include content="Dialog_List">
+                    <param name="id" value="50" />
+                    <param name="itemlayout_include" value="Dialog_MediaInfoList_Layout" />
+                    <param name="itemlayout_h" value="138"/>
+                    <param name="itemlayout_w" value="946"/>
+                    <param name="item_h" value="135" />
+                    <param name="item_w" value="946"/>
+                    <param name="focused" value="Control.HasFocus(50)" />
+                    <param name="altfocus" value="true" />
+
                     <right>0</right>
                     <width>100%</width>
                     <height>100%</height>
                     <onleft>101</onleft>
                     <onright>1723</onright>
                     <pagecontrol>1723</pagecontrol>
-                    <include content="Def_MediaInfoListLayout">
-                        <param name="focused" value="Control.HasFocus(50)"/>
-                        <param name="width" value="946"/>
-                    </include>
-                </control>
+                </include>
             </control>                
             
             <include content="DialogSelectCommonLayout">
-                <param name="buttons" value="Def_VideoManager_Buttons"/>
+                <param name="buttons" value="Dialog_VideoManager_Buttons"/>
             </include>
         </include>
     </controls>

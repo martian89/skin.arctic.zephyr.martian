@@ -32,7 +32,7 @@
                 <include>$PARAM[buttons]</include>  
             </control>                
 
-            <include>DialogSelectlabelInclude</include>
+            <include>Dialog_Part_CurrentItem</include>
         </definition>    
     </include>
 
@@ -59,37 +59,41 @@
 
         <include>GlobalOverlay</include>
 
-        <include content="DefDialog">
+        <include content="Dialog_Standard_Layout">
 	        <param name="header_id" value="1"/>
 
 			<control type="group" id="100">
-	           	<control type="list" id="3">
-	                <left>8</left>
-	                <width>1064</width>
-	                <posy>115</posy>
-	                <height>696</height>
-	                <onleft>101</onleft>
-	                <onright>1723</onright>
-	                <pagecontrol>1723</pagecontrol>
-	                <include content="Def_SimpleListLayout">
-	                    <param name="focused" value="Control.HasFocus(3)" />
-	                </include>
-	            </control>
+                <include content="Dialog_List">
+                    <param name="id" value="3" />
+                    <param name="itemlayout_include" value="Dialog_SimpleList_Layout" />
+                    <param name="focused" value="Control.HasFocus(3)" />
+
+                    <left>8</left>
+                    <width>1064</width>
+                    <posy>115</posy>
+                    <height>696</height>
+                    <onleft>101</onleft>
+                    <onright>1723</onright>
+                    <pagecontrol>1723</pagecontrol>
+                </include>
 	
-	            <control type="list" id="6">
-	                <posx>8</posx>
-	                <posy>115</posy>
-	                <width>700</width>
-	                <height>690</height>
-	                <onleft>101</onleft>
-	                <onright>1723</onright>
-	                <pagecontrol>1723</pagecontrol>
-                    <include content="Def_ThumbnailListLayout">
-                        <param name="focused" value="Control.HasFocus(6)" />
-                        <param name="indicators" value="String.IsEmpty(Window(home).Property(skinshortcuts-picker))" />
-                        <param name="default_icon" value="$EXP[IsDefaultIcon_C6]" />
-                    </include>
-	            </control>
+                <include content="Dialog_List">
+                    <param name="id" value="6" />
+                    <param name="itemlayout_include" value="Dialog_ThumbnailList_Layout" />
+                    <param name="itemlayout_h" value="138"/>
+                    <param name="item_h" value="135" />
+                    <param name="focused" value="Control.HasFocus(6)" />
+                    <param name="indicators" value="String.IsEmpty(Window(home).Property(skinshortcuts-picker))" />
+                    <param name="default_icon" value="$EXP[IsDefaultIcon_C6]" />
+
+                    <posx>8</posx>
+                    <posy>115</posy>
+                    <width>700</width>
+                    <height>690</height>
+                    <onleft>101</onleft>
+                    <onright>1723</onright>
+                    <pagecontrol>1723</pagecontrol>
+                </include>  
 			</control>
 			
 			<include>DialogSelectCommonLayout</include>
@@ -118,11 +122,15 @@
     </include>
 
     <include name="DialogSelectStream">
-        <include content="DefDialog">
+        <include content="Dialog_Standard_Layout">
 	        <param name="header_id" value="1"/>
 
 			<control type="group" id="100">
-	           	<control type="list" id="3">
+                <include content="Dialog_List">
+                    <param name="id" value="3" />
+                    <param name="itemlayout_include" value="Dialog_SimpleList_Layout" />
+                    <param name="focused" value="Control.HasFocus(3)" />
+
 	                <left>8</left>
 	                <width>1064</width>
 	                <posy>115</posy>
@@ -130,12 +138,15 @@
 	                <onleft>101</onleft>
 	                <onright>1723</onright>
 	                <pagecontrol>1723</pagecontrol>
-	                <include content="Def_SimpleListLayout">
-	                    <param name="focused" value="Control.HasFocus(3)" />
-	                </include>
-	            </control>
+	            </include>
 
-	            <control type="list" id="6">
+                <include content="Dialog_List">
+                    <param name="id" value="6" />
+                    <param name="itemlayout_include" value="Dialog_StreamList_Layout" />
+                    <param name="itemlayout_h" value="138"/>
+                    <param name="item_h" value="135" />
+                    <param name="focused" value="Control.HasFocus(6)" />
+
 	                <posx>8</posx>
 	                <posy>115</posy>
 	                <width>696</width>
@@ -143,100 +154,7 @@
 	                <onleft>101</onleft>
 	                <onright>1723</onright>
 	                <pagecontrol>1723</pagecontrol>
-		            <itemlayout height="138">
-		            	<control type="label">
-		                    <left>30</left>
-		                    <right>84</right>
-		                    <posy>-18</posy>
-		                	<width>auto</width>
-		                    <font>SmallBold</font>
-		                    <textcolor>Black70</textcolor>
-		                    <selectedcolor>Black70</selectedcolor>
-		                    <height>135</height>
-		                    <label>$VAR[Label_StreamList_Title]</label>
-		                </control>
-		                <control type="label">
-		                    <left>30</left>
-		                    <right>84</right>
-		                    <font>Mini</font>
-		                    <textcolor>Black70</textcolor>
-		                    <selectedcolor>Black70</selectedcolor>
-		                    <height>135</height>
-		                    <posy>18</posy>
-		                    <label fallback="19055">$VAR[Label_StreamList_Label2]</label>
-		                </control>
-		                <include content="Def_IndicatorImage">
-		                    <param name="selected" value="ListItem.IsSelected" />
-		                </include>
-		            </itemlayout>
-		            <focusedlayout height="138">
-		                <control type="group">
-		                    <visible>!Control.HasFocus(6)</visible> 
-		                    <control type="label">
-		                        <left>30</left>
-		                        <right>84</right>
-		                        <height>135</height>
-		                        <font>SmallBold</font>
-		                        <posy>-18</posy>
-		                        <textcolor>Black70</textcolor>
-		                        <selectedcolor>Black70</selectedcolor>
-		                        <label>$VAR[Label_StreamList_Title]</label>
-		                    </control>
-		                    <control type="label">
-		                        <left>30</left>
-		                        <right>84</right>
-		                        <height>135</height>
-		                        <font>Mini</font>
-		                        <posy>18</posy>
-		                        <textcolor>Black70</textcolor>
-		                        <selectedcolor>Black70</selectedcolor>
-		                        <label fallback="19055">$VAR[Label_StreamList_Label2]</label>
-		                    </control>
-		                    <include content="Def_IndicatorImage">
-		                        <param name="selected" value="ListItem.IsSelected" />
-		                    </include>
-		                </control>
-		                <control type="group">
-		                    <visible>Control.HasFocus(6)</visible> 
-		                    <control type="image">
-		                        <left>0</left>
-		                        <right>0</right>
-		                        <height>135</height>
-		                        <texture border="5" colordiffuse="$VAR[ColorHighlight]">common/white.png</texture>
-		                    </control>
-		                    <control type="image">
-		                        <left>0</left>
-		                        <right>0</right>
-		                        <height>135</height>
-		                        <texture border="8" colordiffuse="$VAR[ColorGradient]">common/gradient-box-wide.png</texture>
-		                    </control>
-		                    <control type="label">
-		                        <left>30</left>
-		                        <right>84</right>
-		                        <height>135</height>
-		                        <font>SmallBold</font>
-		                        <posy>-18</posy>
-		                        <textcolor>Selected</textcolor>
-		                        <selectedcolor>Selected</selectedcolor>
-		                        <label>$VAR[Label_StreamList_Title]</label>
-		                    </control>
-		                    <control type="label">
-		                        <left>30</left>
-		                        <right>84</right>
-		                        <height>135</height>
-		                        <font>Mini</font>
-		                        <posy>18</posy>
-		                        <textcolor>Selected</textcolor>
-		                        <selectedcolor>Selected</selectedcolor>
-		                        <label fallback="19055">$VAR[Label_StreamList_Label2]</label>
-		                    </control>
-		                    <include content="Def_IndicatorImage">
-		                        <param name="selected" value="ListItem.IsSelected" />
-		                        <param name="color" value="Selected" />
-		                    </include>
-		                </control>
-		            </focusedlayout>
-	            </control>
+	            </include>
 			</control>			
 			<include>DialogSelectCommonLayout</include>            
         </include>
@@ -255,7 +173,7 @@
 
         <include>GlobalOverlay</include>
 
-        <include content="DefDialog">
+        <include content="Dialog_Standard_Layout">
 			<param name="width" value="1633" />
 			<param name="height" value="858" />
             <param name="header_id" value="10820"/>
@@ -418,7 +336,7 @@
 		        </control>
             </control>                
 
-            <include>DialogSelectlabelInclude</include>
+            <include>Dialog_Part_CurrentItem</include>
 
             <control type="grouplist">
                 <height>50</height>
@@ -682,7 +600,7 @@
 
         <include>GlobalOverlay</include>
 
-        <include content="DefDialog">
+        <include content="Dialog_Standard_Layout">
             <param name="header_id" value="1"/> 
             <param name="width" value="468"/>
             <param name="height" value="310"/>
@@ -779,7 +697,15 @@
 			<param name="image" value="$VAR[Image_ViewSelector_Preview]" />
 			<param name="control_id" value="3" />
 			
-			<control type="list" id="3">
+            <include content="Dialog_List">
+                <param name="id" value="3" />
+                <param name="itemlayout_include" value="Dialog_SimpleList_Layout" />
+	            <param name="itemlayout_w" value="520" />
+                <param name="item_w" value="520" />
+	            <param name="misc" value="Tiny" />
+                <param name="focused" value="Control.HasFocus(3)" />
+                <param name="selected" value="String.isEqual(Container.Viewmode,ListItem.Label)" />
+
 				<left>8</left>
 				<height>552</height>
 				<width>512</width>
@@ -788,12 +714,7 @@
 				<onright>1600</onright>
 				<pagecontrol>1600</pagecontrol>
 				<scrolltime>0</scrolltime>
-				<include content="Def_SimpleListLayout">
-					<param name="width" value="520" />
-					<param name="font" value="Tiny" />
-					<param name="item_selected"	value="String.isEqual(Container.Viewmode,ListItem.Label)" />
-				</include>
-			</control>
+			</include>
 		</include>
 	</include>
 </includes>
