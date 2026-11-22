@@ -188,8 +188,7 @@
         </control>
     </include>
 
-    <include name="GlobalBackgroundFade">
-        <colordiffuse>FanartFade</colordiffuse>
+    <include name="GlobalFanartFade">
         <animation effect="fade" end="5" start="5" time="0" condition="Integer.IsEqual(Skin.String(BackgroundBrightness),5)">Conditional</animation>
         <animation effect="fade" end="10" start="10" time="0" condition="Integer.IsEqual(Skin.String(BackgroundBrightness),10)">Conditional</animation>
         <animation effect="fade" end="15" start="15" time="0" condition="Integer.IsEqual(Skin.String(BackgroundBrightness),15)">Conditional</animation>
@@ -206,13 +205,11 @@
         <animation effect="fade" end="70" start="70" time="0" condition="Integer.IsEqual(Skin.String(BackgroundBrightness),70)">Conditional</animation>
     </include>
 
-    <include name="GlobalBackgroundFadeCleanFlix">
-        <colordiffuse>FanartFade</colordiffuse>
+    <include name="GlobalFanartFadeCleanFlix">
         <animation effect="fade" end="70" start="70" time="0" condition="true">Conditional</animation>
     </include>
 
-    <include name="GlobalBackgroundFadeBlur">
-        <colordiffuse>FanartFade</colordiffuse>
+    <include name="GlobalFanartFadeBlur">
         <animation effect="fade" end="5" start="5" time="0" condition="Integer.IsEqual(Skin.String(BackgroundBrightnessBlur),5)">Conditional</animation>
         <animation effect="fade" end="0" start="0" time="0" condition="Integer.IsEqual(Skin.String(BackgroundBrightnessBlur),0) + !String.IsEmpty(Skin.String(BackgroundBrightnessBlur))">Conditional</animation>
         <animation effect="fade" end="10" start="10" time="0" condition="Integer.IsEqual(Skin.String(BackgroundBrightnessBlur),10)">Conditional</animation>
@@ -340,7 +337,7 @@
                 <visible>!$EXP[TMDbHelperBlurEnabled] | [Window.IsVisible(home) + !$EXP[InfoDialogsActive]]</visible>
                 <visible>!Skin.HasSetting(global.hidefanart) | Window.IsVisible(home)</visible>
                 <visible>!Player.HasMedia | [!Skin.HasSetting(global.showvideo) + Player.HasVideo] | [!Skin.HasSetting(global.showvisualisation) + Player.HasAudio] | [Skin.HasSetting(global.showvisualisation) + String.IsEmpty(Visualisation.Name) + Player.HasAudio]</visible>
-                <include condition="![Window.IsVisible(home) + [$EXP[HomeIsSpotlight] | $EXP[HomeIsClassic]]]">GlobalBackgroundFade</include>
+                <include condition="![Window.IsVisible(home) + [$EXP[HomeIsSpotlight] | $EXP[HomeIsClassic]]]">GlobalFanartFade</include>
                 <include>Dimensions_Fullscreen</include>
                 <include>Animation.Background.OpenClose</include>
                 <include>BackgroundFanartFadetime</include>
@@ -356,7 +353,7 @@
                 <visible>$EXP[TMDbHelperBlurEnabled] + [!Window.IsVisible(home) | $EXP[InfoDialogsActive]]</visible>
                 <visible>!Skin.HasSetting(global.hidefanart) | Window.IsVisible(home)</visible>
                 <visible>!Player.HasMedia | [!Skin.HasSetting(global.showvideo) + Player.HasVideo] | [!Skin.HasSetting(global.showvisualisation) + Player.HasAudio] | [Skin.HasSetting(global.showvisualisation) + String.IsEmpty(Visualisation.Name) + Player.HasAudio]</visible>
-                <include>GlobalBackgroundFadeBlur</include>
+                <include>GlobalFanartFadeBlur</include>
                 <include>Dimensions_Fullscreen</include>
                 <include>Animation.Background.OpenClose</include>
                 <include>BackgroundFanartFadetime</include>
@@ -369,7 +366,7 @@
             </control>
 
             <control type="image" description="Fanart Fallback always">
-                <include>GlobalBackgroundFade</include>
+                <include>GlobalFanartFade</include>
                 <visible>!Player.HasMedia | [!Skin.HasSetting(global.showvideo) + Player.HasVideo] | [!Skin.HasSetting(global.showvisualisation) + Player.HasAudio] | [Skin.HasSetting(global.showvisualisation) + String.IsEmpty(Visualisation.Name) + Player.HasAudio]</visible>
                 <include>Dimensions_Fullscreen</include>
                 <visible>!Window.IsVisible(home) + Skin.HasSetting(global.hidefanart)</visible>
@@ -395,7 +392,7 @@
             <visible>!Player.HasMedia | [!Skin.HasSetting(global.showvideo) + Player.HasVideo] | [!Skin.HasSetting(global.showvisualisation) + Player.HasAudio] | [Skin.HasSetting(global.showvisualisation) + String.IsEmpty(Visualisation.Name) + Player.HasAudio]</visible>
             <include>Animation.Background.OpenClose</include>
             <include>Dimensions_Fullscreen</include>
-            <include>GlobalBackgroundFadeCleanFlix</include>
+            <include>GlobalFanartFadeCleanFlix</include>
             <include>BackgroundFanartFadetime</include>
             <timeperimage>HomeTimePerImage</timeperimage>
             <randomize>true</randomize>
@@ -441,7 +438,7 @@
             <visible>!$EXP[TMDbHelperBlurEnabled] + !Skin.HasSetting(global.hidefanart)</visible>
             <include>Dimensions_Fullscreen</include>
             <include condition="$EXP[InfoDialogsExtendedBackground]">Animation.FadeFromHome</include>
-            <include>GlobalBackgroundFade</include>
+            <include>GlobalFanartFade</include>
             <include>BackgroundFanartFadetime</include>
             <timeperimage>HomeTimePerImage</timeperimage>
             <randomize>true</randomize>
@@ -453,7 +450,7 @@
             <visible>$EXP[TMDbHelperBlurEnabled] + !Skin.HasSetting(global.hidefanart)</visible>
             <include>Dimensions_Fullscreen</include>
             <include condition="$EXP[InfoDialogsExtendedBackground]">Animation.FadeFromHome</include>
-            <include>GlobalBackgroundFadeBlur</include>
+            <include>GlobalFanartFadeBlur</include>
             <include>BackgroundFanartFadetime</include>
             <timeperimage>HomeTimePerImage</timeperimage>
             <randomize>true</randomize>

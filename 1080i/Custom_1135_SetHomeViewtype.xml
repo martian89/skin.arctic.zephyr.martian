@@ -9,7 +9,14 @@
 			<param name="control_id" value="10" />
 	        <param name="image" value="$INFO[Container(10).ListItem.Thumb]" />
 
-            <control type="list" id="10">
+            <include content="Dialog_List">
+                <param name="id" value="10" />
+                <param name="itemlayout_include" value="Dialog_SimpleList_Layout" />
+                <param name="itemlayout_w" value="520" />
+                <param name="item_w" value="520" />
+                <param name="misc" value="Tiny" />
+                <param name="selected" value="!String.IsEmpty(ListItem.Property(ItemSelected))" />
+
 				<left>8</left>
 				<height>552</height>
 				<width>512</width>
@@ -18,15 +25,10 @@
 				<onright>1600</onright>
 				<pagecontrol>1600</pagecontrol>
                 <scrolltime>0</scrolltime>
-                <include content="Def_SimpleListLayout">
-                    <param name="width" value="520" />
-                    <param name="font" value="Tiny" />
-					<param name="item_selected" value="!String.IsEmpty(ListItem.Property(ItemSelected))" />
-				</include>
 				<content>
 					<include>HomeViewTypes</include>
 				</content>
-            </control>
+            </include>
 		</include>
     </controls>
 </window>

@@ -4,19 +4,20 @@
     <onunload>ClearProperty(includesetting,home)</onunload>
     <controls>
         <include>GlobalOverlay</include>
-        <include content="DefDialog">
+        <include content="Dialog_Standard_Layout">
             <param name="header_label" value="$INFO[Container(10).ListItemAbsolute(0).Property(SettingsName)]"/>
-            <control type="list" id="10">
+            <include content="Dialog_List">
+                <param name="id" value="10" />
+                <param name="itemlayout_include" value="Dialog_SimpleList_Layout" />
+                <param name="focused" value="Control.HasFocus(10)" />
+                <param name="selected" value="!String.IsEmpty(ListItem.Property(ItemSelected))" />
+
                 <top>115</top>
                 <left>8</left>
                 <height>696</height>
                 <width>700</width>
                 <onright>1600</onright>
                 <pagecontrol>1600</pagecontrol>
-                <include content="Def_SimpleListLayout">
-                	<param name="item_selected" value="!String.IsEmpty(ListItem.Property(ItemSelected))" />
-                	<param name="focused" value="Control.HasFocus(10)" />
-                </include>
                 <content>
                     <include condition="String.IsEqual(Window(Home).Property(includesetting),SkinColors)">CustomSettings_Items.SkinColors</include>
                     <include condition="String.IsEqual(Window(Home).Property(includesetting),BackgroundBrightness)">CustomSettings_Items.BackgroundBrightness</include>
@@ -46,7 +47,7 @@
                     	<param name="is_movierating" value="false" />
                     </include>
                 </content>
-            </control>
+            </include>
             <include content="Furniture_Scrollbar_Dialog">
                 <param name="id" value="1600"/>
                 <param name="onleft" value="10"/>
@@ -69,7 +70,7 @@
                 <onclick>Close</onclick>
 	            <include>DefDialogButtons</include>
             </control>
-            <include>DialogSelectlabelInclude</include>
+            <include>Dialog_Part_CurrentItem</include>
         </include>
     </controls>
 </window>

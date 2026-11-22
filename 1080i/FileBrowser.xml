@@ -15,30 +15,13 @@
                 <height>900</height>
                 <texture border="16" colordiffuse="White100">common/rounded-shadow8.png</texture>
             </control>
-            <control type="label" id="411">
-                <description>Heading</description>
-                <left>95</left>
-                <width>1000</width>
-                <posy>25</posy>
-                <font>MediumBold</font>
-                <label>1023</label>
-            </control>
-            <include content="Kodi_Logo">
-                <param name="dimensions" value="40"/>
-                <param name="top" value="40"/>
-                <param name="left" value="40"/>
+            <include content="Dialog_Part_HeaderLabel">
+                <param name="id" value="411" />
+                <param name="label" value="1023" />
             </include>
+            <include>Dialog_Part_Logo</include>
+            <include>Dialog_Part_Line</include>
 
-            <!-- Lines -->
-            <control type="image">
-                <top>95</top>
-                <left>40</left>
-                <width>1000</width>
-                <height>1</height>
-                <bottom>10</bottom>
-                <colordiffuse>Black12</colordiffuse>
-                <texture>common/white.png</texture>
-            </control>
             <control type="label" id="412">
                 <description>Path</description>
                 <bottom>10</bottom>
@@ -48,7 +31,15 @@
                 <haspath>true</haspath>
                 <font>Tiny</font>
             </control>
-            <control type="list" id="450">
+            <include content="Dialog_List">
+                <param name="id" value="450" />
+                <param name="itemlayout_include" value="Dialog_ThumbnailList_Layout" />
+                <param name="itemlayout_h" value="138"/>
+                <param name="item_h" value="135" />
+                <param name="focused" value="Control.HasFocus(450)" />
+                <param name="indicators" value="false" />
+                <param name="default_icon" value="$EXP[IsDefaultIcon_C450]" />
+
                 <posx>8</posx>
                 <posy>115</posy>
                 <width>700</width>
@@ -58,12 +49,7 @@
                 <onup>450</onup>
                 <ondown>450</ondown>
                 <pagecontrol>1724</pagecontrol>
-                <include content="Def_ThumbnailListLayout">
-                    <param name="focused" value="Control.HasFocus(450)" />
-                    <param name="indicators" value="false" />
-                    <param name="default_icon" value="$EXP[IsDefaultIcon_C450]" />
-                </include>
-            </control>
+            </include>
             <include content="Furniture_Scrollbar_Dialog">
                 <param name="id" value="1724"/>
                 <param name="onleft" value="450"/>

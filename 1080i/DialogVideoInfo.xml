@@ -623,21 +623,14 @@
                                         <height>36</height>
                                         <textcolor>Dark1</textcolor>
                                         <label>[B]$LOCALIZE[20473][/B]</label>
-                                        <visible>!String.IsEmpty(ListItem.Premiered) + ![String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)]</visible>
+                                        <visible>![String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)]</visible>
                                     </control>
                                     <control type="label">
                                         <font>Tiny</font>
                                         <height>36</height>
                                         <textcolor>Dark1</textcolor>
                                         <label>[B]$LOCALIZE[20416][/B]</label>
-                                        <visible>!String.IsEmpty(ListItem.Premiered) + [String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)]</visible>
-                                    </control>
-                                    <control type="label">
-                                        <font>Tiny</font>
-                                        <height>36</height>
-                                        <textcolor>Dark1</textcolor>
-                                        <label>[B]$LOCALIZE[345][/B]</label>
-                                        <visible>String.IsEmpty(ListItem.Premiered)</visible>
+                                        <visible>[String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)]</visible>
                                     </control>
                                     <control type="label">
                                         <font>Tiny</font>
@@ -654,15 +647,7 @@
                                         <height>36</height>
                                         <font>Tiny</font>
                                         <textcolor>Dark2</textcolor>
-                                        <label fallback="19055">$INFO[ListItem.Premiered]</label>
-                                        <visible>!String.IsEmpty(ListItem.Premiered)</visible>
-                                    </control>
-                                    <control type="label">
-                                        <height>36</height>
-                                        <font>Tiny</font>
-                                        <textcolor>Dark2</textcolor>
-                                        <label fallback="19055">$INFO[ListItem.Year]</label>
-                                        <visible>String.IsEmpty(ListItem.Premiered)</visible>
+                                        <label fallback="19055">$VAR[LabelPremieredYear]</label>
                                     </control>
                                     <control type="label">
                                         <height>36</height>
